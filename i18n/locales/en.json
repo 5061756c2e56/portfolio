@@ -1,0 +1,92 @@
+{
+  "hero": {
+    "title": "Paul Viandier",
+    "subtitle": "Web Developer & Cybersecurity Enthusiast",
+    "description": "20 years old, passionate about IT, cybersecurity and development",
+    "available": "Available for new opportunities",
+    "location": "France",
+    "role": "Web Integrator"
+  },
+  "about": {
+    "title": "About",
+    "content": "I am currently training as a web integrator in apprenticeship. My goal is to continue with a fullstack web developer training to deepen my technical skills and master the entire development stack."
+  },
+  "skills": {
+    "title": "Skills",
+    "currentLevel": "Current level",
+    "level": "Level"
+  },
+  "projects": {
+    "title": "Projects & Achievements",
+    "viewProject": "View project",
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Personal portfolio website developed with Next.js and TypeScript, showcasing my skills and projects."
+    },
+    "securitySuite": {
+      "title": "Security Suite",
+      "description": "Local security suite for protecting and managing IT systems.",
+      "dialog": {
+        "title": "Project in development",
+        "description": "Security Suite is currently under development. This local security suite, developed with TypeScript, PostgreSQL and Next.js, will be available soon. Stay tuned for updates!",
+        "close": "Close"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "sendMessage": "Send a message",
+    "modal": {
+      "title": "Contact me",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "messagePlaceholder": "Type your message here...",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "An error occurred. Please try again.",
+      "close": "Close",
+      "validation": {
+        "nameMin": "Name must contain at least 3 characters",
+        "emailRequired": "This field is required",
+        "emailMissingAt": "The @ symbol is missing in the email address",
+        "emailMissingDomain": "Please enter the missing part after the @ symbol",
+        "emailMissingTld": "The email address must contain a dot after the @",
+        "emailInvalid": "Please enter a valid email",
+        "subjectMin": "Subject must contain at least 10 characters",
+        "messageMin": "Message must contain at least 20 characters"
+      }
+    },
+    "mailtoDialog": {
+      "title": "Open email client",
+      "description": "You will be redirected to your email client to send an email.",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "error": "No email client is configured on your device."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "loading": "Loading...",
+    "language": "Language",
+    "theme": "Theme",
+    "french": "French",
+    "english": "English",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "footer": {
+    "copyright": "Paul Viandier. All rights reserved.",
+    "license": "Licensed under MIT"
+  }
+}

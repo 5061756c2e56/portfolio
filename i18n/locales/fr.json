@@ -1,0 +1,92 @@
+{
+  "hero": {
+    "title": "Paul Viandier",
+    "subtitle": "Développeur Web & Passionné de Cybersécurité",
+    "description": "20 ans, passionné d'informatique, de cybersécurité et de développement",
+    "available": "Disponible pour de nouvelles opportunités",
+    "location": "France",
+    "role": "Intégrateur Web"
+  },
+  "about": {
+    "title": "À propos",
+    "content": "Je suis actuellement en formation d'intégrateur web en alternance. Mon objectif est de poursuivre avec une formation de développeur web fullstack pour approfondir mes compétences techniques et maîtriser l'ensemble de la stack de développement."
+  },
+  "skills": {
+    "title": "Compétences",
+    "currentLevel": "Niveau actuel",
+    "level": "Niveau"
+  },
+  "projects": {
+    "title": "Projets & Réalisations",
+    "viewProject": "Voir le projet",
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Site portfolio personnel développé avec Next.js et TypeScript, mettant en avant mes compétences et projets."
+    },
+    "securitySuite": {
+      "title": "Security Suite",
+      "description": "Suite de sécurité locale pour la protection et la gestion des systèmes informatiques.",
+      "dialog": {
+        "title": "Projet en cours de développement",
+        "description": "Security Suite est actuellement en développement. Cette suite de sécurité locale, développée avec TypeScript, PostgreSQL et Next.js, sera bientôt disponible. Restez à l'écoute pour les mises à jour !",
+        "close": "Fermer"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "sendMessage": "Envoyer un message",
+    "modal": {
+      "title": "Me contacter",
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "messagePlaceholder": "Tapez votre message ici...",
+      "send": "Envoyer",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès !",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "close": "Fermer",
+      "validation": {
+        "nameMin": "Le nom doit contenir au moins 3 caractères",
+        "emailRequired": "Ce champ est requis",
+        "emailMissingAt": "Le symbole @ est manquant dans l'adresse mail",
+        "emailMissingDomain": "Veuillez saisir la partie manquante après le symbole @",
+        "emailMissingTld": "L'adresse mail doit contenir un point après le @",
+        "emailInvalid": "Veuillez entrer un email valide",
+        "subjectMin": "Le sujet doit contenir au moins 10 caractères",
+        "messageMin": "Le message doit contenir au moins 20 caractères"
+      }
+    },
+    "mailtoDialog": {
+      "title": "Ouvrir le client de messagerie",
+      "description": "Vous allez être redirigé vers votre client de messagerie pour envoyer un email.",
+      "confirm": "Confirmer",
+      "cancel": "Annuler",
+      "error": "Aucun client de messagerie n'est configuré sur votre appareil."
+    }
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "contact": "Contact",
+    "loading": "Chargement...",
+    "language": "Langue",
+    "theme": "Thème",
+    "french": "Français",
+    "english": "English",
+    "dark": "Sombre",
+    "light": "Clair",
+    "system": "Système"
+  },
+  "footer": {
+    "copyright": "Paul Viandier. Tous droits réservés.",
+    "license": "Sous licence MIT"
+  }
+}

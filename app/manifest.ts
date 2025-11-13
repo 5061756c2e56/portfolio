@@ -1,0 +1,21 @@
+import { MetadataRoute } from 'next';
+
+export default function manifest(): MetadataRoute.Manifest {
+    return {
+        name: 'Portfolio de Paul Viandier',
+        short_name: 'PV',
+        description: 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#000000',
+        theme_color: '#000000',
+        icons: [
+            {
+                src: '/pfp.png',
+                sizes: '512x512',
+                type: 'image/png',
+                purpose: 'any'
+            }
+        ]
+    };
+}
