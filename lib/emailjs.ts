@@ -7,7 +7,7 @@ export interface EmailFormData {
     message: string;
 }
 
-export async function sendEmail(data: EmailFormData): Promise<{ success: boolean; error?: string }> {
+export async function sendEmail(data: EmailFormData): Promise<{ success: boolean; error?: string; count?: number | null }> {
     try {
         const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
         const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
@@ -32,19 +32,24 @@ export async function sendEmail(data: EmailFormData): Promise<{ success: boolean
 
         await emailjs.send(serviceId, templateId, templateParams);
 
+        let newCount = null;
         try {
-            await fetch('/api/email/increment', {
+            const response = await fetch('/api/email/increment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'same-origin'
             });
+            if (response.ok) {
+                const data = await response.json();
+                newCount = data.count;
+            }
         } catch (error) {
             console.error('Erreur incrémentation compteur:', error);
         }
 
-        return { success: true };
+        return { success: true, count: newCount };
     } catch (error) {
         console.error('Erreur EmailJS:', error);
         return {

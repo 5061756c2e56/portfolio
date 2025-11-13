@@ -45,6 +45,10 @@ export default function ContactModal({
             onClose();
             setSubmitStatus('idle');
             onSuccess?.();
+            
+            if (result.count !== null && result.count !== undefined && result.count >= 200) {
+                window.location.href = 'mailto:contact@paulviandier.com';
+            }
         } else {
             setSubmitStatus('error');
         }
