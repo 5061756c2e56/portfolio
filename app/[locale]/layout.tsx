@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: {
             default: isFrench
                 ? 'Portfolio de Paul Viandier'
-                : 'Portfolio de Paul Viandier',
+                : 'Portfolio of Paul Viandier',
             template: '%s | Portfolio de Paul Viandier'
         },
         description: isFrench
@@ -46,23 +46,44 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             type: 'website',
             locale: isFrench ? 'fr_FR' : 'en_US',
             alternateLocale: isFrench ? 'en_US' : 'fr_FR',
-            url: baseUrl,
-            siteName: 'Paul Viandier Portfolio',
+            url: `${baseUrl}${isFrench ? '/fr' : '/en'}`,
+            siteName: 'Portfolio de Paul Viandier',
             title: isFrench
-                ? 'Paul Viandier - Développeur Web & Cybersécurité'
-                : 'Paul Viandier - Web Developer & Cybersecurity',
+                ? 'Portfolio de Paul Viandier - Développeur Web & Cybersécurité'
+                : 'Portfolio of Paul Viandier - Web Developer & Cybersecurity',
             description: isFrench
-                ? 'Portfolio de Paul Viandier, développeur web en formation'
-                : 'Portfolio of Paul Viandier, web developer in training'
+                ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
+                : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
+            images: [
+                {
+                    url: `${baseUrl}/opengraph-image`,
+                    width: 1200,
+                    height: 630,
+                    alt: 'Paul Viandier - Développeur Web & Cybersécurité',
+                    type: 'image/png'
+                },
+                {
+                    url: `${baseUrl}/pfp.png`,
+                    width: 512,
+                    height: 512,
+                    alt: 'Paul Viandier',
+                    type: 'image/png'
+                }
+            ]
         },
         twitter: {
             card: 'summary_large_image',
             title: isFrench
-                ? 'Paul Viandier - Développeur Web & Cybersécurité'
-                : 'Paul Viandier - Web Developer & Cybersecurity',
+                ? 'Portfolio de Paul Viandier - Développeur Web & Cybersécurité'
+                : 'Portfolio of Paul Viandier - Web Developer & Cybersecurity',
             description: isFrench
-                ? 'Portfolio de Paul Viandier, développeur web en formation'
-                : 'Portfolio of Paul Viandier, web developer in training'
+                ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
+                : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
+            images: [
+                `${baseUrl}/opengraph-image`,
+                `${baseUrl}/pfp.png`
+            ],
+            creator: '@paulviandier'
         },
         robots: {
             index: true,
@@ -76,10 +97,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             }
         },
         alternates: {
-            canonical: baseUrl,
+            canonical: `${baseUrl}${isFrench ? '/fr' : '/en'}`,
             languages: {
                 'fr': `${baseUrl}/fr`,
-                'en': `${baseUrl}/en`
+                'en': `${baseUrl}/en`,
+                'x-default': `${baseUrl}/fr`
             }
         },
         verification: {

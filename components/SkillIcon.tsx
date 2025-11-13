@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import type { SVGProps } from 'react';
 
 interface SkillIconProps {
     name: string;
@@ -13,7 +14,7 @@ export default function SkillIcon({
 }: SkillIconProps) {
     const iconClassName = className || 'w-6 h-6';
 
-    const icons: Record<string, React.ReactElement> = {
+    const icons: Record<string, React.ReactElement<SVGProps<SVGSVGElement>>> = {
         'HTML': (
             <svg className={iconClassName} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 28L4 3H28L26 28L16 31L6 28Z" fill="#E44D26"/>
@@ -115,7 +116,7 @@ export default function SkillIcon({
 
     const icon = icons[name];
     if (icon) {
-        return React.cloneElement(icon, { className: iconClassName });
+        return React.cloneElement(icon, { className: iconClassName } as Partial<SVGProps<SVGSVGElement>>);
     }
 
     return (
