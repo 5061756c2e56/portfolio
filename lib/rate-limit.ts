@@ -141,7 +141,14 @@ export function validateOrigin(request: NextRequest): boolean {
                     return false;
                 }
             } else if (host) {
-                if (originHost !== host.toLowerCase() && originHost !== `www.${host.toLowerCase()}`) {
+                const hostLower = host.toLowerCase();
+                const hostWithoutWww = hostLower.replace(/^www\./, '');
+                const originWithoutWww = originHost.replace(/^www\./, '');
+                
+                if (originHost !== hostLower && 
+                    originHost !== `www.${hostLower}` &&
+                    originWithoutWww !== hostLower &&
+                    originWithoutWww !== hostWithoutWww) {
                     logSecurityEvent(request, 'origin_host_mismatch', { origin: originHost, host });
                     return false;
                 }
@@ -173,7 +180,14 @@ export function validateOrigin(request: NextRequest): boolean {
                     return false;
                 }
             } else if (host) {
-                if (refererHost !== host.toLowerCase() && refererHost !== `www.${host.toLowerCase()}`) {
+                const hostLower = host.toLowerCase();
+                const hostWithoutWww = hostLower.replace(/^www\./, '');
+                const refererWithoutWww = refererHost.replace(/^www\./, '');
+                
+                if (refererHost !== hostLower && 
+                    refererHost !== `www.${hostLower}` &&
+                    refererWithoutWww !== hostLower &&
+                    refererWithoutWww !== hostWithoutWww) {
                     logSecurityEvent(request, 'referer_host_mismatch', { referer: refererHost, host });
                     return false;
                 }
