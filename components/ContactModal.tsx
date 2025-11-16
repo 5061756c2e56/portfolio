@@ -1,212 +1,293 @@
 'use client';
 
 import {
-    EmailFormData,
+    FormEvent,
+    useCallback,
+    useEffect,
+    useState
+} from 'react';
+import { useTranslations } from 'next-intl';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle
+} from '@/components/ui/dialog';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle
+} from '@/components/ui/alert-dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import {
+    type EmailFormData,
     sendEmail
 } from '@/lib/emailjs';
-
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useTranslations } from 'next-intl';
-import { Textarea } from '@/components/ui/textarea';
+import { validateEmailForm } from '@/lib/email-validation';
 
 interface ContactModalProps {
     isOpen: boolean;
     onClose: () => void;
     onSuccess?: () => void;
+    mailtoMode?: boolean;
 }
 
 export default function ContactModal({
     isOpen,
     onClose,
-    onSuccess
+    onSuccess,
+    mailtoMode = false
 }: ContactModalProps) {
     const t = useTranslations('contact.modal');
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors }
-    } = useForm<EmailFormData>({
-        mode: 'onChange'
+    const tMailto = useTranslations('contact.mailtoDialog');
+    const tError = useTranslations('contact.modal.errorDialog');
+    const [formData, setFormData] = useState<EmailFormData>({
+        from_name: '',
+        from_email: '',
+        subject: '',
+        message: ''
     });
+    const [errors, setErrors] = useState<Partial<Record<keyof EmailFormData, string>>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showErrorDialog, setShowErrorDialog] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [mailtoError, setMailtoError] = useState(false);
 
-    const onSubmit = async (data: EmailFormData) => {
-        setIsSubmitting(true);
-        setSubmitStatus('idle');
-
-        const result = await sendEmail(data);
-
-        if (result.success) {
-            reset();
-            onClose();
-            setSubmitStatus('idle');
-            onSuccess?.();
-            
-            if (result.count !== null && result.count !== undefined && result.count >= 200) {
-                window.location.href = 'mailto:contact@paulviandier.com';
-            }
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
         } else {
-            setSubmitStatus('error');
+            document.body.style.overflow = '';
+            setFormData({
+                from_name: '',
+                from_email: '',
+                subject: '',
+                message: ''
+            });
+            setErrors({});
+            setShowErrorDialog(false);
+            setMailtoError(false);
         }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
 
-        setIsSubmitting(false);
+    const handleInputChange = (field: keyof EmailFormData, value: string) => {
+        const newFormData = {
+            ...formData,
+            [field]: value
+        };
+        setFormData(newFormData);
+
+        const validation = validateEmailForm(newFormData);
+
+        setErrors(prev => {
+            const newErrors = { ...prev };
+            if (validation.errors[field]) {
+                newErrors[field] = validation.errors[field];
+            } else {
+                delete newErrors[field];
+            }
+            return newErrors;
+        });
     };
 
-    if (!isOpen) return null;
+    const handleSubmit = useCallback(async (e: FormEvent) => {
+        e.preventDefault();
+
+        const validation = validateEmailForm(formData);
+        if (!validation.valid) {
+            setErrors(validation.errors);
+            return;
+        }
+
+        setIsSubmitting(true);
+        setErrors({});
+
+        try {
+            const result = await sendEmail(formData);
+
+            if (result.success) {
+                onClose();
+                onSuccess?.();
+            } else {
+                setErrorMessage(result.error || t('error'));
+                setShowErrorDialog(true);
+            }
+        } catch (error) {
+            setErrorMessage(t('error'));
+            setShowErrorDialog(true);
+        } finally {
+            setIsSubmitting(false);
+        }
+    }, [formData, onClose, onSuccess, t]);
+
+    const handleMailtoConfirm = useCallback(() => {
+        try {
+            window.location.href = 'mailto:contact@paulviandier.com';
+            setTimeout(() => {
+                onClose();
+                onSuccess?.();
+            }, 100);
+        } catch (error) {
+            setMailtoError(true);
+        }
+    }, [onClose, onSuccess]);
+
+    const handleErrorDialogConfirm = useCallback(() => {
+        setShowErrorDialog(false);
+        handleMailtoConfirm();
+    }, [handleMailtoConfirm]);
+
+    const handleErrorDialogCancel = useCallback(() => {
+        setShowErrorDialog(false);
+    }, []);
+
+    const isFormValid = () => {
+        const validation = validateEmailForm(formData);
+        return validation.valid;
+    };
+
+    if (mailtoMode) {
+        return (
+            <Dialog open={isOpen} onOpenChange={onClose}>
+                <DialogContent className="max-h-[calc(100vh-2rem)] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>{tMailto('title')}</DialogTitle>
+                        <DialogDescription>
+                            {mailtoError ? tMailto('error') : tMailto('description')}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={onClose}>
+                            {tMailto('cancel')}
+                        </Button>
+                        {!mailtoError && (
+                            <Button onClick={handleMailtoConfirm}>
+                                {tMailto('confirm')}
+                            </Button>
+                        )}
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+        );
+    }
 
     return (
-        <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-background/80 backdrop-blur-sm">
-            <div
-                className="bg-card rounded-lg border border-border shadow-lg p-6 sm:p-8 w-full max-w-lg animate-fade-in max-h-[90vh] overflow-y-auto">
-                <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-foreground">{t('title')}</h3>
-                    <button
-                        onClick={onClose}
-                        className="text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-muted rounded-md"
-                    >
-                        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
-                    <div>
-                        <label className="block text-sm sm:text-base font-medium text-foreground mb-2">
-                            {t('name')}
-                        </label>
-                        <input
-                            {...register('from_name', {
-                                required: true,
-                                minLength: {
-                                    value: 3,
-                                    message: t('validation.nameMin')
-                                }
-                            })}
-                            type="text"
-                            className="w-full px-4 py-3 sm:px-5 sm:py-3.5 bg-background border border-border rounded-md text-foreground text-base focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent transition-all"
-                        />
-                        {errors.from_name && (
-                            <p className="text-red-500 text-sm mt-1.5">
-                                {errors.from_name.type
-                                 === 'required' ? 'Ce champ est requis' : errors.from_name.message}
-                            </p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm sm:text-base font-medium text-foreground mb-2">
-                            {t('email')}
-                        </label>
-                        <input
-                            {...register('from_email', {
-                                required: t('validation.emailRequired'),
-                                validate: (value) => {
-                                    if (!value || value.trim() === '') {
-                                        return t('validation.emailRequired');
-                                    }
-                                    if (!value.includes('@')) {
-                                        return t('validation.emailMissingAt');
-                                    }
-                                    const parts = value.split('@');
-                                    if (parts.length === 2 && parts[1].trim() === '') {
-                                        return t('validation.emailMissingDomain');
-                                    }
-                                    if (parts.length === 2 && !parts[1].includes('.')) {
-                                        return t('validation.emailMissingTld');
-                                    }
-                                    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-                                    if (!emailRegex.test(value)) {
-                                        return t('validation.emailInvalid');
-                                    }
-                                    return true;
-                                }
-                            })}
-                            type="email"
-                            className="w-full px-4 py-3 sm:px-5 sm:py-3.5 bg-background border border-border rounded-md text-foreground text-base focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent transition-all"
-                        />
-                        {errors.from_email && (
-                            <p className="text-red-500 text-sm mt-1.5">
-                                {errors.from_email.message}
-                            </p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm sm:text-base font-medium text-foreground mb-2">
-                            {t('subject')}
-                        </label>
-                        <input
-                            {...register('subject', {
-                                required: true,
-                                minLength: {
-                                    value: 10,
-                                    message: t('validation.subjectMin')
-                                }
-                            })}
-                            type="text"
-                            className="w-full px-4 py-3 sm:px-5 sm:py-3.5 bg-background border border-border rounded-md text-foreground text-base focus:outline-none focus:ring-2 focus:ring-foreground focus:border-transparent transition-all"
-                        />
-                        {errors.subject && (
-                            <p className="text-red-500 text-sm mt-1.5">
-                                {errors.subject.type === 'required' ? 'Ce champ est requis' : errors.subject.message}
-                            </p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm sm:text-base font-medium text-foreground mb-2">
-                            {t('message')}
-                        </label>
-                        <Textarea
-                            {...register('message', {
-                                required: true,
-                                minLength: {
-                                    value: 20,
-                                    message: t('validation.messageMin')
-                                }
-                            })}
-                            rows={6}
-                            placeholder={t('messagePlaceholder')}
-                        />
-                        {errors.message && (
-                            <p className="text-red-500 text-sm mt-1.5">
-                                {errors.message.type === 'required' ? 'Ce champ est requis' : errors.message.message}
-                            </p>
-                        )}
-                    </div>
-
-                    {submitStatus === 'error' && (
-                        <div
-                            className="p-4 bg-red-500/10 border border-red-500/20 rounded-md text-red-600 dark:text-red-400 text-sm sm:text-base">
-                            {t('error')}
+        <>
+            <Dialog open={isOpen} onOpenChange={onClose}>
+                <DialogContent className="max-h-[calc(100vh-2rem)] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>{t('title')}</DialogTitle>
+                    </DialogHeader>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="space-y-2">
+                            <label htmlFor="name" className="text-sm font-medium">
+                                {t('name')}
+                            </label>
+                            <Input
+                                id="name"
+                                type="text"
+                                value={formData.from_name}
+                                onChange={(e) => handleInputChange('from_name', e.target.value)}
+                                placeholder={t('name')}
+                                disabled={isSubmitting}
+                                aria-invalid={!!errors.from_name}
+                            />
+                            {errors.from_name && (
+                                <p className="text-sm text-destructive">{errors.from_name}</p>
+                            )}
                         </div>
-                    )}
-
-                    <div className="flex gap-3">
-                        <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="flex-1 px-5 py-3 sm:px-6 sm:py-3.5 bg-foreground hover:opacity-90 text-background rounded-md text-base font-medium transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {isSubmitting ? t('sending') : t('send')}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={onClose}
-                            className="px-5 py-3 sm:px-6 sm:py-3.5 bg-muted hover:bg-muted/80 text-foreground rounded-md text-base font-medium transition-colors"
-                        >
-                            {t('close')}
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                        <div className="space-y-2">
+                            <label htmlFor="email" className="text-sm font-medium">
+                                {t('email')}
+                            </label>
+                            <Input
+                                id="email"
+                                type="email"
+                                value={formData.from_email}
+                                onChange={(e) => handleInputChange('from_email', e.target.value)}
+                                placeholder={t('email')}
+                                disabled={isSubmitting}
+                                aria-invalid={!!errors.from_email}
+                            />
+                            {errors.from_email && (
+                                <p className="text-sm text-destructive">{errors.from_email}</p>
+                            )}
+                        </div>
+                        <div className="space-y-2">
+                            <label htmlFor="subject" className="text-sm font-medium">
+                                {t('subject')}
+                            </label>
+                            <Input
+                                id="subject"
+                                type="text"
+                                value={formData.subject}
+                                onChange={(e) => handleInputChange('subject', e.target.value)}
+                                placeholder={t('subject')}
+                                disabled={isSubmitting}
+                                aria-invalid={!!errors.subject}
+                            />
+                            {errors.subject && (
+                                <p className="text-sm text-destructive">{errors.subject}</p>
+                            )}
+                        </div>
+                        <div className="space-y-2">
+                            <label htmlFor="message" className="text-sm font-medium">
+                                {t('message')}
+                            </label>
+                            <Textarea
+                                id="message"
+                                value={formData.message}
+                                onChange={(e) => handleInputChange('message', e.target.value)}
+                                placeholder={t('messagePlaceholder')}
+                                disabled={isSubmitting}
+                                rows={6}
+                                aria-invalid={!!errors.message}
+                            />
+                            {errors.message && (
+                                <p className="text-sm text-destructive">{errors.message}</p>
+                            )}
+                        </div>
+                        <DialogFooter>
+                            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+                                {t('close')}
+                            </Button>
+                            <Button type="submit" disabled={isSubmitting || !isFormValid()}>
+                                {isSubmitting ? t('sending') : t('send')}
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+            <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
+                <AlertDialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-md">
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{tError('title')}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {errorMessage || tError('description')}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel onClick={handleErrorDialogCancel}>
+                            {tError('cancel')}
+                        </AlertDialogCancel>
+                        <AlertDialogAction onClick={handleErrorDialogConfirm}>
+                            {tError('confirm')}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+        </>
     );
 }

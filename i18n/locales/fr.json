@@ -5,7 +5,9 @@
     "description": "20 ans, passionné d'informatique, de cybersécurité et de développement",
     "available": "Disponible pour de nouvelles opportunités",
     "location": "France",
-    "role": "Intégrateur Web"
+    "role": "Intégrateur Web",
+    "cvButton": "Découvrir mon Curriculum Vitae",
+    "downloadCVButton": "Télécharger mon Curriculum Vitae"
   },
   "about": {
     "title": "À propos",
@@ -14,7 +16,10 @@
   "skills": {
     "title": "Compétences",
     "currentLevel": "Niveau actuel",
-    "level": "Niveau"
+    "level": "Niveau",
+    "previousSlide": "Slide précédent",
+    "nextSlide": "Slide suivant",
+    "goToSkill": "Aller à la compétence"
   },
   "projects": {
     "title": "Projets & Réalisations",
@@ -50,7 +55,15 @@
       "sending": "Envoi en cours...",
       "success": "Message envoyé avec succès !",
       "error": "Une erreur est survenue. Veuillez réessayer.",
+      "errorNetwork": "Erreur de connexion. Vérifiez votre connexion internet et réessayez.",
+      "errorConfig": "Erreur de configuration. Veuillez contacter l'administrateur.",
       "close": "Fermer",
+      "errorDialog": {
+        "title": "Erreur lors de l'envoi",
+        "description": "Souhaitez-vous utiliser votre client de messagerie pour envoyer votre message ?",
+        "confirm": "Ouvrir le client de messagerie",
+        "cancel": "Annuler"
+      },
       "validation": {
         "nameMin": "Le nom doit contenir au moins 3 caractères",
         "emailRequired": "Ce champ est requis",
@@ -72,6 +85,7 @@
   },
   "nav": {
     "home": "Accueil",
+    "cv": "Curriculum Vitae",
     "about": "À propos",
     "skills": "Compétences",
     "projects": "Projets",
@@ -83,10 +97,119 @@
     "english": "English",
     "dark": "Sombre",
     "light": "Clair",
-    "system": "Système"
+    "system": "Système",
+    "closeMenu": "Fermer le menu",
+    "menu": "Menu",
+    "settings": "Paramètres",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "footer": {
     "copyright": "Paul Viandier. Tous droits réservés.",
     "license": "Sous licence MIT"
+  },
+  "cv": {
+    "back": "Retour",
+    "name": "Paul Viandier",
+    "title": "Intégrateur Web & Développeur",
+    "description": "Paul Viandier, 20 ans\n*Passionné par les réseaux, la cybersécurité et le développement.*\n\nMon objectif : concevoir des services fiables, performants et sûrs.\n\nCompétent en HTML, CSS et JavaScript, je souhaite renforcer mes acquis.",
+    "location": "France",
+    "role": "Intégrateur Web en alternance",
+    "contactEmail": "Me contacter par mail",
+    "downloadCV": "Télécharger le CV",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "education": {
+      "title": "Formation",
+      "items": {
+        "0": {
+          "title": "Intégrateur Web",
+          "school": "OpenClassroom  |  Diplôme de niveau 5 (bac +2)  |  Formation en alternance à venir",
+          "period": "2025",
+          "description": "**Les objectifs de la formation :**\n • Créer des interfaces responsives avec HTML et CSS\n • Dynamiser une page web avec JavaScript et React\n • Implémenter la gestion de données avec Redux\n • Versionner et collaborer sur un projet avec Git\n • Déboguer et optimiser un site web existant\n"
+        }
+      }
+    },
+    "skills": {
+      "title": "Compétences",
+      "all": "Toutes",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "tools": "Outils",
+        "other": "Autres"
+      },
+      "items": {
+        "HTML5": {
+          "category": "frontend",
+          "name": "HTML5"
+        },
+        "CSS": {
+          "category": "frontend",
+          "name": "CSS"
+        },
+        "JavaScript": {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        "TypeScript": {
+          "category": "frontend",
+          "name": "TypeScript"
+        },
+        "React": {
+          "category": "frontend",
+          "name": "React"
+        },
+        "NextJS": {
+          "category": "frontend",
+          "name": "Next.js"
+        },
+        "TailwindCSS": {
+          "category": "frontend",
+          "name": "Tailwind CSS"
+        },
+        "NodeJS": {
+          "category": "backend",
+          "name": "Node.js"
+        },
+        "PostgreSQL": {
+          "category": "backend",
+          "name": "PostgreSQL"
+        },
+        "APIREST": {
+          "category": "backend",
+          "name": "API REST"
+        },
+        "Git": {
+          "category": "tools",
+          "name": "Git"
+        },
+        "GitHub": {
+          "category": "tools",
+          "name": "GitHub"
+        },
+        "Vercel": {
+          "category": "tools",
+          "name": "Vercel"
+        },
+        "EmailJS": {
+          "category": "tools",
+          "name": "EmailJS"
+        },
+        "Cybersecurite": {
+          "category": "other",
+          "name": "Cybersécurité"
+        },
+        "ResponsiveDesign": {
+          "category": "other",
+          "name": "Responsive Design"
+        },
+        "SEO": {
+          "category": "other",
+          "name": "SEO"
+        }
+      }
+    }
   }
 }

@@ -22,8 +22,8 @@ export default function MobileMenu() {
         <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
             <DropdownMenuTrigger asChild>
                 <button
-                    className="group inline-flex items-center justify-center rounded-md border border-border bg-background p-2 text-foreground hover:bg-muted hover:border-foreground/20 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 active:scale-95"
-                    aria-label="Menu"
+                    className="group inline-flex items-center justify-center rounded-md border border-border bg-background p-2 text-foreground hover:bg-muted hover:border-foreground/20 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 active:scale-95 cursor-pointer"
+                    aria-label={t('menu')}
                 >
                     <svg className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-90"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

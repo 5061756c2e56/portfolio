@@ -24,6 +24,15 @@ export default function SkillIcon({
                     fill="white"/>
             </svg>
         ),
+        'HTML5': (
+            <svg className={iconClassName} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 28L4 3H28L26 28L16 31L6 28Z" fill="#E44D26"/>
+                <path d="M26 5H16V29.5L24 27L26 5Z" fill="#F16529"/>
+                <path
+                    d="M9.5 17.5L8.5 8H24L23.5 11H11.5L12 14.5H23L22 24L16 26L10 24L9.5 19H12.5L13 21.5L16 22.5L19 21.5L19.5 17.5H9.5Z"
+                    fill="white"/>
+            </svg>
+        ),
         'JavaScript': (
             <svg className={iconClassName} xmlns="http://www.w3.org/2000/svg"
                  aria-label="JavaScript" role="img"
@@ -110,6 +119,97 @@ export default function SkillIcon({
                           strokeMiterlimit="10" strokeWidth="2"
                           d="M35.9417,54.854c-0.978-0.4958-13.5423-7.318-15.9006-31.7144L20.0201,22.92c0-4.4133,7.1553-7.991,15.9819-7.991 s16.3938,3.5969,15.9819,7.991C49.5866,48.4911,36.002,54.8838,36.002,54.8838L35.9417,54.854z"/>
                 </g>
+            </svg>
+        ),
+        'Cybersecurity': (
+            <svg className={iconClassName} viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
+                <g id="color">
+                    <path fill="#D0CFCE" stroke="none"
+                          d="M35.9899,10.9064c-11.0457,0-20,4.4773-20,10l0.0261,0.2749c2.9513,30.53,18.6744,39.0674,19.8983,39.6877 l0.0756,0.0374c0,0,17-8,20-40C56.5055,15.4078,47.0356,10.9064,35.9899,10.9064z M35.992,54.884l-0.0604-0.0299 c-0.978-0.4957-13.5423-7.318-15.9006-31.7145L20.01,22.9201c0-4.4133,7.1553-7.991,15.9819-7.991 c8.8265,0,16.3938,3.5969,15.9819,7.991C49.5766,48.4912,35.992,54.884,35.992,54.884z"/>
+                    <path fill="#EA5A47" stroke="none"
+                          d="M35,17.9064l3,4l-3,4l3,4l-3,4l3,4l-3,4l3,4l-3,4l1,5.2597c0,0-15-11-16-32c0,0,0-8,16-8L35,17.9064z"/>
+                    <path fill="#D22F27" stroke="none"
+                          d="M36,15.1661l-1,2.7403l3,4l-3,4l3,4l-3,4l3,4l-3,4l3,4l-3,4l1.002,4.9774 c0,0,13.8441-8.9583,15.9819-31.9638C51.9839,22.92,51.1505,15.9498,36,15.1661z"/>
+                </g>
+                <g id="hair"/>
+                <g id="skin"/>
+                <g id="skin-shadow"/>
+                <g id="line">
+                    <path fill="none" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"
+                          strokeMiterlimit="10" strokeWidth="2"
+                          d="M35.9245,60.8691c-1.2239-0.6204-16.947-9.1579-19.8983-39.6878L16,20.9064c0-5.5228,8.9543-10,20-10s20.5155,4.5013,20,10 c-3,32-20,40-20,40L35.9245,60.8691z"/>
+                    <path fill="none" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"
+                          strokeMiterlimit="10" strokeWidth="2"
+                          d="M35.9417,54.854c-0.978-0.4958-13.5423-7.318-15.9006-31.7144L20.0201,22.92c0-4.4133,7.1553-7.991,15.9819-7.991 s16.3938,3.5969,15.9819,7.991C49.5866,48.4911,36.002,54.8838,36.002,54.8838L35.9417,54.854z"/>
+                </g>
+            </svg>
+        ),
+        'React': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="2" fill="#61DAFB"/>
+                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="#61DAFB" strokeWidth="1"/>
+                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="#61DAFB" strokeWidth="1" transform="rotate(60 12 12)"/>
+                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="#61DAFB" strokeWidth="1" transform="rotate(-60 12 12)"/>
+            </svg>
+        ),
+        'Tailwind CSS': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.31.74 1.91 1.35.98 1 2.12 2.15 4.59 2.15 2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.31-.74-1.91-1.35C15.61 7.15 14.47 6 12 6zm-5 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.31.74 1.91 1.35.98 1 2.12 2.15 4.59 2.15 2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.31-.74-1.91-1.35C10.61 13.15 9.47 12 7 12z" fill="#06B6D4"/>
+            </svg>
+        ),
+        'PostgreSQL': (
+            <svg className={iconClassName} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xmlSpace="preserve" fill="#000000">
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path style={{fill:"#E2E5E7"}} d="M128,0c-17.6,0-32,14.4-32,32v448c0,17.6,14.4,32,32,32h320c17.6,0,32-14.4,32-32V128L352,0H128z"></path>
+                    <path style={{fill:"#B0B7BD"}} d="M384,128h96L352,0v96C352,113.6,366.4,128,384,128z"></path>
+                    <polygon style={{fill:"#CAD1D8"}} points="480,224 384,128 480,128 "></polygon>
+                    <path style={{fill:"#F15642"}} d="M416,416c0,8.8-7.2,16-16,16H48c-8.8,0-16-7.2-16-16V256c0-8.8,7.2-16,16-16h352c8.8,0,16,7.2,16,16 V416z"></path>
+                    <g>
+                        <path style={{fill:"#FFFFFF"}} d="M98.128,314.672c2.944-24.832,40.416-29.296,58.064-15.728c8.704,7.024-0.496,18.16-8.192,12.528 c-9.456-6-30.96-8.816-33.648,4.464c-3.456,20.992,52.208,8.976,51.296,43.008c-0.896,32.496-47.968,33.248-65.632,18.672 c-4.224-3.456-4.096-9.072-1.776-12.544c3.312-3.312,7.024-4.464,11.376-0.88c10.496,7.152,37.488,12.528,39.408-5.648 C147.376,339.632,94.16,351.008,98.128,314.672z"></path>
+                        <path style={{fill:"#FFFFFF"}} d="M265.488,369.424l2.048,2.416c8.432,7.68-2.56,20.224-11.136,12.16l-4.336-3.44 c-6.656,4.592-14.448,6.784-24.816,6.784c-22.512,0-48.24-15.504-48.24-46.976s25.584-47.456,48.24-47.456 c23.776,0,47.072,15.984,47.072,47.456C274.32,352.528,271.232,361.504,265.488,369.424z M257.792,340.368 c0-20.336-15.984-30.688-30.56-30.688c-15.728,0-31.216,10.336-31.216,30.688c0,15.504,13.168,30.208,31.216,30.208 c4.592,0,9.072-1.152,13.552-2.304l-14.576-13.44c-6.784-8.192,3.968-19.84,12.528-12.288l14.464,14.448 C256.384,352.528,257.792,347.024,257.792,340.368z"></path>
+                        <path style={{fill:"#FFFFFF"}} d="M293.168,303.152c0-4.224,3.584-7.808,8.064-7.808c4.096,0,7.552,3.6,7.552,7.808v64.096h34.8 c12.528,0,12.8,16.752,0,16.752h-42.336c-4.48,0-8.064-3.184-8.064-7.792v-73.056H293.168z"></path>
+                    </g>
+                    <path style={{fill:"#CAD1D8"}} d="M400,432H96v16h304c8.8,0,16-7.2,16-16v-16C416,424.8,408.8,432,400,432z"></path>
+                </g>
+            </svg>
+        ),
+        'GitHub': (
+            <svg className={iconClassName} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+        ),
+        'Vercel': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 22.525H0l12-21.05 12 21.05z" fill="currentColor"/>
+            </svg>
+        ),
+        'EmailJS': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+            </svg>
+        ),
+        'Responsive Design': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M2 8h20M8 4v4"/>
+            </svg>
+        ),
+        'SEO': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+        ),
+        'API REST': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+        ),
+        'REST API': (
+            <svg className={iconClassName} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 7h16M4 12h16M4 17h16"/>
             </svg>
         )
     };

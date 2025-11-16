@@ -40,6 +40,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
                     en: `${baseUrl}/en`
                 }
             }
+        },
+        {
+            url: `${baseUrl}/curriculum-vitae`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+            alternates: {
+                languages: {
+                    fr: `${baseUrl}/curriculum-vitae`,
+                    en: `${baseUrl}/en/curriculum-vitae`
+                }
+            }
+        },
+        {
+            url: `${baseUrl}/en/curriculum-vitae`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+            alternates: {
+                languages: {
+                    fr: `${baseUrl}/curriculum-vitae`,
+                    en: `${baseUrl}/en/curriculum-vitae`
+                }
+            }
         }
     ];
 }

@@ -1,27 +1,11 @@
 'use client';
 
-import {
-    useCallback,
-    useEffect,
-    useRef,
-    useState
-} from 'react';
+import { useState, useCallback } from 'react';
 
 import { useTranslations } from 'next-intl';
 import ContactModal from './ContactModal';
-import { Toast } from '@/components/ui/toast';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle
-} from '@/components/ui/alert-dialog';
 
 export default function Contact() {
     const t = useTranslations('contact');
@@ -30,56 +14,37 @@ export default function Contact() {
         isInView
     } = useInView({ threshold: 0.2 });
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [emailCount, setEmailCount] = useState<number | null>(null);
-    const [showToast, setShowToast] = useState(false);
-    const [showMailtoDialog, setShowMailtoDialog] = useState(false);
-    const [mailtoError, setMailtoError] = useState(false);
+    const [mailtoMode, setMailtoMode] = useState(false);
+    const [isCheckingCount, setIsCheckingCount] = useState(false);
     const MAX_EMAILS = 200;
-    const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    const fetchEmailCount = useCallback(async () => {
-        if (!isInView) return;
+    const handleEmailClick = useCallback(async () => {
+        setIsCheckingCount(true);
         try {
-            const res = await fetch('/api/email/counter');
+            const res = await fetch(`/api/email/counter?t=${Date.now()}`, {
+                cache: 'no-store'
+            });
             if (res.ok) {
                 const data = await res.json();
-                setEmailCount(data.count);
+                const currentCount = data.count;
+                if (currentCount >= MAX_EMAILS) {
+                    setMailtoMode(true);
+                    setIsModalOpen(true);
+                } else {
+                    setMailtoMode(false);
+                    setIsModalOpen(true);
+                }
+            } else {
+                setMailtoMode(false);
+                setIsModalOpen(true);
             }
         } catch {
-            setEmailCount(null);
-        }
-    }, [isInView]);
-
-    useEffect(() => {
-        if (!isInView) return;
-        fetchEmailCount();
-        pollingIntervalRef.current = setInterval(fetchEmailCount, 30000);
-        return () => {
-            if (pollingIntervalRef.current) {
-                clearInterval(pollingIntervalRef.current);
-            }
-        };
-    }, [isInView, fetchEmailCount]);
-
-    const handleEmailClick = () => {
-        if (emailCount !== null && emailCount >= MAX_EMAILS) {
-            setShowMailtoDialog(true);
-            setMailtoError(false);
-        } else {
+            setMailtoMode(false);
             setIsModalOpen(true);
+        } finally {
+            setIsCheckingCount(false);
         }
-    };
-
-    const handleMailtoConfirm = () => {
-        try {
-            window.location.href = 'mailto:contact@paulviandier.com';
-            setTimeout(() => {
-                setShowMailtoDialog(false);
-            }, 100);
-        } catch (error) {
-            setMailtoError(true);
-        }
-    };
+    }, []);
 
     const contacts = [
         {
@@ -91,7 +56,7 @@ export default function Contact() {
                           d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
                 </svg>
             ),
-            action: handleEmailClick,
+            action: isCheckingCount ? () => {} : handleEmailClick,
             value: 'contact@paulviandier.com'
         },
         {
@@ -117,10 +82,6 @@ export default function Contact() {
             value: 'Paul Viandier'
         }
     ];
-
-    const handleSuccess = () => {
-        setShowToast(true);
-    };
 
     return (
         <>
@@ -169,38 +130,11 @@ export default function Contact() {
                     </div>
                 </div>
             </section>
-            <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSuccess={handleSuccess}/>
-            {showToast && (
-                <Toast
-                    message={t('modal.success')}
-                    type="success"
-                    duration={4000}
-                    onClose={() => setShowToast(false)}
-                />
-            )}
-            <AlertDialog open={showMailtoDialog} onOpenChange={setShowMailtoDialog}>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>{t('mailtoDialog.title')}</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            {mailtoError ? t('mailtoDialog.error') : t('mailtoDialog.description')}
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel onClick={() => {
-                            setShowMailtoDialog(false);
-                            setMailtoError(false);
-                        }}>
-                            {t('mailtoDialog.cancel')}
-                        </AlertDialogCancel>
-                        {!mailtoError && (
-                            <AlertDialogAction onClick={handleMailtoConfirm}>
-                                {t('mailtoDialog.confirm')}
-                            </AlertDialogAction>
-                        )}
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
+            <ContactModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)}
+                mailtoMode={mailtoMode}
+            />
         </>
     );
 }

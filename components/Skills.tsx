@@ -29,7 +29,7 @@ type SkillData = {
 
 const skills: SkillData[] = [
     {
-        name: 'HTML',
+        name: 'HTML5',
         data: [
             {
                 year: '2020',
@@ -184,7 +184,122 @@ const skills: SkillData[] = [
         ]
     },
     {
-        name: 'Cybersécurité',
+        name: 'React',
+        data: [
+            {
+                year: '2022',
+                value: 40
+            },
+            {
+                year: '2023',
+                value: 65
+            },
+            {
+                year: '2024',
+                value: 75
+            }
+        ]
+    },
+    {
+        name: 'Tailwind CSS',
+        data: [
+            {
+                year: '2022',
+                value: 35
+            },
+            {
+                year: '2023',
+                value: 70
+            },
+            {
+                year: '2024',
+                value: 80
+            }
+        ]
+    },
+    {
+        name: 'PostgreSQL',
+        data: [
+            {
+                year: '2023',
+                value: 30
+            },
+            {
+                year: '2024',
+                value: 55
+            }
+        ]
+    },
+    {
+        name: 'API REST',
+        data: [
+            {
+                year: '2022',
+                value: 40
+            },
+            {
+                year: '2023',
+                value: 60
+            },
+            {
+                year: '2024',
+                value: 70
+            }
+        ]
+    },
+    {
+        name: 'GitHub',
+        data: [
+            {
+                year: '2020',
+                value: 45
+            },
+            {
+                year: '2021',
+                value: 60
+            },
+            {
+                year: '2022',
+                value: 70
+            },
+            {
+                year: '2023',
+                value: 80
+            },
+            {
+                year: '2024',
+                value: 85
+            }
+        ]
+    },
+    {
+        name: 'Vercel',
+        data: [
+            {
+                year: '2023',
+                value: 50
+            },
+            {
+                year: '2024',
+                value: 70
+            }
+        ]
+    },
+    {
+        name: 'EmailJS',
+        data: [
+            {
+                year: '2023',
+                value: 40
+            },
+            {
+                year: '2024',
+                value: 65
+            }
+        ]
+    },
+    {
+        name: 'Cybersecurity',
         data: [
             {
                 year: '2022',
@@ -197,6 +312,44 @@ const skills: SkillData[] = [
             {
                 year: '2024',
                 value: 60
+            }
+        ]
+    },
+    {
+        name: 'Responsive Design',
+        data: [
+            {
+                year: '2021',
+                value: 50
+            },
+            {
+                year: '2022',
+                value: 70
+            },
+            {
+                year: '2023',
+                value: 80
+            },
+            {
+                year: '2024',
+                value: 85
+            }
+        ]
+    },
+    {
+        name: 'SEO',
+        data: [
+            {
+                year: '2022',
+                value: 35
+            },
+            {
+                year: '2023',
+                value: 55
+            },
+            {
+                year: '2024',
+                value: 65
             }
         ]
     }
@@ -308,7 +461,7 @@ export default function Skills() {
                             {skills.map((skill, index) => (
                                 <CarouselItem key={index}>
                                     <div
-                                        className="group relative rounded-xl border border-border/50 bg-gradient-to-br from-card via-card to-muted/30 p-4 sm:p-6 md:p-8 hover:border-foreground/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 outline-none focus:outline-none overflow-hidden"
+                                        className="group relative rounded-xl border border-border/50 bg-gradient-to-br from-card via-card to-muted/30 p-4 sm:p-6 md:p-8 hover:border-foreground/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 outline-none focus:outline-none overflow-hidden cursor-help"
                                         onMouseEnter={handleInteraction}
                                         onMouseLeave={handleInteractionEnd}
                                         onClick={handleInteraction}
@@ -370,7 +523,7 @@ export default function Skills() {
                                 onMouseLeave={handleInteractionEnd}
                                 disabled={!api || !canScrollPrev}
                                 className="md:hidden h-10 w-10 rounded-full border border-border/50 bg-gradient-to-br from-background/95 to-background/90 backdrop-blur-sm text-foreground shadow-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-500/40 hover:scale-110 active:scale-95 flex items-center justify-center disabled:opacity-50 disabled:pointer-events-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 active:border-border"
-                                aria-label="Slide précédent"
+                                aria-label={t('previousSlide')}
                             >
                                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                      strokeWidth={2}>
@@ -394,7 +547,7 @@ export default function Skills() {
                                                 ? 'bg-foreground w-6 sm:w-8 border border-foreground'
                                                 : 'bg-muted-foreground/40 w-2 sm:w-2.5 border border-border hover:bg-foreground/50 active:bg-foreground/70'
                                         )}
-                                        aria-label={`Aller à la compétence ${index + 1}`}
+                                        aria-label={`${t('goToSkill')} ${index + 1}`}
                                     />
                                 ))}
                             </div>
@@ -408,7 +561,7 @@ export default function Skills() {
                                 onMouseLeave={handleInteractionEnd}
                                 disabled={!api || !canScrollNext}
                                 className="md:hidden h-10 w-10 rounded-full border border-border/50 bg-gradient-to-br from-background/95 to-background/90 backdrop-blur-sm text-foreground shadow-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-500/40 hover:scale-110 active:scale-95 flex items-center justify-center disabled:opacity-50 disabled:pointer-events-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 active:border-border"
-                                aria-label="Slide suivant"
+                                aria-label={t('nextSlide')}
                             >
                                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                      strokeWidth={2}>

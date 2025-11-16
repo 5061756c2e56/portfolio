@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 interface AreaChartProps {
@@ -27,14 +28,49 @@ export function AreaChartGradient({
     levelLabel = 'Niveau'
 }: AreaChartProps) {
     const gradientId = `gradient-${id}`;
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return (
+            <div 
+                className={cn('w-full h-[300px] outline-none focus:outline-none select-none cursor-help', className)} 
+                style={{ 
+                    userSelect: 'none', 
+                    WebkitUserSelect: 'none', 
+                    minWidth: '0px', 
+                    minHeight: '300px',
+                    width: '100%',
+                    height: '300px'
+                }}
+            />
+        );
+    }
 
     return (
         <div 
-            className={cn('w-full h-[300px] outline-none focus:outline-none select-none', className)} 
+            className={cn('w-full h-[300px] outline-none focus:outline-none select-none cursor-help', className)} 
             tabIndex={-1}
-            style={{ userSelect: 'none', WebkitUserSelect: 'none', minWidth: 0, minHeight: 0 }}
+            style={{ 
+                userSelect: 'none', 
+                WebkitUserSelect: 'none', 
+                minWidth: '0px', 
+                minHeight: '300px',
+                width: '100%',
+                height: '300px',
+                position: 'relative'
+            }}
         >
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer 
+                width="100%" 
+                height="100%" 
+                minWidth={300} 
+                minHeight={300}
+                style={{ cursor: 'help' }}
+            >
                 <AreaChart
                     data={data}
                     margin={{

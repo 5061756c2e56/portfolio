@@ -16,11 +16,12 @@ export default async function Image() {
                     width: '100%',
                     height: '100%',
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     position: 'relative',
-                    fontFamily: 'system-ui, -apple-system, sans-serif'
+                    fontFamily: 'system-ui, -apple-system, sans-serif',
+                    padding: '80px'
                 }}
             >
                 <div
@@ -30,53 +31,87 @@ export default async function Image() {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'radial-gradient(circle at 50% 50%, rgba(120, 119, 198, 0.15), transparent 70%)',
-                        opacity: 0.6
+                        background: 'radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.2), transparent 60%)',
+                        opacity: 0.8
                     }}
                 />
                 <div
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center',
+                        alignItems: 'flex-start',
                         justifyContent: 'center',
-                        gap: 24,
+                        gap: 32,
                         zIndex: 1,
-                        padding: '60px 80px',
-                        textAlign: 'center'
+                        flex: 1,
+                        maxWidth: '700px'
                     }}
                 >
                     <div
                         style={{
-                            fontSize: 72,
+                            fontSize: 84,
                             fontWeight: 'bold',
                             color: '#ffffff',
                             lineHeight: 1.1,
-                            letterSpacing: '-0.02em',
-                            marginBottom: 8
+                            letterSpacing: '-0.03em',
+                            marginBottom: 12
                         }}
                     >
                         Paul Viandier
                     </div>
                     <div
                         style={{
-                            fontSize: 36,
-                            color: '#a0a0a0',
-                            fontWeight: 400,
-                            lineHeight: 1.3
+                            fontSize: 42,
+                            color: '#e0e0e0',
+                            fontWeight: 500,
+                            lineHeight: 1.3,
+                            marginBottom: 8
                         }}
                     >
                         Développeur Web & Cybersécurité
                     </div>
                     <div
                         style={{
-                            fontSize: 24,
-                            color: '#666666',
-                            marginTop: 16,
-                            fontWeight: 300
+                            fontSize: 28,
+                            color: '#888888',
+                            marginTop: 8,
+                            fontWeight: 400,
+                            display: 'flex',
+                            gap: 16,
+                            flexWrap: 'wrap'
                         }}
                     >
-                        Portfolio • Fullstack • Next.js • TypeScript
+                        <span>Portfolio</span>
+                        <span>•</span>
+                        <span>Fullstack</span>
+                        <span>•</span>
+                        <span>Next.js</span>
+                        <span>•</span>
+                        <span>TypeScript</span>
+                    </div>
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 1,
+                        width: '300px',
+                        height: '300px',
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3))',
+                        border: '4px solid rgba(59, 130, 246, 0.5)',
+                        boxShadow: '0 0 60px rgba(59, 130, 246, 0.4)'
+                    }}
+                >
+                    <div
+                        style={{
+                            fontSize: 120,
+                            color: '#ffffff',
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        PV
                     </div>
                 </div>
             </div>

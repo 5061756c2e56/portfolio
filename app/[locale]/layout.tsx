@@ -7,6 +7,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import StructuredData from '@/components/StructuredData';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -104,8 +106,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 'x-default': `${baseUrl}/fr`
             }
         },
-        verification: {
-            google: 'your-google-verification-code'
+        verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ? {
+            google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+        } : undefined,
+        icons: {
+            icon: [
+                { url: '/icon.png', sizes: 'any' },
+                { url: '/pfp.png', sizes: '512x512', type: 'image/png' }
+            ],
+            apple: [
+                { url: '/pfp.png', sizes: '180x180', type: 'image/png' }
+            ],
+            shortcut: '/icon.png'
+        },
+        other: {
+            'dns-prefetch': 'https://api.emailjs.com'
         }
     };
 }
@@ -129,6 +144,8 @@ export default async function RootLayout({
                 {children}
             </NextIntlClientProvider>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
         </body>
         </html>
     );

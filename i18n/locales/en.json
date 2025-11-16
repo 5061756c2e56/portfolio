@@ -5,7 +5,9 @@
     "description": "20 years old, passionate about IT, cybersecurity and development",
     "available": "Available for new opportunities",
     "location": "France",
-    "role": "Web Integrator"
+    "role": "Web Integrator",
+    "cvButton": "Discover my Curriculum Vitae",
+    "downloadCVButton": "Download my Curriculum Vitae"
   },
   "about": {
     "title": "About",
@@ -14,7 +16,10 @@
   "skills": {
     "title": "Skills",
     "currentLevel": "Current level",
-    "level": "Level"
+    "level": "Level",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "goToSkill": "Go to skill"
   },
   "projects": {
     "title": "Projects & Achievements",
@@ -50,7 +55,15 @@
       "sending": "Sending...",
       "success": "Message sent successfully!",
       "error": "An error occurred. Please try again.",
+      "errorNetwork": "Connection error. Please check your internet connection and try again.",
+      "errorConfig": "Configuration error. Please contact the administrator.",
       "close": "Close",
+      "errorDialog": {
+        "title": "Error sending email",
+        "description": "Would you like to use your email client to send your message?",
+        "confirm": "Open email client",
+        "cancel": "Cancel"
+      },
       "validation": {
         "nameMin": "Name must contain at least 3 characters",
         "emailRequired": "This field is required",
@@ -72,6 +85,7 @@
   },
   "nav": {
     "home": "Home",
+    "cv": "Curriculum Vitae",
     "about": "About",
     "skills": "Skills",
     "projects": "Projects",
@@ -83,10 +97,119 @@
     "english": "English",
     "dark": "Dark",
     "light": "Light",
-    "system": "System"
+    "system": "System",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "settings": "Settings",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "footer": {
     "copyright": "Paul Viandier. All rights reserved.",
     "license": "Licensed under MIT"
+  },
+  "cv": {
+    "back": "Back",
+    "name": "Paul Viandier",
+    "title": "Web Integrator & Developer",
+    "description": "Paul Viandier, 20 years old\n*Passionate about networks, cybersecurity and development.*\n\nMy objective : design reliable, performant and secure services.\n\nCompetent in HTML, CSS and JavaScript, I wish to strengthen my skills.",
+    "location": "France",
+    "role": "Web Integrator (Apprenticeship)",
+    "contactEmail": "Contact me by email",
+    "downloadCV": "Download CV",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "education": {
+      "title": "Education",
+      "items": {
+        "0": {
+          "title": "Web Integrator",
+          "school": "OpenClassroom  |  Level 5 Diploma (bac +2)  |  Apprenticeship training coming soon",
+          "period": "2025",
+          "description": "**Training objectives:**\n • Create responsive interfaces with HTML and CSS\n • Dynamize a web page with JavaScript and React\n • Implement data management with Redux\n • Version and collaborate on a project with Git\n • Debug and optimize an existing website\n"
+        }
+      }
+    },
+    "skills": {
+      "title": "Skills",
+      "all": "All",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "tools": "Tools",
+        "other": "Other"
+      },
+      "items": {
+        "HTML5": {
+          "category": "frontend",
+          "name": "HTML5"
+        },
+        "CSS": {
+          "category": "frontend",
+          "name": "CSS"
+        },
+        "JavaScript": {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        "TypeScript": {
+          "category": "frontend",
+          "name": "TypeScript"
+        },
+        "React": {
+          "category": "frontend",
+          "name": "React"
+        },
+        "NextJS": {
+          "category": "frontend",
+          "name": "Next.js"
+        },
+        "TailwindCSS": {
+          "category": "frontend",
+          "name": "Tailwind CSS"
+        },
+        "NodeJS": {
+          "category": "backend",
+          "name": "Node.js"
+        },
+        "PostgreSQL": {
+          "category": "backend",
+          "name": "PostgreSQL"
+        },
+        "RESTAPI": {
+          "category": "backend",
+          "name": "REST API"
+        },
+        "Git": {
+          "category": "tools",
+          "name": "Git"
+        },
+        "GitHub": {
+          "category": "tools",
+          "name": "GitHub"
+        },
+        "Vercel": {
+          "category": "tools",
+          "name": "Vercel"
+        },
+        "EmailJS": {
+          "category": "tools",
+          "name": "EmailJS"
+        },
+        "Cybersecurity": {
+          "category": "other",
+          "name": "Cybersecurity"
+        },
+        "ResponsiveDesign": {
+          "category": "other",
+          "name": "Responsive Design"
+        },
+        "SEO": {
+          "category": "other",
+          "name": "SEO"
+        }
+      }
+    }
   }
 }

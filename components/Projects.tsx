@@ -115,7 +115,7 @@ export default function Projects() {
                 </div>
             </section>
             <AlertDialog open={showSecuritySuiteDialog} onOpenChange={setShowSecuritySuiteDialog}>
-                <AlertDialogContent>
+                <AlertDialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-md max-h-[calc(100vh-2rem)] overflow-y-auto rounded-lg">
                     <AlertDialogHeader>
                         <AlertDialogTitle>{t('securitySuite.dialog.title')}</AlertDialogTitle>
                         <AlertDialogDescription>

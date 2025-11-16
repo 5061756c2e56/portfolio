@@ -1,60 +1,67 @@
-import emailjs from '@emailjs/browser';
+import { validateEmailForm, type EmailFormData } from './email-validation';
 
-export interface EmailFormData {
-    from_name: string;
-    from_email: string;
-    subject: string;
-    message: string;
-}
+const API_TIMEOUT = 15000;
 
 export async function sendEmail(data: EmailFormData): Promise<{ success: boolean; error?: string; count?: number | null }> {
-    try {
-        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const validation = validateEmailForm(data);
+    if (!validation.valid) {
+        const firstError = Object.values(validation.errors)[0];
+        return {
+            success: false,
+            error: firstError || 'Données invalides'
+        };
+    }
 
-        if (!serviceId || !templateId || !publicKey) {
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
+
+        const response = await fetch('/api/email/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            signal: controller.signal,
+            body: JSON.stringify(data)
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
             return {
                 success: false,
-                error: 'Configuration EmailJS manquante'
+                error: errorData.error || 'Erreur lors de l\'envoi de l\'email'
             };
         }
 
-        emailjs.init(publicKey);
-
-        const templateParams = {
-            to_email: 'contact@paulviandier.com',
-            from_name: data.from_name,
-            from_email: data.from_email,
-            subject: data.subject,
-            message: data.message
+        const result = await response.json();
+        return { 
+            success: true, 
+            count: result.count ?? null 
         };
-
-        await emailjs.send(serviceId, templateId, templateParams);
-
-        let newCount = null;
-        try {
-            const response = await fetch('/api/email/increment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'same-origin'
-            });
-            if (response.ok) {
-                const data = await response.json();
-                newCount = data.count;
-            }
-        } catch (error) {
-            console.error('Erreur incrémentation compteur:', error);
-        }
-
-        return { success: true, count: newCount };
     } catch (error) {
-        console.error('Erreur EmailJS:', error);
+        if (error instanceof Error) {
+            if (error.name === 'AbortError') {
+                return {
+                    success: false,
+                    error: 'Le délai d\'attente a été dépassé. Veuillez réessayer.'
+                };
+            }
+            if (error.message.includes('Network') || error.message.includes('network') || error.message.includes('fetch') || error.message.includes('Failed to fetch')) {
+                return {
+                    success: false,
+                    error: 'Erreur de connexion réseau'
+                };
+            }
+        }
+        
         return {
             success: false,
-            error: error instanceof Error ? error.message : 'Erreur inconnue'
+            error: 'Erreur inconnue lors de l\'envoi de l\'email'
         };
     }
 }
+
+export type { EmailFormData };

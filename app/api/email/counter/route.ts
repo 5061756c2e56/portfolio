@@ -2,7 +2,23 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getEmailCounter } from '@/lib/db';
 import { rateLimit, validateOrigin } from '@/lib/rate-limit';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export async function GET(request: NextRequest) {
+    if (request.method !== 'GET') {
+        return NextResponse.json(
+            { error: 'Méthode non autorisée' },
+            { 
+                status: 405,
+                headers: {
+                    'Allow': 'GET',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
+    }
+
     const rateLimitResult = rateLimit(request);
     
     if (!rateLimitResult.allowed) {
@@ -12,7 +28,9 @@ export async function GET(request: NextRequest) {
                 status: 429,
                 headers: {
                     'Retry-After': '60',
-                    'X-RateLimit-Remaining': '0'
+                    'X-RateLimit-Remaining': '0',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
                 }
             }
         );
@@ -21,7 +39,13 @@ export async function GET(request: NextRequest) {
     if (!validateOrigin(request)) {
         return NextResponse.json(
             { error: 'Origine non autorisée' },
-            { status: 403 }
+            { 
+                status: 403,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
         );
     }
     
@@ -32,7 +56,9 @@ export async function GET(request: NextRequest) {
             {
                 headers: {
                     'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-                    'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60'
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY',
+                    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
                 }
             }
         );
@@ -43,7 +69,13 @@ export async function GET(request: NextRequest) {
                 count: 0,
                 month: new Date().toISOString().slice(0, 7)
             },
-            { status: 500 }
+            { 
+                status: 500,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
         );
     }
 }

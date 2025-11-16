@@ -5,10 +5,14 @@ import {
     useState
 } from 'react';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from '@/i18n/routing';
+import { LiquidButton } from '@/components/ui/liquid-button';
 
 export default function Hero() {
     const t = useTranslations('hero');
+    const router = useRouter();
+    const locale = useLocale();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -23,26 +27,7 @@ export default function Hero() {
             <div
                 className={`max-w-5xl mx-auto text-center w-full relative z-10 ${mounted ? 'animate-fade-in-up' : 'opacity-0'}`}>
                 <div
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/50 bg-gradient-to-r from-muted/80 to-muted/50 backdrop-blur-sm mb-8 text-xs sm:text-sm text-muted-foreground shadow-sm hover:shadow-md transition-all duration-300 hover:border-foreground/30">
-                    <span
-                        className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"/>
-                    {t('available')}
-                </div>
-
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 text-foreground leading-[1.1] tracking-tight px-4 bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text">
-                    {t('title')}
-                </h1>
-
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-normal mb-6 sm:mb-8 text-muted-foreground px-4">
-                    {t('subtitle')}
-                </h2>
-
-                <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 sm:mb-16 leading-relaxed px-4">
-                    {t('description')}
-                </p>
-
-                <div
-                    className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm sm:text-base text-muted-foreground px-4">
+                    className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm sm:text-base text-muted-foreground px-4 mb-8">
                     <div
                         className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 border border-border/50 hover:bg-muted/80 hover:border-foreground/30 transition-all duration-300 hover:scale-105">
                         <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" fill="none" stroke="currentColor"
@@ -62,6 +47,64 @@ export default function Hero() {
                         </svg>
                         <span>{t('role')}</span>
                     </div>
+                </div>
+
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 text-foreground leading-[1.1] tracking-tight px-4 bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text">
+                    {t('title')}
+                </h1>
+
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-normal mb-6 sm:mb-8 text-muted-foreground px-4">
+                    {t('subtitle')}
+                </h2>
+
+                <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 sm:mb-16 leading-relaxed px-4">
+                    {t('description')}
+                </p>
+
+                <div className="px-4 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
+                    <LiquidButton
+                        onClick={() => {
+                            const path = locale === 'en' ? '/en/curriculum-vitae' : '/curriculum-vitae';
+                            window.location.href = path;
+                        }}
+                        size="lg"
+                        className="text-lg"
+                    >
+                        <span className="flex items-center gap-2">
+                            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                            {t('cvButton')}
+                        </span>
+                    </LiquidButton>
+                    <LiquidButton
+                        onClick={async () => {
+                            try {
+                                const response = await fetch('/Curriculum Vitae - Viandier Paul.pdf');
+                                const blob = await response.blob();
+                                const url = window.URL.createObjectURL(blob);
+                                const link = document.createElement('a');
+                                link.href = url;
+                                link.download = 'Curriculum Vitae - Viandier Paul.pdf';
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                window.URL.revokeObjectURL(url);
+                            } catch (error) {
+                                console.error('Erreur lors du téléchargement:', error);
+                            }
+                        }}
+                        size="lg"
+                        className="text-lg"
+                    >
+                        <span className="flex items-center gap-2">
+                            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                            {t('downloadCVButton')}
+                        </span>
+                    </LiquidButton>
                 </div>
             </div>
         </section>
