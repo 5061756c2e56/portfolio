@@ -57,7 +57,7 @@ const nextConfig: NextConfig = {
                             'img-src \'self\' data: https: blob:',
                             'font-src \'self\' data:',
                             'connect-src \'self\' https://api.emailjs.com https://*.sentry.io https://*.ingest.sentry.io https://va.vercel-scripts.com https://vercel.live',
-                            'frame-src \'none\'',
+                            'frame-src \'self\' https://vercel.live',
                             'object-src \'none\'',
                             'base-uri \'self\'',
                             'form-action \'self\'',

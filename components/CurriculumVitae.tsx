@@ -27,36 +27,9 @@ export default function CurriculumVitae() {
     const isMobile = useIsMobile();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showToast, setShowToast] = useState(false);
-    const [mailtoMode, setMailtoMode] = useState(false);
-    const [isCheckingCount, setIsCheckingCount] = useState(false);
-    const MAX_EMAILS = 200;
 
-    const handleEmailClick = useCallback(async () => {
-        setIsCheckingCount(true);
-        try {
-            const res = await fetch(`/api/email/counter?t=${Date.now()}`, {
-                cache: 'no-store'
-            });
-            if (res.ok) {
-                const data = await res.json();
-                const currentCount = data.count;
-                if (currentCount >= MAX_EMAILS) {
-                    setMailtoMode(true);
-                    setIsModalOpen(true);
-                } else {
-                    setMailtoMode(false);
-                    setIsModalOpen(true);
-                }
-            } else {
-                setMailtoMode(false);
-                setIsModalOpen(true);
-            }
-        } catch {
-            setMailtoMode(false);
-            setIsModalOpen(true);
-        } finally {
-            setIsCheckingCount(false);
-        }
+    const handleEmailClick = useCallback(() => {
+        setIsModalOpen(true);
     }, []);
 
     const handleSuccess = useCallback(() => {
@@ -161,8 +134,7 @@ export default function CurriculumVitae() {
                                             <TooltipTrigger asChild>
                                                 <button
                                                     onClick={handleEmailClick}
-                                                    disabled={isCheckingCount}
-                                                    className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-muted to-muted/80 hover:from-muted/90 hover:to-muted/70 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0"
+                                                    className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-muted to-muted/80 hover:from-muted/90 hover:to-muted/70 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 cursor-pointer"
                                                     aria-label={tNav('email')}
                                                 >
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -177,8 +149,7 @@ export default function CurriculumVitae() {
                                     ) : (
                                         <button
                                             onClick={handleEmailClick}
-                                            disabled={isCheckingCount}
-                                            className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-muted to-muted/80 hover:from-muted/90 hover:to-muted/70 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0"
+                                            className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-muted to-muted/80 hover:from-muted/90 hover:to-muted/70 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 hover:-translate-y-0.5"
                                             aria-label="Email"
                                         >
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -248,7 +219,7 @@ export default function CurriculumVitae() {
                 isOpen={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 
                 onSuccess={handleSuccess}
-                mailtoMode={mailtoMode}
+                mailtoMode={true}
             />
             {showToast && (
                 <Toast

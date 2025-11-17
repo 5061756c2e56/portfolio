@@ -28,6 +28,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const privateKey = process.env.EMAILJS_PRIVATE_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
         const missing = [];
@@ -66,17 +67,38 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         const formData = new URLSearchParams();
         formData.append('service_id', serviceId);
         formData.append('template_id', templateId);
-        formData.append('publicKey', publicKey);
+        formData.append('public_key', publicKey);
+        
+        if (privateKey) {
+            formData.append('private_key', privateKey);
+        }
+        
         Object.entries(templateParams).forEach(([key, value]) => {
             formData.append(key, String(value));
         });
 
+        const headers: HeadersInit = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
+
+        const formDataBody = formData.toString();
+        
         if (!isProduction) {
+            const publicKeyInBody = formDataBody.match(/public_key=([^&]+)/)?.[1];
+            const decodedPublicKey = publicKeyInBody ? decodeURIComponent(publicKeyInBody) : null;
             console.log('EmailJS Request params:', {
                 service_id: serviceId,
                 template_id: templateId,
                 publicKey: publicKey ? `${publicKey.substring(0, 4)}...` : 'missing',
-                hasPublicKey: !!publicKey
+                publicKeyFull: publicKey,
+                publicKeyInBody: publicKeyInBody,
+                decodedPublicKey: decodedPublicKey,
+                matches: decodedPublicKey === publicKey,
+                hasPublicKey: !!publicKey,
+                hasPrivateKey: !!privateKey,
+                usePrivateKey: !!privateKey,
+                formDataKeys: Array.from(formData.keys()),
+                formDataString: formDataBody.replace(/private_key=[^&]+|public_key=[^&]+/g, (match) => match.substring(0, 15) + '...')
             });
         }
 
@@ -85,10 +107,8 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
 
         const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData.toString(),
+            headers,
+            body: formDataBody,
             signal: controller.signal
         });
 
@@ -104,7 +124,8 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
                     error: errorText,
                     serviceId: serviceId ? '***' : 'missing',
                     templateId: templateId ? '***' : 'missing',
-                    publicKey: publicKey ? `${publicKey.substring(0, 4)}...` : 'missing'
+                    publicKey: publicKey ? `${publicKey.substring(0, 4)}...` : 'missing',
+                    hasPrivateKey: !!privateKey
                 });
             }
 
@@ -277,11 +298,18 @@ export async function POST(request: NextRequest) {
             }
         );
     } catch (error) {
-        console.error('Erreur API send:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
+        const errorStack = error instanceof Error ? error.stack : undefined;
+        
+        console.error('Erreur API send:', {
+            message: errorMessage,
+            stack: errorStack,
+            isProduction
+        });
+        
         return NextResponse.json(
             {
-                error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : error
-                                                                              instanceof Error ? error.message : 'Erreur inconnue'
+                error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorMessage
             },
             {
                 status: 500,
