@@ -86,10 +86,6 @@ NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
-# Sentry Configuration (Production)
-SENTRY_DSN=https://xxx@xxx.ingest.sentry.io/xxx
-NEXT_PUBLIC_SENTRY_DSN=https://xxx@xxx.ingest.sentry.io/xxx
-
 # Optionnel : Origine autorisée (par défaut : host de la requête)
 ALLOWED_ORIGIN=yourdomain.com
 
@@ -119,8 +115,6 @@ Le projet implémente plusieurs mesures de sécurité :
 - ✅ **Content Security Policy** : CSP stricte avec whitelist des domaines autorisés
 - ✅ **Validation des données** : Validation côté client et serveur
 - ✅ **Protection CSRF** : Vérification de l'origine et du referer
-- ✅ **Sentry sécurisé** : DSN uniquement en variables d'environnement (pas exposé dans le code)
-- ✅ **Monitoring d'erreurs** : Intégration Sentry pour le suivi des erreurs
 
 ## 📦 Déploiement sur Vercel
 
@@ -139,8 +133,6 @@ Le projet implémente plusieurs mesures de sécurité :
      NEXT_PUBLIC_EMAILJS_SERVICE_ID
      NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
      NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-     SENTRY_DSN
-     NEXT_PUBLIC_SENTRY_DSN
      KV_REST_API_URL
      KV_REST_API_TOKEN
      ALLOWED_ORIGIN (optionnel)
@@ -204,7 +196,6 @@ Pour ajouter/modifier des variables d'environnement après le déploiement :
 - **Logs** : Disponibles dans le dashboard Vercel → "Deployments" → Cliquez sur un déploiement → "Functions" → "View Function Logs"
 - **Analytics** : Vercel Analytics est automatiquement activé via le composant `<Analytics />`
 - **Speed Insights** : Activez Vercel Speed Insights pour mesurer les performances
-- **Sentry** : Configurez les variables `SENTRY_DSN` et `NEXT_PUBLIC_SENTRY_DSN` pour le monitoring d'erreurs
 
 ## 📝 Scripts disponibles
 
