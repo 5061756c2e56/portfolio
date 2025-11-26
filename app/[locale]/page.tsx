@@ -11,6 +11,7 @@ import { AppSidebar } from '@/components/AppSidebar';
 
 const Skills = lazy(() => import('@/components/Skills'));
 const Projects = lazy(() => import('@/components/Projects'));
+const GitHubStats = lazy(() => import('@/components/GitHubStats'));
 const Contact = lazy(() => import('@/components/Contact'));
 const Footer = lazy(() => import('@/components/Footer'));
 
@@ -31,6 +32,9 @@ export default function Home() {
                     </Suspense>
                     <Suspense fallback={null}>
                         <Projects/>
+                    </Suspense>
+                    <Suspense fallback={null}>
+                        <GitHubStats/>
                     </Suspense>
                     <Suspense fallback={null}>
                         <Contact/>

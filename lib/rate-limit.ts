@@ -10,6 +10,18 @@ interface RateLimitStore {
 const store: RateLimitStore = {};
 const RATE_LIMIT_WINDOW = 60 * 1000;
 const MAX_REQUESTS = 10;
+const CLEANUP_INTERVAL = 5 * 60 * 1000;
+
+if (typeof setInterval !== 'undefined') {
+    setInterval(() => {
+        const now = Date.now();
+        Object.keys(store).forEach(key => {
+            if (now > store[key].resetTime) {
+                delete store[key];
+            }
+        });
+    }, CLEANUP_INTERVAL);
+}
 
 function getClientIP(request: NextRequest): string {
     const forwarded = request.headers.get('x-forwarded-for');
@@ -46,31 +58,51 @@ export function rateLimit(request: NextRequest): { allowed: boolean; remaining: 
 }
 
 function getAllowedOrigins(): string[] {
-    const allowedOrigin = process.env.ALLOWED_ORIGIN;
     const origins: string[] = [];
     
-    if (allowedOrigin) {
-        origins.push(allowedOrigin.toLowerCase());
-        if (!allowedOrigin.startsWith('http')) {
-            origins.push(`https://${allowedOrigin.toLowerCase()}`);
-            origins.push(`http://${allowedOrigin.toLowerCase()}`);
+    if (process.env.ALLOWED_ORIGIN) {
+        const allowed = process.env.ALLOWED_ORIGIN.toLowerCase().trim();
+        origins.push(allowed);
+        if (!allowed.startsWith('http')) {
+            origins.push(`https://${allowed}`);
+            origins.push(`http://${allowed}`);
+            const withoutWww = allowed.replace(/^www\./, '');
+            if (withoutWww !== allowed) {
+                origins.push(withoutWww);
+                origins.push(`https://${withoutWww}`);
+            } else {
+                origins.push(`www.${allowed}`);
+                origins.push(`https://www.${allowed}`);
+            }
         }
     }
     
     if (process.env.NEXT_PUBLIC_SITE_URL) {
         try {
             const url = new URL(process.env.NEXT_PUBLIC_SITE_URL);
-            origins.push(url.host.toLowerCase());
-            origins.push(url.origin.toLowerCase());
+            const origin = url.origin.toLowerCase();
+            const host = url.host.toLowerCase();
+            origins.push(origin);
+            origins.push(host);
+            
+            const hostWithoutWww = host.replace(/^www\./, '');
+            if (hostWithoutWww !== host) {
+                origins.push(hostWithoutWww);
+                origins.push(`https://${hostWithoutWww}`);
+            } else {
+                origins.push(`www.${host}`);
+                origins.push(`https://www.${host}`);
+            }
         } catch {}
     }
     
     if (process.env.VERCEL_URL) {
-        origins.push(process.env.VERCEL_URL.toLowerCase());
-        origins.push(`https://${process.env.VERCEL_URL.toLowerCase()}`);
+        const vercelUrl = process.env.VERCEL_URL.toLowerCase().trim();
+        origins.push(`https://${vercelUrl}`);
+        origins.push(vercelUrl);
     }
     
-    return origins;
+    return [...new Set(origins)];
 }
 
 export function validateUserAgent(request: NextRequest): boolean {

@@ -30,6 +30,7 @@ import {
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { Spinner } from '@/components/ui/spinner';
+import GitHubStatsSidebar from '@/components/GitHubStatsSidebar';
 import { cn } from '@/lib/utils';
 
 export function AppSidebar() {
@@ -52,7 +53,7 @@ export function AppSidebar() {
     useEffect(() => {
         setMounted(true);
         const handleScroll = () => {
-            const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+            const sections = ['home', 'about', 'skills', 'projects', 'github-stats', 'contact'];
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
             const viewportThreshold = scrollPosition + windowHeight * 0.5;
@@ -166,6 +167,7 @@ export function AppSidebar() {
                                 width={40}
                                 height={40}
                                 className="h-10 w-10 rounded-full object-cover ring-2 ring-border"
+                                priority
                             />
                         </div>
                         <span className="font-semibold text-foreground">Paul Viandier</span>
@@ -243,6 +245,19 @@ export function AppSidebar() {
                                           d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                                 </svg>
                                 {t('projects')}
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                        <SidebarMenuItem>
+                            <SidebarMenuButton
+                                active={activeSection === 'github-stats'}
+                                onClick={() => scrollToSection('github-stats')}
+                            >
+                                <svg className="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                                {t('stats')}
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         <SidebarMenuItem>
@@ -403,6 +418,8 @@ export function AppSidebar() {
                                 </button>
                             </div>
                         </div>
+                        <div className="border-t border-border my-2"></div>
+                        <GitHubStatsSidebar />
                     </div>
                 </SidebarFooter>
             </Sidebar>

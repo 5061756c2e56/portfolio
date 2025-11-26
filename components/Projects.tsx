@@ -9,8 +9,10 @@ import {
     AlertDialogHeader,
     AlertDialogTitle
 } from '@/components/ui/alert-dialog';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
@@ -22,6 +24,8 @@ export default function Projects() {
         isInView
     } = useInView({ threshold: 0.1 });
     const [showSecuritySuiteDialog, setShowSecuritySuiteDialog] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedTech, setSelectedTech] = useState<string>('all');
 
     const projects = [
         {
@@ -40,6 +44,28 @@ export default function Projects() {
             onClick: () => setShowSecuritySuiteDialog(true)
         }
     ];
+
+    const allTechnologies = useMemo(() => {
+        const techSet = new Set<string>();
+        projects.forEach(project => {
+            project.technologies.forEach(tech => techSet.add(tech));
+        });
+        return Array.from(techSet).sort();
+    }, []);
+
+    const filteredProjects = useMemo(() => {
+        return projects.filter(project => {
+            const matchesSearch = searchQuery === '' || 
+                project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
+            
+            const matchesTech = selectedTech === 'all' || 
+                project.technologies.includes(selectedTech);
+            
+            return matchesSearch && matchesTech;
+        });
+    }, [searchQuery, selectedTech]);
 
     const handleProjectClick = (project: typeof projects[0], e: React.MouseEvent) => {
         if (!project.isExternal && project.onClick) {
@@ -64,8 +90,66 @@ export default function Projects() {
                             {t('title')}
                         </span>
                     </h2>
+                    
+                    <div className={cn(
+                        'mb-8 space-y-4 transition-all duration-700',
+                        isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+                    )} style={{ animationDelay: '100ms' }}>
+                        <div className="relative">
+                            <Input
+                                type="text"
+                                placeholder={t('searchPlaceholder')}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full pl-10 pr-4"
+                            />
+                            <svg
+                                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        
+                        <div className="flex flex-wrap gap-2">
+                            <Button
+                                variant={selectedTech === 'all' ? 'default' : 'outline'}
+                                size="sm"
+                                onClick={() => setSelectedTech('all')}
+                                className={cn(
+                                    selectedTech === 'all' && 'bg-foreground text-background hover:bg-foreground/90'
+                                )}
+                            >
+                                {t('allTechnologies')}
+                            </Button>
+                            {allTechnologies.map((tech) => (
+                                <Button
+                                    key={tech}
+                                    variant={selectedTech === tech ? 'default' : 'outline'}
+                                    size="sm"
+                                    onClick={() => setSelectedTech(tech)}
+                                    className={cn(
+                                        selectedTech === tech && 'bg-foreground text-background hover:bg-foreground/90'
+                                    )}
+                                >
+                                    {tech}
+                                </Button>
+                            ))}
+                        </div>
+                    </div>
+                    
+                    {filteredProjects.length === 0 ? (
+                        <div className={cn(
+                            'text-center py-12 text-muted-foreground transition-all duration-700',
+                            isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+                        )}>
+                            <p className="text-lg">{t('noResults')}</p>
+                        </div>
+                    ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                        {projects.map((project, index) => (
+                        {filteredProjects.map((project, index) => (
                             <a
                                 key={index}
                                 href={project.link}
@@ -112,6 +196,7 @@ export default function Projects() {
                             </a>
                         ))}
                     </div>
+                    )}
                 </div>
             </section>
             <AlertDialog open={showSecuritySuiteDialog} onOpenChange={setShowSecuritySuiteDialog}>

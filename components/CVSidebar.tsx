@@ -122,6 +122,7 @@ export function CVSidebar() {
                                 width={40}
                                 height={40}
                                 className="h-10 w-10 rounded-full object-cover ring-2 ring-border"
+                                priority
                             />
                         </div>
                         <span className="font-semibold text-foreground">Paul Viandier</span>

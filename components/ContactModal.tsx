@@ -6,7 +6,7 @@ import {
     useEffect,
     useState
 } from 'react';
-import { useTranslations } from 'next-intl';
+
 import {
     Dialog,
     DialogContent,
@@ -15,6 +15,7 @@ import {
     DialogHeader,
     DialogTitle
 } from '@/components/ui/dialog';
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -25,13 +26,17 @@ import {
     AlertDialogHeader,
     AlertDialogTitle
 } from '@/components/ui/alert-dialog';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+
 import {
     type EmailFormData,
     sendEmail
 } from '@/lib/emailjs';
+
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 import { validateEmailForm } from '@/lib/email-validation';
 
 interface ContactModalProps {
@@ -119,6 +124,11 @@ export default function ContactModal({
 
             if (result.success) {
                 onClose();
+                setTimeout(() => {
+                    toast.success(t('toastSuccess'), {
+                        className: 'text-green-600 dark:text-green-400 [&>svg]:text-green-600 dark:[&>svg]:text-green-400'
+                    });
+                }, 100);
                 onSuccess?.();
             } else {
                 setErrorMessage(result.error || t('error'));

@@ -1,14 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getEmailCounter } from '@/lib/db';
-import { rateLimit } from '@/lib/rate-limit';
+import {
+    NextRequest,
+    NextResponse
+} from 'next/server';
 import {
     getSecurityHeaders,
     validateOrigin,
     validateUserAgent,
     validatePayloadSize,
+    validateApiSecret,
     getCorsHeaders,
     createSecurityResponse
 } from '@/lib/api-security';
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function OPTIONS(request: NextRequest) {
     const origin = request.headers.get('origin');
@@ -21,6 +24,10 @@ export async function OPTIONS(request: NextRequest) {
 export async function GET(request: NextRequest) {
     if (request.method !== 'GET') {
         return createSecurityResponse('Méthode non autorisée', 405, { 'Allow': 'GET' });
+    }
+
+    if (!validateApiSecret(request)) {
+        return createSecurityResponse('Accès non autorisé', 401);
     }
 
     if (!validateUserAgent(request)) {
@@ -36,11 +43,10 @@ export async function GET(request: NextRequest) {
     }
 
     const rateLimitResult = rateLimit(request);
-    
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
             { error: 'Trop de requêtes. Veuillez réessayer plus tard.' },
-            { 
+            {
                 status: 429,
                 headers: {
                     ...getSecurityHeaders(),
@@ -50,12 +56,28 @@ export async function GET(request: NextRequest) {
             }
         );
     }
-    
+
     try {
-        const counter = await getEmailCounter();
+        const analyticsData = {
+            totalVisits: 0,
+            uniqueVisitors: 0,
+            pageViews: 0,
+            averageTime: '0m',
+            topPages: [
+                {
+                    path: '/',
+                    views: 0
+                },
+                {
+                    path: '/curriculum-vitae',
+                    views: 0
+                }
+            ]
+        };
+
         const origin = request.headers.get('origin');
         return NextResponse.json(
-            counter,
+            analyticsData,
             {
                 headers: {
                     ...getCorsHeaders(origin),
@@ -65,13 +87,10 @@ export async function GET(request: NextRequest) {
             }
         );
     } catch (error) {
-        console.error('Erreur API counter:', error);
+        console.error('Error in analytics API:', error);
         return NextResponse.json(
+            { error: 'Internal server error' },
             {
-                count: 0,
-                month: new Date().toISOString().slice(0, 7)
-            },
-            { 
                 status: 500,
                 headers: getSecurityHeaders()
             }

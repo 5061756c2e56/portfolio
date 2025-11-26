@@ -26,7 +26,11 @@ async function readCounter(): Promise<CounterData> {
     try {
         await ensureDataDir();
         const data = await readFile(COUNTER_FILE, 'utf-8');
-        return JSON.parse(data);
+        const parsed = JSON.parse(data);
+        return {
+            count: typeof parsed.count === 'string' ? parseInt(parsed.count, 10) : (parsed.count || 0),
+            month: parsed.month || getCurrentMonthParis()
+        };
     } catch {
         return {
             count: 0,
@@ -62,7 +66,10 @@ export async function getEmailCounter(): Promise<{ count: number; month: string 
             };
         }
 
-        return data;
+        return {
+            count: typeof data.count === 'number' ? data.count : parseInt(String(data.count), 10) || 0,
+            month: data.month
+        };
     } catch (error) {
         console.error('Erreur getEmailCounter:', error);
         return {
@@ -97,6 +104,3 @@ export async function incrementEmailCounter(): Promise<number> {
         return 0;
     }
 }
-
-
-

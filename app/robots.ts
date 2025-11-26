@@ -6,14 +6,20 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: ['/api/']
+                disallow: ['/api/', '/admin/', '/_next/', '/.*']
             },
             {
                 userAgent: 'Googlebot',
                 allow: '/',
-                disallow: ['/api/']
+                disallow: ['/api/', '/admin/', '/_next/', '/.*']
+            },
+            {
+                userAgent: 'Bingbot',
+                allow: '/',
+                disallow: ['/api/', '/admin/', '/_next/', '/.*']
             }
         ],
-        sitemap: 'https://paulviandier.com/sitemap.xml'
+        sitemap: 'https://paulviandier.com/sitemap.xml',
+        host: 'https://paulviandier.com'
     };
 }

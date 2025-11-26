@@ -19,11 +19,24 @@
     "level": "Level",
     "previousSlide": "Previous slide",
     "nextSlide": "Next slide",
-    "goToSkill": "Go to skill"
+    "goToSkill": "Go to skill",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Tools",
+      "other": "Other"
+    }
   },
   "projects": {
     "title": "Projects & Achievements",
     "viewProject": "View project",
+    "searchPlaceholder": "Search for a project...",
+    "filterByTech": "Filter by technology",
+    "allTechnologies": "All technologies",
+    "noResults": "No projects found",
     "portfolio": {
       "title": "Portfolio",
       "description": "Personal portfolio website developed with Next.js and TypeScript, showcasing my skills and projects."
@@ -54,6 +67,7 @@
       "send": "Send",
       "sending": "Sending...",
       "success": "Message sent successfully!",
+      "toastSuccess": "Your email has been sent",
       "error": "An error occurred. Please try again.",
       "errorNetwork": "Connection error. Please check your internet connection and try again.",
       "errorConfig": "Configuration error. Please contact the administrator.",
@@ -89,6 +103,7 @@
     "about": "About",
     "skills": "Skills",
     "projects": "Projects",
+    "stats": "Statistics",
     "contact": "Contact",
     "loading": "Loading...",
     "language": "Language",
@@ -108,6 +123,34 @@
   "footer": {
     "copyright": "Paul Viandier. All rights reserved.",
     "license": "Licensed under MIT"
+  },
+  "github": {
+    "title": "GitHub Statistics",
+    "loading": "Loading statistics...",
+    "repositories": "Repositories",
+    "stars": "Stars",
+    "forks": "Forks",
+    "followers": "Followers",
+    "recentRepos": "Recent Repositories",
+    "viewProfile": "View GitHub Profile"
+  },
+  "blog": {
+    "title": "Blog & News",
+    "readMore": "Read more"
+  },
+  "admin": {
+    "title": "Analytics Dashboard",
+    "description": "Portfolio statistics and metrics",
+    "loading": "Loading...",
+    "error": "Error",
+    "totalVisits": "Total Visits",
+    "uniqueVisitors": "Unique Visitors",
+    "pageViews": "Page Views",
+    "averageTime": "Average Time",
+    "topPages": "Top Pages",
+    "views": "views",
+    "noData": "No data available",
+    "backToHome": "Back to home"
   },
   "cv": {
     "back": "Back",

@@ -14,9 +14,27 @@ export default function Contact() {
         isInView
     } = useInView({ threshold: 0.2 });
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [mailtoMode, setMailtoMode] = useState(false);
 
-    const handleEmailClick = useCallback(() => {
-        setIsModalOpen(true);
+    const handleEmailClick = useCallback(async () => {
+        try {
+            const response = await fetch('/api/email/counter', {
+                method: 'GET',
+                credentials: 'same-origin'
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const count = typeof data.count === 'string' ? parseInt(data.count, 10) : data.count;
+                setMailtoMode(count >= 200);
+            } else {
+                setMailtoMode(false);
+            }
+        } catch (error) {
+            setMailtoMode(false);
+        } finally {
+            setIsModalOpen(true);
+        }
     }, []);
 
     const contacts = [
@@ -106,7 +124,7 @@ export default function Contact() {
             <ContactModal 
                 isOpen={isModalOpen} 
                 onClose={() => setIsModalOpen(false)}
-                mailtoMode={true}
+                mailtoMode={mailtoMode}
             />
         </>
     );

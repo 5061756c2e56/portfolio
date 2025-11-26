@@ -16,10 +16,12 @@ import {
 import Settings from './Settings';
 import MobileMenu from './MobileMenu';
 import { cn } from '@/lib/utils';
+import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 export default function Navigation() {
     const t = useTranslations('nav');
     const [scrolled, setScrolled] = useState(false);
+    const { scrollTo } = useSmoothScroll();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -28,6 +30,11 @@ export default function Navigation() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+        e.preventDefault();
+        scrollTo(targetId, 80);
+    };
 
     return (
         <nav className={cn(
@@ -40,6 +47,7 @@ export default function Navigation() {
                 <div className="flex items-center justify-between h-18 sm:h-20">
                     <a
                         href="#home"
+                        onClick={(e) => handleNavClick(e, '#home')}
                         className="text-foreground font-semibold text-lg sm:text-xl lg:text-2xl tracking-tight hover:opacity-80 hover:scale-105 transition-all duration-200 cursor-pointer"
                     >
                         Paul Viandier
@@ -51,6 +59,7 @@ export default function Navigation() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#about"
+                                        onClick={(e) => handleNavClick(e, '#about')}
                                         className={navigationMenuTriggerStyle()}
                                     >
                                         {t('about')}
@@ -59,6 +68,7 @@ export default function Navigation() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#skills"
+                                        onClick={(e) => handleNavClick(e, '#skills')}
                                         className={navigationMenuTriggerStyle()}
                                     >
                                         {t('skills')}
@@ -67,6 +77,7 @@ export default function Navigation() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#projects"
+                                        onClick={(e) => handleNavClick(e, '#projects')}
                                         className={navigationMenuTriggerStyle()}
                                     >
                                         {t('projects')}
@@ -74,7 +85,17 @@ export default function Navigation() {
                                 </NavigationMenuItem>
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
+                                        href="#github-stats"
+                                        onClick={(e) => handleNavClick(e, '#github-stats')}
+                                        className={navigationMenuTriggerStyle()}
+                                    >
+                                        {t('stats')}
+                                    </NavigationMenuLink>
+                                </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <NavigationMenuLink
                                         href="#contact"
+                                        onClick={(e) => handleNavClick(e, '#contact')}
                                         className={navigationMenuTriggerStyle()}
                                     >
                                         {t('contact')}

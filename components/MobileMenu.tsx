@@ -9,13 +9,19 @@ import {
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 export default function MobileMenu() {
     const t = useTranslations('nav');
     const [isOpen, setIsOpen] = useState(false);
+    const { scrollTo } = useSmoothScroll();
 
-    const handleLinkClick = () => {
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+        e.preventDefault();
         setIsOpen(false);
+        setTimeout(() => {
+            scrollTo(targetId, 80);
+        }, 100);
     };
 
     return (
@@ -33,22 +39,22 @@ export default function MobileMenu() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem asChild>
-                    <a href="#about" onClick={handleLinkClick} className="cursor-pointer">
+                    <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="cursor-pointer">
                         {t('about')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#skills" onClick={handleLinkClick} className="cursor-pointer">
+                    <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="cursor-pointer">
                         {t('skills')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#projects" onClick={handleLinkClick} className="cursor-pointer">
+                    <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="cursor-pointer">
                         {t('projects')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#contact" onClick={handleLinkClick} className="cursor-pointer">
+                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="cursor-pointer">
                         {t('contact')}
                     </a>
                 </DropdownMenuItem>

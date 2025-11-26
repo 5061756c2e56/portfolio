@@ -9,11 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: baseUrl,
             lastModified: now,
             changeFrequency: 'weekly',
-            priority: 1,
+            priority: 1.0,
             alternates: {
                 languages: {
                     fr: `${baseUrl}/fr`,
-                    en: `${baseUrl}/en`
+                    en: `${baseUrl}/en`,
+                    'x-default': `${baseUrl}/fr`
                 }
             }
         },
@@ -21,11 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/fr`,
             lastModified: now,
             changeFrequency: 'weekly',
-            priority: 1,
+            priority: 1.0,
             alternates: {
                 languages: {
                     fr: `${baseUrl}/fr`,
-                    en: `${baseUrl}/en`
+                    en: `${baseUrl}/en`,
+                    'x-default': `${baseUrl}/fr`
                 }
             }
         },
@@ -33,11 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/en`,
             lastModified: now,
             changeFrequency: 'weekly',
-            priority: 1,
+            priority: 1.0,
             alternates: {
                 languages: {
                     fr: `${baseUrl}/fr`,
-                    en: `${baseUrl}/en`
+                    en: `${baseUrl}/en`,
+                    'x-default': `${baseUrl}/fr`
                 }
             }
         },
@@ -45,11 +48,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/curriculum-vitae`,
             lastModified: now,
             changeFrequency: 'monthly',
-            priority: 0.8,
+            priority: 0.9,
             alternates: {
                 languages: {
                     fr: `${baseUrl}/curriculum-vitae`,
-                    en: `${baseUrl}/en/curriculum-vitae`
+                    en: `${baseUrl}/en/curriculum-vitae`,
+                    'x-default': `${baseUrl}/curriculum-vitae`
                 }
             }
         },
@@ -57,11 +61,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/en/curriculum-vitae`,
             lastModified: now,
             changeFrequency: 'monthly',
-            priority: 0.8,
+            priority: 0.9,
             alternates: {
                 languages: {
                     fr: `${baseUrl}/curriculum-vitae`,
-                    en: `${baseUrl}/en/curriculum-vitae`
+                    en: `${baseUrl}/en/curriculum-vitae`,
+                    'x-default': `${baseUrl}/curriculum-vitae`
                 }
             }
         }

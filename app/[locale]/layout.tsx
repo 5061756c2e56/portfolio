@@ -7,19 +7,26 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import StructuredData from '@/components/StructuredData';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import ScrollProgressBar from '@/components/ScrollProgressBar';
+import { AnalyticsWrapper } from '@/components/AnalyticsWrapper';
+import { Toaster } from '@/components/ui/sonner';
 import type { Metadata } from 'next';
 import '../globals.css';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
-    subsets: ['latin']
+    subsets: ['latin'],
+    display: 'swap',
+    preload: true,
+    fallback: ['system-ui', '-apple-system', 'sans-serif']
 });
 
 const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
-    subsets: ['latin']
+    subsets: ['latin'],
+    display: 'swap',
+    preload: false,
+    fallback: ['monospace']
 });
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -62,16 +69,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                     width: 1200,
                     height: 630,
                     alt: 'Paul Viandier - Développeur Web & Cybersécurité',
-                    type: 'image/png'
+                    type: 'image/png',
+                    secureUrl: `${baseUrl}/opengraph-image`
                 },
                 {
                     url: `${baseUrl}/pfp.png`,
                     width: 512,
                     height: 512,
                     alt: 'Paul Viandier',
-                    type: 'image/png'
+                    type: 'image/png',
+                    secureUrl: `${baseUrl}/pfp.png`
                 }
-            ]
+            ],
+            countryName: 'France'
         },
         twitter: {
             card: 'summary_large_image',
@@ -120,7 +130,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             shortcut: '/icon.png'
         },
         other: {
-            'dns-prefetch': 'https://api.emailjs.com'
+            'dns-prefetch': 'https://api.emailjs.com https://fonts.googleapis.com https://fonts.gstatic.com',
+            'preconnect': 'https://fonts.googleapis.com https://fonts.gstatic.com',
+            'theme-color': '#000000',
+            'color-scheme': 'dark light'
         }
     };
 }
@@ -137,15 +150,22 @@ export default async function RootLayout({
 
     return (
         <html lang={locale} suppressHydrationWarning>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://api.emailjs.com" />
+            <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
+        </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <StructuredData/>
+        <ScrollProgressBar/>
         <ThemeProvider>
             <NextIntlClientProvider messages={messages}>
                 {children}
             </NextIntlClientProvider>
         </ThemeProvider>
-        <Analytics />
-        <SpeedInsights />
+        <Toaster />
+        <AnalyticsWrapper />
         </body>
         </html>
     );

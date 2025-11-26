@@ -19,11 +19,24 @@
     "level": "Niveau",
     "previousSlide": "Slide précédent",
     "nextSlide": "Slide suivant",
-    "goToSkill": "Aller à la compétence"
+    "goToSkill": "Aller à la compétence",
+    "showMore": "Afficher plus",
+    "showLess": "Afficher moins",
+    "categories": {
+      "all": "Toutes",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Outils",
+      "other": "Autres"
+    }
   },
   "projects": {
     "title": "Projets & Réalisations",
     "viewProject": "Voir le projet",
+    "searchPlaceholder": "Rechercher un projet...",
+    "filterByTech": "Filtrer par technologie",
+    "allTechnologies": "Toutes les technologies",
+    "noResults": "Aucun projet trouvé",
     "portfolio": {
       "title": "Portfolio",
       "description": "Site portfolio personnel développé avec Next.js et TypeScript, mettant en avant mes compétences et projets."
@@ -54,6 +67,7 @@
       "send": "Envoyer",
       "sending": "Envoi en cours...",
       "success": "Message envoyé avec succès !",
+      "toastSuccess": "Votre mail a été envoyé",
       "error": "Une erreur est survenue. Veuillez réessayer.",
       "errorNetwork": "Erreur de connexion. Vérifiez votre connexion internet et réessayez.",
       "errorConfig": "Erreur de configuration. Veuillez contacter l'administrateur.",
@@ -89,6 +103,7 @@
     "about": "À propos",
     "skills": "Compétences",
     "projects": "Projets",
+    "stats": "Statistiques",
     "contact": "Contact",
     "loading": "Chargement...",
     "language": "Langue",
@@ -108,6 +123,34 @@
   "footer": {
     "copyright": "Paul Viandier. Tous droits réservés.",
     "license": "Sous licence MIT"
+  },
+  "github": {
+    "title": "Statistiques GitHub",
+    "loading": "Chargement des statistiques...",
+    "repositories": "Dépôts",
+    "stars": "Étoiles",
+    "forks": "Forks",
+    "followers": "Abonnés",
+    "recentRepos": "Dépôts récents",
+    "viewProfile": "Voir le profil GitHub"
+  },
+  "blog": {
+    "title": "Blog & Actualités",
+    "readMore": "Lire la suite"
+  },
+  "admin": {
+    "title": "Tableau de bord Analytics",
+    "description": "Statistiques et métriques du portfolio",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "totalVisits": "Visites totales",
+    "uniqueVisitors": "Visiteurs uniques",
+    "pageViews": "Pages vues",
+    "averageTime": "Temps moyen",
+    "topPages": "Pages populaires",
+    "views": "vues",
+    "noData": "Aucune donnée disponible",
+    "backToHome": "Retour à l'accueil"
   },
   "cv": {
     "back": "Retour",

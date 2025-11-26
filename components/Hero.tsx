@@ -24,8 +24,7 @@ export default function Hero() {
                  className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 pb-24 relative overflow-hidden bg-gradient-to-b from-background via-background to-muted/20">
             <div
                 className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)] pointer-events-none"/>
-            <div
-                className={`max-w-5xl mx-auto text-center w-full relative z-10 ${mounted ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <div className="max-w-5xl mx-auto text-center w-full relative z-10">
                 <div
                     className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm sm:text-base text-muted-foreground px-4 mb-8">
                     <div
