@@ -1,36 +1,17 @@
 'use client';
 
-import {
-    FormEvent,
-    useCallback,
-    useEffect,
-    useState
-} from 'react';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
 
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle
+    Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
 } from '@/components/ui/dialog';
 
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle
+    AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter,
+    AlertDialogHeader, AlertDialogTitle
 } from '@/components/ui/alert-dialog';
 
-import {
-    type EmailFormData,
-    sendEmail
-} from '@/lib/emailjs';
+import { type EmailFormData, sendEmail } from '@/lib/emailjs';
 
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -87,6 +68,8 @@ export default function ContactModal({
         };
     }, [isOpen]);
 
+    const tValidation = useTranslations('contact.modal.validation');
+
     const handleInputChange = (field: keyof EmailFormData, value: string) => {
         const newFormData = {
             ...formData,
@@ -94,7 +77,13 @@ export default function ContactModal({
         };
         setFormData(newFormData);
 
-        const validation = validateEmailForm(newFormData);
+        const validation = validateEmailForm(newFormData, (key: string) => {
+            try {
+                return tValidation(key as any);
+            } catch {
+                return key;
+            }
+        });
 
         setErrors(prev => {
             const newErrors = { ...prev };
@@ -110,7 +99,13 @@ export default function ContactModal({
     const handleSubmit = useCallback(async (e: FormEvent) => {
         e.preventDefault();
 
-        const validation = validateEmailForm(formData);
+        const validation = validateEmailForm(formData, (key: string) => {
+            try {
+                return tValidation(key as any);
+            } catch {
+                return key;
+            }
+        });
         if (!validation.valid) {
             setErrors(validation.errors);
             return;
@@ -164,7 +159,13 @@ export default function ContactModal({
     }, []);
 
     const isFormValid = () => {
-        const validation = validateEmailForm(formData);
+        const validation = validateEmailForm(formData, (key: string) => {
+            try {
+                return tValidation(key as any);
+            } catch {
+                return key;
+            }
+        });
         return validation.valid;
     };
 
@@ -210,7 +211,7 @@ export default function ContactModal({
                                 type="text"
                                 value={formData.from_name}
                                 onChange={(e) => handleInputChange('from_name', e.target.value)}
-                                placeholder={t('name')}
+                                placeholder={t('namePlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.from_name}
                             />
@@ -227,7 +228,7 @@ export default function ContactModal({
                                 type="email"
                                 value={formData.from_email}
                                 onChange={(e) => handleInputChange('from_email', e.target.value)}
-                                placeholder={t('email')}
+                                placeholder={t('emailPlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.from_email}
                             />
@@ -244,7 +245,7 @@ export default function ContactModal({
                                 type="text"
                                 value={formData.subject}
                                 onChange={(e) => handleInputChange('subject', e.target.value)}
-                                placeholder={t('subject')}
+                                placeholder={t('subjectPlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.subject}
                             />

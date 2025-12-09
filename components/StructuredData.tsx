@@ -6,6 +6,8 @@ export default function StructuredData() {
         '@type': 'Person',
         '@id': `${baseUrl}/#person`,
         name: 'Paul Viandier',
+        givenName: 'Paul',
+        familyName: 'Viandier',
         jobTitle: 'Développeur Web',
         url: baseUrl,
         sameAs: [
@@ -15,10 +17,18 @@ export default function StructuredData() {
         email: 'contact@paulviandier.com',
         description: 'Développeur web en formation, passionné de cybersécurité et de développement fullstack',
         image: `${baseUrl}/pfp.png`,
-        knowsAbout: ['Web Development', 'Cybersecurity', 'Fullstack Development', 'TypeScript', 'React', 'Next.js'],
+        knowsAbout: ['Web Development', 'Cybersecurity', 'Fullstack Development', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Redis'],
         alumniOf: {
             '@type': 'EducationalOrganization',
             name: 'Formation en alternance'
+        },
+        address: {
+            '@type': 'PostalAddress',
+            addressCountry: 'FR'
+        },
+        nationality: {
+            '@type': 'Country',
+            name: 'France'
         }
     };
 
@@ -56,6 +66,22 @@ export default function StructuredData() {
         ]
     };
 
+    const organizationSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': `${baseUrl}/#organization`,
+        name: 'Paul Viandier - Portfolio',
+        url: baseUrl,
+        logo: `${baseUrl}/pfp.png`,
+        founder: {
+            '@id': `${baseUrl}/#person`
+        },
+        sameAs: [
+            'https://github.com/5061756c2e56/',
+            'https://www.linkedin.com/in/paul-viandier-648837397/'
+        ]
+    };
+
     return (
         <>
             <script
@@ -69,6 +95,10 @@ export default function StructuredData() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
             />
         </>
     );

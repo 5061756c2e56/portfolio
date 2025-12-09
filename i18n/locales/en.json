@@ -77,8 +77,11 @@
     "modal": {
       "title": "Contact me",
       "name": "Name",
+      "namePlaceholder": "Viandier Paul",
       "email": "Email",
+      "emailPlaceholder": "contact@paulviandier.com",
       "subject": "Subject",
+      "subjectPlaceholder": "Work-study opportunity - A great company",
       "message": "Message",
       "messagePlaceholder": "Type your message here...",
       "send": "Send",
@@ -96,13 +99,16 @@
       },
       "validation": {
         "nameMin": "Name must contain at least 3 characters",
-        "emailRequired": "This field is required",
+        "nameMax": "Name must not exceed 100 characters",
+        "emailRequired": "Email is required",
         "emailMissingAt": "The @ symbol is missing in the email address",
         "emailMissingDomain": "Please enter the missing part after the @ symbol",
         "emailMissingTld": "The email address must contain a dot after the @",
         "emailInvalid": "Please enter a valid email",
         "subjectMin": "Subject must contain at least 10 characters",
-        "messageMin": "Message must contain at least 20 characters"
+        "subjectMax": "Subject must not exceed 200 characters",
+        "messageMin": "Message must contain at least 20 characters",
+        "messageMax": "Message must not exceed 5000 characters"
       }
     },
     "mailtoDialog": {

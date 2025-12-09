@@ -6,5 +6,5 @@ const middleware = createMiddleware(routing);
 export const proxy = middleware;
 
 export const config = {
-    matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+    matcher: ['/((?!api|_next|_vercel|.*\\..*|sitemap|robots|manifest).*)']
 };

@@ -15,6 +15,19 @@ export interface ValidationResult {
     errors: Partial<Record<keyof EmailFormData, string>>;
 }
 
+type TranslationFunction = (key: string) => string;
+
+const defaultTranslations: Record<string, string> = {
+    nameMin: 'Le nom doit contenir au moins 3 caractères',
+    nameMax: 'Le nom ne doit pas dépasser 100 caractères',
+    emailRequired: 'L\'email est requis',
+    emailInvalid: 'Veuillez entrer un email valide',
+    subjectMin: 'Le sujet doit contenir au moins 10 caractères',
+    subjectMax: 'Le sujet ne doit pas dépasser 200 caractères',
+    messageMin: 'Le message doit contenir au moins 20 caractères',
+    messageMax: 'Le message ne doit pas dépasser 5000 caractères'
+};
+
 function sanitizeString(input: string): string {
     return input.trim().replace(/[\x00-\x1F\x7F]/g, '');
 }
@@ -24,35 +37,45 @@ function validateEmail(email: string): boolean {
     return emailRegex.test(email) && email.length <= MAX_EMAIL_LENGTH;
 }
 
-export function validateEmailForm(data: EmailFormData): ValidationResult {
+export function validateEmailForm(data: EmailFormData, t?: TranslationFunction): ValidationResult {
     const errors: Partial<Record<keyof EmailFormData, string>> = {};
+    const getTranslation = (key: string): string => {
+        if (t) {
+            try {
+                return t(key);
+            } catch {
+                return defaultTranslations[key] || key;
+            }
+        }
+        return defaultTranslations[key] || key;
+    };
 
     const sanitizedName = sanitizeString(data.from_name);
     if (!sanitizedName || sanitizedName.length < 3) {
-        errors.from_name = 'Le nom doit contenir au moins 3 caractères';
+        errors.from_name = getTranslation('nameMin');
     } else if (sanitizedName.length > MAX_NAME_LENGTH) {
-        errors.from_name = `Le nom ne doit pas dépasser ${MAX_NAME_LENGTH} caractères`;
+        errors.from_name = getTranslation('nameMax');
     }
 
     const sanitizedEmail = sanitizeString(data.from_email);
     if (!sanitizedEmail) {
-        errors.from_email = 'L\'email est requis';
+        errors.from_email = getTranslation('emailRequired');
     } else if (!validateEmail(sanitizedEmail)) {
-        errors.from_email = 'Veuillez entrer un email valide';
+        errors.from_email = getTranslation('emailInvalid');
     }
 
     const sanitizedSubject = sanitizeString(data.subject);
     if (!sanitizedSubject || sanitizedSubject.length < 10) {
-        errors.subject = 'Le sujet doit contenir au moins 10 caractères';
+        errors.subject = getTranslation('subjectMin');
     } else if (sanitizedSubject.length > MAX_SUBJECT_LENGTH) {
-        errors.subject = `Le sujet ne doit pas dépasser ${MAX_SUBJECT_LENGTH} caractères`;
+        errors.subject = getTranslation('subjectMax');
     }
 
     const sanitizedMessage = sanitizeString(data.message);
     if (!sanitizedMessage || sanitizedMessage.length < 20) {
-        errors.message = 'Le message doit contenir au moins 20 caractères';
+        errors.message = getTranslation('messageMin');
     } else if (sanitizedMessage.length > MAX_MESSAGE_LENGTH) {
-        errors.message = `Le message ne doit pas dépasser ${MAX_MESSAGE_LENGTH} caractères`;
+        errors.message = getTranslation('messageMax');
     }
 
     return {

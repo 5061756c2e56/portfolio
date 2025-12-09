@@ -77,8 +77,11 @@
     "modal": {
       "title": "Me contacter",
       "name": "Nom",
+      "namePlaceholder": "Viandier Paul",
       "email": "Email",
+      "emailPlaceholder": "contact@paulviandier.com",
       "subject": "Sujet",
+      "subjectPlaceholder": "Opportunité d'alternance - Une super entreprise",
       "message": "Message",
       "messagePlaceholder": "Tapez votre message ici...",
       "send": "Envoyer",
@@ -96,13 +99,16 @@
       },
       "validation": {
         "nameMin": "Le nom doit contenir au moins 3 caractères",
-        "emailRequired": "Ce champ est requis",
+        "nameMax": "Le nom ne doit pas dépasser 100 caractères",
+        "emailRequired": "L'email est requis",
         "emailMissingAt": "Le symbole @ est manquant dans l'adresse mail",
         "emailMissingDomain": "Veuillez saisir la partie manquante après le symbole @",
         "emailMissingTld": "L'adresse mail doit contenir un point après le @",
         "emailInvalid": "Veuillez entrer un email valide",
         "subjectMin": "Le sujet doit contenir au moins 10 caractères",
-        "messageMin": "Le message doit contenir au moins 20 caractères"
+        "subjectMax": "Le sujet ne doit pas dépasser 200 caractères",
+        "messageMin": "Le message doit contenir au moins 20 caractères",
+        "messageMax": "Le message ne doit pas dépasser 5000 caractères"
       }
     },
     "mailtoDialog": {

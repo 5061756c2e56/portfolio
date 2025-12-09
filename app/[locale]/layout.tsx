@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             template: '%s | Portfolio de Paul Viandier'
         },
         description: isFrench
-            ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
-            : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
+            ? 'Portfolio de Paul Viandier, développeur web fullstack en formation. Découvrez mes projets, compétences en TypeScript, React, Next.js, cybersécurité et développement web moderne.'
+            : 'Portfolio of Paul Viandier, fullstack web developer in training. Discover my projects, skills in TypeScript, React, Next.js, cybersecurity and modern web development.',
         keywords: isFrench
             ? ['Paul Viandier', 'développeur web', 'cybersécurité', 'fullstack', 'portfolio', 'développement web']
             : ['Paul Viandier', 'web developer', 'cybersecurity', 'fullstack', 'portfolio', 'web development'],
@@ -127,7 +127,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             shortcut: '/icon.png'
         },
         other: {
-            'dns-prefetch': 'https://api.emailjs.com'
+            'dns-prefetch': 'https://api.emailjs.com',
+            'theme-color': '#000000',
+            'format-detection': 'telephone=no'
         }
     };
 }
@@ -146,6 +148,10 @@ export default async function RootLayout({
     return (
         <html lang={locale} suppressHydrationWarning>
         <head>
+            <link rel="preconnect" href="https://api.emailjs.com" />
+            <link rel="dns-prefetch" href="https://api.emailjs.com" />
+            <link rel="me" href="https://github.com/5061756c2e56/" />
+            <link rel="me" href="https://www.linkedin.com/in/paul-viandier-648837397/" />
             <script
                 dangerouslySetInnerHTML={{
                     __html: `
