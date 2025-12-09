@@ -1,18 +1,24 @@
 'use client';
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { type ReactNode } from 'react';
+import { useEffect } from 'react';
+import { useTheme } from '@/hooks/use-theme';
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-    return (
-        <NextThemesProvider
-            attribute="class"
-            defaultTheme="dark"
-            themes={['dark', 'light', 'system']}
-            enableSystem
-            disableTransitionOnChange={false}
-        >
-            {children}
-        </NextThemesProvider>
-    );
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+    const { mounted } = useTheme();
+
+    useEffect(() => {
+        if (mounted) {
+            const root = document.documentElement;
+            if (!root.classList.contains('light') && !root.classList.contains('dark')) {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark'
+                    : 'light';
+                root.classList.add(systemTheme);
+            }
+        }
+    }, [mounted]);
+
+    return <>{children}</>;
 }
+
+

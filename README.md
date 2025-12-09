@@ -7,7 +7,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=for-the-badge&logo=tailwind-css)
 ![React](https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react)
 
-Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, avec support multilingue (FR/EN) et thèmes (dark/light/system).
+Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, avec support multilingue (FR/EN).
 
 [🐛 Issues](https://github.com/5061756c2e56/site/issues)
 </div>
@@ -21,12 +21,11 @@ Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, a
 - [🚀 Démarrage rapide](#-démarrage-rapide)
 - [⚙️ Configuration](#️-configuration)
 - [🔒 Sécurité](#-sécurité)
-- [📦 Déploiement sur Vercel](#-déploiement-sur-vercel)
+- [🐳 Déploiement avec Docker](#-déploiement-avec-docker)
 - [📝 Scripts disponibles](#-scripts-disponibles)
 
 ## ✨ Fonctionnalités
 
-- 🌓 **Thèmes** : Dark (par défaut), Light, System
 - 🌍 **Internationalisation** : Français et Anglais
 - 📧 **EmailJS** : Formulaire de contact avec validation
 - 🔒 **Sécurité** : Rate limiting, validation d'origine, headers de sécurité
@@ -38,17 +37,16 @@ Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, a
 
 ## 🛠️ Technologies
 
-![Tech Stack](https://skillicons.dev/icons?i=nextjs,typescript,react,tailwind,vercel)
+![Tech Stack](https://skillicons.dev/icons?i=nextjs,typescript,react,tailwind,redis)
 
 - **Framework** : [Next.js 16](https://nextjs.org/) (App Router)
 - **Language** : [TypeScript](https://www.typescriptlang.org/)
 - **Styling** : [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI Components** : [Radix UI](https://www.radix-ui.com/)
 - **Internationalisation** : [next-intl](https://next-intl-docs.vercel.app/)
-- **Thèmes** : [next-themes](https://github.com/pacocoursey/next-themes)
 - **Formulaires** : [React Hook Form](https://react-hook-form.com/)
 - **Email** : [EmailJS](https://www.emailjs.com/)
-- **Base de données** : [Vercel KV](https://vercel.com/docs/storage/vercel-kv)
+- **Base de données** : [Redis](https://redis.io/) (compteur d'emails)
 - **Package Manager** : [pnpm](https://pnpm.io/)
 
 ## 🚀 Démarrage rapide
@@ -57,6 +55,7 @@ Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, a
 
 - Node.js 18+ 
 - pnpm installé
+- Redis (pour la production)
 
 ### Installation
 
@@ -86,6 +85,13 @@ NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
+# Redis Configuration (Production)
+REDIS_URL=redis://localhost:6379
+# OU
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=your_password
+
 # Optionnel : Origine autorisée (par défaut : host de la requête)
 ALLOWED_ORIGIN=yourdomain.com
 
@@ -93,16 +99,11 @@ ALLOWED_ORIGIN=yourdomain.com
 NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
 ```
 
-### Configuration Vercel KV (Production)
+### Configuration Redis (Production)
 
-Pour utiliser le compteur d'emails en production :
+Le compteur d'emails utilise Redis en production. En développement local, si Redis n'est pas disponible, le système utilise automatiquement un fichier JSON dans `/data`.
 
-1. Créez un store Vercel KV dans votre dashboard Vercel
-2. Ajoutez les variables d'environnement suivantes :
-   - `KV_REST_API_URL` (fourni par Vercel)
-   - `KV_REST_API_TOKEN` (fourni par Vercel)
-
-**Note** : En développement local, le compteur utilise un fichier JSON dans `/data`. En production, il utilise Vercel KV.
+**Note** : Pour la production, Redis est requis. Le système basculera automatiquement vers le fichier JSON uniquement si Redis est indisponible.
 
 ## 🔒 Sécurité
 
@@ -116,86 +117,85 @@ Le projet implémente plusieurs mesures de sécurité :
 - ✅ **Validation des données** : Validation côté client et serveur
 - ✅ **Protection CSRF** : Vérification de l'origine et du referer
 
-## 📦 Déploiement sur Vercel
+## 🐳 Déploiement avec Docker
 
-### Méthode 1 : Via l'interface Vercel (Recommandé)
+### Prérequis
 
-1. **Connecter votre repository GitHub**
-   - Allez sur [vercel.com](https://vercel.com)
-   - Cliquez sur "Add New Project"
-   - Importez votre repository GitHub
-   - Vercel détectera automatiquement Next.js
+- Docker et Docker Compose installés
+- Redis (inclus dans docker-compose.yml)
 
-2. **Configurer les variables d'environnement**
-   - Dans les paramètres du projet, allez dans "Environment Variables"
-   - Ajoutez toutes les variables nécessaires :
-     ```
-     NEXT_PUBLIC_EMAILJS_SERVICE_ID
-     NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-     NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-     KV_REST_API_URL
-     KV_REST_API_TOKEN
-     ALLOWED_ORIGIN (optionnel)
-     NEXT_PUBLIC_GOOGLE_VERIFICATION (optionnel)
-     ```
+### Déploiement avec Docker Compose
 
-3. **Créer un store Vercel KV**
-   - Dans le dashboard Vercel, allez dans "Storage"
-   - Cliquez sur "Create Database" → "KV"
-   - Choisissez un nom pour votre store
-   - Vercel générera automatiquement `KV_REST_API_URL` et `KV_REST_API_TOKEN`
-   - Copiez ces valeurs dans les variables d'environnement du projet
-
-4. **Déployer**
-   - Cliquez sur "Deploy"
-   - Vercel construira et déploiera automatiquement votre site
-   - Une fois terminé, vous recevrez une URL de déploiement
-
-### Méthode 2 : Via la CLI Vercel
+1. **Cloner le repository**
 
 ```bash
-# Installer Vercel CLI globalement
-pnpm add -g vercel
-
-# Se connecter à Vercel
-vercel login
-
-# Déployer (première fois)
-vercel
-
-# Déployer en production
-vercel --prod
+git clone https://github.com/5061756c2e56/site.git
+cd site
 ```
 
-### Configuration post-déploiement
+2. **Créer le fichier `.env`**
 
-1. **Vérifier le déploiement**
-   - Visitez l'URL fournie par Vercel
-   - Testez toutes les fonctionnalités (formulaire de contact, thèmes, langues)
+Créez un fichier `.env` à la racine avec vos variables d'environnement :
 
-2. **Configurer un domaine personnalisé (optionnel)**
-   - Dans les paramètres du projet → "Domains"
-   - Ajoutez votre domaine
-   - Suivez les instructions pour configurer les DNS
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+REDIS_URL=redis://redis:6379
+ALLOWED_ORIGIN=yourdomain.com
+NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
+NODE_ENV=production
+```
 
-3. **Activer les déploiements automatiques**
-   - Les déploiements automatiques sont activés par défaut
-   - Chaque push sur `main` déclenche un nouveau déploiement
+3. **Construire et lancer les containers**
 
-### Variables d'environnement sur Vercel
+```bash
+docker-compose up -d --build
+```
 
-Pour ajouter/modifier des variables d'environnement après le déploiement :
+4. **Vérifier le déploiement**
 
-1. Allez dans les paramètres du projet sur Vercel
-2. Section "Environment Variables"
-3. Ajoutez/modifiez les variables
-4. Redéployez le projet (ou attendez le prochain déploiement)
+L'application sera accessible sur `http://localhost:3000`
 
-### Monitoring et logs
+### Déploiement avec Docker uniquement
 
-- **Logs** : Disponibles dans le dashboard Vercel → "Deployments" → Cliquez sur un déploiement → "Functions" → "View Function Logs"
-- **Analytics** : Vercel Analytics est automatiquement activé via le composant `<Analytics />`
-- **Speed Insights** : Activez Vercel Speed Insights pour mesurer les performances
+1. **Construire l'image**
+
+```bash
+docker build -t portfolio:latest .
+```
+
+2. **Lancer le container**
+
+```bash
+docker run -d \
+  --name portfolio \
+  -p 3000:3000 \
+  -e NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id \
+  -e NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id \
+  -e NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key \
+  -e REDIS_URL=redis://your-redis-host:6379 \
+  -e NODE_ENV=production \
+  portfolio:latest
+```
+
+### Configuration Redis externe
+
+Si vous utilisez un Redis externe (non inclus dans docker-compose), configurez `REDIS_URL` ou les variables `REDIS_HOST`, `REDIS_PORT`, et `REDIS_PASSWORD` dans votre fichier `.env`.
+
+### Optimisations Docker
+
+Le Dockerfile utilise un build multi-stage pour optimiser la taille de l'image finale :
+
+- **Stage 1** : Installation des dépendances avec pnpm
+- **Stage 2** : Build de l'application Next.js
+- **Stage 3** : Image finale minimale avec uniquement les fichiers nécessaires
+
+L'image finale est optimisée pour la production avec :
+- Node.js 20 LTS (Debian slim)
+- User non-root pour la sécurité
+- Healthcheck intégré
+- Cache des layers pour accélérer les builds
 
 ## 📝 Scripts disponibles
 

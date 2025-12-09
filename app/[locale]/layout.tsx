@@ -3,30 +3,20 @@ import {
     Geist_Mono
 } from 'next/font/google';
 
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { ThemeProvider } from '@/components/ThemeProvider';
 import StructuredData from '@/components/StructuredData';
-import ScrollProgressBar from '@/components/ScrollProgressBar';
-import { AnalyticsWrapper } from '@/components/AnalyticsWrapper';
-import { Toaster } from '@/components/ui/sonner';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { LocaleProvider } from '@/components/LocaleProvider';
 import type { Metadata } from 'next';
 import '../globals.css';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
-    subsets: ['latin'],
-    display: 'swap',
-    preload: true,
-    fallback: ['system-ui', '-apple-system', 'sans-serif']
+    subsets: ['latin']
 });
 
 const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
-    subsets: ['latin'],
-    display: 'swap',
-    preload: false,
-    fallback: ['monospace']
+    subsets: ['latin']
 });
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -65,23 +55,27 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
             images: [
                 {
+                    url: `${baseUrl}/banner.png`,
+                    width: 1200,
+                    height: 630,
+                    alt: 'Paul Viandier - Développeur Web & Cybersécurité',
+                    type: 'image/png'
+                },
+                {
                     url: `${baseUrl}/opengraph-image`,
                     width: 1200,
                     height: 630,
                     alt: 'Paul Viandier - Développeur Web & Cybersécurité',
-                    type: 'image/png',
-                    secureUrl: `${baseUrl}/opengraph-image`
+                    type: 'image/png'
                 },
                 {
                     url: `${baseUrl}/pfp.png`,
                     width: 512,
                     height: 512,
                     alt: 'Paul Viandier',
-                    type: 'image/png',
-                    secureUrl: `${baseUrl}/pfp.png`
+                    type: 'image/png'
                 }
-            ],
-            countryName: 'France'
+            ]
         },
         twitter: {
             card: 'summary_large_image',
@@ -92,6 +86,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
             images: [
+                `${baseUrl}/banner.png`,
                 `${baseUrl}/opengraph-image`,
                 `${baseUrl}/pfp.png`
             ],
@@ -109,11 +104,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             }
         },
         alternates: {
-            canonical: `${baseUrl}${isFrench ? '/fr' : '/en'}`,
+            canonical: `${baseUrl}${isFrench ? '' : '/en'}`,
             languages: {
-                'fr': `${baseUrl}/fr`,
+                'fr': `${baseUrl}`,
+                'fr-FR': `${baseUrl}`,
                 'en': `${baseUrl}/en`,
-                'x-default': `${baseUrl}/fr`
+                'en-US': `${baseUrl}/en`,
+                'x-default': `${baseUrl}`
             }
         },
         verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ? {
@@ -130,10 +127,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             shortcut: '/icon.png'
         },
         other: {
-            'dns-prefetch': 'https://api.emailjs.com https://fonts.googleapis.com https://fonts.gstatic.com',
-            'preconnect': 'https://fonts.googleapis.com https://fonts.gstatic.com',
-            'theme-color': '#000000',
-            'color-scheme': 'dark light'
+            'dns-prefetch': 'https://api.emailjs.com'
         }
     };
 }
@@ -146,26 +140,34 @@ export default async function RootLayout({
     params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
-    const messages = await getMessages();
+    const messagesFr = (await import('@/i18n/locales/fr.json')).default;
+    const messagesEn = (await import('@/i18n/locales/en.json')).default;
 
     return (
         <html lang={locale} suppressHydrationWarning>
         <head>
-            <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-            <link rel="dns-prefetch" href="https://api.emailjs.com" />
-            <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        (function() {
+                            try {
+                                const savedLocale = localStorage.getItem('locale');
+                                if (savedLocale === 'fr' || savedLocale === 'en') {
+                                    document.documentElement.lang = savedLocale;
+                                }
+                            } catch (e) {}
+                        })();
+                    `
+                }}
+            />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <StructuredData/>
-        <ScrollProgressBar/>
         <ThemeProvider>
-            <NextIntlClientProvider messages={messages}>
+            <StructuredData/>
+            <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
                 {children}
-            </NextIntlClientProvider>
+            </LocaleProvider>
         </ThemeProvider>
-        <Toaster />
-        <AnalyticsWrapper />
         </body>
         </html>
     );

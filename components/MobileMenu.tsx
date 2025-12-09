@@ -25,36 +25,43 @@ export default function MobileMenu() {
     };
 
     return (
-        <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
             <DropdownMenuTrigger asChild>
                 <button
-                    className="group inline-flex items-center justify-center rounded-md border border-border bg-background p-2 text-foreground hover:bg-muted hover:border-foreground/20 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 active:scale-95 cursor-pointer"
+                    className="group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm p-2 text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer"
                     aria-label={t('menu')}
                 >
-                    <svg className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-90"
-                         fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
+                    {!isOpen ? (
+                        <svg className="h-5 w-5 transition-all duration-300"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    ) : (
+                        <svg className="h-5 w-5 transition-all duration-300"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    )}
                 </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuContent align="end" className="w-48 bg-background/95 backdrop-blur-xl border-border/60 shadow-md">
                 <DropdownMenuItem asChild>
-                    <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="cursor-pointer">
+                    <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('about')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="cursor-pointer">
+                    <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('skills')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="cursor-pointer">
+                    <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('projects')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="cursor-pointer">
+                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('contact')}
                     </a>
                 </DropdownMenuItem>

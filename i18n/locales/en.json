@@ -6,8 +6,8 @@
     "available": "Available for new opportunities",
     "location": "France",
     "role": "Web Integrator",
-    "cvButton": "Discover my Curriculum Vitae",
-    "downloadCVButton": "Download my Curriculum Vitae"
+    "downloadCVButton": "Download my Curriculum Vitae",
+    "downloadingCV": "Downloading..."
   },
   "about": {
     "title": "About",
@@ -20,33 +20,50 @@
     "previousSlide": "Previous slide",
     "nextSlide": "Next slide",
     "goToSkill": "Go to skill",
-    "showMore": "Show more",
-    "showLess": "Show less",
     "categories": {
       "all": "All",
       "frontend": "Frontend",
       "backend": "Backend",
       "tools": "Tools",
       "other": "Other"
+    },
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "descriptions": {
+      "HTML5": "Standard markup language for structuring web content",
+      "JavaScript": "Programming language for creating interactive web pages",
+      "TypeScript": "JavaScript superset with static typing for more robust development",
+      "CSS": "Styling language for formatting and animating web pages",
+      "React": "JavaScript library for building reactive user interfaces",
+      "Tailwind CSS": "Utility-first CSS framework for fast and modern development",
+      "NextJS": "React framework for performant web applications with server-side rendering",
+      "Responsive Design": "Adaptive design for optimal experience on all devices",
+      "NodeJS": "JavaScript runtime environment for server-side execution",
+      "PostgreSQL": "Open-source relational database management system",
+      "API REST": "Architecture for creating interoperable web services",
+      "Git": "Distributed version control system for managing source code",
+      "GitHub": "Hosting and collaboration platform for development projects",
+      "EmailJS": "Service for sending emails directly from the frontend",
+      "Cybersecurity": "Practices and technologies for protecting computer systems",
+      "SEO": "Search engine optimization to improve visibility"
     }
   },
   "projects": {
     "title": "Projects & Achievements",
     "viewProject": "View project",
     "searchPlaceholder": "Search for a project...",
-    "filterByTech": "Filter by technology",
     "allTechnologies": "All technologies",
     "noResults": "No projects found",
     "portfolio": {
       "title": "Portfolio",
       "description": "Personal portfolio website developed with Next.js and TypeScript, showcasing my skills and projects."
     },
-    "securitySuite": {
-      "title": "Security Suite",
-      "description": "Local security suite for protecting and managing IT systems.",
+    "webSecurity": {
+      "title": "Web Security",
+      "description": "Web security suite for protecting and managing IT systems.",
       "dialog": {
         "title": "Project in development",
-        "description": "Security Suite is currently under development. This local security suite, developed with TypeScript, PostgreSQL and Next.js, will be available soon. Stay tuned for updates!",
+        "description": "Web Security is currently under development. This web security suite, developed with TypeScript, PostgreSQL and Next.js, will be available soon. Stay tuned for updates!",
         "close": "Close"
       }
     }
@@ -67,7 +84,6 @@
       "send": "Send",
       "sending": "Sending...",
       "success": "Message sent successfully!",
-      "toastSuccess": "Your email has been sent",
       "error": "An error occurred. Please try again.",
       "errorNetwork": "Connection error. Please check your internet connection and try again.",
       "errorConfig": "Configuration error. Please contact the administrator.",
@@ -99,26 +115,27 @@
   },
   "nav": {
     "home": "Home",
-    "cv": "Curriculum Vitae",
     "about": "About",
     "skills": "Skills",
     "projects": "Projects",
-    "stats": "Statistics",
+    "statsGithub": "GitHub Stats",
     "contact": "Contact",
     "loading": "Loading...",
     "language": "Language",
-    "theme": "Theme",
     "french": "French",
     "english": "English",
-    "dark": "Dark",
-    "light": "Light",
-    "system": "System",
     "closeMenu": "Close menu",
     "menu": "Menu",
     "settings": "Settings",
     "email": "Email",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "themeChanging": "Changing theme...",
+    "languageChanging": "Changing language..."
   },
   "footer": {
     "copyright": "Paul Viandier. All rights reserved.",
@@ -130,129 +147,19 @@
     "repositories": "Repositories",
     "stars": "Stars",
     "forks": "Forks",
-    "followers": "Followers",
-    "recentRepos": "Recent Repositories",
-    "viewProfile": "View GitHub Profile"
+    "followers": "Followers"
   },
-  "blog": {
-    "title": "Blog & News",
-    "readMore": "Read more"
-  },
-  "admin": {
-    "title": "Analytics Dashboard",
-    "description": "Portfolio statistics and metrics",
-    "loading": "Loading...",
-    "error": "Error",
-    "totalVisits": "Total Visits",
-    "uniqueVisitors": "Unique Visitors",
-    "pageViews": "Page Views",
-    "averageTime": "Average Time",
-    "topPages": "Top Pages",
-    "views": "views",
-    "noData": "No data available",
-    "backToHome": "Back to home"
-  },
-  "cv": {
-    "back": "Back",
-    "name": "Paul Viandier",
-    "title": "Web Integrator & Developer",
-    "description": "Paul Viandier, 20 years old\n*Passionate about networks, cybersecurity and development.*\n\nMy objective : design reliable, performant and secure services.\n\nCompetent in HTML, CSS and JavaScript, I wish to strengthen my skills.",
-    "location": "France",
-    "role": "Web Integrator (Apprenticeship)",
-    "contactEmail": "Contact me by email",
-    "downloadCV": "Download CV",
-    "github": "GitHub",
-    "linkedin": "LinkedIn",
-    "education": {
-      "title": "Education",
-      "items": {
-        "0": {
-          "title": "Web Integrator",
-          "school": "OpenClassroom  |  Level 5 Diploma (bac +2)  |  Apprenticeship training coming soon",
-          "period": "2025",
-          "description": "**Training objectives:**\n • Create responsive interfaces with HTML and CSS\n • Dynamize a web page with JavaScript and React\n • Implement data management with Redux\n • Version and collaborate on a project with Git\n • Debug and optimize an existing website\n"
-        }
-      }
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist or has been moved.",
+      "backHome": "Back to home"
     },
-    "skills": {
-      "title": "Skills",
-      "all": "All",
-      "categories": {
-        "frontend": "Frontend",
-        "backend": "Backend",
-        "tools": "Tools",
-        "other": "Other"
-      },
-      "items": {
-        "HTML5": {
-          "category": "frontend",
-          "name": "HTML5"
-        },
-        "CSS": {
-          "category": "frontend",
-          "name": "CSS"
-        },
-        "JavaScript": {
-          "category": "frontend",
-          "name": "JavaScript"
-        },
-        "TypeScript": {
-          "category": "frontend",
-          "name": "TypeScript"
-        },
-        "React": {
-          "category": "frontend",
-          "name": "React"
-        },
-        "NextJS": {
-          "category": "frontend",
-          "name": "Next.js"
-        },
-        "TailwindCSS": {
-          "category": "frontend",
-          "name": "Tailwind CSS"
-        },
-        "NodeJS": {
-          "category": "backend",
-          "name": "Node.js"
-        },
-        "PostgreSQL": {
-          "category": "backend",
-          "name": "PostgreSQL"
-        },
-        "RESTAPI": {
-          "category": "backend",
-          "name": "REST API"
-        },
-        "Git": {
-          "category": "tools",
-          "name": "Git"
-        },
-        "GitHub": {
-          "category": "tools",
-          "name": "GitHub"
-        },
-        "Vercel": {
-          "category": "tools",
-          "name": "Vercel"
-        },
-        "EmailJS": {
-          "category": "tools",
-          "name": "EmailJS"
-        },
-        "Cybersecurity": {
-          "category": "other",
-          "name": "Cybersecurity"
-        },
-        "ResponsiveDesign": {
-          "category": "other",
-          "name": "Responsive Design"
-        },
-        "SEO": {
-          "category": "other",
-          "name": "SEO"
-        }
-      }
+    "500": {
+      "title": "An error occurred",
+      "description": "Sorry, an unexpected error occurred. Please try again.",
+      "retry": "Try again",
+      "backHome": "Back to home"
     }
   }
 }

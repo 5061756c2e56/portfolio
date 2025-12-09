@@ -230,7 +230,7 @@ const CarouselPrevious = React.forwardRef<
             disabled={!canScrollPrev}
             aria-label="Previous slide"
             className={cn(
-                'absolute z-10 h-10 w-10 rounded-full border border-border/50 bg-gradient-to-br from-background/95 to-background/90 backdrop-blur-sm text-foreground shadow-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-500/40 hover:scale-110 active:scale-95 cursor-pointer disabled:pointer-events-none disabled:opacity-50 flex items-center justify-center group outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 active:border-border',
+                'absolute z-10 h-10 w-10 rounded-full border border-border/50 bg-gradient-to-br from-background/95 to-background/90 backdrop-blur-sm text-foreground transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-purple-500/10 hover:border-primary/50 hover:scale-110 active:scale-95 cursor-pointer disabled:pointer-events-none disabled:opacity-50 flex items-center justify-center group outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 active:border-primary/50',
                 orientation === 'horizontal'
                     ? mobilePosition === 'bottom'
                         ? 'md:left-2 md:-left-12 md:top-1/2 md:-translate-y-1/2 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 md:translate-y-0 md:translate-x-0'
@@ -274,7 +274,7 @@ const CarouselNext = React.forwardRef<
             disabled={!canScrollNext}
             aria-label="Next slide"
             className={cn(
-                'absolute z-10 h-10 w-10 rounded-full border border-border/50 bg-gradient-to-br from-background/95 to-background/90 backdrop-blur-sm text-foreground shadow-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-500/40 hover:scale-110 active:scale-95 cursor-pointer disabled:pointer-events-none disabled:opacity-50 flex items-center justify-center group outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 active:border-border',
+                'absolute z-10 h-10 w-10 rounded-full border border-border/50 bg-gradient-to-br from-background/95 to-background/90 backdrop-blur-sm text-foreground transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-purple-500/10 hover:border-primary/50 hover:scale-110 active:scale-95 cursor-pointer disabled:pointer-events-none disabled:opacity-50 flex items-center justify-center group outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 active:border-primary/50',
                 orientation === 'horizontal'
                     ? mobilePosition === 'bottom'
                         ? 'md:right-2 md:-right-12 md:top-1/2 md:-translate-y-1/2 bottom-0 right-1/2 translate-x-1/2 translate-y-1/2 md:translate-y-0 md:translate-x-0'

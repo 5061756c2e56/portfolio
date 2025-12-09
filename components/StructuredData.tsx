@@ -6,8 +6,6 @@ export default function StructuredData() {
         '@type': 'Person',
         '@id': `${baseUrl}/#person`,
         name: 'Paul Viandier',
-        givenName: 'Paul',
-        familyName: 'Viandier',
         jobTitle: 'Développeur Web',
         url: baseUrl,
         sameAs: [
@@ -16,20 +14,11 @@ export default function StructuredData() {
         ],
         email: 'contact@paulviandier.com',
         description: 'Développeur web en formation, passionné de cybersécurité et de développement fullstack',
-        image: {
-            '@type': 'ImageObject',
-            url: `${baseUrl}/pfp.png`,
-            width: 512,
-            height: 512
-        },
-        address: {
-            '@type': 'PostalAddress',
-            addressCountry: 'FR'
-        },
-        knowsAbout: ['Développement Web', 'Cybersécurité', 'Fullstack', 'React', 'Next.js', 'TypeScript'],
+        image: `${baseUrl}/pfp.png`,
+        knowsAbout: ['Web Development', 'Cybersecurity', 'Fullstack Development', 'TypeScript', 'React', 'Next.js'],
         alumniOf: {
             '@type': 'EducationalOrganization',
-            name: 'OpenClassroom'
+            name: 'Formation en alternance'
         }
     };
 
@@ -43,9 +32,6 @@ export default function StructuredData() {
         author: {
             '@id': `${baseUrl}/#person`
         },
-        publisher: {
-            '@id': `${baseUrl}/#person`
-        },
         inLanguage: ['fr', 'en'],
         potentialAction: {
             '@type': 'SearchAction',
@@ -55,24 +41,6 @@ export default function StructuredData() {
             },
             'query-input': 'required name=search_term_string'
         }
-    };
-
-    const organizationSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        '@id': `${baseUrl}/#organization`,
-        name: 'Portfolio de Paul Viandier',
-        url: baseUrl,
-        logo: {
-            '@type': 'ImageObject',
-            url: `${baseUrl}/pfp.png`,
-            width: 512,
-            height: 512
-        },
-        sameAs: [
-            'https://github.com/5061756c2e56/',
-            'https://www.linkedin.com/in/paul-viandier-648837397/'
-        ]
     };
 
     const breadcrumbSchema = {
@@ -97,10 +65,6 @@ export default function StructuredData() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
             />
             <script
                 type="application/ld+json"

@@ -33,14 +33,14 @@ export function Toast({
     if (!isVisible) return null;
 
     const styles = {
-        success: 'bg-green-500/10 border-green-500/20 text-green-600 dark:text-green-400',
-        error: 'bg-red-500/10 border-red-500/20 text-red-600 dark:text-red-400',
-        info: 'bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400'
+        success: 'bg-green-500/10 border-green-500/20 text-green-600',
+        error: 'bg-red-500/10 border-red-500/20 text-red-600',
+        info: 'bg-blue-500/10 border-blue-500/20 text-blue-600'
     };
 
     return (
         <div className={cn(
-            'fixed top-4 right-4 z-[100] px-4 py-3 rounded-lg border shadow-lg backdrop-blur-sm animate-slide-in-from-right-2',
+            'fixed top-4 right-4 z-[100] px-4 py-3 rounded-lg border shadow-md backdrop-blur-sm animate-slide-in-from-right-2',
             styles[type]
         )}>
             <div className="flex items-center gap-3">

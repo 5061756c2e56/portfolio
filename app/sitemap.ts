@@ -9,25 +9,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: baseUrl,
             lastModified: now,
             changeFrequency: 'weekly',
-            priority: 1.0,
+            priority: 1,
             alternates: {
                 languages: {
-                    fr: `${baseUrl}/fr`,
+                    fr: baseUrl,
+                    'fr-FR': baseUrl,
                     en: `${baseUrl}/en`,
-                    'x-default': `${baseUrl}/fr`
-                }
-            }
-        },
-        {
-            url: `${baseUrl}/fr`,
-            lastModified: now,
-            changeFrequency: 'weekly',
-            priority: 1.0,
-            alternates: {
-                languages: {
-                    fr: `${baseUrl}/fr`,
-                    en: `${baseUrl}/en`,
-                    'x-default': `${baseUrl}/fr`
+                    'en-US': `${baseUrl}/en`,
+                    'x-default': baseUrl
                 }
             }
         },
@@ -35,38 +24,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/en`,
             lastModified: now,
             changeFrequency: 'weekly',
-            priority: 1.0,
+            priority: 1,
             alternates: {
                 languages: {
-                    fr: `${baseUrl}/fr`,
+                    fr: baseUrl,
+                    'fr-FR': baseUrl,
                     en: `${baseUrl}/en`,
-                    'x-default': `${baseUrl}/fr`
-                }
-            }
-        },
-        {
-            url: `${baseUrl}/curriculum-vitae`,
-            lastModified: now,
-            changeFrequency: 'monthly',
-            priority: 0.9,
-            alternates: {
-                languages: {
-                    fr: `${baseUrl}/curriculum-vitae`,
-                    en: `${baseUrl}/en/curriculum-vitae`,
-                    'x-default': `${baseUrl}/curriculum-vitae`
-                }
-            }
-        },
-        {
-            url: `${baseUrl}/en/curriculum-vitae`,
-            lastModified: now,
-            changeFrequency: 'monthly',
-            priority: 0.9,
-            alternates: {
-                languages: {
-                    fr: `${baseUrl}/curriculum-vitae`,
-                    en: `${baseUrl}/en/curriculum-vitae`,
-                    'x-default': `${baseUrl}/curriculum-vitae`
+                    'en-US': `${baseUrl}/en`,
+                    'x-default': baseUrl
                 }
             }
         }

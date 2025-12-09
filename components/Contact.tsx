@@ -77,18 +77,13 @@ export default function Contact() {
     return (
         <>
             <section ref={ref as React.RefObject<HTMLElement>} id="contact"
-                     className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-muted/30 via-muted/20 to-background relative overflow-hidden">
-                <div
-                    className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(120,119,198,0.08),transparent_50%)] pointer-events-none"/>
+                     className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-background relative overflow-hidden">
                 <div className="max-w-5xl lg:max-w-6xl mx-auto relative z-10">
                     <h2 className={cn(
-                        'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-12 md:mb-16 text-foreground tracking-tight transition-all duration-700',
+                        'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-12 md:mb-16 tracking-tight transition-all duration-700 gradient-text',
                         isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                     )}>
-                        <span
-                            className="bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent">
-                            {t('title')}
-                        </span>
+                        {t('title')}
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                         {contacts.map((contact, index) => (
@@ -96,25 +91,25 @@ export default function Contact() {
                                 key={index}
                                 onClick={contact.action}
                                 className={cn(
-                                    'group relative overflow-hidden rounded-xl border border-border/50 bg-gradient-to-br from-card via-card to-muted/20 p-6 sm:p-8 hover:border-foreground/30 hover:shadow-2xl hover:shadow-pink-500/10 hover:-translate-y-2 cursor-pointer transition-all duration-500 text-left',
+                                    'group relative overflow-hidden rounded-xl border border-border/60 bg-gradient-to-br from-card via-card/95 to-primary/5 p-6 sm:p-8 hover:border-primary/50 hover:-translate-y-2 cursor-pointer transition-all duration-500 text-left',
                                     isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 )}
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <div
-                                    className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"/>
+                                    className="absolute inset-0 bg-gradient-to-br from-primary/0 via-accent/0 to-secondary/0 group-hover:from-primary/12 group-hover:via-accent/12 group-hover:to-secondary/10 transition-all duration-700 pointer-events-none"/>
                                 <div className="relative z-10">
                                     <div className="mb-5 sm:mb-6">
                                         <div
-                                            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-xl border border-border/50 bg-gradient-to-br from-muted/80 to-muted/50 group-hover:from-blue-500/10 group-hover:to-purple-500/10 group-hover:border-blue-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                                            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-xl border border-border/50 bg-gradient-to-br from-muted/90 to-primary/10 group-hover:from-primary/20 group-hover:to-accent/20 group-hover:border-primary/50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                                             <div
-                                                className="text-foreground group-hover:scale-110 transition-transform duration-300">
+                                                className="text-foreground group-hover:text-primary transition-colors duration-300 group-hover:scale-110">
                                                 {contact.icon}
                                             </div>
                                         </div>
                                     </div>
-                                    <h3 className="text-base sm:text-lg font-semibold mb-2 text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-500 transition-all duration-300">{contact.name}</h3>
-                                    <p className="text-sm sm:text-base text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">{contact.value}</p>
+                                    <h3 className="text-base sm:text-lg font-semibold mb-2 text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent transition-all duration-300">{contact.name}</h3>
+                                    <p className="text-sm sm:text-base text-foreground/75 group-hover:text-foreground transition-colors duration-300">{contact.value}</p>
                                 </div>
                             </button>
                         ))}

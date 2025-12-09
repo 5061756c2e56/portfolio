@@ -1,38 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getEmailCounter } from '@/lib/db';
-import { rateLimit } from '@/lib/rate-limit';
-import {
-    getSecurityHeaders,
-    validateOrigin,
-    validateUserAgent,
-    validatePayloadSize,
-    getCorsHeaders,
-    createSecurityResponse
-} from '@/lib/api-security';
+import { rateLimit, validateOrigin } from '@/lib/rate-limit';
 
-export async function OPTIONS(request: NextRequest) {
-    const origin = request.headers.get('origin');
-    return new NextResponse(null, {
-        status: 204,
-        headers: getCorsHeaders(origin)
-    });
-}
+const isProduction = process.env.NODE_ENV === 'production';
 
 export async function GET(request: NextRequest) {
     if (request.method !== 'GET') {
-        return createSecurityResponse('Méthode non autorisée', 405, { 'Allow': 'GET' });
-    }
-
-    if (!validateUserAgent(request)) {
-        return createSecurityResponse('Requête non autorisée', 403);
-    }
-
-    if (!validateOrigin(request)) {
-        return createSecurityResponse('Origine non autorisée', 403);
-    }
-
-    if (!validatePayloadSize(request)) {
-        return createSecurityResponse('Requête trop volumineuse', 413);
+        return NextResponse.json(
+            { error: 'Méthode non autorisée' },
+            { 
+                status: 405,
+                headers: {
+                    'Allow': 'GET',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
     }
 
     const rateLimitResult = rateLimit(request);
@@ -43,9 +27,23 @@ export async function GET(request: NextRequest) {
             { 
                 status: 429,
                 headers: {
-                    ...getSecurityHeaders(),
                     'Retry-After': '60',
-                    'X-RateLimit-Remaining': '0'
+                    'X-RateLimit-Remaining': '0',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
+    }
+    
+    if (!validateOrigin(request)) {
+        return NextResponse.json(
+            { error: 'Origine non autorisée' },
+            { 
+                status: 403,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
                 }
             }
         );
@@ -53,13 +51,13 @@ export async function GET(request: NextRequest) {
     
     try {
         const counter = await getEmailCounter();
-        const origin = request.headers.get('origin');
         return NextResponse.json(
             counter,
             {
                 headers: {
-                    ...getCorsHeaders(origin),
                     'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY',
                     'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
                 }
             }
@@ -73,7 +71,10 @@ export async function GET(request: NextRequest) {
             },
             { 
                 status: 500,
-                headers: getSecurityHeaders()
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
             }
         );
     }

@@ -4,18 +4,14 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./i18n/config.ts');
 
 const nextConfig: NextConfig = {
+    output: 'standalone',
     compress: true,
     poweredByHeader: false,
     reactStrictMode: true,
     images: {
         formats: ['image/avif', 'image/webp'],
         deviceSizes: [640, 750, 828, 1080, 1200],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        minimumCacheTTL: 60,
-        dangerouslyAllowSVG: false
-    },
-    experimental: {
-        optimizePackageImports: ['lucide-react', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
+        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384]
     },
     async headers() {
         return [
@@ -54,51 +50,32 @@ const nextConfig: NextConfig = {
                         key: 'Content-Security-Policy',
                         value: [
                             'default-src \'self\'',
-                            'script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' https://api.emailjs.com https://va.vercel-scripts.com https://vercel.live',
-                            'script-src-elem \'self\' \'unsafe-inline\' https://api.emailjs.com https://va.vercel-scripts.com https://vercel.live',
+                            'script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' https://api.emailjs.com',
+                            'script-src-elem \'self\' \'unsafe-inline\' https://api.emailjs.com',
                             'worker-src \'self\' blob:',
                             'style-src \'self\' \'unsafe-inline\'',
                             'img-src \'self\' data: https: blob:',
                             'font-src \'self\' data:',
-                            'connect-src \'self\' https://api.emailjs.com https://va.vercel-scripts.com https://vercel.live',
-                            'frame-src \'self\' https://vercel.live',
+                            'connect-src \'self\' https://api.emailjs.com',
+                            'frame-src \'self\'',
                             'object-src \'none\'',
                             'base-uri \'self\'',
                             'form-action \'self\'',
                             'frame-ancestors \'self\'',
                             'upgrade-insecure-requests'
                         ].join('; ')
-                    }
-                ]
-            },
-            {
-                source: '/api/:path*',
-                headers: [
-                    {
-                        key: 'Cache-Control',
-                        value: 'public, s-maxage=3600, stale-while-revalidate=86400'
                     },
                     {
-                        key: 'Vary',
-                        value: 'Origin, Accept-Encoding'
-                    }
-                ]
-            },
-            {
-                source: '/_next/static/:path*',
-                headers: [
+                        key: 'Cross-Origin-Embedder-Policy',
+                        value: 'require-corp'
+                    },
                     {
-                        key: 'Cache-Control',
-                        value: 'public, max-age=31536000, immutable'
-                    }
-                ]
-            },
-            {
-                source: '/:path*\\.(jpg|jpeg|png|gif|ico|svg|webp|avif)',
-                headers: [
+                        key: 'Cross-Origin-Opener-Policy',
+                        value: 'same-origin'
+                    },
                     {
-                        key: 'Cache-Control',
-                        value: 'public, max-age=31536000, immutable'
+                        key: 'Cross-Origin-Resource-Policy',
+                        value: 'same-origin'
                     }
                 ]
             }

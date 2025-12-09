@@ -126,7 +126,7 @@ export default function ContactModal({
                 onClose();
                 setTimeout(() => {
                     toast.success(t('toastSuccess'), {
-                        className: 'text-green-600 dark:text-green-400 [&>svg]:text-green-600 dark:[&>svg]:text-green-400'
+                        className: 'text-green-600 [&>svg]:text-green-600'
                     });
                 }, 100);
                 onSuccess?.();

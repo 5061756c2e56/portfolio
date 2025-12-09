@@ -2,25 +2,18 @@ import {
     NextRequest,
     NextResponse
 } from 'next/server';
-
-import { rateLimit } from '@/lib/rate-limit';
+import { incrementEmailCounter } from '@/lib/db';
 import {
-    getSecurityHeaders,
-    validateOrigin,
-    validateUserAgent,
+    rateLimit,
     validateContentType,
-    validatePayloadSize,
-    getCorsHeaders,
-    createSecurityResponse
-} from '@/lib/api-security';
-
+    validateOrigin,
+    validateUserAgent
+} from '@/lib/rate-limit';
 import {
     type EmailFormData,
     sanitizeEmailForm,
     validateEmailForm
 } from '@/lib/email-validation';
-
-import { incrementEmailCounter } from '@/lib/db';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const EMAILJS_TIMEOUT = 10000;
@@ -34,15 +27,14 @@ function createTimeoutPromise(ms: number): Promise<never> {
 async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: boolean; error?: string }> {
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || process.env.EMAILJS_PUBLIC_KEY;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     const privateKey = process.env.EMAILJS_PRIVATE_KEY;
 
-    if (!serviceId || !templateId || !privateKey) {
+    if (!serviceId || !templateId || !publicKey) {
         const missing = [];
         if (!serviceId) missing.push('NEXT_PUBLIC_EMAILJS_SERVICE_ID');
         if (!templateId) missing.push('NEXT_PUBLIC_EMAILJS_TEMPLATE_ID');
-        if (!publicKey) missing.push('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY or EMAILJS_PUBLIC_KEY');
-        if (!privateKey) missing.push('EMAILJS_PRIVATE_KEY');
+        if (!publicKey) missing.push('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY');
 
         if (!isProduction) {
             console.warn('EmailJS non configuré en développement. Les emails ne seront pas envoyés.');
@@ -64,37 +56,41 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
     }
 
     try {
-        const payload = {
-            service_id: serviceId,
-            template_id: templateId,
-            user_id: publicKey,
-            accessToken: privateKey,
-            template_params: {
-                to_email: 'contact@paulviandier.com',
-                from_name: data.from_name,
-                from_email: data.from_email,
-                subject: data.subject,
-                message: data.message
-            }
+        const templateParams = {
+            to_email: 'contact@paulviandier.com',
+            from_name: data.from_name,
+            from_email: data.from_email,
+            subject: data.subject,
+            message: data.message
         };
 
-        if (!isProduction) {
-            console.log('EmailJS Request (server):', {
-                service_id: serviceId,
-                template_id: templateId,
-                accessToken: privateKey ? `${privateKey.substring(0, 4)}...` : 'missing'
-            });
+        const formData = new URLSearchParams();
+        formData.append('service_id', serviceId);
+        formData.append('template_id', templateId);
+        formData.append('public_key', publicKey);
+        
+        if (privateKey) {
+            formData.append('private_key', privateKey);
         }
+        
+        Object.entries(templateParams).forEach(([key, value]) => {
+            formData.append(key, String(value));
+        });
+
+        const headers: HeadersInit = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
+
+        const formDataBody = formData.toString();
+        
 
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), EMAILJS_TIMEOUT);
 
         const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload),
+            headers,
+            body: formDataBody,
             signal: controller.signal
         });
 
@@ -109,7 +105,9 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
                     statusText: response.statusText,
                     error: errorText,
                     serviceId: serviceId ? '***' : 'missing',
-                    templateId: templateId ? '***' : 'missing'
+                    templateId: templateId ? '***' : 'missing',
+                    publicKey: publicKey ? `${publicKey.substring(0, 4)}...` : 'missing',
+                    hasPrivateKey: !!privateKey
                 });
             }
 
@@ -148,38 +146,50 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
     }
 }
 
-export async function OPTIONS(request: NextRequest) {
-    const origin = request.headers.get('origin');
-    return new NextResponse(null, {
-        status: 204,
-        headers: getCorsHeaders(origin)
-    });
-}
-
 export async function POST(request: NextRequest) {
     if (request.method !== 'POST') {
-        return createSecurityResponse('Méthode non autorisée', 405, { 'Allow': 'POST' });
+        return NextResponse.json(
+            { error: 'Méthode non autorisée' },
+            {
+                status: 405,
+                headers: {
+                    'Allow': 'POST',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
     }
 
     if (!validateContentType(request, 'application/json')) {
-        return createSecurityResponse('Content-Type invalide', 400);
+        return NextResponse.json(
+            { error: 'Content-Type invalide' },
+            {
+                status: 400,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
     }
 
     if (!validateUserAgent(request)) {
-        return createSecurityResponse('Requête non autorisée', 403);
+        return NextResponse.json(
+            { error: 'Requête non autorisée' },
+            {
+                status: 403,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
     }
 
-    if (!validatePayloadSize(request)) {
-        return createSecurityResponse('Requête trop volumineuse', 413);
-    }
-
-    if (!validateOrigin(request)) {
-        return createSecurityResponse('Origine non autorisée', 403);
-    }
-
-    const privateKey = process.env.EMAILJS_PRIVATE_KEY;
-    if (!privateKey && !isProduction) {
-        console.error('EMAILJS_PRIVATE_KEY is not set. Check your .env.local file.');
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (!publicKey && !isProduction) {
+        console.error('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY is not set. Check your .env.local file.');
     }
 
     const rateLimitResult = rateLimit(request);
@@ -190,9 +200,23 @@ export async function POST(request: NextRequest) {
             {
                 status: 429,
                 headers: {
-                    ...getSecurityHeaders(),
                     'Retry-After': '60',
-                    'X-RateLimit-Remaining': '0'
+                    'X-RateLimit-Remaining': '0',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
+    }
+
+    if (!validateOrigin(request)) {
+        return NextResponse.json(
+            { error: 'Origine non autorisée' },
+            {
+                status: 403,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
                 }
             }
         );
@@ -209,7 +233,10 @@ export async function POST(request: NextRequest) {
                 { error: isProduction ? 'Données invalides' : Object.values(validation.errors)[0] },
                 {
                     status: 400,
-                    headers: getSecurityHeaders()
+                    headers: {
+                        'X-Content-Type-Options': 'nosniff',
+                        'X-Frame-Options': 'DENY'
+                    }
                 }
             );
         }
@@ -223,7 +250,10 @@ export async function POST(request: NextRequest) {
                 { error: emailResult.error || 'Erreur lors de l\'envoi de l\'email' },
                 {
                     status: 500,
-                    headers: getSecurityHeaders()
+                    headers: {
+                        'X-Content-Type-Options': 'nosniff',
+                        'X-Frame-Options': 'DENY'
+                    }
                 }
             );
         }
@@ -235,7 +265,6 @@ export async function POST(request: NextRequest) {
             console.error('Erreur incrémentation compteur:', error);
         }
 
-        const origin = request.headers.get('origin');
         return NextResponse.json(
             {
                 success: true,
@@ -243,8 +272,9 @@ export async function POST(request: NextRequest) {
             },
             {
                 headers: {
-                    ...getCorsHeaders(origin),
                     'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY',
                     'Cache-Control': 'no-store'
                 }
             }
@@ -252,20 +282,23 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
         const errorStack = error instanceof Error ? error.stack : undefined;
-
+        
         console.error('Erreur API send:', {
             message: errorMessage,
             stack: errorStack,
             isProduction
         });
-
+        
         return NextResponse.json(
             {
                 error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorMessage
             },
             {
                 status: 500,
-                headers: getSecurityHeaders()
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
             }
         );
     }

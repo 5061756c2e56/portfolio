@@ -117,7 +117,7 @@ export function AreaChartGradient({
                             if (active && payload && payload.length) {
                                 return (
                                     <div
-                                        className="rounded-lg border border-blue-500/30 bg-card/95 backdrop-blur-sm p-3 shadow-xl ring-1 ring-blue-500/10">
+                                        className="rounded-lg border border-blue-500/30 bg-card/95 backdrop-blur-sm p-3 shadow-md ring-1 ring-blue-500/10">
                                         <div className="grid gap-2">
                                             <div className="text-xs text-muted-foreground mb-1">{label}</div>
                                             <div className="flex items-center justify-between gap-4">

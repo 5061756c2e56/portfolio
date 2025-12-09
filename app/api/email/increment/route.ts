@@ -1,18 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { incrementEmailCounter } from '@/lib/db';
 import { isServerSideRequest } from '@/lib/rate-limit';
-import {
-    getSecurityHeaders,
-    createSecurityResponse
-} from '@/lib/api-security';
 
 export async function POST(request: NextRequest) {
     if (request.method !== 'POST') {
-        return createSecurityResponse('Méthode non autorisée', 405, { 'Allow': 'POST' });
+        return NextResponse.json(
+            { error: 'Méthode non autorisée' },
+            { 
+                status: 405,
+                headers: {
+                    'Allow': 'POST',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
     }
 
     if (!isServerSideRequest(request)) {
-        return createSecurityResponse('Accès non autorisé', 403);
+        return NextResponse.json(
+            { error: 'Accès non autorisé' },
+            { 
+                status: 403,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
     }
 
     try {
@@ -21,7 +36,8 @@ export async function POST(request: NextRequest) {
             { count: newCount },
             {
                 headers: {
-                    ...getSecurityHeaders(),
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY',
                     'Cache-Control': 'no-store'
                 }
             }
@@ -32,7 +48,10 @@ export async function POST(request: NextRequest) {
             { error: 'Erreur lors de l\'incrémentation' },
             { 
                 status: 500,
-                headers: getSecurityHeaders()
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
             }
         );
     }

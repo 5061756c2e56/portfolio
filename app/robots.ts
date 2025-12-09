@@ -6,17 +6,16 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: ['/api/', '/admin/', '/_next/', '/.*']
+                disallow: ['/api/', '/admin/']
             },
             {
                 userAgent: 'Googlebot',
                 allow: '/',
-                disallow: ['/api/', '/admin/', '/_next/', '/.*']
+                disallow: ['/api/', '/admin/']
             },
             {
-                userAgent: 'Bingbot',
-                allow: '/',
-                disallow: ['/api/', '/admin/', '/_next/', '/.*']
+                userAgent: 'Googlebot-Image',
+                allow: '/'
             }
         ],
         sitemap: 'https://paulviandier.com/sitemap.xml',

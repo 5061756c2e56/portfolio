@@ -15,44 +15,39 @@ import {
     useState
 } from 'react';
 
-import {
-    usePathname,
-    useRouter
-} from '@/i18n/routing';
-
-import { useTheme } from 'next-themes';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocaleContext } from '@/components/LocaleProvider';
+import { useTranslations } from 'next-intl';
+import { useTheme } from '@/hooks/use-theme';
+import { useRouter, usePathname } from '@/i18n/routing';
 
 export default function Settings() {
-    const {
-        theme,
-        setTheme
-    } = useTheme();
-    const locale = useLocale();
+    const { locale, setLocale } = useLocaleContext();
     const router = useRouter();
     const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const t = useTranslations('nav');
+    const { theme, setTheme } = useTheme();
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    const switchLocale = (newLocale: string) => {
+    const switchLocale = (newLocale: 'fr' | 'en') => {
+        if (newLocale === locale) return;
+        setLocale(newLocale);
         router.replace(pathname, { locale: newLocale });
     };
 
-    const currentTheme = mounted ? theme : 'dark';
     const currentLocale = mounted ? locale : 'fr';
 
     return (
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
                 <button
-                    className="group inline-flex items-center justify-center rounded-md border border-border bg-background p-2 text-foreground hover:bg-muted hover:border-foreground/20 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 active:scale-95 cursor-pointer"
+                    className="group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm p-2 text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer"
                     aria-label={t('settings')}
                 >
-                    <svg className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-90"
+                    <svg className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-90"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round"
                               d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
@@ -60,7 +55,7 @@ export default function Settings() {
                     </svg>
                 </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-card">
+            <DropdownMenuContent align="end" className="w-56 bg-background/95 backdrop-blur-xl border-border/60 shadow-md">
                 <DropdownMenuLabel>{t('language')}</DropdownMenuLabel>
                 <DropdownMenuGroup>
                     <DropdownMenuItem
@@ -98,37 +93,20 @@ export default function Settings() {
                         )}
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
-                <DropdownMenuSeparator/>
+                <DropdownMenuSeparator />
                 <DropdownMenuLabel>{t('theme')}</DropdownMenuLabel>
                 <DropdownMenuGroup>
                     <DropdownMenuItem
-                        onClick={() => mounted && setTheme('dark')}
-                        className={currentTheme === 'dark' ? 'bg-muted' : ''}
+                        onClick={() => setTheme('light')}
+                        className={theme === 'light' ? 'bg-muted' : ''}
                     >
                         <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round"
-                                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                        </svg>
-                        {t('dark')}
-                        {currentTheme === 'dark' && (
-                            <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                 strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        )}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                        onClick={() => mounted && setTheme('light')}
-                        className={currentTheme === 'light' ? 'bg-muted' : ''}
-                    >
-                        <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round"
-                                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
                         </svg>
                         {t('light')}
-                        {currentTheme === 'light' && (
+                        {theme === 'light' && (
                             <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                  strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
@@ -136,16 +114,33 @@ export default function Settings() {
                         )}
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                        onClick={() => mounted && setTheme('system')}
-                        className={currentTheme === 'system' ? 'bg-muted' : ''}
+                        onClick={() => setTheme('dark')}
+                        className={theme === 'dark' ? 'bg-muted' : ''}
                     >
                         <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round"
-                                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                  d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                        </svg>
+                        {t('dark')}
+                        {theme === 'dark' && (
+                            <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        )}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                        onClick={() => setTheme('system')}
+                        className={theme === 'system' ? 'bg-muted' : ''}
+                    >
+                        <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round"
+                                  d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/>
                         </svg>
                         {t('system')}
-                        {currentTheme === 'system' && (
+                        {theme === 'system' && (
                             <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                  strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>

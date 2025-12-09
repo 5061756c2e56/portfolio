@@ -1,140 +1,153 @@
-import {
-    NextRequest,
-    NextResponse
-} from 'next/server';
-import {
-    getSecurityHeaders,
-    validateOrigin,
-    validateUserAgent,
-    validatePayloadSize,
-    getCorsHeaders,
-    createSecurityResponse
-} from '@/lib/api-security';
-import { rateLimit } from '@/lib/rate-limit';
+import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit, validateOrigin } from '@/lib/rate-limit';
 
 const GITHUB_USERNAME = '5061756c2e56';
 const GITHUB_API_BASE = 'https://api.github.com';
 
-async function fetchGitHubData(endpoint: string) {
+async function fetchGitHubStats() {
     try {
-        const response = await fetch(`${GITHUB_API_BASE}${endpoint}`, {
-            headers: {
-                'Accept': 'application/vnd.github.v3+json'
-            },
-            next: { revalidate: 3600 }
-        });
+        const [userResponse, reposResponse] = await Promise.all([
+            fetch(`${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'User-Agent': 'portfolio-app'
+                },
+                next: { revalidate: 300 }
+            }),
+            fetch(`${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?per_page=100&type=public`, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'User-Agent': 'portfolio-app'
+                },
+                next: { revalidate: 300 }
+            })
+        ]);
 
-        if (!response.ok) {
-            throw new Error(`GitHub API error: ${response.status}`);
+        if (!userResponse.ok) {
+            console.error(`GitHub API user error: ${userResponse.status} ${userResponse.statusText}`);
+            return null;
         }
 
-        return await response.json();
+        if (!reposResponse.ok) {
+            console.error(`GitHub API repos error: ${reposResponse.status} ${reposResponse.statusText}`);
+            return null;
+        }
+
+        const userData = await userResponse.json();
+        const reposData = await reposResponse.json();
+
+        const totalStars = reposData.reduce((sum: number, repo: { stargazers_count: number }) => sum + repo.stargazers_count, 0);
+        const totalForks = reposData.reduce((sum: number, repo: { forks_count: number }) => sum + repo.forks_count, 0);
+
+        return {
+            publicRepos: userData.public_repos || 0,
+            totalStars,
+            totalForks,
+            followers: userData.followers || 0
+        };
     } catch (error) {
-        console.error(`Error fetching GitHub data from ${endpoint}:`, error);
+        console.error('Error fetching GitHub stats:', error);
         return null;
     }
 }
 
-export async function OPTIONS(request: NextRequest) {
-    const origin = request.headers.get('origin');
-    return new NextResponse(null, {
-        status: 204,
-        headers: getCorsHeaders(origin)
-    });
-}
-
 export async function GET(request: NextRequest) {
     if (request.method !== 'GET') {
-        return createSecurityResponse('Méthode non autorisée', 405, { 'Allow': 'GET' });
-    }
-
-    if (!validateUserAgent(request)) {
-        return createSecurityResponse('Requête non autorisée', 403);
-    }
-
-    if (!validateOrigin(request)) {
-        return createSecurityResponse('Origine non autorisée', 403);
-    }
-
-    if (!validatePayloadSize(request)) {
-        return createSecurityResponse('Requête trop volumineuse', 413);
+        return NextResponse.json(
+            { error: 'Méthode non autorisée' },
+            {
+                status: 405,
+                headers: {
+                    'Allow': 'GET',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
     }
 
     const rateLimitResult = rateLimit(request);
+
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
             { error: 'Trop de requêtes. Veuillez réessayer plus tard.' },
             {
                 status: 429,
                 headers: {
-                    ...getSecurityHeaders(),
                     'Retry-After': '60',
-                    'X-RateLimit-Remaining': '0'
+                    'X-RateLimit-Remaining': '0',
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
+                }
+            }
+        );
+    }
+
+    if (!validateOrigin(request)) {
+        return NextResponse.json(
+            { error: 'Origine non autorisée' },
+            {
+                status: 403,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY'
                 }
             }
         );
     }
 
     try {
-        const [repos, user] = await Promise.all([
-            fetchGitHubData(`/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`),
-            fetchGitHubData(`/users/${GITHUB_USERNAME}`)
-        ]);
-
-        if (!repos || !user) {
+        const stats = await fetchGitHubStats();
+        
+        if (!stats) {
+            // Retourner des valeurs par défaut si l'API GitHub échoue
             return NextResponse.json(
-                { error: 'Failed to fetch GitHub data' },
                 {
-                    status: 500,
-                    headers: getSecurityHeaders()
+                    publicRepos: 0,
+                    totalStars: 0,
+                    totalForks: 0,
+                    followers: 0
+                },
+                {
+                    status: 200,
+                    headers: {
+                        'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+                        'X-Content-Type-Options': 'nosniff',
+                        'X-Frame-Options': 'DENY',
+                        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120'
+                    }
                 }
             );
         }
 
-        const publicRepos = repos.filter((repo: any) => !repo.fork);
-        const totalStars = publicRepos.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0);
-        const totalForks = publicRepos.reduce((sum: number, repo: any) => sum + repo.forks_count, 0);
-
-        const recentRepos = publicRepos
-            .slice(0, 6)
-            .map((repo: any) => ({
-                name: repo.name,
-                description: repo.description,
-                url: repo.html_url,
-                stars: repo.stargazers_count,
-                forks: repo.forks_count,
-                language: repo.language,
-                updatedAt: repo.updated_at
-            }));
-
-        const origin = request.headers.get('origin');
         return NextResponse.json(
+            stats,
             {
-                username: user.login,
-                publicRepos: publicRepos.length,
-                totalStars,
-                totalForks,
-                followers: user.followers,
-                following: user.following,
-                recentRepos
-            },
-            {
+                status: 200,
                 headers: {
-                    ...getCorsHeaders(origin),
                     'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-                    'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400, max-age=3600',
-                    'Vary': 'Origin',
-                    'X-Content-Type-Options': 'nosniff'
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY',
+                    'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600'
                 }
             }
         );
     } catch (error) {
-        console.error('Error in GitHub stats API:', error);
+        console.error('Erreur API GitHub stats:', error);
         return NextResponse.json(
-            { error: 'Internal server error' },
             {
-                status: 500,
-                headers: getSecurityHeaders()
+                publicRepos: 0,
+                totalStars: 0,
+                totalForks: 0,
+                followers: 0
+            },
+            {
+                status: 200,
+                headers: {
+                    'X-Content-Type-Options': 'nosniff',
+                    'X-Frame-Options': 'DENY',
+                    'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120'
+                }
             }
         );
     }

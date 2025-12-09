@@ -9,9 +9,7 @@ export default function Footer() {
 
     return (
         <footer
-            className="border-t border-border/50 bg-gradient-to-b from-muted/30 to-background py-8 sm:py-10 relative overflow-hidden">
-            <div
-                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(120,119,198,0.05),transparent_50%)] pointer-events-none"/>
+            className="border-t border-border/60 bg-background py-8 sm:py-10 relative overflow-hidden">
             <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
                     <div

@@ -1,27 +1,19 @@
 'use client';
 
 import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle
+    NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
 
 import { useTranslations } from 'next-intl';
-import {
-    useEffect,
-    useState
-} from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Settings from './Settings';
 import MobileMenu from './MobileMenu';
 import { cn } from '@/lib/utils';
-import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 export default function Navigation() {
     const t = useTranslations('nav');
     const [scrolled, setScrolled] = useState(false);
-    const { scrollTo } = useSmoothScroll();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,36 +23,43 @@ export default function Navigation() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-        e.preventDefault();
-        scrollTo(targetId, 80);
-    };
-
     return (
         <nav className={cn(
             'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
             scrolled
-                ? 'bg-background/80 backdrop-blur-md border-b border-border shadow-sm'
+                ? 'bg-background/70 backdrop-blur-xl border-b border-border/60 shadow-sm'
                 : 'bg-transparent'
         )}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-18 sm:h-20">
                     <a
                         href="#home"
-                        onClick={(e) => handleNavClick(e, '#home')}
-                        className="text-foreground font-semibold text-lg sm:text-xl lg:text-2xl tracking-tight hover:opacity-80 hover:scale-105 transition-all duration-200 cursor-pointer"
+                        className="flex items-center gap-2.5 sm:gap-3 text-foreground font-bold text-lg sm:text-xl lg:text-2xl tracking-tight hover:opacity-80 hover:scale-105 transition-all duration-300 cursor-pointer"
                     >
-                        Paul Viandier
+                        <div className="relative w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full overflow-hidden border-2 border-border/60 hover:border-primary/50 transition-all duration-300 flex-shrink-0">
+                            <Image
+                                src="/pfp.png"
+                                alt="Paul Viandier"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 640px) 32px, (max-width: 1024px) 36px, 40px"
+                            />
+                        </div>
+                        <span className="bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text hover:text-transparent">
+                            Paul Viandier
+                        </span>
                     </a>
 
-                    <div className="hidden lg:flex items-center gap-2">
+                    <div className="hidden lg:flex items-center gap-3">
                         <NavigationMenu>
-                            <NavigationMenuList>
+                            <NavigationMenuList className="gap-1">
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#about"
-                                        onClick={(e) => handleNavClick(e, '#about')}
-                                        className={navigationMenuTriggerStyle()}
+                                        className={cn(
+                                            navigationMenuTriggerStyle(),
+                                            'rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-105'
+                                        )}
                                     >
                                         {t('about')}
                                     </NavigationMenuLink>
@@ -68,8 +67,10 @@ export default function Navigation() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#skills"
-                                        onClick={(e) => handleNavClick(e, '#skills')}
-                                        className={navigationMenuTriggerStyle()}
+                                        className={cn(
+                                            navigationMenuTriggerStyle(),
+                                            'rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-105'
+                                        )}
                                     >
                                         {t('skills')}
                                     </NavigationMenuLink>
@@ -77,8 +78,10 @@ export default function Navigation() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#projects"
-                                        onClick={(e) => handleNavClick(e, '#projects')}
-                                        className={navigationMenuTriggerStyle()}
+                                        className={cn(
+                                            navigationMenuTriggerStyle(),
+                                            'rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-105'
+                                        )}
                                     >
                                         {t('projects')}
                                     </NavigationMenuLink>
@@ -86,17 +89,21 @@ export default function Navigation() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#github-stats"
-                                        onClick={(e) => handleNavClick(e, '#github-stats')}
-                                        className={navigationMenuTriggerStyle()}
+                                        className={cn(
+                                            navigationMenuTriggerStyle(),
+                                            'rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-105'
+                                        )}
                                     >
-                                        {t('stats')}
+                                        {t('statsGithub')}
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
                                 <NavigationMenuItem>
                                     <NavigationMenuLink
                                         href="#contact"
-                                        onClick={(e) => handleNavClick(e, '#contact')}
-                                        className={navigationMenuTriggerStyle()}
+                                        className={cn(
+                                            navigationMenuTriggerStyle(),
+                                            'rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-105'
+                                        )}
                                     >
                                         {t('contact')}
                                     </NavigationMenuLink>

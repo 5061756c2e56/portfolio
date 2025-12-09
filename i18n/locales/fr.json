@@ -6,8 +6,8 @@
     "available": "Disponible pour de nouvelles opportunités",
     "location": "France",
     "role": "Intégrateur Web",
-    "cvButton": "Découvrir mon Curriculum Vitae",
-    "downloadCVButton": "Télécharger mon Curriculum Vitae"
+    "downloadCVButton": "Télécharger mon Curriculum Vitae",
+    "downloadingCV": "Téléchargement en cours..."
   },
   "about": {
     "title": "À propos",
@@ -20,33 +20,50 @@
     "previousSlide": "Slide précédent",
     "nextSlide": "Slide suivant",
     "goToSkill": "Aller à la compétence",
-    "showMore": "Afficher plus",
-    "showLess": "Afficher moins",
     "categories": {
       "all": "Toutes",
       "frontend": "Frontend",
       "backend": "Backend",
       "tools": "Outils",
       "other": "Autres"
+    },
+    "showMore": "Voir plus",
+    "showLess": "Voir moins",
+    "descriptions": {
+      "HTML5": "Langage de balisage standard pour structurer le contenu web",
+      "JavaScript": "Langage de programmation pour créer des pages web interactives",
+      "TypeScript": "Superset de JavaScript avec typage statique pour un développement plus robuste",
+      "CSS": "Langage de style pour mettre en forme et animer les pages web",
+      "React": "Bibliothèque JavaScript pour construire des interfaces utilisateur réactives",
+      "Tailwind CSS": "Framework CSS utilitaire pour un développement rapide et moderne",
+      "NextJS": "Framework React pour applications web performantes avec rendu côté serveur",
+      "Responsive Design": "Conception adaptative pour une expérience optimale sur tous les appareils",
+      "NodeJS": "Environnement d'exécution JavaScript côté serveur",
+      "PostgreSQL": "Système de gestion de base de données relationnelle open-source",
+      "API REST": "Architecture pour créer des services web interopérables",
+      "Git": "Système de contrôle de version distribué pour gérer le code source",
+      "GitHub": "Plateforme d'hébergement et de collaboration pour projets de développement",
+      "EmailJS": "Service pour envoyer des emails directement depuis le frontend",
+      "Cybersecurity": "Pratiques et technologies pour protéger les systèmes informatiques",
+      "SEO": "Optimisation pour les moteurs de recherche afin d'améliorer la visibilité"
     }
   },
   "projects": {
     "title": "Projets & Réalisations",
     "viewProject": "Voir le projet",
     "searchPlaceholder": "Rechercher un projet...",
-    "filterByTech": "Filtrer par technologie",
     "allTechnologies": "Toutes les technologies",
     "noResults": "Aucun projet trouvé",
     "portfolio": {
       "title": "Portfolio",
       "description": "Site portfolio personnel développé avec Next.js et TypeScript, mettant en avant mes compétences et projets."
     },
-    "securitySuite": {
-      "title": "Security Suite",
-      "description": "Suite de sécurité locale pour la protection et la gestion des systèmes informatiques.",
+    "webSecurity": {
+      "title": "Web Security",
+      "description": "Suite de sécurité web pour la protection et la gestion des systèmes informatiques.",
       "dialog": {
         "title": "Projet en cours de développement",
-        "description": "Security Suite est actuellement en développement. Cette suite de sécurité locale, développée avec TypeScript, PostgreSQL et Next.js, sera bientôt disponible. Restez à l'écoute pour les mises à jour !",
+        "description": "Web Security est actuellement en développement. Cette suite de sécurité web, développée avec TypeScript, PostgreSQL et Next.js, sera bientôt disponible. Restez à l'écoute pour les mises à jour !",
         "close": "Fermer"
       }
     }
@@ -67,7 +84,6 @@
       "send": "Envoyer",
       "sending": "Envoi en cours...",
       "success": "Message envoyé avec succès !",
-      "toastSuccess": "Votre mail a été envoyé",
       "error": "Une erreur est survenue. Veuillez réessayer.",
       "errorNetwork": "Erreur de connexion. Vérifiez votre connexion internet et réessayez.",
       "errorConfig": "Erreur de configuration. Veuillez contacter l'administrateur.",
@@ -99,26 +115,27 @@
   },
   "nav": {
     "home": "Accueil",
-    "cv": "Curriculum Vitae",
     "about": "À propos",
     "skills": "Compétences",
     "projects": "Projets",
-    "stats": "Statistiques",
+    "statsGithub": "Stats GitHub",
     "contact": "Contact",
     "loading": "Chargement...",
     "language": "Langue",
-    "theme": "Thème",
     "french": "Français",
     "english": "English",
-    "dark": "Sombre",
-    "light": "Clair",
-    "system": "Système",
     "closeMenu": "Fermer le menu",
     "menu": "Menu",
     "settings": "Paramètres",
     "email": "Email",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "theme": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "themeChanging": "Modification du thème en cours...",
+    "languageChanging": "Changement de langue..."
   },
   "footer": {
     "copyright": "Paul Viandier. Tous droits réservés.",
@@ -130,129 +147,19 @@
     "repositories": "Dépôts",
     "stars": "Étoiles",
     "forks": "Forks",
-    "followers": "Abonnés",
-    "recentRepos": "Dépôts récents",
-    "viewProfile": "Voir le profil GitHub"
+    "followers": "Abonnés"
   },
-  "blog": {
-    "title": "Blog & Actualités",
-    "readMore": "Lire la suite"
-  },
-  "admin": {
-    "title": "Tableau de bord Analytics",
-    "description": "Statistiques et métriques du portfolio",
-    "loading": "Chargement...",
-    "error": "Erreur",
-    "totalVisits": "Visites totales",
-    "uniqueVisitors": "Visiteurs uniques",
-    "pageViews": "Pages vues",
-    "averageTime": "Temps moyen",
-    "topPages": "Pages populaires",
-    "views": "vues",
-    "noData": "Aucune donnée disponible",
-    "backToHome": "Retour à l'accueil"
-  },
-  "cv": {
-    "back": "Retour",
-    "name": "Paul Viandier",
-    "title": "Intégrateur Web & Développeur",
-    "description": "Paul Viandier, 20 ans\n*Passionné par les réseaux, la cybersécurité et le développement.*\n\nMon objectif : concevoir des services fiables, performants et sûrs.\n\nCompétent en HTML, CSS et JavaScript, je souhaite renforcer mes acquis.",
-    "location": "France",
-    "role": "Intégrateur Web en alternance",
-    "contactEmail": "Me contacter par mail",
-    "downloadCV": "Télécharger le CV",
-    "github": "GitHub",
-    "linkedin": "LinkedIn",
-    "education": {
-      "title": "Formation",
-      "items": {
-        "0": {
-          "title": "Intégrateur Web",
-          "school": "OpenClassroom  |  Diplôme de niveau 5 (bac +2)  |  Formation en alternance à venir",
-          "period": "2025",
-          "description": "**Les objectifs de la formation :**\n • Créer des interfaces responsives avec HTML et CSS\n • Dynamiser une page web avec JavaScript et React\n • Implémenter la gestion de données avec Redux\n • Versionner et collaborer sur un projet avec Git\n • Déboguer et optimiser un site web existant\n"
-        }
-      }
+  "errors": {
+    "404": {
+      "title": "Page introuvable",
+      "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+      "backHome": "Retour à l'accueil"
     },
-    "skills": {
-      "title": "Compétences",
-      "all": "Toutes",
-      "categories": {
-        "frontend": "Frontend",
-        "backend": "Backend",
-        "tools": "Outils",
-        "other": "Autres"
-      },
-      "items": {
-        "HTML5": {
-          "category": "frontend",
-          "name": "HTML5"
-        },
-        "CSS": {
-          "category": "frontend",
-          "name": "CSS"
-        },
-        "JavaScript": {
-          "category": "frontend",
-          "name": "JavaScript"
-        },
-        "TypeScript": {
-          "category": "frontend",
-          "name": "TypeScript"
-        },
-        "React": {
-          "category": "frontend",
-          "name": "React"
-        },
-        "NextJS": {
-          "category": "frontend",
-          "name": "Next.js"
-        },
-        "TailwindCSS": {
-          "category": "frontend",
-          "name": "Tailwind CSS"
-        },
-        "NodeJS": {
-          "category": "backend",
-          "name": "Node.js"
-        },
-        "PostgreSQL": {
-          "category": "backend",
-          "name": "PostgreSQL"
-        },
-        "APIREST": {
-          "category": "backend",
-          "name": "API REST"
-        },
-        "Git": {
-          "category": "tools",
-          "name": "Git"
-        },
-        "GitHub": {
-          "category": "tools",
-          "name": "GitHub"
-        },
-        "Vercel": {
-          "category": "tools",
-          "name": "Vercel"
-        },
-        "EmailJS": {
-          "category": "tools",
-          "name": "EmailJS"
-        },
-        "Cybersecurite": {
-          "category": "other",
-          "name": "Cybersécurité"
-        },
-        "ResponsiveDesign": {
-          "category": "other",
-          "name": "Responsive Design"
-        },
-        "SEO": {
-          "category": "other",
-          "name": "SEO"
-        }
-      }
+    "500": {
+      "title": "Une erreur est survenue",
+      "description": "Désolé, une erreur inattendue s'est produite. Veuillez réessayer.",
+      "retry": "Réessayer",
+      "backHome": "Retour à l'accueil"
     }
   }
 }
