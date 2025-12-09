@@ -472,10 +472,10 @@ html {
 .animate-shimmer {
     animation: shimmer 2s infinite;
     background: linear-gradient(
-        to right,
-        transparent 0%,
-        oklch(0.68 0.15 240 / 0.2) 50%,
-        transparent 100%
+            to right,
+            transparent 0%,
+            oklch(0.68 0.15 240 / 0.2) 50%,
+            transparent 100%
     );
     background-size: 1000px 100%;
 }
@@ -572,17 +572,13 @@ html {
         z-index: -1;
     }
 
-    .gradient-border-dropdown {
-        position: relative;
-        border: 2px solid transparent;
-        background-clip: padding-box;
-    }
-
     .gradient-border-dropdown::before {
         content: '';
         position: absolute;
         inset: -2px;
         border-radius: inherit;
+        border: 1px solid transparent;
+        background-clip: padding-box;
         padding: 2px;
         background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -631,11 +627,11 @@ html {
     * {
         @apply border-border outline-ring/50;
     }
-    
+
     body {
         @apply bg-background text-foreground;
     }
-    
+
     a,
     button:not(:disabled),
     [role="button"]:not(:disabled),
@@ -647,14 +643,14 @@ html {
     select:not(:disabled) {
         cursor: pointer;
     }
-    
+
     button:disabled,
     [role="button"]:disabled,
     select:disabled,
     input:disabled {
         cursor: not-allowed;
     }
-    
+
     input[type="text"],
     input[type="password"],
     input[type="email"],

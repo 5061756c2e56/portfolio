@@ -1,14 +1,11 @@
 'use client';
 
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger
+    DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 
 import { useTranslations } from 'next-intl';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 
 export default function MobileMenu() {
@@ -75,22 +72,32 @@ export default function MobileMenu() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem asChild>
-                    <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
+                    <a href="#about" onClick={(e) => handleLinkClick(e, '#about')}
+                       className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('about')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
+                    <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')}
+                       className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('skills')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
+                    <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')}
+                       className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('projects')}
                     </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
+                    <a href="#github-stats" onClick={(e) => handleLinkClick(e, '#github-stats')}
+                       className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
+                        {t('statsGithub')}
+                    </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}
+                       className="cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors duration-200">
                         {t('contact')}
                     </a>
                 </DropdownMenuItem>
