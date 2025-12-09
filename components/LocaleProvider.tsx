@@ -56,7 +56,12 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
 
     return (
         <LocaleContext.Provider value={{ locale, setLocale }}>
-            <NextIntlClientProvider messages={currentMessages} locale={locale}>
+            <NextIntlClientProvider
+                messages={currentMessages}
+                locale={locale}
+                timeZone="Europe/Paris"
+                now={new Date()}
+            >
                 {children}
             </NextIntlClientProvider>
         </LocaleContext.Provider>
