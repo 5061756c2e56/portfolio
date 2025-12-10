@@ -1,7 +1,4 @@
-import {
-    Geist,
-    Geist_Mono
-} from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 
 import StructuredData from '@/components/StructuredData';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -9,7 +6,8 @@ import { LocaleProvider } from '@/components/LocaleProvider';
 import { Toaster } from '@/components/ui/sonner';
 import { Snowflakes } from '@/components/Snowflakes';
 import type { Metadata } from 'next';
-import { getMessages } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
 import '../globals.css';
 
 const geistSans = Geist({
@@ -40,8 +38,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             ? 'Portfolio de Paul Viandier, développeur web fullstack en formation. Découvrez mes projets, compétences en TypeScript, React, Next.js, cybersécurité et développement web moderne.'
             : 'Portfolio of Paul Viandier, fullstack web developer in training. Discover my projects, skills in TypeScript, React, Next.js, cybersecurity and modern web development.',
         keywords: isFrench
-            ? ['Paul Viandier', 'développeur web', 'cybersécurité', 'fullstack', 'portfolio', 'développement web', 'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'API REST', 'intégrateur web', 'développeur frontend', 'développeur backend', 'alternance', 'formation développeur']
-            : ['Paul Viandier', 'web developer', 'cybersecurity', 'fullstack', 'portfolio', 'web development', 'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'REST API', 'web integrator', 'frontend developer', 'backend developer', 'apprenticeship', 'developer training'],
+            ? [
+                'Paul Viandier', 'développeur web', 'cybersécurité', 'fullstack', 'portfolio', 'développement web',
+                'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS',
+                'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'API REST', 'intégrateur web', 'développeur frontend',
+                'développeur backend', 'alternance', 'formation développeur'
+            ]
+            : [
+                'Paul Viandier', 'web developer', 'cybersecurity', 'fullstack', 'portfolio', 'web development',
+                'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS',
+                'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'REST API', 'web integrator', 'frontend developer',
+                'backend developer', 'apprenticeship', 'developer training'
+            ],
         authors: [{ name: 'Paul Viandier' }],
         creator: 'Paul Viandier',
         publisher: 'Paul Viandier',
@@ -57,7 +65,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             description: isFrench
                 ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
-            publishedTime: '2024-01-01T00:00:00Z',
             images: [
                 {
                     url: `${baseUrl}/vPsl6pa.png`,
@@ -138,18 +145,27 @@ export default async function RootLayout({
     children: React.ReactNode;
     params: Promise<{ locale: string }>;
 }) {
-    const { locale } = await params;
-    const messages = await getMessages();
-    const messagesFr = (await import('@/i18n/locales/fr.json')).default;
-    const messagesEn = (await import('@/i18n/locales/en.json')).default;
+    const { locale: paramLocale } = await params;
+
+    if (!paramLocale || !routing.locales.includes(paramLocale as any)) {
+        notFound();
+    }
+
+    const locale = paramLocale as 'fr' | 'en';
+    const messagesFr = (
+        await import('@/i18n/locales/fr.json')
+    ).default;
+    const messagesEn = (
+        await import('@/i18n/locales/en.json')
+    ).default;
 
     return (
         <html lang={locale} suppressHydrationWarning>
         <head>
-            <link rel="preconnect" href="https://api.emailjs.com" />
-            <link rel="dns-prefetch" href="https://api.emailjs.com" />
-            <link rel="me" href="https://github.com/5061756c2e56/" />
-            <link rel="me" href="https://www.linkedin.com/in/paul-viandier-648837397/" />
+            <link rel="preconnect" href="https://api.emailjs.com"/>
+            <link rel="dns-prefetch" href="https://api.emailjs.com"/>
+            <link rel="me" href="https://github.com/5061756c2e56/"/>
+            <link rel="me" href="https://www.linkedin.com/in/paul-viandier-648837397/"/>
             <script
                 dangerouslySetInnerHTML={{
                     __html: `
@@ -165,7 +181,8 @@ export default async function RootLayout({
                                 
                                 document.documentElement.classList.add(effectiveTheme);
                                 
-                                window.__CHRISTMAS_MODE__ = ${process.env.NEXT_PUBLIC_CHRISTMAS_MODE === 'true' ? 'true' : 'false'};
+                                window.__CHRISTMAS_MODE__ = ${process.env.NEXT_PUBLIC_CHRISTMAS_MODE
+                                                              === 'true' ? 'true' : 'false'};
                             } catch (e) {
                                 document.documentElement.classList.add('light');
                                 window.__CHRISTMAS_MODE__ = false;
@@ -177,13 +194,13 @@ export default async function RootLayout({
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-            <Snowflakes />
+            <Snowflakes/>
             <div className="min-h-screen flex flex-col relative z-10">
                 <StructuredData/>
                 <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
                     {children}
                 </LocaleProvider>
-                <Toaster />
+                <Toaster/>
             </div>
         </ThemeProvider>
         </body>

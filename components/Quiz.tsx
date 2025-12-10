@@ -48,7 +48,8 @@ function QuizCard({ level, title, description, questionCount, onStart }: QuizCar
 
 export default function Quiz() {
     const t = useTranslations('quiz');
-    const locale = useLocale();
+    const rawLocale = useLocale();
+    const locale = (rawLocale === 'fr' || rawLocale === 'en') ? rawLocale : 'fr';
     const isMobile = useIsMobile();
     const [selectedLevel, setSelectedLevel] = useState<QuizLevel>('easy');
     const [isModalOpen, setIsModalOpen] = useState(false);

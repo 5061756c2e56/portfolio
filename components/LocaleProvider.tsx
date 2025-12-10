@@ -49,16 +49,19 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
     }, [locale, mounted]);
 
     const setLocale = (newLocale: Locale) => {
-        setLocaleState(newLocale);
+        if (newLocale === 'fr' || newLocale === 'en') {
+            setLocaleState(newLocale);
+        }
     };
 
-    const currentMessages = messages[locale] || messages[initialLocale] || messages.fr;
+    const validLocale = (locale === 'fr' || locale === 'en') ? locale : initialLocale;
+    const currentMessages = messages[validLocale] || messages[initialLocale] || messages.fr;
 
     return (
-        <LocaleContext.Provider value={{ locale, setLocale }}>
+        <LocaleContext.Provider value={{ locale: validLocale, setLocale }}>
             <NextIntlClientProvider
                 messages={currentMessages}
-                locale={locale}
+                locale={validLocale}
                 timeZone="Europe/Paris"
                 now={new Date()}
             >
