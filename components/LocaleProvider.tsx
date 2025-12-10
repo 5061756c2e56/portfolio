@@ -2,6 +2,7 @@
 
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
+import { usePathname } from '@/i18n/routing';
 
 type Locale = 'fr' | 'en';
 
@@ -30,18 +31,20 @@ interface LocaleProviderProps {
 }
 
 export function LocaleProvider({ children, initialLocale, messages }: LocaleProviderProps) {
+    const pathname = usePathname();
     const [locale, setLocaleState] = useState<Locale>(initialLocale);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        const stored = localStorage.getItem('locale') as Locale | null;
-        if (stored && (
-            stored === 'fr' || stored === 'en'
-        )) {
-            setLocaleState(stored);
-        }
     }, []);
+
+    useEffect(() => {
+        const urlLocale = pathname.startsWith('/en') ? 'en' : 'fr';
+        if (urlLocale !== locale) {
+            setLocaleState(urlLocale);
+        }
+    }, [pathname, locale]);
 
     useEffect(() => {
         if (mounted) {
