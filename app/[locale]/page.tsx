@@ -5,6 +5,7 @@ import About from '@/components/About';
 import Navigation from '@/components/Navigation';
 
 const Skills = lazy(() => import('@/components/Skills'));
+const Quiz = lazy(() => import('@/components/Quiz'));
 const Projects = lazy(() => import('@/components/Projects'));
 const GitHubStats = lazy(() => import('@/components/GitHubStats'));
 const Contact = lazy(() => import('@/components/Contact'));
@@ -14,11 +15,14 @@ export default function Home() {
     return (
         <>
             <Navigation/>
-            <main className="min-h-screen bg-background text-foreground transition-colors duration-300">
+            <main className="min-h-screen text-foreground transition-colors duration-300">
                 <Hero/>
                 <About/>
                 <Suspense fallback={null}>
                     <Skills/>
+                </Suspense>
+                <Suspense fallback={null}>
+                    <Quiz/>
                 </Suspense>
                 <Suspense fallback={null}>
                     <Projects/>

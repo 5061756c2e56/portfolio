@@ -26,7 +26,7 @@ export default function Hero() {
 
     return (
         <section id="home"
-                 className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 pb-24 relative overflow-hidden bg-background">
+                 className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 pb-24 relative">
             <div
                 className={`max-w-5xl mx-auto text-center w-full relative z-10 ${mounted ? 'animate-fade-in-up' : 'opacity-0'}`}>
                 <div

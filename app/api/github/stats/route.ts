@@ -33,7 +33,8 @@ async function fetchGitHubStats() {
         const userData = await userResponse.json();
         const reposData = await reposResponse.json();
 
-        const totalStars = reposData.reduce((sum: number, repo: { stargazers_count: number }) => sum + repo.stargazers_count, 0);
+        const totalStars = reposData.reduce((sum: number, repo: { stargazers_count: number }) => sum
+                                                                                                 + repo.stargazers_count, 0);
         const totalForks = reposData.reduce((sum: number, repo: { forks_count: number }) => sum + repo.forks_count, 0);
 
         return {
@@ -97,7 +98,7 @@ export async function GET(request: NextRequest) {
 
     try {
         const stats = await fetchGitHubStats();
-        
+
         if (!stats) {
             // Retourner des valeurs par défaut si l'API GitHub échoue
             return NextResponse.json(

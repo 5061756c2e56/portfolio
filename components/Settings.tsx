@@ -19,6 +19,9 @@ import { useLocaleContext } from '@/components/LocaleProvider';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/hooks/use-theme';
 import { useRouter, usePathname } from '@/i18n/routing';
+import { useChristmasMode } from '@/hooks/use-christmas';
+import { ChristmasBarleySugar } from '@/components/ChristmasBarleySugar';
+import { cn } from '@/lib/utils';
 
 export default function Settings() {
     const { locale, setLocale } = useLocaleContext();
@@ -27,6 +30,7 @@ export default function Settings() {
     const [mounted, setMounted] = useState(false);
     const t = useTranslations('nav');
     const { theme, setTheme } = useTheme();
+    const christmasMode = useChristmasMode();
 
     useEffect(() => {
         setMounted(true);
@@ -43,15 +47,23 @@ export default function Settings() {
     if (!mounted) {
         return (
             <button
-                className="group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm p-2 text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer w-9 h-9"
+                className={cn(
+                    'group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer shrink-0 overflow-visible',
+                    christmasMode ? 'p-0.5' : 'p-2'
+                )}
                 aria-label={t('settings')}
+                disabled
             >
-                <svg className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-90"
-                     fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round"
-                          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
+                {christmasMode ? (
+                    <ChristmasBarleySugar size={45} className="transition-transform duration-300"/>
+                ) : (
+                    <svg className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-90"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round"
+                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                )}
             </button>
         );
     }
@@ -60,15 +72,23 @@ export default function Settings() {
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
                 <button
-                    className="group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm p-2 text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer w-9 h-9"
+                    className={cn(
+                        'group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer shrink-0 overflow-visible',
+                        christmasMode ? 'p-0.5' : 'p-2'
+                    )}
                     aria-label={t('settings')}
                 >
-                    <svg className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-90"
-                         fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    </svg>
+                    {christmasMode ? (
+                        <ChristmasBarleySugar size={45}
+                                              className="transition-transform duration-300 group-data-[state=open]:rotate-90"/>
+                    ) : (
+                        <svg className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-90"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round"
+                                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    )}
                 </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">

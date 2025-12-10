@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     if (request.method !== 'GET') {
         return NextResponse.json(
             { error: 'Méthode non autorisée' },
-            { 
+            {
                 status: 405,
                 headers: {
                     'Allow': 'GET',
@@ -20,11 +20,11 @@ export async function GET(request: NextRequest) {
     }
 
     const rateLimitResult = await rateLimit(request);
-    
+
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
             { error: 'Trop de requêtes. Veuillez réessayer plus tard.' },
-            { 
+            {
                 status: 429,
                 headers: {
                     'Retry-After': '60',
@@ -35,11 +35,11 @@ export async function GET(request: NextRequest) {
             }
         );
     }
-    
+
     if (!validateOrigin(request)) {
         return NextResponse.json(
             { error: 'Origine non autorisée' },
-            { 
+            {
                 status: 403,
                 headers: {
                     'X-Content-Type-Options': 'nosniff',
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
             }
         );
     }
-    
+
     try {
         const counter = await getEmailCounter();
         return NextResponse.json(
@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
                 count: 0,
                 month: new Date().toISOString().slice(0, 7)
             },
-            { 
+            {
                 status: 500,
                 headers: {
                     'X-Content-Type-Options': 'nosniff',

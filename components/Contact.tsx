@@ -77,7 +77,7 @@ export default function Contact() {
     return (
         <>
             <section ref={ref as React.RefObject<HTMLElement>} id="contact"
-                     className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-background relative overflow-hidden">
+                     className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 <div className="max-w-5xl lg:max-w-6xl mx-auto relative z-10">
                     <h2 className={cn(
                         'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-12 md:mb-16 tracking-tight transition-all duration-700 gradient-text',

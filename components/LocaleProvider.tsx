@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 
 type Locale = 'fr' | 'en';
@@ -36,7 +36,9 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
     useEffect(() => {
         setMounted(true);
         const stored = localStorage.getItem('locale') as Locale | null;
-        if (stored && (stored === 'fr' || stored === 'en')) {
+        if (stored && (
+            stored === 'fr' || stored === 'en'
+        )) {
             setLocaleState(stored);
         }
     }, []);
@@ -67,4 +69,3 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
         </LocaleContext.Provider>
     );
 }
-

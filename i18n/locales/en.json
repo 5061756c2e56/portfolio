@@ -123,6 +123,7 @@
     "home": "Home",
     "about": "About",
     "skills": "Skills",
+    "quiz": "Quiz",
     "projects": "Projects",
     "statsGithub": "GitHub Stats",
     "contact": "Contact",
@@ -154,6 +155,53 @@
     "stars": "Stars",
     "forks": "Forks",
     "followers": "Followers"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "levels": {
+      "easy": "Easy Level",
+      "medium": "Medium Level",
+      "hard": "Hard Level"
+    },
+    "descriptions": {
+      "easy": "Test your basic knowledge in web development, frontend and backend technologies, and cybersecurity. This quiz is perfect for beginners or reviewing fundamentals.",
+      "medium": "Challenge yourself with deeper questions on advanced concepts, development best practices, and security aspects. Ideal for experienced developers.",
+      "hard": "Put your skills to the test with expert questions on architecture, complex algorithms, advanced cybersecurity, and optimizations. For true experts!"
+    },
+    "info": {
+      "questions": "{count} questions",
+      "timePerQuestion": "{seconds} seconds per question"
+    },
+    "startQuiz": "Start quiz",
+    "modal": {
+      "title": "Quiz",
+      "question": "Question",
+      "progress": "Progress",
+      "timeLeft": "Time left",
+      "true": "True",
+      "false": "False",
+      "next": "Next question",
+      "finish": "Finish",
+      "cancel": "Cancel",
+      "results": {
+        "title": "Quiz Results",
+        "description": "Here are your detailed results",
+        "correct": "correct answers",
+        "excellent": "Excellent work! 🎉",
+        "good": "Good job! 👍",
+        "average": "Keep up the effort! 💪",
+        "needsImprovement": "Don't be discouraged, keep learning! 📚",
+        "details": "Answer Details",
+        "question": "Question",
+        "yourAnswer": "Your answer",
+        "correctAnswer": "Correct answer",
+        "timeout": "Time out",
+        "noAnswer": "No answer",
+        "true": "True",
+        "false": "False",
+        "close": "Close"
+      }
+    }
   },
   "errors": {
     "404": {

@@ -123,6 +123,7 @@
     "home": "Accueil",
     "about": "À propos",
     "skills": "Compétences",
+    "quiz": "Quiz",
     "projects": "Projets",
     "statsGithub": "Stats GitHub",
     "contact": "Contact",
@@ -154,6 +155,53 @@
     "stars": "Étoiles",
     "forks": "Forks",
     "followers": "Abonnés"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "levels": {
+      "easy": "Niveau facile",
+      "medium": "Niveau moyen",
+      "hard": "Niveau difficile"
+    },
+    "descriptions": {
+      "easy": "Testez vos connaissances de base en développement web, technologies frontend et backend, et cybersécurité. Ce quiz est parfait pour débuter ou réviser les fondamentaux.",
+      "medium": "Défiez-vous avec des questions plus approfondies sur les concepts avancés, les bonnes pratiques de développement, et les aspects de sécurité. Idéal pour les développeurs expérimentés.",
+      "hard": "Mettez vos compétences à l'épreuve avec des questions expertes sur l'architecture, les algorithmes complexes, la cybersécurité avancée et les optimisations. Pour les vrais experts !"
+    },
+    "info": {
+      "questions": "{count} questions",
+      "timePerQuestion": "{seconds} secondes par question"
+    },
+    "startQuiz": "Commencer le quiz",
+    "modal": {
+      "title": "Quiz",
+      "question": "Question",
+      "progress": "Progression",
+      "timeLeft": "Temps restant",
+      "true": "Vrai",
+      "false": "Faux",
+      "next": "Question suivante",
+      "finish": "Terminer",
+      "cancel": "Annuler",
+      "results": {
+        "title": "Résultats du quiz",
+        "description": "Voici vos résultats détaillés",
+        "correct": "de bonnes réponses",
+        "excellent": "Excellent travail ! 🎉",
+        "good": "Bon travail ! 👍",
+        "average": "Continuez vos efforts ! 💪",
+        "needsImprovement": "Ne vous découragez pas, continuez à apprendre ! 📚",
+        "details": "Détails des réponses",
+        "question": "Question",
+        "yourAnswer": "Votre réponse",
+        "correctAnswer": "Bonne réponse",
+        "timeout": "Temps écoulé",
+        "noAnswer": "Aucune réponse",
+        "true": "Vrai",
+        "false": "Faux",
+        "close": "Fermer"
+      }
+    }
   },
   "errors": {
     "404": {

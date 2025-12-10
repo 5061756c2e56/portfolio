@@ -9,7 +9,7 @@ export default function Footer() {
 
     return (
         <footer
-            className="border-t border-border/60 bg-background py-8 sm:py-10 relative overflow-hidden">
+            className="border-t border-border/60 py-8 sm:py-10 relative overflow-hidden">
             <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
                     <div

@@ -7,6 +7,7 @@ import StructuredData from '@/components/StructuredData';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { LocaleProvider } from '@/components/LocaleProvider';
 import { Toaster } from '@/components/ui/sonner';
+import { Snowflakes } from '@/components/Snowflakes';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -56,13 +57,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
             images: [
                 {
-                    url: `${baseUrl}/banner.png`,
-                    width: 1200,
-                    height: 630,
-                    alt: 'Paul Viandier - Développeur Web & Cybersécurité',
-                    type: 'image/png'
-                },
-                {
                     url: `${baseUrl}/opengraph-image`,
                     width: 1200,
                     height: 630,
@@ -74,6 +68,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                     width: 512,
                     height: 512,
                     alt: 'Paul Viandier',
+                    type: 'image/png'
+                },
+                {
+                    url: `${baseUrl}/banner.png`,
+                    width: 1200,
+                    height: 630,
+                    alt: 'Paul Viandier - Développeur Web & Cybersécurité',
                     type: 'image/png'
                 }
             ]
@@ -87,18 +88,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
             images: [
-                `${baseUrl}/banner.png`,
                 `${baseUrl}/opengraph-image`,
-                `${baseUrl}/pfp.png`
+                `${baseUrl}/pfp.png`,
+                `${baseUrl}/banner.png`
             ],
             creator: '@paulviandier'
         },
         robots: {
             index: true,
             follow: true,
+            nocache: false,
             googleBot: {
                 index: true,
                 follow: true,
+                noimageindex: false,
                 'max-video-preview': -1,
                 'max-image-preview': 'large',
                 'max-snippet': -1
@@ -119,18 +122,24 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         } : undefined,
         icons: {
             icon: [
-                { url: '/icon.png', sizes: 'any' },
-                { url: '/pfp.png', sizes: '512x512', type: 'image/png' }
+                { url: '/pfp.png', sizes: 'any', type: 'image/png' },
+                { url: '/pfp.png', sizes: '192x192', type: 'image/png' },
+                { url: '/pfp.png', sizes: '512x512', type: 'image/png' },
+                { url: '/icon.png', sizes: 'any' }
             ],
             apple: [
                 { url: '/pfp.png', sizes: '180x180', type: 'image/png' }
             ],
-            shortcut: '/icon.png'
+            shortcut: '/pfp.png'
         },
+        manifest: '/manifest.webmanifest',
         other: {
             'dns-prefetch': 'https://api.emailjs.com',
             'theme-color': '#000000',
-            'format-detection': 'telephone=no'
+            'format-detection': 'telephone=no',
+            'apple-mobile-web-app-capable': 'yes',
+            'apple-mobile-web-app-status-bar-style': 'black-translucent',
+            'apple-mobile-web-app-title': 'Portfolio de Paul Viandier'
         }
     };
 }
@@ -158,11 +167,26 @@ export default async function RootLayout({
                     __html: `
                         (function() {
                             try {
+                                const storedTheme = localStorage.getItem('theme');
+                                let theme = storedTheme || 'light';
+                                let effectiveTheme = theme;
+                                
+                                if (theme === 'system') {
+                                    effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                                }
+                                
+                                document.documentElement.classList.add(effectiveTheme);
+                                
                                 const savedLocale = localStorage.getItem('locale');
                                 if (savedLocale === 'fr' || savedLocale === 'en') {
                                     document.documentElement.lang = savedLocale;
                                 }
-                            } catch (e) {}
+                                
+                                window.__CHRISTMAS_MODE__ = ${process.env.NEXT_PUBLIC_CHRISTMAS_MODE === 'true' ? 'true' : 'false'};
+                            } catch (e) {
+                                document.documentElement.classList.add('light');
+                                window.__CHRISTMAS_MODE__ = false;
+                            }
                         })();
                     `
                 }}
@@ -170,11 +194,14 @@ export default async function RootLayout({
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-            <StructuredData/>
-            <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
-                {children}
-            </LocaleProvider>
-            <Toaster />
+            <Snowflakes />
+            <div className="min-h-screen flex flex-col relative z-10">
+                <StructuredData/>
+                <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
+                    {children}
+                </LocaleProvider>
+                <Toaster />
+            </div>
         </ThemeProvider>
         </body>
         </html>
