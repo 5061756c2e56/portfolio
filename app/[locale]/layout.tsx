@@ -57,21 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
             images: [
                 {
-                    url: `${baseUrl}/opengraph-image`,
-                    width: 1200,
-                    height: 630,
-                    alt: 'Paul Viandier - Développeur Web & Cybersécurité',
-                    type: 'image/png'
-                },
-                {
-                    url: `${baseUrl}/pfp.png`,
-                    width: 512,
-                    height: 512,
-                    alt: 'Paul Viandier',
-                    type: 'image/png'
-                },
-                {
-                    url: `${baseUrl}/banner.png`,
+                    url: 'https://imgur.com/vPsl6pa.png',
                     width: 1200,
                     height: 630,
                     alt: 'Paul Viandier - Développeur Web & Cybersécurité',
@@ -88,9 +74,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
             images: [
-                `${baseUrl}/opengraph-image`,
-                `${baseUrl}/pfp.png`,
-                `${baseUrl}/banner.png`
+                'https://imgur.com/vPsl6pa.png'
             ],
             creator: '@paulviandier'
         },
