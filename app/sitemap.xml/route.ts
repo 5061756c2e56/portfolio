@@ -28,8 +28,8 @@ export async function GET() {
     const urlEntries: string[] = [];
 
     const urls = [
-        { path: '', locale: 'fr' },
-        { path: '/en', locale: 'en' }
+        { path: '', locale: 'fr', priority: '1.0' },
+        { path: '/en', locale: 'en', priority: '0.9' }
     ];
 
     urls.forEach(({ path, locale }) => {
