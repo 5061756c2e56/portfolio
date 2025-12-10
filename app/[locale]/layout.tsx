@@ -40,10 +40,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             ? 'Portfolio de Paul Viandier, développeur web fullstack en formation. Découvrez mes projets, compétences en TypeScript, React, Next.js, cybersécurité et développement web moderne.'
             : 'Portfolio of Paul Viandier, fullstack web developer in training. Discover my projects, skills in TypeScript, React, Next.js, cybersecurity and modern web development.',
         keywords: isFrench
-            ? ['Paul Viandier', 'développeur web', 'cybersécurité', 'fullstack', 'portfolio', 'développement web']
-            : ['Paul Viandier', 'web developer', 'cybersecurity', 'fullstack', 'portfolio', 'web development'],
+            ? ['Paul Viandier', 'développeur web', 'cybersécurité', 'fullstack', 'portfolio', 'développement web', 'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'API REST', 'intégrateur web', 'développeur frontend', 'développeur backend', 'alternance', 'formation développeur']
+            : ['Paul Viandier', 'web developer', 'cybersecurity', 'fullstack', 'portfolio', 'web development', 'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'REST API', 'web integrator', 'frontend developer', 'backend developer', 'apprenticeship', 'developer training'],
         authors: [{ name: 'Paul Viandier' }],
         creator: 'Paul Viandier',
+        publisher: 'Paul Viandier',
         openGraph: {
             type: 'website',
             locale: isFrench ? 'fr_FR' : 'en_US',
@@ -56,9 +57,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             description: isFrench
                 ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
+            publishedTime: '2024-01-01T00:00:00Z',
             images: [
                 {
-                    url: 'https://imgur.com/vPsl6pa.png',
+                    url: `${baseUrl}/vPsl6pa.png`,
                     width: 1200,
                     height: 630,
                     alt: 'Paul Viandier - Développeur Web & Cybersécurité',
@@ -75,7 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
                 : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
             images: [
-                'https://imgur.com/vPsl6pa.png'
+                `${baseUrl}/vPsl6pa.png`
             ],
             creator: '@paulviandier'
         },
