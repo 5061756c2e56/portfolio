@@ -1,22 +1,14 @@
-import {
-    NextRequest,
-    NextResponse
-} from 'next/server';
-import { incrementEmailCounter } from '@/lib/db';
-import {
-    rateLimit,
-    validateContentType,
-    validateOrigin,
-    validateUserAgent
-} from '@/lib/rate-limit';
-import {
-    type EmailFormData,
-    sanitizeEmailForm,
-    validateEmailForm
-} from '@/lib/email-validation';
+import { NextRequest, NextResponse } from 'next/server';
+import { incrementEmailCounter, getKVInstance } from '@/lib/db';
+import { rateLimit, validateContentType, validateOrigin, validateUserAgent } from '@/lib/rate-limit';
+import { type EmailFormData, sanitizeEmailForm, validateEmailForm } from '@/lib/email-validation';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const EMAILJS_TIMEOUT = 10000;
+const EMAILJS_RATE_LIMIT_MS = 1100;
+const EMAILJS_LAST_SENT_KEY = 'emailjs_last_sent';
+const EMAILJS_LOCK_KEY = 'emailjs_lock';
+const EMAILJS_LOCK_TTL = 2;
 
 function createTimeoutPromise(ms: number): Promise<never> {
     return new Promise((_, reject) => {
@@ -37,14 +29,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         if (!publicKey) missing.push('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY');
 
         if (!isProduction) {
-            console.warn('EmailJS non configuré en développement. Les emails ne seront pas envoyés.');
-            console.warn('Variables manquantes:', missing.join(', '));
-            console.warn('Données du formulaire:', {
-                from_name: data.from_name,
-                from_email: data.from_email,
-                subject: data.subject,
-                message: data.message.substring(0, 100) + '...'
-            });
+            console.warn('[EmailJS] Configuration manquante:', missing.join(', '));
         }
 
         return {
@@ -55,7 +40,42 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         };
     }
 
+    let lockAcquired = false;
+    const { redis, hasRedis } = await getKVInstance();
+    
     try {
+        let maxWaitTime = 3000;
+        const startTime = Date.now();
+        
+        if (hasRedis && redis) {
+            while (!lockAcquired && (Date.now() - startTime) < maxWaitTime) {
+                const lastSent = await redis.get(EMAILJS_LAST_SENT_KEY);
+                const now = Date.now();
+                
+                if (lastSent) {
+                    const timeSinceLastSent = now - parseInt(lastSent, 10);
+                    if (timeSinceLastSent < EMAILJS_RATE_LIMIT_MS) {
+                        const waitTime = EMAILJS_RATE_LIMIT_MS - timeSinceLastSent;
+                        await new Promise(resolve => setTimeout(resolve, waitTime));
+                    }
+                }
+                
+                const lockResult = await redis.set(EMAILJS_LOCK_KEY, '1', 'EX', EMAILJS_LOCK_TTL, 'NX');
+                if (lockResult === 'OK') {
+                    lockAcquired = true;
+                } else {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
+            
+            if (!lockAcquired) {
+                return {
+                    success: false,
+                    error: 'Service temporairement occupé. Veuillez réessayer dans quelques instants.'
+                };
+            }
+        }
+
         const templateParams = {
             to_email: 'contact@paulviandier.com',
             from_name: data.from_name,
@@ -64,25 +84,23 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
             message: data.message
         };
 
-        const formData = new URLSearchParams();
-        formData.append('service_id', serviceId);
-        formData.append('template_id', templateId);
-        formData.append('public_key', publicKey);
-        
-        if (privateKey) {
-            formData.append('private_key', privateKey);
-        }
-        
-        Object.entries(templateParams).forEach(([key, value]) => {
-            formData.append(key, String(value));
-        });
-
-        const headers: HeadersInit = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+        const requestBody: any = {
+            service_id: serviceId,
+            template_id: templateId,
+            user_id: publicKey,
+            template_params: templateParams
         };
 
-        const formDataBody = formData.toString();
-        
+        if (privateKey) {
+            requestBody.accessToken = privateKey;
+        }
+
+        const headers: HeadersInit = {
+            'Content-Type': 'application/json'
+        };
+
+        const requestBodyString = JSON.stringify(requestBody);
+
 
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), EMAILJS_TIMEOUT);
@@ -90,35 +108,74 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
             method: 'POST',
             headers,
-            body: formDataBody,
+            body: requestBodyString,
             signal: controller.signal
         });
 
         clearTimeout(timeoutId);
+        
+        if (hasRedis && redis && response.ok) {
+            await redis.set(EMAILJS_LAST_SENT_KEY, Date.now().toString());
+        }
 
         if (!response.ok) {
-            const errorText = await response.text().catch(() => 'Erreur EmailJS');
+            let errorText = 'Erreur EmailJS';
+            let errorDetails: any = null;
+
+            try {
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    errorDetails = await response.json();
+                    errorText = errorDetails.text || errorDetails.error || errorDetails.message
+                                || JSON.stringify(errorDetails);
+                } else {
+                    errorText = await response.text();
+                }
+            } catch {
+                try {
+                    errorText = await response.text();
+                } catch {
+                    errorText = `Erreur ${response.status}: ${response.statusText}`;
+                }
+            }
 
             if (!isProduction) {
-                console.error('EmailJS Error:', {
+                console.error('[EmailJS Error]', {
                     status: response.status,
                     statusText: response.statusText,
-                    error: errorText,
-                    serviceId: serviceId ? '***' : 'missing',
-                    templateId: templateId ? '***' : 'missing',
-                    publicKey: publicKey ? `${publicKey.substring(0, 4)}...` : 'missing',
-                    hasPrivateKey: !!privateKey
+                    error: errorText.substring(0, 200)
                 });
             }
 
+            if (hasRedis && redis && lockAcquired) {
+                await redis.del(EMAILJS_LOCK_KEY);
+            }
+            
             return {
                 success: false,
                 error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorText
             };
         }
 
+        if (hasRedis && redis && lockAcquired) {
+            await redis.del(EMAILJS_LOCK_KEY);
+        }
+
         return { success: true };
     } catch (error) {
+        if (hasRedis && redis && lockAcquired) {
+            try {
+                await redis.del(EMAILJS_LOCK_KEY);
+            } catch (lockError) {
+                if (!isProduction) {
+                    console.error('[Lock Error]', 'Failed to release lock');
+                }
+            }
+        }
+        if (!isProduction && error instanceof Error) {
+            console.error('[EmailJS Exception]', error.message.substring(0, 200));
+        }
+
         if (error instanceof Error) {
             if (error.name === 'AbortError') {
                 return {
@@ -187,12 +244,8 @@ export async function POST(request: NextRequest) {
         );
     }
 
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (!publicKey && !isProduction) {
-        console.error('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY is not set. Check your .env.local file.');
-    }
 
-    const rateLimitResult = rateLimit(request);
+    const rateLimitResult = await rateLimit(request);
 
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
@@ -227,7 +280,7 @@ export async function POST(request: NextRequest) {
             throw new Error('Invalid JSON');
         });
 
-        const validation = validateEmailForm(body as EmailFormData);
+        const validation = validateEmailForm(body);
         if (!validation.valid) {
             return NextResponse.json(
                 { error: isProduction ? 'Données invalides' : Object.values(validation.errors)[0] },
@@ -262,7 +315,9 @@ export async function POST(request: NextRequest) {
         try {
             newCount = await incrementEmailCounter();
         } catch (error) {
-            console.error('Erreur incrémentation compteur:', error);
+            if (!isProduction) {
+                console.error('[Counter Error]', 'Failed to increment counter');
+            }
         }
 
         return NextResponse.json(
@@ -282,13 +337,16 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
         const errorStack = error instanceof Error ? error.stack : undefined;
-        
-        console.error('Erreur API send:', {
-            message: errorMessage,
-            stack: errorStack,
-            isProduction
-        });
-        
+
+        if (!isProduction) {
+            console.error('[API Error]', {
+                message: errorMessage.substring(0, 200),
+                stack: errorStack ? errorStack.substring(0, 500) : undefined
+            });
+        } else {
+            console.error('[API Error]', 'Internal server error');
+        }
+
         return NextResponse.json(
             {
                 error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorMessage

@@ -14,7 +14,9 @@ export default function Error({
     const t = useTranslations('errors.500');
 
     useEffect(() => {
-        console.error(error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error(error);
+        }
     }, [error]);
 
     return (

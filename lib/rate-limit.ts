@@ -1,13 +1,6 @@
 import { NextRequest } from 'next/server';
+import { getKVInstance } from '@/lib/db';
 
-interface RateLimitStore {
-    [key: string]: {
-        count: number;
-        resetTime: number;
-    };
-}
-
-const store: RateLimitStore = {};
 const RATE_LIMIT_WINDOW = 60 * 1000;
 const MAX_REQUESTS = 10;
 
@@ -23,26 +16,60 @@ function getClientIP(request: NextRequest): string {
     return 'unknown';
 }
 
-export function rateLimit(request: NextRequest): { allowed: boolean; remaining: number } {
+export async function rateLimit(request: NextRequest): Promise<{ allowed: boolean; remaining: number }> {
     const ip = getClientIP(request);
-    
     const now = Date.now();
-    const key = `rate_limit_${ip}`;
+    const key = `rate_limit:${ip}`;
     
-    if (!store[key] || now > store[key].resetTime) {
-        store[key] = {
-            count: 1,
-            resetTime: now + RATE_LIMIT_WINDOW
-        };
-        return { allowed: true, remaining: MAX_REQUESTS - 1 };
+    try {
+        const { redis, hasRedis } = await getKVInstance();
+        
+        if (hasRedis && redis) {
+            const windowStart = now - RATE_LIMIT_WINDOW;
+            const pipeline = redis.pipeline();
+            
+            pipeline.zremrangebyscore(key, 0, windowStart);
+            pipeline.zcard(key);
+            pipeline.zadd(key, now, `${now}-${Math.random()}`);
+            pipeline.expire(key, Math.ceil(RATE_LIMIT_WINDOW / 1000));
+            
+            const results = await pipeline.exec();
+            
+            if (results && results[1] && results[1][1]) {
+                const count = results[1][1] as number;
+                
+                if (count >= MAX_REQUESTS) {
+                    return { allowed: false, remaining: 0 };
+                }
+                
+                return { allowed: true, remaining: MAX_REQUESTS - count - 1 };
+            }
+        }
+        
+        const fallbackKey = `rate_limit_memory_${ip}`;
+        const memoryStore = (global as any).__rateLimitStore || {};
+        (global as any).__rateLimitStore = memoryStore;
+        
+        if (!memoryStore[fallbackKey] || now > memoryStore[fallbackKey].resetTime) {
+            memoryStore[fallbackKey] = {
+                count: 1,
+                resetTime: now + RATE_LIMIT_WINDOW
+            };
+            return { allowed: true, remaining: MAX_REQUESTS - 1 };
+        }
+        
+        if (memoryStore[fallbackKey].count >= MAX_REQUESTS) {
+            return { allowed: false, remaining: 0 };
+        }
+        
+        memoryStore[fallbackKey].count++;
+        return { allowed: true, remaining: MAX_REQUESTS - memoryStore[fallbackKey].count };
+    } catch (error) {
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[Rate Limit] Error');
+        }
+        return { allowed: true, remaining: MAX_REQUESTS };
     }
-    
-    if (store[key].count >= MAX_REQUESTS) {
-        return { allowed: false, remaining: 0 };
-    }
-    
-    store[key].count++;
-    return { allowed: true, remaining: MAX_REQUESTS - store[key].count };
 }
 
 function getAllowedOrigins(): string[] {
@@ -212,7 +239,13 @@ function logSecurityEvent(request: NextRequest, event: string, data?: Record<str
     if (process.env.NODE_ENV === 'production') {
         const ip = getClientIP(request);
         const timestamp = new Date().toISOString();
-        console.warn(`[SECURITY] ${timestamp} - ${event} - IP: ${ip}`, data || {});
+        const sanitizedData = data ? Object.fromEntries(
+            Object.entries(data).map(([key, value]) => [
+                key,
+                typeof value === 'string' ? value.substring(0, 100) : value
+            ])
+        ) : {};
+        console.warn(`[SECURITY] ${timestamp} - ${event} - IP: ${ip}`, sanitizedData);
     }
 }
 

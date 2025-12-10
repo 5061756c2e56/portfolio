@@ -71,13 +71,14 @@ const nextConfig: NextConfig = {
                             'style-src \'self\' \'unsafe-inline\'',
                             'img-src \'self\' data: https: blob:',
                             'font-src \'self\' data:',
-                            'connect-src \'self\' https://api.emailjs.com',
-                            'frame-src \'self\'',
+                            'connect-src \'self\' https://api.emailjs.com https://api.github.com',
+                            'frame-src \'none\'',
                             'object-src \'none\'',
                             'base-uri \'self\'',
                             'form-action \'self\'',
-                            'frame-ancestors \'self\'',
-                            'upgrade-insecure-requests'
+                            'frame-ancestors \'none\'',
+                            'upgrade-insecure-requests',
+                            'block-all-mixed-content'
                         ].join('; ')
                     },
                     {

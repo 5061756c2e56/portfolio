@@ -87,6 +87,7 @@
       "send": "Send",
       "sending": "Sending...",
       "success": "Message sent successfully!",
+      "toastSuccess": "Message sent successfully!",
       "error": "An error occurred. Please try again.",
       "errorNetwork": "Connection error. Please check your internet connection and try again.",
       "errorConfig": "Configuration error. Please contact the administrator.",
@@ -100,8 +101,7 @@
       "validation": {
         "nameMin": "Name must contain at least 3 characters",
         "nameMax": "Name must not exceed 100 characters",
-        "emailRequired": "Email is required",
-        "emailMissingAt": "The @ symbol is missing in the email address",
+        "emailMissingAt": "A valid email is required",
         "emailMissingDomain": "Please enter the missing part after the @ symbol",
         "emailMissingTld": "The email address must contain a dot after the @",
         "emailInvalid": "Please enter a valid email",

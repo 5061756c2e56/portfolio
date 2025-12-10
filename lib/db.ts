@@ -58,18 +58,22 @@ function getRedisClient(): Redis | null {
         }
 
         redisClient.on('error', (error) => {
-            console.error('Redis connection error:', error);
+            if (process.env.NODE_ENV !== 'production') {
+                console.error('[Redis] Connection error');
+            }
             redisClient = null;
         });
 
         return redisClient;
     } catch (error) {
-        console.error('Failed to create Redis client:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[Redis] Failed to create client');
+        }
         return null;
     }
 }
 
-async function getKVInstance(): Promise<{ redis: Redis | null; hasRedis: boolean }> {
+export async function getKVInstance(): Promise<{ redis: Redis | null; hasRedis: boolean }> {
     const redis = getRedisClient();
     if (!redis) {
         return { redis: null, hasRedis: false };
@@ -81,7 +85,9 @@ async function getKVInstance(): Promise<{ redis: Redis | null; hasRedis: boolean
         }
         return { redis, hasRedis: true };
     } catch (error) {
-        console.error('Redis connection failed:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[Redis] Connection failed');
+        }
         return { redis: null, hasRedis: false };
     }
 }
@@ -137,14 +143,18 @@ export async function getEmailCounter(): Promise<{ count: number; month: string 
                 const count = countStr ? parseInt(countStr, 10) : 0;
                 return { count, month: currentMonth };
             } catch (error) {
-                console.error('Redis get error:', error);
+                if (process.env.NODE_ENV !== 'production') {
+                    console.error('[Redis] Get error');
+                }
                 return await readCounterFile();
             }
         } else {
             return await readCounterFile();
         }
     } catch (error) {
-        console.error('Erreur getEmailCounter:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[Counter] Get error');
+        }
         return {
             count: 0,
             month: getCurrentMonthParis()
@@ -171,7 +181,9 @@ export async function incrementEmailCounter(): Promise<number> {
                 
                 return newCount;
             } catch (error) {
-                console.error('Redis increment error:', error);
+                if (process.env.NODE_ENV !== 'production') {
+                    console.error('[Redis] Increment error');
+                }
                 const data = await readCounterFile();
                 if (data.month !== currentMonth) {
                     await writeCounterFile({ count: 1, month: currentMonth });
@@ -192,7 +204,9 @@ export async function incrementEmailCounter(): Promise<number> {
             return newCount;
         }
     } catch (error) {
-        console.error('Erreur incrementEmailCounter:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[Counter] Increment error');
+        }
         return 0;
     }
 }

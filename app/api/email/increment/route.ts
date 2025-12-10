@@ -43,7 +43,9 @@ export async function POST(request: NextRequest) {
             }
         );
     } catch (error) {
-        console.error('Erreur API increment:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[Increment API] Error');
+        }
         return NextResponse.json(
             { error: 'Erreur lors de l\'incrémentation' },
             { 

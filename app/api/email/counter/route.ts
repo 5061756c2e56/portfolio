@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
         );
     }
 
-    const rateLimitResult = rateLimit(request);
+    const rateLimitResult = await rateLimit(request);
     
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
@@ -63,7 +63,9 @@ export async function GET(request: NextRequest) {
             }
         );
     } catch (error) {
-        console.error('Erreur API counter:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[Counter API] Error');
+        }
         return NextResponse.json(
             {
                 count: 0,

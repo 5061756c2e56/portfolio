@@ -23,13 +23,10 @@ async function fetchGitHubStats() {
             })
         ]);
 
-        if (!userResponse.ok) {
-            console.error(`GitHub API user error: ${userResponse.status} ${userResponse.statusText}`);
-            return null;
-        }
-
-        if (!reposResponse.ok) {
-            console.error(`GitHub API repos error: ${reposResponse.status} ${reposResponse.statusText}`);
+        if (!userResponse.ok || !reposResponse.ok) {
+            if (process.env.NODE_ENV !== 'production') {
+                console.error('[GitHub API] Request failed');
+            }
             return null;
         }
 
@@ -46,7 +43,9 @@ async function fetchGitHubStats() {
             followers: userData.followers || 0
         };
     } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[GitHub API] Error fetching stats');
+        }
         return null;
     }
 }
@@ -66,7 +65,7 @@ export async function GET(request: NextRequest) {
         );
     }
 
-    const rateLimitResult = rateLimit(request);
+    const rateLimitResult = await rateLimit(request);
 
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
@@ -133,7 +132,9 @@ export async function GET(request: NextRequest) {
             }
         );
     } catch (error) {
-        console.error('Erreur API GitHub stats:', error);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('[GitHub Stats API] Error');
+        }
         return NextResponse.json(
             {
                 publicRepos: 0,

@@ -77,6 +77,17 @@ export default function ContactModal({
         };
         setFormData(newFormData);
 
+        if (field === 'from_email') {
+            const trimmed = value.trim();
+            if (trimmed !== '' && !trimmed.includes('@')) {
+                setErrors(prev => ({
+                    ...prev,
+                    from_email: tValidation('emailMissingAt')
+                }));
+                return;
+            }
+        }
+
         const validation = validateEmailForm(newFormData, (key: string) => {
             try {
                 return tValidation(key as any);
@@ -118,12 +129,12 @@ export default function ContactModal({
             const result = await sendEmail(formData);
 
             if (result.success) {
-                onClose();
+                toast.success(t('toastSuccess'), {
+                    className: 'text-green-600 [&>svg]:text-green-600'
+                });
                 setTimeout(() => {
-                    toast.success(t('toastSuccess'), {
-                        className: 'text-green-600 [&>svg]:text-green-600'
-                    });
-                }, 100);
+                    onClose();
+                }, 300);
                 onSuccess?.();
             } else {
                 setErrorMessage(result.error || t('error'));

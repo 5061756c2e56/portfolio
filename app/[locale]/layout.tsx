@@ -6,6 +6,7 @@ import {
 import StructuredData from '@/components/StructuredData';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { LocaleProvider } from '@/components/LocaleProvider';
+import { Toaster } from '@/components/ui/sonner';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -173,6 +174,7 @@ export default async function RootLayout({
             <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
                 {children}
             </LocaleProvider>
+            <Toaster />
         </ThemeProvider>
         </body>
         </html>
