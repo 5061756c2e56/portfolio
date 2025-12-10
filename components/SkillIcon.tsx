@@ -146,11 +146,11 @@ export default function SkillIcon({
         ),
         'React': (
             <svg className={iconClassName} viewBox="0 0 24 24" fill="currentColor">
-                <circle cx="12" cy="12" r="2" fill="black"/>
-                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="black" strokeWidth="1"/>
-                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="black" strokeWidth="1"
+                <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="currentColor" strokeWidth="1"/>
+                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="currentColor" strokeWidth="1"
                          transform="rotate(60 12 12)"/>
-                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="black" strokeWidth="1"
+                <ellipse cx="12" cy="12" rx="11" ry="4.2" fill="none" stroke="currentColor" strokeWidth="1"
                          transform="rotate(-60 12 12)"/>
             </svg>
         ),
