@@ -1,7 +1,10 @@
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 
-const middleware = createMiddleware(routing);
+const middleware = createMiddleware({
+    ...routing,
+    localeDetection: false
+});
 
 export const proxy = middleware;
 

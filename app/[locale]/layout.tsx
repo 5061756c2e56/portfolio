@@ -177,11 +177,6 @@ export default async function RootLayout({
                                 
                                 document.documentElement.classList.add(effectiveTheme);
                                 
-                                const savedLocale = localStorage.getItem('locale');
-                                if (savedLocale === 'fr' || savedLocale === 'en') {
-                                    document.documentElement.lang = savedLocale;
-                                }
-                                
                                 window.__CHRISTMAS_MODE__ = ${process.env.NEXT_PUBLIC_CHRISTMAS_MODE === 'true' ? 'true' : 'false'};
                             } catch (e) {
                                 document.documentElement.classList.add('light');
