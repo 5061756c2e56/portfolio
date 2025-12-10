@@ -9,6 +9,7 @@ import { LocaleProvider } from '@/components/LocaleProvider';
 import { Toaster } from '@/components/ui/sonner';
 import { Snowflakes } from '@/components/Snowflakes';
 import type { Metadata } from 'next';
+import { getMessages } from 'next-intl/server';
 import '../globals.css';
 
 const geistSans = Geist({
@@ -136,6 +137,7 @@ export default async function RootLayout({
     params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
+    const messages = await getMessages();
     const messagesFr = (await import('@/i18n/locales/fr.json')).default;
     const messagesEn = (await import('@/i18n/locales/en.json')).default;
 

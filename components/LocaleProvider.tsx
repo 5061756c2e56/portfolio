@@ -52,7 +52,7 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
         setLocaleState(newLocale);
     };
 
-    const currentMessages = messages[locale];
+    const currentMessages = messages[locale] || messages[initialLocale] || messages.fr;
 
     return (
         <LocaleContext.Provider value={{ locale, setLocale }}>
