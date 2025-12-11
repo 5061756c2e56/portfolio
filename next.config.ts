@@ -65,8 +65,8 @@ const nextConfig: NextConfig = {
                         key: 'Content-Security-Policy',
                         value: [
                             'default-src \'self\'',
-                            'script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' https://api.emailjs.com',
-                            'script-src-elem \'self\' \'unsafe-inline\' https://api.emailjs.com',
+                            'script-src \'self\' https://api.emailjs.com',
+                            'script-src-elem \'self\' https://api.emailjs.com',
                             'worker-src \'self\' blob:',
                             'style-src \'self\' \'unsafe-inline\'',
                             'img-src \'self\' data: https: blob:',
