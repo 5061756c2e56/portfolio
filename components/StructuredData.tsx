@@ -8,16 +8,17 @@ export default function StructuredData() {
         name: 'Paul Viandier',
         givenName: 'Paul',
         familyName: 'Viandier',
-        jobTitle: 'Développeur Web',
+        alternateName: ['Viandier', 'Paul', 'Paul Viandier développeur', 'Viandier développeur'],
+        jobTitle: ['Développeur Web', 'Développeur', 'Web Developer', 'Fullstack Developer'],
         url: baseUrl,
         sameAs: [
             'https://github.com/5061756c2e56/',
             'https://www.linkedin.com/in/paul-viandier-648837397/'
         ],
         email: 'contact@paulviandier.com',
-        description: 'Développeur web en formation, passionné de cybersécurité et de développement fullstack',
+        description: 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel de Paul Viandier, développeur web fullstack en formation. Découvrez les projets et compétences de ce développeur web spécialisé en TypeScript, React, Next.js et cybersécurité.',
         image: `${baseUrl}/pfp.png`,
-        knowsAbout: ['Web Development', 'Cybersecurity', 'Fullstack Development', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Redis'],
+        knowsAbout: ['Développement Web', 'Web Development', 'Cybersecurity', 'Cybersécurité', 'Fullstack Development', 'Développement Fullstack', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'Portfolio', 'Développeur', 'Développeur Web'],
         alumniOf: {
             '@type': 'EducationalOrganization',
             name: 'Formation en alternance'
@@ -29,20 +30,23 @@ export default function StructuredData() {
         nationality: {
             '@type': 'Country',
             name: 'France'
-        }
+        },
+        keywords: 'Paul Viandier, Viandier, Paul, développeur, développeur web, portfolio, Portfolio, développement web, cybersécurité, TypeScript, React, Next.js'
     };
 
     const websiteSchema = {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         '@id': `${baseUrl}/#website`,
-        name: 'Portfolio de Paul Viandier',
+        name: 'Portfolio de Paul Viandier - Développeur Web',
+        alternateName: ['Portfolio Paul Viandier', 'Paul Viandier Portfolio', 'Portfolio Développeur Web'],
         url: baseUrl,
-        description: 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack',
+        description: 'Portfolio professionnel de Paul Viandier, développeur web passionné de cybersécurité. Découvrez les projets et compétences de ce développeur web fullstack spécialisé en TypeScript, React, Next.js. Portfolio de développeur web en formation.',
         author: {
             '@id': `${baseUrl}/#person`
         },
         inLanguage: ['fr', 'en'],
+        keywords: 'Paul Viandier, Viandier, Paul, développeur, développeur web, portfolio, Portfolio, développement web, cybersécurité',
         potentialAction: {
             '@type': 'SearchAction',
             target: {
@@ -86,9 +90,10 @@ export default function StructuredData() {
         '@context': 'https://schema.org',
         '@type': 'CreativeWork',
         '@id': `${baseUrl}/#portfolio`,
-        name: 'Portfolio de Paul Viandier',
+        name: 'Portfolio de Paul Viandier - Développeur Web',
+        alternateName: ['Portfolio Paul Viandier', 'Paul Viandier Portfolio', 'Portfolio Développeur'],
         url: baseUrl,
-        description: 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack',
+        description: 'Portfolio professionnel de Paul Viandier, développeur web passionné de cybersécurité. Ce portfolio présente les projets et compétences de Paul Viandier, développeur web fullstack en formation. Découvrez le portfolio de ce développeur web spécialisé en TypeScript, React, Next.js et cybersécurité.',
         author: {
             '@id': `${baseUrl}/#person`
         },
@@ -97,7 +102,7 @@ export default function StructuredData() {
         },
         inLanguage: ['fr', 'en'],
         genre: 'Portfolio',
-        keywords: 'développeur web, cybersécurité, fullstack, TypeScript, React, Next.js, portfolio',
+        keywords: 'Paul Viandier, Viandier, Paul, développeur, développeur web, portfolio, Portfolio, développement web, cybersécurité, fullstack, TypeScript, React, Next.js',
         about: {
             '@type': 'Thing',
             name: 'Web Development'
@@ -139,6 +144,7 @@ export default function StructuredData() {
                     '@type': 'SoftwareApplication',
                     name: 'Web Security',
                     description: 'Suite de sécurité web pour la protection et la gestion des systèmes informatiques.',
+                    url: 'https://security.paulviandier.com',
                     applicationCategory: 'SecurityApplication',
                     operatingSystem: 'Web',
                     programmingLanguage: ['TypeScript', 'JavaScript'],

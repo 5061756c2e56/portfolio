@@ -1,9 +1,5 @@
 'use client';
 
-import {
-    AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
-    AlertDialogTitle
-} from '@/components/ui/alert-dialog';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
@@ -18,7 +14,6 @@ export default function Projects() {
         ref,
         isInView
     } = useInView({ threshold: 0.1 });
-    const [showWebSecurityDialog, setShowWebSecurityDialog] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTech, setSelectedTech] = useState<string>('all');
 
@@ -34,9 +29,8 @@ export default function Projects() {
             title: t('webSecurity.title'),
             description: t('webSecurity.description'),
             technologies: ['TypeScript', 'Tailwind CSS', 'NextJS'],
-            link: '#',
-            isExternal: false,
-            onClick: () => setShowWebSecurityDialog(true)
+            link: 'https://security.paulviandier.com',
+            isExternal: true
         }
     ];
 
@@ -61,13 +55,6 @@ export default function Projects() {
             return matchesSearch && matchesTech;
         });
     }, [searchQuery, selectedTech]);
-
-    const handleProjectClick = (project: typeof projects[0], e: React.MouseEvent) => {
-        if (!project.isExternal && project.onClick) {
-            e.preventDefault();
-            project.onClick();
-        }
-    };
 
     return (
         <>
@@ -144,7 +131,6 @@ export default function Projects() {
                                 <a
                                     key={index}
                                     href={project.link}
-                                    onClick={(e) => handleProjectClick(project, e)}
                                     target={project.isExternal ? '_blank' : undefined}
                                     rel={project.isExternal ? 'noopener noreferrer' : undefined}
                                     className={cn(
@@ -190,22 +176,6 @@ export default function Projects() {
                     )}
                 </div>
             </section>
-            <AlertDialog open={showWebSecurityDialog} onOpenChange={setShowWebSecurityDialog}>
-                <AlertDialogContent
-                    className="max-w-[calc(100vw-2rem)] sm:max-w-md max-h-[calc(100vh-2rem)] overflow-y-auto rounded-lg">
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>{t('webSecurity.dialog.title')}</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            {t('webSecurity.dialog.description')}
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel onClick={() => setShowWebSecurityDialog(false)}>
-                            {t('webSecurity.dialog.close')}
-                        </AlertDialogCancel>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
         </>
     );
 }

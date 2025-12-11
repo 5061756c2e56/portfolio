@@ -30,25 +30,29 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         metadataBase: new URL(baseUrl),
         title: {
             default: isFrench
-                ? 'Portfolio de Paul Viandier'
-                : 'Portfolio of Paul Viandier',
-            template: '%s | Portfolio de Paul Viandier'
+                ? 'Paul Viandier - Développeur Web | Portfolio'
+                : 'Paul Viandier - Web Developer | Portfolio',
+            template: '%s | Paul Viandier - Développeur Web'
         },
         description: isFrench
-            ? 'Portfolio de Paul Viandier, développeur web fullstack en formation. Découvrez mes projets, compétences en TypeScript, React, Next.js, cybersécurité et développement web moderne.'
-            : 'Portfolio of Paul Viandier, fullstack web developer in training. Discover my projects, skills in TypeScript, React, Next.js, cybersecurity and modern web development.',
+            ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
+            : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects, web development skills, TypeScript, React, Next.js and cybersecurity. Discover the portfolio of Paul Viandier, fullstack web developer in training.',
         keywords: isFrench
             ? [
-                'Paul Viandier', 'développeur web', 'cybersécurité', 'fullstack', 'portfolio', 'développement web',
-                'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS',
-                'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'API REST', 'intégrateur web', 'développeur frontend',
-                'développeur backend', 'alternance', 'formation développeur'
+                'Paul Viandier', 'Viandier', 'Paul', 'développeur', 'développeur web', 'portfolio', 'Portfolio',
+                'cybersécurité', 'fullstack', 'développement web', 'TypeScript', 'React', 'Next.js', 'NextJS',
+                'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub',
+                'API REST', 'intégrateur web', 'développeur frontend', 'développeur backend', 'alternance',
+                'formation développeur', 'développeur France', 'développeur web France', 'portfolio développeur',
+                'Paul Viandier développeur', 'Viandier développeur', 'Paul développeur web'
             ]
             : [
-                'Paul Viandier', 'web developer', 'cybersecurity', 'fullstack', 'portfolio', 'web development',
-                'TypeScript', 'React', 'Next.js', 'NextJS', 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS',
-                'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub', 'REST API', 'web integrator', 'frontend developer',
-                'backend developer', 'apprenticeship', 'developer training'
+                'Paul Viandier', 'Viandier', 'Paul', 'developer', 'web developer', 'portfolio', 'Portfolio',
+                'cybersecurity', 'fullstack', 'web development', 'TypeScript', 'React', 'Next.js', 'NextJS',
+                'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub',
+                'REST API', 'web integrator', 'frontend developer', 'backend developer', 'apprenticeship',
+                'developer training', 'developer France', 'web developer France', 'developer portfolio',
+                'Paul Viandier developer', 'Viandier developer', 'Paul web developer'
             ],
         authors: [{ name: 'Paul Viandier' }],
         creator: 'Paul Viandier',
@@ -57,14 +61,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             type: 'website',
             locale: isFrench ? 'fr_FR' : 'en_US',
             alternateLocale: isFrench ? 'en_US' : 'fr_FR',
-            url: `${baseUrl}${isFrench ? '/fr' : '/en'}`,
+            url: `${baseUrl}${isFrench ? '' : '/en'}`,
             siteName: 'Portfolio de Paul Viandier',
             title: isFrench
-                ? 'Portfolio de Paul Viandier - Développeur Web & Cybersécurité'
-                : 'Portfolio of Paul Viandier - Web Developer & Cybersecurity',
+                ? 'Paul Viandier - Développeur Web | Portfolio Professionnel'
+                : 'Paul Viandier - Web Developer | Professional Portfolio',
             description: isFrench
-                ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
-                : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
+                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js. Découvrez le portfolio de Paul Viandier, développeur web fullstack.'
+                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js. Discover the portfolio of Paul Viandier, fullstack web developer.',
             images: [
                 {
                     url: `${baseUrl}/vPsl6pa.png`,
@@ -78,11 +82,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         twitter: {
             card: 'summary_large_image',
             title: isFrench
-                ? 'Portfolio de Paul Viandier - Développeur Web & Cybersécurité'
-                : 'Portfolio of Paul Viandier - Web Developer & Cybersecurity',
+                ? 'Paul Viandier - Développeur Web | Portfolio Professionnel'
+                : 'Paul Viandier - Web Developer | Professional Portfolio',
             description: isFrench
-                ? 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack'
-                : 'Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development',
+                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js. Découvrez le portfolio de Paul Viandier, développeur web fullstack.'
+                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js. Discover the portfolio of Paul Viandier, fullstack web developer.',
             images: [
                 `${baseUrl}/vPsl6pa.png`
             ],
@@ -225,7 +229,7 @@ export default async function RootLayout({
                 }}
             />
         </head>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <script
             dangerouslySetInnerHTML={{
                 __html: `

@@ -85,6 +85,8 @@ NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
+NEXT_PUBLIC_SITE_URL=url_de_votre_site
+
 # Redis Configuration (Production)
 REDIS_URL=redis://localhost:6379
 # OU
@@ -97,6 +99,9 @@ ALLOWED_ORIGIN=yourdomain.com
 
 # Optionnel : Google Search Console Verification
 NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
+
+# Optionnel : Mode Noël (enable/disable)
+NEXT_PUBLIC_CHRISTMAS_MODE=true
 ```
 
 ### Configuration Redis (Production)
@@ -122,7 +127,6 @@ Le projet implémente plusieurs mesures de sécurité :
 ### Prérequis
 
 - Docker et Docker Compose installés
-- Redis (inclus dans docker-compose.yml)
 
 ### Déploiement avec Docker Compose
 
@@ -138,12 +142,22 @@ cd site
 Créez un fichier `.env` à la racine avec vos variables d'environnement :
 
 ```env
+# EmailJS Configuration
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-REDIS_URL=redis://redis:6379
+
+NEXT_PUBLIC_SITE_URL=url_de_votre_site
+
+# Optionnel : Origine autorisée (par défaut : host de la requête)
 ALLOWED_ORIGIN=yourdomain.com
+
+# Optionnel : Google Search Console Verification
 NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
+
+# Optionnel : Mode Noël (enable/disable)
+NEXT_PUBLIC_CHRISTMAS_MODE=true
+
 NODE_ENV=production
 ```
 
@@ -156,6 +170,8 @@ docker-compose up -d --build
 4. **Vérifier le déploiement**
 
 L'application sera accessible sur `http://localhost:3000`
+
+**Note** : Redis est automatiquement configuré via Docker Compose. Le `REDIS_URL` est automatiquement défini pour pointer vers le service Redis.
 
 ### Déploiement avec Docker uniquement
 
@@ -174,6 +190,8 @@ docker run -d \
   -e NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id \
   -e NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id \
   -e NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key \
+  -e NEXT_PUBLIC_SITE_URL=url_de_votre_site \
+  -e NEXT_PUBLIC_CHRISTMAS_MODE=true \
   -e REDIS_URL=redis://your-redis-host:6379 \
   -e NODE_ENV=production \
   portfolio:latest
@@ -194,7 +212,6 @@ Le Dockerfile utilise un build multi-stage pour optimiser la taille de l'image f
 L'image finale est optimisée pour la production avec :
 - Node.js 20 LTS (Debian slim)
 - User non-root pour la sécurité
-- Healthcheck intégré
 - Cache des layers pour accélérer les builds
 
 ## 📝 Scripts disponibles
