@@ -181,18 +181,58 @@ export default async function RootLayout({
                                 
                                 document.documentElement.classList.add(effectiveTheme);
                                 
+                                if (effectiveTheme === 'dark') {
+                                    document.documentElement.style.backgroundColor = '#000000';
+                                    document.documentElement.style.color = '#ffffff';
+                                } else {
+                                    document.documentElement.style.backgroundColor = '#ffffff';
+                                    document.documentElement.style.color = '#000000';
+                                }
+                                
                                 window.__CHRISTMAS_MODE__ = ${process.env.NEXT_PUBLIC_CHRISTMAS_MODE
                                                               === 'true' ? 'true' : 'false'};
                             } catch (e) {
                                 document.documentElement.classList.add('light');
+                                document.documentElement.style.backgroundColor = '#ffffff';
+                                document.documentElement.style.color = '#000000';
                                 window.__CHRISTMAS_MODE__ = false;
                             }
                         })();
                     `
                 }}
             />
+            <style
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        html:not(.dark):not(.light) {
+                            background-color: #000000 !important;
+                            color: #ffffff !important;
+                        }
+                        html:not(.dark):not(.light) body {
+                            background-color: #000000 !important;
+                            color: #ffffff !important;
+                            visibility: hidden;
+                        }
+                        html.dark, html.dark body {
+                            background-color: #000000 !important;
+                            color: #ffffff !important;
+                        }
+                        html.light, html.light body {
+                            background-color: #ffffff !important;
+                            color: #000000 !important;
+                        }
+                    `
+                }}
+            />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <script
+            dangerouslySetInnerHTML={{
+                __html: `
+                    document.body.style.visibility = 'visible';
+                `
+            }}
+        />
         <ThemeProvider>
             <Snowflakes/>
             <div className="min-h-screen flex flex-col relative z-10">
