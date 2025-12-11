@@ -19,6 +19,12 @@ export default function Hero() {
 
     const handleDownload = (e: React.MouseEvent<HTMLAnchorElement>) => {
         setIsDownloading(true);
+        const link = document.createElement('a');
+        link.href = '/Curriculum Vitae - Viandier Paul.pdf';
+        link.download = 'Curriculum Vitae - Viandier Paul.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
         setTimeout(() => {
             setIsDownloading(false);
         }, 2000);
@@ -66,9 +72,10 @@ export default function Hero() {
 
                 <div className="flex justify-center px-4">
                     <a
-                        href="/Curriculum Vitae - Viandier Paul.pdf"
-                        download="Curriculum Vitae - Viandier Paul.pdf"
-                        onClick={handleDownload}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleDownload(e);
+                        }}
                         className={`group relative inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-xl bg-gradient-to-br from-card via-card/95 to-primary/5 text-card-foreground transition-all duration-500 border-2 border-border/60 hover:border-primary/50 overflow-hidden ${
                             isDownloading ? 'pointer-events-none opacity-70 cursor-not-allowed' : 'hover:scale-105 cursor-pointer'
                         }`}
