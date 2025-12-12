@@ -2,7 +2,7 @@
   "hero": {
     "title": "Paul Viandier",
     "subtitle": "Web Developer & Cybersecurity Enthusiast",
-    "description": "Paul Viandier, web developer passionate about cybersecurity. 20 years old, passionate about IT, cybersecurity and development. Discover the portfolio of Paul Viandier, fullstack web developer.",
+    "description": "Paul Viandier, web developer passionate about cybersecurity. 20 years old, passionate about IT, cybersecurity and development.",
     "available": "Available for new opportunities",
     "location": "France",
     "role": "Web Integrator",
@@ -10,7 +10,7 @@
     "downloadingCV": "Downloading..."
   },
   "about": {
-    "title": "About Paul Viandier",
+    "title": "About me",
     "content": "I am Paul Viandier, a web developer passionate about cybersecurity. Currently training as a web integrator on a work-study program, I am acquiring a solid foundation in development and integration. My goal is to continue with training as a full-stack web developer in order to broaden my skills, understand the entire production chain of a web project, and be able to manage both the frontend and backend. As a web developer, I specialize in creating modern web applications with TypeScript, React and Next.js. My portfolio showcases my projects and web development skills."
   },
   "skills": {

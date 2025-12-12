@@ -2,7 +2,7 @@
   "hero": {
     "title": "Paul Viandier",
     "subtitle": "Développeur Web & Passionné de Cybersécurité",
-    "description": "Paul Viandier, développeur web passionné de cybersécurité. 20 ans, passionné d'informatique, de cybersécurité et de développement. Découvrez le portfolio de Paul Viandier, développeur web fullstack.",
+    "description": "Paul Viandier, développeur web passionné de cybersécurité. 20 ans, passionné d'informatique, de cybersécurité et de développement.",
     "available": "Disponible pour de nouvelles opportunités",
     "location": "France",
     "role": "Intégrateur Web",
@@ -10,7 +10,7 @@
     "downloadingCV": "Téléchargement en cours..."
   },
   "about": {
-    "title": "À propos de Paul Viandier",
+    "title": "À propos de moi",
     "content": "Je suis Paul Viandier, développeur web passionné de cybersécurité. Actuellement en formation d'intégrateur web en alternance, j'acquiers les bases solides du développement et de l'intégration. Mon objectif est de poursuivre avec une formation de développeur web full-stack afin d'élargir mes compétences, comprendre l'ensemble de la chaîne de production d'un projet web et être capable de gérer aussi bien le frontend que le backend. En tant que développeur web, je me spécialise dans la création d'applications web modernes avec TypeScript, React et Next.js. Mon portfolio présente mes projets et compétences en développement web."
   },
   "skills": {

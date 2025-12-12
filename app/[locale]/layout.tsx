@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         },
         description: isFrench
             ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
-            : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects, web development skills, TypeScript, React, Next.js and cybersecurity. Discover the portfolio of Paul Viandier, fullstack web developer in training.',
+            : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects, web development skills, TypeScript, React, Next.js and cybersecurity.',
         keywords: isFrench
             ? [
                 'Paul Viandier', 'Viandier', 'Paul', 'développeur', 'développeur web', 'portfolio', 'Portfolio',
@@ -67,8 +67,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 ? 'Paul Viandier - Développeur Web | Portfolio Professionnel'
                 : 'Paul Viandier - Web Developer | Professional Portfolio',
             description: isFrench
-                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js. Découvrez le portfolio de Paul Viandier, développeur web fullstack.'
-                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js. Discover the portfolio of Paul Viandier, fullstack web developer.',
+                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js.'
+                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js.',
             images: [
                 {
                     url: `${baseUrl}/vPsl6pa.png`,
@@ -85,8 +85,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 ? 'Paul Viandier - Développeur Web | Portfolio Professionnel'
                 : 'Paul Viandier - Web Developer | Professional Portfolio',
             description: isFrench
-                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js. Découvrez le portfolio de Paul Viandier, développeur web fullstack.'
-                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js. Discover the portfolio of Paul Viandier, fullstack web developer.',
+                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js.'
+                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js.',
             images: [
                 `${baseUrl}/vPsl6pa.png`
             ],
