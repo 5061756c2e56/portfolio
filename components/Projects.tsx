@@ -22,7 +22,7 @@ export default function Projects() {
             title: t('portfolio.title'),
             description: t('portfolio.description'),
             technologies: ['TypeScript', 'NextJS', 'Tailwind CSS', 'Redis'],
-            link: 'https://github.com/5061756c2e56/site-portfolio',
+            link: 'https://github.com/5061756c2e56/portfolio',
             isExternal: true
         },
         {

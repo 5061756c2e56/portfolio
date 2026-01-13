@@ -9,7 +9,7 @@
 
 Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, avec support multilingue (FR/EN).
 
-[🐛 Issues](https://github.com/5061756c2e56/site-portfolio/issues)
+[🐛 Issues](https://github.com/5061756c2e56/portfolio/issues)
 </div>
 
 ---
@@ -61,7 +61,7 @@ Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, a
 
 ```bash
 # Cloner le repository
-git clone https://github.com/5061756c2e56/site-portfolio.git
+git clone https://github.com/5061756c2e56/portfolio.git
 cd site
 
 # Installer les dépendances
@@ -133,7 +133,7 @@ Le projet implémente plusieurs mesures de sécurité :
 1. **Cloner le repository**
 
 ```bash
-git clone https://github.com/5061756c2e56/site-portfolio.git
+git clone https://github.com/5061756c2e56/portfolio.git
 cd site
 ```
 
