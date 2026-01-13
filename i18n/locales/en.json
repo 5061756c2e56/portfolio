@@ -1,0 +1,225 @@
+{
+  "hero": {
+    "title": "Paul Viandier",
+    "subtitle": "Web Developer & Cybersecurity Enthusiast",
+    "description": "Paul Viandier, web developer passionate about cybersecurity. 20 years old, passionate about IT, cybersecurity and development.",
+    "available": "Available for new opportunities",
+    "location": "France",
+    "role": "Web Integrator",
+    "downloadCVButton": "Download my Curriculum Vitae",
+    "downloadingCV": "Downloading..."
+  },
+  "about": {
+    "title": "About me",
+    "content": "I am Paul Viandier, a web developer passionate about cybersecurity. Currently training as a web integrator on a work-study program, I am acquiring a solid foundation in development and integration. My goal is to continue with training as a full-stack web developer in order to broaden my skills, understand the entire production chain of a web project, and be able to manage both the frontend and backend. As a web developer, I specialize in creating modern web applications with TypeScript, React and Next.js. My portfolio showcases my projects and web development skills."
+  },
+  "skills": {
+    "title": "Skills",
+    "currentLevel": "Current level",
+    "level": "Level",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "goToSkill": "Go to skill",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Tools",
+      "other": "Other"
+    },
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "descriptions": {
+      "HTML5": "Standard markup language for structuring web content",
+      "JavaScript": "Programming language for creating interactive web pages",
+      "TypeScript": "JavaScript superset with static typing for more robust development",
+      "CSS": "Styling language for formatting and animating web pages",
+      "React": "JavaScript library for building reactive user interfaces",
+      "Tailwind CSS": "Utility-first CSS framework for fast and modern development",
+      "NextJS": "React framework for performant web applications with server-side rendering",
+      "Responsive Design": "Adaptive design for optimal experience on all devices",
+      "NodeJS": "JavaScript runtime environment for server-side execution",
+      "PostgreSQL": "Open-source relational database management system",
+      "API REST": "Architecture for creating interoperable web services",
+      "Git": "Distributed version control system for managing source code",
+      "GitHub": "Hosting and collaboration platform for development projects",
+      "EmailJS": "Service for sending emails directly from the frontend",
+      "Cybersecurity": "Practices and technologies for protecting computer systems",
+      "SEO": "Search engine optimization to improve visibility"
+    }
+  },
+  "projects": {
+    "title": "Projects & Achievements",
+    "viewProject": "View project",
+    "searchPlaceholder": "Search for a project...",
+    "allTechnologies": "All technologies",
+    "noResults": "No projects found",
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Personal portfolio website developed with Next.js and TypeScript, showcasing my skills and projects."
+    },
+    "webSecurity": {
+      "title": "Web Security",
+      "description": "Web security suite for protecting and managing IT systems."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "sendMessage": "Send a message",
+    "modal": {
+      "title": "Contact me",
+      "name": "Name",
+      "namePlaceholder": "Viandier Paul",
+      "email": "Email",
+      "emailPlaceholder": "contact@paulviandier.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Work-study opportunity - A great company",
+      "message": "Message",
+      "messagePlaceholder": "Type your message here...",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "toastSuccess": "Message sent successfully!",
+      "error": "An error occurred. Please try again.",
+      "errorNetwork": "Connection error. Please check your internet connection and try again.",
+      "errorConfig": "Configuration error. Please contact the administrator.",
+      "close": "Close",
+      "errorDialog": {
+        "title": "Error sending email",
+        "description": "Would you like to use your email client to send your message?",
+        "confirm": "Open email client",
+        "cancel": "Cancel"
+      },
+      "validation": {
+        "nameMin": "Name must contain at least 3 characters",
+        "nameMax": "Name must not exceed 100 characters",
+        "emailMissingAt": "A valid email is required",
+        "emailMissingDomain": "Please enter the missing part after the @ symbol",
+        "emailMissingTld": "The email address must contain a dot after the @",
+        "emailInvalid": "Please enter a valid email",
+        "subjectMin": "Subject must contain at least 10 characters",
+        "subjectMax": "Subject must not exceed 200 characters",
+        "messageMin": "Message must contain at least 20 characters",
+        "messageMax": "Message must not exceed 5000 characters"
+      }
+    },
+    "mailtoDialog": {
+      "title": "Open email client",
+      "description": "You will be redirected to your email client to send an email.",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "error": "No email client is configured on your device."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "quiz": "Quiz",
+    "games": "Games",
+    "projects": "Projects",
+    "statsGithub": "GitHub Stats",
+    "contact": "Contact",
+    "loading": "Loading...",
+    "language": "Language",
+    "french": "French",
+    "english": "English",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "settings": "Settings",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "themeChanging": "Changing theme...",
+    "languageChanging": "Changing language..."
+  },
+  "games": {
+    "meta": {
+      "title": "Games & Challenges",
+      "description": "Test your web development knowledge with our interactive quizzes and discover my GitHub statistics."
+    },
+    "hero": {
+      "title": "Games & Challenges",
+      "description": "Test your knowledge in web development, cybersecurity, and modern technologies through our interactive quizzes. Also discover my GitHub statistics and development activity."
+    }
+  },
+  "footer": {
+    "copyright": "Paul Viandier. All rights reserved.",
+    "license": "Licensed under MIT"
+  },
+  "github": {
+    "title": "GitHub Statistics",
+    "loading": "Loading statistics...",
+    "repositories": "Repositories",
+    "stars": "Stars",
+    "forks": "Forks",
+    "followers": "Followers"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "levels": {
+      "easy": "Easy Level",
+      "medium": "Medium Level",
+      "hard": "Hard Level"
+    },
+    "descriptions": {
+      "easy": "Test your basic knowledge in web development, frontend and backend technologies, and cybersecurity. This quiz is perfect for beginners or reviewing fundamentals.",
+      "medium": "Challenge yourself with deeper questions on advanced concepts, development best practices, and security aspects. Ideal for experienced developers.",
+      "hard": "Put your skills to the test with expert questions on architecture, complex algorithms, advanced cybersecurity, and optimizations. For true experts!"
+    },
+    "info": {
+      "questions": "{count} questions",
+      "timePerQuestion": "{seconds} seconds per question"
+    },
+    "startQuiz": "Start quiz",
+    "modal": {
+      "title": "Quiz",
+      "question": "Question",
+      "progress": "Progress",
+      "timeLeft": "Time left",
+      "true": "True",
+      "false": "False",
+      "next": "Next question",
+      "finish": "Finish",
+      "cancel": "Cancel",
+      "results": {
+        "title": "Quiz Results",
+        "description": "Here are your detailed results",
+        "correct": "correct answers",
+        "excellent": "Excellent work! 🎉",
+        "good": "Good job! 👍",
+        "average": "Keep up the effort! 💪",
+        "needsImprovement": "Don't be discouraged, keep learning! 📚",
+        "details": "Answer Details",
+        "question": "Question",
+        "yourAnswer": "Your answer",
+        "correctAnswer": "Correct answer",
+        "timeout": "Time out",
+        "noAnswer": "No answer",
+        "true": "True",
+        "false": "False",
+        "close": "Close"
+      }
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist or has been moved.",
+      "backHome": "Back to home"
+    },
+    "500": {
+      "title": "An error occurred",
+      "description": "Sorry, an unexpected error occurred. Please try again.",
+      "retry": "Try again",
+      "backHome": "Back to home"
+    }
+  }
+}

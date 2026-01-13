@@ -1,0 +1,225 @@
+{
+  "hero": {
+    "title": "Paul Viandier",
+    "subtitle": "Développeur Web & Passionné de Cybersécurité",
+    "description": "Paul Viandier, développeur web passionné de cybersécurité. 20 ans, passionné d'informatique, de cybersécurité et de développement.",
+    "available": "Disponible pour de nouvelles opportunités",
+    "location": "France",
+    "role": "Intégrateur Web",
+    "downloadCVButton": "Télécharger mon Curriculum Vitae",
+    "downloadingCV": "Téléchargement en cours..."
+  },
+  "about": {
+    "title": "À propos de moi",
+    "content": "Je suis Paul Viandier, développeur web passionné de cybersécurité. Actuellement en formation d'intégrateur web en alternance, j'acquiers les bases solides du développement et de l'intégration. Mon objectif est de poursuivre avec une formation de développeur web full-stack afin d'élargir mes compétences, comprendre l'ensemble de la chaîne de production d'un projet web et être capable de gérer aussi bien le frontend que le backend. En tant que développeur web, je me spécialise dans la création d'applications web modernes avec TypeScript, React et Next.js. Mon portfolio présente mes projets et compétences en développement web."
+  },
+  "skills": {
+    "title": "Compétences",
+    "currentLevel": "Niveau actuel",
+    "level": "Niveau",
+    "previousSlide": "Slide précédent",
+    "nextSlide": "Slide suivant",
+    "goToSkill": "Aller à la compétence",
+    "categories": {
+      "all": "Toutes",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Outils",
+      "other": "Autres"
+    },
+    "showMore": "Voir plus",
+    "showLess": "Voir moins",
+    "descriptions": {
+      "HTML5": "Langage de balisage standard pour structurer le contenu web",
+      "JavaScript": "Langage de programmation pour créer des pages web interactives",
+      "TypeScript": "Superset de JavaScript avec typage statique pour un développement plus robuste",
+      "CSS": "Langage de style pour mettre en forme et animer les pages web",
+      "React": "Bibliothèque JavaScript pour construire des interfaces utilisateur réactives",
+      "Tailwind CSS": "Framework CSS utilitaire pour un développement rapide et moderne",
+      "NextJS": "Framework React pour applications web performantes avec rendu côté serveur",
+      "Responsive Design": "Conception adaptative pour une expérience optimale sur tous les appareils",
+      "NodeJS": "Environnement d'exécution JavaScript côté serveur",
+      "PostgreSQL": "Système de gestion de base de données relationnelle open-source",
+      "API REST": "Architecture pour créer des services web interopérables",
+      "Git": "Système de contrôle de version distribué pour gérer le code source",
+      "GitHub": "Plateforme d'hébergement et de collaboration pour projets de développement",
+      "EmailJS": "Service pour envoyer des emails directement depuis le frontend",
+      "Cybersecurity": "Pratiques et technologies pour protéger les systèmes informatiques",
+      "SEO": "Optimisation pour les moteurs de recherche afin d'améliorer la visibilité"
+    }
+  },
+  "projects": {
+    "title": "Projets & Réalisations",
+    "viewProject": "Voir le projet",
+    "searchPlaceholder": "Rechercher un projet...",
+    "allTechnologies": "Toutes les technologies",
+    "noResults": "Aucun projet trouvé",
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Site portfolio personnel développé avec Next.js et TypeScript, mettant en avant mes compétences et projets."
+    },
+    "webSecurity": {
+      "title": "Web Security",
+      "description": "Suite de sécurité web pour la protection et la gestion des systèmes informatiques."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "sendMessage": "Envoyer un message",
+    "modal": {
+      "title": "Me contacter",
+      "name": "Nom",
+      "namePlaceholder": "Viandier Paul",
+      "email": "Email",
+      "emailPlaceholder": "contact@paulviandier.com",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Opportunité d'alternance - Une super entreprise",
+      "message": "Message",
+      "messagePlaceholder": "Tapez votre message ici...",
+      "send": "Envoyer",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès !",
+      "toastSuccess": "Message envoyé avec succès !",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "errorNetwork": "Erreur de connexion. Vérifiez votre connexion internet et réessayez.",
+      "errorConfig": "Erreur de configuration. Veuillez contacter l'administrateur.",
+      "close": "Fermer",
+      "errorDialog": {
+        "title": "Erreur lors de l'envoi",
+        "description": "Souhaitez-vous utiliser votre client de messagerie pour envoyer votre message ?",
+        "confirm": "Ouvrir le client de messagerie",
+        "cancel": "Annuler"
+      },
+      "validation": {
+        "nameMin": "Le nom doit contenir au moins 3 caractères",
+        "nameMax": "Le nom ne doit pas dépasser 100 caractères",
+        "emailMissingAt": "Il faut un email valide",
+        "emailMissingDomain": "Veuillez saisir la partie manquante après le symbole @",
+        "emailMissingTld": "L'adresse mail doit contenir un point après le @",
+        "emailInvalid": "Veuillez entrer un email valide",
+        "subjectMin": "Le sujet doit contenir au moins 10 caractères",
+        "subjectMax": "Le sujet ne doit pas dépasser 200 caractères",
+        "messageMin": "Le message doit contenir au moins 20 caractères",
+        "messageMax": "Le message ne doit pas dépasser 5000 caractères"
+      }
+    },
+    "mailtoDialog": {
+      "title": "Ouvrir le client de messagerie",
+      "description": "Vous allez être redirigé vers votre client de messagerie pour envoyer un email.",
+      "confirm": "Confirmer",
+      "cancel": "Annuler",
+      "error": "Aucun client de messagerie n'est configuré sur votre appareil."
+    }
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "games": "Jeux",
+    "quiz": "Quiz",
+    "projects": "Projets",
+    "statsGithub": "Stats GitHub",
+    "contact": "Contact",
+    "loading": "Chargement...",
+    "language": "Langue",
+    "french": "Français",
+    "english": "English",
+    "closeMenu": "Fermer le menu",
+    "menu": "Menu",
+    "settings": "Paramètres",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "theme": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "themeChanging": "Modification du thème en cours...",
+    "languageChanging": "Changement de langue..."
+  },
+  "games": {
+    "meta": {
+      "title": "Jeux & Défis",
+      "description": "Testez vos connaissances en développement web avec nos quiz interactifs et découvrez mes statistiques GitHub."
+    },
+    "hero": {
+      "title": "Jeux & Défis",
+      "description": "Testez vos connaissances en développement web, cybersécurité et technologies modernes à travers nos quiz interactifs. Découvrez également mes statistiques GitHub et mon activité de développement."
+    }
+  },
+  "footer": {
+    "copyright": "Paul Viandier. Tous droits réservés.",
+    "license": "Sous licence MIT"
+  },
+  "github": {
+    "title": "Statistiques GitHub",
+    "loading": "Chargement des statistiques...",
+    "repositories": "Dépôts",
+    "stars": "Étoiles",
+    "forks": "Forks",
+    "followers": "Abonnés"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "levels": {
+      "easy": "Niveau facile",
+      "medium": "Niveau moyen",
+      "hard": "Niveau difficile"
+    },
+    "descriptions": {
+      "easy": "Testez vos connaissances de base en développement web, technologies frontend et backend, et cybersécurité. Ce quiz est parfait pour débuter ou réviser les fondamentaux.",
+      "medium": "Défiez-vous avec des questions plus approfondies sur les concepts avancés, les bonnes pratiques de développement, et les aspects de sécurité. Idéal pour les développeurs expérimentés.",
+      "hard": "Mettez vos compétences à l'épreuve avec des questions expertes sur l'architecture, les algorithmes complexes, la cybersécurité avancée et les optimisations. Pour les vrais experts !"
+    },
+    "info": {
+      "questions": "{count} questions",
+      "timePerQuestion": "{seconds} secondes par question"
+    },
+    "startQuiz": "Commencer le quiz",
+    "modal": {
+      "title": "Quiz",
+      "question": "Question",
+      "progress": "Progression",
+      "timeLeft": "Temps restant",
+      "true": "Vrai",
+      "false": "Faux",
+      "next": "Question suivante",
+      "finish": "Terminer",
+      "cancel": "Annuler",
+      "results": {
+        "title": "Résultats du quiz",
+        "description": "Voici vos résultats détaillés",
+        "correct": "de bonnes réponses",
+        "excellent": "Excellent travail ! 🎉",
+        "good": "Bon travail ! 👍",
+        "average": "Continuez vos efforts ! 💪",
+        "needsImprovement": "Ne vous découragez pas, continuez à apprendre ! 📚",
+        "details": "Détails des réponses",
+        "question": "Question",
+        "yourAnswer": "Votre réponse",
+        "correctAnswer": "Bonne réponse",
+        "timeout": "Temps écoulé",
+        "noAnswer": "Aucune réponse",
+        "true": "Vrai",
+        "false": "Faux",
+        "close": "Fermer"
+      }
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "Page introuvable",
+      "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+      "backHome": "Retour à l'accueil"
+    },
+    "500": {
+      "title": "Une erreur est survenue",
+      "description": "Désolé, une erreur inattendue s'est produite. Veuillez réessayer.",
+      "retry": "Réessayer",
+      "backHome": "Retour à l'accueil"
+    }
+  }
+}
