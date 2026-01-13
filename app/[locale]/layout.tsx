@@ -175,30 +175,36 @@ export default async function RootLayout({
                     __html: `
                         (function() {
                             try {
-                                const storedTheme = localStorage.getItem('theme');
-                                let theme = storedTheme || 'light';
-                                let effectiveTheme = theme;
-                                
+                                var d = document.documentElement;
+                                var s = d.style;
+                                s.backgroundColor = '#000000';
+                                s.colorScheme = 'dark';
+                                var storedTheme = localStorage.getItem('theme');
+                                var theme = storedTheme || 'dark';
+                                var effectiveTheme = theme;
+
                                 if (theme === 'system') {
                                     effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                                 }
-                                
-                                document.documentElement.classList.add(effectiveTheme);
-                                
+
+                                d.classList.add(effectiveTheme);
+
                                 if (effectiveTheme === 'dark') {
-                                    document.documentElement.style.backgroundColor = '#000000';
-                                    document.documentElement.style.color = '#ffffff';
+                                    s.backgroundColor = '#000000';
+                                    s.color = '#ededed';
                                 } else {
-                                    document.documentElement.style.backgroundColor = '#ffffff';
-                                    document.documentElement.style.color = '#000000';
+                                    s.backgroundColor = '#fafafa';
+                                    s.color = '#262626';
+                                    s.colorScheme = 'light';
                                 }
-                                
+
                                 window.__CHRISTMAS_MODE__ = ${process.env.NEXT_PUBLIC_CHRISTMAS_MODE
                                                               === 'true' ? 'true' : 'false'};
+                                window.__THEME_READY__ = true;
                             } catch (e) {
-                                document.documentElement.classList.add('light');
-                                document.documentElement.style.backgroundColor = '#ffffff';
-                                document.documentElement.style.color = '#000000';
+                                document.documentElement.classList.add('dark');
+                                document.documentElement.style.backgroundColor = '#000000';
+                                document.documentElement.style.color = '#ededed';
                                 window.__CHRISTMAS_MODE__ = false;
                             }
                         })();
@@ -208,35 +214,38 @@ export default async function RootLayout({
             <style
                 dangerouslySetInnerHTML={{
                     __html: `
+                        html {
+                            background-color: #000000;
+                            color-scheme: dark;
+                        }
                         html:not(.dark):not(.light) {
                             background-color: #000000 !important;
-                            color: #ffffff !important;
+                            color: #ededed !important;
                         }
                         html:not(.dark):not(.light) body {
                             background-color: #000000 !important;
-                            color: #ffffff !important;
-                            visibility: hidden;
+                            color: #ededed !important;
+                            opacity: 0;
                         }
                         html.dark, html.dark body {
                             background-color: #000000 !important;
-                            color: #ffffff !important;
+                            color: #ededed !important;
                         }
                         html.light, html.light body {
-                            background-color: #ffffff !important;
-                            color: #000000 !important;
+                            background-color: #fafafa !important;
+                            color: #262626 !important;
+                        }
+                        body {
+                            transition: opacity 0.15s ease-out;
+                        }
+                        html.dark body, html.light body {
+                            opacity: 1;
                         }
                     `
                 }}
             />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
-        <script
-            dangerouslySetInnerHTML={{
-                __html: `
-                    document.body.style.visibility = 'visible';
-                `
-            }}
-        />
         <ThemeProvider>
             <Snowflakes/>
             <div className="min-h-screen flex flex-col relative z-10">

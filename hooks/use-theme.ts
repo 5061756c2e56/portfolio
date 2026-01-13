@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
 export function useTheme() {
-    const [theme, setTheme] = useState<Theme>('system');
+    const [theme, setTheme] = useState<Theme>('dark');
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -13,29 +13,55 @@ export function useTheme() {
         const stored = localStorage.getItem('theme') as Theme | null;
         if (stored) {
             setTheme(stored);
+        } else {
+            setTheme('dark');
+            localStorage.setItem('theme', 'dark');
         }
     }, []);
 
-    useEffect(() => {
-        if (!mounted) return;
-
+    const applyTheme = useCallback((themeValue: Theme) => {
         const root = window.document.documentElement;
         root.classList.remove('light', 'dark');
 
         let effectiveTheme: 'light' | 'dark';
 
-        if (theme === 'system') {
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (themeValue === 'system') {
+            effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
                 ? 'dark'
                 : 'light';
-            effectiveTheme = systemTheme;
         } else {
-            effectiveTheme = theme;
+            effectiveTheme = themeValue;
         }
 
         root.classList.add(effectiveTheme);
-        localStorage.setItem('theme', theme);
-    }, [theme, mounted]);
+
+        if (effectiveTheme === 'dark') {
+            root.style.backgroundColor = '#000000';
+            root.style.color = '#ededed';
+            root.style.colorScheme = 'dark';
+        } else {
+            root.style.backgroundColor = '#fafafa';
+            root.style.color = '#262626';
+            root.style.colorScheme = 'light';
+        }
+
+        localStorage.setItem('theme', themeValue);
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
+        applyTheme(theme);
+    }, [theme, mounted, applyTheme]);
+
+    useEffect(() => {
+        if (!mounted || theme !== 'system') return;
+
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleChange = () => applyTheme('system');
+
+        mediaQuery.addEventListener('change', handleChange);
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, [theme, mounted, applyTheme]);
 
     const setThemeValue = (newTheme: Theme) => {
         if (newTheme === theme) return;
@@ -44,4 +70,3 @@ export function useTheme() {
 
     return { theme, setTheme: setThemeValue, mounted };
 }
-

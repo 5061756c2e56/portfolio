@@ -9,7 +9,7 @@ export default function Footer() {
 
     return (
         <footer
-            className="border-t border-border/60 py-8 sm:py-10 relative overflow-hidden">
+            className="border-t border-border py-8 sm:py-10 relative">
             <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
                     <div
@@ -27,7 +27,7 @@ export default function Footer() {
                             href="https://github.com/5061756c2e56/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110 hover:rotate-3 cursor-pointer"
+                            className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                             aria-label={tNav('github')}
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ export default function Footer() {
                             href="https://www.linkedin.com/in/paul-viandier-648837397/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110 hover:rotate-3 cursor-pointer"
+                            className="text-muted-foreground hover:text-foreground transition-colors duration-300"
                             aria-label={tNav('linkedin')}
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

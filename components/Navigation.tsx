@@ -33,91 +33,87 @@ export default function Navigation() {
 
     return (
         <nav className={cn(
-            'w-full border-b border-border/40 bg-card/95 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 overflow-visible'
+            'w-full border-b border-border bg-card/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50'
         )}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16 gap-4 overflow-visible">
+                <div className="flex items-center justify-between h-16 gap-4">
                     <a
                         href="#home"
                         onClick={(e) => handleNavClick(e, '#home')}
-                        className="flex items-center gap-2 text-xl font-bold hover:opacity-80 transition-opacity shrink-0"
+                        className="flex items-center gap-2.5 text-xl font-semibold hover:opacity-80 transition-opacity shrink-0"
                         suppressHydrationWarning
                     >
                         {christmasMode ? (
                             <ChristmasHat size={24} className="w-6 h-6 text-primary"/>
                         ) : (
                             <div
-                                className="relative w-6 h-6 rounded-full overflow-hidden border-2 border-border/60 hover:border-primary/50 transition-all duration-300 flex-shrink-0">
+                                className="relative w-7 h-7 rounded-full overflow-hidden border border-border hover:border-foreground/30 transition-all duration-300 shrink-0">
                                 <Image
                                     src="/pfp.png"
                                     alt="Paul Viandier"
                                     fill
                                     className="object-cover"
-                                    sizes="24px"
+                                    sizes="28px"
                                 />
                             </div>
                         )}
-                        <span className="bg-gradient-to-r from-[#f0877d] to-[#7da8f0] bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
                             Paul Viandier
                         </span>
                     </a>
 
-                    <div className="hidden lg:flex items-center gap-2 flex-1 justify-end min-w-0">
+                    <div className="hidden lg:flex items-center gap-1 flex-1 justify-end min-w-0">
                         <a
                             href="#about"
                             onClick={(e) => handleNavClick(e, '#about')}
                             className={cn(
-                                'flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm transition-all shrink-0 whitespace-nowrap',
+                                'px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200',
                                 activeSection === 'about'
-                                    ? 'gradient-border-button bg-primary text-primary-foreground'
-                                    : 'hover:bg-accent'
+                                    ? 'bg-foreground text-background'
+                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                             )}
                         >
-                            <span>{t('about')}</span>
+                            {t('about')}
                         </a>
                         <a
                             href="#skills"
                             onClick={(e) => handleNavClick(e, '#skills')}
                             className={cn(
-                                'flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm transition-all shrink-0 whitespace-nowrap',
+                                'px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200',
                                 activeSection === 'skills'
-                                    ? 'gradient-border-button bg-primary text-primary-foreground'
-                                    : 'hover:bg-accent'
+                                    ? 'bg-foreground text-background'
+                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                             )}
                         >
-                            <span>{t('skills')}</span>
+                            {t('skills')}
                         </a>
                         <a
                             href="#projects"
                             onClick={(e) => handleNavClick(e, '#projects')}
                             className={cn(
-                                'flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm transition-all shrink-0 whitespace-nowrap',
+                                'px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200',
                                 activeSection === 'projects'
-                                    ? 'gradient-border-button bg-primary text-primary-foreground'
-                                    : 'hover:bg-accent'
+                                    ? 'bg-foreground text-background'
+                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                             )}
                         >
-                            <span>{t('projects')}</span>
+                            {t('projects')}
                         </a>
-                        {/*<Link*/}
-                        {/*    href="/jeux"*/}
-                        {/*    className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm transition-all shrink-0 whitespace-nowrap hover:bg-accent"*/}
-                        {/*>*/}
-                        {/*    <span>{t('games')}</span>*/}
-                        {/*</Link>*/}
                         <a
                             href="#contact"
                             onClick={(e) => handleNavClick(e, '#contact')}
                             className={cn(
-                                'flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm transition-all shrink-0 whitespace-nowrap',
+                                'px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200',
                                 activeSection === 'contact'
-                                    ? 'gradient-border-button bg-primary text-primary-foreground'
-                                    : 'hover:bg-accent'
+                                    ? 'bg-foreground text-background'
+                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                             )}
                         >
-                            <span>{t('contact')}</span>
+                            {t('contact')}
                         </a>
-                        <Settings/>
+                        <div className="ml-2">
+                            <Settings/>
+                        </div>
                     </div>
 
                     <div className="flex lg:hidden items-center gap-2">

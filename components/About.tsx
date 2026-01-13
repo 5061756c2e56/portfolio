@@ -7,12 +7,12 @@ export default function About() {
 
     return (
         <section id="about"
-                 className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            <div className="max-w-5xl lg:max-w-6xl mx-auto relative z-10">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-12 md:mb-16 tracking-tight gradient-text">
+                 className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative">
+            <div className="max-w-4xl mx-auto relative z-10">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 tracking-tight gradient-text">
                     {t('title')}
                 </h2>
-                <div className="text-base sm:text-lg md:text-xl text-foreground leading-relaxed bg-gradient-to-br from-card/80 via-card/60 to-primary/5 rounded-2xl p-6 sm:p-8 border border-border/60 backdrop-blur-sm hover:border-primary/50 transition-all duration-500">
+                <div className="text-base sm:text-lg text-foreground/80 leading-relaxed bg-card rounded-xl p-6 sm:p-8 border border-border hover:border-foreground/20 transition-all duration-300">
                     {t('content')}
                 </div>
             </div>
