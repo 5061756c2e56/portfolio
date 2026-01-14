@@ -143,11 +143,56 @@
   "games": {
     "meta": {
       "title": "Games & Challenges",
-      "description": "Test your web development knowledge with our interactive quizzes and discover my GitHub statistics."
+      "description": "Test your web development knowledge with our interactive quizzes and mini-games."
     },
     "hero": {
       "title": "Games & Challenges",
-      "description": "Test your knowledge in web development, cybersecurity, and modern technologies through our interactive quizzes. Also discover my GitHub statistics and development activity."
+      "description": "Test your knowledge in web development, cybersecurity, and modern technologies through our interactive quizzes and mini-games.",
+      "badge": "Interactive mini-games"
+    },
+    "gameTypes": {
+      "quiz": {
+        "title": "Tech Quiz",
+        "description": "Test your web development and cybersecurity knowledge"
+      },
+      "memory": {
+        "title": "Memory Match",
+        "description": "Find the hidden tech icon pairs"
+      },
+      "typing": {
+        "title": "Typing Speed",
+        "description": "Test your code typing speed"
+      }
+    },
+    "memory": {
+      "title": "Memory Match",
+      "subtitle": "Find all the pairs",
+      "levels": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "restart": "Restart",
+      "playAgain": "Play Again",
+      "complete": {
+        "title": "Congratulations!",
+        "stats": "Completed in {moves} moves and {time}"
+      }
+    },
+    "typing": {
+      "title": "Typing Speed",
+      "subtitle": "Type the code as fast as you can",
+      "start": "Start",
+      "restart": "Restart",
+      "playAgain": "Play Again",
+      "pressStart": "Press Start to begin...",
+      "typeHere": "Type here...",
+      "results": {
+        "title": "Time's up!",
+        "accuracy": "Accuracy",
+        "snippets": "Snippets",
+        "errors": "Errors"
+      }
     }
   },
   "footer": {
@@ -163,7 +208,8 @@
     "followers": "Followers"
   },
   "quiz": {
-    "title": "Quiz",
+    "title": "Tech Quiz",
+    "subtitle": "Test your knowledge",
     "levels": {
       "easy": "Easy Level",
       "medium": "Medium Level",

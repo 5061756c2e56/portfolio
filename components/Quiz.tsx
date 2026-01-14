@@ -2,44 +2,53 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import QuizModal from './QuizModal';
 import { getQuizQuestions, QuizLevel } from '@/lib/quiz-data';
-import { Play } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { Play, Trophy, Clock, HelpCircle } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface QuizCardProps {
     level: QuizLevel;
     title: string;
     description: string;
     questionCount: number;
+    difficulty: 'easy' | 'medium' | 'hard';
     onStart: () => void;
 }
 
-function QuizCard({ level, title, description, questionCount, onStart }: QuizCardProps) {
+function QuizCard({ title, description, questionCount, difficulty, onStart }: QuizCardProps) {
     const t = useTranslations('quiz');
 
+    const difficultyColors = {
+        easy: 'text-green-500',
+        medium: 'text-yellow-500',
+        hard: 'text-red-500'
+    };
+
     return (
-        <div
-            className="p-6 sm:p-8 rounded-xl border bg-gradient-to-br from-card via-card/95 to-primary/5 h-full flex flex-col">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-4">
-                {title}
-            </h3>
-            <p className="text-muted-foreground mb-6 leading-relaxed flex-1">
+        <div className="p-6 rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200">
+            <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold">{title}</h3>
+                <span className={cn('text-sm font-medium', difficultyColors[difficulty])}>
+                    {t(`levels.${difficulty}`)}
+                </span>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
                 {description}
             </p>
             <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
-                <span>{t('info.questions', { count: questionCount })}</span>
-                <span>•</span>
-                <span>{t('info.timePerQuestion', { seconds: 30 })}</span>
+                <div className="flex items-center gap-1.5">
+                    <HelpCircle className="w-4 h-4" />
+                    <span>{questionCount} questions</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <Clock className="w-4 h-4" />
+                    <span>30s / question</span>
+                </div>
             </div>
-            <Button
-                onClick={onStart}
-                size="lg"
-                className="gap-2 w-full sm:w-auto"
-            >
-                <Play className="w-4 h-4"/>
+            <Button onClick={onStart} className="w-full gap-2">
+                <Play className="w-4 h-4" />
                 {t('startQuiz')}
             </Button>
         </div>
@@ -50,7 +59,6 @@ export default function Quiz() {
     const t = useTranslations('quiz');
     const rawLocale = useLocale();
     const locale = (rawLocale === 'fr' || rawLocale === 'en') ? rawLocale : 'fr';
-    const isMobile = useIsMobile();
     const [selectedLevel, setSelectedLevel] = useState<QuizLevel>('easy');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -67,96 +75,33 @@ export default function Quiz() {
         { level: 'hard', questionCount: 50 }
     ];
 
-    if (isMobile) {
-        return (
-            <>
-                <section id="quiz"
-                         className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-                    <div className="max-w-5xl lg:max-w-6xl mx-auto relative z-10">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-12 md:mb-16 tracking-tight gradient-text">
-                            {t('title')}
-                        </h2>
-
-                        <Tabs defaultValue="easy" className="w-full">
-                            <TabsList className="grid w-full grid-cols-3 mb-8">
-                                <TabsTrigger value="easy" className="text-sm sm:text-base text-center">
-                                    {t('levels.easy')}
-                                </TabsTrigger>
-                                <TabsTrigger value="medium" className="text-sm sm:text-base text-center">
-                                    {t('levels.medium')}
-                                </TabsTrigger>
-                                <TabsTrigger value="hard" className="text-sm sm:text-base text-center">
-                                    {t('levels.hard')}
-                                </TabsTrigger>
-                            </TabsList>
-
-                            <TabsContent value="easy" className="mt-6">
-                                <QuizCard
-                                    level="easy"
-                                    title={t('levels.easy')}
-                                    description={t('descriptions.easy')}
-                                    questionCount={10}
-                                    onStart={() => handleStartQuiz('easy')}
-                                />
-                            </TabsContent>
-
-                            <TabsContent value="medium" className="mt-6">
-                                <QuizCard
-                                    level="medium"
-                                    title={t('levels.medium')}
-                                    description={t('descriptions.medium')}
-                                    questionCount={25}
-                                    onStart={() => handleStartQuiz('medium')}
-                                />
-                            </TabsContent>
-
-                            <TabsContent value="hard" className="mt-6">
-                                <QuizCard
-                                    level="hard"
-                                    title={t('levels.hard')}
-                                    description={t('descriptions.hard')}
-                                    questionCount={50}
-                                    onStart={() => handleStartQuiz('hard')}
-                                />
-                            </TabsContent>
-                        </Tabs>
-                    </div>
-                </section>
-
-                <QuizModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    level={selectedLevel}
-                    questions={questions}
-                    locale={locale}
-                />
-            </>
-        );
-    }
-
     return (
         <>
-            <section id="quiz"
-                     className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-                <div className="max-w-5xl lg:max-w-6xl mx-auto relative z-10">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-12 md:mb-16 tracking-tight gradient-text">
-                        {t('title')}
-                    </h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {levels.map(({ level, questionCount }) => (
-                            <QuizCard
-                                key={level}
-                                level={level}
-                                title={t(`levels.${level}`)}
-                                description={t(`descriptions.${level}`)}
-                                questionCount={questionCount}
-                                onStart={() => handleStartQuiz(level)}
-                            />
-                        ))}
+            <div className="space-y-6">
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="p-2.5 rounded-lg bg-muted">
+                        <Trophy className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h2 className="text-xl font-semibold">{t('title')}</h2>
+                        <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
                     </div>
                 </div>
-            </section>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {levels.map(({ level, questionCount }) => (
+                        <QuizCard
+                            key={level}
+                            level={level}
+                            title={t(`levels.${level}`)}
+                            description={t(`descriptions.${level}`)}
+                            questionCount={questionCount}
+                            difficulty={level}
+                            onStart={() => handleStartQuiz(level)}
+                        />
+                    ))}
+                </div>
+            </div>
 
             <QuizModal
                 isOpen={isModalOpen}

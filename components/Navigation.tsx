@@ -10,6 +10,7 @@ import { ChristmasHat } from '@/components/ChristmasHat';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { cn } from '@/lib/utils';
+import { Link, usePathname } from '@/i18n/routing';
 
 export default function Navigation() {
     const t = useTranslations('nav');
@@ -111,6 +112,12 @@ export default function Navigation() {
                         >
                             {t('contact')}
                         </a>
+                        <Link
+                            href="/jeux"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent"
+                        >
+                            {t('games')}
+                        </Link>
                         <div className="ml-2">
                             <Settings/>
                         </div>

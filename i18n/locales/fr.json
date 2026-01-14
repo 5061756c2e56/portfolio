@@ -143,11 +143,56 @@
   "games": {
     "meta": {
       "title": "Jeux & Défis",
-      "description": "Testez vos connaissances en développement web avec nos quiz interactifs et découvrez mes statistiques GitHub."
+      "description": "Testez vos connaissances en développement web avec nos quiz interactifs et mini-jeux."
     },
     "hero": {
       "title": "Jeux & Défis",
-      "description": "Testez vos connaissances en développement web, cybersécurité et technologies modernes à travers nos quiz interactifs. Découvrez également mes statistiques GitHub et mon activité de développement."
+      "description": "Testez vos connaissances en développement web, cybersécurité et technologies modernes à travers nos quiz interactifs et mini-jeux.",
+      "badge": "Mini-jeux interactifs"
+    },
+    "gameTypes": {
+      "quiz": {
+        "title": "Quiz Tech",
+        "description": "Testez vos connaissances en développement web et cybersécurité"
+      },
+      "memory": {
+        "title": "Memory Match",
+        "description": "Trouvez les paires d'icônes tech cachées"
+      },
+      "typing": {
+        "title": "Typing Speed",
+        "description": "Testez votre vitesse de frappe de code"
+      }
+    },
+    "memory": {
+      "title": "Memory Match",
+      "subtitle": "Trouvez toutes les paires",
+      "levels": {
+        "easy": "Facile",
+        "medium": "Moyen",
+        "hard": "Difficile"
+      },
+      "restart": "Recommencer",
+      "playAgain": "Rejouer",
+      "complete": {
+        "title": "Félicitations !",
+        "stats": "Terminé en {moves} coups et {time}"
+      }
+    },
+    "typing": {
+      "title": "Typing Speed",
+      "subtitle": "Tapez le code le plus vite possible",
+      "start": "Démarrer",
+      "restart": "Recommencer",
+      "playAgain": "Rejouer",
+      "pressStart": "Appuyez sur Démarrer pour commencer...",
+      "typeHere": "Tapez ici...",
+      "results": {
+        "title": "Temps écoulé !",
+        "accuracy": "Précision",
+        "snippets": "Extraits",
+        "errors": "Erreurs"
+      }
     }
   },
   "footer": {
@@ -163,7 +208,8 @@
     "followers": "Abonnés"
   },
   "quiz": {
-    "title": "Quiz",
+    "title": "Quiz Tech",
+    "subtitle": "Testez vos connaissances",
     "levels": {
       "easy": "Niveau facile",
       "medium": "Niveau moyen",

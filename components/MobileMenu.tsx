@@ -11,6 +11,7 @@ import { useActiveSection } from '@/hooks/use-active-section';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasOrnament } from '@/components/ChristmasOrnament';
 import { cn } from '@/lib/utils';
+import { Link } from '@/i18n/routing';
 
 export default function MobileMenu() {
     const t = useTranslations('nav');
@@ -126,12 +127,6 @@ export default function MobileMenu() {
                         {t('projects')}
                     </a>
                 </DropdownMenuItem>
-                {/*<DropdownMenuItem asChild>*/}
-                {/*    <Link href="/jeux"*/}
-                {/*          className="cursor-pointer transition-all text-sm hover:bg-accent hover:text-foreground">*/}
-                {/*        {t('games')}*/}
-                {/*    </Link>*/}
-                {/*</DropdownMenuItem>*/}
                 <DropdownMenuItem asChild>
                     <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}
                        className={cn(
@@ -142,6 +137,12 @@ export default function MobileMenu() {
                        )}>
                         {t('contact')}
                     </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                    <Link href="/jeux"
+                          className="cursor-pointer transition-all text-sm hover:bg-accent hover:text-foreground">
+                        {t('games')}
+                    </Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
