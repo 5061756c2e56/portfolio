@@ -30,13 +30,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         metadataBase: new URL(baseUrl),
         title: {
             default: isFrench
-                ? 'Paul Viandier - Développeur Web | Portfolio'
-                : 'Paul Viandier - Web Developer | Portfolio',
+                ? 'Paul Viandier - Portfolio'
+                : 'Paul Viandier - Portfolio',
             template: '%s | Paul Viandier - Développeur Web'
         },
         description: isFrench
-            ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
-            : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects, web development skills, TypeScript, React, Next.js and cybersecurity.',
+            ? 'Développeur web passionné de cybersécurité. Dans ce portfolio, je présente mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
+            : 'Web developer passionate about cybersecurity. In this portofolio, I show my projects, web development skills, TypeScript, React, Next.js and cybersecurity.',
         keywords: isFrench
             ? [
                 'Paul Viandier', 'Viandier', 'Paul', 'développeur', 'développeur web', 'portfolio', 'Portfolio',
@@ -82,11 +82,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         twitter: {
             card: 'summary_large_image',
             title: isFrench
-                ? 'Paul Viandier - Développeur Web | Portfolio Professionnel'
-                : 'Paul Viandier - Web Developer | Professional Portfolio',
+                ? 'Paul Viandier - Portfolio '
+                : 'Paul Viandier - Portfolio',
             description: isFrench
-                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js.'
-                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js.',
+                ? 'Développeur web passionné de cybersécurité. Dans ce portfolio, je présente mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
+                : 'Web developer passionate about cybersecurity. In this portofolio, I show my projects, web development skills, TypeScript, React, Next.js and cybersecurity.',
             images: [
                 `${baseUrl}/vPsl6pa.png`
             ],

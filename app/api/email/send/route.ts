@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { incrementEmailCounter, getKVInstance } from '@/lib/db';
+import { getKVInstance, incrementEmailCounter } from '@/lib/db';
 import { rateLimit, validateContentType, validateOrigin, validateUserAgent } from '@/lib/rate-limit';
 import { type EmailFormData, sanitizeEmailForm, validateEmailForm } from '@/lib/email-validation';
 
@@ -42,16 +42,18 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
 
     let lockAcquired = false;
     const { redis, hasRedis } = await getKVInstance();
-    
+
     try {
-        let maxWaitTime = 3000;
+        const maxWaitTime = 3000;
         const startTime = Date.now();
-        
+
         if (hasRedis && redis) {
-            while (!lockAcquired && (Date.now() - startTime) < maxWaitTime) {
+            while (!lockAcquired && (
+                Date.now() - startTime
+            ) < maxWaitTime) {
                 const lastSent = await redis.get(EMAILJS_LAST_SENT_KEY);
                 const now = Date.now();
-                
+
                 if (lastSent) {
                     const timeSinceLastSent = now - parseInt(lastSent, 10);
                     if (timeSinceLastSent < EMAILJS_RATE_LIMIT_MS) {
@@ -59,7 +61,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
                         await new Promise(resolve => setTimeout(resolve, waitTime));
                     }
                 }
-                
+
                 const lockResult = await redis.set(EMAILJS_LOCK_KEY, '1', 'EX', EMAILJS_LOCK_TTL, 'NX');
                 if (lockResult === 'OK') {
                     lockAcquired = true;
@@ -67,7 +69,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
                     await new Promise(resolve => setTimeout(resolve, 100));
                 }
             }
-            
+
             if (!lockAcquired) {
                 return {
                     success: false,
@@ -101,7 +103,6 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
 
         const requestBodyString = JSON.stringify(requestBody);
 
-
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), EMAILJS_TIMEOUT);
 
@@ -113,7 +114,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         });
 
         clearTimeout(timeoutId);
-        
+
         if (hasRedis && redis && response.ok) {
             await redis.set(EMAILJS_LAST_SENT_KEY, Date.now().toString());
         }
@@ -150,7 +151,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
             if (hasRedis && redis && lockAcquired) {
                 await redis.del(EMAILJS_LOCK_KEY);
             }
-            
+
             return {
                 success: false,
                 error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorText
@@ -244,7 +245,6 @@ export async function POST(request: NextRequest) {
         );
     }
 
-
     const rateLimitResult = await rateLimit(request);
 
     if (!rateLimitResult.allowed) {
@@ -294,8 +294,16 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const sanitizedData = sanitizeEmailForm(body as EmailFormData);
+        const counterResult = await incrementEmailCounter();
 
+        if (!counterResult.allowed) {
+            return NextResponse.json(
+                { error: 'Limite mensuelle de 200 emails atteinte' },
+                { status: 429 }
+            );
+        }
+
+        const sanitizedData = sanitizeEmailForm(body as EmailFormData);
         const emailResult = await sendEmailViaEmailJS(sanitizedData);
 
         if (!emailResult.success) {
@@ -311,19 +319,10 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        let newCount = null;
-        try {
-            newCount = await incrementEmailCounter();
-        } catch (error) {
-            if (!isProduction) {
-                console.error('[Counter Error]', 'Failed to increment counter');
-            }
-        }
-
         return NextResponse.json(
             {
                 success: true,
-                count: newCount
+                count: counterResult.count
             },
             {
                 headers: {

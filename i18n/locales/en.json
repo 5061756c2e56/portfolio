@@ -61,6 +61,11 @@
     "webSecurity": {
       "title": "Web Security",
       "description": "Web security suite for protecting and managing IT systems."
+    },
+    "webSecurityDialog": {
+      "title": "Project in development",
+      "description": "This project is currently under development and will be available soon.",
+      "close": "Close"
     }
   },
   "contact": {

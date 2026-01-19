@@ -2,8 +2,7 @@ import Redis from 'ioredis';
 import { readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 
-const COUNTER_KEY = 'email_counter';
-const MONTH_KEY = 'email_counter_month';
+const MONTHLY_LIMIT = 200;
 const COUNTER_FILE = join(process.cwd(), 'data', 'email-counter.json');
 
 interface CounterData {
@@ -12,9 +11,17 @@ interface CounterData {
 }
 
 function getCurrentMonthParis(): string {
-    const now = new Date();
-    const parisTime = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Paris' }));
-    return `${parisTime.getFullYear()}-${String(parisTime.getMonth() + 1).padStart(2, '0')}`;
+    const formatter = new Intl.DateTimeFormat('fr-FR', {
+        timeZone: 'Europe/Paris',
+        year: 'numeric',
+        month: '2-digit'
+    });
+
+    const parts = formatter.formatToParts(new Date());
+    const year = parts.find(p => p.type === 'year')!.value;
+    const month = parts.find(p => p.type === 'month')!.value;
+
+    return `${year}-${month}`;
 }
 
 let redisClient: Redis | null = null;
@@ -108,7 +115,9 @@ async function readCounterFile(): Promise<CounterData> {
         const data = await readFile(COUNTER_FILE, 'utf-8');
         const parsed = JSON.parse(data);
         return {
-            count: typeof parsed.count === 'string' ? parseInt(parsed.count, 10) : (parsed.count || 0),
+            count: typeof parsed.count === 'string' ? parseInt(parsed.count, 10) : (
+                parsed.count || 0
+            ),
             month: parsed.month || getCurrentMonthParis()
         };
     } catch {
@@ -124,89 +133,44 @@ async function writeCounterFile(data: CounterData): Promise<void> {
     await writeFile(COUNTER_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-export async function getEmailCounter(): Promise<{ count: number; month: string }> {
-    try {
-        const { redis, hasRedis } = await getKVInstance();
-        const currentMonth = getCurrentMonthParis();
-        
-        if (hasRedis && redis) {
-            try {
-                const storedMonth = await redis.get(MONTH_KEY);
-                
-                if (storedMonth !== currentMonth) {
-                    await redis.set(COUNTER_KEY, 0);
-                    await redis.set(MONTH_KEY, currentMonth);
-                    return { count: 0, month: currentMonth };
-                }
-                
-                const countStr = await redis.get(COUNTER_KEY);
-                const count = countStr ? parseInt(countStr, 10) : 0;
-                return { count, month: currentMonth };
-            } catch (error) {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.error('[Redis] Get error');
-                }
-                return await readCounterFile();
-            }
-        } else {
-            return await readCounterFile();
-        }
-    } catch (error) {
-        if (process.env.NODE_ENV !== 'production') {
-            console.error('[Counter] Get error');
-        }
-        return {
-            count: 0,
-            month: getCurrentMonthParis()
-        };
+export async function getEmailCounter() {
+    const { redis, hasRedis } = await getKVInstance();
+    const month = getCurrentMonthParis();
+    const key = `email_counter:${month}`;
+
+    if (!hasRedis || !redis) {
+        return { count: 0, month };
     }
+
+    const value = await redis.get(key);
+    return {
+        count: value ? parseInt(value, 10) : 0,
+        month
+    };
 }
 
-export async function incrementEmailCounter(): Promise<number> {
-    try {
-        const { redis, hasRedis } = await getKVInstance();
-        const currentMonth = getCurrentMonthParis();
-        
-        if (hasRedis && redis) {
-            try {
-                const storedMonth = await redis.get(MONTH_KEY);
-                
-                if (storedMonth !== currentMonth) {
-                    await redis.set(COUNTER_KEY, 0);
-                    await redis.set(MONTH_KEY, currentMonth);
-                }
-                
-                const newCount = await redis.incr(COUNTER_KEY);
-                await redis.set(MONTH_KEY, currentMonth);
-                
-                return newCount;
-            } catch (error) {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.error('[Redis] Increment error');
-                }
-                const data = await readCounterFile();
-                if (data.month !== currentMonth) {
-                    await writeCounterFile({ count: 1, month: currentMonth });
-                    return 1;
-                }
-                const newCount = data.count + 1;
-                await writeCounterFile({ count: newCount, month: currentMonth });
-                return newCount;
-            }
-        } else {
-            const data = await readCounterFile();
-            if (data.month !== currentMonth) {
-                await writeCounterFile({ count: 1, month: currentMonth });
-                return 1;
-            }
-            const newCount = data.count + 1;
-            await writeCounterFile({ count: newCount, month: currentMonth });
-            return newCount;
-        }
-    } catch (error) {
-        if (process.env.NODE_ENV !== 'production') {
-            console.error('[Counter] Increment error');
-        }
-        return 0;
+export async function incrementEmailCounter(): Promise<{
+    allowed: boolean;
+    count: number;
+    month: string;
+}> {
+    const { redis, hasRedis } = await getKVInstance();
+    const month = getCurrentMonthParis();
+    const key = `email_counter:${month}`;
+
+    if (!hasRedis || !redis) {
+        return { allowed: false, count: 0, month };
     }
+
+    const count = await redis.incr(key);
+
+    if (count === 1) {
+        await redis.expire(key, 60 * 60 * 24 * 40);
+    }
+
+    if (count > MONTHLY_LIMIT) {
+        return { allowed: false, count, month };
+    }
+
+    return { allowed: true, count, month };
 }

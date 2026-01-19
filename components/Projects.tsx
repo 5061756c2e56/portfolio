@@ -7,15 +7,22 @@ import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
+import {
+    AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
+    AlertDialogTitle
+} from '@/components/ui/alert-dialog';
 
 export default function Projects() {
     const t = useTranslations('projects');
+
     const {
         ref,
         isInView
     } = useInView({ threshold: 0.1 });
+
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTech, setSelectedTech] = useState<string>('all');
+    const [webSecurityOpen, setWebSecurityOpen] = useState(false);
 
     const projects = [
         {
@@ -120,48 +127,84 @@ export default function Projects() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {filteredProjects.map((project, index) => (
-                            <a
-                                key={index}
-                                href={project.link}
-                                target={project.isExternal ? '_blank' : undefined}
-                                rel={project.isExternal ? 'noopener noreferrer' : undefined}
-                                className={cn(
-                                    'group rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 cursor-pointer transition-all duration-300',
-                                    isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
-                                )}
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-foreground transition-colors duration-300">
-                                    {project.title}
-                                </h3>
-                                <p className="text-sm text-muted-foreground mb-4 leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
-                                    {project.description}
-                                </p>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.technologies.map((tech) => (
-                                        <span
-                                            key={tech}
-                                            className="inline-flex items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
+                        {filteredProjects.map((project, index) => {
+                            const isWebSecurity = project.title === t('webSecurity.title');
+
+                            const card = (
+                                <div
+                                    className={cn(
+                                        'group rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 cursor-pointer transition-all duration-300',
+                                        isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+                                    )}
+                                    style={{ animationDelay: `${index * 100}ms` }}
+                                >
+                                    <h3 className="text-lg font-semibold mb-2 text-foreground">
+                                        {project.title}
+                                    </h3>
+
+                                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                                        {project.description}
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {project.technologies.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="inline-flex items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                                            >
+            {tech}
+          </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                                        {t('viewProject')}
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-all duration-300">
-                                    {t('viewProject')}
-                                    <svg
-                                        className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                                        <path strokeLinecap="round" strokeLinejoin="round"
-                                              d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                                    </svg>
-                                </div>
-                            </a>
-                        ))}
+                            );
+
+                            if (isWebSecurity) {
+                                return (
+                                    <div key={index} onClick={() => setWebSecurityOpen(true)}>
+                                        {card}
+                                    </div>
+                                );
+                            }
+
+                            return (
+                                <a
+                                    key={index}
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {card}
+                                </a>
+                            );
+                        })}
                     </div>
                 )}
             </div>
+
+            <AlertDialog open={webSecurityOpen} onOpenChange={setWebSecurityOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>
+                            {t('webSecurityDialog.title')}
+                        </AlertDialogTitle>
+
+                        <AlertDialogDescription>
+                            {t('webSecurityDialog.description')}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>
+                            {t('webSecurityDialog.close')}
+                        </AlertDialogCancel>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </section>
     );
 }
