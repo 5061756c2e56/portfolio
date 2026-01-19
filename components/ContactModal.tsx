@@ -80,10 +80,12 @@ export default function ContactModal({
         if (field === 'from_email') {
             const trimmed = value.trim();
             if (trimmed !== '' && !trimmed.includes('@')) {
-                setErrors(prev => ({
-                    ...prev,
-                    from_email: tValidation('emailMissingAt')
-                }));
+                setErrors(prev => (
+                    {
+                        ...prev,
+                        from_email: tValidation('emailMissingAt')
+                    }
+                ));
                 return;
             }
         }
@@ -225,6 +227,7 @@ export default function ContactModal({
                                 placeholder={t('namePlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.from_name}
+                                className="truncate"
                             />
                             {errors.from_name && (
                                 <p className="text-sm text-destructive">{errors.from_name}</p>
@@ -242,6 +245,7 @@ export default function ContactModal({
                                 placeholder={t('emailPlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.from_email}
+                                className="truncate"
                             />
                             {errors.from_email && (
                                 <p className="text-sm text-destructive">{errors.from_email}</p>
@@ -259,6 +263,7 @@ export default function ContactModal({
                                 placeholder={t('subjectPlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.subject}
+                                className="truncate"
                             />
                             {errors.subject && (
                                 <p className="text-sm text-destructive">{errors.subject}</p>

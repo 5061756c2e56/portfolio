@@ -26,6 +26,7 @@ export default function Projects() {
 
     const projects = [
         {
+            id: 'portfolio',
             title: t('portfolio.title'),
             description: t('portfolio.description'),
             technologies: ['TypeScript', 'NextJS', 'Tailwind CSS', 'Redis'],
@@ -33,6 +34,7 @@ export default function Projects() {
             isExternal: true
         },
         {
+            id: 'web-security',
             title: t('webSecurity.title'),
             description: t('webSecurity.description'),
             technologies: ['TypeScript', 'Tailwind CSS', 'NextJS'],
@@ -128,7 +130,7 @@ export default function Projects() {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {filteredProjects.map((project, index) => {
-                            const isWebSecurity = project.title === t('webSecurity.title');
+                            const isWebSecurity = project.id === 'web-security';
 
                             const card = (
                                 <div
