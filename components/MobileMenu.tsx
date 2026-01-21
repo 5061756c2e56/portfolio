@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { useChristmasMode } from '@/hooks/use-christmas';
-import { ChristmasOrnament } from '@/components/ChristmasOrnament';
+import { ChristmasOrnament } from '@/components/christmas/ChristmasOrnament';
 import { cn } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
 

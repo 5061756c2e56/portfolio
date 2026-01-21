@@ -1,26 +1,18 @@
 'use client';
 
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
+    DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 
-import {
-    useEffect,
-    useState
-} from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocaleContext } from '@/components/LocaleProvider';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/hooks/use-theme';
-import { useRouter, usePathname } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { useChristmasMode } from '@/hooks/use-christmas';
-import { ChristmasBarleySugar } from '@/components/ChristmasBarleySugar';
+import { ChristmasBarleySugar } from '@/components/christmas/ChristmasBarleySugar';
 import { cn } from '@/lib/utils';
 
 export default function Settings() {
@@ -129,7 +121,7 @@ export default function Settings() {
                         )}
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator/>
                 <DropdownMenuLabel>{t('theme')}</DropdownMenuLabel>
                 <DropdownMenuGroup>
                     <DropdownMenuItem

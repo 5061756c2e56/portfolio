@@ -4,7 +4,7 @@ import StructuredData from '@/components/StructuredData';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { LocaleProvider } from '@/components/LocaleProvider';
 import { Toaster } from '@/components/ui/sonner';
-import { Snowflakes } from '@/components/Snowflakes';
+import { Snowflakes } from '@/components/christmas/Snowflakes';
 import type { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';

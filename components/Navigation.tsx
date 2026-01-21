@@ -6,11 +6,11 @@ import Image from 'next/image';
 import Settings from './Settings';
 import MobileMenu from './MobileMenu';
 import { useChristmasMode } from '@/hooks/use-christmas';
-import { ChristmasHat } from '@/components/ChristmasHat';
+import { ChristmasHat } from '@/components/christmas/ChristmasHat';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { cn } from '@/lib/utils';
-import { Link, usePathname } from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 
 export default function Navigation() {
     const t = useTranslations('nav');
@@ -58,7 +58,8 @@ export default function Navigation() {
                                 />
                             </div>
                         )}
-                        <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
+                        <span
+                            className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
                             Paul Viandier
                         </span>
                     </a>

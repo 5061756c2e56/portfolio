@@ -1,13 +1,13 @@
 import { lazy, Suspense } from 'react';
 
-import Hero from '@/components/Hero';
-import About from '@/components/About';
+import Hero from '@/components/home/Hero';
+import About from '@/components/home/About';
 import Navigation from '@/components/Navigation';
 
-const Skills = lazy(() => import('@/components/Skills'));
-const Projects = lazy(() => import('@/components/Projects'));
-const Contact = lazy(() => import('@/components/Contact'));
-const Footer = lazy(() => import('@/components/Footer'));
+const Skills = lazy(() => import('@/components/home/Skills'));
+const Projects = lazy(() => import('@/components/home/Projects'));
+const Contact = lazy(() => import('@/components/home/Contact'));
+const Footer = lazy(() => import('@/components/home/Footer'));
 
 export default function Home() {
     return (

@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import GamesNavigation from '@/components/GamesNavigation';
-import Footer from '@/components/Footer';
-import Quiz from '@/components/Quiz';
-import MemoryGame from '@/components/MemoryGame';
-import TypingSpeed from '@/components/TypingSpeed';
+import GamesNavigation from '@/components/games/GamesNavigation';
+import Footer from '@/components/home/Footer';
+import Quiz from '@/components/games/Quiz';
+import MemoryGame from '@/components/games/MemoryGame';
+import TypingSpeed from '@/components/games/TypingSpeed';
 import { Brain, Gamepad2, Keyboard, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -56,30 +56,31 @@ export default function GamesPage() {
             id: 'quiz' as GameType,
             title: t('gameTypes.quiz.title'),
             description: t('gameTypes.quiz.description'),
-            icon: <Brain className="w-5 h-5" />
+            icon: <Brain className="w-5 h-5"/>
         },
         {
             id: 'memory' as GameType,
             title: t('gameTypes.memory.title'),
             description: t('gameTypes.memory.description'),
-            icon: <Gamepad2 className="w-5 h-5" />
+            icon: <Gamepad2 className="w-5 h-5"/>
         },
         {
             id: 'typing' as GameType,
             title: t('gameTypes.typing.title'),
             description: t('gameTypes.typing.description'),
-            icon: <Keyboard className="w-5 h-5" />
+            icon: <Keyboard className="w-5 h-5"/>
         }
     ];
 
     return (
         <>
-            <GamesNavigation />
+            <GamesNavigation/>
             <main className="min-h-screen text-foreground">
                 <section className="min-h-[50vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-12">
                     <div className="max-w-5xl mx-auto text-center w-full">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/50 text-sm text-muted-foreground mb-8">
-                            <Sparkles className="w-4 h-4" />
+                        <div
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/50 text-sm text-muted-foreground mb-8">
+                            <Sparkles className="w-4 h-4"/>
                             {t('hero.badge')}
                         </div>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight">
@@ -107,14 +108,14 @@ export default function GamesPage() {
                         </div>
 
                         <div className="min-h-100">
-                            {activeGame === 'quiz' && <Quiz />}
-                            {activeGame === 'memory' && <MemoryGame />}
-                            {activeGame === 'typing' && <TypingSpeed />}
+                            {activeGame === 'quiz' && <Quiz/>}
+                            {activeGame === 'memory' && <MemoryGame/>}
+                            {activeGame === 'typing' && <TypingSpeed/>}
                         </div>
                     </div>
                 </section>
 
-                <Footer />
+                <Footer/>
             </main>
         </>
     );
