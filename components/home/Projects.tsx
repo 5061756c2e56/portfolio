@@ -7,10 +7,6 @@ import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
-import {
-    AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
-    AlertDialogTitle
-} from '@/components/ui/alert-dialog';
 
 export default function Projects() {
     const t = useTranslations('projects');
@@ -22,7 +18,6 @@ export default function Projects() {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTech, setSelectedTech] = useState<string>('all');
-    const [webSecurityOpen, setWebSecurityOpen] = useState(false);
 
     const projects = [
         {
@@ -135,7 +130,7 @@ export default function Projects() {
                             const card = (
                                 <div
                                     className={cn(
-                                        'group rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 cursor-pointer transition-all duration-300',
+                                        'group h-full flex flex-col rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 cursor-pointer transition-all duration-300',
                                         isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                     )}
                                     style={{ animationDelay: `${index * 100}ms` }}
@@ -144,7 +139,7 @@ export default function Projects() {
                                         {project.title}
                                     </h3>
 
-                                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
                                         {project.description}
                                     </p>
 
@@ -154,8 +149,8 @@ export default function Projects() {
                                                 key={tech}
                                                 className="inline-flex items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
                                             >
-            {tech}
-          </span>
+                                                {tech}
+                                            </span>
                                         ))}
                                     </div>
 
@@ -165,20 +160,13 @@ export default function Projects() {
                                 </div>
                             );
 
-                            if (isWebSecurity) {
-                                return (
-                                    <div key={index} onClick={() => setWebSecurityOpen(true)}>
-                                        {card}
-                                    </div>
-                                );
-                            }
-
                             return (
                                 <a
                                     key={index}
                                     href={project.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    className="h-full"
                                 >
                                     {card}
                                 </a>
@@ -187,26 +175,6 @@ export default function Projects() {
                     </div>
                 )}
             </div>
-
-            <AlertDialog open={webSecurityOpen} onOpenChange={setWebSecurityOpen}>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>
-                            {t('webSecurityDialog.title')}
-                        </AlertDialogTitle>
-
-                        <AlertDialogDescription>
-                            {t('webSecurityDialog.description')}
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>
-                            {t('webSecurityDialog.close')}
-                        </AlertDialogCancel>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
         </section>
     );
 }

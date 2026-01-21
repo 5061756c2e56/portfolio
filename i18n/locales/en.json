@@ -7,7 +7,9 @@
     "location": "France",
     "role": "Web Integrator",
     "downloadCVButton": "Download my Curriculum Vitae",
-    "downloadingCV": "Downloading..."
+    "downloadingCV": "Downloading...",
+    "downloadingLM": "Downloading...",
+    "downloadLMButton": "Download my motivation letter"
   },
   "about": {
     "title": "About me",
@@ -61,11 +63,6 @@
     "webSecurity": {
       "title": "Web Security",
       "description": "Web security suite for protecting and managing IT systems."
-    },
-    "webSecurityDialog": {
-      "title": "Project in development",
-      "description": "This project is currently under development and will be available soon.",
-      "close": "Close"
     }
   },
   "contact": {

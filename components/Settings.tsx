@@ -10,14 +10,13 @@ import { useEffect, useState } from 'react';
 import { useLocaleContext } from '@/components/LocaleProvider';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/hooks/use-theme';
-import { usePathname, useRouter } from '@/i18n/routing';
+import { usePathname } from '@/i18n/routing';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasBarleySugar } from '@/components/christmas/ChristmasBarleySugar';
 import { cn } from '@/lib/utils';
 
 export default function Settings() {
-    const { locale, setLocale } = useLocaleContext();
-    const router = useRouter();
+    const { locale, showLocaleLoading } = useLocaleContext();
     const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const t = useTranslations('nav');
@@ -29,9 +28,12 @@ export default function Settings() {
     }, []);
 
     const switchLocale = (newLocale: 'fr' | 'en') => {
-        if (newLocale === locale) return;
-        setLocale(newLocale);
-        router.replace(pathname, { locale: newLocale });
+        if (!mounted || newLocale === locale) return;
+
+        showLocaleLoading();
+
+        const newPath = newLocale === 'fr' ? pathname : `/${newLocale}${pathname}`;
+        window.location.href = newPath;
     };
 
     const currentLocale = mounted ? locale : 'fr';

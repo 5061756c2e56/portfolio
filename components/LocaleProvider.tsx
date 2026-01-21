@@ -1,13 +1,15 @@
 'use client';
 
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
+import { LoadingOverlay } from '@/components/LoadingOverlay';
 
 type Locale = 'fr' | 'en';
 
 interface LocaleContextType {
     locale: Locale;
     setLocale: (locale: Locale) => void;
+    showLocaleLoading: () => void;
 }
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
@@ -29,12 +31,31 @@ interface LocaleProviderProps {
     };
 }
 
+const LOADING_KEY = 'locale-loading';
+
 export function LocaleProvider({ children, initialLocale, messages }: LocaleProviderProps) {
     const [locale, setLocaleState] = useState<Locale>(initialLocale);
     const [mounted, setMounted] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setMounted(true);
+
+        // Check if we should show loading (from previous page)
+        const wasLoading = sessionStorage.getItem(LOADING_KEY);
+        if (wasLoading) {
+            sessionStorage.removeItem(LOADING_KEY);
+            setIsVisible(true);
+            setIsLoading(true);
+            // Start fade out after a tiny delay
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    setIsLoading(false);
+                    setTimeout(() => setIsVisible(false), 300);
+                });
+            });
+        }
     }, []);
 
     useEffect(() => {
@@ -48,6 +69,13 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
         }
     }, [locale, mounted]);
 
+    const showLocaleLoading = useCallback(() => {
+        sessionStorage.setItem(LOADING_KEY, 'true');
+        setIsVisible(true);
+        setIsLoading(true);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }, []);
+
     const setLocale = (newLocale: Locale) => {
         if (newLocale === 'fr' || newLocale === 'en') {
             setLocaleState(newLocale);
@@ -58,7 +86,7 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
     const currentMessages = messages[validLocale] || messages[initialLocale] || messages.fr;
 
     return (
-        <LocaleContext.Provider value={{ locale: validLocale, setLocale }}>
+        <LocaleContext.Provider value={{ locale: validLocale, setLocale, showLocaleLoading }}>
             <NextIntlClientProvider
                 messages={currentMessages}
                 locale={validLocale}
@@ -66,6 +94,7 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
                 now={new Date()}
             >
                 {children}
+                {isVisible && <LoadingOverlay isLoading={isLoading} />}
             </NextIntlClientProvider>
         </LocaleContext.Provider>
     );
