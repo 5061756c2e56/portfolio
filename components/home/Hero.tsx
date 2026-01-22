@@ -77,49 +77,49 @@ export default function Hero() {
                     {t('description')}
                 </p>
 
-                <div className="flex justify-center gap-4">
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <button
                         onClick={() => handleDownload('/Curriculum Vitae - Viandier Paul.pdf', 'Curriculum Vitae - Viandier Paul.pdf', 'CV')}
                         disabled={isDownloadingCV}
-                        className={`group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg bg-foreground text-background transition-all duration-300 hover:bg-foreground/90 ${isDownloadingCV ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+                        className={`btn-fill-primary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 ${isDownloadingCV ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                         {isDownloadingCV ? (
-                            <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 animate-spin relative z-10" fill="none" viewBox="0 0 24 24">
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                         strokeWidth="4"/>
                                 <path className="opacity-75" fill="currentColor"
                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
                             </svg>
                         ) : (
-                            <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5"
+                            <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5 relative z-10"
                                  fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round"
                                       d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                             </svg>
                         )}
-                        <span>{isDownloadingCV ? t('downloadingCV') : t('downloadCVButton')}</span>
+                        <span className="relative z-10">{isDownloadingCV ? t('downloadingCV') : t('downloadCVButton')}</span>
                     </button>
 
                     <button
                         onClick={() => handleDownload('/Lettre de motivation - Paul Viandier.pdf', 'Lettre de motivation - Paul Viandier.pdf', 'LM')}
                         disabled={isDownloadingLM}
-                        className={`group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg bg-foreground text-background transition-all duration-300 hover:bg-foreground/90 ${isDownloadingLM ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+                        className={`btn-fill-secondary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 ${isDownloadingLM ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                         {isDownloadingLM ? (
-                            <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 animate-spin relative z-10" fill="none" viewBox="0 0 24 24">
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                         strokeWidth="4"/>
                                 <path className="opacity-75" fill="currentColor"
                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
                             </svg>
                         ) : (
-                            <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5"
+                            <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5 relative z-10"
                                  fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round"
                                       d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                             </svg>
                         )}
-                        <span>{isDownloadingLM ? t('downloadingLM') : t('downloadLMButton')}</span>
+                        <span className="relative z-10">{isDownloadingLM ? t('downloadingLM') : t('downloadLMButton')}</span>
                     </button>
                 </div>
             </div>

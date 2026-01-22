@@ -684,7 +684,6 @@ html {
         overflow: visible !important;
     }
 
-    /* Modern minimal border button with subtle glow */
     .gradient-border-button {
         position: relative;
         border: 1px solid var(--border);
@@ -727,7 +726,6 @@ html {
         transition: border-color 0.3s ease;
     }
 
-    /* Gradient text with accent colors */
     .gradient-text {
         background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
         -webkit-background-clip: text;
@@ -736,7 +734,6 @@ html {
         color: transparent;
     }
 
-    /* Modern glass card effect */
     .glass-card {
         background: var(--card);
         backdrop-filter: blur(12px);
@@ -751,7 +748,6 @@ html {
         transform: translateY(-2px);
     }
 
-    /* Subtle hover glow */
     .hover-glow {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -760,7 +756,6 @@ html {
         box-shadow: 0 0 30px var(--glow-subtle), 0 0 60px var(--glow-subtle);
     }
 
-    /* Noise texture overlay for depth */
     .noise-overlay::before {
         content: '';
         position: absolute;
@@ -863,4 +858,67 @@ html {
 
 .snowflake {
     text-shadow: 0 0 1px currentColor;
+}
+
+.btn-fill-primary {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    z-index: 1;
+}
+
+.btn-fill-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--foreground);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.btn-fill-primary:hover::before {
+    width: 0;
+}
+
+.btn-fill-primary:hover {
+    border-color: var(--foreground);
+}
+
+.btn-fill-primary:not(:hover) {
+    color: var(--background);
+}
+
+.btn-fill-secondary {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    z-index: 1;
+}
+
+.btn-fill-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--foreground);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.btn-fill-secondary:hover::before {
+    width: 100%;
+}
+
+.btn-fill-secondary:hover {
+    color: var(--background);
+    border-color: var(--foreground);
 }
