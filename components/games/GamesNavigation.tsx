@@ -17,7 +17,7 @@ export default function GamesNavigation() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 gap-4">
                     <Link
-                        href="/public"
+                        href="/"
                         className="flex items-center gap-2.5 text-xl font-semibold hover:opacity-80 transition-opacity shrink-0"
                         suppressHydrationWarning
                     >
@@ -43,7 +43,7 @@ export default function GamesNavigation() {
 
                     <div className="flex items-center gap-2">
                         <Link
-                            href="/public"
+                            href="/"
                             className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
                         >
                             <Home className="w-4 h-4"/>
