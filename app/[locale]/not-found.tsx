@@ -1,5 +1,6 @@
 'use client';
 
+import '../globals.css';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/hooks/use-theme';

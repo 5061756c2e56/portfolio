@@ -1,3 +1,4 @@
+import './globals.css';
 import NotFoundContent from './not-found-content';
 
 export default function NotFound() {
