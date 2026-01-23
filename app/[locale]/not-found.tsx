@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/hooks/use-theme';
 import { useEffect } from 'react';
+import { Home } from 'lucide-react';
 
 export default function NotFound() {
     const t = useTranslations('errors.404');
@@ -24,9 +25,12 @@ export default function NotFound() {
     }, [theme, mounted]);
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-background via-background to-muted/20 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,oklch(0.68_0.15_240/0.1),transparent_50%)] pointer-events-none"/>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,oklch(0.68_0.15_240/0.05),transparent_70%)] pointer-events-none"/>
+        <div
+            className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-background via-background to-muted/20 relative overflow-hidden">
+            <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,oklch(0.68_0.15_240/0.1),transparent_50%)] pointer-events-none"/>
+            <div
+                className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,oklch(0.68_0.15_240/0.05),transparent_70%)] pointer-events-none"/>
             <div className="max-w-2xl mx-auto text-center relative z-10 space-y-6">
                 <div className="animate-fade-in-up">
                     <h1 className="text-9xl sm:text-[12rem] font-bold mb-4 bg-gradient-to-r from-[#f0877d] to-[#7da8f0] bg-clip-text text-transparent">
@@ -43,21 +47,15 @@ export default function NotFound() {
                         {t('description')}
                     </p>
                 </div>
-                <div className="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: '0.3s' }}>
+                <div className="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4"
+                     style={{ animationDelay: '0.3s' }}>
                     <Link
                         href="/"
                         className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border-2 border-border bg-background/80 backdrop-blur-sm hover:bg-muted hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 cursor-pointer group font-medium text-base"
                     >
-                        <span className="text-foreground group-hover:text-primary transition-colors duration-300">{t('backHome')}</span>
-                        <svg
-                            className="w-5 h-5 text-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2.5}
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                        </svg>
+                        <Home className="w-5 h-5"/>
+                        <span
+                            className="text-foreground group-hover:text-primary transition-colors duration-300">{t('backHome')}</span>
                     </Link>
                 </div>
             </div>
