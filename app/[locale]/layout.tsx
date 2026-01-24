@@ -64,17 +64,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             url: `${baseUrl}${isFrench ? '' : '/en'}`,
             siteName: 'Portfolio de Paul Viandier',
             title: isFrench
-                ? 'Paul Viandier - Développeur Web | Portfolio Professionnel'
-                : 'Paul Viandier - Web Developer | Professional Portfolio',
+                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité\n'
+                : 'Paul Viandier - Web Developer & Cybersecurity Enthusiast',
             description: isFrench
-                ? 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel présentant mes projets et compétences en développement web, TypeScript, React, Next.js.'
-                : 'Paul Viandier, web developer passionate about cybersecurity. Professional portfolio showcasing my projects and skills in web development, TypeScript, React, Next.js.',
+                ? 'Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l’administration systèmes, trois domaines que je relie entre eux.'
+                : 'Self-taught for several years, I am training in development, cybersecurity, and systems administration, three fields that I link together.',
             images: [
                 {
                     url: `${baseUrl}/vPsl6pa.png`,
                     width: 1200,
                     height: 630,
-                    alt: 'Paul Viandier - Développeur Web & Cybersécurité',
+                    alt: 'Paul Viandier',
                     type: 'image/png'
                 }
             ]
