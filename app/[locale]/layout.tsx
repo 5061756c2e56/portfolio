@@ -82,11 +82,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         twitter: {
             card: 'summary_large_image',
             title: isFrench
-                ? 'Paul Viandier - Portfolio '
-                : 'Paul Viandier - Portfolio',
+                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité\n'
+                : 'Paul Viandier - Web Developer & Cybersecurity Enthusiast',
             description: isFrench
-                ? 'Développeur web passionné de cybersécurité. Dans ce portfolio, je présente mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
-                : 'Web developer passionate about cybersecurity. In this portofolio, I show my projects, web development skills, TypeScript, React, Next.js and cybersecurity.',
+                ? 'Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l’administration systèmes, trois domaines que je relie entre eux.'
+                : 'Self-taught for several years, I am training in development, cybersecurity, and systems administration, three fields that I link together.',
             images: [
                 `${baseUrl}/vPsl6pa.png`
             ],
