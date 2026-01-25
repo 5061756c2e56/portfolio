@@ -1,3 +1,7 @@
 export function isChristmasMode(): boolean {
-    return process.env.NEXT_PUBLIC_CHRISTMAS_MODE === 'true';
+    const now = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
+    const [day, month] = now.split('/').map(Number); // format JJ/MM/YYYY
+    return month === 12 || (
+        month === 1 && day === 1
+    );
 }

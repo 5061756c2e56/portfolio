@@ -53,7 +53,7 @@ Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, a
 
 ### Prérequis
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm installé
 - Redis (pour la production)
 
@@ -99,16 +99,15 @@ ALLOWED_ORIGIN=yourdomain.com
 
 # Optionnel : Google Search Console Verification
 NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
-
-# Optionnel : Mode Noël (enable/disable)
-NEXT_PUBLIC_CHRISTMAS_MODE=true
 ```
 
 ### Configuration Redis (Production)
 
-Le compteur d'emails utilise Redis en production. En développement local, si Redis n'est pas disponible, le système utilise automatiquement un fichier JSON dans `/data`.
+Le compteur d'emails utilise Redis en production. En développement local, si Redis n'est pas disponible, le système
+utilise automatiquement un fichier JSON dans `/data`.
 
-**Note** : Pour la production, Redis est requis. Le système basculera automatiquement vers le fichier JSON uniquement si Redis est indisponible.
+**Note** : Pour la production, Redis est requis. Le système basculera automatiquement vers le fichier JSON uniquement si
+Redis est indisponible.
 
 ## 🔒 Sécurité
 
@@ -155,9 +154,6 @@ ALLOWED_ORIGIN=yourdomain.com
 # Optionnel : Google Search Console Verification
 NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
 
-# Optionnel : Mode Noël (enable/disable)
-NEXT_PUBLIC_CHRISTMAS_MODE=true
-
 NODE_ENV=production
 ```
 
@@ -171,7 +167,8 @@ docker-compose up -d --build
 
 L'application sera accessible sur `http://localhost:3000`
 
-**Note** : Redis est automatiquement configuré via Docker Compose. Le `REDIS_URL` est automatiquement défini pour pointer vers le service Redis.
+**Note** : Redis est automatiquement configuré via Docker Compose. Le `REDIS_URL` est automatiquement défini pour
+pointer vers le service Redis.
 
 ### Déploiement avec Docker uniquement
 
@@ -191,7 +188,6 @@ docker run -d \
   -e NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id \
   -e NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key \
   -e NEXT_PUBLIC_SITE_URL=url_de_votre_site \
-  -e NEXT_PUBLIC_CHRISTMAS_MODE=true \
   -e REDIS_URL=redis://your-redis-host:6379 \
   -e NODE_ENV=production \
   portfolio:latest
@@ -199,7 +195,8 @@ docker run -d \
 
 ### Configuration Redis externe
 
-Si vous utilisez un Redis externe (non inclus dans docker-compose), configurez `REDIS_URL` ou les variables `REDIS_HOST`, `REDIS_PORT`, et `REDIS_PASSWORD` dans votre fichier `.env`.
+Si vous utilisez un Redis externe (non inclus dans docker-compose), configurez `REDIS_URL` ou les variables
+`REDIS_HOST`, `REDIS_PORT`, et `REDIS_PASSWORD` dans votre fichier `.env`.
 
 ### Optimisations Docker
 
@@ -210,6 +207,7 @@ Le Dockerfile utilise un build multi-stage pour optimiser la taille de l'image f
 - **Stage 3** : Image finale minimale avec uniquement les fichiers nécessaires
 
 L'image finale est optimisée pour la production avec :
+
 - Node.js 20 LTS (Debian slim)
 - User non-root pour la sécurité
 - Cache des layers pour accélérer les builds

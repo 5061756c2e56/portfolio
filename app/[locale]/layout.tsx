@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import '../globals.css';
+import { isChristmasMode } from '@/lib/christmas';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -198,8 +199,8 @@ export default async function RootLayout({
                                     s.colorScheme = 'light';
                                 }
 
-                                window.__CHRISTMAS_MODE__ = ${process.env.NEXT_PUBLIC_CHRISTMAS_MODE
-                                                              === 'true' ? 'true' : 'false'};
+                                window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};
+
                                 window.__THEME_READY__ = true;
                             } catch (e) {
                                 document.documentElement.classList.add('dark');
