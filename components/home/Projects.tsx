@@ -7,6 +7,7 @@ import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
+import { WebIcon } from '@/components/icons/WebIcon';
 
 export default function Projects() {
     const t = useTranslations('projects');
@@ -166,10 +167,11 @@ export default function Projects() {
                                                     'inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
                                                     btn.variant === 'white'
                                                         ? 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-100 hover:shadow'
-                                                        : 'bg-gray-800 text-white border border-gray-700 hover:bg-gray-900 hover:shadow-md'
+                                                        : 'btn-fill-secondary'
                                                 )}
                                             >
                                                 {btn.label === t('buttonGitHub') && <GithubIcon className="w-4 h-4"/>}
+                                                {btn.label === t('buttonVisitSite') && <WebIcon className="w-4 h-4"/>}
                                                 {btn.label}
                                             </Button>
                                         </a>
