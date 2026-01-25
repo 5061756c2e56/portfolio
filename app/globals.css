@@ -861,64 +861,13 @@ html {
 }
 
 .btn-fill-primary {
-    position: relative;
-    overflow: hidden;
-    background-color: transparent;
-    border: 1px solid var(--border);
-    color: var(--foreground);
-    z-index: 1;
-}
-
-.btn-fill-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
     background-color: var(--foreground);
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: -1;
-}
-
-.btn-fill-primary:hover::before {
-    width: 0;
-}
-
-.btn-fill-primary:hover {
-    border-color: var(--foreground);
-}
-
-.btn-fill-primary:not(:hover) {
     color: var(--background);
+    border: 1px solid var(--foreground);
 }
 
 .btn-fill-secondary {
-    position: relative;
-    overflow: hidden;
-    background-color: transparent;
-    border: 1px solid var(--border);
+    background-color: var(--border);
     color: var(--foreground);
-    z-index: 1;
-}
-
-.btn-fill-secondary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: var(--foreground);
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: -1;
-}
-
-.btn-fill-secondary:hover::before {
-    width: 100%;
-}
-
-.btn-fill-secondary:hover {
-    color: var(--background);
-    border-color: var(--foreground);
+    border: 1px solid var(--border);
 }

@@ -52,7 +52,8 @@
   },
   "projects": {
     "title": "Projects & Achievements",
-    "viewProject": "View project",
+    "buttonGitHub": "GitHub",
+    "buttonVisitSite": "Visit the website",
     "searchPlaceholder": "Search for a project...",
     "allTechnologies": "All technologies",
     "noResults": "No projects found",

@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
+import { GithubIcon } from '@/components/icons/GithubIcon';
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
@@ -10,11 +10,7 @@ import { cn } from '@/lib/utils';
 
 export default function Projects() {
     const t = useTranslations('projects');
-
-    const {
-        ref,
-        isInView
-    } = useInView({ threshold: 0.1 });
+    const { ref, isInView } = useInView({ threshold: 0.1 });
 
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTech, setSelectedTech] = useState<string>('all');
@@ -25,16 +21,31 @@ export default function Projects() {
             title: t('portfolio.title'),
             description: t('portfolio.description'),
             technologies: ['TypeScript', 'NextJS', 'Tailwind CSS', 'Redis'],
-            link: 'https://github.com/5061756c2e56/portfolio',
-            isExternal: true
+            buttons: [
+                {
+                    label: t('buttonGitHub'),
+                    href: 'https://github.com/5061756c2e56/portfolio',
+                    variant: 'white'
+                }
+            ]
         },
         {
             id: 'web-security',
             title: t('webSecurity.title'),
             description: t('webSecurity.description'),
             technologies: ['TypeScript', 'Tailwind CSS', 'NextJS'],
-            link: 'https://security.paulviandier.com',
-            isExternal: true
+            buttons: [
+                {
+                    label: t('buttonGitHub'),
+                    href: 'https://github.com/5061756c2e56/Web-Security',
+                    variant: 'white'
+                },
+                {
+                    label: t('buttonVisitSite'),
+                    href: 'https://security.paulviandier.com',
+                    variant: 'gray'
+                }
+            ]
         }
     ];
 
@@ -48,13 +59,15 @@ export default function Projects() {
 
     const filteredProjects = useMemo(() => {
         return projects.filter(project => {
-            const matchesSearch = searchQuery === '' ||
-                                  project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                  project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                  project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
+            const matchesSearch =
+                searchQuery === '' ||
+                project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
 
-            const matchesTech = selectedTech === 'all' ||
-                                project.technologies.includes(selectedTech);
+            const matchesTech =
+                selectedTech === 'all' ||
+                project.technologies.includes(selectedTech);
 
             return matchesSearch && matchesTech;
         });
@@ -124,54 +137,46 @@ export default function Projects() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {filteredProjects.map((project, index) => {
-                            const isWebSecurity = project.id === 'web-security';
-
-                            const card = (
-                                <div
-                                    className={cn(
-                                        'group h-full flex flex-col rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 cursor-pointer transition-all duration-300',
-                                        isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
-                                    )}
-                                    style={{ animationDelay: `${index * 100}ms` }}
-                                >
-                                    <h3 className="text-lg font-semibold mb-2 text-foreground">
-                                        {project.title}
-                                    </h3>
-
-                                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
-                                        {project.description}
-                                    </p>
-
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {project.technologies.map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="inline-flex items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                                        {t('viewProject')}
-                                    </div>
+                        {filteredProjects.map((project, index) => (
+                            <div
+                                key={index}
+                                className={cn(
+                                    'group h-full flex flex-col rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300',
+                                    isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+                                )}
+                                style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                                <h3 className="text-lg font-semibold mb-2 text-foreground">{project.title}</h3>
+                                <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">{project.description}</p>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    {project.technologies.map((tech) => (
+                                        <span
+                                            key={tech}
+                                            className="inline-flex items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                                        >
+                                        {tech}
+                                    </span>
+                                    ))}
                                 </div>
-                            );
-
-                            return (
-                                <a
-                                    key={index}
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="h-full"
-                                >
-                                    {card}
-                                </a>
-                            );
-                        })}
+                                <div className="flex items-center gap-2 mt-auto">
+                                    {project.buttons?.map((btn, i) => (
+                                        <a key={i} href={btn.href} target="_blank" rel="noopener noreferrer">
+                                            <Button
+                                                className={cn(
+                                                    'inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
+                                                    btn.variant === 'white'
+                                                        ? 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-100 hover:shadow'
+                                                        : 'bg-gray-800 text-white border border-gray-700 hover:bg-gray-900 hover:shadow-md'
+                                                )}
+                                            >
+                                                {btn.label === t('buttonGitHub') && <GithubIcon className="w-4 h-4"/>}
+                                                {btn.label}
+                                            </Button>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 )}
             </div>

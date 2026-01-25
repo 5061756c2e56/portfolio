@@ -91,13 +91,15 @@ export default function Hero() {
                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
                             </svg>
                         ) : (
-                            <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5 relative z-10"
-                                 fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                            <svg
+                                className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round"
                                       d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                             </svg>
                         )}
-                        <span className="relative z-10">{isDownloadingCV ? t('downloadingCV') : t('downloadCVButton')}</span>
+                        <span
+                            className="relative z-10">{isDownloadingCV ? t('downloadingCV') : t('downloadCVButton')}</span>
                     </button>
 
                     <button
@@ -113,13 +115,15 @@ export default function Hero() {
                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
                             </svg>
                         ) : (
-                            <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5 relative z-10"
-                                 fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                            <svg
+                                className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round"
                                       d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                             </svg>
                         )}
-                        <span className="relative z-10">{isDownloadingLM ? t('downloadingLM') : t('downloadLMButton')}</span>
+                        <span
+                            className="relative z-10">{isDownloadingLM ? t('downloadingLM') : t('downloadLMButton')}</span>
                     </button>
                 </div>
             </div>
