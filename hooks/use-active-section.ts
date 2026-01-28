@@ -6,55 +6,55 @@ export function useActiveSection() {
     const [activeSection, setActiveSection] = useState<string>('home');
 
     useEffect(() => {
-        const sections = ['about', 'skills', 'quiz', 'projects', 'github-stats', 'contact'];
+        const sections = ['about', 'skills', 'quiz', 'projects', 'github-stats', 'contact', 'extras'];
+        const offset = 180;
 
         const handleScroll = () => {
-            const scrollPosition = window.scrollY + 150;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const homeSection = document.getElementById('home');
-            const aboutSection = document.getElementById('about');
-            const contactSection = document.getElementById('contact');
+            const doc = document.documentElement;
+            const atBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - 10;
 
-            if (homeSection && aboutSection) {
-                const aboutTop = aboutSection.offsetTop;
-                
-                if (scrollPosition < aboutTop) {
-                    setActiveSection('home');
+            if (atBottom) {
+                const extras = document.getElementById('extras');
+                if (extras) {
+                    setActiveSection('extras');
                     return;
                 }
             }
 
-            if (contactSection) {
-                const contactTop = contactSection.offsetTop;
-                const contactBottom = contactTop + contactSection.offsetHeight;
-                
-                if (scrollPosition + windowHeight >= documentHeight - 50 || scrollPosition >= contactTop - 100) {
-                    setActiveSection('contact');
+            const y = window.scrollY + offset;
+
+            const about = document.getElementById('about');
+            if (about && y < about.offsetTop - 40) {
+                setActiveSection('home');
+                return;
+            }
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const el = document.getElementById(sections[i]);
+                if (!el) continue;
+                if (y >= el.offsetTop) {
+                    setActiveSection(sections[i]);
                     return;
                 }
             }
 
-            for (let i = sections.length - 2; i >= 0; i--) {
-                const section = document.getElementById(sections[i]);
-                if (section) {
-                    const sectionTop = section.offsetTop;
-                    const sectionBottom = sectionTop + section.offsetHeight;
-                    if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionBottom) {
-                        setActiveSection(sections[i]);
-                        return;
-                    }
-                }
-            }
-            
             setActiveSection('home');
         };
 
         handleScroll();
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll);
+        window.addEventListener('load', handleScroll);
+
+        const t = window.setTimeout(handleScroll, 250);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
+            window.removeEventListener('load', handleScroll);
+            window.clearTimeout(t);
+        };
     }, []);
 
     return activeSection;
 }
-

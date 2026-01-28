@@ -1,7 +1,7 @@
 'use client';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import FAQNavigation from '@/components/navbars/FAQNavigation';
+import FAQNavigation from '@/components/navbars/FAQ/FAQNavigation';
 import { useTranslations } from 'next-intl';
 
 export default function FAQPage() {

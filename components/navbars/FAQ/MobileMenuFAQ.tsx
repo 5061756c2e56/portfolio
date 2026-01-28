@@ -75,7 +75,7 @@ export default function MobileMenu() {
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
-                        href="/jeux"
+                        href="/games"
                         className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:text-foreground flex items-center"
                     >
                         <span>{t('games')}</span>

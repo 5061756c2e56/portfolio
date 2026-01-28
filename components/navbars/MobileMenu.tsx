@@ -5,7 +5,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { useChristmasMode } from '@/hooks/use-christmas';
@@ -21,11 +21,17 @@ export default function MobileMenu() {
     const activeSection = useActiveSection();
     const christmasMode = useChristmasMode();
 
-    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
         setIsOpen(false);
         setTimeout(() => scrollTo(targetId, 80), 100);
     };
+
+    const itemClass = (id: string) =>
+        cn(
+            'cursor-pointer transition-all text-sm rounded-md px-2 py-1.5 w-full',
+            activeSection === id ? 'text-foreground' : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+        );
 
     return (
         <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
@@ -45,7 +51,10 @@ export default function MobileMenu() {
                                 className={`h-5 w-5 absolute transition-all duration-500 ease-in-out ${
                                     isOpen ? 'opacity-0 scale-0 rotate-180' : 'opacity-100 scale-100 rotate-0'
                                 }`}
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                strokeWidth={2}
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
@@ -53,7 +62,10 @@ export default function MobileMenu() {
                                 className={`h-5 w-5 absolute transition-all duration-500 ease-in-out ${
                                     isOpen ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-0 -rotate-180'
                                 }`}
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                strokeWidth={2}
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6"/>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12"/>
@@ -65,58 +77,33 @@ export default function MobileMenu() {
 
             <DropdownMenuContent align="end" className="w-48 border border-border/60 rounded-md bg-card shadow-lg p-2">
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
-                    <a
-                        href="#about"
-                        onClick={(e) => handleLinkClick(e, '#about')}
-                        className={cn(
-                            'cursor-pointer transition-all text-sm',
-                            activeSection
-                            === 'about' ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-foreground'
-                        )}
-                    >
+                    <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className={itemClass('about')}>
                         {t('about')}
                     </a>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
-                    <a
-                        href="#skills"
-                        onClick={(e) => handleLinkClick(e, '#skills')}
-                        className={cn(
-                            'cursor-pointer transition-all text-sm',
-                            activeSection
-                            === 'skills' ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-foreground'
-                        )}
-                    >
+                    <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className={itemClass('skills')}>
                         {t('skills')}
                     </a>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
-                    <a
-                        href="#projects"
-                        onClick={(e) => handleLinkClick(e, '#projects')}
-                        className={cn(
-                            'cursor-pointer transition-all text-sm',
-                            activeSection
-                            === 'projects' ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-foreground'
-                        )}
-                    >
+                    <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')}
+                       className={itemClass('projects')}>
                         {t('projects')}
                     </a>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
-                    <a
-                        href="#contact"
-                        onClick={(e) => handleLinkClick(e, '#contact')}
-                        className={cn(
-                            'cursor-pointer transition-all text-sm',
-                            activeSection
-                            === 'contact' ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-foreground'
-                        )}
-                    >
+                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className={itemClass('contact')}>
                         {t('contact')}
+                    </a>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
+                    <a href="#extras" onClick={(e) => handleLinkClick(e, '#extras')} className={itemClass('extras')}>
+                        Extras
                     </a>
                 </DropdownMenuItem>
 
@@ -124,8 +111,8 @@ export default function MobileMenu() {
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
-                        href="/jeux"
-                        className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:text-foreground flex items-center"
+                        href="/games"
+                        className="w-full cursor-pointer transition-all text-sm rounded-md px-2 py-1.5 hover:bg-accent hover:text-foreground flex items-center text-muted-foreground"
                     >
                         <span>{t('games')}</span>
                         <ExternalLink className="ml-2 w-4 h-4 opacity-70"/>
@@ -135,7 +122,7 @@ export default function MobileMenu() {
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
                         href="/faq"
-                        className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:text-foreground flex items-center"
+                        className="w-full cursor-pointer transition-all text-sm rounded-md px-2 py-1.5 hover:bg-accent hover:text-foreground flex items-center text-muted-foreground"
                     >
                         <span>FAQ</span>
                         <ExternalLink className="ml-2 w-4 h-4 opacity-70"/>

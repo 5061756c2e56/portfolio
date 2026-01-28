@@ -29,8 +29,6 @@
       "tools": "Outils",
       "other": "Autres"
     },
-    "showMore": "Voir plus",
-    "showLess": "Voir moins",
     "descriptions": {
       "HTML5": "Langage de balisage standard pour structurer le contenu web",
       "JavaScript": "Langage de programmation pour créer des pages web interactives",
@@ -50,8 +48,12 @@
       "SEO": "Optimisation pour les moteurs de recherche afin d'améliorer la visibilité"
     }
   },
+  "pagination": {
+    "next": "Suivant",
+    "previous": "Précédent"
+  },
   "projects": {
-    "title": "Projets & Réalisations",
+    "title": "Projets",
     "buttonGitHub": "GitHub",
     "buttonVisitSite": "Visiter le site",
     "buttonDetail": "Voir le détail du projet",
@@ -117,6 +119,12 @@
       "cancel": "Annuler",
       "error": "Aucun client de messagerie n'est configuré sur votre appareil."
     }
+  },
+  "finalCTA": {
+    "title": " Une question — ou envie de tester l’interactif en direct ?",
+    "description": "La FAQ regroupe l’essentiel (fonctionnement, contenu, réponses rapides). L’espace jeux propose des mini-défis comme Memory Match ou Typing Speed pour voir la réactivité, l’UX et l’interactivité en action.",
+    "faqButton": "Accéder à la FAQ",
+    "gamesButton": "Découvrir les jeux"
   },
   "nav": {
     "home": "Accueil",

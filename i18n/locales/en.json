@@ -29,8 +29,6 @@
       "tools": "Tools",
       "other": "Other"
     },
-    "showMore": "Show more",
-    "showLess": "Show less",
     "descriptions": {
       "HTML5": "Standard markup language for structuring web content",
       "JavaScript": "Programming language for creating interactive web pages",
@@ -50,8 +48,12 @@
       "SEO": "Search engine optimization to improve visibility"
     }
   },
+  "pagination": {
+    "next": "Next",
+    "previous": "Previous"
+  },
   "projects": {
-    "title": "Projects & Achievements",
+    "title": "Projects",
     "buttonGitHub": "GitHub",
     "buttonVisitSite": "Visit the website",
     "buttonDetail": "See project details",
@@ -117,6 +119,12 @@
       "cancel": "Cancel",
       "error": "No email client is configured on your device."
     }
+  },
+  "finalCTA": {
+    "title": "Have a question — or want to try the interactive experience live?",
+    "description": "The FAQ covers the essentials (how it works, what’s inside, quick answers). The games area offers mini-challenges like Memory Match or Typing Speed to experience responsiveness, UX, and interactivity in action.",
+    "faqButton": "Go to the FAQ",
+    "gamesButton": "Explore the games"
   },
   "nav": {
     "home": "Home",

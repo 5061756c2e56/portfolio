@@ -60,7 +60,7 @@ export default function ProjectsNavigation() {
                         </Link>
 
                         <Link
-                            href="/jeux"
+                            href="/games"
                             className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
                         >
                             <Gamepad2 className="w-4 h-4"/>

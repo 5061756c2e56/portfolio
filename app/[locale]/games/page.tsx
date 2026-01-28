@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import GamesNavigation from '@/components/navbars/GamesNavigation';
+import GamesNavigation from '@/components/navbars/Games/GamesNavigation';
 import Footer from '@/components/home/Footer';
 import Quiz from '@/components/games/Quiz';
 import MemoryGame from '@/components/games/MemoryGame';
