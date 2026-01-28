@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 
 import Hero from '@/components/home/Hero';
 import About from '@/components/home/About';
-import Navigation from '@/components/Navigation';
+import Navigation from '@/components/navbars/Navigation';
 
 const Skills = lazy(() => import('@/components/home/Skills'));
 const Projects = lazy(() => import('@/components/home/Projects'));

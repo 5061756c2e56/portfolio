@@ -6,6 +6,8 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=for-the-badge&logo=tailwind-css)
 ![React](https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react)
+![Redis](https://img.shields.io/badge/Redis-7.0-orange?style=for-the-badge&logo=redis)
+![EmailJS](https://img.shields.io/badge/EmailJS-Contact-blue?style=for-the-badge&logo=mailgun)
 
 Portfolio moderne développé avec Next.js, TypeScript, Tailwind CSS, EmailJS, avec support multilingue (FR/EN).
 

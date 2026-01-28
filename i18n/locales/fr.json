@@ -54,6 +54,7 @@
     "title": "Projets & Réalisations",
     "buttonGitHub": "GitHub",
     "buttonVisitSite": "Visiter le site",
+    "buttonDetail": "Voir le détail du projet",
     "searchPlaceholder": "Rechercher un projet...",
     "allTechnologies": "Toutes les technologies",
     "noResults": "Aucun projet trouvé",
@@ -164,7 +165,7 @@
       },
       "typing": {
         "title": "Typing Speed",
-        "description": "Testez votre vitesse de frappe de code"
+        "description": "Testez votre vitesse de frappe"
       }
     },
     "memory": {
@@ -194,21 +195,27 @@
         "title": "Temps écoulé !",
         "accuracy": "Précision",
         "snippets": "Extraits",
-        "errors": "Erreurs"
-      }
+        "errors": "Erreurs",
+        "time": "Temps",
+        "best": "Meilleur score"
+      },
+      "levels": {
+        "easy": "Facile",
+        "medium": "Moyen",
+        "hard": "Difficile"
+      },
+      "modes": {
+        "mixed": "Mixte",
+        "quotes": "Citations",
+        "numbers": "Nombres",
+        "punctuation": "Ponctuation"
+      },
+      "reset": "Réinitialiser"
     }
   },
   "footer": {
     "copyright": "Paul Viandier. Tous droits réservés.",
     "license": "Sous licence MIT"
-  },
-  "github": {
-    "title": "Statistiques GitHub",
-    "loading": "Chargement des statistiques...",
-    "repositories": "Dépôts",
-    "stars": "Étoiles",
-    "forks": "Forks",
-    "followers": "Abonnés"
   },
   "quiz": {
     "title": "Quiz Tech",
@@ -259,16 +266,137 @@
     }
   },
   "errors": {
-    "404": {
-      "title": "Page introuvable",
-      "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
-      "backHome": "Retour à l'accueil"
-    },
     "500": {
       "title": "Une erreur est survenue",
       "description": "Désolé, une erreur inattendue s'est produite. Veuillez réessayer.",
       "retry": "Réessayer",
       "backHome": "Retour à l'accueil"
+    }
+  },
+  "portfolioProject": {
+    "description": "Une vitrine moderne, rapide et responsive pour présenter mes projets, mes choix techniques et ma façon de construire des interfaces propres.",
+    "buttonLiveAccess": "Accéder au projet live",
+    "buttonViewCodeGithub": "Voir le code sur GitHub",
+    "overview": {
+      "title": "Aperçu",
+      "description": "L’idée : permettre à un recruteur ou un client de comprendre “ce que je sais faire” en très peu de temps, puis d’explorer les projets sans effort."
+    },
+    "showcaseItems": {
+      "item1": {
+        "title": "Présentation claire",
+        "description": "Une landing lisible en quelques secondes : titre, pitch, sections nettes et hiérarchie typographique propre."
+      },
+      "item2": {
+        "title": "Pages projet structurées",
+        "description": "Chaque projet suit une structure simple : contexte, objectifs, choix techniques et liens. On comprend vite, sans scroller inutilement."
+      },
+      "item3": {
+        "title": "Responsive fluide",
+        "description": "Optimisé mobile-first : grilles adaptatives, spacing cohérent, boutons accessibles, et rendu stable sur petits écrans."
+      }
+    },
+    "context": {
+      "title": "Contexte",
+      "description": "Un document statique explique, mais ne montre pas. Un portfolio bien fait, c’est comme une démo produit : on voit le résultat, on juge la qualité, puis on va au code si on veut creuser.",
+      "description2": "J’ai donc construit une page projet structurée (contexte → objectifs → choix → résultats) et un rendu visuel propre, pour rendre la lecture immédiate."
+    },
+    "goals": {
+      "title": "Objectifs",
+      "bulletedList1": "Présenter mes projets de manière professionnelle, sans bruit",
+      "bulletedList2": "Mettre en avant mes compétences et les choix techniques utiles",
+      "bulletedList3": "Garantir un rendu rapide et stable (desktop + mobile)"
+    },
+    "methodology": {
+      "title": "Méthodologie",
+      "bulletedList1": "Définition d’une structure de page identique pour chaque projet (lisibilité)",
+      "bulletedList2": "Design système simple (spacing, tailles de titres, composants réutilisables)",
+      "bulletedList3": "Implémentation Next.js + Tailwind CSS, responsive dès le départ",
+      "bulletedList4": "Optimisation des médias et finitions UI (micro-interactions, cohérence visuelle)"
+    },
+    "difficulty": {
+      "title": "Difficultés",
+      "bulletedList1": "Éviter la page “catalogue” froide → solution : alternance texte/visuel, rythme de lecture et titres orientés valeur.",
+      "bulletedList2": "Garder du sharp sur mobile sans casser la mise en page → solution : grilles adaptatives et hauteurs d’images cohérentes."
+    },
+    "results": {
+      "title": "Résultats",
+      "bulletedList1": "Lecture rapide : on comprend l’objectif et la qualité visuelle immédiatement",
+      "bulletedList2": "Structure claire : chaque projet est “scannable” et cohérent",
+      "bulletedList3": "Base scalable : ajout de nouveaux projets sans dette UI"
+    },
+    "usedTechnology": "Technologies utilisées",
+    "learnedLessons": {
+      "title": "Leçons apprises",
+      "bulletedList1": "Un bon portfolio, c’est une UX : il faut guider, pas “raconter”",
+      "bulletedList2": "Le rythme visuel (alternance blocs) améliore la compréhension",
+      "bulletedList3": "Une structure fixe rend le contenu plus scalable et maintenable"
+    },
+    "viewProject": "Voir le projet"
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "description": "Vous trouverez ici les réponses aux questions les plus fréquentes concernant mon travail, mes compétences et mes projets. Si votre question n’est pas listée, n’hésitez pas à me contacter directement.",
+    "faqs": {
+      "question1": {
+        "question": "Comment puis-je vous contacter ?",
+        "answer": "Vous pouvez m’envoyer un email à contact@paulviandier.com ou passer par le formulaire de contact dans la section Contact."
+      },
+      "question2": {
+        "question": "Quels langages et technologies maîtrisez-vous ?",
+        "answer": "HTML, CSS, JavaScript, TypeScript, React, Next.js et Tailwind CSS. Je fais aussi du Node.js pour des APIs et des scripts."
+      },
+      "question3": {
+        "question": "Quels projets puis-je consulter ?",
+        "answer": "Tous mes projets sont détaillés dans la section Projets. Chaque fiche explique le besoin, les choix techniques, et le résultat."
+      },
+      "question4": {
+        "question": "Quel type de projets réalisez-vous ?",
+        "answer": "Des sites vitrines, des dashboards, des apps web Next.js, des interfaces orientées produit, et des outils internes."
+      },
+      "question5": {
+        "question": "Travaillez-vous plutôt front-end ou full-stack ?",
+        "answer": "Je suis très orienté front-end (UI/UX, performance, accessibilité), mais je peux aussi gérer une partie back-end (API, auth, intégrations). Mon objectif à terme est d'avoir des compétences solides en fullstack."
+      },
+      "question6": {
+        "question": "Utilisez-vous des composants UI ou vous les codez vous-même ?",
+        "answer": "Les deux. J’utilise des bases solides (Radix, shadcn/ui) quand c’est pertinent, et je crée du sur-mesure quand il faut un rendu précis."
+      },
+      "question7": {
+        "question": "Comment gérez-vous la performance et le SEO ?",
+        "answer": "Optimisation des images, chargement progressif, code-splitting, métadonnées propres, sitemaps, et bonnes pratiques Next.js."
+      },
+      "question8": {
+        "question": "Faites-vous attention à l’accessibilité ?",
+        "answer": "Oui : navigation clavier, contrastes, labels, sémantique HTML, et composants accessibles (Radix aide beaucoup sur ce point)."
+      },
+      "question9": {
+        "question": "Quel est votre workflow de développement ?",
+        "answer": "Je pars d’un besoin clair, je fais une base UI rapide, puis j’itère : qualité du code, tests manuels, performances, et finitions."
+      },
+      "question10": {
+        "question": "Travaillez-vous avec un design existant ?",
+        "answer": "Oui. Je peux intégrer une maquette Figma fidèlement, ou proposer une direction UI simple et cohérente si besoin."
+      },
+      "question11": {
+        "question": "Comment gérez-vous l’internationalisation (i18n) ?",
+        "answer": "Avec next-intl : routes/locales propres, traduction structurée, formats de date/heure et typographie adaptés à la langue."
+      },
+      "question12": {
+        "question": "Avez-vous des standards de code ?",
+        "answer": "Oui : TypeScript strict, composants réutilisables, conventions de nommage, lint/format, et séparation claire UI/logique."
+      },
+      "question13": {
+        "question": "Comment gérez-vous l’état et les données ?",
+        "answer": "Selon le besoin : state local React, stores légers si nécessaire, et fetch côté serveur/clients avec gestion d’erreurs et loading."
+      },
+      "question14": {
+        "question": "Pouvez-vous intégrer des APIs ou services externes ?",
+        "answer": "Oui : authentification, paiement, emailing, analytics, CMS, et tout ce qui expose une API fiable."
+      },
+      "question15": {
+        "question": "Qu’est-ce qui vous différencie ?",
+        "answer": "Une approche productive : interface propre, logique robuste, détails soignés, et une vraie attention à la qualité perçue."
+      }
     }
   }
 }

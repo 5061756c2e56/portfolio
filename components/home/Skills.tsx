@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import SkillIcon from './SkillIcon';
 import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { cn } from '@/lib/utils';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 type Category = 'all' | 'frontend' | 'backend' | 'tools' | 'other';
@@ -92,7 +91,8 @@ export default function Skills() {
                             let description: string | undefined;
                             try {
                                 description = tDescriptions(skill.name as any);
-                                if (!description || description === skill.name || description.startsWith('skills.descriptions.')) {
+                                if (!description || description === skill.name
+                                    || description.startsWith('skills.descriptions.')) {
                                     description = undefined;
                                 }
                             } catch {
@@ -101,9 +101,12 @@ export default function Skills() {
                             return (
                                 <Tooltip key={index}>
                                     <TooltipTrigger asChild>
-                                        <div className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer">
-                                            <div className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300">
-                                                <SkillIcon name={skill.name} className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300"/>
+                                        <div
+                                            className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer">
+                                            <div
+                                                className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300">
+                                                <SkillIcon name={skill.name}
+                                                           className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300"/>
                                             </div>
                                             <h3 className="text-sm font-medium text-foreground/80 text-center group-hover:text-foreground transition-colors duration-300">
                                                 {skill.name}

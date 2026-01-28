@@ -2,13 +2,14 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Settings from '../Settings';
+import Settings from '@/components/Settings';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasHat } from '@/components/christmas/ChristmasHat';
 import { Link } from '@/i18n/routing';
-import { Home } from 'lucide-react';
+import { Gamepad2, Home } from 'lucide-react';
+import MobileMenuFAQ from './MobileMenuFAQ';
 
-export default function GamesNavigation() {
+export default function FAQNavigation() {
     const t = useTranslations('nav');
     const christmasMode = useChristmasMode();
 
@@ -41,7 +42,7 @@ export default function GamesNavigation() {
                         </span>
                     </Link>
 
-                    <div className="flex items-center gap-2">
+                    <div className="hidden lg:flex items-center gap-2">
                         <Link
                             href="/"
                             className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
@@ -49,6 +50,19 @@ export default function GamesNavigation() {
                             <Home className="w-4 h-4"/>
                             <span className="hidden sm:inline">{t('home')}</span>
                         </Link>
+
+                        <Link
+                            href="/jeux"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
+                        >
+                            <Gamepad2 className="w-4 h-4"/>
+                            <span className="hidden sm:inline">{t('games')}</span>
+                        </Link>
+                        <Settings/>
+                    </div>
+
+                    <div className="flex lg:hidden items-center gap-2">
+                        <MobileMenuFAQ/>
                         <Settings/>
                     </div>
                 </div>

@@ -3,14 +3,15 @@
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Settings from './Settings';
-import MobileMenu from './MobileMenu';
+import Settings from '@/components/Settings';
+import MobileMenu from '@/components/navbars/MobileMenu';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasHat } from '@/components/christmas/ChristmasHat';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { cn } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
+import { ExternalLink } from 'lucide-react';
 
 export default function Navigation() {
     const t = useTranslations('nav');
@@ -77,6 +78,7 @@ export default function Navigation() {
                         >
                             {t('about')}
                         </a>
+
                         <a
                             href="#skills"
                             onClick={(e) => handleNavClick(e, '#skills')}
@@ -89,6 +91,7 @@ export default function Navigation() {
                         >
                             {t('skills')}
                         </a>
+
                         <a
                             href="#projects"
                             onClick={(e) => handleNavClick(e, '#projects')}
@@ -101,6 +104,7 @@ export default function Navigation() {
                         >
                             {t('projects')}
                         </a>
+
                         <a
                             href="#contact"
                             onClick={(e) => handleNavClick(e, '#contact')}
@@ -113,12 +117,28 @@ export default function Navigation() {
                         >
                             {t('contact')}
                         </a>
+
+                        <span
+                            className="mx-3 h-5 w-px bg-foreground/20 shadow-[0_0_0_1px_rgba(255,255,255,0.06)]"
+                            aria-hidden="true"
+                        />
+
+                        <Link
+                            href="/faq"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent inline-flex items-center gap-2"
+                        >
+                            FAQ
+                            <ExternalLink className="w-4 h-4 opacity-70"/>
+                        </Link>
+
                         <Link
                             href="/jeux"
-                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent inline-flex items-center gap-2"
                         >
                             {t('games')}
+                            <ExternalLink className="w-4 h-4 opacity-70"/>
                         </Link>
+
                         <div className="ml-2">
                             <Settings/>
                         </div>

@@ -11,7 +11,16 @@ const nextConfig: NextConfig = {
     images: {
         formats: ['image/avif', 'image/webp'],
         deviceSizes: [640, 750, 828, 1080, 1200],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384]
+        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+        qualities: [75, 90, 95, 100],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'img.shields.io',
+                port: '',
+                pathname: '/**'
+            }
+        ]
     },
     async redirects() {
         return [
@@ -69,7 +78,7 @@ const nextConfig: NextConfig = {
                             'script-src-elem \'self\' https://api.emailjs.com',
                             'worker-src \'self\' blob:',
                             'style-src \'self\' \'unsafe-inline\'',
-                            'img-src \'self\' data: https: blob:',
+                            'img-src \'self\' data: https://img.shields/io blob:',
                             'font-src \'self\' data:',
                             'connect-src \'self\' https://api.emailjs.com https://api.github.com',
                             'frame-src \'none\'',

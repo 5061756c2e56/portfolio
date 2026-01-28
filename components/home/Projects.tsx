@@ -8,6 +8,9 @@ import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
 import { WebIcon } from '@/components/icons/WebIcon';
+import { FileText } from 'lucide-react';
+import { useRouter } from '@/i18n/routing';
+import Image from 'next/image';
 
 export default function Projects() {
     const t = useTranslations('projects');
@@ -16,12 +19,15 @@ export default function Projects() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTech, setSelectedTech] = useState<string>('all');
 
+    const router = useRouter();
+
     const projects = [
         {
             id: 'portfolio',
+            slug: 'portfolio',
             title: t('portfolio.title'),
             description: t('portfolio.description'),
-            technologies: ['TypeScript', 'NextJS', 'Tailwind CSS', 'Redis'],
+            technologies: ['TypeScript', 'NextJS', 'Tailwind CSS', 'Redis', 'EmailJS'],
             buttons: [
                 {
                     label: t('buttonGitHub'),
@@ -49,6 +55,14 @@ export default function Projects() {
             ]
         }
     ];
+
+    const techBadges: Record<string, string> = {
+        'TypeScript': 'https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript',
+        'NextJS': 'https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js',
+        'Tailwind CSS': 'https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=for-the-badge&logo=tailwind-css',
+        'Redis': 'https://img.shields.io/badge/Redis-7.0-orange?style=for-the-badge&logo=redis',
+        'EmailJS': 'https://img.shields.io/badge/EmailJS-Contact-blue?style=for-the-badge&logo=mailgun'
+    };
 
     const allTechnologies = useMemo(() => {
         const techSet = new Set<string>();
@@ -137,7 +151,7 @@ export default function Projects() {
                         <p className="text-lg">{t('noResults')}</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-6 auto-rows-fr">
                         {filteredProjects.map((project, index) => (
                             <div
                                 key={index}
@@ -151,20 +165,25 @@ export default function Projects() {
                                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">{project.description}</p>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {project.technologies.map((tech) => (
-                                        <span
+                                        <Image
                                             key={tech}
-                                            className="inline-flex items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
-                                        >
-                                        {tech}
-                                    </span>
+                                            src={techBadges[tech]}
+                                            alt={tech}
+                                            width={140}
+                                            height={28}
+                                            unoptimized
+                                            className="h-7 w-auto"
+                                        />
                                     ))}
                                 </div>
-                                <div className="flex items-center gap-2 mt-auto">
+                                <div
+                                    className="mt-auto flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-start gap-2">
                                     {project.buttons?.map((btn, i) => (
-                                        <a key={i} href={btn.href} target="_blank" rel="noopener noreferrer">
+                                        <a key={i} href={btn.href} target="_blank" rel="noopener noreferrer"
+                                           className="w-full sm:w-auto">
                                             <Button
                                                 className={cn(
-                                                    'inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
+                                                    'w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
                                                     btn.variant === 'white'
                                                         ? 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-100 hover:shadow'
                                                         : 'btn-fill-secondary'
@@ -176,7 +195,17 @@ export default function Projects() {
                                             </Button>
                                         </a>
                                     ))}
+                                    {project.slug && (
+                                        <Button
+                                            onClick={() => router.push(`/projects/${project.slug}`)}
+                                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm btn-fill-secondary"
+                                        >
+                                            <FileText className="w-4 h-4"/>
+                                            {t('buttonDetail')}
+                                        </Button>
+                                    )}
                                 </div>
+
                             </div>
                         ))}
                     </div>

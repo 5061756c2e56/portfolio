@@ -1,6 +1,5 @@
-import './globals.css';
-import NotFoundContent from './not-found-content';
+import { redirect } from 'next/navigation';
 
 export default function NotFound() {
-    return <NotFoundContent/>;
+    redirect('/');
 }

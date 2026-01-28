@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Gamepad2, RotateCcw, Trophy, Clock, Zap } from 'lucide-react';
+import { Check, ChevronDown, Clock, Gamepad2, RotateCcw, Trophy, Zap } from 'lucide-react';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -27,122 +27,286 @@ const GRID_CONFIG: Record<Difficulty, { pairs: number; cols: string }> = {
     hard: { pairs: 12, cols: 'grid-cols-4 sm:grid-cols-6' }
 };
 
+function randInt(maxExclusive: number) {
+    if (maxExclusive <= 0) return 0;
+    if (typeof crypto !== 'undefined' && 'getRandomValues' in crypto) {
+        const arr = new Uint32Array(1);
+        const maxUint = 0xffffffff;
+        const limit = maxUint - (
+            maxUint % maxExclusive
+        );
+        let x = 0;
+        do {
+            crypto.getRandomValues(arr);
+            x = arr[0];
+        } while (x >= limit);
+        return x % maxExclusive;
+    }
+    return Math.floor(Math.random() * maxExclusive);
+}
+
 function shuffleArray<T>(array: T[]): T[] {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        const j = randInt(i + 1);
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
 }
 
+function CustomDifficultySelect({
+    value,
+    onChange,
+    labels,
+    ariaLabel,
+    disabled
+}: {
+    value: Difficulty;
+    onChange: (v: Difficulty) => void;
+    labels: Record<Difficulty, string>;
+    ariaLabel: string;
+    disabled?: boolean;
+}) {
+    const [open, setOpen] = useState(false);
+    const rootRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const onPointerDown = (e: PointerEvent) => {
+            if (!rootRef.current) return;
+            if (!rootRef.current.contains(e.target as Node)) setOpen(false);
+        };
+        window.addEventListener('pointerdown', onPointerDown);
+        return () => window.removeEventListener('pointerdown', onPointerDown);
+    }, []);
+
+    useEffect(() => {
+        if (disabled) setOpen(false);
+    }, [disabled]);
+
+    const items: Difficulty[] = ['easy', 'medium', 'hard'];
+
+    return (
+        <div ref={rootRef} className="relative">
+            <button
+                type="button"
+                aria-label={ariaLabel}
+                aria-haspopup="listbox"
+                aria-expanded={open}
+                onClick={() => !disabled && setOpen((v) => !v)}
+                disabled={disabled}
+                className={cn(
+                    'h-10 px-3 rounded-lg border border-border bg-transparent text-sm',
+                    'inline-flex items-center gap-2',
+                    'transition-colors',
+                    disabled
+                        ? 'opacity-60 cursor-not-allowed'
+                        : 'hover:bg-accent hover:text-foreground',
+                    'focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/10'
+                )}
+            >
+                <span className="whitespace-nowrap">{labels[value]}</span>
+                <ChevronDown className={cn('w-4 h-4 transition-transform', open && 'rotate-180')}/>
+            </button>
+
+            <div
+                className={cn(
+                    'absolute right-0 mt-2 w-44 origin-top-right rounded-lg border border-border bg-card shadow-lg p-1 z-50',
+                    'transition-all duration-150',
+                    open ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
+                )}
+                role="listbox"
+                aria-label={ariaLabel}
+            >
+                {items.map((it) => {
+                    const active = it === value;
+                    return (
+                        <button
+                            key={it}
+                            type="button"
+                            role="option"
+                            aria-selected={active}
+                            onClick={() => {
+                                onChange(it);
+                                setOpen(false);
+                            }}
+                            className={cn(
+                                'w-full px-2.5 py-2 rounded-md text-sm text-left',
+                                'flex items-center justify-between gap-2',
+                                'transition-colors',
+                                active ? 'bg-accent text-foreground' : 'hover:bg-accent/70 text-muted-foreground hover:text-foreground'
+                            )}
+                        >
+                            <span>{labels[it]}</span>
+                            {active && <Check className="w-4 h-4"/>}
+                        </button>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+
 export default function MemoryGame() {
     const t = useTranslations('games.memory');
+
     const [difficulty, setDifficulty] = useState<Difficulty>('easy');
     const [cards, setCards] = useState<Card[]>([]);
-    const [flippedCards, setFlippedCards] = useState<number[]>([]);
+    const [flippedIds, setFlippedIds] = useState<number[]>([]);
     const [moves, setMoves] = useState(0);
     const [matches, setMatches] = useState(0);
     const [gameStarted, setGameStarted] = useState(false);
     const [gameComplete, setGameComplete] = useState(false);
     const [timer, setTimer] = useState(0);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isSwitching, setIsSwitching] = useState(false);
 
-    const initializeGame = useCallback((diff: Difficulty) => {
-        const { pairs } = GRID_CONFIG[diff];
-        const selectedEmojis = shuffleArray(TECH_EMOJIS).slice(0, pairs);
-        const cardPairs = [...selectedEmojis, ...selectedEmojis];
-        const shuffledCards = shuffleArray(cardPairs).map((emoji, index) => ({
-            id: index,
-            emoji,
-            isFlipped: false,
-            isMatched: false
-        }));
+    const flipTimeoutsRef = useRef<number[]>([]);
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-        setCards(shuffledCards);
-        setFlippedCards([]);
-        setMoves(0);
-        setMatches(0);
-        setGameStarted(false);
-        setGameComplete(false);
-        setTimer(0);
-        setIsProcessing(false);
+    const { pairs, cols } = useMemo(() => GRID_CONFIG[difficulty], [difficulty]);
+
+    const labels = useMemo(
+        () => (
+            {
+                easy: t('levels.easy'),
+                medium: t('levels.medium'),
+                hard: t('levels.hard')
+            }
+        ),
+        [t]
+    );
+
+    const clearFlipTimeouts = useCallback(() => {
+        flipTimeoutsRef.current.forEach((id) => window.clearTimeout(id));
+        flipTimeoutsRef.current = [];
     }, []);
 
-    useEffect(() => {
-        initializeGame(difficulty);
-    }, [difficulty, initializeGame]);
+    const stopTimer = useCallback(() => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    }, []);
+
+    const buildDeck = useCallback((diff: Difficulty) => {
+        const { pairs } = GRID_CONFIG[diff];
+        const selected = shuffleArray(TECH_EMOJIS).slice(0, pairs);
+        const deck = shuffleArray([...selected, ...selected]).map((emoji, index) => (
+            {
+                id: index,
+                emoji,
+                isFlipped: false,
+                isMatched: false
+            }
+        ));
+        return deck;
+    }, []);
+
+    const applyNewGameState = useCallback(
+        (diff: Difficulty) => {
+            clearFlipTimeouts();
+            stopTimer();
+            setCards(buildDeck(diff));
+            setFlippedIds([]);
+            setMoves(0);
+            setMatches(0);
+            setGameStarted(false);
+            setGameComplete(false);
+            setTimer(0);
+            setIsProcessing(false);
+        },
+        [buildDeck, clearFlipTimeouts, stopTimer]
+    );
+
+    const initializeGame = useCallback(
+        (diff: Difficulty) => {
+            setIsSwitching(true);
+            setDifficulty(diff);
+            applyNewGameState(diff);
+            requestAnimationFrame(() => requestAnimationFrame(() => setIsSwitching(false)));
+        },
+        [applyNewGameState]
+    );
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
+        initializeGame('easy');
+        return () => {
+            clearFlipTimeouts();
+            stopTimer();
+        };
+    }, [initializeGame, clearFlipTimeouts, stopTimer]);
+
+    useEffect(() => {
+        stopTimer();
         if (gameStarted && !gameComplete) {
-            interval = setInterval(() => {
-                setTimer(prev => prev + 1);
-            }, 1000);
+            intervalRef.current = setInterval(() => setTimer((s) => s + 1), 1000);
         }
-        return () => clearInterval(interval);
-    }, [gameStarted, gameComplete]);
+        return stopTimer;
+    }, [gameStarted, gameComplete, stopTimer]);
 
     useEffect(() => {
-        const { pairs } = GRID_CONFIG[difficulty];
-        if (matches === pairs && gameStarted) {
+        if (gameStarted && matches === pairs) {
             setGameComplete(true);
+            setIsProcessing(false);
+            setFlippedIds([]);
+            clearFlipTimeouts();
         }
-    }, [matches, difficulty, gameStarted]);
+    }, [matches, pairs, gameStarted, clearFlipTimeouts]);
+
+    useEffect(() => {
+        if (flippedIds.length !== 2 || isProcessing || gameComplete || isSwitching) return;
+
+        const [aId, bId] = flippedIds;
+        const a = cards.find((c) => c.id === aId);
+        const b = cards.find((c) => c.id === bId);
+        if (!a || !b) return;
+
+        setIsProcessing(true);
+        setMoves((m) => m + 1);
+
+        const isMatch = a.emoji === b.emoji;
+
+        const timeoutId = window.setTimeout(() => {
+            if (isMatch) {
+                setCards((prev) =>
+                    prev.map((c) => (
+                        c.id === aId || c.id === bId ? { ...c, isMatched: true } : c
+                    ))
+                );
+                setMatches((m) => m + 1);
+            } else {
+                setCards((prev) =>
+                    prev.map((c) => (
+                        c.id === aId || c.id === bId ? { ...c, isFlipped: false } : c
+                    ))
+                );
+            }
+
+            setFlippedIds([]);
+            setIsProcessing(false);
+        }, isMatch ? 450 : 850);
+
+        flipTimeoutsRef.current.push(timeoutId);
+    }, [flippedIds, isProcessing, gameComplete, cards, isSwitching]);
+
+    const handleDifficultyChange = (d: Difficulty) => {
+        if (d === difficulty) return;
+        initializeGame(d);
+    };
 
     const handleCardClick = (cardId: number) => {
-        if (isProcessing) return;
+        if (isProcessing || gameComplete || isSwitching) return;
+        if (flippedIds.length >= 2) return;
 
-        const card = cards.find(c => c.id === cardId);
+        const card = cards.find((c) => c.id === cardId);
         if (!card || card.isFlipped || card.isMatched) return;
-        if (flippedCards.length >= 2) return;
 
-        if (!gameStarted) {
-            setGameStarted(true);
-        }
+        if (!gameStarted) setGameStarted(true);
 
-        const newFlippedCards = [...flippedCards, cardId];
-        setFlippedCards(newFlippedCards);
-        setCards(prev => prev.map(c =>
+        setCards((prev) => prev.map((c) => (
             c.id === cardId ? { ...c, isFlipped: true } : c
-        ));
-
-        if (newFlippedCards.length === 2) {
-            setMoves(prev => prev + 1);
-            setIsProcessing(true);
-
-            const [firstId, secondId] = newFlippedCards;
-
-            setCards(prev => {
-                const firstCard = prev.find(c => c.id === firstId);
-                const secondCard = prev.find(c => c.id === secondId);
-
-                if (firstCard && secondCard && firstCard.emoji === secondCard.emoji) {
-                    setTimeout(() => {
-                        setCards(p => p.map(c =>
-                            c.id === firstId || c.id === secondId
-                                ? { ...c, isMatched: true }
-                                : c
-                        ));
-                        setMatches(m => m + 1);
-                        setFlippedCards([]);
-                        setIsProcessing(false);
-                    }, 500);
-                } else {
-                    setTimeout(() => {
-                        setCards(p => p.map(c =>
-                            c.id === firstId || c.id === secondId
-                                ? { ...c, isFlipped: false }
-                                : c
-                        ));
-                        setFlippedCards([]);
-                        setIsProcessing(false);
-                    }, 1000);
-                }
-
-                return prev;
-            });
-        }
+        )));
+        setFlippedIds((prev) => [...prev, cardId]);
     };
 
     const formatTime = (seconds: number) => {
@@ -151,13 +315,15 @@ export default function MemoryGame() {
         return `${mins}:${secs.toString().padStart(2, '0')}`;
     };
 
-    const { pairs, cols } = GRID_CONFIG[difficulty];
+    const restartDisabled = (
+                                !gameStarted && !gameComplete
+                            ) || isSwitching;
 
     return (
         <div className="space-y-6">
             <div className="flex items-center gap-3 mb-8">
                 <div className="p-2.5 rounded-lg bg-muted">
-                    <Gamepad2 className="w-5 h-5" />
+                    <Gamepad2 className="w-5 h-5"/>
                 </div>
                 <div>
                     <h2 className="text-xl font-semibold">{t('title')}</h2>
@@ -165,39 +331,41 @@ export default function MemoryGame() {
                 </div>
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-border bg-card">
+            <div
+                className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-border bg-card">
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-muted-foreground" />
+                        <Clock className="w-4 h-4 text-muted-foreground"/>
                         <span className="font-mono text-lg">{formatTime(timer)}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-muted-foreground" />
+                        <Zap className="w-4 h-4 text-muted-foreground"/>
                         <span className="font-mono text-lg">{moves}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Trophy className="w-4 h-4 text-muted-foreground" />
-                        <span className="font-mono text-lg">{matches}/{pairs}</span>
+                        <Trophy className="w-4 h-4 text-muted-foreground"/>
+                        <span className="font-mono text-lg">
+              {matches}/{pairs}
+            </span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <select
+                    <CustomDifficultySelect
                         value={difficulty}
-                        onChange={(e) => setDifficulty(e.target.value as Difficulty)}
-                        className="h-10 px-3 rounded-lg border border-border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-foreground/10"
-                    >
-                        <option value="easy">{t('levels.easy')}</option>
-                        <option value="medium">{t('levels.medium')}</option>
-                        <option value="hard">{t('levels.hard')}</option>
-                    </select>
+                        onChange={handleDifficultyChange}
+                        labels={labels}
+                        ariaLabel="Difficulty"
+                        disabled={isSwitching}
+                    />
                     <Button
                         variant="outline"
                         size="sm"
                         onClick={() => initializeGame(difficulty)}
                         className="gap-2"
+                        disabled={restartDisabled}
                     >
-                        <RotateCcw className="w-4 h-4" />
+                        <RotateCcw className="w-4 h-4"/>
                         {t('restart')}
                     </Button>
                 </div>
@@ -211,35 +379,46 @@ export default function MemoryGame() {
                         {t('complete.stats', { moves, time: formatTime(timer) })}
                     </p>
                     <Button onClick={() => initializeGame(difficulty)} className="gap-2">
-                        <RotateCcw className="w-4 h-4" />
+                        <RotateCcw className="w-4 h-4"/>
                         {t('playAgain')}
                     </Button>
                 </div>
             )}
 
-            <div className={cn('grid gap-3 max-w-2xl mx-auto', cols)}>
-                {cards.map((card) => (
-                    <button
-                        key={card.id}
-                        onClick={() => handleCardClick(card.id)}
-                        disabled={card.isMatched || isProcessing}
-                        className={cn(
-                            'aspect-square rounded-xl border text-3xl sm:text-4xl transition-all duration-300 transform',
-                            card.isFlipped || card.isMatched
-                                ? 'bg-card border-foreground/20 rotate-0'
-                                : 'bg-muted border-border hover:border-foreground/20 hover:bg-muted/80',
-                            card.isMatched && 'opacity-60',
-                            !card.isFlipped && !card.isMatched && 'hover:scale-105'
-                        )}
-                    >
-                        <span className={cn(
-                            'transition-opacity duration-200',
-                            card.isFlipped || card.isMatched ? 'opacity-100' : 'opacity-0'
-                        )}>
-                            {card.emoji}
-                        </span>
-                    </button>
-                ))}
+            <div
+                className={cn(
+                    'grid gap-3 max-w-2xl mx-auto',
+                    cols,
+                    'transition-opacity duration-150',
+                    isSwitching ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                )}
+            >
+                {cards.map((card) => {
+                    const shown = card.isFlipped || card.isMatched;
+
+                    return (
+                        <button
+                            key={card.id}
+                            onClick={() => handleCardClick(card.id)}
+                            disabled={card.isMatched || isProcessing || isSwitching}
+                            className={cn(
+                                'aspect-square rounded-xl border transition-all duration-200 transform',
+                                'flex items-center justify-center text-3xl sm:text-4xl',
+                                shown
+                                    ? 'bg-card border-foreground/20'
+                                    : 'bg-muted border-border hover:border-foreground/20 hover:bg-muted/80 hover:scale-105',
+                                card.isMatched && 'opacity-60',
+                                (
+                                    isProcessing || isSwitching
+                                ) && !card.isMatched && 'cursor-not-allowed'
+                            )}
+                        >
+              <span className={cn('transition-opacity duration-150', shown ? 'opacity-100' : 'opacity-0')}>
+                {card.emoji}
+              </span>
+                        </button>
+                    );
+                })}
             </div>
         </div>
     );

@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import GamesNavigation from '@/components/games/GamesNavigation';
+import GamesNavigation from '@/components/navbars/GamesNavigation';
 import Footer from '@/components/home/Footer';
 import Quiz from '@/components/games/Quiz';
 import MemoryGame from '@/components/games/MemoryGame';
 import TypingSpeed from '@/components/games/TypingSpeed';
-import { Brain, Gamepad2, Keyboard, Sparkles } from 'lucide-react';
+import { Gamepad2, Keyboard, Sparkles, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type GameType = 'quiz' | 'memory' | 'typing';
@@ -32,10 +32,12 @@ function GameCard({ title, description, icon, isActive, onClick }: GameCardProps
             )}
         >
             <div className="flex items-start gap-4">
-                <div className={cn(
-                    'p-3 rounded-lg transition-colors duration-200',
-                    isActive ? 'bg-foreground text-background' : 'bg-muted text-foreground'
-                )}>
+                <div
+                    className={cn(
+                        'h-11 w-11 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200',
+                        isActive ? 'bg-foreground text-background' : 'bg-muted text-foreground'
+                    )}
+                >
                     {icon}
                 </div>
                 <div className="flex-1">
@@ -56,7 +58,7 @@ export default function GamesPage() {
             id: 'quiz' as GameType,
             title: t('gameTypes.quiz.title'),
             description: t('gameTypes.quiz.description'),
-            icon: <Brain className="w-5 h-5"/>
+            icon: <Trophy className="w-5 h-5"/>
         },
         {
             id: 'memory' as GameType,
