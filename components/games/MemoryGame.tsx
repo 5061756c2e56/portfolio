@@ -95,13 +95,13 @@ function CustomDifficultySelect({
                 onClick={() => !disabled && setOpen((v) => !v)}
                 disabled={disabled}
                 className={cn(
-                    'h-10 px-3 rounded-lg border border-border bg-transparent text-sm',
+                    'h-10 px-3 rounded-xl border border-blue-500/20 bg-transparent text-sm',
                     'inline-flex items-center gap-2',
-                    'transition-colors',
+                    'transition-all duration-300',
                     disabled
                         ? 'opacity-60 cursor-not-allowed'
-                        : 'hover:bg-accent hover:text-foreground',
-                    'focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/10'
+                        : 'hover:bg-blue-500/10 hover:border-blue-500/40 hover:text-blue-500',
+                    'focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30'
                 )}
             >
                 <span className="whitespace-nowrap">{labels[value]}</span>
@@ -110,7 +110,7 @@ function CustomDifficultySelect({
 
             <div
                 className={cn(
-                    'absolute right-0 mt-2 w-44 origin-top-right rounded-lg border border-border bg-card shadow-lg p-1 z-50',
+                    'absolute left-0 sm:left-auto sm:right-0 mt-2 w-44 origin-top-left sm:origin-top-right rounded-xl border border-blue-500/20 bg-card/95 backdrop-blur-md shadow-xl shadow-blue-500/5 p-1 z-50',
                     'transition-all duration-150',
                     open ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
                 )}
@@ -130,14 +130,14 @@ function CustomDifficultySelect({
                                 setOpen(false);
                             }}
                             className={cn(
-                                'w-full px-2.5 py-2 rounded-md text-sm text-left',
+                                'w-full px-2.5 py-2 rounded-lg text-sm text-left',
                                 'flex items-center justify-between gap-2',
-                                'transition-colors',
-                                active ? 'bg-accent text-foreground' : 'hover:bg-accent/70 text-muted-foreground hover:text-foreground'
+                                'transition-all duration-200',
+                                active ? 'bg-blue-500/10 text-blue-500' : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
                             )}
                         >
                             <span>{labels[it]}</span>
-                            {active && <Check className="w-4 h-4"/>}
+                            {active && <Check className="w-4 h-4 text-blue-500"/>}
                         </button>
                     );
                 })}
@@ -322,8 +322,8 @@ export default function MemoryGame() {
     return (
         <div className="space-y-6">
             <div className="flex items-center gap-3 mb-8">
-                <div className="p-2.5 rounded-lg bg-muted">
-                    <Gamepad2 className="w-5 h-5"/>
+                <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                    <Gamepad2 className="w-5 h-5 text-blue-500"/>
                 </div>
                 <div>
                     <h2 className="text-xl font-semibold">{t('title')}</h2>
@@ -332,18 +332,18 @@ export default function MemoryGame() {
             </div>
 
             <div
-                className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-border bg-card">
+                className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-blue-500/20 bg-card">
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-muted-foreground"/>
+                        <Clock className="w-4 h-4 text-blue-500"/>
                         <span className="font-mono text-lg">{formatTime(timer)}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-muted-foreground"/>
+                        <Zap className="w-4 h-4 text-blue-500"/>
                         <span className="font-mono text-lg">{moves}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Trophy className="w-4 h-4 text-muted-foreground"/>
+                        <Trophy className="w-4 h-4 text-blue-500"/>
                         <span className="font-mono text-lg">
               {matches}/{pairs}
             </span>
@@ -372,7 +372,7 @@ export default function MemoryGame() {
             </div>
 
             {gameComplete && (
-                <div className="p-6 rounded-xl border border-border bg-card text-center">
+                <div className="p-6 rounded-xl border border-blue-500/20 bg-linear-to-b from-blue-500/5 to-transparent text-center">
                     <div className="text-4xl mb-4">🎉</div>
                     <h3 className="text-xl font-semibold mb-2">{t('complete.title')}</h3>
                     <p className="text-muted-foreground mb-4">
@@ -405,8 +405,8 @@ export default function MemoryGame() {
                                 'aspect-square rounded-xl border transition-all duration-200 transform',
                                 'flex items-center justify-center text-3xl sm:text-4xl',
                                 shown
-                                    ? 'bg-card border-foreground/20'
-                                    : 'bg-muted border-border hover:border-foreground/20 hover:bg-muted/80 hover:scale-105',
+                                    ? 'bg-card border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]'
+                                    : 'bg-muted border-blue-500/10 hover:border-blue-500/30 hover:bg-blue-500/5 hover:scale-105',
                                 card.isMatched && 'opacity-60',
                                 (
                                     isProcessing || isSwitching

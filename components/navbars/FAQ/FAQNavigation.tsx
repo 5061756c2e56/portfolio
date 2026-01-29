@@ -6,7 +6,7 @@ import Settings from '@/components/Settings';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasHat } from '@/components/christmas/ChristmasHat';
 import { Link } from '@/i18n/routing';
-import { Gamepad2, Home } from 'lucide-react';
+import { Gamepad2, Home, TrendingUp } from 'lucide-react';
 import MobileMenuFAQ from './MobileMenuFAQ';
 
 export default function FAQNavigation() {
@@ -45,15 +45,23 @@ export default function FAQNavigation() {
                     <div className="hidden lg:flex items-center gap-2">
                         <Link
                             href="/"
-                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground  hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             <Home className="w-4 h-4"/>
                             <span className="hidden sm:inline">{t('home')}</span>
                         </Link>
 
                         <Link
+                            href="/stats"
+                            className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
+                        >
+                            <TrendingUp className="w-4 h-4"/>
+                            {t('statsGithub')}
+                        </Link>
+
+                        <Link
                             href="/games"
-                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground  hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             <Gamepad2 className="w-4 h-4"/>
                             <span className="hidden sm:inline">{t('games')}</span>

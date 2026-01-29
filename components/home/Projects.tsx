@@ -2,15 +2,14 @@
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { GithubIcon } from '@/components/icons/GithubIcon';
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
-import { WebIcon } from '@/components/icons/WebIcon';
-import { FileText } from 'lucide-react';
+import { Earth, FileText } from 'lucide-react';
 import { useRouter } from '@/i18n/routing';
 import Image from 'next/image';
+import { SiGithub } from 'react-icons/si';
 
 export default function Projects() {
     const t = useTranslations('projects');
@@ -57,7 +56,7 @@ export default function Projects() {
     ];
 
     const techBadges: Record<string, string> = {
-        'TypeScript': 'https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript',
+        'TypeScript': 'https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white',
         'NextJS': 'https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js',
         'Tailwind CSS': 'https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=for-the-badge&logo=tailwind-css',
         'Redis': 'https://img.shields.io/badge/Redis-7.0-orange?style=for-the-badge&logo=redis',
@@ -189,8 +188,8 @@ export default function Projects() {
                                                         : 'btn-fill-secondary'
                                                 )}
                                             >
-                                                {btn.label === t('buttonGitHub') && <GithubIcon className="w-4 h-4"/>}
-                                                {btn.label === t('buttonVisitSite') && <WebIcon className="w-4 h-4"/>}
+                                                {btn.label === t('buttonGitHub') && <SiGithub className="w-4 h-4"/>}
+                                                {btn.label === t('buttonVisitSite') && <Earth className="w-4 h-4"/>}
                                                 {btn.label}
                                             </Button>
                                         </a>

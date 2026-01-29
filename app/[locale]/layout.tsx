@@ -10,6 +10,10 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import '../globals.css';
 import { isChristmasMode } from '@/lib/christmas';
+import PatchnotesWidget from '@/components/patchnotes/PatchnotesWidget';
+import Footer from '@/components/home/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
+import SkipLink from '@/components/SkipLink';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -51,7 +55,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 'Paul Viandier', 'Viandier', 'Paul', 'developer', 'web developer', 'portfolio', 'Portfolio',
                 'cybersecurity', 'fullstack', 'web development', 'TypeScript', 'React', 'Next.js', 'NextJS',
                 'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub',
-                'REST API', 'web integrator', 'frontend developer', 'backend developer', 'apprenticeship',
+                'REST API', 'web integrator', 'frontend developer', 'backend developer', 'backend developer',
+                'apprenticeship',
                 'developer training', 'developer France', 'web developer France', 'developer portfolio',
                 'Paul Viandier developer', 'Viandier developer', 'Paul web developer'
             ],
@@ -252,7 +257,13 @@ export default async function RootLayout({
             <div className="min-h-screen flex flex-col relative z-10">
                 <StructuredData/>
                 <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
-                    {children}
+                    <SkipLink />
+                    <ScrollToTop />
+                    <main id="main-content">
+                        {children}
+                    </main>
+                    <PatchnotesWidget locale={locale}/>
+                    <Footer/>
                 </LocaleProvider>
                 <Toaster/>
             </div>

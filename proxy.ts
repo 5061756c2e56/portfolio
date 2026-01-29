@@ -15,36 +15,46 @@ function generateNonce(): string {
 
 export function proxy(request: NextRequest) {
     let nonce = request.cookies.get('csp-nonce')?.value;
-
-    if (!nonce) {
-        nonce = generateNonce();
-    }
+    if (!nonce) nonce = generateNonce();
 
     const response = intlMiddleware(request);
 
+    const CF = 'https://challenges.cloudflare.com';
+    const EMAILJS = 'https://api.emailjs.com';
+
     const cspHeader = response.headers.get('Content-Security-Policy');
+
     if (cspHeader) {
         const updatedCsp = cspHeader
             .replace(
                 /script-src[^;]+/,
-                `script-src 'self' 'nonce-${nonce}' https://api.emailjs.com`
+                `script-src 'self' 'nonce-${nonce}' ${EMAILJS} ${CF}`
             )
             .replace(
                 /script-src-elem[^;]+/,
-                `script-src-elem 'self' 'nonce-${nonce}' 'unsafe-inline' https://api.emailjs.com`
+                `script-src-elem 'self' 'nonce-${nonce}' ${EMAILJS} ${CF}`
+            )
+            .replace(
+                /connect-src[^;]+/,
+                `connect-src 'self' ${EMAILJS} https://api.github.com ${CF}`
+            )
+            .replace(
+                /frame-src[^;]+/,
+                `frame-src ${CF}`
             );
+
         response.headers.set('Content-Security-Policy', updatedCsp);
     } else {
         const csp = [
             'default-src \'self\'',
-            `script-src 'self' 'nonce-${nonce}' https://api.emailjs.com`,
-            `script-src-elem 'self' 'nonce-${nonce}' 'unsafe-inline' https://api.emailjs.com`,
+            `script-src 'self' 'nonce-${nonce}' ${EMAILJS} ${CF}`,
+            `script-src-elem 'self' 'nonce-${nonce}' ${EMAILJS} ${CF}`,
             'worker-src \'self\' blob:',
             'style-src \'self\' \'unsafe-inline\'',
-            'img-src \'self\' data: https: blob:',
+            'img-src \'self\' data: blob: https://img.shields.io https://avatars.githubusercontent.com',
             'font-src \'self\' data:',
-            'connect-src \'self\' https://api.emailjs.com https://api.github.com',
-            'frame-src \'none\'',
+            `connect-src 'self' ${EMAILJS} https://api.github.com ${CF}`,
+            `frame-src ${CF}`,
             'object-src \'none\'',
             'base-uri \'self\'',
             'form-action \'self\'',
@@ -52,6 +62,7 @@ export function proxy(request: NextRequest) {
             'upgrade-insecure-requests',
             'block-all-mixed-content'
         ].join('; ');
+
         response.headers.set('Content-Security-Policy', csp);
     }
 

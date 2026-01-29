@@ -121,8 +121,8 @@
     }
   },
   "finalCTA": {
-    "title": "Have a question — or want to try the interactive experience live?",
-    "description": "The FAQ covers the essentials (how it works, what’s inside, quick answers). The games area offers mini-challenges like Memory Match or Typing Speed to experience responsiveness, UX, and interactivity in action.",
+    "title": "Have a question, or want to try the interactive experience live?",
+    "description": "The FAQ covers the essentials: how it works, what's inside, and quick answers. The games area offers mini-challenges like Memory Match or Typing Speed to experience responsiveness, UX, and interactivity in action.",
     "faqButton": "Go to the FAQ",
     "gamesButton": "Explore the games"
   },
@@ -134,6 +134,7 @@
     "games": "Games",
     "projects": "Projects",
     "statsGithub": "GitHub Stats",
+    "github-activities": "GitHub Activities",
     "contact": "Contact",
     "loading": "Loading...",
     "language": "Language",
@@ -287,64 +288,176 @@
     }
   },
   "portfolioProject": {
-    "description": "A modern, fast, and responsive showcase to present my projects, my technical choices, and my approach to building clean interfaces.",
-    "buttonLiveAccess": "Access the live project",
-    "buttonViewCodeGithub": "See the code on GitHub",
-    "overview": {
-      "title": "Overview",
-      "description": "The idea: to enable a recruiter or client to understand “what I can do“ in a very short time, then explore projects effortlessly."
+    "title": "Portfolio",
+    "badge": "Personal Project",
+    "subtitle": "A modern and performant portfolio, designed to showcase my web development skills and deliver a polished user experience.",
+    "description": "This project is my professional online showcase. Built with modern web technologies, it highlights my work, technical skills, and ability to deliver clean, performant, and accessible interfaces.",
+    "links": {
+      "live": "View site",
+      "code": "View code"
     },
-    "showcaseItems": {
-      "item1": {
-        "title": "Clear presentation",
-        "description": "A landing page that can be read in a few seconds: title, pitch, clear sections, and clean typographical hierarchy."
-      },
-      "item2": {
-        "title": "Structured project pages",
-        "description": "Each project follows a simple structure: context, objectives, technical choices, and links. It's easy to understand without unnecessary scrolling."
-      },
-      "item3": {
-        "title": "Smooth responsiveness",
-        "description": "Mobile-first optimized: adaptive grids, consistent spacing, accessible buttons, and stable rendering on small screens."
+    "meta": {
+      "durationLabel": "Duration",
+      "duration": "2 months",
+      "roleLabel": "Role",
+      "role": "Developer",
+      "teamLabel": "Team",
+      "team": "Solo",
+      "statusLabel": "Status",
+      "status": "Live"
+    },
+    "problem": {
+      "title": "The Problem",
+      "description": "A paper resume or PDF is no longer enough to stand out. Recruiters and clients want to see real work: a functional interface, clean code, and attention to detail. A static document explains, but proves nothing."
+    },
+    "solution": {
+      "title": "The Solution",
+      "description": "Build an interactive portfolio that demonstrates my skills in action. Every technical choice, every interface detail, every interaction is tangible proof of my expertise — not just a list of technologies I know."
+    },
+    "features": {
+      "title": "Key Features",
+      "subtitle": "The essential elements that make this project stand out.",
+      "items": {
+        "item1": {
+          "title": "Clear Architecture",
+          "description": "Modular and scalable structure. Each component has its responsibility, keeping the code readable and maintainable as the project grows."
+        },
+        "item2": {
+          "title": "Detailed Project Pages",
+          "description": "A reusable template for each project: context, technical choices, challenges faced, and results achieved. Consistent and easy to expand."
+        },
+        "item3": {
+          "title": "Mobile-first & Responsive",
+          "description": "Optimal experience on all screens. Adaptive layouts, optimized images, and smooth interactions from mobile to desktop."
+        }
       }
     },
-    "context": {
-      "title": "Context",
-      "description": "A static document explains, but does not show. A well-made portfolio is like a product demo: you see the result, judge the quality, and then go to the code if you want to dig deeper.",
-      "description2": "So I created a structured project page (context → objectives → choices → results) and a clean visual layout to make it easy to read."
+    "techChoices": {
+      "title": "Tech Stack",
+      "description": "Modern technologies chosen for their reliability, performance, and ecosystem.",
+      "items": {
+        "item1": "Next.js 16 + strict TypeScript — SSR, optimized routing, strong typing for robust code.",
+        "item2": "Tailwind CSS 4 — Consistent design system, utility styles, fast iteration without CSS legacy.",
+        "item3": "Radix UI + shadcn/ui — Accessible by default components, customizable and well-documented."
+      }
     },
-    "goals": {
-      "title": "Goals",
-      "bulletedList1": "Present my projects professionally, without fuss",
-      "bulletedList2": "Highlight my skills and useful technical choices",
-      "bulletedList3": "Ensure fast and stable rendering (desktop + mobile)"
+    "architecture": {
+      "title": "Architecture",
+      "description": "Product-focused organization: clear separation between UI and content via i18n, reusable components, and intuitive file structure. The project stays maintainable and evolvable even after months without touching it."
     },
-    "methodology": {
-      "title": "Methodology",
-      "bulletedList1": "Definition of an identical page structure for each project (readability)",
-      "bulletedList2": "Simple system design (spacing, heading sizes, reusable components)",
-      "bulletedList3": "Next.js + Tailwind CSS implementation, responsive from the outset",
-      "bulletedList4": "Media optimization and UI finishing touches (micro-interactions, visual consistency)"
+    "quality": {
+      "title": "Quality & Standards",
+      "subtitle": "The pillars that ensure a professional user experience.",
+      "items": {
+        "performance": {
+          "title": "Performance",
+          "description": "Lightweight pages, lazy loading, optimized images. Lighthouse score > 90 on all criteria."
+        },
+        "accessibility": {
+          "title": "Accessibility",
+          "description": "Keyboard navigation, WCAG contrasts, semantic HTML, ARIA labels. Usable by everyone."
+        },
+        "security": {
+          "title": "Security",
+          "description": "Secure headers, input validation, no vulnerable dependencies. OWASP best practices."
+        },
+        "seo": {
+          "title": "SEO",
+          "description": "Complete metadata, sitemap, semantic structure. Optimal indexing by search engines."
+        }
+      }
     },
-    "difficulty": {
-      "title": "Difficulty",
-      "bulletedList1": "Avoid a cold “catalog” page → solution: alternate text and visuals, reading rhythm, and value-oriented titles.",
-      "bulletedList2": "Keep sharp images on mobile devices without breaking the layout → solution: adaptive grids and consistent image heights."
+    "challenges": {
+      "title": "Challenges Overcome",
+      "items": {
+        "item1": "Avoiding the \"cold catalog\" effect — balancing text and visuals, creating an engaging reading rhythm.",
+        "item2": "Maintaining quality on mobile — responsive grids, stable typographic hierarchy, smooth touch interactions."
+      }
     },
     "results": {
       "title": "Results",
-      "bulletedList1": "Quick read: the objective and visual quality are immediately apparent.",
-      "bulletedList2": "Clear structure: each project is scannable and consistent",
-      "bulletedList3": "Scalable base: adding new projects without UI debt"
+      "items": {
+        "item1": "Professional online presence that reflects my skill level and work style.",
+        "item2": "Maintainable codebase: adding a new project takes less than 30 minutes.",
+        "item3": "Concrete demonstration of my skills — the code is public and speaks for itself."
+      }
     },
-    "usedTechnology": "Technologies used",
-    "learnedLessons": {
-      "title": "Learned lessons",
-      "bulletedList1": "A good portfolio is a UX: it should guide, not “tell a story.”",
-      "bulletedList2": "The visual rhythm (alternating blocks) improves comprehension.",
-      "bulletedList3": "A fixed structure makes content more scalable and maintainable."
+    "nextSteps": {
+      "title": "Next Steps",
+      "items": {
+        "item1": "Expand with new projects and detailed case studies.",
+        "item2": "Add subtle animations and micro-interactions to enhance UX.",
+        "item3": "Integrate a technical blog to share my learnings."
+      }
     },
-    "viewProject": "View the project"
+    "ctaBottom": {
+      "title": "Want to see more?",
+      "description": "Explore the live site or dive into the source code to see how it's built."
+    }
+  },
+  "githubStats": {
+    "title": "GitHub Statistics",
+    "homeTitle": "GitHub Activity",
+    "homeSubtitle": "Statistics from my open source projects",
+    "selectRepos": "Select repositories",
+    "minOneRepo": "At least one repository must be selected",
+    "loading": "Loading...",
+    "chartTitle": "Commit history",
+    "chartSubtitle": "Click to show the chart",
+    "loadingData": "Loading data...",
+    "takeTime": "This process may take some time",
+    "viewAllStats": "View all statistics",
+    "periods": {
+      "7d": "7 days",
+      "30d": "30 days",
+      "6m": "6 months",
+      "12m": "12 months",
+      "loading": "Loading...",
+      "notAvailable": "Insufficient data for this period"
+    },
+    "charts": {
+      "commits": {
+        "label": "Commits",
+        "total": "{count} commits in this period"
+      }
+    },
+    "search": {
+      "title": "Search by hash",
+      "placeholder": "Commit hash (e.g. a1b2c3d)",
+      "loading": "Loading...",
+      "noResults": "No commits found",
+      "clearSelection": "Clear selection",
+      "sortNewest": "Newest first",
+      "sortOldest": "Oldest first"
+    },
+    "commitDetail": {
+      "loading": "Loading commit...",
+      "filesChanged": "{count, plural, =1 {1 file changed} other {# files changed}}",
+      "viewOnGithub": "View on GitHub"
+    },
+    "errors": {
+      "loading": "Failed to load statistics",
+      "notConfigured": "GitHub token not configured"
+    },
+    "overview": {
+      "commits": "Commits",
+      "contributors": "Contributors",
+      "additions": "Lines added",
+      "deletions": "Lines deleted",
+      "stars": "Stars",
+      "forks": "Forks",
+      "size": "Size",
+      "created": "Created"
+    },
+    "languages": {
+      "title": "Languages",
+      "other": "Other"
+    },
+    "contributors": {
+      "title": "Contributors",
+      "total": "{count, plural, =1 {1 contributor} other {# contributors}}",
+      "andMore": "+{count, plural, =1 {1 other} other {# others}}"
+    }
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -411,5 +524,8 @@
         "answer": "A product-driven approach: clean UI, robust logic, polished details, and real attention to perceived quality."
       }
     }
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content"
   }
 }

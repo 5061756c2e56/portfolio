@@ -11,7 +11,7 @@ import { useActiveSection } from '@/hooks/use-active-section';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { cn } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
-import { ExternalLink } from 'lucide-react';
+import { FileText, Gamepad2, TrendingUp } from 'lucide-react';
 
 export default function Navigation() {
     const t = useTranslations('nav');
@@ -74,18 +74,18 @@ export default function Navigation() {
 
     const linkClass = (id: string) =>
         cn(
-            'px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 hover:bg-accent',
-            activeSection === id ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+            'px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-blue-500/10',
+            activeSection === id ? 'text-blue-500' : 'text-muted-foreground hover:text-blue-500'
         );
 
     return (
         <nav
             className={cn(
-                'w-full border-b border-border bg-card/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-                scrolled ? 'shadow-sm' : ''
+                'w-full border-b border-blue-500/10 bg-card/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+                scrolled ? 'shadow-sm shadow-blue-500/5' : ''
             )}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-6">
                 <div className="flex items-center justify-between h-16 gap-4">
                     <a
                         href="#home"
@@ -97,7 +97,7 @@ export default function Navigation() {
                             <ChristmasHat size={24} className="w-6 h-6 text-primary"/>
                         ) : (
                             <div
-                                className="relative w-7 h-7 rounded-full overflow-hidden border border-border hover:border-foreground/30 transition-all duration-300 shrink-0">
+                                className="relative w-7 h-7 rounded-full overflow-hidden border border-blue-500/30 hover:border-blue-500/50 hover:shadow-[0_0_10px_rgba(59,130,246,0.2)] transition-all duration-300 shrink-0">
                                 <Image src="/pfp.png" alt="Paul Viandier" fill className="object-cover" sizes="28px"/>
                             </div>
                         )}
@@ -142,6 +142,17 @@ export default function Navigation() {
                             </span>
                             </a>
 
+                            <a href="#github-activities" onClick={(e) => handleNavClick(e, '#github-activities')}
+                               className={linkClass('github-activities')}>
+                                <span
+                                    ref={(el) => {
+                                        labelRefs.current['github-activities'] = el;
+                                    }}
+                                >
+                                    {t('github-activities')}
+                                </span>
+                            </a>
+
                             <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}
                                className={linkClass('contact')}>
                                 <span
@@ -166,7 +177,7 @@ export default function Navigation() {
 
                             <span
                                 aria-hidden="true"
-                                className="pointer-events-none absolute bottom-0 h-0.5 rounded-full bg-white transition-[left,width,opacity] duration-300 ease-out"
+                                className="pointer-events-none absolute bottom-0 h-0.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)] transition-[left,width,opacity] duration-300 ease-out"
                                 style={{ left: indicator.left, width: indicator.width, opacity: indicator.opacity }}
                             />
                         </div>
@@ -178,18 +189,26 @@ export default function Navigation() {
 
                         <Link
                             href="/faq"
-                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent inline-flex items-center gap-2"
+                            className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             FAQ
-                            <ExternalLink className="w-4 h-4 opacity-70"/>
+                            <FileText className="w-4 h-4 opacity-70"/>
+                        </Link>
+
+                        <Link
+                            href="/stats"
+                            className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
+                        >
+                            {t('statsGithub')}
+                            <TrendingUp className="w-4 h-4 opacity-70"/>
                         </Link>
 
                         <Link
                             href="/games"
-                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent inline-flex items-center gap-2"
+                            className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             {t('games')}
-                            <ExternalLink className="w-4 h-4 opacity-70"/>
+                            <Gamepad2 className="w-4 h-4 opacity-70"/>
                         </Link>
 
                         <div className="ml-2">

@@ -390,13 +390,15 @@ function CustomSelect<T extends string>({
     onChange,
     options,
     label,
-    disabled
+    disabled,
+    dropdownAlign = 'left'
 }: {
     value: T;
     onChange: (v: T) => void;
     options: { value: T; label: string }[];
     label: string;
     disabled?: boolean;
+    dropdownAlign?: 'left' | 'right';
 }) {
     const [open, setOpen] = useState(false);
     const rootRef = useRef<HTMLDivElement | null>(null);
@@ -417,7 +419,7 @@ function CustomSelect<T extends string>({
     const current = options.find((o) => o.value === value);
 
     return (
-        <div ref={rootRef} className="relative">
+        <div ref={rootRef} className="relative inline-block">
             <button
                 type="button"
                 aria-label={label}
@@ -426,11 +428,11 @@ function CustomSelect<T extends string>({
                 disabled={disabled}
                 onClick={() => !disabled && setOpen((v) => !v)}
                 className={cn(
-                    'h-10 px-3 rounded-lg border border-border bg-transparent text-sm',
+                    'h-10 px-3 rounded-xl border border-blue-500/20 bg-transparent text-sm',
                     'inline-flex items-center gap-2',
-                    'transition-colors',
-                    disabled ? 'opacity-60 cursor-not-allowed' : 'hover:bg-accent hover:text-foreground',
-                    'focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/10'
+                    'transition-all duration-300',
+                    disabled ? 'opacity-60 cursor-not-allowed' : 'hover:bg-blue-500/10 hover:border-blue-500/40 hover:text-blue-500',
+                    'focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30'
                 )}
             >
                 <span className="whitespace-nowrap">{current?.label ?? value}</span>
@@ -441,8 +443,9 @@ function CustomSelect<T extends string>({
                 role="listbox"
                 aria-label={label}
                 className={cn(
-                    'absolute right-0 mt-2 w-48 origin-top-right rounded-lg border border-border bg-card shadow-lg p-1 z-50',
+                    'absolute top-full mt-2 min-w-48 rounded-xl border border-blue-500/20 bg-card/95 backdrop-blur-md shadow-xl shadow-blue-500/5 p-1 z-50',
                     'transition-all duration-150',
+                    dropdownAlign === 'right' ? 'right-0 origin-top-right' : 'left-0 origin-top-left',
                     open ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
                 )}
             >
@@ -459,14 +462,14 @@ function CustomSelect<T extends string>({
                                 setOpen(false);
                             }}
                             className={cn(
-                                'w-full px-2.5 py-2 rounded-md text-sm text-left',
+                                'w-full px-2.5 py-2 rounded-lg text-sm text-left',
                                 'flex items-center justify-between gap-2',
-                                'transition-colors',
-                                active ? 'bg-accent text-foreground' : 'hover:bg-accent/70 text-muted-foreground hover:text-foreground'
+                                'transition-all duration-200',
+                                active ? 'bg-blue-500/10 text-blue-500' : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
                             )}
                         >
                             <span>{opt.label}</span>
-                            {active && <Check className="w-4 h-4"/>}
+                            {active && <Check className="w-4 h-4 text-blue-500"/>}
                         </button>
                     );
                 })}
@@ -863,8 +866,8 @@ export default function TypingSpeed() {
         return (
             <div className="space-y-6">
                 <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2.5 rounded-lg bg-muted">
-                        <Keyboard className="w-5 h-5"/>
+                    <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                        <Keyboard className="w-5 h-5 text-blue-500"/>
                     </div>
                     <div>
                         <h2 className="text-xl font-semibold">{t('title')}</h2>
@@ -872,27 +875,28 @@ export default function TypingSpeed() {
                     </div>
                 </div>
 
-                <div className="p-6 rounded-xl border border-border bg-card text-center">
+                <div
+                    className="p-6 rounded-xl border border-blue-500/20 bg-linear-to-b from-blue-500/5 to-transparent text-center">
                     <div className="text-4xl mb-4">⌨️</div>
                     <h3 className="text-xl font-semibold mb-2">{t('results.title')}</h3>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
-                        <div className="p-4 rounded-lg bg-muted">
-                            <div className="text-2xl font-bold gradient-text">{netWpm}</div>
+                        <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                            <div className="text-2xl font-bold text-blue-500">{netWpm}</div>
                             <div className="text-sm text-muted-foreground">WPM</div>
                         </div>
 
-                        <div className="p-4 rounded-lg bg-muted">
+                        <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
                             <div className="text-2xl font-bold">{accuracy}%</div>
                             <div className="text-sm text-muted-foreground">{t('results.accuracy')}</div>
                         </div>
 
-                        <div className="p-4 rounded-lg bg-muted">
+                        <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
                             <div className="text-2xl font-bold">{Math.round(elapsedSeconds)}s</div>
                             <div className="text-sm text-muted-foreground">{t('results.time')}</div>
                         </div>
 
-                        <div className="p-4 rounded-lg bg-muted">
+                        <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
                             <div className="text-2xl font-bold">{bestWpm ?? netWpm}</div>
                             <div className="text-sm text-muted-foreground">
                                 {isNewBest ? (
@@ -916,8 +920,8 @@ export default function TypingSpeed() {
     return (
         <div className="space-y-6">
             <div className="flex items-center gap-3 mb-8">
-                <div className="p-2.5 rounded-lg bg-muted">
-                    <Keyboard className="w-5 h-5"/>
+                <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                    <Keyboard className="w-5 h-5 text-blue-500"/>
                 </div>
                 <div>
                     <h2 className="text-xl font-semibold">{t('title')}</h2>
@@ -925,11 +929,11 @@ export default function TypingSpeed() {
                 </div>
             </div>
 
-            <div className="p-4 rounded-xl border border-border bg-card space-y-3">
-                <div className="flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-6">
+            <div className="p-4 rounded-xl border border-blue-500/20 bg-card space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
                         <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-muted-foreground"/>
+                            <Clock className="w-4 h-4 text-blue-500"/>
                             <span className={cn('font-mono text-lg', timeLeft <= 10 && gameState === 'playing'
                                                                      && 'text-red-500')}>
                 {timeLeft}s
@@ -937,17 +941,17 @@ export default function TypingSpeed() {
                         </div>
 
                         <div className="flex items-center gap-2">
-                            <Zap className="w-4 h-4 text-muted-foreground"/>
+                            <Zap className="w-4 h-4 text-blue-500"/>
                             <span className="font-mono text-lg">{netWpm} WPM</span>
                         </div>
 
                         <div className="flex items-center gap-2">
-                            <Target className="w-4 h-4 text-muted-foreground"/>
+                            <Target className="w-4 h-4 text-blue-500"/>
                             <span className="font-mono text-lg">{accuracy}%</span>
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                         {gameState === 'idle' ? (
                             <Button onClick={startGame} className="gap-2">
                                 <Play className="w-4 h-4"/>
@@ -968,17 +972,17 @@ export default function TypingSpeed() {
                             title={locale === 'fr' ? 'Annule la partie en cours' : 'Cancel current run'}
                         >
                             <X className="w-4 h-4"/>
-                            {locale === 'fr' ? 'Annuler' : 'Cancel'}
+                            <span className="hidden sm:inline">{locale === 'fr' ? 'Annuler' : 'Cancel'}</span>
                         </Button>
                     </div>
                 </div>
 
-                <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-                    <div className="h-full transition-all duration-300" style={{ width: `${progress}%` }}/>
+                <div className="w-full h-2 rounded-full bg-blue-500/10 overflow-hidden">
+                    <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: `${progress}%` }}/>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 justify-between">
-                    <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-2 justify-between">
+                    <div className="flex items-center gap-2 flex-wrap">
                         <CustomSelect
                             value={difficulty}
                             onChange={(v) => setDifficulty(v as Difficulty)}
@@ -999,6 +1003,7 @@ export default function TypingSpeed() {
                             options={durationOptions as any}
                             label="Duration"
                             disabled={controlsDisabled}
+                            dropdownAlign="right"
                         />
                     </div>
 
@@ -1007,7 +1012,7 @@ export default function TypingSpeed() {
                         onClick={hardReset}
                         disabled={!canReset}
                         className={cn(
-                            'text-sm text-muted-foreground hover:text-foreground transition-colors',
+                            'text-sm text-muted-foreground hover:text-blue-500 transition-colors',
                             !canReset && 'opacity-60 cursor-not-allowed hover:text-muted-foreground'
                         )}
                     >
@@ -1016,8 +1021,9 @@ export default function TypingSpeed() {
                 </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-border bg-card">
-                <div className="text-base sm:text-lg leading-relaxed mb-6 p-4 rounded-lg bg-muted min-h-16">
+            <div className="p-4 sm:p-6 rounded-xl border border-blue-500/20 bg-card">
+                <div
+                    className="text-base sm:text-lg leading-relaxed mb-6 p-3 sm:p-4 rounded-xl bg-blue-500/5 border border-blue-500/10 min-h-16">
                     {gameState === 'idle' ? (
                         <span className="text-muted-foreground">{t('pressStart')}</span>
                     ) : (
@@ -1043,10 +1049,10 @@ export default function TypingSpeed() {
                     name="typing-speed"
                     enterKeyHint="done"
                     className={cn(
-                        'w-full h-12 px-4 rounded-lg border bg-transparent text-base',
-                        'focus:outline-none focus:ring-2 focus:ring-foreground/10',
+                        'w-full h-12 px-4 rounded-xl border bg-transparent text-base transition-all duration-300',
+                        'focus:outline-none focus:border-blue-500/50 focus:shadow-[0_0_20px_rgba(59,130,246,0.15)]',
                         'disabled:opacity-50 disabled:cursor-not-allowed',
-                        gameState === 'playing' ? 'border-foreground/20' : 'border-border'
+                        gameState === 'playing' ? 'border-blue-500/30' : 'border-blue-500/20'
                     )}
                 />
             </div>

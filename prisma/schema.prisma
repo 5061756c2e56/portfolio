@@ -1,0 +1,79 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Repository {
+    id          String   @id @default(cuid())
+    owner       String
+    name        String
+    displayName String?
+    defaultBranch String @default("main")
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    lastSyncAt  DateTime?
+
+    commits     Commit[]
+
+    @@unique([owner, name])
+    @@index([owner, name])
+}
+
+model Commit {
+    id              String   @id @default(cuid())
+    sha             String
+    shortSha        String
+    message         String
+    messageTitle    String
+    author          String
+    authorEmail     String?
+    authorAvatar    String?
+    committedAt     DateTime
+    additions       Int      @default(0)
+    deletions       Int      @default(0)
+    filesChanged    Int      @default(0)
+    htmlUrl         String?
+    isMergeCommit   Boolean  @default(false)
+
+    repository      Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+    repositoryId    String
+
+    createdAt       DateTime @default(now())
+
+    @@unique([repositoryId, sha])
+    @@index([repositoryId])
+    @@index([committedAt])
+    @@index([sha])
+    @@index([repositoryId, committedAt])
+}
+
+model WebhookEvent {
+    id          String   @id @default(cuid())
+    eventType   String
+    payload     Json
+    processed   Boolean  @default(false)
+    processedAt DateTime?
+    error       String?
+    createdAt   DateTime @default(now())
+
+    @@index([processed])
+    @@index([createdAt])
+}
+
+model SyncLog {
+    id          String   @id @default(cuid())
+    repositoryId String?
+    type        String
+    status      String
+    commitsAdded Int     @default(0)
+    error       String?
+    startedAt   DateTime @default(now())
+    completedAt DateTime?
+
+    @@index([repositoryId])
+    @@index([startedAt])
+}

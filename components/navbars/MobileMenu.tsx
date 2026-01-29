@@ -12,7 +12,7 @@ import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasOrnament } from '@/components/christmas/ChristmasOrnament';
 import { cn } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
-import { ExternalLink } from 'lucide-react';
+import { FileText, Gamepad2, TrendingUp } from 'lucide-react';
 
 export default function MobileMenu() {
     const t = useTranslations('nav');
@@ -29,8 +29,8 @@ export default function MobileMenu() {
 
     const itemClass = (id: string) =>
         cn(
-            'cursor-pointer transition-all text-sm rounded-md px-2 py-1.5 w-full',
-            activeSection === id ? 'text-foreground' : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+            'cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 w-full',
+            activeSection === id ? 'text-blue-500' : 'text-muted-foreground hover:bg-blue-500/10 hover:text-blue-500'
         );
 
     return (
@@ -38,7 +38,7 @@ export default function MobileMenu() {
             <DropdownMenuTrigger asChild>
                 <button
                     className={cn(
-                        'group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer relative',
+                        'group inline-flex items-center justify-center rounded-xl border border-blue-500/20 bg-background/80 backdrop-blur-sm text-foreground hover:bg-blue-500/10 hover:border-blue-500/40 hover:text-blue-500 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:ring-offset-2 active:scale-95 cursor-pointer relative',
                         christmasMode ? 'p-0.5' : 'p-2 w-9 h-9'
                     )}
                     aria-label={t('menu')}
@@ -75,7 +75,8 @@ export default function MobileMenu() {
                 </button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="end" className="w-48 border border-border/60 rounded-md bg-card shadow-lg p-2">
+            <DropdownMenuContent align="end"
+                                 className="w-48 border border-blue-500/20 rounded-xl bg-card/95 backdrop-blur-md shadow-xl shadow-blue-500/5 p-2">
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className={itemClass('about')}>
                         {t('about')}
@@ -96,6 +97,13 @@ export default function MobileMenu() {
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
+                    <a href="#github-activities" onClick={(e) => handleLinkClick(e, '#github-activities')}
+                       className={itemClass('github-activities')}>
+                        {t('github-activities')}
+                    </a>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className={itemClass('contact')}>
                         {t('contact')}
                     </a>
@@ -111,21 +119,31 @@ export default function MobileMenu() {
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
-                        href="/games"
-                        className="w-full cursor-pointer transition-all text-sm rounded-md px-2 py-1.5 hover:bg-accent hover:text-foreground flex items-center text-muted-foreground"
+                        href="/faq"
+                        className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
-                        <span>{t('games')}</span>
-                        <ExternalLink className="ml-2 w-4 h-4 opacity-70"/>
+                        <span>FAQ</span>
+                        <FileText className="ml-2 w-4 h-4 opacity-70"/>
                     </Link>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
-                        href="/faq"
-                        className="w-full cursor-pointer transition-all text-sm rounded-md px-2 py-1.5 hover:bg-accent hover:text-foreground flex items-center text-muted-foreground"
+                        href="/stats"
+                        className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
-                        <span>FAQ</span>
-                        <ExternalLink className="ml-2 w-4 h-4 opacity-70"/>
+                        <span>{t('statsGithub')}</span>
+                        <TrendingUp className="ml-2 w-4 h-4 opacity-70"/>
+                    </Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
+                    <Link
+                        href="/games"
+                        className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
+                    >
+                        <span>{t('games')}</span>
+                        <Gamepad2 className="ml-2 w-4 h-4 opacity-70"/>
                     </Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>

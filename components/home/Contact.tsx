@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 import ContactModal from './ContactModal';
@@ -91,20 +91,26 @@ export default function Contact() {
                                 key={index}
                                 onClick={contact.action}
                                 className={cn(
-                                    'group rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 cursor-pointer transition-all duration-300 text-left',
+                                    'group rounded-xl border border-blue-500/20 bg-card p-5 hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.1)] hover:-translate-y-0.5 cursor-pointer transition-all duration-300 text-left',
                                     isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                                 )}
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <div className="mb-4">
-                                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300">
-                                        <div className="text-foreground/70 group-hover:text-foreground transition-colors duration-300">
+                                    <div
+                                        className="inline-flex items-center justify-center w-10 h-10 rounded-xl
+                                        bg-muted/60 border border-border
+                                        group-hover:bg-muted/80 group-hover:border-border/80
+                                        transition-all duration-300">
+                                        <div
+                                            className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
                                             {contact.icon}
                                         </div>
                                     </div>
+
                                 </div>
                                 <h3 className="text-sm font-semibold mb-1 text-foreground">{contact.name}</h3>
-                                <p className="text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors duration-300">{contact.value}</p>
+                                <p className="text-sm text-muted-foreground group-hover:text-blue-500 transition-colors duration-300">{contact.value}</p>
                             </button>
                         ))}
                     </div>

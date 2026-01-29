@@ -1,11 +1,10 @@
 'use client';
 
-import { FormEvent, useCallback, useEffect, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
     Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
 } from '@/components/ui/dialog';
-
 import {
     AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter,
     AlertDialogHeader, AlertDialogTitle
@@ -20,6 +19,16 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { validateEmailForm } from '@/lib/email-validation';
 
+declare global {
+    interface Window {
+        turnstile?: {
+            render: (el: HTMLElement, options: any) => string;
+            remove: (widgetId: string) => void;
+            reset: (widgetId: string) => void;
+        };
+    }
+}
+
 interface ContactModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -27,128 +36,240 @@ interface ContactModalProps {
     mailtoMode?: boolean;
 }
 
-export default function ContactModal({
-    isOpen,
-    onClose,
-    onSuccess,
-    mailtoMode = false
-}: ContactModalProps) {
+function loadTurnstileScript(): Promise<void> {
+    return new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-turnstile="true"]') as HTMLScriptElement | null;
+        if (existing) {
+            resolve();
+            return;
+        }
+
+        const s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.async = true;
+        s.defer = true;
+        s.setAttribute('data-turnstile', 'true');
+        s.onload = () => resolve();
+        s.onerror = () => reject(new Error('Turnstile script load failed'));
+        document.body.appendChild(s);
+    });
+}
+
+async function waitForTurnstileReady(timeoutMs = 5000): Promise<void> {
+    const start = Date.now();
+    while (!window.turnstile) {
+        if (Date.now() - start > timeoutMs) throw new Error('Turnstile not ready');
+        await new Promise(r => setTimeout(r, 50));
+    }
+}
+
+export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = false }: ContactModalProps) {
     const t = useTranslations('contact.modal');
     const tMailto = useTranslations('contact.mailtoDialog');
     const tError = useTranslations('contact.modal.errorDialog');
+    const tValidation = useTranslations('contact.modal.validation');
+
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
     const [formData, setFormData] = useState<EmailFormData>({
         from_name: '',
         from_email: '',
         subject: '',
         message: ''
     });
+
     const [errors, setErrors] = useState<Partial<Record<keyof EmailFormData, string>>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showErrorDialog, setShowErrorDialog] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [mailtoError, setMailtoError] = useState(false);
 
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+    const [turnstileError, setTurnstileError] = useState<string | null>(null);
+
+    const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
+    const turnstileWidgetIdRef = useRef<string | null>(null);
+
+    const translateValidation = useCallback(
+        (key: string) => {
+            try {
+                return tValidation(key as any);
+            } catch {
+                return key;
+            }
+        },
+        [tValidation]
+    );
+
+    const resetForm = useCallback(() => {
+        setFormData({ from_name: '', from_email: '', subject: '', message: '' });
+        setErrors({});
+        setShowErrorDialog(false);
+        setErrorMessage('');
+        setMailtoError(false);
+        setTurnstileToken(null);
+        setTurnstileError(null);
+    }, []);
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
-            setFormData({
-                from_name: '',
-                from_email: '',
-                subject: '',
-                message: ''
-            });
-            setErrors({});
-            setShowErrorDialog(false);
-            setMailtoError(false);
         }
+
         return () => {
             document.body.style.overflow = '';
         };
     }, [isOpen]);
 
-    const tValidation = useTranslations('contact.modal.validation');
+    useEffect(() => {
+        if (!isOpen) return;
+
+        setTurnstileToken(null);
+        setTurnstileError(null);
+
+        if (!siteKey) {
+            setTurnstileError('Captcha non configuré (NEXT_PUBLIC_TURNSTILE_SITE_KEY manquante).');
+            return;
+        }
+
+        let cancelled = false;
+
+        (
+            async () => {
+                try {
+                    await loadTurnstileScript();
+                    await waitForTurnstileReady();
+
+                    if (cancelled) return;
+                    const container = turnstileContainerRef.current;
+                    if (!container) return;
+
+                    if (turnstileWidgetIdRef.current && window.turnstile) {
+                        try {
+                            window.turnstile.remove(turnstileWidgetIdRef.current);
+                        } catch {
+                        }
+                        turnstileWidgetIdRef.current = null;
+                    }
+
+                    container.innerHTML = '';
+
+                    const widgetId = window.turnstile!.render(container, {
+                        sitekey: siteKey,
+                        theme: 'auto',
+                        callback: (token: string) => {
+                            setTurnstileToken(token);
+                            setTurnstileError(null);
+                        },
+                        'expired-callback': () => {
+                            setTurnstileToken(null);
+                            setTurnstileError('Captcha expiré, recommence.');
+                        },
+                        'error-callback': () => {
+                            setTurnstileToken(null);
+                            setTurnstileError('Erreur captcha, réessaie.');
+                        }
+                    });
+
+                    turnstileWidgetIdRef.current = widgetId;
+                } catch {
+                    setTurnstileToken(null);
+                    setTurnstileError('Impossible de charger le captcha.');
+                }
+            }
+        )();
+
+        return () => {
+            cancelled = true;
+
+            if (turnstileWidgetIdRef.current && window.turnstile) {
+                try {
+                    window.turnstile.remove(turnstileWidgetIdRef.current);
+                } catch {
+                }
+            }
+            turnstileWidgetIdRef.current = null;
+            resetForm();
+        };
+    }, [isOpen, siteKey, resetForm]);
 
     const handleInputChange = (field: keyof EmailFormData, value: string) => {
-        const newFormData = {
-            ...formData,
-            [field]: value
-        };
+        const newFormData = { ...formData, [field]: value };
         setFormData(newFormData);
 
         if (field === 'from_email') {
             const trimmed = value.trim();
             if (trimmed !== '' && !trimmed.includes('@')) {
                 setErrors(prev => (
-                    {
-                        ...prev,
-                        from_email: tValidation('emailMissingAt')
-                    }
+                    { ...prev, from_email: translateValidation('emailMissingAt') }
                 ));
                 return;
             }
         }
 
-        const validation = validateEmailForm(newFormData, (key: string) => {
-            try {
-                return tValidation(key as any);
-            } catch {
-                return key;
-            }
-        });
+        const validation = validateEmailForm(newFormData, translateValidation);
 
         setErrors(prev => {
-            const newErrors = { ...prev };
+            const next = { ...prev };
             if (validation.errors[field]) {
-                newErrors[field] = validation.errors[field];
+                next[field] = validation.errors[field];
             } else {
-                delete newErrors[field];
+                delete next[field];
             }
-            return newErrors;
+            return next;
         });
     };
 
-    const handleSubmit = useCallback(async (e: FormEvent) => {
-        e.preventDefault();
+    const isFormValid = useMemo(() => validateEmailForm(formData, translateValidation).valid, [
+        formData, translateValidation
+    ]);
 
-        const validation = validateEmailForm(formData, (key: string) => {
+    const handleSubmit = useCallback(
+        async (e: FormEvent) => {
+            e.preventDefault();
+
+            const validation = validateEmailForm(formData, translateValidation);
+            if (!validation.valid) {
+                setErrors(validation.errors);
+                return;
+            }
+
+            if (!siteKey) {
+                setTurnstileError('Captcha non configuré.');
+                return;
+            }
+
+            if (!turnstileToken) {
+                setTurnstileError('Merci de cocher le captcha.');
+                return;
+            }
+
+            setIsSubmitting(true);
+            setErrors({});
+            setTurnstileError(null);
+
             try {
-                return tValidation(key as any);
+                const result = await sendEmail(formData, turnstileToken);
+
+                if (result.success) {
+                    toast.success(t('toastSuccess'), { className: 'text-green-600 [&>svg]:text-green-600' });
+                    setTimeout(() => onClose(), 300);
+                    onSuccess?.();
+                } else {
+                    setErrorMessage(result.error || t('error'));
+                    setShowErrorDialog(true);
+                }
             } catch {
-                return key;
-            }
-        });
-        if (!validation.valid) {
-            setErrors(validation.errors);
-            return;
-        }
-
-        setIsSubmitting(true);
-        setErrors({});
-
-        try {
-            const result = await sendEmail(formData);
-
-            if (result.success) {
-                toast.success(t('toastSuccess'), {
-                    className: 'text-green-600 [&>svg]:text-green-600'
-                });
-                setTimeout(() => {
-                    onClose();
-                }, 300);
-                onSuccess?.();
-            } else {
-                setErrorMessage(result.error || t('error'));
+                setErrorMessage(t('error'));
                 setShowErrorDialog(true);
+            } finally {
+                setIsSubmitting(false);
             }
-        } catch (error) {
-            setErrorMessage(t('error'));
-            setShowErrorDialog(true);
-        } finally {
-            setIsSubmitting(false);
-        }
-    }, [formData, onClose, onSuccess, t]);
+        },
+        [formData, onClose, onSuccess, t, translateValidation, turnstileToken, siteKey]
+    );
 
     const handleMailtoConfirm = useCallback(() => {
         try {
@@ -157,7 +278,7 @@ export default function ContactModal({
                 onClose();
                 onSuccess?.();
             }, 100);
-        } catch (error) {
+        } catch {
             setMailtoError(true);
         }
     }, [onClose, onSuccess]);
@@ -171,41 +292,26 @@ export default function ContactModal({
         setShowErrorDialog(false);
     }, []);
 
-    const isFormValid = () => {
-        const validation = validateEmailForm(formData, (key: string) => {
-            try {
-                return tValidation(key as any);
-            } catch {
-                return key;
-            }
-        });
-        return validation.valid;
-    };
-
     if (mailtoMode) {
         return (
             <Dialog open={isOpen} onOpenChange={onClose}>
                 <DialogContent className="max-h-[calc(100vh-2rem)] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle>{tMailto('title')}</DialogTitle>
-                        <DialogDescription>
-                            {mailtoError ? tMailto('error') : tMailto('description')}
-                        </DialogDescription>
+                        <DialogDescription>{mailtoError ? tMailto('error') : tMailto('description')}</DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
                         <Button variant="outline" onClick={onClose}>
                             {tMailto('cancel')}
                         </Button>
-                        {!mailtoError && (
-                            <Button onClick={handleMailtoConfirm}>
-                                {tMailto('confirm')}
-                            </Button>
-                        )}
+                        {!mailtoError && <Button onClick={handleMailtoConfirm}>{tMailto('confirm')}</Button>}
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
         );
     }
+
+    const canSubmit = isFormValid && !!turnstileToken && !!siteKey && !isSubmitting;
 
     return (
         <>
@@ -214,6 +320,7 @@ export default function ContactModal({
                     <DialogHeader>
                         <DialogTitle>{t('title')}</DialogTitle>
                     </DialogHeader>
+
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="space-y-2">
                             <label htmlFor="name" className="text-sm font-medium">
@@ -223,16 +330,20 @@ export default function ContactModal({
                                 id="name"
                                 type="text"
                                 value={formData.from_name}
-                                onChange={(e) => handleInputChange('from_name', e.target.value)}
+                                onChange={e => handleInputChange('from_name', e.target.value)}
                                 placeholder={t('namePlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.from_name}
+                                aria-describedby={errors.from_name ? 'name-error' : undefined}
                                 className="truncate"
                             />
                             {errors.from_name && (
-                                <p className="text-sm text-destructive">{errors.from_name}</p>
+                                <p id="name-error" role="alert" className="text-sm text-destructive">
+                                    {errors.from_name}
+                                </p>
                             )}
                         </div>
+
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-sm font-medium">
                                 {t('email')}
@@ -241,16 +352,20 @@ export default function ContactModal({
                                 id="email"
                                 type="email"
                                 value={formData.from_email}
-                                onChange={(e) => handleInputChange('from_email', e.target.value)}
+                                onChange={e => handleInputChange('from_email', e.target.value)}
                                 placeholder={t('emailPlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.from_email}
+                                aria-describedby={errors.from_email ? 'email-error' : undefined}
                                 className="truncate"
                             />
                             {errors.from_email && (
-                                <p className="text-sm text-destructive">{errors.from_email}</p>
+                                <p id="email-error" role="alert" className="text-sm text-destructive">
+                                    {errors.from_email}
+                                </p>
                             )}
                         </div>
+
                         <div className="space-y-2">
                             <label htmlFor="subject" className="text-sm font-medium">
                                 {t('subject')}
@@ -259,16 +374,20 @@ export default function ContactModal({
                                 id="subject"
                                 type="text"
                                 value={formData.subject}
-                                onChange={(e) => handleInputChange('subject', e.target.value)}
+                                onChange={e => handleInputChange('subject', e.target.value)}
                                 placeholder={t('subjectPlaceholder')}
                                 disabled={isSubmitting}
                                 aria-invalid={!!errors.subject}
+                                aria-describedby={errors.subject ? 'subject-error' : undefined}
                                 className="truncate"
                             />
                             {errors.subject && (
-                                <p className="text-sm text-destructive">{errors.subject}</p>
+                                <p id="subject-error" role="alert" className="text-sm text-destructive">
+                                    {errors.subject}
+                                </p>
                             )}
                         </div>
+
                         <div className="space-y-2">
                             <label htmlFor="message" className="text-sm font-medium">
                                 {t('message')}
@@ -276,42 +395,53 @@ export default function ContactModal({
                             <Textarea
                                 id="message"
                                 value={formData.message}
-                                onChange={(e) => handleInputChange('message', e.target.value)}
+                                onChange={e => handleInputChange('message', e.target.value)}
                                 placeholder={t('messagePlaceholder')}
                                 disabled={isSubmitting}
                                 rows={6}
                                 aria-invalid={!!errors.message}
+                                aria-describedby={errors.message ? 'message-error' : undefined}
                             />
                             {errors.message && (
-                                <p className="text-sm text-destructive">{errors.message}</p>
+                                <p id="message-error" role="alert" className="text-sm text-destructive">
+                                    {errors.message}
+                                </p>
                             )}
                         </div>
+
+                        <div className="space-y-2">
+                            <div className="flex justify-center">
+                                <div ref={turnstileContainerRef}/>
+                            </div>
+
+                            {turnstileError && (
+                                <p role="alert" className="text-sm text-destructive text-center">
+                                    {turnstileError}
+                                </p>
+                            )}
+                        </div>
+
                         <DialogFooter>
                             <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
                                 {t('close')}
                             </Button>
-                            <Button type="submit" disabled={isSubmitting || !isFormValid()}>
+                            <Button type="submit" disabled={!canSubmit}>
                                 {isSubmitting ? t('sending') : t('send')}
                             </Button>
                         </DialogFooter>
                     </form>
                 </DialogContent>
             </Dialog>
+
             <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
                 <AlertDialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-md">
                     <AlertDialogHeader>
                         <AlertDialogTitle>{tError('title')}</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            {errorMessage || tError('description')}
-                        </AlertDialogDescription>
+                        <AlertDialogDescription>{errorMessage || tError('description')}</AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel onClick={handleErrorDialogCancel}>
-                            {tError('cancel')}
-                        </AlertDialogCancel>
-                        <AlertDialogAction onClick={handleErrorDialogConfirm}>
-                            {tError('confirm')}
-                        </AlertDialogAction>
+                        <AlertDialogCancel onClick={handleErrorDialogCancel}>{tError('cancel')}</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleErrorDialogConfirm}>{tError('confirm')}</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>

@@ -42,13 +42,11 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
     useEffect(() => {
         setMounted(true);
 
-        // Check if we should show loading (from previous page)
         const wasLoading = sessionStorage.getItem(LOADING_KEY);
         if (wasLoading) {
             sessionStorage.removeItem(LOADING_KEY);
             setIsVisible(true);
             setIsLoading(true);
-            // Start fade out after a tiny delay
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     setIsLoading(false);
@@ -82,7 +80,9 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
         }
     };
 
-    const validLocale = (locale === 'fr' || locale === 'en') ? locale : initialLocale;
+    const validLocale = (
+        locale === 'fr' || locale === 'en'
+    ) ? locale : initialLocale;
     const currentMessages = messages[validLocale] || messages[initialLocale] || messages.fr;
 
     return (
@@ -94,7 +94,7 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
                 now={new Date()}
             >
                 {children}
-                {isVisible && <LoadingOverlay isLoading={isLoading} />}
+                {isVisible && <LoadingOverlay isLoading={isLoading}/>}
             </NextIntlClientProvider>
         </LocaleContext.Provider>
     );

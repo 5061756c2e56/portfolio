@@ -10,7 +10,7 @@ import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasOrnament } from '@/components/christmas/ChristmasOrnament';
 import { cn } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
-import { ExternalLink, Home } from 'lucide-react';
+import { FileText, Home, TrendingUp } from 'lucide-react';
 
 export default function MobileMenu() {
     const t = useTranslations('nav');
@@ -66,7 +66,7 @@ export default function MobileMenu() {
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
                         href="/"
-                        className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:text-foreground flex items-center"
+                        className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>{t('home')}</span>
                         <Home className="ml-2 w-4 h-4 opacity-70"/>
@@ -76,10 +76,20 @@ export default function MobileMenu() {
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
                         href="/faq"
-                        className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:text-foreground flex items-center"
+                        className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>FAQ</span>
-                        <ExternalLink className="ml-2 w-4 h-4 opacity-70"/>
+                        <FileText className="ml-2 w-4 h-4 opacity-70"/>
+                    </Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
+                    <Link
+                        href="/stats"
+                        className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
+                    >
+                        <span>{t('statsGithub')}</span>
+                        <TrendingUp className="ml-2 w-4 h-4 opacity-70"/>
                     </Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>

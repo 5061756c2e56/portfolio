@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { getKVInstance } from '@/lib/db';
 
 const RATE_LIMIT_WINDOW = 60 * 1000;
-const MAX_REQUESTS = 10;
+const MAX_REQUESTS = 3;
 
 function getClientIP(request: NextRequest): string {
     const forwarded = request.headers.get('x-forwarded-for');
@@ -98,37 +98,6 @@ function getAllowedOrigins(): string[] {
     }
 
     return origins;
-}
-
-export function validateUserAgent(request: NextRequest): boolean {
-    const userAgent = request.headers.get('user-agent');
-
-    if (!userAgent) {
-        logSecurityEvent(request, 'missing_user_agent');
-        return false;
-    }
-
-    const blockedPatterns = [
-        'curl',
-        'wget',
-        'python-requests',
-        'postman',
-        'insomnia',
-        'httpie',
-        'go-http-client',
-        'java/',
-        'scrapy'
-    ];
-
-    const lowerUA = userAgent.toLowerCase();
-    const isBlocked = blockedPatterns.some(pattern => lowerUA.includes(pattern));
-
-    if (isBlocked) {
-        logSecurityEvent(request, 'blocked_user_agent', { userAgent });
-        return false;
-    }
-
-    return true;
 }
 
 export function validateOrigin(request: NextRequest): boolean {
@@ -228,16 +197,6 @@ export function validateOrigin(request: NextRequest): boolean {
     }
 
     return false;
-}
-
-export function isServerSideRequest(request: NextRequest): boolean {
-    const userAgent = request.headers.get('user-agent') || '';
-    const isServerUA = !userAgent || userAgent.includes('node') || userAgent.includes('Next.js');
-
-    const forwardedFor = request.headers.get('x-forwarded-for');
-    const isInternalIP = forwardedFor === '127.0.0.1' || forwardedFor === '::1' || !forwardedFor;
-
-    return isServerUA && isInternalIP;
 }
 
 function logSecurityEvent(request: NextRequest, event: string, data?: Record<string, unknown>): void {

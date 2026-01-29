@@ -3,9 +3,9 @@ import About from '@/components/home/About';
 import Skills from '@/components/home/Skills';
 import Projects from '@/components/home/Projects';
 import Contact from '@/components/home/Contact';
-import Footer from '@/components/home/Footer';
 import Navigation from '@/components/navbars/Navigation';
 import FinalCTA from '@/components/home/FinalCTA';
+import { GitHubActivities } from '@/components/home/GitHubActivities';
 
 export default function Home() {
     return (
@@ -16,9 +16,9 @@ export default function Home() {
                 <About/>
                 <Skills/>
                 <Projects/>
+                <GitHubActivities/>
                 <Contact/>
                 <FinalCTA/>
-                <Footer/>
             </main>
         </>
     );

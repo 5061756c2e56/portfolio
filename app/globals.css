@@ -1,4 +1,6 @@
 @import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -680,6 +682,24 @@ html {
         display: none;
     }
 
+    .scrollbar-autohide::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .scrollbar-autohide::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        border: 3px solid transparent;
+        background-clip: content-box;
+    }
+
+    .scrollbar-idle::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+
+    .scrollbar-autohide:not(.scrollbar-idle)::-webkit-scrollbar-thumb {
+        background-color: rgba(120, 120, 120, .35);
+    }
+
     .overflow-visible {
         overflow: visible !important;
     }
@@ -864,10 +884,29 @@ html {
     background-color: var(--foreground);
     color: var(--background);
     border: 1px solid var(--foreground);
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-fill-primary:hover {
+    background-color: var(--foreground);
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .btn-fill-secondary {
     background-color: var(--border);
     color: var(--foreground);
     border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-fill-secondary:hover {
+    background-color: var(--muted);
+    border-color: var(--muted);
+}
+
+.btn-fill-secondary:hover svg {
+    color: #3b82f6;
 }

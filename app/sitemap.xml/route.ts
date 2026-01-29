@@ -16,45 +16,73 @@ function formatDate(date: Date): string {
     return date.toISOString().split('T')[0];
 }
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+/**
+ * FR: "" -> "/"
+ * EN: "" -> "/en"
+ * FR: "/faq" -> "/faq"
+ * EN: "/faq" -> "/en/faq"
+ */
+function buildPath(locale: string, path: string): string {
+    if (locale === 'fr') return path === '' ? '/' : path;
+    return path === '' ? '/en' : `/en${path}`;
+}
+
+function buildUrl(locale: string, path: string): string {
+    const p = buildPath(locale, path);
+    return `${baseUrl}${p === '/' ? '' : p}`;
+}
+
+export const dynamic = 'force-static';
+export const revalidate = 86400; // 24h
+
+type Entry = {
+    path: string;
+    priority: string;
+    changefreq: 'weekly' | 'monthly' | 'yearly';
+};
+
+const ENTRIES: Entry[] = [
+    { path: '', priority: '1.0', changefreq: 'weekly' },
+    { path: '/faq', priority: '0.7', changefreq: 'monthly' },
+    { path: '/games', priority: '0.7', changefreq: 'monthly' },
+
+    { path: '/projects/portfolio', priority: '0.8', changefreq: 'monthly' }
+
+];
 
 export async function GET() {
-    const now = new Date();
-    const lastmod = formatDate(now);
-    const changefreq = 'weekly';
-    const priority = '1.0';
-
+    const lastmod = formatDate(new Date());
     const urlEntries: string[] = [];
 
-    const urls = [
-        { path: '', locale: 'fr', priority: '1.0' },
-        { path: '/en', locale: 'en', priority: '0.9' }
-    ];
+    for (const entry of ENTRIES) {
+        for (const locale of routing.locales) {
+            const locUrl = buildUrl(locale, entry.path);
 
-    urls.forEach(({ path, locale, priority: urlPriority }) => {
-        const url = `${baseUrl}${path}`;
+            const priority =
+                entry.path === '' && locale !== 'fr' ? '0.9' : entry.priority;
 
-        let xml = `    <url>
-        <loc>${escapeXml(url)}</loc>
-        <lastmod>${lastmod}</lastmod>
-        <changefreq>${changefreq}</changefreq>
-        <priority>${urlPriority}</priority>`;
+            let xml = `  <url>
+    <loc>${escapeXml(locUrl)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${entry.changefreq}</changefreq>
+    <priority>${priority}</priority>`;
 
-        routing.locales.forEach((loc) => {
-            const alternatePath = loc === 'fr' ? '' : '/en';
-            const alternateUrl = `${baseUrl}${alternatePath}`;
-            xml += `\n        <xhtml:link rel="alternate" hreflang="${loc}" href="${escapeXml(alternateUrl)}"/>`;
-        });
+            for (const altLocale of routing.locales) {
+                const altUrl = buildUrl(altLocale, entry.path);
+                xml += `\n    <xhtml:link rel="alternate" hreflang="${altLocale}" href="${escapeXml(altUrl)}"/>`;
+            }
 
-        xml += `\n        <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(baseUrl)}"/>`;
+            const xDefaultUrl = buildUrl('fr', entry.path);
+            xml += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(xDefaultUrl)}"/>`;
 
-        xml += `\n    </url>`;
-        urlEntries.push(xml);
-    });
+            xml += `\n  </url>`;
+            urlEntries.push(xml);
+        }
+    }
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urlEntries.join('\n')}
 </urlset>`;
 
@@ -62,7 +90,7 @@ ${urlEntries.join('\n')}
         status: 200,
         headers: {
             'Content-Type': 'application/xml; charset=utf-8',
-            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
             'X-Content-Type-Options': 'nosniff'
         }
     });

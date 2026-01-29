@@ -19,6 +19,16 @@ const nextConfig: NextConfig = {
                 hostname: 'img.shields.io',
                 port: '',
                 pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+                pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'github.com',
+                pathname: '/**'
             }
         ]
     },
@@ -69,26 +79,6 @@ const nextConfig: NextConfig = {
                     {
                         key: 'Permissions-Policy',
                         value: 'camera=(), microphone=(), geolocation=()'
-                    },
-                    {
-                        key: 'Content-Security-Policy',
-                        value: [
-                            'default-src \'self\'',
-                            'script-src \'self\' https://api.emailjs.com',
-                            'script-src-elem \'self\' https://api.emailjs.com',
-                            'worker-src \'self\' blob:',
-                            'style-src \'self\' \'unsafe-inline\'',
-                            'img-src \'self\' data: https://img.shields/io blob:',
-                            'font-src \'self\' data:',
-                            'connect-src \'self\' https://api.emailjs.com https://api.github.com',
-                            'frame-src \'none\'',
-                            'object-src \'none\'',
-                            'base-uri \'self\'',
-                            'form-action \'self\'',
-                            'frame-ancestors \'none\'',
-                            'upgrade-insecure-requests',
-                            'block-all-mixed-content'
-                        ].join('; ')
                     },
                     {
                         key: 'Cross-Origin-Embedder-Policy',

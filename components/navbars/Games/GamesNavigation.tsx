@@ -6,10 +6,10 @@ import Settings from '@/components/Settings';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasHat } from '@/components/christmas/ChristmasHat';
 import { Link } from '@/i18n/routing';
-import { FileText, Home } from 'lucide-react';
+import { FileText, Home, TrendingUp } from 'lucide-react';
 import MobileMenuGames from './MobileMenuGames';
 
-export default function GamesNavigation() {
+export default function FAQNavigation() {
     const t = useTranslations('nav');
     const christmasMode = useChristmasMode();
 
@@ -45,7 +45,7 @@ export default function GamesNavigation() {
                     <div className="hidden lg:flex items-center gap-2">
                         <Link
                             href="/"
-                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground  hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             <Home className="w-4 h-4"/>
                             <span className="hidden sm:inline">{t('home')}</span>
@@ -53,10 +53,18 @@ export default function GamesNavigation() {
 
                         <Link
                             href="/faq"
-                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-accent flex items-center gap-2"
+                            className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground  hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             <FileText className="w-4 h-4"/>
                             <span className="hidden sm:inline">FAQ</span>
+                        </Link>
+
+                        <Link
+                            href="/stats"
+                            className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
+                        >
+                            <TrendingUp className="w-4 h-4"/>
+                            {t('statsGithub')}
                         </Link>
 
                         <Settings/>

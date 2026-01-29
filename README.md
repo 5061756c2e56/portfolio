@@ -3,7 +3,7 @@
 # Portfolio Paul Viandier
 
 ![Next.js](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=for-the-badge&logo=tailwind-css)
 ![React](https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react)
 ![Redis](https://img.shields.io/badge/Redis-7.0-orange?style=for-the-badge&logo=redis)
@@ -79,7 +79,7 @@ Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
 ### Variables d'environnement
 
-Créez un fichier `.env.local` à la racine du projet :
+Créez un fichier `.env` à la racine du projet :
 
 ```env
 # EmailJS Configuration
@@ -115,7 +115,7 @@ Redis est indisponible.
 
 Le projet implémente plusieurs mesures de sécurité :
 
-- ✅ **Rate Limiting** : 10 requêtes par minute par IP
+- ✅ **Rate Limiting** : 3 requêtes par minute par IP
 - ✅ **Validation d'origine** : Vérification stricte de l'origine des requêtes API
 - ✅ **Validation User-Agent** : Blocage des outils automatisés (curl, wget, Postman, etc.)
 - ✅ **Headers de sécurité** : HSTS, X-Frame-Options, CSP stricte, etc.

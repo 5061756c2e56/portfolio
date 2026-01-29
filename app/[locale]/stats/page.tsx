@@ -1,0 +1,235 @@
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Loader2, TrendingUp } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Checkbox } from '@/components/ui/checkbox';
+import { ALLOWED_REPOSITORIES, LoadingState, MultiRepoStatsResponse, Repository, TimeRange } from '@/lib/github/types';
+import StatsNavigation from '@/components/navbars/Stats/StatsNavigation';
+import { StatsOverview } from '@/components/github-stats/StatsOverview';
+import { LanguagesChart } from '@/components/github-stats/LanguagesChart';
+import { ContributorsSection } from '@/components/github-stats/ContributorsSection';
+import { MultiRepoCommitsChart } from '@/components/github-stats/MultiRepoCommitsChart';
+import { MultiRepoCommitSearch } from '@/components/github-stats/MultiRepoCommitSearch';
+import { PeriodSelector } from '@/components/github-stats/PeriodSelector';
+import { ChartSkeleton } from '@/components/github-stats/ChartSkeleton';
+import { SiGithub } from 'react-icons/si';
+
+export default function StatsPage() {
+    const t = useTranslations('githubStats');
+
+    const [selectedRepos, setSelectedRepos] = useState<Repository[]>(ALLOWED_REPOSITORIES);
+    const [stats, setStats] = useState<MultiRepoStatsResponse | null>(null);
+    const [loadingState, setLoadingState] = useState<LoadingState>('idle');
+    const [error, setError] = useState<string | null>(null);
+    const [selectedRange, setSelectedRange] = useState<TimeRange>('7d');
+
+    const fetchStats = useCallback(async (repos: Repository[], range: TimeRange) => {
+        if (repos.length === 0) return;
+
+        setLoadingState('loading');
+        setError(null);
+
+        try {
+            const reposParam = repos.map(r => (
+                {
+                    owner: r.owner,
+                    name: r.name
+                }
+            ));
+            const response = await fetch(
+                `/api/github/multi-stats?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=${range}`,
+                { cache: 'no-store' }
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch stats');
+            }
+
+            const data: MultiRepoStatsResponse = await response.json();
+            setStats(data);
+            setLoadingState('success');
+        } catch (err) {
+            console.error('Error fetching stats:', err);
+            setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+            setLoadingState('error');
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchStats(selectedRepos, selectedRange);
+    }, [selectedRepos, selectedRange, fetchStats]);
+
+    const handleRepoToggle = (repo: Repository, checked: boolean) => {
+        if (checked) {
+            setSelectedRepos(prev => [...prev, repo]);
+        } else {
+            if (selectedRepos.length > 1) {
+                setSelectedRepos(prev => prev.filter(r => r.name !== repo.name));
+            }
+        }
+    };
+
+    const isRepoSelected = (repo: Repository) => {
+        return selectedRepos.some(r => r.owner === repo.owner && r.name === repo.name);
+    };
+
+    const isOnlyOneSelected = selectedRepos.length === 1;
+
+    return (
+        <>
+            <StatsNavigation/>
+            <main className="min-h-screen text-foreground">
+                <section className="min-h-[40vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-12">
+                    <div className="max-w-5xl mx-auto text-center w-full">
+                        <div
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 text-sm text-blue-500 mb-8">
+                            <SiGithub className="w-4 h-4"/>
+                            {t('homeSubtitle')}
+                        </div>
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">
+                            <span className="gradient-text">{t('title')}</span>
+                        </h1>
+                        {loadingState === 'loading' && (
+                            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                                <Loader2 className="w-4 h-4 animate-spin text-blue-500"/>
+                                <span className="text-sm">{t('loading')}</span>
+                            </div>
+                        )}
+                    </div>
+                </section>
+
+                {error && loadingState === 'error' ? (
+                    <section className="py-12 px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-6 text-center">
+                                <p className="text-red-400">{error}</p>
+                            </div>
+                        </div>
+                    </section>
+                ) : (
+                    <section className="py-12 px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-4xl mx-auto space-y-8">
+                            {ALLOWED_REPOSITORIES.length > 1 && (
+                                <div className="animate-fade-in-up">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <SiGithub className="w-4 h-4 text-muted-foreground"/>
+                                        <span className="text-sm font-medium text-muted-foreground">
+                                            {t('selectRepos')}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-3">
+                                        {ALLOWED_REPOSITORIES.map((repo) => {
+                                            const selected = isRepoSelected(repo);
+                                            const disabled = selected && isOnlyOneSelected;
+
+                                            return (
+                                                <label
+                                                    key={`${repo.owner}/${repo.name}`}
+                                                    className={cn(
+                                                        'flex items-center gap-3 px-4 py-3 rounded-xl border cursor-pointer',
+                                                        'transition-all duration-300',
+                                                        selected
+                                                            ? 'border-blue-500/50 bg-blue-500/10 shadow-[0_0_15px_rgba(59,130,246,0.1)]'
+                                                            : 'border-border/50 bg-card/50 hover:border-blue-500/30 hover:bg-blue-500/5',
+                                                        disabled && 'cursor-not-allowed opacity-70'
+                                                    )}
+                                                >
+                                                    <Checkbox
+                                                        checked={selected}
+                                                        disabled={disabled}
+                                                        onCheckedChange={(checked) =>
+                                                            handleRepoToggle(repo, checked === true)
+                                                        }
+                                                        className={cn(
+                                                            'data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500',
+                                                            disabled && 'cursor-not-allowed'
+                                                        )}
+                                                    />
+                                                    <div className="flex flex-col">
+                                                        <span className={cn(
+                                                            'font-medium text-sm',
+                                                            selected && 'text-blue-500'
+                                                        )}>
+                                                            {repo.displayName || repo.name}
+                                                        </span>
+                                                        <span className="text-xs text-muted-foreground">
+                                                            {repo.owner}/{repo.name}
+                                                        </span>
+                                                    </div>
+                                                </label>
+                                            );
+                                        })}
+                                    </div>
+                                    {isOnlyOneSelected && (
+                                        <p className="text-xs text-amber-500/80 mt-2 flex items-center gap-1.5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500"/>
+                                            {t('minOneRepo')}
+                                        </p>
+                                    )}
+                                </div>
+                            )}
+
+                            <StatsOverview
+                                stats={stats?.stats ?? null}
+                                isLoading={loadingState === 'loading'}
+                            />
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <LanguagesChart
+                                    languages={stats?.languages ?? []}
+                                    isLoading={loadingState === 'loading'}
+                                />
+                                <ContributorsSection
+                                    contributors={stats?.contributors ?? []}
+                                    isLoading={loadingState === 'loading'}
+                                />
+                            </div>
+
+                            <div className="rounded-2xl border border-blue-500/10 bg-card/50 overflow-hidden">
+                                <div className="p-4 sm:p-6 border-b border-blue-500/10 bg-blue-500/5">
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                        <div className="flex items-center gap-3">
+                                            <div className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                                                <TrendingUp className="w-4 h-4 text-blue-500"/>
+                                            </div>
+                                            <div>
+                                                <h3 className="font-medium">{t('chartTitle')}</h3>
+                                                <p className="text-xs text-muted-foreground mt-0.5">
+                                                    {t('chartSubtitle')}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="w-full sm:w-auto">
+                                            <PeriodSelector
+                                                selectedRange={selectedRange}
+                                                availablePeriods={['7d', '30d']}
+                                                onRangeChange={setSelectedRange}
+                                                isLoading={loadingState === 'loading'}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="p-4 sm:p-6">
+                                    {loadingState === 'loading' ? (
+                                        <ChartSkeleton/>
+                                    ) : stats?.combinedTimeline && stats.timelines ? (
+                                        <MultiRepoCommitsChart
+                                            combinedTimeline={stats.combinedTimeline}
+                                            timelines={stats.timelines}
+                                        />
+                                    ) : null}
+                                </div>
+                            </div>
+
+                            <MultiRepoCommitSearch selectedRepos={selectedRepos}/>
+                        </div>
+                    </section>
+                )}
+            </main>
+        </>
+    );
+}

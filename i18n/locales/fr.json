@@ -121,8 +121,8 @@
     }
   },
   "finalCTA": {
-    "title": " Une question — ou envie de tester l’interactif en direct ?",
-    "description": "La FAQ regroupe l’essentiel (fonctionnement, contenu, réponses rapides). L’espace jeux propose des mini-défis comme Memory Match ou Typing Speed pour voir la réactivité, l’UX et l’interactivité en action.",
+    "title": "Une question, ou envie de tester l'interactif en direct ?",
+    "description": "La FAQ regroupe l'essentiel : fonctionnement, contenu et réponses rapides. L'espace jeux propose des mini-défis comme Memory Match ou Typing Speed pour voir la réactivité, l'UX et l'interactivité en action.",
     "faqButton": "Accéder à la FAQ",
     "gamesButton": "Découvrir les jeux"
   },
@@ -134,6 +134,7 @@
     "quiz": "Quiz",
     "projects": "Projets",
     "statsGithub": "Stats GitHub",
+    "github-activities": "Activité GitHub",
     "contact": "Contact",
     "loading": "Chargement...",
     "language": "Langue",
@@ -274,6 +275,11 @@
     }
   },
   "errors": {
+    "404": {
+      "title": "Page introuvable",
+      "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+      "backHome": "Retour à l'accueil"
+    },
     "500": {
       "title": "Une erreur est survenue",
       "description": "Désolé, une erreur inattendue s'est produite. Veuillez réessayer.",
@@ -282,64 +288,176 @@
     }
   },
   "portfolioProject": {
-    "description": "Une vitrine moderne, rapide et responsive pour présenter mes projets, mes choix techniques et ma façon de construire des interfaces propres.",
-    "buttonLiveAccess": "Accéder au projet live",
-    "buttonViewCodeGithub": "Voir le code sur GitHub",
-    "overview": {
-      "title": "Aperçu",
-      "description": "L’idée : permettre à un recruteur ou un client de comprendre “ce que je sais faire” en très peu de temps, puis d’explorer les projets sans effort."
+    "title": "Portfolio",
+    "badge": "Projet personnel",
+    "subtitle": "Un portfolio moderne et performant, conçu pour démontrer mes compétences en développement web et offrir une expérience utilisateur soignée.",
+    "description": "Ce projet représente ma vitrine professionnelle en ligne. Construit avec les technologies modernes du web, il met en avant mes réalisations, mes compétences techniques et ma capacité à livrer des interfaces propres, performantes et accessibles.",
+    "links": {
+      "live": "Voir le site",
+      "code": "Voir le code"
     },
-    "showcaseItems": {
-      "item1": {
-        "title": "Présentation claire",
-        "description": "Une landing lisible en quelques secondes : titre, pitch, sections nettes et hiérarchie typographique propre."
-      },
-      "item2": {
-        "title": "Pages projet structurées",
-        "description": "Chaque projet suit une structure simple : contexte, objectifs, choix techniques et liens. On comprend vite, sans scroller inutilement."
-      },
-      "item3": {
-        "title": "Responsive fluide",
-        "description": "Optimisé mobile-first : grilles adaptatives, spacing cohérent, boutons accessibles, et rendu stable sur petits écrans."
+    "meta": {
+      "durationLabel": "Durée",
+      "duration": "2 mois",
+      "roleLabel": "Rôle",
+      "role": "Développeur",
+      "teamLabel": "Équipe",
+      "team": "Solo",
+      "statusLabel": "Statut",
+      "status": "En ligne"
+    },
+    "problem": {
+      "title": "Le problème",
+      "description": "Un CV papier ou un PDF ne suffit plus pour se démarquer. Les recruteurs et clients veulent voir du concret : une interface qui fonctionne, du code propre, et une attention aux détails. Un document statique explique, mais ne prouve rien."
+    },
+    "solution": {
+      "title": "La solution",
+      "description": "Construire un portfolio interactif qui démontre mes compétences en action. Chaque choix technique, chaque détail d'interface, chaque interaction est une preuve tangible de mon savoir-faire — pas juste une liste de technologies maîtrisées."
+    },
+    "features": {
+      "title": "Points clés",
+      "subtitle": "Les éléments essentiels qui font la différence dans ce projet.",
+      "items": {
+        "item1": {
+          "title": "Architecture claire",
+          "description": "Structure modulaire et scalable. Chaque composant a sa responsabilité, le code reste lisible et maintenable même quand le projet grandit."
+        },
+        "item2": {
+          "title": "Pages projet détaillées",
+          "description": "Un template réutilisable pour chaque projet : contexte, choix techniques, défis rencontrés et résultats obtenus. Cohérent et facile à enrichir."
+        },
+        "item3": {
+          "title": "Mobile-first & responsive",
+          "description": "Expérience optimale sur tous les écrans. Layouts adaptatifs, images optimisées, et interactions fluides du mobile au desktop."
+        }
       }
     },
-    "context": {
-      "title": "Contexte",
-      "description": "Un document statique explique, mais ne montre pas. Un portfolio bien fait, c’est comme une démo produit : on voit le résultat, on juge la qualité, puis on va au code si on veut creuser.",
-      "description2": "J’ai donc construit une page projet structurée (contexte → objectifs → choix → résultats) et un rendu visuel propre, pour rendre la lecture immédiate."
+    "techChoices": {
+      "title": "Stack technique",
+      "description": "Des technologies modernes choisies pour leur fiabilité, leur performance et leur écosystème.",
+      "items": {
+        "item1": "Next.js 16 + TypeScript strict — SSR, routing optimisé, typage fort pour un code robuste.",
+        "item2": "Tailwind CSS 4 — Design system cohérent, styles utilitaires, itération rapide sans CSS legacy.",
+        "item3": "Radix UI + shadcn/ui — Composants accessibles par défaut, personnalisables et bien documentés."
+      }
     },
-    "goals": {
-      "title": "Objectifs",
-      "bulletedList1": "Présenter mes projets de manière professionnelle, sans bruit",
-      "bulletedList2": "Mettre en avant mes compétences et les choix techniques utiles",
-      "bulletedList3": "Garantir un rendu rapide et stable (desktop + mobile)"
+    "architecture": {
+      "title": "Architecture",
+      "description": "Organisation pensée produit : séparation claire entre UI et contenu via i18n, composants réutilisables, et structure de fichiers intuitive. Le projet reste maintenable et évolutif même après plusieurs mois sans y toucher."
     },
-    "methodology": {
-      "title": "Méthodologie",
-      "bulletedList1": "Définition d’une structure de page identique pour chaque projet (lisibilité)",
-      "bulletedList2": "Design système simple (spacing, tailles de titres, composants réutilisables)",
-      "bulletedList3": "Implémentation Next.js + Tailwind CSS, responsive dès le départ",
-      "bulletedList4": "Optimisation des médias et finitions UI (micro-interactions, cohérence visuelle)"
+    "quality": {
+      "title": "Qualité & Standards",
+      "subtitle": "Les piliers qui garantissent une expérience utilisateur professionnelle.",
+      "items": {
+        "performance": {
+          "title": "Performance",
+          "description": "Pages légères, lazy loading, images optimisées. Score Lighthouse > 90 sur tous les critères."
+        },
+        "accessibility": {
+          "title": "Accessibilité",
+          "description": "Navigation clavier, contrastes WCAG, sémantique HTML, labels ARIA. Utilisable par tous."
+        },
+        "security": {
+          "title": "Sécurité",
+          "description": "Headers sécurisés, validation des entrées, pas de dépendances vulnérables. Bonnes pratiques OWASP."
+        },
+        "seo": {
+          "title": "SEO",
+          "description": "Métadonnées complètes, sitemap, structure sémantique. Indexation optimale par les moteurs de recherche."
+        }
+      }
     },
-    "difficulty": {
-      "title": "Difficultés",
-      "bulletedList1": "Éviter la page “catalogue” froide → solution : alternance texte/visuel, rythme de lecture et titres orientés valeur.",
-      "bulletedList2": "Garder du sharp sur mobile sans casser la mise en page → solution : grilles adaptatives et hauteurs d’images cohérentes."
+    "challenges": {
+      "title": "Défis relevés",
+      "items": {
+        "item1": "Éviter l'effet « catalogue froid » — équilibrer le texte et le visuel, créer un rythme de lecture engageant.",
+        "item2": "Maintenir la qualité sur mobile — grilles responsives, hiérarchie typographique stable, interactions tactiles fluides."
+      }
     },
     "results": {
       "title": "Résultats",
-      "bulletedList1": "Lecture rapide : on comprend l’objectif et la qualité visuelle immédiatement",
-      "bulletedList2": "Structure claire : chaque projet est “scannable” et cohérent",
-      "bulletedList3": "Base scalable : ajout de nouveaux projets sans dette UI"
+      "items": {
+        "item1": "Présence en ligne professionnelle qui reflète mon niveau et mon style de travail.",
+        "item2": "Base de code maintenable : ajouter un projet prend moins de 30 minutes.",
+        "item3": "Démonstration concrète de mes compétences — le code est public et parlant."
+      }
     },
-    "usedTechnology": "Technologies utilisées",
-    "learnedLessons": {
-      "title": "Leçons apprises",
-      "bulletedList1": "Un bon portfolio, c’est une UX : il faut guider, pas “raconter”",
-      "bulletedList2": "Le rythme visuel (alternance blocs) améliore la compréhension",
-      "bulletedList3": "Une structure fixe rend le contenu plus scalable et maintenable"
+    "nextSteps": {
+      "title": "Prochaines étapes",
+      "items": {
+        "item1": "Enrichir avec de nouveaux projets et études de cas détaillées.",
+        "item2": "Ajouter des animations subtiles et micro-interactions pour renforcer l'UX.",
+        "item3": "Intégrer un blog technique pour partager mes apprentissages."
+      }
     },
-    "viewProject": "Voir le projet"
+    "ctaBottom": {
+      "title": "Envie d'en voir plus ?",
+      "description": "Explorez le site en ligne ou plongez dans le code source pour voir comment c'est construit."
+    }
+  },
+  "githubStats": {
+    "title": "Statistiques GitHub",
+    "homeTitle": "Activité GitHub",
+    "homeSubtitle": "Statistiques de mes projets open source",
+    "selectRepos": "Sélectionner les dépôts",
+    "minOneRepo": "Au moins un dépôt doit être sélectionné",
+    "loading": "Chargement...",
+    "chartTitle": "Historique des commits",
+    "chartSubtitle": "Cliquez pour afficher le graphique",
+    "loadingData": "Chargement des données...",
+    "takeTime": "Cette opération peut prendre du temps",
+    "viewAllStats": "Voir toutes les statistiques",
+    "periods": {
+      "7d": "7 jours",
+      "30d": "30 jours",
+      "6m": "6 mois",
+      "12m": "12 mois",
+      "loading": "Chargement...",
+      "notAvailable": "Données insuffisantes pour cette période"
+    },
+    "charts": {
+      "commits": {
+        "label": "Commits",
+        "total": "{count} commits sur cette période"
+      }
+    },
+    "search": {
+      "title": "Rechercher par hash",
+      "placeholder": "Hash du commit (ex: a1b2c3d)",
+      "loading": "Chargement...",
+      "noResults": "Aucun commit trouvé",
+      "clearSelection": "Effacer la sélection",
+      "sortNewest": "Plus récent",
+      "sortOldest": "Plus ancien"
+    },
+    "commitDetail": {
+      "loading": "Chargement du commit...",
+      "filesChanged": "{count, plural, =1 {1 fichier modifié} other {# fichiers modifiés}}",
+      "viewOnGithub": "Voir sur GitHub"
+    },
+    "errors": {
+      "loading": "Erreur lors du chargement des statistiques",
+      "notConfigured": "Token GitHub non configuré"
+    },
+    "overview": {
+      "commits": "Commits",
+      "contributors": "Contributeurs",
+      "additions": "Lignes ajoutées",
+      "deletions": "Lignes supprimées",
+      "stars": "Étoiles",
+      "forks": "Forks",
+      "size": "Taille",
+      "created": "Créé"
+    },
+    "languages": {
+      "title": "Langages",
+      "other": "Autres"
+    },
+    "contributors": {
+      "title": "Contributeurs",
+      "total": "{count, plural, =1 {1 contributeur} other {# contributeurs}}",
+      "andMore": "+{count, plural, =1 {1 autre} other {# autres}}"
+    }
   },
   "faq": {
     "title": "Questions fréquentes",
@@ -402,9 +520,12 @@
         "answer": "Oui : authentification, paiement, emailing, analytics, CMS, et tout ce qui expose une API fiable."
       },
       "question15": {
-        "question": "Qu’est-ce qui vous différencie ?",
+        "question": "Qu'est-ce qui vous différencie ?",
         "answer": "Une approche productive : interface propre, logique robuste, détails soignés, et une vraie attention à la qualité perçue."
       }
     }
+  },
+  "accessibility": {
+    "skipToContent": "Aller au contenu principal"
   }
 }

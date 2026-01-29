@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getKVInstance, incrementEmailCounter } from '@/lib/db';
-import { rateLimit, validateContentType, validateOrigin, validateUserAgent } from '@/lib/rate-limit';
+import { getEmailCounter, getKVInstance, incrementEmailCounter } from '@/lib/db';
+import { rateLimit, validateContentType, validateOrigin } from '@/lib/rate-limit';
 import { type EmailFormData, sanitizeEmailForm, validateEmailForm } from '@/lib/email-validation';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -10,10 +10,23 @@ const EMAILJS_LAST_SENT_KEY = 'emailjs_last_sent';
 const EMAILJS_LOCK_KEY = 'emailjs_lock';
 const EMAILJS_LOCK_TTL = 2;
 
-function createTimeoutPromise(ms: number): Promise<never> {
-    return new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Timeout')), ms);
+async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
+    const secret = process.env.TURNSTILE_SECRET_KEY;
+    if (!secret) return false;
+
+    const formData = new URLSearchParams();
+    formData.append('secret', secret);
+    formData.append('response', token);
+    if (ip) formData.append('remoteip', ip);
+
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
     });
+
+    const data = await res.json().catch(() => null);
+    return !!data?.success;
 }
 
 async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: boolean; error?: string }> {
@@ -97,19 +110,13 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
             requestBody.accessToken = privateKey;
         }
 
-        const headers: HeadersInit = {
-            'Content-Type': 'application/json'
-        };
-
-        const requestBodyString = JSON.stringify(requestBody);
-
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), EMAILJS_TIMEOUT);
 
         const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
             method: 'POST',
-            headers,
-            body: requestBodyString,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody),
             signal: controller.signal
         });
 
@@ -127,8 +134,11 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
                 const contentType = response.headers.get('content-type');
                 if (contentType && contentType.includes('application/json')) {
                     errorDetails = await response.json();
-                    errorText = errorDetails.text || errorDetails.error || errorDetails.message
-                                || JSON.stringify(errorDetails);
+                    errorText =
+                        errorDetails.text ||
+                        errorDetails.error ||
+                        errorDetails.message ||
+                        JSON.stringify(errorDetails);
                 } else {
                     errorText = await response.text();
                 }
@@ -167,58 +177,34 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         if (hasRedis && redis && lockAcquired) {
             try {
                 await redis.del(EMAILJS_LOCK_KEY);
-            } catch (lockError) {
-                if (!isProduction) {
-                    console.error('[Lock Error]', 'Failed to release lock');
-                }
+            } catch {
             }
         }
+
         if (!isProduction && error instanceof Error) {
             console.error('[EmailJS Exception]', error.message.substring(0, 200));
         }
 
         if (error instanceof Error) {
             if (error.name === 'AbortError') {
-                return {
-                    success: false,
-                    error: 'Le délai d\'attente a été dépassé'
-                };
+                return { success: false, error: 'Le délai d\'attente a été dépassé' };
             }
-            if (error.message.includes('Network') || error.message.includes('network')
-                || error.message.includes('fetch') || error.message.includes('Failed to fetch')) {
-                return {
-                    success: false,
-                    error: 'Erreur de connexion réseau'
-                };
+            if (
+                error.message.includes('Network') ||
+                error.message.includes('network') ||
+                error.message.includes('fetch') ||
+                error.message.includes('Failed to fetch')
+            ) {
+                return { success: false, error: 'Erreur de connexion réseau' };
             }
-            return {
-                success: false,
-                error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : error.message
-            };
+            return { success: false, error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : error.message };
         }
 
-        return {
-            success: false,
-            error: 'Erreur inconnue lors de l\'envoi de l\'email'
-        };
+        return { success: false, error: 'Erreur inconnue lors de l\'envoi de l\'email' };
     }
 }
 
 export async function POST(request: NextRequest) {
-    if (request.method !== 'POST') {
-        return NextResponse.json(
-            { error: 'Méthode non autorisée' },
-            {
-                status: 405,
-                headers: {
-                    'Allow': 'POST',
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY'
-                }
-            }
-        );
-    }
-
     if (!validateContentType(request, 'application/json')) {
         return NextResponse.json(
             { error: 'Content-Type invalide' },
@@ -232,21 +218,7 @@ export async function POST(request: NextRequest) {
         );
     }
 
-    if (!validateUserAgent(request)) {
-        return NextResponse.json(
-            { error: 'Requête non autorisée' },
-            {
-                status: 403,
-                headers: {
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY'
-                }
-            }
-        );
-    }
-
     const rateLimitResult = await rateLimit(request);
-
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
             { error: 'Trop de requêtes. Veuillez réessayer plus tard.' },
@@ -280,7 +252,29 @@ export async function POST(request: NextRequest) {
             throw new Error('Invalid JSON');
         });
 
-        const validation = validateEmailForm(body);
+        const token = body?.turnstileToken;
+        if (!token || typeof token !== 'string') {
+            return NextResponse.json({ error: 'Captcha requis' }, { status: 400 });
+        }
+
+        const ip =
+            request.headers.get('cf-connecting-ip') ||
+            request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+            undefined;
+
+        const ok = await verifyTurnstile(token, ip);
+        if (!ok) {
+            return NextResponse.json({ error: 'Captcha invalide' }, { status: 403 });
+        }
+
+        const payload = {
+            from_name: body?.from_name,
+            from_email: body?.from_email,
+            subject: body?.subject,
+            message: body?.message
+        };
+
+        const validation = validateEmailForm(payload);
         if (!validation.valid) {
             return NextResponse.json(
                 { error: isProduction ? 'Données invalides' : Object.values(validation.errors)[0] },
@@ -294,16 +288,13 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const counterResult = await incrementEmailCounter();
+        const sanitizedData = sanitizeEmailForm(payload as EmailFormData);
 
-        if (!counterResult.allowed) {
-            return NextResponse.json(
-                { error: 'Limite mensuelle de 200 emails atteinte' },
-                { status: 429 }
-            );
+        const current = await getEmailCounter();
+        if (current.count >= 200) {
+            return NextResponse.json({ error: 'Limite mensuelle de 200 emails atteinte' }, { status: 429 });
         }
 
-        const sanitizedData = sanitizeEmailForm(body as EmailFormData);
         const emailResult = await sendEmailViaEmailJS(sanitizedData);
 
         if (!emailResult.success) {
@@ -319,11 +310,13 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        const counterResult = await incrementEmailCounter();
+        const nextCount = counterResult.count || (
+            current.count + 1
+        );
+
         return NextResponse.json(
-            {
-                success: true,
-                count: counterResult.count
-            },
+            { success: true, count: nextCount },
             {
                 headers: {
                     'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
@@ -347,9 +340,7 @@ export async function POST(request: NextRequest) {
         }
 
         return NextResponse.json(
-            {
-                error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorMessage
-            },
+            { error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorMessage },
             {
                 status: 500,
                 headers: {
