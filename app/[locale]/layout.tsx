@@ -139,10 +139,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         manifest: '/manifest.webmanifest',
         other: {
             'dns-prefetch': 'https://api.emailjs.com',
-            'theme-color': '#000000',
+            'theme-color': '#fafafa',
             'format-detection': 'telephone=no',
             'apple-mobile-web-app-capable': 'yes',
-            'apple-mobile-web-app-status-bar-style': 'black-translucent',
+            'apple-mobile-web-app-status-bar-style': 'default',
             'apple-mobile-web-app-title': 'Portfolio de Paul Viandier'
         }
     };
@@ -183,10 +183,10 @@ export default async function RootLayout({
                             try {
                                 var d = document.documentElement;
                                 var s = d.style;
-                                s.backgroundColor = '#000000';
-                                s.colorScheme = 'dark';
+                                s.backgroundColor = '#fafafa';
+                                s.colorScheme = 'light';
                                 var storedTheme = localStorage.getItem('theme');
-                                var theme = storedTheme || 'dark';
+                                var theme = storedTheme || 'light';
                                 var effectiveTheme = theme;
 
                                 if (theme === 'system') {
@@ -198,6 +198,7 @@ export default async function RootLayout({
                                 if (effectiveTheme === 'dark') {
                                     s.backgroundColor = '#000000';
                                     s.color = '#ededed';
+                                    s.colorScheme = 'dark';
                                 } else {
                                     s.backgroundColor = '#fafafa';
                                     s.color = '#262626';
@@ -208,9 +209,9 @@ export default async function RootLayout({
 
                                 window.__THEME_READY__ = true;
                             } catch (e) {
-                                document.documentElement.classList.add('dark');
-                                document.documentElement.style.backgroundColor = '#000000';
-                                document.documentElement.style.color = '#ededed';
+                                document.documentElement.classList.add('light');
+                                document.documentElement.style.backgroundColor = '#fafafa';
+                                document.documentElement.style.color = '#262626';
                                 window.__CHRISTMAS_MODE__ = false;
                             }
                         })();
@@ -221,16 +222,16 @@ export default async function RootLayout({
                 dangerouslySetInnerHTML={{
                     __html: `
                         html {
-                            background-color: #000000;
-                            color-scheme: dark;
+                            background-color: #fafafa;
+                            color-scheme: light;
                         }
                         html:not(.dark):not(.light) {
-                            background-color: #000000 !important;
-                            color: #ededed !important;
+                            background-color: #fafafa !important;
+                            color: #262626 !important;
                         }
                         html:not(.dark):not(.light) body {
-                            background-color: #000000 !important;
-                            color: #ededed !important;
+                            background-color: #fafafa !important;
+                            color: #262626 !important;
                             opacity: 0;
                         }
                         html.dark, html.dark body {

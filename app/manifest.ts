@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
         description: 'Portfolio de Paul Viandier, développeur web en formation, passionné de cybersécurité et de développement fullstack',
         start_url: '/',
         display: 'standalone',
-        background_color: '#000000',
-        theme_color: '#000000',
+        background_color: '#fafafa',
+        theme_color: '#fafafa',
         icons: [
             {
                 src: '/icon.png',

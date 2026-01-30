@@ -6,7 +6,8 @@ import { TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
-    ALLOWED_REPOSITORIES, LoadingState, MultiRepoStatsResponse, Repository, TimeRange, VALID_TIME_RANGES
+    ALLOWED_REPOSITORIES, CHART_TIME_RANGES, LoadingState, MultiRepoStatsResponse, Repository, TimeRange,
+    VALID_TIME_RANGES
 } from '@/lib/github/types';
 import StatsNavigation from '@/components/navbars/Stats/StatsNavigation';
 import { StatsOverview } from '@/components/github-stats/StatsOverview';
@@ -251,7 +252,7 @@ export default function StatsPage() {
                                         <div className="w-full sm:w-auto">
                                             <PeriodSelector
                                                 selectedRange={selectedRange}
-                                                availablePeriods={[...VALID_TIME_RANGES]}
+                                                availablePeriods={[...CHART_TIME_RANGES]}
                                                 onRangeChange={setSelectedRange}
                                                 isLoading={chartLoading}
                                             />

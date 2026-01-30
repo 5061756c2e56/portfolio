@@ -12,6 +12,8 @@ export type RepoParam = Pick<Repository, 'owner' | 'name'>;
 
 export const VALID_TIME_RANGES: readonly TimeRange[] = ['7d', '30d', '6m', '12m'];
 
+export const CHART_TIME_RANGES: readonly TimeRange[] = ['7d', '30d'];
+
 export const ALLOWED_REPOSITORIES: Repository[] = [
     { owner: '5061756c2e56', name: 'portfolio', displayName: 'Portfolio' },
     { owner: '5061756c2e56', name: 'Web-Security', displayName: 'Web Security' }

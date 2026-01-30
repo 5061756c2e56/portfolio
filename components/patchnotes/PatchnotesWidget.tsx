@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import Image from 'next/image';
 import { Bell, CalendarDays, ChevronDown, Home, Menu, Search, Sparkles, X } from 'lucide-react';
@@ -368,8 +367,32 @@ function PatchnoteContent({
             )}>
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
+                    rehypePlugins={[[rehypeSanitize, sanitizeSchema]]}
+                    skipHtml
                     components={{
+                        code: ({ node, children, className, ...props }) => {
+                            const raw =
+                                node?.type === 'element' &&
+                                Array.isArray(node.children)
+                                    ? node.children
+                                        .filter((c): c is { type: 'text'; value: string } => c.type === 'text')
+                                        .map(c => c.value)
+                                        .join('')
+                                    : null;
+                            let value =
+                                raw ??
+                                (typeof children === 'string'
+                                    ? children
+                                    : Array.isArray(children)
+                                        ? children.map(c => (typeof c === 'string' ? c : '')).join('')
+                                        : String(children ?? ''));
+                            value = value.replace(/&#123;/g, '{').replace(/&#125;/g, '}');
+                            return (
+                                <code className={className} {...props}>
+                                    {value}
+                                </code>
+                            );
+                        },
                         a: (props) => <a {...props} target="_blank" rel="noreferrer noopener"/>,
                         img: ({ src, alt }) => {
                             const s = (
@@ -803,7 +826,7 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                                     title={headerTitle}
                                     description={headerDescription}
                                     date={headerDate}
-                                    body={activeParsed.body}
+                                    body={activeParsed.body.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;')}
                                 />
                             )}
                         </main>

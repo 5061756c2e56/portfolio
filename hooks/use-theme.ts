@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 type Theme = 'light' | 'dark' | 'system';
 
 export function useTheme() {
-    const [theme, setTheme] = useState<Theme>('dark');
+    const [theme, setTheme] = useState<Theme>('light');
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -14,8 +14,8 @@ export function useTheme() {
         if (stored) {
             setTheme(stored);
         } else {
-            setTheme('dark');
-            localStorage.setItem('theme', 'dark');
+            setTheme('light');
+            localStorage.setItem('theme', 'light');
         }
     }, []);
 

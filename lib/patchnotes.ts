@@ -57,7 +57,7 @@ function extractDisplayDate(markdown: string) {
 }
 
 function parseFileDateFromSlug(slug: string) {
-    const m = slug.match(/^(\d{4}-\d{2}-\d{2})-/);
+    const m = slug.match(/^(\d{4}-\d{2}-\d{2})(?:-|$)/);
     return m?.[1] ?? '1970-01-01';
 }
 
@@ -86,8 +86,9 @@ export async function listPatchnotes(lang: PatchnoteLang, sort: SortOrder): Prom
     }));
 
     metas.sort((a, b) => {
-        const da = a.fileDate.localeCompare(b.fileDate);
-        return sort === 'newest' ? -da : da;
+        const ta = new Date(a.fileDate).getTime();
+        const tb = new Date(b.fileDate).getTime();
+        return sort === 'newest' ? tb - ta : ta - tb;
     });
 
     return metas;

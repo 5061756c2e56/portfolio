@@ -12,7 +12,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             const root = document.documentElement;
 
             if (!root.classList.contains('light') && !root.classList.contains('dark')) {
-                root.classList.add('dark');
+                root.classList.add('light');
             }
 
             requestAnimationFrame(() => {
