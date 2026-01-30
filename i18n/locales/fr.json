@@ -446,8 +446,7 @@
       "deletions": "Lignes supprimées",
       "stars": "Étoiles",
       "forks": "Forks",
-      "size": "Taille",
-      "created": "Créé"
+      "size": "Taille"
     },
     "languages": {
       "title": "Langages",

@@ -10,7 +10,7 @@ export interface Repository {
 
 export const ALLOWED_REPOSITORIES: Repository[] = [
     { owner: '5061756c2e56', name: 'portfolio', displayName: 'Portfolio' },
-    { owner: '5061756c2e56', name: 'Web-Security', displayName: 'Web Security' },
+    { owner: '5061756c2e56', name: 'Web-Security', displayName: 'Web Security' }
 ];
 
 export function isAllowedRepository(owner: string, name: string): boolean {
@@ -210,11 +210,9 @@ export interface RepoStats {
     forks: number;
     issues: number;
     size: number;
-    createdAt: string;
     lastPush: string;
     defaultBranch: string;
     totalCommits: number;
-    totalContributors: number;
     totalAdditions: number;
     totalDeletions: number;
 }
@@ -229,6 +227,7 @@ export interface ExtendedStatsResponse {
 export interface MultiRepoTimelinePoint {
     date: string;
     label: string;
+
     [repoName: string]: string | number;
 }
 

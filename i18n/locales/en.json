@@ -446,8 +446,7 @@
       "deletions": "Lines deleted",
       "stars": "Stars",
       "forks": "Forks",
-      "size": "Size",
-      "created": "Created"
+      "size": "Size"
     },
     "languages": {
       "title": "Languages",

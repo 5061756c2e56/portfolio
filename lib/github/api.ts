@@ -80,38 +80,27 @@ export async function githubFetch<T>(options: GitHubRequestOptions): Promise<T> 
 
 async function fetchWithRetry<T>(
     fetchFn: () => Promise<Response>,
-    maxAttempts: number = 3,
-    initialDelayMs: number = 500
+    maxAttempts = 15,
+    initialDelayMs = 1000
 ): Promise<T> {
-    let attempts = 0;
-
-    while (attempts < maxAttempts) {
+    for (let attempts = 0; attempts < maxAttempts; attempts++) {
         const response = await fetchFn();
 
         if (response.status === 202) {
-            const delay = initialDelayMs * Math.pow(1.5, attempts);
-            await new Promise(resolve => setTimeout(resolve, delay));
-            attempts++;
+            const delay = Math.min(initialDelayMs * Math.pow(1.7, attempts), 15000);
+            await new Promise(r => setTimeout(r, delay));
             continue;
         }
 
         if (!response.ok) {
-            throw new GitHubAPIError(`Erreur: ${response.status}`, response.status);
+            const body = await response.text().catch(() => '');
+            throw new GitHubAPIError(`Erreur: ${response.status} ${body}`, response.status);
         }
 
-        const data = await response.json();
-
-        if (Array.isArray(data) && data.length === 0 && attempts < maxAttempts - 1) {
-            const delay = initialDelayMs * Math.pow(1.5, attempts);
-            await new Promise(resolve => setTimeout(resolve, delay));
-            attempts++;
-            continue;
-        }
-
-        return data;
+        return response.json();
     }
 
-    throw new GitHubAPIError('Stats non disponibles après plusieurs tentatives', 503);
+    throw new GitHubAPIError('Stats encore en génération (202)', 503);
 }
 
 export async function getCommitActivity(owner: string = DEFAULT_OWNER, repo: string = DEFAULT_REPO): Promise<GitHubCommitActivity[]> {

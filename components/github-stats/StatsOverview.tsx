@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Calendar, Code2, GitCommit, GitFork, Loader2, Minus, Plus, Star, Users } from 'lucide-react';
+import { Code2, GitCommit, GitFork, Loader2, Minus, Plus, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { RepoStats } from '@/lib/github/types';
 
@@ -106,22 +106,27 @@ export function StatsOverview({ stats, isLoading }: StatsOverviewProps) {
         new Date(dateStr).toLocaleDateString(undefined, { year: 'numeric', month: 'short' });
 
     return (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            <StatCard icon={<GitCommit/>} label={t('commits')} value={stats?.totalCommits ?? 0} color="blue"
-                      isLoading={isLoading}/>
-            <StatCard icon={<Users/>} label={t('contributors')} value={stats?.totalContributors ?? 0} color="purple"
-                      isLoading={isLoading}/>
-            <StatCard icon={<Plus/>} label={t('additions')} value={stats?.totalAdditions ?? 0} color="emerald"
-                      isLoading={isLoading}/>
-            <StatCard icon={<Minus/>} label={t('deletions')} value={stats?.totalDeletions ?? 0} color="rose"
-                      isLoading={isLoading}/>
-            <StatCard icon={<Star/>} label={t('stars')} value={stats?.stars ?? 0} color="amber" isLoading={isLoading}/>
-            <StatCard icon={<GitFork/>} label={t('forks')} value={stats?.forks ?? 0} color="cyan"
-                      isLoading={isLoading}/>
-            <StatCard icon={<Code2/>} label={t('size')} value={stats ? formatSize(stats.size) : '0 KB'} color="indigo"
-                      isLoading={isLoading}/>
-            <StatCard icon={<Calendar/>} label={t('created')} value={stats ? formatDate(stats.createdAt) : '-'}
-                      color="orange" isLoading={isLoading}/>
+        <div className="flex justify-center">
+            <div className="grid w-full max-w-4xl grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                <StatCard icon={<GitCommit/>} label={t('commits')} value={stats?.totalCommits ?? 0} color="blue"
+                          isLoading={isLoading}/>
+
+                <StatCard icon={<Plus/>} label={t('additions')} value={stats?.totalAdditions ?? 0} color="emerald"
+                          isLoading={isLoading}/>
+
+                <StatCard icon={<Minus/>} label={t(
+                    'deletions')} value={stats?.totalDeletions ?? 0} color="rose"
+                          isLoading={isLoading}/>
+                <StatCard icon={<Star/>} label={t('stars')} value={stats?.stars ?? 0} color="amber"
+                          isLoading={isLoading}/>
+
+                <StatCard icon={<GitFork/>} label={t('forks')} value={stats?.forks ?? 0} color="cyan"
+                          isLoading={isLoading}/>
+
+                <StatCard icon={<Code2/>} label={t('size')} value={stats ? formatSize(stats.size) : '0 KB'}
+                          color="indigo"
+                          isLoading={isLoading}/>
+            </div>
         </div>
     );
 }

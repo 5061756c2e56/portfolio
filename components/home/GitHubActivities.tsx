@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowRight, GitCommit, Loader2, Star, Users } from 'lucide-react';
+import { ArrowRight, GitCommit, Loader2, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useInView } from '@/hooks/use-in-view';
 import { Link } from '@/i18n/routing';
@@ -61,11 +61,6 @@ export function GitHubActivities() {
             value: stats?.stats?.totalCommits ?? 0
         },
         {
-            icon: Users,
-            label: t('overview.contributors'),
-            value: stats?.stats?.totalContributors ?? 0
-        },
-        {
             icon: Star,
             label: t('overview.stars'),
             value: stats?.stats?.stars ?? 0
@@ -90,7 +85,7 @@ export function GitHubActivities() {
                         <p className="text-muted-foreground mt-2">{t('homeSubtitle')}</p>
                     </div>
 
-                                    </div>
+                </div>
 
                 <div className={cn(
                     'rounded-2xl border border-blue-500/10 bg-card/50 p-6 sm:p-8 transition-all duration-500',

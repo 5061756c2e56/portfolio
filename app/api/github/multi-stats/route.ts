@@ -3,7 +3,7 @@ import { getCodeFrequency, getCommitActivity, getContributors, getLanguages, get
 import { transformCommitActivity } from '@/lib/github/utils';
 import { getTTLForRange, withCache } from '@/lib/github/cache';
 import { addSecurityHeaders, validateRequest } from '@/lib/github/security';
-import { getTimelineFromDB, isDatabaseConfigured } from '@/lib/github/db-queries';
+import { getCodeTotalsFromDB, getTimelineFromDB, isDatabaseConfigured } from '@/lib/github/db-queries';
 import {
     ALLOWED_REPOSITORIES, CACHE_TTL, Contributor, GitHubAPIError, GitHubCodeFrequency, GitHubCommitActivity,
     isAllowedRepository, LanguageStats, MultiRepoStatsResponse, MultiRepoTimelinePoint, REPO_COLORS, RepoStats,
@@ -27,9 +27,9 @@ interface RepoDataResult {
     stats: RepoStats;
 }
 
-function generateCacheKey(repos: RepoParam[], range: TimeRange): string {
+function generateCacheKey(repos: RepoParam[]): string {
     const repoKeys = repos.map(r => `${r.owner}:${r.name}`).sort().join(',');
-    return `github:multi-stats:${repoKeys}:${range}`;
+    return `github:multi-stats:${repoKeys}`;
 }
 
 async function fetchRepoDataWithFallback(
@@ -60,25 +60,18 @@ async function fetchRepoDataWithFallback(
                 let codeFrequency: GitHubCodeFrequency = [];
                 let commitActivity: GitHubCommitActivity[] = [];
 
-                const timeoutMs = 15000;
-
-                const withTimeout = <T>(promise: Promise<T>, fallback: T): Promise<T> => {
-                    return Promise.race([
-                        promise,
-                        new Promise<T>((resolve) => setTimeout(() => resolve(fallback), timeoutMs))
-                    ]);
-                };
-
                 try {
-                    codeFrequency = await withTimeout(getCodeFrequency(repo.owner, repo.name), []);
-                } catch {
-                    console.warn(`[Multi-stats] Code frequency unavailable for ${repo.name}`);
+                    codeFrequency = await getCodeFrequency(repo.owner, repo.name);
+                } catch (e) {
+                    console.warn(`[Multi-stats] Code frequency unavailable for ${repo.name}`, e);
+                    codeFrequency = [];
                 }
 
                 try {
-                    commitActivity = await withTimeout(getCommitActivity(repo.owner, repo.name), []);
-                } catch {
-                    console.warn(`[Multi-stats] Commit activity unavailable for ${repo.name}`);
+                    commitActivity = await getCommitActivity(repo.owner, repo.name);
+                } catch (e) {
+                    console.warn(`[Multi-stats] Commit activity unavailable for ${repo.name}`, e);
+                    commitActivity = [];
                 }
 
                 let totalAdditions = 0;
@@ -146,13 +139,14 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const reposParam = searchParams.get('repos');
-    const range = (
-                      searchParams.get('range') as TimeRange
-                  ) || '12m';
+    const timelineRange = (
+                              searchParams.get('range') as TimeRange
+                          ) || '12m';
+    const statsRange: TimeRange = '12m';
     const locale = searchParams.get('locale') || 'fr';
 
     const validRanges: TimeRange[] = ['7d', '30d', '6m', '12m'];
-    if (!validRanges.includes(range)) {
+    if (!validRanges.includes(timelineRange)) {
         return addSecurityHeaders(NextResponse.json(
             { error: 'Invalid range parameter', code: 'INVALID_RANGE' },
             { status: 400 }
@@ -185,17 +179,17 @@ export async function GET(request: NextRequest) {
     }
 
     try {
-        const cacheKey = generateCacheKey(validRepos, range);
+        const cacheKey = generateCacheKey(validRepos);
 
         const useDB = await isDatabaseConfigured();
 
         const { data: cachedResponse, fromCache } = await withCache<MultiRepoStatsResponse>(
             cacheKey,
-            getTTLForRange(range),
+            getTTLForRange(statsRange),
             async () => {
                 const results = await Promise.all(
                     validRepos.map((repo, index) =>
-                        fetchRepoDataWithFallback(repo, index, range, locale)
+                        fetchRepoDataWithFallback(repo, index, statsRange, locale)
                     )
                 );
 
@@ -210,22 +204,25 @@ export async function GET(request: NextRequest) {
                     forks: allResults.reduce((sum, r) => sum + r.stats.forks, 0),
                     issues: allResults.reduce((sum, r) => sum + r.stats.issues, 0),
                     size: allResults.reduce((sum, r) => sum + r.stats.size, 0),
-                    createdAt: allResults.reduce((oldest, r) =>
-                            r.stats.createdAt < oldest ? r.stats.createdAt : oldest,
-                        allResults[0].stats.createdAt
-                    ),
-                    lastPush: allResults.reduce((newest, r) =>
-                            r.stats.lastPush > newest ? r.stats.lastPush : newest,
+
+                    lastPush: allResults.reduce(
+                        (newest, r) => (
+                            r.stats.lastPush > newest ? r.stats.lastPush : newest
+                        ),
                         allResults[0].stats.lastPush
                     ),
                     defaultBranch: allResults[0].stats.defaultBranch,
                     totalCommits: allResults.reduce((sum, r) => sum + r.stats.totalCommits, 0),
-                    totalContributors: new Set(
-                        allResults.flatMap(r => r.contributors.map(c => c.username))
-                    ).size,
+
                     totalAdditions: allResults.reduce((sum, r) => sum + r.stats.totalAdditions, 0),
                     totalDeletions: allResults.reduce((sum, r) => sum + r.stats.totalDeletions, 0)
                 };
+
+                if (useDB) {
+                    const { additions, deletions } = await getCodeTotalsFromDB(validRepos, statsRange);
+                    aggregatedStats.totalAdditions = additions;
+                    aggregatedStats.totalDeletions = deletions;
+                }
 
                 const languageMap = new Map<string, { bytes: number; color: string }>();
                 for (const result of allResults) {
@@ -274,7 +271,7 @@ export async function GET(request: NextRequest) {
                 let combinedTimeline: MultiRepoTimelinePoint[];
 
                 if (useDB) {
-                    const dbTimelines = await getTimelineFromDB(validRepos, range, locale);
+                    const dbTimelines = await getTimelineFromDB(validRepos, timelineRange, locale);
 
                     timelines = dbTimelines.timelines.map((t, index) => (
                         {
@@ -288,43 +285,43 @@ export async function GET(request: NextRequest) {
 
                     combinedTimeline = dbTimelines.combinedTimeline as MultiRepoTimelinePoint[];
                 } else {
-                    timelines = allResults.map(r => (
-                        {
+                    timelines = allResults.map(r => {
+                        const data = transformCommitActivity(r.commitActivity, timelineRange, locale);
+                        return {
                             repoName: r.repoName,
                             repoDisplayName: r.displayName,
                             color: r.color,
-                            data: r.timeline,
-                            totalCommits: r.timelineCommits
-                        }
-                    ));
+                            data,
+                            totalCommits: data.reduce((sum, p) => sum + p.commits, 0)
+                        };
+                    });
 
                     const dateMap = new Map<string, MultiRepoTimelinePoint>();
-                    for (const result of allResults) {
-                        for (const point of result.timeline) {
+                    for (const t of timelines) {
+                        for (const point of t.data) {
                             const existing = dateMap.get(point.date);
                             if (existing) {
-                                existing[result.repoName] = point.commits;
+                                existing[t.repoName] = point.commits;
                             } else {
                                 const newPoint: MultiRepoTimelinePoint = {
                                     date: point.date,
                                     label: point.label
                                 };
-                                newPoint[result.repoName] = point.commits;
+                                newPoint[t.repoName] = point.commits;
                                 dateMap.set(point.date, newPoint);
                             }
                         }
                     }
 
-                    for (const result of allResults) {
+                    for (const t of timelines) {
                         for (const [, point] of dateMap) {
-                            if (point[result.repoName] === undefined) {
-                                point[result.repoName] = 0;
-                            }
+                            if (point[t.repoName] === undefined) point[t.repoName] = 0;
                         }
                     }
 
-                    combinedTimeline = Array.from(dateMap.values())
-                                            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+                    combinedTimeline = Array.from(dateMap.values()).sort(
+                        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+                    );
                 }
 
                 return {
@@ -348,7 +345,7 @@ export async function GET(request: NextRequest) {
 
         return addSecurityHeaders(NextResponse.json(responseData, {
             headers: {
-                'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
+                'Cache-Control': `public, s-maxage=${getTTLForRange(statsRange)}, stale-while-revalidate`,
                 'X-Cache': fromCache ? 'HIT' : 'MISS'
             }
         }), securityCheck.rateLimitRemaining);
