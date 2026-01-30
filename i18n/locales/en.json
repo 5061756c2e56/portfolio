@@ -409,6 +409,7 @@
     "loadingData": "Loading data...",
     "takeTime": "This process may take some time",
     "viewAllStats": "View all statistics",
+    "repoCount": "{count, plural, one {# repository} other {# repositories}}",
     "periods": {
       "7d": "7 days",
       "30d": "30 days",

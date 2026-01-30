@@ -409,6 +409,7 @@
     "loadingData": "Chargement des données...",
     "takeTime": "Cette opération peut prendre du temps",
     "viewAllStats": "Voir toutes les statistiques",
+    "repoCount": "{count, plural, one {# répertoire} other {# répertoires}}",
     "periods": {
       "7d": "7 jours",
       "30d": "30 jours",

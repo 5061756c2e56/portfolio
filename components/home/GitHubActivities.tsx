@@ -94,7 +94,7 @@ export function GitHubActivities() {
                         </div>
                         <div>
                             <span className="text-sm text-muted-foreground">
-                                {ALLOWED_REPOSITORIES.length} {ALLOWED_REPOSITORIES.length > 1 ? 'dépôts' : 'dépôt'}
+                                {t('repoCount', { count: ALLOWED_REPOSITORIES.length })}
                             </span>
                         </div>
                     </div>
