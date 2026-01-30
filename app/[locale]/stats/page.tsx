@@ -24,8 +24,11 @@ export default function StatsPage() {
     const [loadingState, setLoadingState] = useState<LoadingState>('idle');
     const [error, setError] = useState<string | null>(null);
     const [selectedRange, setSelectedRange] = useState<TimeRange>('7d');
+    const [chartLoading, setChartLoading] = useState(false);
+    const [combinedTimeline, setCombinedTimeline] = useState<MultiRepoStatsResponse['combinedTimeline']>([]);
+    const [timelines, setTimelines] = useState<MultiRepoStatsResponse['timelines']>([]);
 
-    const fetchStats = useCallback(async (repos: Repository[], range: TimeRange) => {
+    const fetchStats = useCallback(async (repos: Repository[]) => {
         if (repos.length === 0) return;
 
         setLoadingState('loading');
@@ -39,7 +42,7 @@ export default function StatsPage() {
                 }
             ));
             const response = await fetch(
-                `/api/github/multi-stats?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=${range}`,
+                `/api/github/multi-stats?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=12m`,
                 { cache: 'no-store' }
             );
 
@@ -57,9 +60,40 @@ export default function StatsPage() {
         }
     }, []);
 
+    const fetchTimeline = useCallback(async (repos: Repository[], range: TimeRange) => {
+        if (repos.length === 0) return;
+
+        setChartLoading(true);
+
+        try {
+            const reposParam = repos.map(r => (
+                { owner: r.owner, name: r.name }
+            ));
+            const response = await fetch(
+                `/api/github/multi-timeline?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=${range}`,
+                { cache: 'no-store' }
+            );
+
+            if (!response.ok) throw new Error('Failed to fetch timeline');
+
+            const data = await response.json();
+            setCombinedTimeline(data.combinedTimeline ?? []);
+            setTimelines(data.timelines ?? []);
+        } catch (err) {
+            console.error('Error fetching timeline:', err);
+            // optionnel: setError(...)
+        } finally {
+            setChartLoading(false);
+        }
+    }, []);
+
     useEffect(() => {
-        fetchStats(selectedRepos, selectedRange);
-    }, [selectedRepos, selectedRange, fetchStats]);
+        fetchStats(selectedRepos);
+    }, [selectedRepos, fetchStats]);
+
+    useEffect(() => {
+        fetchTimeline(selectedRepos, selectedRange);
+    }, [selectedRepos, selectedRange, fetchTimeline]);
 
     const handleRepoToggle = (repo: Repository, checked: boolean) => {
         if (checked) {
@@ -207,19 +241,19 @@ export default function StatsPage() {
                                                 selectedRange={selectedRange}
                                                 availablePeriods={['7d', '30d']}
                                                 onRangeChange={setSelectedRange}
-                                                isLoading={loadingState === 'loading'}
+                                                isLoading={chartLoading}
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="p-4 sm:p-6">
-                                    {loadingState === 'loading' ? (
+                                    {chartLoading ? (
                                         <ChartSkeleton/>
-                                    ) : stats?.combinedTimeline && stats.timelines ? (
+                                    ) : combinedTimeline.length > 0 && timelines.length > 0 ? (
                                         <MultiRepoCommitsChart
-                                            combinedTimeline={stats.combinedTimeline}
-                                            timelines={stats.timelines}
+                                            combinedTimeline={combinedTimeline}
+                                            timelines={timelines}
                                         />
                                     ) : null}
                                 </div>
