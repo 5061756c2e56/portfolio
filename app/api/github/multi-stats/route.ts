@@ -158,11 +158,8 @@ export async function GET(request: NextRequest) {
 
         const useDB = await isDatabaseConfigured();
 
-        const { data: cachedResponse, fromCache } = await withCache<MultiRepoStatsResponse>(
-            cacheKey,
-            getTTLForRange(range),
-            async () => {
-                const results = await Promise.all(
+        const buildResponse = async (): Promise<MultiRepoStatsResponse> => {
+            const results = await Promise.all(
                     validRepos.map((repo, index) =>
                         fetchRepoDataWithFallback(repo, index, range, locale)
                     )
@@ -337,18 +334,29 @@ export async function GET(request: NextRequest) {
                     );
                 }
 
-                return {
-                    stats: aggregatedStats,
-                    languages: aggregatedLanguages,
-                    contributors: aggregatedContributors,
-                    codeChanges: [],
-                    timelines,
-                    combinedTimeline,
-                    availablePeriods: [...VALID_TIME_RANGES],
-                    defaultPeriod: '7d' as TimeRange
-                };
-            }
-        );
+            return {
+                stats: aggregatedStats,
+                languages: aggregatedLanguages,
+                contributors: aggregatedContributors,
+                codeChanges: [],
+                timelines,
+                combinedTimeline,
+                availablePeriods: [...VALID_TIME_RANGES],
+                defaultPeriod: '7d' as TimeRange
+            };
+        };
+
+        let cachedResponse: MultiRepoStatsResponse;
+        let fromCache: boolean;
+
+        if (useDB) {
+            cachedResponse = await buildResponse();
+            fromCache = false;
+        } else {
+            const result = await withCache<MultiRepoStatsResponse>(cacheKey, getTTLForRange(range), buildResponse);
+            cachedResponse = result.data;
+            fromCache = result.fromCache;
+        }
 
         const responseData = {
             ...cachedResponse,
@@ -358,8 +366,12 @@ export async function GET(request: NextRequest) {
 
         return createJsonResponse(responseData, {
             headers: {
-                'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
-                'X-Cache': fromCache ? 'HIT' : 'MISS'
+                ...(useDB
+                    ? { 'Cache-Control': 'no-store, no-cache, must-revalidate' }
+                    : { 'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate` }
+                ),
+                'X-Cache': fromCache ? 'HIT' : 'MISS',
+                ...(useDB ? { 'X-Data-Source': 'database' } : {})
             }
         }, securityCheck);
 

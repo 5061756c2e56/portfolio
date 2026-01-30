@@ -124,7 +124,7 @@ export async function GET(request: NextRequest) {
 
             return addSecurityHeaders(NextResponse.json(response, {
                 headers: {
-                    'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
+                    'Cache-Control': 'no-store, no-cache, must-revalidate',
                     'X-Data-Source': 'database'
                 }
             }), securityCheck.rateLimitRemaining);
