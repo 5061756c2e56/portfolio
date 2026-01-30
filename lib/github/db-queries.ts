@@ -1,7 +1,6 @@
 import { getPrisma } from '@/lib/prisma';
-import { ALLOWED_REPOSITORIES, CommitItem, PERIOD_CONFIGS, TimeRange } from './types';
-
-type RepoInput = { owner: string; name: string };
+import { getStartDateForRange } from '@/lib/github/utils';
+import { ALLOWED_REPOSITORIES, CommitItem, PERIOD_CONFIGS, RepoParam, TimeRange } from './types';
 
 export interface DBCommitItem extends CommitItem {
     repoOwner: string;
@@ -17,12 +16,6 @@ export interface CommitsByRepo {
     displayName: string;
     commits: DBCommitItem[];
     total: number;
-}
-
-function getStartDate(range: TimeRange): Date {
-    const now = new Date();
-    const days = PERIOD_CONFIGS[range].days;
-    return new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
 }
 
 export async function isDatabaseConfigured(): Promise<boolean> {
@@ -44,7 +37,7 @@ export async function isDatabaseConfigured(): Promise<boolean> {
 }
 
 export async function getCommitsFromDB(
-    repos: RepoInput[],
+    repos: RepoParam[],
     range: TimeRange,
     searchQuery?: string
 ): Promise<{
@@ -59,11 +52,11 @@ export async function getCommitsFromDB(
 
     const startDate = ['6m', '12m'].includes(range)
         ? new Date('2020-01-01')
-        : getStartDate(range);
+        : getStartDateForRange(range);
 
     const dbRepos = await prisma.repository.findMany({
         where: {
-            OR: repos.map((r: RepoInput) => (
+            OR: repos.map((r: RepoParam) => (
                 { owner: r.owner, name: r.name }
             ))
         }
@@ -197,7 +190,7 @@ export async function getCommitDetailFromDB(
 }
 
 export async function getCommitStatsFromDB(
-    repos: RepoInput[],
+    repos: RepoParam[],
     range: TimeRange
 ): Promise<{
     totalCommits: number;
@@ -208,11 +201,11 @@ export async function getCommitStatsFromDB(
         return { totalCommits: 0, commitsByDate: [] };
     }
 
-    const startDate = getStartDate(range);
+    const startDate = getStartDateForRange(range);
 
     const dbRepos = await prisma.repository.findMany({
         where: {
-            OR: repos.map((r: RepoInput) => (
+            OR: repos.map((r: RepoParam) => (
                 { owner: r.owner, name: r.name }
             ))
         }
@@ -318,7 +311,7 @@ function generateAllDatesInRange(startDate: Date, endDate: Date, granularity: 'd
 }
 
 export async function getTimelineFromDB(
-    repos: RepoInput[],
+    repos: RepoParam[],
     range: TimeRange,
     locale: string = 'fr'
 ): Promise<{
@@ -331,12 +324,12 @@ export async function getTimelineFromDB(
     }
 
     const config = PERIOD_CONFIGS[range];
-    const startDate = getStartDate(range);
+    const startDate = getStartDateForRange(range);
     const endDate = new Date();
 
     const dbRepos = await prisma.repository.findMany({
         where: {
-            OR: repos.map((r: RepoInput) => (
+            OR: repos.map((r: RepoParam) => (
                 { owner: r.owner, name: r.name }
             ))
         }
@@ -439,17 +432,17 @@ export async function getTimelineFromDB(
 }
 
 export async function getCodeTotalsFromDB(
-    repos: RepoInput[],
+    repos: RepoParam[],
     range: TimeRange
 ): Promise<{ additions: number; deletions: number }> {
     const prisma = getPrisma();
     if (!prisma) return { additions: 0, deletions: 0 };
 
-    const startDate = getStartDate(range);
+    const startDate = getStartDateForRange(range);
 
     const dbRepos = await prisma.repository.findMany({
         where: {
-            OR: repos.map((r: RepoInput) => (
+            OR: repos.map((r: RepoParam) => (
                 { owner: r.owner, name: r.name }
             ))
         },
@@ -470,4 +463,41 @@ export async function getCodeTotalsFromDB(
         additions: rows._sum.additions ?? 0,
         deletions: rows._sum.deletions ?? 0
     };
+}
+
+export async function getContributorCommitCountsFromDB(
+    repos: RepoParam[],
+    range: TimeRange
+): Promise<Record<string, number>> {
+    const prisma = getPrisma();
+    if (!prisma) return {};
+
+    const startDate = getStartDateForRange(range);
+
+    const dbRepos = await prisma.repository.findMany({
+        where: {
+            OR: repos.map((r: RepoParam) => ({ owner: r.owner, name: r.name }))
+        },
+        select: { id: true }
+    });
+
+    if (dbRepos.length === 0) return {};
+
+    const grouped = await prisma.commit.groupBy({
+        by: ['authorLogin'],
+        where: {
+            repositoryId: { in: dbRepos.map((r: { id: string }) => r.id) },
+            committedAt: { gte: startDate },
+            authorLogin: { not: null }
+        },
+        _count: { id: true }
+    });
+
+    const result: Record<string, number> = {};
+    for (const row of grouped) {
+        if (row.authorLogin != null) {
+            result[row.authorLogin] = row._count.id;
+        }
+    }
+    return result;
 }

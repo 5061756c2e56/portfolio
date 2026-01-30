@@ -14,6 +14,7 @@ interface GitHubCommitRaw {
         };
     };
     author?: {
+        login: string;
         avatar_url: string;
     };
     html_url: string;
@@ -153,7 +154,7 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
                 await prisma.commit.findMany({
                     where: { repositoryId: repository.id },
                     select: { sha: true }
-                     
+
                 })
             ).map((c: any) => c.sha)
         );
@@ -174,15 +175,18 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
                 })
             );
 
-            const commitData = commitsWithDetails.map(({ raw, details }) => (
-                {
+            const commitData = commitsWithDetails.map(({ raw, details }) => {
+                const authorLogin = details?.author?.login ?? raw.author?.login ?? null;
+                const authorAvatar = details?.author?.avatar_url ?? raw.author?.avatar_url ?? null;
+                return {
                     sha: raw.sha,
                     shortSha: raw.sha.substring(0, 7),
                     message: raw.commit.message,
                     messageTitle: raw.commit.message.split('\n')[0].substring(0, 255),
                     author: raw.commit.author.name,
                     authorEmail: raw.commit.author.email,
-                    authorAvatar: raw.author?.avatar_url,
+                    authorAvatar,
+                    authorLogin,
                     committedAt: new Date(raw.commit.author.date),
                     additions: details?.stats?.additions || 0,
                     deletions: details?.stats?.deletions || 0,
@@ -190,8 +194,8 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
                     htmlUrl: raw.html_url,
                     isMergeCommit: raw.parents.length > 1,
                     repositoryId: repository.id
-                }
-            ));
+                };
+            });
 
             await prisma.commit.createMany({
                 data: commitData,
@@ -203,6 +207,37 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
 
             if (i + batchSize < newCommits.length) {
                 await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        }
+
+        const authorBySha = new Map<string, { login: string | null; avatar_url: string | null }>();
+        for (const c of githubCommits) {
+            const login = c.author?.login ?? null;
+            const avatar_url = c.author?.avatar_url ?? null;
+            if (login !== null || avatar_url !== null) {
+                authorBySha.set(c.sha, { login, avatar_url });
+            }
+        }
+
+        const commitsWithoutLogin = await prisma.commit.findMany({
+            where: { repositoryId: repository.id, authorLogin: null },
+            select: { id: true, sha: true }
+        });
+        if (commitsWithoutLogin.length > 0 && authorBySha.size > 0) {
+            console.log(`[Sync] Backfilling authorLogin for ${commitsWithoutLogin.length} existing commits (from list)`);
+            let backfilled = 0;
+            for (const commit of commitsWithoutLogin) {
+                const author = authorBySha.get(commit.sha);
+                if (author && (author.login !== null || author.avatar_url !== null)) {
+                    await prisma.commit.update({
+                        where: { id: commit.id },
+                        data: { authorLogin: author.login, authorAvatar: author.avatar_url }
+                    });
+                    backfilled++;
+                }
+            }
+            if (backfilled > 0) {
+                console.log(`[Sync] Backfilled authorLogin for ${backfilled} commits`);
             }
         }
 
@@ -302,6 +337,9 @@ export async function addCommitFromWebhook(
 
         const details = await fetchCommitDetails(owner, repo, commitData.sha);
 
+        const authorLogin = details?.author?.login ?? null;
+        const authorAvatar = details?.author?.avatar_url ?? null;
+
         await prisma.commit.upsert({
             where: {
                 repositoryId_sha: {
@@ -312,7 +350,9 @@ export async function addCommitFromWebhook(
             update: {
                 additions: details?.stats?.additions || 0,
                 deletions: details?.stats?.deletions || 0,
-                filesChanged: details?.files?.length || 0
+                filesChanged: details?.files?.length || 0,
+                authorLogin,
+                authorAvatar
             },
             create: {
                 sha: commitData.sha,
@@ -321,6 +361,8 @@ export async function addCommitFromWebhook(
                 messageTitle: commitData.message.split('\n')[0].substring(0, 255),
                 author: commitData.author.name,
                 authorEmail: commitData.author.email,
+                authorAvatar,
+                authorLogin,
                 committedAt: new Date(commitData.timestamp),
                 additions: details?.stats?.additions || 0,
                 deletions: details?.stats?.deletions || 0,

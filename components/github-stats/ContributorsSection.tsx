@@ -3,33 +3,31 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { Users, ExternalLink, GitCommit, Loader2 } from 'lucide-react';
+import { ExternalLink, GitCommit, Loader2, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Contributor } from '@/lib/github/types';
 import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious
+    Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious
 } from '@/components/ui/pagination';
 
 interface ContributorsSectionProps {
     contributors: Contributor[];
     isLoading: boolean;
+    totalCommits?: number;
 }
 
 const ITEMS_PER_PAGE = 3;
 
-export function ContributorsSection({ contributors, isLoading }: ContributorsSectionProps) {
+export function ContributorsSection({
+    contributors, isLoading, totalCommits: totalCommitsProp
+}: ContributorsSectionProps) {
     const t = useTranslations('githubStats.contributors');
     const [currentPage, setCurrentPage] = useState(0);
 
     const totalPages = Math.ceil(contributors.length / ITEMS_PER_PAGE);
     const totalCommits = useMemo(
-        () => contributors.reduce((sum, c) => sum + c.commits, 0),
-        [contributors]
+        () => totalCommitsProp ?? contributors.reduce((sum, c) => sum + c.commits, 0),
+        [contributors, totalCommitsProp]
     );
 
     const paginatedContributors = useMemo(() => {
@@ -45,9 +43,10 @@ export function ContributorsSection({ contributors, isLoading }: ContributorsSec
 
     if (isLoading) {
         return (
-            <div className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6 min-h-50 flex flex-col items-center justify-center">
-                <Loader2 className="w-8 h-8 animate-spin text-purple-500 mb-3" />
-                <span className="text-sm text-muted-foreground">{t('title')}...</span>
+            <div
+                className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6 min-h-50 flex flex-col items-center justify-center">
+                <Loader2 className="w-8 h-8 animate-spin text-purple-500 mb-3"/>
+                <span className="text-sm text-muted-foreground">{t('title', { count: 0 })}...</span>
             </div>
         );
     }
@@ -60,8 +59,8 @@ export function ContributorsSection({ contributors, isLoading }: ContributorsSec
         <div className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6">
             <div className="flex items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-purple-500" />
-                    <h3 className="text-lg font-medium">{t('title')}</h3>
+                    <Users className="w-4 h-4 text-purple-500"/>
+                    <h3 className="text-lg font-medium">{t('title', { count: contributors.length })}</h3>
                 </div>
                 <span className="text-sm text-muted-foreground">
                     {t('total', { count: contributors.length })}
@@ -71,7 +70,11 @@ export function ContributorsSection({ contributors, isLoading }: ContributorsSec
             <div className="space-y-2">
                 {paginatedContributors.map((contributor, idx) => {
                     const globalIndex = currentPage * ITEMS_PER_PAGE + idx;
-                    const percentage = Math.round((contributor.commits / totalCommits) * 100);
+                    const percentage = totalCommits > 0
+                        ? Math.round((
+                                         contributor.commits / totalCommits
+                                     ) * 100)
+                        : 0;
 
                     return (
                         <a
@@ -96,7 +99,8 @@ export function ContributorsSection({ contributors, isLoading }: ContributorsSec
                                     className="rounded-full ring-2 ring-purple-500/20 group-hover:ring-purple-500/40 transition-all"
                                 />
                                 {globalIndex === 0 && (
-                                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-lg">
+                                    <span
+                                        className="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-lg">
                                         1
                                     </span>
                                 )}
@@ -107,10 +111,11 @@ export function ContributorsSection({ contributors, isLoading }: ContributorsSec
                                     <span className="font-medium text-sm group-hover:text-purple-500 transition-colors">
                                         {contributor.username}
                                     </span>
-                                    <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                                    <ExternalLink
+                                        className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0"/>
                                 </div>
                                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-0.5">
-                                    <GitCommit className="w-3 h-3 shrink-0" />
+                                    <GitCommit className="w-3 h-3 shrink-0"/>
                                     <span>{contributor.commits.toLocaleString()} commits</span>
                                     <span className="text-purple-500/70">({percentage}%)</span>
                                 </div>
@@ -132,7 +137,7 @@ export function ContributorsSection({ contributors, isLoading }: ContributorsSec
                                 }}
                                 className={cn(
                                     'h-8 px-2',
-                                    !canPrev && 'pointer-events-none opacity-50'
+             !canPrev && 'pointer-events-none opacity-50'
                                 )}
                             />
                         </PaginationItem>
@@ -162,7 +167,7 @@ export function ContributorsSection({ contributors, isLoading }: ContributorsSec
                                 }}
                                 className={cn(
                                     'h-8 px-2',
-                                    !canNext && 'pointer-events-none opacity-50'
+             !canNext && 'pointer-events-none opacity-50'
                                 )}
                             />
                         </PaginationItem>

@@ -91,6 +91,21 @@ const nextConfig: NextConfig = {
                     {
                         key: 'Cross-Origin-Resource-Policy',
                         value: 'same-origin'
+                    },
+                    {
+                        key: 'Content-Security-Policy',
+                        value: [
+                            'default-src \'self\'',
+                            'base-uri \'self\'',
+                            'form-action \'self\'',
+                            'frame-ancestors \'self\'',
+                            'img-src \'self\' data: https: blob:',
+                            'connect-src \'self\' https: wss:',
+                            'script-src \'self\' \'unsafe-inline\' \'unsafe-eval\' https://challenges.cloudflare.com https://*.emailjs.com',
+                            'style-src \'self\' \'unsafe-inline\'',
+                            'frame-src https://challenges.cloudflare.com',
+                            'object-src \'none\''
+                        ].join('; ')
                     }
                 ]
             }

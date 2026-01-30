@@ -21,7 +21,9 @@ export function MultiRepoCommitsChart({ combinedTimeline, timelines }: MultiRepo
             <div className="flex items-center justify-between flex-wrap gap-2">
                 <div className="flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-blue-500"/>
-                    <p className="text-sm text-muted-foreground">{t('total', { count: totalCommits })}</p>
+                    <p className="text-sm text-muted-foreground">
+                        {totalCommits.toLocaleString()} {t('total', { count: totalCommits })}
+                    </p>
                 </div>
 
                 {timelines.length > 1 && (

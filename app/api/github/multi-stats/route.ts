@@ -1,19 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getCodeFrequency, getCommitActivity, getContributors, getLanguages, getRepoInfo } from '@/lib/github/api';
 import { transformCommitActivity } from '@/lib/github/utils';
 import { getTTLForRange, withCache } from '@/lib/github/cache';
-import { addSecurityHeaders, validateRequest } from '@/lib/github/security';
-import { getCodeTotalsFromDB, getTimelineFromDB, isDatabaseConfigured } from '@/lib/github/db-queries';
+import { apiError } from '@/lib/github/errors';
+import { addSecurityHeaders, createJsonResponse, validateRequest } from '@/lib/github/security';
+import { parseMultiRepoQueryParams } from '@/lib/github/route-params';
+import {
+    getCodeTotalsFromDB, getCommitStatsFromDB, getContributorCommitCountsFromDB, getTimelineFromDB, isDatabaseConfigured
+} from '@/lib/github/db-queries';
 import {
     ALLOWED_REPOSITORIES, CACHE_TTL, Contributor, GitHubAPIError, GitHubCodeFrequency, GitHubCommitActivity,
-    isAllowedRepository, LanguageStats, MultiRepoStatsResponse, MultiRepoTimelinePoint, REPO_COLORS, RepoStats,
-    RepoTimeline, TimeRange
+    LanguageStats, MultiRepoStatsResponse, MultiRepoTimelinePoint, REPO_COLORS, RepoParam, RepoStats, RepoTimeline,
+    TimeRange, VALID_TIME_RANGES
 } from '@/lib/github/types';
-
-interface RepoParam {
-    owner: string;
-    name: string;
-}
 
 interface RepoDataResult {
     repoName: string;
@@ -27,9 +26,18 @@ interface RepoDataResult {
     stats: RepoStats;
 }
 
-function generateCacheKey(repos: RepoParam[]): string {
+function generateCacheKey(repos: RepoParam[], range: TimeRange): string {
     const repoKeys = repos.map(r => `${r.owner}:${r.name}`).sort().join(',');
-    return `github:multi-stats:${repoKeys}`;
+    return `github:multi-stats:${repoKeys}:${range}`;
+}
+
+interface RepoDataCache {
+    repoName: string;
+    displayName: string;
+    color: string;
+    languages: LanguageStats[];
+    commitActivity: GitHubCommitActivity[];
+    stats: Omit<RepoStats, 'totalCommits'> & { totalCommits: number };
 }
 
 async function fetchRepoDataWithFallback(
@@ -45,16 +53,22 @@ async function fetchRepoDataWithFallback(
     const color = REPO_COLORS[index % REPO_COLORS.length];
 
     try {
-        const cacheKey = `github:repo-data:${repo.owner}:${repo.name}`;
+        const repoDataKey = `github:repo-data:${repo.owner}:${repo.name}`;
+        const contributorsKey = `github:contributors:${repo.owner}:${repo.name}`;
 
-        const { data: cachedData } = await withCache<RepoDataResult>(
-            cacheKey,
+        const { data: contributors } = await withCache<Contributor[]>(
+            contributorsKey,
+            CACHE_TTL.contributors,
+            () => getContributors(repo.owner, repo.name)
+        );
+
+        const { data: cachedRepo } = await withCache<RepoDataCache>(
+            repoDataKey,
             CACHE_TTL.stats,
             async () => {
-                const [repoInfo, languages, contributors] = await Promise.all([
+                const [repoInfo, languages] = await Promise.all([
                     getRepoInfo(repo.owner, repo.name),
-                    getLanguages(repo.owner, repo.name),
-                    getContributors(repo.owner, repo.name)
+                    getLanguages(repo.owner, repo.name)
                 ]);
 
                 let codeFrequency: GitHubCodeFrequency = [];
@@ -64,49 +78,36 @@ async function fetchRepoDataWithFallback(
                     codeFrequency = await getCodeFrequency(repo.owner, repo.name);
                 } catch (e) {
                     console.warn(`[Multi-stats] Code frequency unavailable for ${repo.name}`, e);
-                    codeFrequency = [];
                 }
-
                 try {
                     commitActivity = await getCommitActivity(repo.owner, repo.name);
                 } catch (e) {
                     console.warn(`[Multi-stats] Commit activity unavailable for ${repo.name}`, e);
-                    commitActivity = [];
                 }
 
                 let totalAdditions = 0;
                 let totalDeletions = 0;
-
-                if (codeFrequency && Array.isArray(codeFrequency)) {
+                if (Array.isArray(codeFrequency)) {
                     for (const week of codeFrequency) {
                         totalAdditions += week[1] || 0;
                         totalDeletions += Math.abs(week[2] || 0);
                     }
                 }
 
-                const totalCommits = contributors.reduce((sum, c) => sum + c.commits, 0);
-                const timeline = transformCommitActivity(commitActivity, range, locale);
-                const timelineCommits = timeline.reduce((sum, p) => sum + p.commits, 0);
-
                 return {
                     repoName: repo.name,
                     displayName,
                     color,
                     languages,
-                    contributors,
                     commitActivity,
-                    timeline,
-                    timelineCommits,
                     stats: {
                         stars: repoInfo.stargazers_count,
                         forks: repoInfo.forks_count,
                         issues: repoInfo.open_issues_count,
                         size: repoInfo.size,
-                        createdAt: repoInfo.created_at,
                         lastPush: repoInfo.pushed_at,
                         defaultBranch: repoInfo.default_branch,
-                        totalCommits,
-                        totalContributors: contributors.length,
+                        totalCommits: 0,
                         totalAdditions,
                         totalDeletions
                     }
@@ -114,17 +115,26 @@ async function fetchRepoDataWithFallback(
             }
         );
 
-        if (cachedData) {
-            const updatedTimeline = transformCommitActivity(cachedData.commitActivity, range, locale);
-            return {
-                ...cachedData,
-                color,
-                timeline: updatedTimeline,
-                timelineCommits: updatedTimeline.reduce((sum, p) => sum + p.commits, 0)
-            };
-        }
+        if (!cachedRepo) return null;
 
-        return null;
+        const timeline = transformCommitActivity(cachedRepo.commitActivity, range, locale);
+        const timelineCommits = timeline.reduce((sum, p) => sum + p.commits, 0);
+        const totalCommitsFromContributors = contributors.reduce((sum, c) => sum + c.commits, 0);
+
+        return {
+            repoName: cachedRepo.repoName,
+            displayName: cachedRepo.displayName,
+            color,
+            languages: cachedRepo.languages,
+            contributors,
+            commitActivity: cachedRepo.commitActivity,
+            timeline,
+            timelineCommits,
+            stats: {
+                ...cachedRepo.stats,
+                totalCommits: totalCommitsFromContributors
+            }
+        };
     } catch (error) {
         console.error(`[Multi-stats] Error fetching ${repo.name}:`, error);
         return null;
@@ -132,64 +142,29 @@ async function fetchRepoDataWithFallback(
 }
 
 export async function GET(request: NextRequest) {
-    const securityCheck = validateRequest(request);
+    const securityCheck = await validateRequest(request);
     if (!securityCheck.allowed) {
         return securityCheck.response;
     }
 
-    const { searchParams } = new URL(request.url);
-    const reposParam = searchParams.get('repos');
-    const timelineRange = (
-                              searchParams.get('range') as TimeRange
-                          ) || '12m';
-    const statsRange: TimeRange = '12m';
-    const locale = searchParams.get('locale') || 'fr';
-
-    const validRanges: TimeRange[] = ['7d', '30d', '6m', '12m'];
-    if (!validRanges.includes(timelineRange)) {
-        return addSecurityHeaders(NextResponse.json(
-            { error: 'Invalid range parameter', code: 'INVALID_RANGE' },
-            { status: 400 }
-        ), securityCheck.rateLimitRemaining);
+    const parsed = parseMultiRepoQueryParams(request, { defaultRange: '12m', defaultLocale: 'fr' });
+    if (!parsed.ok) {
+        return addSecurityHeaders(parsed.response, securityCheck.rateLimitRemaining);
     }
-
-    let repos: RepoParam[] = [];
-
-    if (reposParam) {
-        try {
-            repos = JSON.parse(reposParam) as RepoParam[];
-        } catch {
-            return addSecurityHeaders(NextResponse.json(
-                { error: 'Invalid repos parameter', code: 'INVALID_PARAMS' },
-                { status: 400 }
-            ), securityCheck.rateLimitRemaining);
-        }
-    } else {
-        repos = ALLOWED_REPOSITORIES.map(r => (
-            { owner: r.owner, name: r.name }
-        ));
-    }
-
-    const validRepos = repos.filter(r => isAllowedRepository(r.owner, r.name));
-    if (validRepos.length === 0) {
-        return addSecurityHeaders(NextResponse.json(
-            { error: 'No valid repositories provided', code: 'INVALID_REPOS' },
-            { status: 400 }
-        ), securityCheck.rateLimitRemaining);
-    }
+    const { repos: validRepos, range, locale } = parsed;
 
     try {
-        const cacheKey = generateCacheKey(validRepos);
+        const cacheKey = generateCacheKey(validRepos, range);
 
         const useDB = await isDatabaseConfigured();
 
         const { data: cachedResponse, fromCache } = await withCache<MultiRepoStatsResponse>(
             cacheKey,
-            getTTLForRange(statsRange),
+            getTTLForRange(range),
             async () => {
                 const results = await Promise.all(
                     validRepos.map((repo, index) =>
-                        fetchRepoDataWithFallback(repo, index, statsRange, locale)
+                        fetchRepoDataWithFallback(repo, index, range, locale)
                     )
                 );
 
@@ -219,9 +194,17 @@ export async function GET(request: NextRequest) {
                 };
 
                 if (useDB) {
-                    const { additions, deletions } = await getCodeTotalsFromDB(validRepos, statsRange);
-                    aggregatedStats.totalAdditions = additions;
-                    aggregatedStats.totalDeletions = deletions;
+                    try {
+                        const [commitStats, codeTotals] = await Promise.all([
+                            getCommitStatsFromDB(validRepos, range),
+                            getCodeTotalsFromDB(validRepos, range)
+                        ]);
+                        aggregatedStats.totalCommits = commitStats.totalCommits;
+                        aggregatedStats.totalAdditions = codeTotals.additions;
+                        aggregatedStats.totalDeletions = codeTotals.deletions;
+                    } catch (dbError) {
+                        console.warn('[Multi-stats] DB fallback failed, using API stats:', dbError);
+                    }
                 }
 
                 const languageMap = new Map<string, { bytes: number; color: string }>();
@@ -263,15 +246,44 @@ export async function GET(request: NextRequest) {
                         }
                     }
                 }
-                const aggregatedContributors: Contributor[] = Array.from(contributorMap.values())
-                                                                   .sort((a, b) => b.commits - a.commits)
-                                                                   .slice(0, 10);
+                let aggregatedContributors: Contributor[] = Array.from(contributorMap.values())
+                                                                 .sort((a, b) => b.commits - a.commits)
+                                                                 .slice(0, 10);
+
+                if (useDB) {
+                    try {
+                        const dbContributorCounts = await getContributorCommitCountsFromDB(validRepos, range);
+                        const apiUsernames = new Set(aggregatedContributors.map((c) => c.username));
+                        const fromApi = aggregatedContributors.map((c) => (
+                            {
+                                ...c,
+                                commits: dbContributorCounts[c.username] ?? 0
+                            }
+                        ));
+                        const fromDbOnly = Object.entries(dbContributorCounts)
+                                                 .filter(([login]) => !apiUsernames.has(login))
+                                                 .map(([username, commits]) => (
+                                                     {
+                                                         username,
+                                                         avatar: `https://github.com/${username}.png`,
+                                                         profileUrl: `https://github.com/${username}`,
+                                                         commits
+                                                     }
+                                                 ));
+                        aggregatedContributors = [...fromApi, ...fromDbOnly]
+                            .filter((c) => c.commits > 0)
+                            .sort((a, b) => b.commits - a.commits)
+                            .slice(0, 10);
+                    } catch (dbContribError) {
+                        console.warn('[Multi-stats] DB contributor counts failed, using API:', dbContribError);
+                    }
+                }
 
                 let timelines: RepoTimeline[];
                 let combinedTimeline: MultiRepoTimelinePoint[];
 
                 if (useDB) {
-                    const dbTimelines = await getTimelineFromDB(validRepos, timelineRange, locale);
+                    const dbTimelines = await getTimelineFromDB(validRepos, range, locale);
 
                     timelines = dbTimelines.timelines.map((t, index) => (
                         {
@@ -286,7 +298,8 @@ export async function GET(request: NextRequest) {
                     combinedTimeline = dbTimelines.combinedTimeline as MultiRepoTimelinePoint[];
                 } else {
                     timelines = allResults.map(r => {
-                        const data = transformCommitActivity(r.commitActivity, timelineRange, locale);
+                        const data = transformCommitActivity(r.commitActivity, range, locale);
+
                         return {
                             repoName: r.repoName,
                             repoDisplayName: r.displayName,
@@ -331,7 +344,7 @@ export async function GET(request: NextRequest) {
                     codeChanges: [],
                     timelines,
                     combinedTimeline,
-                    availablePeriods: ['7d', '30d', '6m', '12m'] as TimeRange[],
+                    availablePeriods: [...VALID_TIME_RANGES],
                     defaultPeriod: '7d' as TimeRange
                 };
             }
@@ -339,44 +352,41 @@ export async function GET(request: NextRequest) {
 
         const responseData = {
             ...cachedResponse,
-            availablePeriods: ['7d', '30d', '6m', '12m'] as const,
+            availablePeriods: [...VALID_TIME_RANGES],
             defaultPeriod: '7d' as const
         };
 
-        return addSecurityHeaders(NextResponse.json(responseData, {
+        return createJsonResponse(responseData, {
             headers: {
-                'Cache-Control': `public, s-maxage=${getTTLForRange(statsRange)}, stale-while-revalidate`,
+                'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
                 'X-Cache': fromCache ? 'HIT' : 'MISS'
             }
-        }), securityCheck.rateLimitRemaining);
+        }, securityCheck);
 
     } catch (error) {
         console.error('[Multi-stats API] Error:', error);
 
         if (error instanceof GitHubAPIError) {
             if (error.statusCode === 401) {
-                return addSecurityHeaders(NextResponse.json(
-                    { error: 'GitHub configuration error', code: 'UNAUTHORIZED' },
-                    { status: 401 }
-                ), securityCheck.rateLimitRemaining);
+                const { payload, status } = apiError('UNAUTHORIZED', { message: 'GitHub configuration error' });
+                return createJsonResponse(payload, { status }, securityCheck);
             }
             if (error.statusCode === 403) {
-                return addSecurityHeaders(NextResponse.json(
-                    { error: 'GitHub rate limit reached', code: 'RATE_LIMIT', retryAfter: error.rateLimitReset },
-                    { status: 429 }
-                ), securityCheck.rateLimitRemaining);
+                const { payload, status } = apiError('RATE_LIMIT', {
+                    message: 'GitHub rate limit reached',
+                    retryAfter: error.rateLimitReset
+                });
+                return createJsonResponse(payload, { status }, securityCheck);
             }
             if (error.statusCode === 503) {
-                return addSecurityHeaders(NextResponse.json(
-                    { error: 'GitHub stats temporarily unavailable', code: 'SERVICE_UNAVAILABLE' },
-                    { status: 503 }
-                ), securityCheck.rateLimitRemaining);
+                const { payload, status } = apiError('SERVICE_UNAVAILABLE', {
+                    message: 'GitHub stats temporarily unavailable'
+                });
+                return createJsonResponse(payload, { status }, securityCheck);
             }
         }
 
-        return addSecurityHeaders(NextResponse.json(
-            { error: 'Failed to fetch stats', code: 'SERVER_ERROR' },
-            { status: 500 }
-        ), securityCheck.rateLimitRemaining);
+        const { payload, status } = apiError('SERVER_ERROR', { message: 'Failed to fetch stats' });
+        return createJsonResponse(payload, { status }, securityCheck);
     }
 }

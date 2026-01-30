@@ -404,6 +404,8 @@
     "loading": "Chargement...",
     "chartTitle": "Historique des commits",
     "chartSubtitle": "Cliquez pour afficher le graphique",
+    "periodForChart": "Période du graphique",
+    "periodForStats": "Période des stats (commits, lignes ajoutées, supprimées)",
     "loadingData": "Chargement des données...",
     "takeTime": "Cette opération peut prendre du temps",
     "viewAllStats": "Voir toutes les statistiques",
@@ -418,7 +420,7 @@
     "charts": {
       "commits": {
         "label": "Commits",
-        "total": "{count} commits sur cette période"
+        "total": "{count, plural, =0 {Commit sur cette période} =1 {Commit sur cette période} other {Commits sur cette période}}"
       }
     },
     "search": {
@@ -440,20 +442,20 @@
       "notConfigured": "Token GitHub non configuré"
     },
     "overview": {
-      "commits": "Commits",
-      "contributors": "Contributeurs",
-      "additions": "Lignes ajoutées",
-      "deletions": "Lignes supprimées",
-      "stars": "Étoiles",
-      "forks": "Forks",
+      "commits": "{count, plural, =0 {Commit} =1 {Commit} other {Commits}}",
+      "contributors": "{count, plural, =0 {Contributeur} =1 {Contributeur} other {Contributeurs}}",
+      "additions": "{count, plural, =0 {Ligne ajoutée} =1 {Ligne ajoutée} other {Lignes ajoutées}}",
+      "deletions": "{count, plural, =0 {Ligne supprimée} =1 {Ligne supprimée} other {Lignes supprimées}}",
+      "stars": "{count, plural, =0 {Étoile} =1 {Étoile} other {Étoiles}}",
+      "forks": "{count, plural, =0 {Fork} =1 {Fork} other {Forks}}",
       "size": "Taille"
     },
     "languages": {
-      "title": "Langages",
+      "title": "{count, plural, =1 {Langage} other {Langages}}",
       "other": "Autres"
     },
     "contributors": {
-      "title": "Contributeurs",
+      "title": "{count, plural, =1 {Contributeur} other {Contributeurs}}",
       "total": "{count, plural, =1 {1 contributeur} other {# contributeurs}}",
       "andMore": "+{count, plural, =1 {1 autre} other {# autres}}"
     }

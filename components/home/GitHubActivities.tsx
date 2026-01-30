@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowRight, GitCommit, Loader2, Star } from 'lucide-react';
+import { ArrowRight, GitCommit, GitFork, Loader2, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useInView } from '@/hooks/use-in-view';
 import { Link } from '@/i18n/routing';
@@ -54,17 +54,14 @@ export function GitHubActivities() {
         return null;
     }
 
+    const commits = stats?.stats?.totalCommits ?? 0;
+    const stars = stats?.stats?.stars ?? 0;
+    const forks = stats?.stats?.forks ?? 0;
+
     const statItems = [
-        {
-            icon: GitCommit,
-            label: t('overview.commits'),
-            value: stats?.stats?.totalCommits ?? 0
-        },
-        {
-            icon: Star,
-            label: t('overview.stars'),
-            value: stats?.stats?.stars ?? 0
-        }
+        { icon: GitCommit, labelKey: 'overview.commits' as const, value: commits },
+        { icon: Star, labelKey: 'overview.stars' as const, value: stars },
+        { icon: GitFork, labelKey: 'overview.forks' as const, value: forks }
     ];
 
     return (
@@ -102,10 +99,10 @@ export function GitHubActivities() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
+                    <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-8">
                         {statItems.map((item, index) => (
                             <div
-                                key={item.label}
+                                key={item.labelKey}
                                 className={cn(
                                     'text-center p-4 rounded-xl bg-background/50 border border-blue-500/5',
                                     'transition-all duration-300 hover:border-blue-500/20 hover:bg-blue-500/5'
@@ -124,7 +121,7 @@ export function GitHubActivities() {
                                             {item.value.toLocaleString()}
                                         </div>
                                         <div className="text-xs sm:text-sm text-muted-foreground mt-1">
-                                            {item.label}
+                                            {t(item.labelKey, { count: item.value })}
                                         </div>
                                     </>
                                 )}

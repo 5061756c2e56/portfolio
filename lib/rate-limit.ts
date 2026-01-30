@@ -1,20 +1,9 @@
 import { NextRequest } from 'next/server';
 import { getKVInstance } from '@/lib/db';
+import { getClientIP } from '@/lib/request-utils';
 
 const RATE_LIMIT_WINDOW = 60 * 1000;
 const MAX_REQUESTS = 3;
-
-function getClientIP(request: NextRequest): string {
-    const forwarded = request.headers.get('x-forwarded-for');
-    const realIP = request.headers.get('x-real-ip');
-    const cfConnectingIP = request.headers.get('cf-connecting-ip');
-
-    if (cfConnectingIP) return cfConnectingIP;
-    if (forwarded) return forwarded.split(',')[0].trim();
-    if (realIP) return realIP;
-
-    return 'unknown';
-}
 
 export async function rateLimit(request: NextRequest): Promise<{ allowed: boolean; remaining: number }> {
     const ip = getClientIP(request);

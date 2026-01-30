@@ -3,6 +3,7 @@ import {
     CodePoint,
     TimeRange,
     PERIOD_CONFIGS,
+    VALID_TIME_RANGES,
     Granularity,
     GitHubCommitActivity,
     GitHubCodeFrequency,
@@ -119,8 +120,7 @@ export function getAvailablePeriods(
     if (dataPoints === 0) {
         return ['7d'];
     }
-
-    return ['7d', '30d', '6m', '12m'];
+    return [...VALID_TIME_RANGES];
 }
 
 export function getDefaultPeriod(availablePeriods: TimeRange[]): TimeRange {

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Calendar, Check, ChevronDown, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { TimeRange } from '@/lib/github/types';
+import { TimeRange, VALID_TIME_RANGES } from '@/lib/github/types';
 
 interface PeriodSelectorProps {
     selectedRange: TimeRange;
@@ -12,8 +12,6 @@ interface PeriodSelectorProps {
     onRangeChange: (range: TimeRange) => void;
     isLoading?: boolean;
 }
-
-const PERIOD_ORDER: TimeRange[] = ['7d', '30d', '6m', '12m'];
 
 export function PeriodSelector({
     selectedRange,
@@ -114,7 +112,7 @@ export function PeriodSelector({
                         'animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200'
                     )}
                 >
-                    {PERIOD_ORDER.map((period) => {
+                    {VALID_TIME_RANGES.map((period) => {
                         const isAvailable = availablePeriods.includes(period);
                         const isSelected = selectedRange === period;
 

@@ -2,10 +2,12 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Loader2, TrendingUp } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ALLOWED_REPOSITORIES, LoadingState, MultiRepoStatsResponse, Repository, TimeRange } from '@/lib/github/types';
+import {
+    ALLOWED_REPOSITORIES, LoadingState, MultiRepoStatsResponse, Repository, TimeRange, VALID_TIME_RANGES
+} from '@/lib/github/types';
 import StatsNavigation from '@/components/navbars/Stats/StatsNavigation';
 import { StatsOverview } from '@/components/github-stats/StatsOverview';
 import { LanguagesChart } from '@/components/github-stats/LanguagesChart';
@@ -23,12 +25,13 @@ export default function StatsPage() {
     const [stats, setStats] = useState<MultiRepoStatsResponse | null>(null);
     const [loadingState, setLoadingState] = useState<LoadingState>('idle');
     const [error, setError] = useState<string | null>(null);
+    const [selectedStatsRange, setSelectedStatsRange] = useState<TimeRange>('12m');
     const [selectedRange, setSelectedRange] = useState<TimeRange>('7d');
     const [chartLoading, setChartLoading] = useState(false);
     const [combinedTimeline, setCombinedTimeline] = useState<MultiRepoStatsResponse['combinedTimeline']>([]);
     const [timelines, setTimelines] = useState<MultiRepoStatsResponse['timelines']>([]);
 
-    const fetchStats = useCallback(async (repos: Repository[]) => {
+    const fetchStats = useCallback(async (repos: Repository[], range: TimeRange) => {
         if (repos.length === 0) return;
 
         setLoadingState('loading');
@@ -42,12 +45,16 @@ export default function StatsPage() {
                 }
             ));
             const response = await fetch(
-                `/api/github/multi-stats?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=12m`,
+                `/api/github/multi-stats?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=${range}`,
                 { cache: 'no-store' }
             );
 
             if (!response.ok) {
-                throw new Error('Failed to fetch stats');
+                const errBody = await response.json().catch(() => (
+                    {}
+                ));
+                const message = typeof errBody?.error === 'string' ? errBody.error : 'Failed to fetch stats';
+                throw new Error(message);
             }
 
             const data: MultiRepoStatsResponse = await response.json();
@@ -81,15 +88,14 @@ export default function StatsPage() {
             setTimelines(data.timelines ?? []);
         } catch (err) {
             console.error('Error fetching timeline:', err);
-            // optionnel: setError(...)
         } finally {
             setChartLoading(false);
         }
     }, []);
 
     useEffect(() => {
-        fetchStats(selectedRepos);
-    }, [selectedRepos, fetchStats]);
+        fetchStats(selectedRepos, selectedStatsRange);
+    }, [selectedRepos, selectedStatsRange, fetchStats]);
 
     useEffect(() => {
         fetchTimeline(selectedRepos, selectedRange);
@@ -125,12 +131,6 @@ export default function StatsPage() {
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">
                             <span className="gradient-text">{t('title')}</span>
                         </h1>
-                        {loadingState === 'loading' && (
-                            <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                                <Loader2 className="w-4 h-4 animate-spin text-blue-500"/>
-                                <span className="text-sm">{t('loading')}</span>
-                            </div>
-                        )}
                     </div>
                 </section>
 
@@ -205,6 +205,18 @@ export default function StatsPage() {
                                 </div>
                             )}
 
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                <p className="text-sm text-muted-foreground">
+                                    {t('periodForStats')}
+                                </p>
+                                <PeriodSelector
+                                    selectedRange={selectedStatsRange}
+                                    availablePeriods={[...VALID_TIME_RANGES]}
+                                    onRangeChange={setSelectedStatsRange}
+                                    isLoading={loadingState === 'loading'}
+                                />
+                            </div>
+
                             <StatsOverview
                                 stats={stats?.stats ?? null}
                                 isLoading={loadingState === 'loading'}
@@ -218,6 +230,7 @@ export default function StatsPage() {
                                 <ContributorsSection
                                     contributors={stats?.contributors ?? []}
                                     isLoading={loadingState === 'loading'}
+                                    totalCommits={stats?.stats?.totalCommits}
                                 />
                             </div>
 
@@ -235,11 +248,10 @@ export default function StatsPage() {
                                                 </p>
                                             </div>
                                         </div>
-
                                         <div className="w-full sm:w-auto">
                                             <PeriodSelector
                                                 selectedRange={selectedRange}
-                                                availablePeriods={['7d', '30d']}
+                                                availablePeriods={[...VALID_TIME_RANGES]}
                                                 onRangeChange={setSelectedRange}
                                                 isLoading={chartLoading}
                                             />

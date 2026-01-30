@@ -1,18 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getCommitActivity } from '@/lib/github/api';
 import { getTTLForRange, withCache } from '@/lib/github/cache';
-import { addSecurityHeaders, validateRequest } from '@/lib/github/security';
+import { apiError } from '@/lib/github/errors';
+import { addSecurityHeaders, createJsonResponse, validateRequest } from '@/lib/github/security';
+import { parseMultiRepoQueryParams } from '@/lib/github/route-params';
 import { getTimelineFromDB, isDatabaseConfigured } from '@/lib/github/db-queries';
 import { transformCommitActivity } from '@/lib/github/utils';
 import {
-    ALLOWED_REPOSITORIES, GitHubAPIError, isAllowedRepository, MultiRepoTimelinePoint, REPO_COLORS, RepoTimeline,
-    TimeRange
+    ALLOWED_REPOSITORIES, GitHubAPIError, MultiRepoTimelinePoint, REPO_COLORS, RepoParam,
+    RepoTimeline, TimeRange, VALID_TIME_RANGES
 } from '@/lib/github/types';
-
-interface RepoParam {
-    owner: string;
-    name: string;
-}
 
 function generateCacheKey(repos: RepoParam[], range: TimeRange, locale: string) {
     const repoKeys = repos.map(r => `${r.owner}:${r.name}`).sort().join(',');
@@ -20,47 +17,14 @@ function generateCacheKey(repos: RepoParam[], range: TimeRange, locale: string) 
 }
 
 export async function GET(request: NextRequest) {
-    const securityCheck = validateRequest(request);
+    const securityCheck = await validateRequest(request);
     if (!securityCheck.allowed) return securityCheck.response;
 
-    const { searchParams } = new URL(request.url);
-    const reposParam = searchParams.get('repos');
-    const range = (
-                      searchParams.get('range') as TimeRange
-                  ) || '7d';
-    const locale = searchParams.get('locale') || 'fr';
-
-    const validRanges: TimeRange[] = ['7d', '30d', '6m', '12m'];
-    if (!validRanges.includes(range)) {
-        return addSecurityHeaders(
-            NextResponse.json({ error: 'Invalid range', code: 'INVALID_RANGE' }, { status: 400 }),
-            securityCheck.rateLimitRemaining
-        );
+    const parsed = parseMultiRepoQueryParams(request, { defaultRange: '7d', defaultLocale: 'fr' });
+    if (!parsed.ok) {
+        return addSecurityHeaders(parsed.response, securityCheck.rateLimitRemaining);
     }
-
-    let repos: RepoParam[] = [];
-    if (reposParam) {
-        try {
-            repos = JSON.parse(reposParam) as RepoParam[];
-        } catch {
-            return addSecurityHeaders(
-                NextResponse.json({ error: 'Invalid repos', code: 'INVALID_PARAMS' }, { status: 400 }),
-                securityCheck.rateLimitRemaining
-            );
-        }
-    } else {
-        repos = ALLOWED_REPOSITORIES.map(r => (
-            { owner: r.owner, name: r.name }
-        ));
-    }
-
-    const validRepos = repos.filter(r => isAllowedRepository(r.owner, r.name));
-    if (validRepos.length === 0) {
-        return addSecurityHeaders(
-            NextResponse.json({ error: 'No valid repos', code: 'INVALID_REPOS' }, { status: 400 }),
-            securityCheck.rateLimitRemaining
-        );
-    }
+    const { repos: validRepos, range, locale } = parsed;
 
     try {
         const useDB = await isDatabaseConfigured();
@@ -134,32 +98,24 @@ export async function GET(request: NextRequest) {
                 return {
                     timelines,
                     combinedTimeline,
-                    availablePeriods: ['7d', '30d', '6m', '12m'],
+                    availablePeriods: [...VALID_TIME_RANGES],
                     defaultPeriod: '7d'
                 };
             }
         );
 
-        return addSecurityHeaders(
-            NextResponse.json(data, {
-                headers: {
-                    'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
-                    'X-Cache': fromCache ? 'HIT' : 'MISS'
-                }
-            }),
-            securityCheck.rateLimitRemaining
-        );
+        return createJsonResponse(data, {
+            headers: {
+                'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
+                'X-Cache': fromCache ? 'HIT' : 'MISS'
+            }
+        }, securityCheck);
     } catch (e) {
         console.error('[Multi-timeline API] Error:', e);
-        if (e instanceof GitHubAPIError) {
-            return addSecurityHeaders(
-                NextResponse.json({ error: e.message, code: 'SERVER_ERROR' }, { status: 500 }),
-                securityCheck.rateLimitRemaining
-            );
-        }
-        return addSecurityHeaders(
-            NextResponse.json({ error: 'Erreur serveur', code: 'SERVER_ERROR' }, { status: 500 }),
-            securityCheck.rateLimitRemaining
+        const { payload, status } = apiError(
+            'SERVER_ERROR',
+            e instanceof GitHubAPIError ? { message: e.message } : undefined
         );
+        return createJsonResponse(payload, { status }, securityCheck);
     }
 }

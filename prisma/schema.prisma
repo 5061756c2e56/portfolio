@@ -32,6 +32,7 @@ model Commit {
     author          String
     authorEmail     String?
     authorAvatar    String?
+    authorLogin     String?
     committedAt     DateTime
     additions       Int      @default(0)
     deletions       Int      @default(0)
@@ -49,6 +50,7 @@ model Commit {
     @@index([committedAt])
     @@index([sha])
     @@index([repositoryId, committedAt])
+    @@index([authorLogin])
 }
 
 model WebhookEvent {

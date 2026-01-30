@@ -8,6 +8,10 @@ export interface Repository {
     displayName?: string;
 }
 
+export type RepoParam = Pick<Repository, 'owner' | 'name'>;
+
+export const VALID_TIME_RANGES: readonly TimeRange[] = ['7d', '30d', '6m', '12m'];
+
 export const ALLOWED_REPOSITORIES: Repository[] = [
     { owner: '5061756c2e56', name: 'portfolio', displayName: 'Portfolio' },
     { owner: '5061756c2e56', name: 'Web-Security', displayName: 'Web Security' }
@@ -30,10 +34,10 @@ export interface PeriodConfig {
 }
 
 export const PERIOD_CONFIGS: Record<TimeRange, PeriodConfig> = {
-    '7d': { range: '7d', label: '7 jours', days: 7, granularity: 'daily', minDataPoints: 3 },
-    '30d': { range: '30d', label: '30 jours', days: 30, granularity: 'daily', minDataPoints: 7 },
-    '6m': { range: '6m', label: '6 mois', days: 180, granularity: 'weekly', minDataPoints: 4 },
-    '12m': { range: '12m', label: '12 mois', days: 365, granularity: 'weekly', minDataPoints: 8 }
+    '7d': { range: '7d', label: '7d', days: 7, granularity: 'daily', minDataPoints: 3 },
+    '30d': { range: '30d', label: '30d', days: 30, granularity: 'daily', minDataPoints: 7 },
+    '6m': { range: '6m', label: '6m', days: 180, granularity: 'weekly', minDataPoints: 4 },
+    '12m': { range: '12m', label: '12m', days: 365, granularity: 'weekly', minDataPoints: 8 }
 };
 
 export interface TimelinePoint {
@@ -115,13 +119,14 @@ export const CACHE_KEYS = {
     REPO_INFO: (owner: string, repo: string) => `github:${owner}:${repo}:repo_info`
 } as const;
 
-export const CACHE_TTL: Record<TimeRange | 'detail' | 'stats', number> = {
+export const CACHE_TTL: Record<TimeRange | 'detail' | 'stats' | 'contributors', number> = {
     '7d': 60,
     '30d': 3 * 60,
     '6m': 10 * 60,
     '12m': 30 * 60,
     'detail': 60 * 60,
-    'stats': 5 * 60
+    'stats': 5 * 60,
+    contributors: 60
 };
 
 export class GitHubAPIError extends Error {
@@ -138,7 +143,7 @@ export class GitHubAPIError extends Error {
 
 export interface APIErrorResponse {
     error: string;
-    code: 'RATE_LIMIT' | 'NOT_FOUND' | 'UNAUTHORIZED' | 'SERVER_ERROR' | 'NETWORK_ERROR' | 'INVALID_RANGE' | 'INVALID_SHA';
+    code: 'RATE_LIMIT' | 'NOT_FOUND' | 'UNAUTHORIZED' | 'SERVER_ERROR' | 'NETWORK_ERROR' | 'INVALID_RANGE' | 'INVALID_PARAMS' | 'INVALID_REPOS' | 'INVALID_SHA' | 'SERVICE_UNAVAILABLE';
     retryAfter?: number;
 }
 

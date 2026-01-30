@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowDownWideNarrow, ArrowUpNarrowWide, GitBranch, GitCommit, Hash, Loader2, Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CommitDetail, Repository, TimeRange } from '@/lib/github/types';
+import { CommitDetail, Repository, TimeRange, VALID_TIME_RANGES } from '@/lib/github/types';
 import { CommitDetailPanel } from './CommitDetail';
 import { PeriodSelector } from './PeriodSelector';
 
@@ -185,7 +185,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
                         <div className="w-full sm:w-auto">
                             <PeriodSelector
                                 selectedRange={selectedRange}
-                                availablePeriods={['7d', '30d', '6m', '12m']}
+                                availablePeriods={[...VALID_TIME_RANGES]}
                                 onRangeChange={handleRangeChange}
                                 isLoading={isLoading}
                             />

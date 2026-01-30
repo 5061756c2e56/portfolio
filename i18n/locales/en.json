@@ -404,6 +404,8 @@
     "loading": "Loading...",
     "chartTitle": "Commit history",
     "chartSubtitle": "Click to show the chart",
+    "periodForChart": "Chart period",
+    "periodForStats": "Stats period (commits, lines added, deleted)",
     "loadingData": "Loading data...",
     "takeTime": "This process may take some time",
     "viewAllStats": "View all statistics",
@@ -418,7 +420,7 @@
     "charts": {
       "commits": {
         "label": "Commits",
-        "total": "{count} commits in this period"
+        "total": "{count, plural, =0 {Commit in this period} =1 {Commit in this period} other {Commits in this period}}"
       }
     },
     "search": {
@@ -440,20 +442,20 @@
       "notConfigured": "GitHub token not configured"
     },
     "overview": {
-      "commits": "Commits",
-      "contributors": "Contributors",
-      "additions": "Lines added",
-      "deletions": "Lines deleted",
-      "stars": "Stars",
-      "forks": "Forks",
+      "commits": "{count, plural, =0 {Commit} =1 {Commit} other {Commits}}",
+      "contributors": "{count, plural, =0 {Contributor} =1 {Contributor} other {Contributors}}",
+      "additions": "{count, plural, =0 {Line added} =1 {Line added} other {Lines added}}",
+      "deletions": "{count, plural, =0 {Line deleted} =1 {Line deleted} other {Lines deleted}}",
+      "stars": "{count, plural, =0 {Star} =1 {Star} other {Stars}}",
+      "forks": "{count, plural, =0 {Fork} =1 {Fork} other {Forks}}",
       "size": "Size"
     },
     "languages": {
-      "title": "Languages",
+      "title": "{count, plural, =1 {Language} other {Languages}}",
       "other": "Other"
     },
     "contributors": {
-      "title": "Contributors",
+      "title": "{count, plural, =1 {Contributor} other {Contributors}}",
       "total": "{count, plural, =1 {1 contributor} other {# contributors}}",
       "andMore": "+{count, plural, =1 {1 other} other {# others}}"
     }

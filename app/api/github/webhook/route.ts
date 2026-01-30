@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { getPrisma } from '@/lib/prisma';
+import { getClientIP } from '@/lib/request-utils';
 import { addCommitFromWebhook } from '@/lib/github/sync';
 import { isAllowedRepository } from '@/lib/github/types';
 
@@ -100,24 +101,6 @@ function isGitHubIP(ip: string): boolean {
     return false;
 }
 
-function getClientIP(request: NextRequest): string | null {
-    const forwardedFor = request.headers.get('x-forwarded-for');
-    if (forwardedFor) {
-        return forwardedFor.split(',')[0].trim();
-    }
-
-    const realIP = request.headers.get('x-real-ip');
-    if (realIP) {
-        return realIP;
-    }
-
-    const cfConnectingIP = request.headers.get('cf-connecting-ip');
-    if (cfConnectingIP) {
-        return cfConnectingIP;
-    }
-
-    return null;
-}
 
 interface GitHubPushPayload {
     ref: string;
@@ -155,9 +138,12 @@ function verifySignature(payload: string, signature: string | null, secret: stri
 
     const hmac = crypto.createHmac('sha256', secret);
     const digest = 'sha256=' + hmac.update(payload).digest('hex');
+    const sigBuf = Buffer.from(signature, 'utf8');
+    const digestBuf = Buffer.from(digest, 'utf8');
 
+    if (sigBuf.length !== digestBuf.length) return false;
     try {
-        return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(digest));
+        return crypto.timingSafeEqual(sigBuf, digestBuf);
     } catch {
         return false;
     }
@@ -186,7 +172,7 @@ export async function POST(request: NextRequest) {
     if (process.env.NODE_ENV === 'production') {
         const clientIP = getClientIP(request);
 
-        if (!clientIP || !isGitHubIP(clientIP)) {
+        if (clientIP === 'unknown' || !clientIP || !isGitHubIP(clientIP)) {
             console.warn('[Webhook] Request from unauthorized IP:', clientIP);
             return NextResponse.json(
                 { error: 'Unauthorized' },
@@ -195,7 +181,23 @@ export async function POST(request: NextRequest) {
         }
     }
 
+    const contentLength = request.headers.get('content-length');
+    const MAX_WEBHOOK_BODY = 1024 * 1024;
+    if (contentLength && parseInt(contentLength, 10) > MAX_WEBHOOK_BODY) {
+        return NextResponse.json(
+            { error: 'Payload too large' },
+            { status: 413 }
+        );
+    }
+
     const rawBody = await request.text();
+    if (rawBody.length > MAX_WEBHOOK_BODY) {
+        return NextResponse.json(
+            { error: 'Payload too large' },
+            { status: 413 }
+        );
+    }
+
     const signature = request.headers.get('x-hub-signature-256');
     const event = request.headers.get('x-github-event');
     const deliveryId = request.headers.get('x-github-delivery');

@@ -17,7 +17,7 @@ export function LanguagesChart({ languages, isLoading }: LanguagesChartProps) {
         return (
             <div className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6 min-h-50 flex flex-col items-center justify-center">
                 <Loader2 className="w-8 h-8 animate-spin text-blue-500 mb-3" />
-                <span className="text-sm text-muted-foreground">{t('title')}...</span>
+                <span className="text-sm text-muted-foreground">{t('title', { count: 0 })}...</span>
             </div>
         );
     }
@@ -33,7 +33,7 @@ export function LanguagesChart({ languages, isLoading }: LanguagesChartProps) {
         <div className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6">
             <div className="flex items-center gap-2 mb-4">
                 <Code2 className="w-4 h-4 text-blue-500" />
-                <h3 className="text-lg font-medium">{t('title')}</h3>
+                <h3 className="text-lg font-medium">{t('title', { count: languages.length })}</h3>
             </div>
 
             <div className="h-3 bg-muted/30 rounded-full overflow-hidden flex">

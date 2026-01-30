@@ -102,25 +102,29 @@ export function StatsOverview({ stats, isLoading }: StatsOverviewProps) {
             kb / 1024
         ).toFixed(1)} MB` : `${kb} KB`
     );
-    const formatDate = (dateStr: string) =>
-        new Date(dateStr).toLocaleDateString(undefined, { year: 'numeric', month: 'short' });
+
+    const commits = stats?.totalCommits ?? 0;
+    const additions = stats?.totalAdditions ?? 0;
+    const deletions = stats?.totalDeletions ?? 0;
+    const stars = stats?.stars ?? 0;
+    const forks = stats?.forks ?? 0;
 
     return (
         <div className="flex justify-center">
             <div className="grid w-full max-w-4xl grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                <StatCard icon={<GitCommit/>} label={t('commits')} value={stats?.totalCommits ?? 0} color="blue"
+                <StatCard icon={<GitCommit/>} label={t('commits', { count: isLoading ? 0 : commits })} value={commits} color="blue"
                           isLoading={isLoading}/>
 
-                <StatCard icon={<Plus/>} label={t('additions')} value={stats?.totalAdditions ?? 0} color="emerald"
+                <StatCard icon={<Plus/>} label={t('additions', { count: isLoading ? 0 : additions })} value={additions} color="emerald"
                           isLoading={isLoading}/>
 
-                <StatCard icon={<Minus/>} label={t(
-                    'deletions')} value={stats?.totalDeletions ?? 0} color="rose"
-                          isLoading={isLoading}/>
-                <StatCard icon={<Star/>} label={t('stars')} value={stats?.stars ?? 0} color="amber"
+                <StatCard icon={<Minus/>} label={t('deletions', { count: isLoading ? 0 : deletions })} value={deletions} color="rose"
                           isLoading={isLoading}/>
 
-                <StatCard icon={<GitFork/>} label={t('forks')} value={stats?.forks ?? 0} color="cyan"
+                <StatCard icon={<Star/>} label={t('stars', { count: isLoading ? 0 : stars })} value={stars} color="amber"
+                          isLoading={isLoading}/>
+
+                <StatCard icon={<GitFork/>} label={t('forks', { count: isLoading ? 0 : forks })} value={forks} color="cyan"
                           isLoading={isLoading}/>
 
                 <StatCard icon={<Code2/>} label={t('size')} value={stats ? formatSize(stats.size) : '0 KB'}

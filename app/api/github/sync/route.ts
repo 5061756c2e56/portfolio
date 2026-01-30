@@ -85,7 +85,6 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         repositories: repositories.map((r: any) => (
             {
                 owner: r.owner,

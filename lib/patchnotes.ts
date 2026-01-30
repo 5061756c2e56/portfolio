@@ -19,6 +19,22 @@ export type Patchnote = PatchnoteMeta & { content: string };
 
 const ROOT = path.join(process.cwd(), 'patchnote');
 
+const VALID_LANGS: PatchnoteLang[] = ['FR', 'EN'];
+
+const PATCHNOTE_ID_REGEX = /^(FR|EN)\/[a-zA-Z0-9_.-]+$/;
+
+export function isValidPatchnoteId(id: string): id is string {
+    return typeof id === 'string' && id.length <= 200 && PATCHNOTE_ID_REGEX.test(id) && !id.includes('..');
+}
+
+export function isValidPatchnoteLang(lang: string): lang is PatchnoteLang {
+    return VALID_LANGS.includes(lang as PatchnoteLang);
+}
+
+export function isValidSortOrder(sort: string): sort is SortOrder {
+    return sort === 'newest' || sort === 'oldest';
+}
+
 function extractTitle(markdown: string) {
     const m = markdown.match(/^#\s+(.+)$/m);
     return m?.[1]?.trim() ?? 'Patchnote';
@@ -46,6 +62,9 @@ function parseFileDateFromSlug(slug: string) {
 }
 
 export async function listPatchnotes(lang: PatchnoteLang, sort: SortOrder): Promise<PatchnoteMeta[]> {
+    if (!VALID_LANGS.includes(lang)) {
+        throw new Error('Invalid patchnote lang');
+    }
     const dir = path.join(ROOT, lang);
     const files = (
         await fs.readdir(dir)
@@ -75,8 +94,15 @@ export async function listPatchnotes(lang: PatchnoteLang, sort: SortOrder): Prom
 }
 
 export async function getPatchnoteById(id: string): Promise<Patchnote> {
+    if (!isValidPatchnoteId(id)) {
+        throw new Error('Invalid patchnote id');
+    }
     const [lang, slug] = id.split('/');
     const file = path.join(ROOT, lang, `${slug}.md`);
+    const resolved = path.resolve(file);
+    if (!resolved.startsWith(path.resolve(ROOT))) {
+        throw new Error('Invalid patchnote path');
+    }
     const md = await fs.readFile(file, 'utf8');
 
     return {
