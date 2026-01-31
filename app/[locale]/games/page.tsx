@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback, useMemo, useState, useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 import GamesNavigation from '@/components/navbars/Games/GamesNavigation';
 import Quiz from '@/components/games/Quiz';
@@ -7,19 +8,76 @@ import MemoryGame from '@/components/games/MemoryGame';
 import TypingSpeed from '@/components/games/TypingSpeed';
 import BugHunt from '@/components/games/BugHunt';
 import TechWordle from '@/components/games/TechWordle';
-import { Brain, Bug, Code2, Keyboard, Sparkles, SquareFunction, Trophy } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import MentalCpu from '@/components/games/MentalCpu';
+import RegexRush from '@/components/games/RegexRush';
+import HttpDetective from '@/components/games/HttpDetective';
+import SqlSleuth from '@/components/games/SqlSleuth';
+import { Brain, Bug, Code2, Database, Globe, Keyboard, Regex, Sparkles, SquareFunction, Trophy } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import {
+    Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext,
+    PaginationPrevious
+} from '@/components/ui/pagination';
 
-type GameType = 'quiz' | 'memory' | 'typing' | 'bughunt' | 'wordle' | 'mentalcpu';
+type GameType =
+    | 'quiz'
+    | 'memory'
+    | 'typing'
+    | 'bughunt'
+    | 'wordle'
+    | 'mentalcpu'
+    | 'regexrush'
+    | 'httpdetective'
+    | 'sqlsleuth';
 
-const GAME_IDS: GameType[] = ['quiz', 'memory', 'typing', 'bughunt', 'wordle', 'mentalcpu'];
+const GAME_IDS: GameType[] = [
+    'quiz',
+    'memory',
+    'typing',
+    'bughunt',
+    'wordle',
+    'mentalcpu',
+    'regexrush',
+    'httpdetective',
+    'sqlsleuth'
+];
 
 function isGameType(v: string | null): v is GameType {
     return !!v && (
         GAME_IDS as string[]
     ).includes(v);
+}
+
+function useMediaQuery(query: string, ssrDefault = true) {
+    return useSyncExternalStore(
+        (onStoreChange) => {
+            const mq = window.matchMedia(query);
+            mq.addEventListener('change', onStoreChange);
+            return () => mq.removeEventListener('change', onStoreChange);
+        },
+        () => window.matchMedia(query).matches,
+        () => ssrDefault
+    );
+}
+
+function buildPagination(current: number, total: number): Array<number | 'ellipsis'> {
+    if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+
+    const items: Array<number | 'ellipsis'> = [];
+    const push = (v: number | 'ellipsis') => items.push(v);
+
+    push(1);
+
+    const left = Math.max(2, current - 1);
+    const right = Math.min(total - 1, current + 1);
+
+    if (left > 2) push('ellipsis');
+    for (let p = left; p <= right; p++) push(p);
+    if (right < total - 1) push('ellipsis');
+
+    push(total);
+    return items;
 }
 
 interface GameCardProps {
@@ -68,44 +126,111 @@ export default function GamesPage() {
     const id = searchParams.get('id');
     const activeGame: GameType | null = isGameType(id) ? id : null;
 
-    const games = [
-        {
-            id: 'quiz' as GameType,
-            title: t('gameTypes.quiz.title'),
-            description: t('gameTypes.quiz.description'),
-            icon: <Trophy className="w-5 h-5"/>
+    const isMdUp = useMediaQuery('(min-width: 768px)', false);
+    const itemsPerPage = isMdUp ? 6 : 2;
+
+    const games = useMemo(
+        () => [
+            {
+                id: 'quiz' as GameType,
+                title: t('gameTypes.quiz.title'),
+                description: t('gameTypes.quiz.description'),
+                icon: <Trophy className="w-5 h-5"/>
+            },
+            {
+                id: 'memory' as GameType,
+                title: t('gameTypes.memory.title'),
+                description: t('gameTypes.memory.description'),
+                icon: <Brain className="w-5 h-5"/>
+            },
+            {
+                id: 'typing' as GameType,
+                title: t('gameTypes.typing.title'),
+                description: t('gameTypes.typing.description'),
+                icon: <Keyboard className="w-5 h-5"/>
+            },
+            {
+                id: 'bughunt' as GameType,
+                title: t('gameTypes.bughunt.title'),
+                description: t('gameTypes.bughunt.subtitle'),
+                icon: <Bug className="w-5 h-5"/>
+            },
+            {
+                id: 'wordle' as GameType,
+                title: t('gameTypes.wordle.title'),
+                description: t('gameTypes.wordle.subtitle'),
+                icon: <Code2 className="w-5 h-5"/>
+            },
+            {
+                id: 'mentalcpu' as GameType,
+                title: t('gameTypes.mentalcpu.title'),
+                description: t('gameTypes.mentalcpu.subtitle'),
+                icon: <SquareFunction className="w-5 h-5"/>
+            },
+            {
+                id: 'regexrush' as GameType,
+                title: t('gameTypes.regexrush.title'),
+                description: t('gameTypes.regexrush.subtitle'),
+                icon: <Regex className="w-5 h-5"/>
+            },
+            {
+                id: 'httpdetective' as GameType,
+                title: t('gameTypes.httpdetective.title'),
+                description: t('gameTypes.httpdetective.subtitle'),
+                icon: <Globe className="w-5 h-5"/>
+            },
+            {
+                id: 'sqlsleuth' as GameType,
+                title: t('gameTypes.sqlsleuth.title'),
+                description: t('gameTypes.sqlsleuth.subtitle'),
+                icon: <Database className="w-5 h-5"/>
+            }
+        ],
+        [t]
+    );
+
+    const [page, setPage] = useState(1);
+
+    const totalPages = Math.max(1, Math.ceil(games.length / itemsPerPage));
+    const currentPage = Math.min(page, totalPages);
+
+    const pagedGames = useMemo(() => {
+        const start = (
+                          currentPage - 1
+                      ) * itemsPerPage;
+        return games.slice(start, start + itemsPerPage);
+    }, [games, currentPage, itemsPerPage]);
+
+    const pageItems = useMemo(() => buildPagination(currentPage, totalPages), [currentPage, totalPages]);
+
+    const toggleGame = useCallback(
+        (gameId: GameType) => {
+            const params = new URLSearchParams(searchParams.toString());
+            if (activeGame === gameId) {
+                params.delete('id');
+            } else {
+                params.set('id', gameId);
+            }
+            const qs = params.toString();
+            router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
         },
-        {
-            id: 'memory' as GameType,
-            title: t('gameTypes.memory.title'),
-            description: t('gameTypes.memory.description'),
-            icon: <Brain className="w-5 h-5"/>
+        [activeGame, pathname, router, searchParams]
+    );
+
+    const goPrev = useCallback(() => {
+        setPage((p) => Math.max(1, Math.min(p, totalPages) - 1));
+    }, [totalPages]);
+
+    const goNext = useCallback(() => {
+        setPage((p) => Math.min(totalPages, Math.min(p, totalPages) + 1));
+    }, [totalPages]);
+
+    const goTo = useCallback(
+        (p: number) => {
+            setPage(Math.max(1, Math.min(totalPages, p)));
         },
-        {
-            id: 'typing' as GameType,
-            title: t('gameTypes.typing.title'),
-            description: t('gameTypes.typing.description'),
-            icon: <Keyboard className="w-5 h-5"/>
-        },
-        {
-            id: 'bughunt' as GameType,
-            title: t('gameTypes.bughunt.title'),
-            description: t('gameTypes.bughunt.subtitle'),
-            icon: <Bug className="w-5 h-5"/>
-        },
-        {
-            id: 'wordle' as GameType,
-            title: t('gameTypes.wordle.title'),
-            description: t('gameTypes.wordle.subtitle'),
-            icon: <Code2 className="w-5 h-5"/>
-        },
-        {
-            id: 'mentalcpu' as GameType,
-            title: t('gameTypes.mentalcpu.title'),
-            description: t('gameTypes.mentalcpu.subtitle'),
-            icon: <SquareFunction className="w-5 h-5"/>
-        }
-    ];
+        [totalPages]
+    );
 
     return (
         <>
@@ -129,38 +254,78 @@ export default function GamesPage() {
 
                 <section className="py-12 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-6xl mx-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-                            {games.map((game) => (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                            {pagedGames.map((game) => (
                                 <GameCard
                                     key={game.id}
                                     title={game.title}
                                     description={game.description}
                                     icon={game.icon}
                                     isActive={activeGame === game.id}
-                                    onClick={() => {
-                                        const params = new URLSearchParams(searchParams.toString());
-
-                                        if (activeGame === game.id) {
-                                            params.delete('id');
-                                        } else {
-                                            params.set('id', game.id);
-                                        }
-
-                                        const qs = params.toString();
-                                        router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-                                    }}
+                                    onClick={() => toggleGame(game.id)}
                                 />
                             ))}
                         </div>
 
+                        {totalPages > 1 && (
+                            <Pagination className="mt-6 mb-10 sm:mb-12 lg:mb-16">
+                                <PaginationContent>
+                                    <PaginationItem>
+                                        <PaginationPrevious
+                                            href="#"
+                                            className={cn(currentPage === 1 && 'pointer-events-none opacity-50')}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                goPrev();
+                                            }}
+                                        />
+                                    </PaginationItem>
+
+                                    {pageItems.map((it, idx2) => (
+                                        <PaginationItem key={`${it}-${idx2}`}>
+                                            {it === 'ellipsis' ? (
+                                                <PaginationEllipsis/>
+                                            ) : (
+                                                <PaginationLink
+                                                    href="#"
+                                                    isActive={it === currentPage}
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        goTo(it);
+                                                    }}
+                                                >
+                                                    {it}
+                                                </PaginationLink>
+                                            )}
+                                        </PaginationItem>
+                                    ))}
+
+                                    <PaginationItem>
+                                        <PaginationNext
+                                            href="#"
+                                            className={cn(currentPage === totalPages
+                         && 'pointer-events-none opacity-50')}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                goNext();
+                                            }}
+                                        />
+                                    </PaginationItem>
+                                </PaginationContent>
+                            </Pagination>
+                        )}
+
                         {activeGame && (
-                            <div className="min-h-100">
+                            <div className="min-h-100 mt-10 sm:mt-12 lg:mt-16">
                                 {activeGame === 'quiz' && <Quiz/>}
                                 {activeGame === 'memory' && <MemoryGame/>}
                                 {activeGame === 'typing' && <TypingSpeed/>}
                                 {activeGame === 'bughunt' && <BugHunt/>}
                                 {activeGame === 'wordle' && <TechWordle/>}
                                 {activeGame === 'mentalcpu' && <MentalCpu/>}
+                                {activeGame === 'regexrush' && <RegexRush/>}
+                                {activeGame === 'httpdetective' && <HttpDetective/>}
+                                {activeGame === 'sqlsleuth' && <SqlSleuth/>}
                             </div>
                         )}
                     </div>

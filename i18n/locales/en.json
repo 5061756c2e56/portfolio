@@ -200,6 +200,18 @@
       "mentalcpu": {
         "title": "Mental CPU",
         "subtitle": "Fast math under pressure"
+      },
+      "regexrush": {
+        "title": "Regex Rush",
+        "subtitle": "Pick the best regex"
+      },
+      "httpdetective": {
+        "title": "HTTP Detective",
+        "subtitle": "Find the cause and the right fix"
+      },
+      "sqlsleuth": {
+        "title": "SQL Sleuth",
+        "subtitle": "Spot the bug or the correct query"
       }
     },
     "memory": {
@@ -789,6 +801,1044 @@
       "feedback": {
         "correct": "Correct!",
         "incorrect": "Incorrect"
+      }
+    },
+    "regexrush": {
+      "title": "Regex Rush",
+      "subtitle": "Pick the best regex for real-world cases",
+      "prompt": "Which regex is the most reliable?",
+      "question": "Question {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Restart",
+      "next": "Next",
+      "playAgain": "Play again",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Done!",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "goal": "Extract valid emails (simple format).",
+          "input": "Contact: alice@example.com, bob@site.io, not-an-email@, @bad.com",
+          "options": [
+            "\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b/i",
+            "\\S+@\\S+",
+            "@[A-Za-z]+\\.",
+            "[a-z]+@[a-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Option 1 matches common emails and avoids @bad.com / not-an-email@ thanks to domain + TLD.",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "goal": "Find ticket IDs in ABC-1234 format.",
+          "input": "Tickets: OPS-1203, DEV-9, SEC-0042, BAD-12345",
+          "options": [
+            "\\b[A-Z]{3}-\\d{4}\\b",
+            "[A-Z]+-\\d+",
+            "\\b[A-Z]{3}-\\d{1,4}\\b",
+            "\\b[A-Z]{3}-\\d{5}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Exactly 3 letters + 4 digits. DEV-9 too short, BAD-12345 too long.",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "goal": "Detect UUIDs (8-4-4-4-12 hex).",
+          "input": "ids: 550e8400-e29b-41d4-a716-446655440000, 123, zzz-zzz",
+          "options": [
+            "\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b/i",
+            "\\b[0-9a-f-]{36}\\b/i",
+            "[0-9a-f]{8}",
+            "\\b\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Option 1 enforces exact hex group sizes. Others are too permissive.",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "goal": "Extract @mentions (letters/digits/_), not emails.",
+          "input": "@root ok, contact me at a@b.com, @john_doe42 ok, @-bad no",
+          "options": [
+            "(?<!\\w)@[A-Za-z0-9_]{2,}\\b",
+            "@[A-Za-z0-9_]+",
+            "\\b@[A-Za-z]+\\b",
+            "@[\\w-]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Negative lookbehind avoids matching inside a@b.com. Also prevents leading hyphen.",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "goal": "Validate password: 8+ chars, 1 upper, 1 lower, 1 digit.",
+          "input": "Tests: Password1 OK, password1 no, PASSWORD1 no, Pass1 no",
+          "options": [
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",
+            "^.{8,}$",
+            "^(?=.*\\d).{8,}$",
+            "^(?=.*[A-Z]).{8,}$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Lookaheads enforce all constraints plus minimum length.",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "goal": "Find dates in YYYY-MM-DD.",
+          "input": "2026-01-31 ok, 26-01-31 no, 2026-1-31 no",
+          "options": [
+            "\\b\\d{4}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{2}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{4}-\\d{1,2}-\\d{1,2}\\b",
+            "\\d{4}/\\d{2}/\\d{2}"
+          ],
+          "answerIndex": "0",
+          "explanation": "Strict format requires 2 digits for month/day.",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "goal": "Extract hashtags (#dev, #web3), not '# ' (hash then space).",
+          "input": "Tags: #dev # web #web3 #C++",
+          "options": [
+            "(?<!\\w)#[A-Za-z0-9_]{2,}\\b",
+            "#[^ ]+",
+            "#\\w+",
+            "#[A-Za-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Avoids '# web' and restricts to alphanum/_ (so #C++ is rejected).",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "goal": "Detect valid IPv4 (no 999).",
+          "input": "IPs: 192.168.0.1 ok, 999.1.1.1 no, 10.0.0.256 no",
+          "options": [
+            "\\b(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\b",
+            "\\b\\d{1,3}(?:\\.\\d{1,3}){3}\\b",
+            "\\b(\\d+\\.){3}\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\.\\d+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Option 1 bounds each octet to 0–255. Others accept 999/256.",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "goal": "Extract double-quoted strings, handling escapes.",
+          "input": "msg=\"hello\" other=\"a\\\"b\" bad=\"unclosed",
+          "options": [
+            "\"(?:\\\\.|[^\"\\\\])*\"",
+            "\".*\"",
+            "\"[^\"]*\"",
+            "'.*'"
+          ],
+          "answerIndex": "0",
+          "explanation": "Handles escaped quotes and avoids greedy \".*\".",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "goal": "Find TODO lines only at line start (after spaces).",
+          "input": "  TODO: fix\nx TODO: not\n\tTODO: ok",
+          "options": [
+            "^\\s*TODO:\\s*.+$",
+            "TODO:.*",
+            "^TODO:.*",
+            "\\bTODO\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Anchored to line start and allows indentation.",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "goal": "Extract euro prices: 12€ or 12,50€.",
+          "input": "Prices: 12€, 12,50€, 12.50€ no, €12 no",
+          "options": [
+            "\\b\\d+(?:,\\d{2})?€\\b",
+            "\\d+€",
+            "\\b\\d+(?:[.,]\\d{2})?€\\b",
+            "€\\d+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Enforces French comma and 2 decimals when present.",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "goal": "Validate slug: lowercase, digits, hyphens, no double hyphen.",
+          "input": "ok: hello-world, bad: Hello, bad: a--b",
+          "options": [
+            "^(?!.*--)[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "^[a-z0-9-]+$",
+            "^[a-z-]+$",
+            "^[\\w-]+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Blocks -- and forces segments between hyphens.",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "goal": "Extract version tags vX.Y.Z.",
+          "input": "v1.2.3 ok, v1.2 no, 1.2.3 no, v01.2.3 ok",
+          "options": [
+            "\\bv\\d+\\.\\d+\\.\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\b",
+            "\\bv\\d+\\.\\d+\\b",
+            "v.*"
+          ],
+          "answerIndex": "0",
+          "explanation": "Requires leading v and three segments.",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "goal": "Match simple HTML tags <div> <span> but not </div>.",
+          "input": "<div> ok, </div> no, <a href=\"#\"> no",
+          "options": [
+            "<(?!/)(?:div|span|p|ul|li)>",
+            "<\\w+>",
+            "<(div|span|p)>",
+            "<[^>]+>"
+          ],
+          "answerIndex": "0",
+          "explanation": "Whitelist + excludes closing tags and attributes.",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "goal": "Extract French ZIP codes (5 digits) preceded by a space.",
+          "input": "Paris 75001 ok, 075001 no, code:75001 no",
+          "options": [
+            "\\s\\d{5}\\b",
+            "\\b\\d{5}\\b",
+            "\\d{5}",
+            "\\s\\d{4}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Requires a space before to avoid glued tokens.",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "goal": "Match absolute Unix file paths (/var/log/app.log).",
+          "input": "/var/log/app.log ok, var/log no, / ok",
+          "options": [
+            "\\/(?:[A-Za-z0-9._-]+\\/)*[A-Za-z0-9._-]+",
+            "\\/.+",
+            "[A-Za-z0-9/_-]+",
+            "^/.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Structured segments and avoids matching '/' alone.",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "goal": "Extract Node versions: 18.x or 20.x only.",
+          "input": "node 18.x ok, 16.x no, 20.x ok, 21.x no",
+          "options": [
+            "\\b(?:18|20)\\.x\\b",
+            "\\b\\d+\\.x\\b",
+            "\\b(18|20|21)\\.x\\b",
+            "\\b1\\d\\.x\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Whitelist 18 and 20 only.",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "goal": "Match ALL CAPS words (2+ letters) without digits.",
+          "input": "OK YES NO2 NO, CPU, A",
+          "options": [
+            "\\b[A-Z]{2,}\\b",
+            "\\b[A-Z0-9]{2,}\\b",
+            "[A-Z]+",
+            "\\b[A-Z]{1,}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Excludes NO2 and requires 2+ letters.",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "goal": "Extract key=value where key is snake_case.",
+          "input": "user_id=42 ok, userId=1 no, _bad=2 no",
+          "options": [
+            "\\b[a-z]+(?:_[a-z]+)*=\\S+",
+            "\\b\\w+=\\S+",
+            "\\b[a-z_]+=\\S+",
+            "\\b[a-z]+_=\\S+"
+          ],
+          "answerIndex": "0",
+          "explanation": "snake_case segments, no leading underscore.",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "goal": "Match JS imports: import X from 'y'; (simple).",
+          "input": "import a from 'b'; ok\nimport {x} from 'y'; ok\nrequire('z') no",
+          "options": [
+            "^import\\s+.+\\s+from\\s+['\"][^'\"]+['\"];?$",
+            "import.*from.*",
+            "^import\\b.*$",
+            "from\\s+['\"][^'\"]+['\"]"
+          ],
+          "answerIndex": "0",
+          "explanation": "Targets the import ... from '...' pattern.",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "goal": "Extract domains (without protocol) from text.",
+          "input": "Sites: example.com, https://openai.com, test.local, foo.bar",
+          "options": [
+            "\\b[a-z0-9-]+\\.[a-z]{2,}\\b",
+            "\\b\\w+\\.\\w+\\b",
+            "https?://\\S+",
+            "\\b[a-z]+\\.[a-z]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Aiming for domain.tld (2+ TLD letters).",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "goal": "Match only ERROR log lines.",
+          "input": "INFO ok\nERROR disk full\nWARN meh\nERROR timeout",
+          "options": [
+            "^ERROR\\b.*$",
+            "ERROR",
+            "\\bERROR\\b",
+            "^.*ERROR.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Anchored to line start, avoids mid-line matches.",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "goal": "Extract hex numbers like 0xFFEE.",
+          "input": "0x1A ok, 0XFF no, 0xZZ no, 1A no",
+          "options": [
+            "\\b0x[0-9a-fA-F]+\\b",
+            "\\b0x\\w+\\b",
+            "0x.+",
+            "\\b[0-9a-fA-F]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Requires 0x and hex digits only.",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "goal": "Validate git branch name: feature/xxx or fix/xxx.",
+          "input": "feature/login ok, fix/crash ok, feat/x no, feature/ no",
+          "options": [
+            "^(?:feature|fix)\\/[a-z0-9][a-z0-9-]*$",
+            "^(?:feature|fix)\\/.*$",
+            "^\\w+\\/\\w+$",
+            "^(?:feature|fix)-\\w+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Forces prefix, slash, and non-empty slug.",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "goal": "Match markdown `inline code` without capturing ``` fences.",
+          "input": "Use `npm i` ok\n```js\nconst x=1\n``` no",
+          "options": [
+            "(?<!`)`([^`\\n]+)`(?!`)",
+            "`.*`",
+            "^`.+`$",
+            "```[\\s\\S]*```"
+          ],
+          "answerIndex": "0",
+          "explanation": "Targets single backticks and avoids triple fences via lookarounds.",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "httpdetective": {
+      "title": "HTTP Detective",
+      "subtitle": "Read the request, then pick the best diagnosis or fix",
+      "prompt": "What’s the best fix?",
+      "question": "Case {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Restart",
+      "next": "Next",
+      "playAgain": "Play again",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Cases closed",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "caseTitle": "401 on /api/me",
+          "request": "GET /api/me\nStatus: 401 Unauthorized\nResponse: {\"error\":\"missing token\"}",
+          "options": [
+            "Add Authorization: Bearer <token> header",
+            "Switch GET to POST",
+            "Add Content-Type: application/json",
+            "Disable CORS in the browser"
+          ],
+          "answerIndex": "0",
+          "explanation": "401 + missing token means auth header is missing.",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "caseTitle": "403 on admin resource",
+          "request": "GET /admin/reports\nStatus: 403 Forbidden\nResponse: {\"error\":\"insufficient_scope\"}",
+          "options": [
+            "Use a token with admin scope/role",
+            "Try again later",
+            "Add Accept-Language",
+            "Use HTTP instead of HTTPS"
+          ],
+          "answerIndex": "0",
+          "explanation": "403 + insufficient_scope means the token lacks permissions.",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "caseTitle": "415 Unsupported Media Type",
+          "request": "POST /api/upload\nStatus: 415 Unsupported Media Type\nSent Content-Type: text/plain",
+          "options": [
+            "Send the correct Content-Type (multipart/form-data or application/json)",
+            "Add Authorization",
+            "Change the URL",
+            "Increase timeout"
+          ],
+          "answerIndex": "0",
+          "explanation": "415 indicates the server rejects the body type.",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "caseTitle": "Browser CORS error",
+          "request": "Fetch https://api.example.com/data\nBrowser error: CORS policy blocked\nNo 'Access-Control-Allow-Origin'",
+          "options": [
+            "Configure CORS on the API (allow origin/methods/headers)",
+            "Use mode: 'no-cors' and still parse JSON",
+            "Wrap fetch in setTimeout",
+            "Add Cache-Control: no-cache"
+          ],
+          "answerIndex": "0",
+          "explanation": "CORS is fixed server-side. no-cors gives an opaque response.",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "caseTitle": "429 Too Many Requests",
+          "request": "GET /api/search?q=react\nStatus: 429 Too Many Requests\nHeaders: Retry-After: 30",
+          "options": [
+            "Backoff and respect Retry-After (rate limit)",
+            "Switch to POST",
+            "Add Content-Length",
+            "Disable gzip"
+          ],
+          "answerIndex": "0",
+          "explanation": "429 is rate limiting. Wait and slow down.",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "caseTitle": "400 Bad Request on JSON",
+          "request": "POST /api/items\nContent-Type: application/json\nBody: {name:\"a\"}\nStatus: 400",
+          "options": [
+            "Send valid JSON: {\"name\":\"a\"}",
+            "Add Authorization",
+            "Use Accept: text/html",
+            "Replace POST with GET"
+          ],
+          "answerIndex": "0",
+          "explanation": "Invalid JSON leads to 400.",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "caseTitle": "Redirect loop",
+          "request": "GET /app\nStatus: 302 Location: /login\nGET /login\nStatus: 302 Location: /app",
+          "options": [
+            "Session/cookie not persisted (credentials) or auth redirect misconfigured",
+            "Add Content-Type",
+            "Increase payload",
+            "Add random query param"
+          ],
+          "answerIndex": "0",
+          "explanation": "Typical loop when session cookie isn’t sent or guard logic is wrong.",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "caseTitle": "Preflight OPTIONS fails",
+          "request": "OPTIONS /api/private\nStatus: 404\nBrowser: preflight failed",
+          "options": [
+            "Handle OPTIONS and return proper CORS headers",
+            "Change method to GET",
+            "Remove fetch",
+            "Add User-Agent"
+          ],
+          "answerIndex": "0",
+          "explanation": "Browsers send OPTIONS preflight. The server must respond.",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "caseTitle": "502 behind proxy",
+          "request": "GET /api\nStatus: 502 Bad Gateway\nNginx: upstream prematurely closed connection",
+          "options": [
+            "Upstream crashed/timeout → check logs/health and timeouts",
+            "Add CORS",
+            "Change Accept",
+            "Force HTTP/1.0"
+          ],
+          "answerIndex": "0",
+          "explanation": "502 is a proxy/upstream connectivity issue.",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "caseTitle": "413 Payload Too Large",
+          "request": "POST /api/upload\nStatus: 413 Payload Too Large",
+          "options": [
+            "Increase server/proxy limit or compress/split the upload",
+            "Switch POST to PUT",
+            "Add Authorization",
+            "Disable cache"
+          ],
+          "answerIndex": "0",
+          "explanation": "413 means request body exceeds configured limit.",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "caseTitle": "ETag / 304 serving stale bundle",
+          "request": "GET /app.js\nStatus: 304 Not Modified\nClient shows old code",
+          "options": [
+            "Fix caching strategy: hashed assets + proper Cache-Control",
+            "Add Authorization",
+            "Switch GET to POST",
+            "Enable CORS"
+          ],
+          "answerIndex": "0",
+          "explanation": "Stale cache usually needs versioned assets and better cache headers.",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "caseTitle": "Wrong response Content-Type",
+          "request": "GET /api/data\nStatus: 200\nContent-Type: text/html\nBody: \"<html>...\"",
+          "options": [
+            "You hit an error/rewrite page → fix route/API base URL",
+            "Add Retry-After",
+            "Add Content-Length",
+            "Add Origin header"
+          ],
+          "answerIndex": "0",
+          "explanation": "HTML instead of JSON often means wrong URL or unhandled server error.",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "caseTitle": "Client timeout",
+          "request": "GET /api/report\nClient: timeout after 10s\nServer returns 200 in 25s",
+          "options": [
+            "Optimize endpoint or make it async/paginated; raise client timeout only if justified",
+            "Add CORS",
+            "Switch to POST",
+            "Add Accept-Language"
+          ],
+          "answerIndex": "0",
+          "explanation": "Server is slow; fix performance or async workflow.",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "caseTitle": "401 after page refresh",
+          "request": "GET /api/me\nStatus: 401\nCookie: (missing)\nWorked before refresh",
+          "options": [
+            "Cookie/SameSite/Domain wrong or missing credentials: 'include'",
+            "Switch GET to POST",
+            "Add Content-Type",
+            "Disable cache"
+          ],
+          "answerIndex": "0",
+          "explanation": "If cookies aren’t sent, check SameSite/secure/domain and fetch credentials.",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "caseTitle": "404 only in production",
+          "request": "GET /api/users\nDev: 200\nProd: 404 (behind /v1)",
+          "options": [
+            "Prod base path/proxy mismatch → fix baseURL (/v1) or rewrites",
+            "Add Authorization",
+            "Increase timeout",
+            "Add Origin"
+          ],
+          "answerIndex": "0",
+          "explanation": "Base path differences between dev/prod are common.",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "caseTitle": "CSRF mismatch",
+          "request": "POST /api/profile\nStatus: 403\nResponse: {\"error\":\"csrf\"}",
+          "options": [
+            "Send CSRF token (header/cookie) and follow proper CSRF flow",
+            "Switch to GET",
+            "Add Content-Type",
+            "Add Retry-After"
+          ],
+          "answerIndex": "0",
+          "explanation": "CSRF protection requires a specific token/flow.",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "caseTitle": "400 validation error",
+          "request": "POST /api/register\nStatus: 400\nResponse: {\"errors\":{\"email\":\"invalid\"}}",
+          "options": [
+            "Fix payload according to schema (valid email)",
+            "Add CORS",
+            "Switch POST to PUT",
+            "Add Accept: text/plain"
+          ],
+          "answerIndex": "0",
+          "explanation": "Validation failed; adjust body.",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "caseTitle": "Mixed content blocked",
+          "request": "App over HTTPS\nFetch http://api.example.com\nBrowser blocked: mixed content",
+          "options": [
+            "Use HTTPS for the API or an HTTPS proxy",
+            "Add CORS",
+            "Use no-cors",
+            "Change method"
+          ],
+          "answerIndex": "0",
+          "explanation": "Browsers block HTTP calls from HTTPS pages.",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "caseTitle": "Expired token",
+          "request": "GET /api/me\nAuthorization: Bearer xxx\nStatus: 401\nResponse: {\"error\":\"token_expired\"}",
+          "options": [
+            "Refresh token / re-auth then retry",
+            "Add Content-Type",
+            "Reduce payload",
+            "Add Origin"
+          ],
+          "answerIndex": "0",
+          "explanation": "Expired tokens require refresh/login flow.",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "caseTitle": "204 No Content + client crash",
+          "request": "DELETE /api/item/1\nStatus: 204 No Content\nClient does res.json() and throws",
+          "options": [
+            "Don’t parse JSON on 204 (check status/body length)",
+            "Switch DELETE to POST",
+            "Add CORS",
+            "Add Retry-After"
+          ],
+          "answerIndex": "0",
+          "explanation": "204 means no body; res.json() fails.",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "caseTitle": "405 Method Not Allowed",
+          "request": "PUT /api/items\nStatus: 405\nAllow: GET, POST",
+          "options": [
+            "Use an allowed method (POST) or enable PUT on server",
+            "Add Content-Type",
+            "Add Authorization",
+            "Increase timeout"
+          ],
+          "answerIndex": "0",
+          "explanation": "Allow header shows permitted methods.",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "caseTitle": "400 after gzip",
+          "request": "POST /api\nContent-Encoding: gzip\nServer: 400 invalid body",
+          "options": [
+            "Client compresses but server doesn’t decompress → configure gzip handling",
+            "Add CORS",
+            "Switch to GET",
+            "Add Retry-After"
+          ],
+          "answerIndex": "0",
+          "explanation": "If you send Content-Encoding, the server must decode it.",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "caseTitle": "Pagination out of range",
+          "request": "GET /api/users?page=999\nStatus: 200\nBody: []",
+          "options": [
+            "Out of range → clamp/validate and return metadata (totalPages)",
+            "Add Authorization",
+            "Add CORS",
+            "Switch to POST"
+          ],
+          "answerIndex": "0",
+          "explanation": "Better APIs return metadata and validate page ranges.",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "caseTitle": "503 Service Unavailable",
+          "request": "GET /api\nStatus: 503\nResponse: maintenance",
+          "options": [
+            "Service down/maintenance → healthcheck, autoscale, retry with backoff",
+            "Add Content-Type",
+            "Switch GET to POST",
+            "Add Origin"
+          ],
+          "answerIndex": "0",
+          "explanation": "503 is typically temporary downtime.",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "caseTitle": "Cross-site cookie not sent",
+          "request": "Frontend https://app.com -> API https://api.com\nCookie missing\nSameSite=Lax",
+          "options": [
+            "Set SameSite=None; Secure and use credentials: 'include' when needed",
+            "Disable CORS",
+            "Use no-cors",
+            "Switch to HTTP"
+          ],
+          "answerIndex": "0",
+          "explanation": "Cross-site cookies require SameSite=None + Secure (otherwise not sent).",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "sqlsleuth": {
+      "title": "SQL Sleuth",
+      "subtitle": "Spot the bug or the correct query without falling for traps",
+      "prompt": "What’s the best answer?",
+      "question": "Case {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Restart",
+      "next": "Next",
+      "playAgain": "Play again",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Nice work",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "caseTitle": "Aggregate without GROUP BY",
+          "query": "SELECT user_id, COUNT(*) FROM orders;",
+          "options": [
+            "Add GROUP BY user_id",
+            "Add ORDER BY user_id",
+            "Replace COUNT(*) with SUM(*)",
+            "Put COUNT in WHERE"
+          ],
+          "answerIndex": "0",
+          "explanation": "Selecting user_id with COUNT(*) requires GROUP BY user_id.",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "caseTitle": "LEFT JOIN broken by WHERE",
+          "query": "SELECT u.id, o.id\nFROM users u\nLEFT JOIN orders o ON o.user_id = u.id\nWHERE o.status = 'paid';",
+          "options": [
+            "Move condition into ON: ... AND o.status='paid'",
+            "Replace LEFT JOIN with INNER JOIN (same output)",
+            "Add DISTINCT",
+            "Add LIMIT"
+          ],
+          "answerIndex": "0",
+          "explanation": "WHERE on the joined table turns LEFT JOIN into INNER JOIN. Put it in ON.",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "caseTitle": "HAVING vs WHERE",
+          "query": "SELECT user_id, COUNT(*) c\nFROM orders\nWHERE COUNT(*) > 5\nGROUP BY user_id;",
+          "options": [
+            "Use HAVING COUNT(*) > 5",
+            "Keep COUNT only in SELECT",
+            "Replace WHERE with ORDER BY",
+            "Remove GROUP BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "Aggregates don’t belong in WHERE. Use HAVING after GROUP BY.",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "caseTitle": "NULL trap with NOT IN",
+          "query": "SELECT id FROM users WHERE id NOT IN (SELECT user_id FROM bans);",
+          "options": [
+            "Use NOT EXISTS (avoids NULL trap)",
+            "Add DISTINCT in subquery",
+            "Replace NOT IN with IN",
+            "Add ORDER BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "If bans.user_id contains NULL, NOT IN can filter everything. NOT EXISTS is safer.",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "caseTitle": "COUNT(*) vs COUNT(col)",
+          "query": "SELECT COUNT(email) FROM users;",
+          "options": [
+            "COUNT(email) skips NULLs; COUNT(*) counts rows",
+            "COUNT(email) is always faster",
+            "COUNT(*) skips NULLs",
+            "They are always identical"
+          ],
+          "answerIndex": "0",
+          "explanation": "COUNT(col) ignores NULL; COUNT(*) counts all rows.",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "caseTitle": "ORDER BY placement",
+          "query": "SELECT * FROM posts LIMIT 10 ORDER BY created_at DESC;",
+          "options": [
+            "ORDER BY must come before LIMIT",
+            "LIMIT must come before ORDER BY",
+            "Missing GROUP BY",
+            "SELECT * is invalid"
+          ],
+          "answerIndex": "0",
+          "explanation": "Standard syntax is ORDER BY ... LIMIT ...",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "caseTitle": "LIKE and indexes",
+          "query": "SELECT * FROM users WHERE name LIKE '%alex%';",
+          "options": [
+            "Leading wildcard often prevents index usage (full scan)",
+            "LIKE always uses an index",
+            "You need HAVING",
+            "You need DISTINCT"
+          ],
+          "answerIndex": "0",
+          "explanation": "‘%alex%’ usually can’t use a normal B-Tree index efficiently.",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "caseTitle": "Ambiguous column",
+          "query": "SELECT id FROM users u JOIN orders o ON o.user_id = u.id;",
+          "options": [
+            "Qualify: SELECT u.id ... (id is ambiguous)",
+            "Add DISTINCT",
+            "Use LEFT JOIN",
+            "Add LIMIT 1"
+          ],
+          "answerIndex": "0",
+          "explanation": "id may exist in both tables. Use u.id or o.id.",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "caseTitle": "Index-friendly date filter",
+          "query": "SELECT * FROM events WHERE DATE(created_at) = '2026-01-31';",
+          "options": [
+            "Use a range: created_at >= '2026-01-31' AND created_at < '2026-02-01'",
+            "Add ORDER BY",
+            "Move DATE() to SELECT",
+            "Use HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Functions on columns often break index usage. Use a range.",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "caseTitle": "JOIN duplicates rows",
+          "query": "SELECT u.id\nFROM users u\nJOIN orders o ON o.user_id = u.id;",
+          "options": [
+            "Add DISTINCT if you want each user once",
+            "Use CROSS JOIN",
+            "GROUP BY o.id",
+            "Use HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Users with multiple orders will appear multiple times. DISTINCT or aggregate.",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "caseTitle": "UPDATE without WHERE",
+          "query": "UPDATE users SET role='admin';",
+          "options": [
+            "Danger: updates all rows; add WHERE",
+            "Fine if table is small",
+            "Needs GROUP BY",
+            "Needs HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Without WHERE, every row is updated.",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "caseTitle": "OFFSET pagination slow",
+          "query": "SELECT * FROM posts ORDER BY id DESC LIMIT 20 OFFSET 20000;",
+          "options": [
+            "Prefer keyset pagination (WHERE id < lastId)",
+            "Add DISTINCT",
+            "Remove ORDER BY",
+            "Put OFFSET before LIMIT"
+          ],
+          "answerIndex": "0",
+          "explanation": "Large OFFSET gets slow. Keyset scales better.",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "caseTitle": "Huge IN list",
+          "query": "SELECT * FROM users WHERE id IN ( ... 5000 ids ... );",
+          "options": [
+            "Put ids in a temp table and JOIN instead of a huge list",
+            "Add ORDER BY",
+            "Add HAVING",
+            "Replace IN with LIKE"
+          ],
+          "answerIndex": "0",
+          "explanation": "Very large IN lists can be expensive; joining an ids table is often better.",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "caseTitle": "NULL comparison",
+          "query": "SELECT * FROM users WHERE deleted_at = NULL;",
+          "options": [
+            "Use IS NULL",
+            "Use == NULL",
+            "Quote NULL as 'NULL'",
+            "Add DISTINCT"
+          ],
+          "answerIndex": "0",
+          "explanation": "SQL checks NULL with IS NULL, not =.",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "caseTitle": "Custom ordering",
+          "query": "SELECT * FROM tasks ORDER BY status;",
+          "options": [
+            "For custom order, use ORDER BY CASE ... END",
+            "Add GROUP BY status",
+            "Replace ORDER BY with HAVING",
+            "Move status to WHERE"
+          ],
+          "answerIndex": "0",
+          "explanation": "CASE lets you define custom sort precedence.",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "caseTitle": "COUNT distinct",
+          "query": "SELECT COUNT(user_id) FROM orders;",
+          "options": [
+            "For unique users: COUNT(DISTINCT user_id)",
+            "Add GROUP BY",
+            "Replace COUNT with SUM",
+            "Add HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "COUNT(DISTINCT) counts unique values.",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "caseTitle": "Double vs single quotes",
+          "query": "SELECT * FROM users WHERE email = \"a@b.com\";",
+          "options": [
+            "Use single quotes 'a@b.com' (dialect-dependent)",
+            "Always correct",
+            "Use backticks",
+            "Use HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Many DBs use '...' for strings; \"...\" may be identifiers.",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "caseTitle": "Delete with join",
+          "query": "DELETE u FROM users u JOIN bans b ON b.user_id = u.id;",
+          "options": [
+            "Deletes banned users; extremely risky without preview",
+            "It’s a SELECT",
+            "Missing GROUP BY",
+            "Impossible in SQL"
+          ],
+          "answerIndex": "0",
+          "explanation": "Some dialects support DELETE ... JOIN. Very dangerous.",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "caseTitle": "UNION vs UNION ALL",
+          "query": "SELECT id FROM a UNION SELECT id FROM b;",
+          "options": [
+            "UNION dedupes (costly); UNION ALL keeps duplicates",
+            "UNION ALL dedupes",
+            "They are identical",
+            "UNION is always faster"
+          ],
+          "answerIndex": "0",
+          "explanation": "UNION implies DISTINCT. UNION ALL is faster if duplicates are acceptable.",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "caseTitle": "Composite index",
+          "query": "WHERE tenant_id = 7 AND created_at >= '2026-01-01' ORDER BY created_at DESC",
+          "options": [
+            "Index (tenant_id, created_at) helps filter + sort",
+            "Index on created_at alone always enough",
+            "Indexes prevent ORDER BY",
+            "Need DISTINCT"
+          ],
+          "answerIndex": "0",
+          "explanation": "Composite index matches this access pattern well.",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "caseTitle": "Incomplete GROUP BY",
+          "query": "SELECT country, city, COUNT(*) FROM users GROUP BY country;",
+          "options": [
+            "Add city to GROUP BY or aggregate city (strict SQL)",
+            "Add ORDER BY",
+            "Add DISTINCT",
+            "Remove COUNT"
+          ],
+          "answerIndex": "0",
+          "explanation": "All non-aggregated columns must be in GROUP BY (in strict SQL).",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "caseTitle": "Correlated subquery",
+          "query": "SELECT u.* FROM users u WHERE EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id);",
+          "options": [
+            "Returns users with at least one order",
+            "Returns users without orders",
+            "Returns orders",
+            "Invalid without GROUP BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "EXISTS checks whether a matching row exists.",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "caseTitle": "BETWEEN inclusive date trap",
+          "query": "WHERE created_at BETWEEN '2026-01-01' AND '2026-01-31'",
+          "options": [
+            "If created_at has time, '2026-01-31' includes only midnight; prefer < '2026-02-01'",
+            "BETWEEN excludes bounds",
+            "BETWEEN is always false",
+            "Use HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "BETWEEN is inclusive, but the end bound at midnight excludes the rest of that day.",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "caseTitle": "N+1 query pattern",
+          "query": "SELECT * FROM users; then for each user: SELECT * FROM orders WHERE user_id=?;",
+          "options": [
+            "Use a JOIN/IN in one query or batch requests",
+            "Add DISTINCT",
+            "Use HAVING",
+            "Use ORDER BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "N+1 means too many queries. Batch or join instead.",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "caseTitle": "Functions and indexes",
+          "query": "WHERE LOWER(email) = 'a@b.com'",
+          "options": [
+            "Create a functional index or normalize on write",
+            "Add ORDER BY",
+            "Move LOWER to SELECT",
+            "Use HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Function on column can bypass normal index. Use functional index or normalized column.",
+          "answerIndexNote": ""
+        }
       }
     }
   },

@@ -1,0 +1,290 @@
+'use client';
+
+import { useCallback, useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { CheckCircle2, Database, RotateCcw, Sparkles, Trophy, XCircle, Zap } from 'lucide-react';
+
+type ChallengeId =
+    | '1' | '2' | '3' | '4' | '5'
+    | '6' | '7' | '8' | '9' | '10'
+    | '11' | '12' | '13' | '14' | '15'
+    | '16' | '17' | '18' | '19' | '20'
+    | '21' | '22' | '23' | '24' | '25';
+
+const IDS: ChallengeId[] = [
+    '1', '2', '3', '4', '5',
+    '6', '7', '8', '9', '10',
+    '11', '12', '13', '14', '15',
+    '16', '17', '18', '19', '20',
+    '21', '22', '23', '24', '25'
+];
+
+function hashStringToSeed(s: string) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+        h ^= s.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+}
+
+function mulberry32(seed: number) {
+    let t = seed >>> 0;
+    return () => {
+        t += 0x6d2b79f5;
+        let r = Math.imul(t ^ (
+            t >>> 15
+        ), 1 | t);
+        r ^= r + Math.imul(r ^ (
+            r >>> 7
+        ), 61 | r);
+        return (
+                   (
+                       r ^ (
+                             r >>> 14
+                         )
+                   ) >>> 0
+               ) / 4294967296;
+    };
+}
+
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+    const a = [...arr];
+    const rnd = mulberry32(seed);
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(rnd() * (
+            i + 1
+        ));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+type Challenge = {
+    id: ChallengeId;
+    caseTitle: string;
+    query: string;
+    options: string[];
+    answerIndex: number;
+    explanation: string;
+};
+
+type Phase = 'idle' | 'locked' | 'complete';
+
+export default function SqlSleuth() {
+    const t = useTranslations('games.sqlsleuth');
+
+    const uid = useId();
+    const baseSeed = useMemo(() => hashStringToSeed(uid), [uid]);
+    const [nonce, setNonce] = useState(0);
+
+    const order = useMemo(() => seededShuffle(IDS, baseSeed + nonce), [baseSeed, nonce]);
+
+    const [idx, setIdx] = useState(0);
+    const [score, setScore] = useState(0);
+    const [streak, setStreak] = useState(0);
+    const [maxStreak, setMaxStreak] = useState(0);
+    const [phase, setPhase] = useState<Phase>('idle');
+    const [selected, setSelected] = useState<number | null>(null);
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+    const [lastExplanation, setLastExplanation] = useState('');
+
+    const challenges = useMemo<Challenge[]>(() => {
+        const getText = (key: string) => {
+            const v = t.raw(key) as unknown;
+            return typeof v === 'string' ? v : String(v);
+        };
+
+        return order.map((id) => {
+            const options = t.raw(`challenges.${id}.options`) as unknown as string[];
+            return {
+                id,
+                caseTitle: getText(`challenges.${id}.caseTitle`),
+                query: getText(`challenges.${id}.query`),
+                options,
+                answerIndex: Number(getText(`challenges.${id}.answerIndex`)),
+                explanation: getText(`challenges.${id}.explanation`)
+            };
+        });
+    }, [order, t]);
+
+    const total = challenges.length;
+    const current = challenges[Math.min(idx, total - 1)];
+    const progressLabel = t('question', { current: Math.min(idx + 1, total), total });
+
+    const lockAnswer = useCallback(
+        (choice: number) => {
+            if (phase !== 'idle') return;
+            setSelected(choice);
+
+            const correct = choice === current.answerIndex;
+            setIsCorrect(correct);
+            setLastExplanation(current.explanation);
+            setPhase('locked');
+
+            if (correct) {
+                setScore((s) => s + 1);
+                setStreak((s) => {
+                    const next = s + 1;
+                    setMaxStreak((m) => (
+                        next > m ? next : m
+                    ));
+                    return next;
+                });
+            } else {
+                setStreak(0);
+            }
+        },
+        [current.answerIndex, current.explanation, phase]
+    );
+
+    const next = useCallback(() => {
+        if (phase === 'complete') return;
+
+        if (idx + 1 >= total) {
+            setPhase('complete');
+            return;
+        }
+
+        setIdx((v) => v + 1);
+        setSelected(null);
+        setIsCorrect(null);
+        setLastExplanation('');
+        setPhase('idle');
+    }, [idx, phase, total]);
+
+    const restart = useCallback(() => {
+        setNonce((n) => n + 1);
+        setIdx(0);
+        setScore(0);
+        setStreak(0);
+        setMaxStreak(0);
+        setSelected(null);
+        setIsCorrect(null);
+        setLastExplanation('');
+        setPhase('idle');
+    }, []);
+
+    return (
+        <div className="space-y-6">
+            <div className="flex items-center gap-3 mb-8">
+                <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                    <Database className="w-5 h-5 text-blue-500"/>
+                </div>
+                <div>
+                    <h2 className="text-xl font-semibold">{t('title')}</h2>
+                    <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+                </div>
+            </div>
+
+            <div
+                className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-blue-500/20 bg-card">
+                <div className="flex items-center gap-4">
+                    <div className="inline-flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-blue-500"/>
+                        <span className="font-mono text-sm">{progressLabel}</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2">
+                        <Trophy className="w-4 h-4 text-blue-500"/>
+                        <span className="font-mono text-sm">{t('score', { score, total })}</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2">
+                        <Zap className="w-4 h-4 text-blue-500"/>
+                        <span className="font-mono text-sm">{t('streak', { streak, max: maxStreak })}</span>
+                    </div>
+                </div>
+
+                <Button variant="outline" size="sm" onClick={restart} className="gap-2">
+                    <RotateCcw className="w-4 h-4"/>
+                    {t('restart')}
+                </Button>
+            </div>
+
+            {phase === 'complete' ? (
+                <div
+                    className="p-6 rounded-xl border border-blue-500/20 bg-linear-to-b from-blue-500/5 to-transparent text-center">
+                    <div className="text-4xl mb-4">🧠</div>
+                    <h3 className="text-xl font-semibold mb-2">{t('complete.title')}</h3>
+                    <p className="text-muted-foreground mb-4">{t('complete.stats', { score, total, maxStreak })}</p>
+                    <Button onClick={restart} className="gap-2">
+                        <RotateCcw className="w-4 h-4"/>
+                        {t('playAgain')}
+                    </Button>
+                </div>
+            ) : (
+                <div className="p-5 rounded-xl border border-blue-500/20 bg-card space-y-3">
+                    <div className="flex items-center justify-between gap-3">
+                        <div className="space-y-0.5">
+                            <h3 className="text-base font-semibold">{t('prompt')}</h3>
+                            <p className="text-sm text-muted-foreground">{current.caseTitle}</p>
+                        </div>
+
+                        {phase === 'locked' && isCorrect !== null && (
+                            <div
+                                className={cn(
+                                    'inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm border',
+                                    isCorrect
+                                        ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500'
+                                        : 'bg-red-500/10 border-red-500/20 text-red-500'
+                                )}
+                            >
+                                {isCorrect ? <CheckCircle2 className="w-4 h-4"/> : <XCircle className="w-4 h-4"/>}
+                                <span className="font-medium">
+                  {isCorrect ? t('feedback.correct') : t('feedback.incorrect')}
+                </span>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="rounded-xl border border-blue-500/10 bg-muted/40 p-4">
+                        <pre
+                            className="text-sm font-mono whitespace-pre-wrap break-words leading-relaxed">{current.query}</pre>
+                    </div>
+
+                    <div className="grid gap-2">
+                        {current.options.map((opt, i) => {
+                            const locked = phase !== 'idle';
+                            const active = selected === i;
+                            const showCorrect = locked && i === current.answerIndex;
+                            const showWrong = locked && active && i !== current.answerIndex;
+
+                            return (
+                                <button
+                                    key={`${current.id}-${i}`}
+                                    type="button"
+                                    disabled={locked}
+                                    onClick={() => lockAnswer(i)}
+                                    className={cn(
+                                        'w-full text-left px-3 py-2 rounded-xl border transition-all duration-200',
+                                        'text-sm',
+                                        locked ? 'cursor-not-allowed opacity-90' : 'hover:bg-blue-500/5 hover:border-blue-500/30',
+                                        active ? 'border-blue-500/40 bg-blue-500/5' : 'border-border bg-transparent',
+                                        showCorrect && 'border-emerald-500/40 bg-emerald-500/5',
+                                        showWrong && 'border-red-500/40 bg-red-500/5'
+                                    )}
+                                >
+                                    {opt}
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    {phase === 'locked' && lastExplanation && (
+                        <div
+                            className="mt-2 p-4 rounded-xl border border-blue-500/10 bg-muted/30 text-sm text-muted-foreground leading-relaxed">
+                            {lastExplanation}
+                        </div>
+                    )}
+
+                    <div className="flex items-center justify-end gap-2">
+                        <Button onClick={next} disabled={phase !== 'locked'} className="gap-2">
+                            {t('next')}
+                        </Button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}

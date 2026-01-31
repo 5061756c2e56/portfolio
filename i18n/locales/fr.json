@@ -200,6 +200,18 @@
       "mentalcpu": {
         "title": "Mental CPU",
         "subtitle": "Calculs rapides sous pression"
+      },
+      "regexrush": {
+        "title": "Regex Rush",
+        "subtitle": "Choisis la meilleure regex"
+      },
+      "httpdetective": {
+        "title": "HTTP Detective",
+        "subtitle": "Trouve la cause et le bon fix"
+      },
+      "sqlsleuth": {
+        "title": "SQL Sleuth",
+        "subtitle": "Débusque le bug ou la bonne requête"
       }
     },
     "memory": {
@@ -789,6 +801,1044 @@
       "feedback": {
         "correct": "Correct !",
         "incorrect": "Incorrect"
+      }
+    },
+    "regexrush": {
+      "title": "Regex Rush",
+      "subtitle": "Choisis la meilleure regex pour passer les cas réels",
+      "prompt": "Quelle regex est la plus fiable ?",
+      "question": "Question {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Recommencer",
+      "next": "Suivant",
+      "playAgain": "Rejouer",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Terminé !",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "goal": "Extraire les emails valides (format simple).",
+          "input": "Contact: alice@example.com, bob@site.io, not-an-email@, @bad.com",
+          "options": [
+            "\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b/i",
+            "\\S+@\\S+",
+            "@[A-Za-z]+\\.",
+            "[a-z]+@[a-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le 1er couvre un email simple et évite @bad.com / not-an-email@ via domaine + TLD.",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "goal": "Trouver les numéros de ticket au format ABC-1234.",
+          "input": "Tickets: OPS-1203, DEV-9, SEC-0042, BAD-12345",
+          "options": [
+            "\\b[A-Z]{3}-\\d{4}\\b",
+            "[A-Z]+-\\d+",
+            "\\b[A-Z]{3}-\\d{1,4}\\b",
+            "\\b[A-Z]{3}-\\d{5}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "On veut exactement 3 lettres + 4 chiffres. DEV-9 est trop court, BAD-12345 trop long.",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "goal": "Repérer les UUID v4 (8-4-4-4-12 hex).",
+          "input": "ids: 550e8400-e29b-41d4-a716-446655440000, 123, zzz-zzz",
+          "options": [
+            "\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b/i",
+            "\\b[0-9a-f-]{36}\\b/i",
+            "[0-9a-f]{8}",
+            "\\b\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le 1er impose le découpage exact en hex. Les autres sont trop permissifs.",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "goal": "Extraire les mentions @username (lettres/chiffres/_), pas les emails.",
+          "input": "@root ok, contact me at a@b.com, @john_doe42 ok, @-bad non",
+          "options": [
+            "(?<!\\w)@[A-Za-z0-9_]{2,}\\b",
+            "@[A-Za-z0-9_]+",
+            "\\b@[A-Za-z]+\\b",
+            "@[\\w-]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le lookbehind évite d’attraper dans a@b.com. Et on interdit le tiret en début.",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "goal": "Valider un mot de passe: 8+ chars, 1 maj, 1 min, 1 chiffre.",
+          "input": "Tests: Password1 OK, password1 non, PASSWORD1 non, Pass1 non",
+          "options": [
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",
+            "^.{8,}$",
+            "^(?=.*\\d).{8,}$",
+            "^(?=.*[A-Z]).{8,}$"
+          ],
+          "answerIndex": "0",
+          "explanation": "On impose les 3 contraintes via lookaheads + longueur minimale.",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "goal": "Trouver les dates YYYY-MM-DD.",
+          "input": "2026-01-31 ok, 26-01-31 non, 2026-1-31 non",
+          "options": [
+            "\\b\\d{4}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{2}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{4}-\\d{1,2}-\\d{1,2}\\b",
+            "\\d{4}/\\d{2}/\\d{2}"
+          ],
+          "answerIndex": "0",
+          "explanation": "Format strict avec 2 chiffres pour mois/jour.",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "goal": "Extraire les hashtags (#dev, #web3), pas # suivi d’un espace.",
+          "input": "Tags: #dev # web #web3 #C++",
+          "options": [
+            "(?<!\\w)#[A-Za-z0-9_]{2,}\\b",
+            "#[^ ]+",
+            "#\\w+",
+            "#[A-Za-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "On évite '# web' et on limite à alphanum/_ (donc #C++ rejeté).",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "goal": "Détecter les IPv4 valides (simple, sans 999).",
+          "input": "IPs: 192.168.0.1 ok, 999.1.1.1 non, 10.0.0.256 non",
+          "options": [
+            "\\b(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\b",
+            "\\b\\d{1,3}(?:\\.\\d{1,3}){3}\\b",
+            "\\b(\\d+\\.){3}\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\.\\d+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le 1er borne chaque octet 0–255. Les autres acceptent 999 et 256.",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "goal": "Extraire les valeurs entre guillemets doubles, sans couper au premier \"\\\"\".",
+          "input": "msg=\"hello\" other=\"a\\\"b\" bad=\"unclosed",
+          "options": [
+            "\"(?:\\\\.|[^\"\\\\])*\"",
+            "\".*\"",
+            "\"[^\"]*\"",
+            "'.*'"
+          ],
+          "answerIndex": "0",
+          "explanation": "On gère les échappements (\\\") et on évite le greedy de \".*\".",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "goal": "Trouver les TODO: en début de ligne (après espaces).",
+          "input": "  TODO: fix\nx TODO: not\n\tTODO: ok",
+          "options": [
+            "^\\s*TODO:\\s*.+$",
+            "TODO:.*",
+            "^TODO:.*",
+            "\\bTODO\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le caret ancre la ligne et accepte l’indentation.",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "goal": "Extraire les montants en euros: 12,50€ ou 12€.",
+          "input": "Prix: 12€, 12,50€, 12.50€ non, €12 non",
+          "options": [
+            "\\b\\d+(?:,\\d{2})?€\\b",
+            "\\d+€",
+            "\\b\\d+(?:[.,]\\d{2})?€\\b",
+            "€\\d+"
+          ],
+          "answerIndex": "0",
+          "explanation": "On impose la virgule française et 2 décimales si présentes.",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "goal": "Valider un slug: minuscules, chiffres, tirets, pas de double tiret.",
+          "input": "ok: hello-world, bad: Hello, bad: a--b",
+          "options": [
+            "^(?!.*--)[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "^[a-z0-9-]+$",
+            "^[a-z-]+$",
+            "^[\\w-]+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "On interdit -- et on force les segments entre tirets.",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "goal": "Extraire les mentions de version vX.Y.Z.",
+          "input": "v1.2.3 ok, v1.2 non, 1.2.3 non, v01.2.3 ok",
+          "options": [
+            "\\bv\\d+\\.\\d+\\.\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\b",
+            "\\bv\\d+\\.\\d+\\b",
+            "v.*"
+          ],
+          "answerIndex": "0",
+          "explanation": "On exige le v et trois segments.",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "goal": "Trouver les tags HTML simples <div> <span> mais pas </div>.",
+          "input": "<div> ok, </div> non, <a href=\"#\"> non",
+          "options": [
+            "<(?!/)(?:div|span|p|ul|li)>",
+            "<\\w+>",
+            "<(div|span|p)>",
+            "<[^>]+>"
+          ],
+          "answerIndex": "0",
+          "explanation": "On restreint à une whitelist et on exclut les tags fermants.",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "goal": "Extraire les codes postaux FR (5 chiffres) précédés d’un espace.",
+          "input": "Paris 75001 ok, 075001 non, code:75001 non",
+          "options": [
+            "\\s\\d{5}\\b",
+            "\\b\\d{5}\\b",
+            "\\d{5}",
+            "\\s\\d{4}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "On demande un espace avant pour éviter certains faux positifs collés.",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "goal": "Trouver les chemins absolus Unix (/var/log/app.log).",
+          "input": "/var/log/app.log ok, var/log non, / ok",
+          "options": [
+            "\\/(?:[A-Za-z0-9._-]+\\/)*[A-Za-z0-9._-]+",
+            "\\/.+",
+            "[A-Za-z0-9/_-]+",
+            "^/.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "On structure par segments et évite / seul.",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "goal": "Extraire les numéros de version Node: 18.x, 20.x (seulement).",
+          "input": "node 18.x ok, 16.x non, 20.x ok, 21.x non",
+          "options": [
+            "\\b(?:18|20)\\.x\\b",
+            "\\b\\d+\\.x\\b",
+            "\\b(18|20|21)\\.x\\b",
+            "\\b1\\d\\.x\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "On whitelist 18 et 20 seulement.",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "goal": "Trouver les mots en ALL CAPS (2+ lettres) sans chiffres.",
+          "input": "OK YES NO2 NO, CPU, A",
+          "options": [
+            "\\b[A-Z]{2,}\\b",
+            "\\b[A-Z0-9]{2,}\\b",
+            "[A-Z]+",
+            "\\b[A-Z]{1,}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "On exclut NO2 et on demande 2+ lettres.",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "goal": "Extraire les paires key=value où key est snake_case.",
+          "input": "user_id=42 ok, userId=1 non, _bad=2 non",
+          "options": [
+            "\\b[a-z]+(?:_[a-z]+)*=\\S+",
+            "\\b\\w+=\\S+",
+            "\\b[a-z_]+=\\S+",
+            "\\b[a-z]+_=\\S+"
+          ],
+          "answerIndex": "0",
+          "explanation": "snake_case: segments en lettres séparés par underscores, pas de underscore en tête.",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "goal": "Trouver les imports JS: import X from 'y'; (simple).",
+          "input": "import a from 'b'; ok\nimport {x} from 'y'; ok\nrequire('z') non",
+          "options": [
+            "^import\\s+.+\\s+from\\s+['\"][^'\"]+['\"];?$",
+            "import.*from.*",
+            "^import\\b.*$",
+            "from\\s+['\"][^'\"]+['\"]"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le 1er vise le pattern import ... from '...'.",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "goal": "Extraire les domaines (sans protocole) dans une liste.",
+          "input": "Sites: example.com, https://openai.com, test.local, foo.bar",
+          "options": [
+            "\\b[a-z0-9-]+\\.[a-z]{2,}\\b",
+            "\\b\\w+\\.\\w+\\b",
+            "https?://\\S+",
+            "\\b[a-z]+\\.[a-z]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "On vise domaine.tld (pas test.local si tu veux TLD 2+).",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "goal": "Repérer les lignes de logs ERROR uniquement.",
+          "input": "INFO ok\nERROR disk full\nWARN meh\nERROR timeout",
+          "options": [
+            "^ERROR\\b.*$",
+            "ERROR",
+            "\\bERROR\\b",
+            "^.*ERROR.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Ancré au début de ligne, évite les occurrences au milieu.",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "goal": "Extraire les numéros hex au format 0xFFEE.",
+          "input": "0x1A ok, 0XFF non, 0xZZ non, 1A non",
+          "options": [
+            "\\b0x[0-9a-fA-F]+\\b",
+            "\\b0x\\w+\\b",
+            "0x.+",
+            "\\b[0-9a-fA-F]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "On exige 0x et des hex uniquement.",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "goal": "Valider un nom de branche git: feature/xxx ou fix/xxx.",
+          "input": "feature/login ok, fix/crash ok, feat/x non, feature/ non",
+          "options": [
+            "^(?:feature|fix)\\/[a-z0-9][a-z0-9-]*$",
+            "^(?:feature|fix)\\/.*$",
+            "^\\w+\\/\\w+$",
+            "^(?:feature|fix)-\\w+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "On force le préfixe, le slash, et un slug non vide.",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "goal": "Extraire les balises markdown `inline code` sans capturer les ``` fences.",
+          "input": "Use `npm i` ok\n```js\nconst x=1\n``` non",
+          "options": [
+            "(?<!`)`([^`\\n]+)`(?!`)",
+            "`.*`",
+            "^`.+`$",
+            "```[\\s\\S]*```"
+          ],
+          "answerIndex": "0",
+          "explanation": "On cible un seul backtick et on évite les fences ``` via lookarounds.",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "httpdetective": {
+      "title": "HTTP Detective",
+      "subtitle": "Lis la requête, puis choisis le meilleur diagnostic ou fix",
+      "prompt": "Quel est le meilleur fix ?",
+      "question": "Cas {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Recommencer",
+      "next": "Suivant",
+      "playAgain": "Rejouer",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Affaires classées",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "caseTitle": "401 sur /api/me",
+          "request": "GET /api/me\nStatus: 401 Unauthorized\nResponse: {\"error\":\"missing token\"}",
+          "options": [
+            "Ajouter l’en-tête Authorization: Bearer <token>",
+            "Changer GET en POST",
+            "Ajouter Content-Type: application/json",
+            "Désactiver CORS côté navigateur"
+          ],
+          "answerIndex": "0",
+          "explanation": "401 + missing token → authentification absente. Ajouter Authorization.",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "caseTitle": "403 sur ressource admin",
+          "request": "GET /admin/reports\nStatus: 403 Forbidden\nResponse: {\"error\":\"insufficient_scope\"}",
+          "options": [
+            "Utiliser un token avec scope/role admin",
+            "Réessayer plus tard",
+            "Ajouter Accept-Language",
+            "Passer en HTTP au lieu de HTTPS"
+          ],
+          "answerIndex": "0",
+          "explanation": "403 + insufficient_scope → token valide mais pas les droits.",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "caseTitle": "415 Unsupported Media Type",
+          "request": "POST /api/upload\nStatus: 415 Unsupported Media Type\nSent Content-Type: text/plain",
+          "options": [
+            "Envoyer le bon Content-Type (ex: multipart/form-data ou application/json)",
+            "Ajouter Authorization",
+            "Changer l’URL",
+            "Augmenter le timeout"
+          ],
+          "answerIndex": "0",
+          "explanation": "415 = serveur refuse le type. Content-Type doit correspondre au body.",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "caseTitle": "CORS error en navigateur",
+          "request": "Fetch https://api.example.com/data\nBrowser error: CORS policy blocked\nNo 'Access-Control-Allow-Origin'",
+          "options": [
+            "Configurer CORS côté API (Access-Control-Allow-Origin, methods, headers)",
+            "Ajouter mode: 'no-cors' et lire la réponse JSON",
+            "Mettre le fetch en setTimeout",
+            "Ajouter Cache-Control: no-cache"
+          ],
+          "answerIndex": "0",
+          "explanation": "CORS se règle côté serveur. no-cors rend la réponse opaque, inutilisable.",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "caseTitle": "429 Too Many Requests",
+          "request": "GET /api/search?q=react\nStatus: 429 Too Many Requests\nHeaders: Retry-After: 30",
+          "options": [
+            "Backoff + respecter Retry-After (rate limit)",
+            "Passer en POST",
+            "Ajouter Content-Length",
+            "Désactiver gzip"
+          ],
+          "answerIndex": "0",
+          "explanation": "429 = rate limiting. Réduire la fréquence et attendre Retry-After.",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "caseTitle": "400 Bad Request sur JSON",
+          "request": "POST /api/items\nContent-Type: application/json\nBody: {name:\"a\"}\nStatus: 400",
+          "options": [
+            "Envoyer un JSON valide: {\"name\":\"a\"}",
+            "Ajouter Authorization",
+            "Mettre Accept: text/html",
+            "Remplacer POST par GET"
+          ],
+          "answerIndex": "0",
+          "explanation": "JSON invalide (clés non quotées) → 400.",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "caseTitle": "302 en boucle",
+          "request": "GET /app\nStatus: 302 Location: /login\nGET /login\nStatus: 302 Location: /app",
+          "options": [
+            "Cookie/session non conservé (credentials) ou redirect auth mal configuré",
+            "Ajouter Content-Type",
+            "Augmenter le payload",
+            "Ajouter un query param random"
+          ],
+          "answerIndex": "0",
+          "explanation": "Boucle login/app typique quand la session n’est pas persistée ou guard inversé.",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "caseTitle": "Preflight OPTIONS échoue",
+          "request": "OPTIONS /api/private\nStatus: 404\nBrowser: preflight failed",
+          "options": [
+            "Gérer OPTIONS et renvoyer les bons headers CORS",
+            "Changer la méthode en GET",
+            "Supprimer fetch",
+            "Ajouter User-Agent"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le navigateur fait un OPTIONS preflight. Le serveur doit répondre.",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "caseTitle": "502 Bad Gateway derrière proxy",
+          "request": "GET /api\nStatus: 502 Bad Gateway\nNginx: upstream prematurely closed connection",
+          "options": [
+            "Le service upstream crash/timeout → vérifier logs/healthcheck et timeouts",
+            "Ajouter CORS",
+            "Changer Accept",
+            "Forcer HTTP/1.0"
+          ],
+          "answerIndex": "0",
+          "explanation": "502 = gateway/proxy ne peut pas joindre correctement l’upstream.",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "caseTitle": "413 Payload Too Large",
+          "request": "POST /api/upload\nStatus: 413 Payload Too Large",
+          "options": [
+            "Augmenter la limite côté serveur/proxy ou compresser/segmenter",
+            "Changer POST en PUT",
+            "Ajouter Authorization",
+            "Désactiver cache"
+          ],
+          "answerIndex": "0",
+          "explanation": "413 = body trop gros pour la config (nginx, framework, cloud).",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "caseTitle": "ETag / 304 inattendu",
+          "request": "GET /app.js\nStatus: 304 Not Modified\nClient affiche un vieux bundle",
+          "options": [
+            "Mauvaise stratégie cache → versionner assets + Cache-Control adapté",
+            "Ajouter Authorization",
+            "Changer GET en POST",
+            "Activer CORS"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le cache sert un ancien fichier. Solution: hashing + headers.",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "caseTitle": "Wrong Content-Type en réponse",
+          "request": "GET /api/data\nStatus: 200\nContent-Type: text/html\nBody: \"<html>...\"",
+          "options": [
+            "Tu touches une page d’erreur/rewrite → corriger route/API base URL",
+            "Ajouter Retry-After",
+            "Ajouter Content-Length",
+            "Ajouter Origin header"
+          ],
+          "answerIndex": "0",
+          "explanation": "HTML à la place de JSON = souvent mauvaise URL, proxy rewrite, ou erreur non gérée.",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "caseTitle": "Timeout client",
+          "request": "GET /api/report\nClient: timeout after 10s\nServer eventually returns 200 in 25s",
+          "options": [
+            "Optimiser endpoint ou rendre async/pagination, augmenter timeout côté client si justifié",
+            "Ajouter CORS",
+            "Changer en POST",
+            "Ajouter Accept-Language"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le serveur répond trop lentement. Soit optimiser, soit async, soit ajuster timeout.",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "caseTitle": "401 après refresh",
+          "request": "GET /api/me\nStatus: 401\nCookie: (absent)\nIn browser it worked before refresh",
+          "options": [
+            "Cookie HttpOnly/SameSite/Domain mal réglé ou credentials: 'include' manquant",
+            "Changer GET en POST",
+            "Ajouter Content-Type",
+            "Désactiver cache"
+          ],
+          "answerIndex": "0",
+          "explanation": "Si le cookie n’est pas envoyé, vérifier SameSite/secure/domain ou fetch credentials.",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "caseTitle": "404 en prod seulement",
+          "request": "GET /api/users\nDev: 200\nProd: 404 Not Found (behind /v1)",
+          "options": [
+            "Base path/proxy en prod → corriger baseURL (/v1) ou rewrite",
+            "Ajouter Authorization",
+            "Augmenter timeout",
+            "Ajouter Origin"
+          ],
+          "answerIndex": "0",
+          "explanation": "Différence de base path fréquente entre dev et prod.",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "caseTitle": "CSRF token mismatch",
+          "request": "POST /api/profile\nStatus: 403\nResponse: {\"error\":\"csrf\"}",
+          "options": [
+            "Envoyer le CSRF token (header/cookie) ou utiliser SameSite/CSRF flow correct",
+            "Passer en GET",
+            "Ajouter Content-Type",
+            "Ajouter Retry-After"
+          ],
+          "answerIndex": "0",
+          "explanation": "Protection CSRF exige un token/flow spécifique.",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "caseTitle": "400 validation error",
+          "request": "POST /api/register\nStatus: 400\nResponse: {\"errors\":{\"email\":\"invalid\"}}",
+          "options": [
+            "Corriger payload selon le schéma attendu (email valide)",
+            "Ajouter CORS",
+            "Changer POST en PUT",
+            "Ajouter Accept: text/plain"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le serveur refuse la validation. Adapter le body au schéma.",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "caseTitle": "TLS / mixed content",
+          "request": "App loaded over HTTPS\nFetch http://api.example.com\nBrowser blocked: mixed content",
+          "options": [
+            "Utiliser HTTPS pour l’API ou un proxy HTTPS",
+            "Ajouter CORS",
+            "Mettre no-cors",
+            "Changer méthode"
+          ],
+          "answerIndex": "0",
+          "explanation": "Le navigateur bloque HTTP depuis une page HTTPS.",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "caseTitle": "401 avec Bearer mais token expiré",
+          "request": "GET /api/me\nAuthorization: Bearer xxx\nStatus: 401\nResponse: {\"error\":\"token_expired\"}",
+          "options": [
+            "Refresh token / relogin, puis rejouer la requête",
+            "Ajouter Content-Type",
+            "Réduire payload",
+            "Ajouter Origin"
+          ],
+          "answerIndex": "0",
+          "explanation": "Token expiré → refresh flow ou nouvelle auth.",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "caseTitle": "204 No Content + client crash",
+          "request": "DELETE /api/item/1\nStatus: 204 No Content\nClient tries res.json() and throws",
+          "options": [
+            "Ne pas parser JSON sur 204 (check status/content-length)",
+            "Changer DELETE en POST",
+            "Ajouter CORS",
+            "Ajouter Retry-After"
+          ],
+          "answerIndex": "0",
+          "explanation": "204 = pas de body. res.json() échoue.",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "caseTitle": "Wrong method 405",
+          "request": "PUT /api/items\nStatus: 405 Method Not Allowed\nAllow: GET, POST",
+          "options": [
+            "Utiliser une méthode autorisée (POST) ou activer PUT côté serveur",
+            "Ajouter Content-Type",
+            "Ajouter Authorization",
+            "Augmenter timeout"
+          ],
+          "answerIndex": "0",
+          "explanation": "405 + Allow indique les méthodes permises.",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "caseTitle": "400: invalid json after gzip",
+          "request": "POST /api\nContent-Encoding: gzip\nServer: 400 invalid body",
+          "options": [
+            "Tu compresses mais le serveur ne décompresse pas → config gzip côté serveur/proxy",
+            "Ajouter CORS",
+            "Changer GET",
+            "Ajouter Retry-After"
+          ],
+          "answerIndex": "0",
+          "explanation": "Si Content-Encoding annoncé, le serveur doit gérer la décompression.",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "caseTitle": "Large list pagination missing",
+          "request": "GET /api/users?page=999\nStatus: 200\nBody: []",
+          "options": [
+            "Tu es hors range → clamp côté API, renvoyer metadata (totalPages)",
+            "Ajouter Authorization",
+            "Ajouter CORS",
+            "Changer en POST"
+          ],
+          "answerIndex": "0",
+          "explanation": "Un page trop haute renvoie vide. Mieux: renvoyer totalPages + validation.",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "caseTitle": "503 Service Unavailable",
+          "request": "GET /api\nStatus: 503\nResponse: maintenance",
+          "options": [
+            "Service down/maintenance → healthcheck, autoscaling, retry avec backoff",
+            "Ajouter Content-Type",
+            "Changer GET en POST",
+            "Ajouter Origin"
+          ],
+          "answerIndex": "0",
+          "explanation": "503 = service indisponible temporairement.",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "caseTitle": "Cookie non envoyé cross-site",
+          "request": "Frontend https://app.com -> API https://api.com\nCookie session absent\nSameSite=Lax",
+          "options": [
+            "Mettre SameSite=None; Secure et utiliser credentials: 'include' si nécessaire",
+            "Désactiver CORS",
+            "Mettre no-cors",
+            "Passer en HTTP"
+          ],
+          "answerIndex": "0",
+          "explanation": "Cross-site cookie requiert SameSite=None + Secure (sinon pas envoyé).",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "sqlsleuth": {
+      "title": "SQL Sleuth",
+      "subtitle": "Trouve le bug ou la requête correcte sans te faire piéger",
+      "prompt": "Quelle est la meilleure réponse ?",
+      "question": "Cas {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Recommencer",
+      "next": "Suivant",
+      "playAgain": "Rejouer",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Bien joué",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "caseTitle": "Agrégation sans GROUP BY",
+          "query": "SELECT user_id, COUNT(*) FROM orders;",
+          "options": [
+            "Ajouter GROUP BY user_id",
+            "Ajouter ORDER BY user_id",
+            "Remplacer COUNT(*) par SUM(*)",
+            "Mettre COUNT dans WHERE"
+          ],
+          "answerIndex": "0",
+          "explanation": "user_id + COUNT(*) nécessite GROUP BY user_id (sinon erreur ou résultat incohérent).",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "caseTitle": "LEFT JOIN cassé par WHERE",
+          "query": "SELECT u.id, o.id\nFROM users u\nLEFT JOIN orders o ON o.user_id = u.id\nWHERE o.status = 'paid';",
+          "options": [
+            "Déplacer la condition dans ON: ... AND o.status='paid'",
+            "Remplacer LEFT JOIN par INNER JOIN (même résultat)",
+            "Ajouter DISTINCT",
+            "Ajouter LIMIT"
+          ],
+          "answerIndex": "0",
+          "explanation": "WHERE sur table joinée transforme le LEFT JOIN en INNER JOIN. Mettre la condition dans ON.",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "caseTitle": "HAVING vs WHERE",
+          "query": "SELECT user_id, COUNT(*) c\nFROM orders\nWHERE COUNT(*) > 5\nGROUP BY user_id;",
+          "options": [
+            "Utiliser HAVING COUNT(*) > 5",
+            "Mettre COUNT(*) dans SELECT uniquement",
+            "Remplacer WHERE par ORDER BY",
+            "Supprimer GROUP BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "Les agrégats ne vont pas dans WHERE. Utiliser HAVING après GROUP BY.",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "caseTitle": "NULL piège avec NOT IN",
+          "query": "SELECT id FROM users WHERE id NOT IN (SELECT user_id FROM bans);",
+          "options": [
+            "Utiliser NOT EXISTS (corrige le piège NULL)",
+            "Ajouter DISTINCT dans le sous-select",
+            "Remplacer NOT IN par IN",
+            "Ajouter ORDER BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "Si bans.user_id contient NULL, NOT IN peut tout exclure. NOT EXISTS est plus sûr.",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "caseTitle": "COUNT(*) vs COUNT(col)",
+          "query": "SELECT COUNT(email) FROM users;",
+          "options": [
+            "COUNT(email) ignore les NULL, COUNT(*) compte toutes les lignes",
+            "COUNT(email) est plus rapide",
+            "COUNT(*) ignore les NULL",
+            "Ils sont identiques toujours"
+          ],
+          "answerIndex": "0",
+          "explanation": "COUNT(col) ne compte pas les NULL. COUNT(*) compte toutes les lignes.",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "caseTitle": "ORDER BY avant LIMIT",
+          "query": "SELECT * FROM posts LIMIT 10 ORDER BY created_at DESC;",
+          "options": [
+            "ORDER BY doit être avant LIMIT",
+            "LIMIT doit être avant ORDER BY",
+            "Il manque GROUP BY",
+            "SELECT * est invalide"
+          ],
+          "answerIndex": "0",
+          "explanation": "Syntaxe standard: SELECT ... FROM ... ORDER BY ... LIMIT ...",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "caseTitle": "LIKE sans index",
+          "query": "SELECT * FROM users WHERE name LIKE '%alex%';",
+          "options": [
+            "Le wildcard en début empêche souvent l’index (full scan)",
+            "LIKE utilise toujours l’index",
+            "Il faut HAVING",
+            "Il faut DISTINCT"
+          ],
+          "answerIndex": "0",
+          "explanation": "‘%alex%’ casse l’usage d’index B-Tree classique. Préférer search dédiée ou prefix.",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "caseTitle": "Ambiguïté de colonne",
+          "query": "SELECT id FROM users u JOIN orders o ON o.user_id = u.id;",
+          "options": [
+            "Qualifier: SELECT u.id ... (id est ambigu)",
+            "Ajouter DISTINCT",
+            "Remplacer JOIN par LEFT JOIN",
+            "Ajouter LIMIT 1"
+          ],
+          "answerIndex": "0",
+          "explanation": "id existe potentiellement dans users et orders. Il faut préciser u.id ou o.id.",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "caseTitle": "Date filter: index-friendly",
+          "query": "SELECT * FROM events WHERE DATE(created_at) = '2026-01-31';",
+          "options": [
+            "Utiliser un range: created_at >= '2026-01-31' AND created_at < '2026-02-01'",
+            "Ajouter ORDER BY",
+            "Mettre DATE() dans SELECT",
+            "Mettre HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Appliquer une fonction sur la colonne casse souvent l’index. Le range est index-friendly.",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "caseTitle": "JOIN qui duplique",
+          "query": "SELECT u.id\nFROM users u\nJOIN orders o ON o.user_id = u.id;",
+          "options": [
+            "Ajouter DISTINCT si tu veux chaque user une fois",
+            "Remplacer JOIN par CROSS JOIN",
+            "Ajouter GROUP BY o.id",
+            "Ajouter HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Un user avec plusieurs orders apparaîtra plusieurs fois. DISTINCT ou agrégation selon besoin.",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "caseTitle": "UPDATE sans WHERE",
+          "query": "UPDATE users SET role='admin';",
+          "options": [
+            "Dangereux: ça modifie toutes les lignes, ajouter WHERE",
+            "C’est OK si table petite",
+            "Il manque GROUP BY",
+            "Il faut HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Sans WHERE, toutes les lignes sont mises à jour.",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "caseTitle": "Pagination: OFFSET lent",
+          "query": "SELECT * FROM posts ORDER BY id DESC LIMIT 20 OFFSET 20000;",
+          "options": [
+            "Préférer keyset pagination (WHERE id < lastId)",
+            "Ajouter DISTINCT",
+            "Supprimer ORDER BY",
+            "Mettre OFFSET avant LIMIT"
+          ],
+          "answerIndex": "0",
+          "explanation": "OFFSET grand devient lent. Keyset pagination est plus scalable.",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "caseTitle": "IN list énorme",
+          "query": "SELECT * FROM users WHERE id IN ( ... 5000 ids ... );",
+          "options": [
+            "Mettre les ids dans une table temporaire / join au lieu d’une liste géante",
+            "Ajouter ORDER BY",
+            "Ajouter HAVING",
+            "Remplacer IN par LIKE"
+          ],
+          "answerIndex": "0",
+          "explanation": "Très grosse liste IN peut être coûteuse; mieux vaut joindre une table d’ids.",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "caseTitle": "NULL comparaison",
+          "query": "SELECT * FROM users WHERE deleted_at = NULL;",
+          "options": [
+            "Utiliser IS NULL",
+            "Utiliser == NULL",
+            "Mettre NULL entre quotes",
+            "Ajouter DISTINCT"
+          ],
+          "answerIndex": "0",
+          "explanation": "En SQL, NULL se teste avec IS NULL (pas =).",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "caseTitle": "CASE dans ORDER BY",
+          "query": "SELECT * FROM tasks ORDER BY status;",
+          "options": [
+            "Pour un ordre custom, utiliser ORDER BY CASE ... END",
+            "Ajouter GROUP BY status",
+            "Remplacer ORDER BY par HAVING",
+            "Mettre status en WHERE"
+          ],
+          "answerIndex": "0",
+          "explanation": "Si tu veux ex: 'doing' avant 'todo', CASE permet un tri personnalisé.",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "caseTitle": "COUNT distinct",
+          "query": "SELECT COUNT(user_id) FROM orders;",
+          "options": [
+            "Si tu veux le nombre de users uniques: COUNT(DISTINCT user_id)",
+            "Ajouter GROUP BY",
+            "Remplacer COUNT par SUM",
+            "Ajouter HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "COUNT(user_id) compte les lignes non-null. DISTINCT compte les uniques.",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "caseTitle": "Double quotes vs single quotes",
+          "query": "SELECT * FROM users WHERE email = \"a@b.com\";",
+          "options": [
+            "Utiliser des quotes simples 'a@b.com' (selon dialecte)",
+            "C’est toujours correct",
+            "Mettre backticks",
+            "Utiliser HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Beaucoup de SGBD utilisent '...' pour les strings. \"...\" peut référencer des identifiants.",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "caseTitle": "Delete with join",
+          "query": "DELETE u FROM users u JOIN bans b ON b.user_id = u.id;",
+          "options": [
+            "Ça supprime les users bannis: à utiliser avec extrême prudence",
+            "C’est un SELECT déguisé",
+            "Il manque GROUP BY",
+            "Impossible en SQL"
+          ],
+          "answerIndex": "0",
+          "explanation": "Certains dialectes supportent DELETE ... JOIN. Très dangereux sans preview.",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "caseTitle": "UNION vs UNION ALL",
+          "query": "SELECT id FROM a UNION SELECT id FROM b;",
+          "options": [
+            "UNION déduplique (plus coûteux), UNION ALL garde les doublons",
+            "UNION ALL déduplique",
+            "Ils sont identiques",
+            "UNION est plus rapide toujours"
+          ],
+          "answerIndex": "0",
+          "explanation": "UNION fait un distinct implicite. UNION ALL est plus rapide si doublons OK.",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "caseTitle": "Index composite",
+          "query": "WHERE tenant_id = 7 AND created_at >= '2026-01-01' ORDER BY created_at DESC",
+          "options": [
+            "Index (tenant_id, created_at) aide filtre + tri",
+            "Index sur created_at seul suffit toujours",
+            "INDEX empêche ORDER BY",
+            "Il faut DISTINCT"
+          ],
+          "answerIndex": "0",
+          "explanation": "Un index composite tenant_id puis created_at est adapté à ce pattern.",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "caseTitle": "GROUP BY incomplet",
+          "query": "SELECT country, city, COUNT(*) FROM users GROUP BY country;",
+          "options": [
+            "Ajouter city au GROUP BY ou agréger city (sinon invalide selon DB)",
+            "Ajouter ORDER BY",
+            "Ajouter DISTINCT",
+            "Supprimer COUNT"
+          ],
+          "answerIndex": "0",
+          "explanation": "Toutes les colonnes non-agrégées doivent être dans GROUP BY (strict SQL).",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "caseTitle": "Subquery corrélée",
+          "query": "SELECT u.* FROM users u WHERE EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id);",
+          "options": [
+            "Renvoie les users qui ont au moins une commande",
+            "Renvoie les users sans commande",
+            "Renvoie les commandes",
+            "Invalide sans GROUP BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "EXISTS teste l’existence d’au moins une ligne correspondante.",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "caseTitle": "Between dates inclusive piège",
+          "query": "WHERE created_at BETWEEN '2026-01-01' AND '2026-01-31'",
+          "options": [
+            "Si created_at a l’heure, le 31 inclut 31 00:00 seulement; préférer < '2026-02-01'",
+            "BETWEEN exclut les bornes",
+            "BETWEEN est toujours faux",
+            "Il faut HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "BETWEEN est inclusif, mais la borne '2026-01-31' à minuit exclut le reste de la journée.",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "caseTitle": "N+1 en SQL",
+          "query": "SELECT * FROM users; puis pour chaque user: SELECT * FROM orders WHERE user_id=?;",
+          "options": [
+            "Faire un JOIN/IN en une requête ou batcher",
+            "Ajouter DISTINCT",
+            "Mettre HAVING",
+            "Mettre ORDER BY"
+          ],
+          "answerIndex": "0",
+          "explanation": "Pattern N+1: trop de requêtes. Batcher ou joindre.",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "caseTitle": "Index et fonctions",
+          "query": "WHERE LOWER(email) = 'a@b.com'",
+          "options": [
+            "Créer un index fonctionnel ou normaliser à l’écriture",
+            "Ajouter ORDER BY",
+            "Mettre LOWER dans SELECT",
+            "Mettre HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "Fonction sur colonne peut empêcher l’index normal. Solution: index fonctionnel ou colonne normalisée.",
+          "answerIndexNote": ""
+        }
       }
     }
   },
