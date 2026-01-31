@@ -175,7 +175,7 @@ export default function MentionsLegalesPage() {
                                 {tCommon('links.readPrivacy')}
                             </Link>
 
-                            <span className="text-muted-foreground">•</span>
+                            <span className="hidden sm:inline text-muted-foreground" aria-hidden="true">•</span>
 
                             <Link
                                 href="/legal/terms"

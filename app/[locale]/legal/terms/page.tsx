@@ -296,8 +296,8 @@ export default function ConditionsUtilisationPage() {
                                 {tCommon('links.readLegalNotice')}
                             </Link>
 
-                            <span className="text-muted-foreground">•</span>
-
+                            <span className="hidden sm:inline text-muted-foreground" aria-hidden="true">•</span>
+                            
                             <Link
                                 href="/legal/privacy-policy"
                                 className="underline underline-offset-4 hover:text-foreground transition-colors"
