@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import QuizModal from './QuizModal';
 import { getQuizQuestions, QuizLevel } from '@/lib/quiz-data';
-import { Play, Trophy, Clock, HelpCircle } from 'lucide-react';
+import { Clock, HelpCircle, Play, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface QuizCardProps {
@@ -27,7 +27,8 @@ function QuizCard({ title, description, questionCount, difficulty, onStart }: Qu
     };
 
     return (
-        <div className="p-6 rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200">
+        <div
+            className="p-6 rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200">
             <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">{title}</h3>
                 <span className={cn('text-sm font-medium', difficultyColors[difficulty])}>
@@ -39,16 +40,16 @@ function QuizCard({ title, description, questionCount, difficulty, onStart }: Qu
             </p>
             <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1.5">
-                    <HelpCircle className="w-4 h-4" />
+                    <HelpCircle className="w-4 h-4"/>
                     <span>{questionCount} questions</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                    <Clock className="w-4 h-4" />
+                    <Clock className="w-4 h-4"/>
                     <span>30s / question</span>
                 </div>
             </div>
             <Button onClick={onStart} className="w-full gap-2">
-                <Play className="w-4 h-4" />
+                <Play className="w-4 h-4"/>
                 {t('startQuiz')}
             </Button>
         </div>
@@ -58,7 +59,9 @@ function QuizCard({ title, description, questionCount, difficulty, onStart }: Qu
 export default function Quiz() {
     const t = useTranslations('quiz');
     const rawLocale = useLocale();
-    const locale = (rawLocale === 'fr' || rawLocale === 'en') ? rawLocale : 'fr';
+    const locale = (
+        rawLocale === 'fr' || rawLocale === 'en'
+    ) ? rawLocale : 'fr';
     const [selectedLevel, setSelectedLevel] = useState<QuizLevel>('easy');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -79,8 +82,8 @@ export default function Quiz() {
         <>
             <div className="space-y-6">
                 <div className="flex items-center gap-3 mb-8">
-                    <div className="p-2.5 rounded-lg bg-muted">
-                        <Trophy className="w-5 h-5" />
+                    <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                        <Trophy className="w-5 h-5 text-blue-500"/>
                     </div>
                     <div>
                         <h2 className="text-xl font-semibold">{t('title')}</h2>

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Check, ChevronDown, Clock, Gamepad2, RotateCcw, Trophy, Zap } from 'lucide-react';
+import { Brain, Check, ChevronDown, Clock, RotateCcw, Trophy, Zap } from 'lucide-react';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -323,7 +323,7 @@ export default function MemoryGame() {
         <div className="space-y-6">
             <div className="flex items-center gap-3 mb-8">
                 <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                    <Gamepad2 className="w-5 h-5 text-blue-500"/>
+                    <Brain className="w-5 h-5 text-blue-500"/>
                 </div>
                 <div>
                     <h2 className="text-xl font-semibold">{t('title')}</h2>
@@ -372,7 +372,8 @@ export default function MemoryGame() {
             </div>
 
             {gameComplete && (
-                <div className="p-6 rounded-xl border border-blue-500/20 bg-linear-to-b from-blue-500/5 to-transparent text-center">
+                <div
+                    className="p-6 rounded-xl border border-blue-500/20 bg-linear-to-b from-blue-500/5 to-transparent text-center">
                     <div className="text-4xl mb-4">🎉</div>
                     <h3 className="text-xl font-semibold mb-2">{t('complete.title')}</h3>
                     <p className="text-muted-foreground mb-4">

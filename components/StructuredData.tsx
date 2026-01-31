@@ -18,7 +18,11 @@ export default function StructuredData() {
         email: 'contact@paulviandier.com',
         description: 'Paul Viandier, développeur web passionné de cybersécurité. Portfolio professionnel de Paul Viandier, développeur web fullstack en formation. Découvrez les projets et compétences de ce développeur web spécialisé en TypeScript, React, Next.js et cybersécurité.',
         image: `${baseUrl}/pfp.png`,
-        knowsAbout: ['Développement Web', 'Web Development', 'Cybersecurity', 'Cybersécurité', 'Fullstack Development', 'Développement Fullstack', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'Portfolio', 'Développeur', 'Développeur Web'],
+        knowsAbout: [
+            'Développement Web', 'Web Development', 'Cybersecurity', 'Cybersécurité', 'Fullstack Development',
+            'Développement Fullstack', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'Portfolio',
+            'Développeur', 'Développeur Web'
+        ],
         alumniOf: {
             '@type': 'EducationalOrganization',
             name: 'Formation en alternance'
@@ -74,7 +78,7 @@ export default function StructuredData() {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         '@id': `${baseUrl}/#organization`,
-        name: 'Paul Viandier - Portfolio',
+        name: 'Portfolio de Paul Viandier',
         url: baseUrl,
         logo: `${baseUrl}/pfp.png`,
         founder: {

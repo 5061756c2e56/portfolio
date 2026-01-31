@@ -134,7 +134,7 @@
     "terms": "Conditions d’utilisation",
     "legalNotice": "Mentions légales",
     "privacy": "Politique de confidentialité",
-    "contact": "Contact",
+    "contact": "Me contacter",
     "madeWith": "Fait avec",
     "by": "par"
   },
@@ -188,6 +188,18 @@
       "typing": {
         "title": "Typing Speed",
         "description": "Testez votre vitesse de frappe"
+      },
+      "bughunt": {
+        "title": "Bug Hunt",
+        "subtitle": "Trouve l'erreur dans le code"
+      },
+      "wordle": {
+        "title": "Tech Wordle",
+        "subtitle": "Devine le mot tech en 6 essais"
+      },
+      "mentalcpu": {
+        "title": "Mental CPU",
+        "subtitle": "Calculs rapides sous pression"
       }
     },
     "memory": {
@@ -233,6 +245,551 @@
         "punctuation": "Ponctuation"
       },
       "reset": "Réinitialiser"
+    },
+    "bughunt": {
+      "title": "Bug Hunt",
+      "subtitle": "Trouve l'erreur dans le code",
+      "restart": "Recommencer",
+      "next": "Question suivante",
+      "prompt": "Quelle est l'erreur ?",
+      "question": "Question {current}/{total}",
+      "feedback": {
+        "correct": "Correct !",
+        "incorrect": "Incorrect"
+      },
+      "challenges": {
+        "1": {
+          "options": [
+            "La fonction devrait vérifier les types",
+            "Il manque un point-virgule",
+            "La variable sum est mal nommée",
+            "Il faut utiliser let au lieu de function"
+          ],
+          "explanation": "JavaScript concatène \"5\" + \"10\" = \"510\" au lieu d'additionner. Il faut vérifier/convertir les types."
+        },
+        "2": {
+          "options": [
+            "Il faut utiliser forEach au lieu de for",
+            "La condition devrait être i < users.length",
+            "users devrait être un let",
+            "console.log est obsolète"
+          ],
+          "explanation": "i <= users.length accède à users[2] qui est undefined. Il faut i < users.length."
+        },
+        "3": {
+          "options": [
+            "Division par zéro si numbers est vide",
+            "Il faut utiliser sum() au lieu de boucle",
+            "total devrait être initialisé à None",
+            "len() ne marche pas sur les listes"
+          ],
+          "explanation": "Si numbers est une liste vide, len(numbers) = 0 → division par zéro."
+        },
+        "4": {
+          "options": [
+            "Il manque GROUP BY",
+            "ORDER BY devrait spécifier ASC ou DESC",
+            "SELECT * est inefficace mais syntaxiquement correct",
+            "LIMIT doit être avant ORDER BY"
+          ],
+          "explanation": "SELECT * fonctionne mais c'est inefficace. Il vaut mieux spécifier les colonnes nécessaires."
+        },
+        "5": {
+          "options": [
+            "Il faut == au lieu de = dans le if",
+            "printf devrait être cout",
+            "x devrait être un float",
+            "Il manque un else"
+          ],
+          "explanation": "x = 10 est une affectation, pas une comparaison. Il faut utiliser x == 10."
+        },
+        "6": {
+          "options": [
+            "Il manque await devant fetch",
+            "async est inutile ici",
+            "json() devrait être JSON.parse()",
+            "fetch ne retourne pas de promesse"
+          ],
+          "explanation": "fetch() retourne une promesse. Il faut await fetch() pour attendre la réponse."
+        },
+        "7": {
+          "options": [
+            "Il faut self.name = name",
+            "__init__ devrait être __new__",
+            "name est un mot réservé",
+            "print ne prend pas d'arguments"
+          ],
+          "explanation": "name = name crée une variable locale. Il faut self.name = name pour l'attribut d'instance."
+        },
+        "8": {
+          "options": [
+            "map ne modifie pas le tableau original",
+            "push après map modifie doubled",
+            "Il faut utiliser forEach",
+            "length n'existe pas sur les tableaux"
+          ],
+          "explanation": "Aucun bug ! map() crée un nouveau tableau. push(6) modifie nums mais pas doubled."
+        },
+        "9": {
+          "options": [
+            "except devrait spécifier ZeroDivisionError",
+            "result n'est pas accessible après try",
+            "Il faut finally",
+            "print devrait être return"
+          ],
+          "explanation": "except seul capture TOUTES les exceptions. C'est mieux de spécifier ZeroDivisionError."
+        },
+        "10": {
+          "options": [
+            "Il faut utiliser .equals() pour comparer les String",
+            "new String() est obsolète",
+            "System.out devrait être console.log",
+            "Il manque un return"
+          ],
+          "explanation": "== compare les références d'objets. Pour comparer le contenu, utiliser s1.equals(s2)."
+        },
+        "11": {
+          "options": [
+            "Aucune façon d'arrêter l'intervalle",
+            "count devrait être const",
+            "increment() doit retourner count",
+            "setInterval n'existe pas"
+          ],
+          "explanation": "setInterval retourne un ID qu'il faut stocker pour pouvoir faire clearInterval() plus tard."
+        },
+        "12": {
+          "options": [
+            "Arguments mutables par défaut sont partagés",
+            "append() ne marche pas",
+            "return est inutile",
+            "items devrait être un tuple"
+          ],
+          "explanation": "La liste par défaut [] est créée une seule fois. list1 et list2 partagent la même liste !"
+        },
+        "13": {
+          "options": [
+            "this est perdu lors de l'extraction",
+            "getName devrait être une arrow function",
+            "Il faut const fn = obj.getName.bind(obj)",
+            "Toutes les réponses ci-dessus sont vraies"
+          ],
+          "explanation": "fn() perd le contexte this. Solutions: bind(obj), arrow function, ou appeler obj.getName()."
+        },
+        "14": {
+          "options": [
+            "Dépassement de tableau (arr[3] invalide)",
+            "Il manque return 0",
+            "printf au lieu de for",
+            "int devrait être float"
+          ],
+          "explanation": "arr[3] a 3 éléments (indices 0,1,2). i <= 3 accède à arr[3] qui est hors limites."
+        },
+        "15": {
+          "options": [
+            "Il manque GROUP BY user_id",
+            "COUNT(*) devrait être SUM(*)",
+            "WHERE doit être après GROUP BY",
+            "Il faut DISTINCT"
+          ],
+          "explanation": "Avec une fonction d'agrégation (COUNT), il faut GROUP BY pour les colonnes non agrégées."
+        },
+        "16": {
+          "options": [
+            "Mélange de await et .then() est redondant",
+            "catch ne fonctionne pas avec await",
+            "fetch ne retourne pas de promesse",
+            "Il faut async/await partout"
+          ],
+          "explanation": "Soit utiliser await + try/catch, soit .then()/.catch(). Les mélanger est confus."
+        },
+        "17": {
+          "options": [
+            "Il manque new devant Animal",
+            "constructor devrait être __init__",
+            "this est invalide",
+            "class devrait être function"
+          ],
+          "explanation": "Pour instancier une classe, il faut utiliser new: const dog = new Animal(\"Rex\")."
+        },
+        "18": {
+          "options": [
+            "Bloque le serveur pendant 5 secondes",
+            "time.sleep() n'existe pas",
+            "Il faut return await",
+            "import est invalide"
+          ],
+          "explanation": "time.sleep() bloque tout le thread. Dans une API, utiliser await asyncio.sleep()."
+        },
+        "19": {
+          "options": [
+            "cell = cell * 2 ne modifie pas le tableau",
+            "forEach ne peut pas être imbriqué",
+            "Il faut utiliser map",
+            "matrix devrait être un objet"
+          ],
+          "explanation": "cell est une copie. Pour modifier: row[index] = cell * 2 ou utiliser map()."
+        },
+        "20": {
+          "options": [
+            "Il manque des accolades après if",
+            "void ne peut pas être public",
+            "setEmail() n'existe pas",
+            "User devrait être une interface"
+          ],
+          "explanation": "Sans accolades, seule la première ligne est dans le if. setEmail() s'exécute toujours."
+        },
+        "21": {
+          "options": [
+            "On ne peut pas additionner des promesses",
+            "Il faut await ou .then()",
+            "Résultat sera \"[object Promise][object Promise]\"",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "Les promesses ne s'additionnent pas. Il faut Promise.all([p1, p2]) puis await."
+        },
+        "22": {
+          "options": [
+            "Modifie dict1 en place (effet de bord)",
+            "for ne fonctionne pas sur dict",
+            "Il faut utiliser append",
+            "return d1 est redondant"
+          ],
+          "explanation": "dict1 est modifié ! Mieux: retourner un nouveau dict avec {**d1, **d2}."
+        },
+        "23": {
+          "options": [
+            "Vulnérabilité XSS (injection de script)",
+            "document.write est obsolète",
+            "Il manque getElementById",
+            "script devrait être en bas de page"
+          ],
+          "explanation": "Si userInput contient <script>, du code malveillant peut s'exécuter. Il faut échapper le HTML."
+        },
+        "24": {
+          "options": [
+            "Division entière avant cast en float",
+            "float devrait être double",
+            "Il faut (float)a / b",
+            "Les deux premières réponses"
+          ],
+          "explanation": "5 / 2 = 2 (division entière), puis cast en 2.0. Il faut (float)a / b pour obtenir 2.5."
+        },
+        "25": {
+          "options": [
+            "Pas de transaction, pas de WHERE safety",
+            "Il manque le point-virgule",
+            "UPDATE devrait être ALTER",
+            "status n'est pas entre guillemets"
+          ],
+          "explanation": "Sans BEGIN/COMMIT, difficile de rollback. De plus, toujours vérifier WHERE avant UPDATE."
+        },
+        "26": {
+          "options": [
+            "Il manque return dans la fonction fléchée",
+            "map() ne modifie pas le tableau",
+            "Il faut forEach au lieu de map",
+            "n * 2 devrait être n += 2"
+          ],
+          "explanation": "Sans return (ou suppression des accolades), la fonction retourne undefined."
+        },
+        "27": {
+          "options": [
+            "Le fichier n'est jamais fermé",
+            "Il faut file.close() ou with",
+            "Peut causer une fuite de ressources",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "Il faut fermer le fichier avec file.close() ou utiliser with open() as file."
+        },
+        "28": {
+          "options": [
+            "JavaScript convertit \"5\" en 5 pour -",
+            "Le résultat sera NaN",
+            "Il faut parseInt(x)",
+            "Soustraction impossible avec des strings"
+          ],
+          "explanation": "Bizarrement, JS convertit \"5\" en 5 pour -, mais concatène pour +. Résultat: 3."
+        },
+        "29": {
+          "options": [
+            "Il manque this. devant instance",
+            "instance devrait être Singleton.instance",
+            "new Singleton() crée plusieurs instances",
+            "static est invalide"
+          ],
+          "explanation": "Dans une méthode static, référencer les propriétés static avec Singleton.instance ou this.instance."
+        },
+        "30": {
+          "options": [
+            "DISTINCT est redondant avec GROUP BY",
+            "Il manque COUNT(*)",
+            "user_id devrait être entre quotes",
+            "GROUP BY doit être avant DISTINCT"
+          ],
+          "explanation": "GROUP BY rend chaque user_id unique. DISTINCT est inutile ici."
+        },
+        "31": {
+          "options": [
+            "Vide le tableau de manière valide",
+            "arr.length est read-only",
+            "Il faut arr.clear()",
+            "Génère une erreur"
+          ],
+          "explanation": "Aucun bug ! arr.length = 0 est une façon valide (mais peu lisible) de vider un tableau."
+        },
+        "32": {
+          "options": [
+            "JSON nécessite des guillemets doubles",
+            "loads() devrait être load()",
+            "import est invalide",
+            "data devrait être un dict"
+          ],
+          "explanation": "JSON valide utilise \"name\", pas 'name'. Il faut des guillemets doubles."
+        },
+        "33": {
+          "options": [
+            "Affiche 3, 3, 3 au lieu de 0, 1, 2",
+            "var partage i entre les closures",
+            "Il faut let au lieu de var",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "var a une portée de fonction. Toutes les closures partagent le même i qui vaut 3 à la fin."
+        },
+        "34": {
+          "options": [
+            "process.env.DEBUG est une string, pas boolean",
+            "\"false\" est truthy en JS",
+            "Il faut === \"true\" pour boolean",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "process.env.DEBUG = \"false\" (string) est truthy. Il faut: process.env.DEBUG === \"true\"."
+        },
+        "35": {
+          "options": [
+            "Complexité exponentielle O(2^n)",
+            "Recalcule les mêmes valeurs",
+            "Il faut mémoïsation/cache",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "fibonacci(50) fait des milliards d'appels. Utiliser @lru_cache ou programmation dynamique."
+        },
+        "36": {
+          "options": [
+            "Pas de place pour le \\0 terminal",
+            "Il faut char str[6]",
+            "Buffer overflow possible",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "\"Hello\" = 5 caractères + \\0 = 6 octets. char[5] est trop petit."
+        },
+        "37": {
+          "options": [
+            "Vulnérabilité SQL injection",
+            "Il faut des paramètres préparés",
+            "userId n'est pas échappé",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "Concaténer userId directement permet l'injection SQL. Utiliser des requêtes paramétrées."
+        },
+        "38": {
+          "options": [
+            "if not data est faux pour liste vide",
+            "Devrait être if data is None",
+            "Une liste vide est falsy",
+            "Réponses 1 et 2"
+          ],
+          "explanation": "if not data: est vrai pour None ET []. Il faut if data is None: pour distinguer."
+        },
+        "39": {
+          "options": [
+            "obj2 référence obj1, pas une copie",
+            "Affiche 99, pas 1",
+            "Il faut {...obj1} pour copier",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "obj2 = obj1 copie la référence. Modifier obj2 modifie obj1. Utiliser {...obj1}."
+        },
+        "40": {
+          "options": [
+            "__init__ de Base n'est jamais appelé",
+            "Il faut super().__init__()",
+            "L'héritage ne fonctionne pas",
+            "Réponses 1 et 2"
+          ],
+          "explanation": "Derived.__init__ écrase complètement Base.__init__. Il faut appeler super().__init__()."
+        },
+        "41": {
+          "options": [
+            "Retourne un pointeur vers mémoire locale",
+            "arr est détruit à la fin de la fonction",
+            "Undefined behavior",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "arr est sur la stack et détruit après return. Le pointeur pointe vers mémoire invalide."
+        },
+        "42": {
+          "options": [
+            "setTimeout n'est pas awaitable",
+            "Il faut retourner une Promise",
+            "console.log s'exécute immédiatement",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "wait() ne retourne rien. Il faut return new Promise(resolve => setTimeout(resolve, ms))."
+        },
+        "43": {
+          "options": [
+            "Fonctions d'agrégation dans WHERE",
+            "Il faut HAVING au lieu de WHERE",
+            "GROUP BY manquant",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "WHERE ne peut pas utiliser MAX(). Il faut GROUP BY user_id HAVING MAX(created_at) > ..."
+        },
+        "44": {
+          "options": [
+            "Boucle infinie d'événements",
+            "Stack overflow",
+            "Il faut removeListener",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "L'événement se ré-émet lui-même infiniment jusqu'au stack overflow."
+        },
+        "45": {
+          "options": [
+            "wrapper ne prend pas d'arguments",
+            "greet(name) ne marchera pas",
+            "Il faut *args, **kwargs",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "wrapper() ne prend pas d'arguments mais greet(name) en a besoin. Utiliser *args, **kwargs."
+        },
+        "46": {
+          "options": [
+            "Race condition en multi-threading",
+            "count++ n'est pas atomique",
+            "Il faut synchronized ou AtomicInteger",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "count++ = lecture + incrémentation + écriture. Plusieurs threads peuvent interférer."
+        },
+        "47": {
+          "options": [
+            "Fuite mémoire, cache grandit indéfiniment",
+            "Il faut un LRU ou TTL",
+            "cache[key] peut être 0 ou false (falsy)",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "Le cache grandit sans limite. De plus, if (cache[key]) échoue pour les valeurs falsy."
+        },
+        "48": {
+          "options": [
+            "Regex trop permissive",
+            "Pas de longueur minimum",
+            "Pas de caractères spéciaux requis",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "Cette regex accepte \"a\" ou \"1234\". Pas de règles de complexité pour un vrai mot de passe."
+        },
+        "49": {
+          "options": [
+            "eval() permet l'injection de code",
+            "Vulnérabilité critique",
+            "Ne JAMAIS utiliser eval avec input",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "eval() exécute du code arbitraire. userId pourrait contenir du code malveillant."
+        },
+        "50": {
+          "options": [
+            "GET expose le mot de passe dans l'URL",
+            "Visible dans l'historique/logs",
+            "Il faut method=\"POST\"",
+            "Toutes les réponses ci-dessus"
+          ],
+          "explanation": "GET met les paramètres dans l'URL: /login?password=secret. Toujours POST pour les mots de passe."
+        }
+      }
+    },
+    "wordle": {
+      "title": "Tech Wordle",
+      "subtitle": "Devine le mot tech en 6 essais",
+      "newWord": "Nouveau mot",
+      "stats": {
+        "wl": "{wins}V / {losses}D",
+        "streak": "{current}🔥 (Max: {max})"
+      },
+      "help": {
+        "button": "Aide",
+        "title": "Comment jouer ?",
+        "line1": "Devinez le mot tech en 6 essais maximum.",
+        "line2": "Chaque essai doit être un mot de 5 lettres valide.",
+        "line3": "Après chaque essai, les couleurs des cases changent :",
+        "legend": {
+          "correct": "La lettre est à la bonne position",
+          "present": "La lettre est dans le mot mais mal placée",
+          "absent": "La lettre n'est pas dans le mot"
+        },
+        "examples": "Exemples de mots : REACT, CACHE, TOKEN, LINUX, ASYNC..."
+      },
+      "messages": {
+        "lengthError": "Le mot doit faire 5 lettres",
+        "win": "Bravo ! Le mot était {word}",
+        "lose": "Perdu ! Le mot était {word}",
+        "remaining": "{count} essais restants"
+      }
+    },
+    "mentalcpu": {
+      "title": "Mental CPU",
+      "subtitle": "Calculs rapides sous pression",
+      "levels": {
+        "easy": "Facile",
+        "medium": "Moyen",
+        "hard": "Difficile"
+      },
+      "levelLabel": "Niveau :",
+      "difficultyAria": "Difficulté",
+      "timeLabel": "Temps : {seconds} secondes",
+      "start": "Démarrer",
+      "playAgain": "Rejouer",
+      "next": "Question suivante",
+      "question": "Question {current}",
+      "equals": "= ?",
+      "streak": "{streak}🔥",
+      "types": {
+        "arithmetic": "Arithmétique",
+        "binary": "Binaire",
+        "hex": "Hexadécimal"
+      },
+      "ready": {
+        "title": "Prêt à calculer ?",
+        "subtitle": "Résolvez un maximum de calculs avant la fin du temps !"
+      },
+      "cards": {
+        "easy": {
+          "title": "Facile",
+          "desc": "Calculs simples",
+          "time": "45 secondes"
+        },
+        "medium": {
+          "title": "Moyen",
+          "desc": "Priorités + conversions",
+          "time": "35 secondes"
+        },
+        "hard": {
+          "title": "Difficile",
+          "desc": "Multi-opérations",
+          "time": "25 secondes"
+        }
+      },
+      "over": {
+        "title": "Temps écoulé !",
+        "points": "{score} points",
+        "stats": "{questions} questions • Meilleur streak: {maxStreak}"
+      },
+      "feedback": {
+        "correct": "Correct !",
+        "incorrect": "Incorrect"
+      }
     }
   },
   "quiz": {

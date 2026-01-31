@@ -1,15 +1,26 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import GamesNavigation from '@/components/navbars/Games/GamesNavigation';
 import Quiz from '@/components/games/Quiz';
 import MemoryGame from '@/components/games/MemoryGame';
 import TypingSpeed from '@/components/games/TypingSpeed';
-import { Gamepad2, Keyboard, Sparkles, Trophy } from 'lucide-react';
+import BugHunt from '@/components/games/BugHunt';
+import TechWordle from '@/components/games/TechWordle';
+import { Brain, Bug, Code2, Keyboard, Sparkles, SquareFunction, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import MentalCpu from '@/components/games/MentalCpu';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-type GameType = 'quiz' | 'memory' | 'typing';
+type GameType = 'quiz' | 'memory' | 'typing' | 'bughunt' | 'wordle' | 'mentalcpu';
+
+const GAME_IDS: GameType[] = ['quiz', 'memory', 'typing', 'bughunt', 'wordle', 'mentalcpu'];
+
+function isGameType(v: string | null): v is GameType {
+    return !!v && (
+        GAME_IDS as string[]
+    ).includes(v);
+}
 
 interface GameCardProps {
     title: string;
@@ -50,7 +61,12 @@ function GameCard({ title, description, icon, isActive, onClick }: GameCardProps
 
 export default function GamesPage() {
     const t = useTranslations('games');
-    const [activeGame, setActiveGame] = useState<GameType>('quiz');
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    const id = searchParams.get('id');
+    const activeGame: GameType | null = isGameType(id) ? id : null;
 
     const games = [
         {
@@ -63,13 +79,31 @@ export default function GamesPage() {
             id: 'memory' as GameType,
             title: t('gameTypes.memory.title'),
             description: t('gameTypes.memory.description'),
-            icon: <Gamepad2 className="w-5 h-5"/>
+            icon: <Brain className="w-5 h-5"/>
         },
         {
             id: 'typing' as GameType,
             title: t('gameTypes.typing.title'),
             description: t('gameTypes.typing.description'),
             icon: <Keyboard className="w-5 h-5"/>
+        },
+        {
+            id: 'bughunt' as GameType,
+            title: t('gameTypes.bughunt.title'),
+            description: t('gameTypes.bughunt.subtitle'),
+            icon: <Bug className="w-5 h-5"/>
+        },
+        {
+            id: 'wordle' as GameType,
+            title: t('gameTypes.wordle.title'),
+            description: t('gameTypes.wordle.subtitle'),
+            icon: <Code2 className="w-5 h-5"/>
+        },
+        {
+            id: 'mentalcpu' as GameType,
+            title: t('gameTypes.mentalcpu.title'),
+            description: t('gameTypes.mentalcpu.subtitle'),
+            icon: <SquareFunction className="w-5 h-5"/>
         }
     ];
 
@@ -95,7 +129,7 @@ export default function GamesPage() {
 
                 <section className="py-12 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-6xl mx-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
                             {games.map((game) => (
                                 <GameCard
                                     key={game.id}
@@ -103,16 +137,32 @@ export default function GamesPage() {
                                     description={game.description}
                                     icon={game.icon}
                                     isActive={activeGame === game.id}
-                                    onClick={() => setActiveGame(game.id)}
+                                    onClick={() => {
+                                        const params = new URLSearchParams(searchParams.toString());
+
+                                        if (activeGame === game.id) {
+                                            params.delete('id');
+                                        } else {
+                                            params.set('id', game.id);
+                                        }
+
+                                        const qs = params.toString();
+                                        router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+                                    }}
                                 />
                             ))}
                         </div>
 
-                        <div className="min-h-100">
-                            {activeGame === 'quiz' && <Quiz/>}
-                            {activeGame === 'memory' && <MemoryGame/>}
-                            {activeGame === 'typing' && <TypingSpeed/>}
-                        </div>
+                        {activeGame && (
+                            <div className="min-h-100">
+                                {activeGame === 'quiz' && <Quiz/>}
+                                {activeGame === 'memory' && <MemoryGame/>}
+                                {activeGame === 'typing' && <TypingSpeed/>}
+                                {activeGame === 'bughunt' && <BugHunt/>}
+                                {activeGame === 'wordle' && <TechWordle/>}
+                                {activeGame === 'mentalcpu' && <MentalCpu/>}
+                            </div>
+                        )}
                     </div>
                 </section>
             </main>

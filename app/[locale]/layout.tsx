@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         metadataBase: new URL(baseUrl),
         title: {
             default: isFrench
-                ? 'Paul Viandier - Portfolio'
-                : 'Paul Viandier - Portfolio',
+                ? 'Portfolio de Paul Viandier'
+                : 'Portfolio de Paul Viandier',
             template: '%s | Paul Viandier - Développeur Web'
         },
         description: isFrench

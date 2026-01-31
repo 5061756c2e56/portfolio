@@ -134,7 +134,7 @@
     "terms": "Terms of Use",
     "legalNotice": "Legal Notice",
     "privacy": "Privacy Policy",
-    "contact": "Contact",
+    "contact": "Contact me",
     "madeWith": "Made with",
     "by": "by"
   },
@@ -188,6 +188,18 @@
       "typing": {
         "title": "Typing Speed",
         "description": "Test your code typing speed"
+      },
+      "bughunt": {
+        "title": "Bug Hunt",
+        "subtitle": "Find the bug in the code"
+      },
+      "wordle": {
+        "title": "Tech Wordle",
+        "subtitle": "Guess the tech word in 6 tries"
+      },
+      "mentalcpu": {
+        "title": "Mental CPU",
+        "subtitle": "Fast math under pressure"
       }
     },
     "memory": {
@@ -233,6 +245,551 @@
         "punctuation": "Punctuation"
       },
       "reset": "Reset"
+    },
+    "bughunt": {
+      "title": "Bug Hunt",
+      "subtitle": "Find the bug in the code",
+      "restart": "Restart",
+      "next": "Next question",
+      "prompt": "What’s the bug?",
+      "question": "Question {current}/{total}",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "Incorrect"
+      },
+      "challenges": {
+        "1": {
+          "options": [
+            "The function should validate types",
+            "A semicolon is missing",
+            "The sum variable is badly named",
+            "You must use let instead of function"
+          ],
+          "explanation": "JavaScript concatenates when one operand is a string: 5 + \"10\" becomes \"510\". Convert/validate types to add numbers."
+        },
+        "2": {
+          "options": [
+            "Use forEach instead of for",
+            "The condition should be i < users.length",
+            "users should be a let",
+            "console.log is obsolete"
+          ],
+          "explanation": "i <= users.length accesses users[2], which is undefined. Use i < users.length."
+        },
+        "3": {
+          "options": [
+            "Division by zero if numbers is empty",
+            "Use sum() instead of a loop",
+            "total should be initialized to None",
+            "len() doesn’t work on lists"
+          ],
+          "explanation": "If numbers is empty, len(numbers) = 0 → division by zero."
+        },
+        "4": {
+          "options": [
+            "GROUP BY is missing",
+            "ORDER BY should specify ASC or DESC",
+            "SELECT * is inefficient but syntactically valid",
+            "LIMIT must come before ORDER BY"
+          ],
+          "explanation": "SELECT * works, but it’s inefficient. Prefer selecting only the needed columns."
+        },
+        "5": {
+          "options": [
+            "Use == instead of = in the if",
+            "printf should be cout",
+            "x should be a float",
+            "An else is missing"
+          ],
+          "explanation": "x = 10 is an assignment, not a comparison. Use x == 10."
+        },
+        "6": {
+          "options": [
+            "Missing await before fetch",
+            "async is useless here",
+            "json() should be JSON.parse()",
+            "fetch doesn’t return a promise"
+          ],
+          "explanation": "fetch() returns a promise. You must await fetch() to get the response."
+        },
+        "7": {
+          "options": [
+            "It should be self.name = name",
+            "__init__ should be __new__",
+            "name is a reserved word",
+            "print can’t take arguments"
+          ],
+          "explanation": "name = name creates a local variable. Use self.name = name for an instance attribute."
+        },
+        "8": {
+          "options": [
+            "map does not mutate the original array",
+            "push after map changes doubled",
+            "You must use forEach",
+            "length doesn’t exist on arrays"
+          ],
+          "explanation": "No bug! map() creates a new array. push(6) mutates nums, not doubled."
+        },
+        "9": {
+          "options": [
+            "except should specify ZeroDivisionError",
+            "result isn’t accessible after try",
+            "You need finally",
+            "print should be return"
+          ],
+          "explanation": "A bare except catches ALL exceptions. It’s better to catch ZeroDivisionError specifically."
+        },
+        "10": {
+          "options": [
+            "Use .equals() to compare Strings",
+            "new String() is obsolete",
+            "System.out should be console.log",
+            "A return is missing"
+          ],
+          "explanation": "== compares object references. To compare contents, use s1.equals(s2)."
+        },
+        "11": {
+          "options": [
+            "No way to stop the interval",
+            "count should be const",
+            "increment() must return count",
+            "setInterval doesn’t exist"
+          ],
+          "explanation": "setInterval returns an ID you should store so you can call clearInterval() later."
+        },
+        "12": {
+          "options": [
+            "Mutable default arguments are shared",
+            "append() doesn’t work",
+            "return is useless",
+            "items should be a tuple"
+          ],
+          "explanation": "The default list [] is created once. list1 and list2 share the same list."
+        },
+        "13": {
+          "options": [
+            "this is lost when extracting the method",
+            "getName should be an arrow function",
+            "Use const fn = obj.getName.bind(obj)",
+            "All of the above are true"
+          ],
+          "explanation": "fn() loses the this context. Fix by using bind(obj), an arrow wrapper, or calling obj.getName()."
+        },
+        "14": {
+          "options": [
+            "Array out-of-bounds (arr[3] is invalid)",
+            "Missing return 0",
+            "Use printf instead of for",
+            "int should be float"
+          ],
+          "explanation": "arr has 3 elements (indices 0,1,2). i <= 3 accesses arr[3], which is out of bounds."
+        },
+        "15": {
+          "options": [
+            "Missing GROUP BY user_id",
+            "COUNT(*) should be SUM(*)",
+            "WHERE must come after GROUP BY",
+            "You need DISTINCT"
+          ],
+          "explanation": "With an aggregate (COUNT), you need GROUP BY for non-aggregated columns."
+        },
+        "16": {
+          "options": [
+            "Mixing await and .then() is redundant",
+            "catch doesn’t work with await",
+            "fetch doesn’t return a promise",
+            "You must use async/await everywhere"
+          ],
+          "explanation": "Either use await with try/catch or use .then()/.catch(). Mixing both is confusing."
+        },
+        "17": {
+          "options": [
+            "Missing new before Animal",
+            "constructor should be __init__",
+            "this is invalid",
+            "class should be function"
+          ],
+          "explanation": "To instantiate a class, you must use new: const dog = new Animal(\"Rex\")."
+        },
+        "18": {
+          "options": [
+            "It blocks the server for 5 seconds",
+            "time.sleep() doesn’t exist",
+            "You must return await",
+            "import is invalid"
+          ],
+          "explanation": "time.sleep() blocks the thread. In a web API, use await asyncio.sleep() instead."
+        },
+        "19": {
+          "options": [
+            "cell = cell * 2 does not mutate the array",
+            "forEach can’t be nested",
+            "You must use map",
+            "matrix should be an object"
+          ],
+          "explanation": "cell is just a local variable. To mutate: row[index] = cell * 2 (or use map)."
+        },
+        "20": {
+          "options": [
+            "Missing braces after if",
+            "void can’t be public",
+            "setEmail() doesn’t exist",
+            "User should be an interface"
+          ],
+          "explanation": "Without braces, only the first statement is inside the if. setEmail() always runs."
+        },
+        "21": {
+          "options": [
+            "You can’t add promises",
+            "You need await or .then()",
+            "Result will be \"[object Promise][object Promise]\"",
+            "All of the above"
+          ],
+          "explanation": "Promises don’t add. Use Promise.all([p1, p2]) and then await the values."
+        },
+        "22": {
+          "options": [
+            "It mutates dict1 in place (side effect)",
+            "for doesn’t work on dict",
+            "You must use append",
+            "return d1 is redundant"
+          ],
+          "explanation": "dict1 is mutated. Better: return a new dict with {**d1, **d2}."
+        },
+        "23": {
+          "options": [
+            "XSS vulnerability (script injection)",
+            "document.write is obsolete",
+            "Missing getElementById",
+            "script should be at the bottom"
+          ],
+          "explanation": "If userInput contains <script>, malicious code can run. Escape/sanitize HTML output."
+        },
+        "24": {
+          "options": [
+            "Integer division happens before returning float",
+            "float should be double",
+            "You need (float)a / b",
+            "First two answers"
+          ],
+          "explanation": "5 / 2 = 2 (integer division), then converted to 2.0. Use (float)a / b to get 2.5."
+        },
+        "25": {
+          "options": [
+            "No transaction / unsafe WHERE",
+            "Missing semicolon",
+            "UPDATE should be ALTER",
+            "status isn’t in quotes"
+          ],
+          "explanation": "Without BEGIN/COMMIT it’s harder to roll back. Also, always double-check WHERE before UPDATE."
+        },
+        "26": {
+          "options": [
+            "Missing return in the arrow function",
+            "map() doesn’t mutate the array",
+            "Use forEach instead of map",
+            "n * 2 should be n += 2"
+          ],
+          "explanation": "With braces, you must return explicitly (or remove braces). Otherwise map returns undefined values."
+        },
+        "27": {
+          "options": [
+            "The file is never closed",
+            "You need file.close() or with",
+            "It can cause a resource leak",
+            "All of the above"
+          ],
+          "explanation": "Close the file (file.close()) or use with open() as file."
+        },
+        "28": {
+          "options": [
+            "JavaScript coerces \"5\" to 5 for -",
+            "The result will be NaN",
+            "You must use parseInt(x)",
+            "Subtraction is impossible with strings"
+          ],
+          "explanation": "JS coerces \"5\" to 5 for -, but concatenates for +. Result is 3."
+        },
+        "29": {
+          "options": [
+            "Missing this. before instance",
+            "instance should be Singleton.instance",
+            "new Singleton() creates multiple instances",
+            "static is invalid"
+          ],
+          "explanation": "In a static method, reference static properties via Singleton.instance (or this.instance)."
+        },
+        "30": {
+          "options": [
+            "DISTINCT is redundant with GROUP BY",
+            "Missing COUNT(*)",
+            "user_id should be quoted",
+            "GROUP BY must be before DISTINCT"
+          ],
+          "explanation": "GROUP BY already makes user_id unique. DISTINCT is unnecessary."
+        },
+        "31": {
+          "options": [
+            "It correctly clears the array",
+            "arr.length is read-only",
+            "You must call arr.clear()",
+            "It throws an error"
+          ],
+          "explanation": "No bug! arr.length = 0 is a valid (though less readable) way to clear an array."
+        },
+        "32": {
+          "options": [
+            "JSON requires double quotes",
+            "loads() should be load()",
+            "import is invalid",
+            "data should be a dict"
+          ],
+          "explanation": "Valid JSON uses \"name\", not 'name'. You need double quotes."
+        },
+        "33": {
+          "options": [
+            "It prints 3, 3, 3 instead of 0, 1, 2",
+            "var shares i across closures",
+            "Use let instead of var",
+            "All of the above"
+          ],
+          "explanation": "var is function-scoped. All callbacks share the same i, which is 3 by the time they run."
+        },
+        "34": {
+          "options": [
+            "process.env.DEBUG is a string, not a boolean",
+            "\"false\" is truthy in JS",
+            "Use === \"true\" to get a boolean",
+            "All of the above"
+          ],
+          "explanation": "process.env.DEBUG = \"false\" (string) is truthy. Use: process.env.DEBUG === \"true\"."
+        },
+        "35": {
+          "options": [
+            "Exponential complexity O(2^n)",
+            "It recomputes the same values",
+            "You need memoization/caching",
+            "All of the above"
+          ],
+          "explanation": "fibonacci(50) makes billions of calls. Use @lru_cache or dynamic programming."
+        },
+        "36": {
+          "options": [
+            "No space for the terminating \\0",
+            "It should be char str[6]",
+            "Buffer overflow possible",
+            "All of the above"
+          ],
+          "explanation": "\"Hello\" is 5 chars + \\0 = 6 bytes. char[5] is too small."
+        },
+        "37": {
+          "options": [
+            "SQL injection vulnerability",
+            "Use prepared parameters",
+            "userId is not escaped",
+            "All of the above"
+          ],
+          "explanation": "Concatenating userId directly enables SQL injection. Use parameterized queries."
+        },
+        "38": {
+          "options": [
+            "if not data is wrong for an empty list",
+            "It should be if data is None",
+            "An empty list is falsy",
+            "Answers 1 and 2"
+          ],
+          "explanation": "if not data is true for both None and []. Use if data is None to distinguish them."
+        },
+        "39": {
+          "options": [
+            "obj2 references obj1, not a copy",
+            "It prints 99, not 1",
+            "Use {...obj1} to copy",
+            "All of the above"
+          ],
+          "explanation": "obj2 = obj1 copies the reference. Mutating obj2 mutates obj1. Use {...obj1}."
+        },
+        "40": {
+          "options": [
+            "Base.__init__ is never called",
+            "You need super().__init__()",
+            "Inheritance doesn’t work",
+            "Answers 1 and 2"
+          ],
+          "explanation": "Derived.__init__ overrides Base.__init__. Call super().__init__() to run the base init."
+        },
+        "41": {
+          "options": [
+            "Returns a pointer to local stack memory",
+            "arr is destroyed when the function returns",
+            "Undefined behavior",
+            "All of the above"
+          ],
+          "explanation": "arr lives on the stack and is destroyed after return. The returned pointer is invalid."
+        },
+        "42": {
+          "options": [
+            "setTimeout can’t be awaited",
+            "You must return a Promise",
+            "console.log runs immediately",
+            "All of the above"
+          ],
+          "explanation": "wait() returns nothing. You need: return new Promise(resolve => setTimeout(resolve, ms))."
+        },
+        "43": {
+          "options": [
+            "Aggregate functions can’t be used in WHERE",
+            "You must use HAVING instead of WHERE",
+            "GROUP BY is missing",
+            "All of the above"
+          ],
+          "explanation": "WHERE can’t use MAX(). You need GROUP BY user_id HAVING MAX(created_at) > ..."
+        },
+        "44": {
+          "options": [
+            "Infinite event loop",
+            "Stack overflow",
+            "You must remove the listener",
+            "All of the above"
+          ],
+          "explanation": "The handler re-emits the same event recursively until a stack overflow."
+        },
+        "45": {
+          "options": [
+            "wrapper takes no arguments",
+            "greet(name) won’t work",
+            "You need *args, **kwargs",
+            "All of the above"
+          ],
+          "explanation": "wrapper() takes no args but greet(name) needs one. Use *args, **kwargs."
+        },
+        "46": {
+          "options": [
+            "Race condition in multi-threading",
+            "count++ is not atomic",
+            "Use synchronized or AtomicInteger",
+            "All of the above"
+          ],
+          "explanation": "count++ is read + increment + write. Multiple threads can interleave and lose updates."
+        },
+        "47": {
+          "options": [
+            "Memory leak: cache grows unbounded",
+            "You need an LRU or TTL",
+            "cache[key] can be 0/false (falsy)",
+            "All of the above"
+          ],
+          "explanation": "The cache grows without limit. Also, if (cache[key]) fails for falsy cached values."
+        },
+        "48": {
+          "options": [
+            "Regex is too permissive",
+            "No minimum length",
+            "No special characters required",
+            "All of the above"
+          ],
+          "explanation": "This regex accepts \"a\" or \"1234\". It doesn’t enforce real password complexity rules."
+        },
+        "49": {
+          "options": [
+            "eval() enables code injection",
+            "Critical vulnerability",
+            "Never use eval with user input",
+            "All of the above"
+          ],
+          "explanation": "eval() executes arbitrary code. userId could contain malicious code."
+        },
+        "50": {
+          "options": [
+            "GET exposes the password in the URL",
+            "Visible in history/logs",
+            "Use method=\"POST\"",
+            "All of the above"
+          ],
+          "explanation": "GET puts params in the URL: /login?password=secret. Always use POST for passwords."
+        }
+      }
+    },
+    "wordle": {
+      "title": "Tech Wordle",
+      "subtitle": "Guess the tech word in 6 tries",
+      "newWord": "New word",
+      "stats": {
+        "wl": "{wins}W / {losses}L",
+        "streak": "{current}🔥 (Max: {max})"
+      },
+      "help": {
+        "button": "Help",
+        "title": "How to play",
+        "line1": "Guess the tech word in up to 6 tries.",
+        "line2": "Each guess must be a valid 5-letter word.",
+        "line3": "After each guess, the tile colors change:",
+        "legend": {
+          "correct": "The letter is in the correct spot",
+          "present": "The letter is in the word but in the wrong spot",
+          "absent": "The letter is not in the word"
+        },
+        "examples": "Example words: REACT, CACHE, TOKEN, LINUX, ASYNC..."
+      },
+      "messages": {
+        "lengthError": "The word must be 5 letters",
+        "win": "Nice! The word was {word}",
+        "lose": "You lost! The word was {word}",
+        "remaining": "{count} tries left"
+      }
+    },
+    "mentalcpu": {
+      "title": "Mental CPU",
+      "subtitle": "Fast math under pressure",
+      "levels": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "levelLabel": "Level:",
+      "difficultyAria": "Difficulty",
+      "timeLabel": "Time: {seconds} seconds",
+      "start": "Start",
+      "playAgain": "Play again",
+      "next": "Next question",
+      "question": "Question {current}",
+      "equals": "= ?",
+      "streak": "{streak}🔥",
+      "types": {
+        "arithmetic": "Arithmetic",
+        "binary": "Binary",
+        "hex": "Hexadecimal"
+      },
+      "ready": {
+        "title": "Ready to calculate?",
+        "subtitle": "Solve as many as you can before time runs out!"
+      },
+      "cards": {
+        "easy": {
+          "title": "Easy",
+          "desc": "Simple calculations",
+          "time": "45 seconds"
+        },
+        "medium": {
+          "title": "Medium",
+          "desc": "Order of ops + conversions",
+          "time": "35 seconds"
+        },
+        "hard": {
+          "title": "Hard",
+          "desc": "Multi-step operations",
+          "time": "25 seconds"
+        }
+      },
+      "over": {
+        "title": "Time's up!",
+        "points": "{score} points",
+        "stats": "{questions} questions • Best streak: {maxStreak}"
+      },
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "Incorrect"
+      }
     }
   },
   "quiz": {
