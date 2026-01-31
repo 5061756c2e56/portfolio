@@ -3,9 +3,9 @@
 import { useCallback, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
-import ContactModal from './ContactModal';
 import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
+import { useContactModal } from '@/hooks/useContactModal';
 
 export default function Contact() {
     const t = useTranslations('contact');
@@ -13,10 +13,12 @@ export default function Contact() {
         ref,
         isInView
     } = useInView({ threshold: 0.2 });
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [mailtoMode, setMailtoMode] = useState(false);
+    const { openContact } = useContactModal();
 
     const handleEmailClick = useCallback(async () => {
+        let shouldMailto = false;
+
         try {
             const response = await fetch('/api/email/counter', {
                 method: 'GET',
@@ -26,16 +28,14 @@ export default function Contact() {
             if (response.ok) {
                 const data = await response.json();
                 const count = typeof data.count === 'string' ? parseInt(data.count, 10) : data.count;
-                setMailtoMode(count >= 200);
-            } else {
-                setMailtoMode(false);
+                shouldMailto = count >= 200;
             }
-        } catch (error) {
-            setMailtoMode(false);
+        } catch {
         } finally {
-            setIsModalOpen(true);
+            setMailtoMode(shouldMailto);
+            openContact({ mailtoMode: shouldMailto });
         }
-    }, []);
+    }, [openContact]);
 
     const contacts = [
         {
@@ -116,11 +116,6 @@ export default function Contact() {
                     </div>
                 </div>
             </section>
-            <ContactModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                mailtoMode={mailtoMode}
-            />
         </>
     );
 }

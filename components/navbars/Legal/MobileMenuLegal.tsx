@@ -76,7 +76,7 @@ export default function MobileMenu() {
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
                         href="/faq"
-                        className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
+                        className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>FAQ</span>
                         <HelpCircle className="ml-2 w-4 h-4 opacity-70"/>

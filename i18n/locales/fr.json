@@ -126,6 +126,18 @@
     "faqButton": "Accéder à la FAQ",
     "gamesButton": "Découvrir les jeux"
   },
+  "footer": {
+    "copyright": "Tous droits réservés",
+    "license": "Sous licence MIT",
+    "navigationTitle": "Navigation",
+    "legalTitle": "Légal",
+    "terms": "Conditions d’utilisation",
+    "legalNotice": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "contact": "Contact",
+    "madeWith": "Fait avec",
+    "by": "par"
+  },
   "nav": {
     "home": "Accueil",
     "about": "À propos",
@@ -145,6 +157,7 @@
     "settings": "Paramètres",
     "email": "Email",
     "github": "GitHub",
+    "githubStats": "Statistiques GitHub",
     "linkedin": "LinkedIn",
     "theme": "Thème",
     "light": "Clair",
@@ -221,10 +234,6 @@
       },
       "reset": "Réinitialiser"
     }
-  },
-  "footer": {
-    "copyright": "Paul Viandier. Tous droits réservés.",
-    "license": "Sous licence MIT"
   },
   "quiz": {
     "title": "Quiz Tech",
@@ -529,5 +538,258 @@
   },
   "accessibility": {
     "skipToContent": "Aller au contenu principal"
+  },
+  "legal": {
+    "common": {
+      "badge": "Document légal",
+      "lastUpdatedLabel": "Dernière mise à jour :",
+      "disclaimer": "Ce document est fourni à titre informatif et ne constitue pas un avis juridique. Les informations doivent être adaptées à la situation réelle de l’éditeur du site.",
+      "links": {
+        "readPrivacy": "Lire la politique de confidentialité",
+        "readLegalNotice": "Lire les mentions légales",
+        "readTerms": "Lire les conditions d’utilisation"
+      }
+    },
+    "terms": {
+      "title": "Conditions d’utilisation",
+      "description": "Ces conditions encadrent l’accès et l’utilisation de ce site portfolio. En naviguant sur le site, vous acceptez les règles ci-dessous.",
+      "sections": {
+        "editor": {
+          "title": "1. Informations légales — Éditeur du site",
+          "intro": "Le présent site est un portfolio personnel présentant des projets, réalisations et informations professionnelles.",
+          "publisherTitle": "Éditeur :",
+          "publisherNameLabel": "Nom & Prénom :",
+          "publisherNameValue": "Viandier Paul",
+          "publisherEmailLabel": "Email :",
+          "publisherEmailValue": "contact@paulviandier.com",
+          "hostTitle": "Hébergeur :",
+          "hostNameLabel": "Nom :",
+          "hostNameValue": "OVH SAS",
+          "hostAddressLabel": "Adresse :",
+          "hostAddressValue": "2 rue Kellermann, 59100 Roubaix, France",
+          "hostWebsiteLabel": "Site web :",
+          "hostWebsiteValue": "ovhcloud.com",
+          "contactLine": "En cas de question, vous pouvez contacter l’éditeur : <contactBtn>ouvrir le formulaire de contact</contactBtn>."
+        },
+        "purpose": {
+          "title": "2. Objet des conditions d’utilisation",
+          "p1": "Les présentes conditions d’utilisation (ci-après « CGU ») définissent les règles d’accès et d’usage du site, de ses pages et de ses fonctionnalités (ex : formulaire de contact).",
+          "p2": "En naviguant sur le site, vous acceptez les CGU. Si vous n’êtes pas d’accord, veuillez ne pas utiliser le site."
+        },
+        "access": {
+          "title": "3. Accès au site et disponibilité",
+          "p1": "Le site est accessible en principe 24h/24 et 7j/7, sauf interruption programmée ou non (maintenance, incident, mise à jour, contraintes techniques).",
+          "p2": "L’éditeur ne garantit pas une disponibilité permanente, ni l’absence d’erreurs. Le site est fourni « tel quel »."
+        },
+        "definitions": {
+          "title": "4. Définitions",
+          "items": [
+            {
+              "label": "Site :",
+              "text": "l’ensemble des pages du portfolio accessibles via le nom de domaine et ses sous-pages."
+            },
+            {
+              "label": "Utilisateur :",
+              "text": "toute personne naviguant sur le site."
+            },
+            {
+              "label": "Contenus :",
+              "text": "textes, images, vidéos, code, maquettes, documents, logos, éléments graphiques et plus généralement tout élément publié sur le site."
+            },
+            {
+              "label": "Services tiers :",
+              "text": "services externes accessibles via liens (ex : GitHub, LinkedIn)."
+            }
+          ]
+        },
+        "acceptableUse": {
+          "title": "5. Utilisation acceptable",
+          "p1": "Vous vous engagez à utiliser le site de manière loyale et à ne pas porter atteinte à son bon fonctionnement.",
+          "listIntro": "Il est notamment interdit :",
+          "items": [
+            "de perturber le site (attaque, surcharge, déni de service, injection, etc.) ;",
+            "d’accéder ou de tenter d’accéder à des zones non autorisées ;",
+            "d’extraire automatiquement des données de manière abusive (scraping agressif, spam, harvesting) ;",
+            "d’utiliser le site à des fins illégales ou contraires à l’ordre public ;",
+            "de contourner des mesures de sécurité ou d’authentification le cas échéant."
+          ],
+          "example": "Exemple concret : envoyer des dizaines de requêtes par seconde sur le formulaire de contact pour le rendre inutilisable est interdit."
+        },
+        "ip": {
+          "title": "6. Propriété intellectuelle",
+          "p1": "Sauf mention contraire, l’ensemble des Contenus du site est protégé par le droit d’auteur et/ou d’autres droits de propriété intellectuelle. Les droits restent la propriété de l’éditeur ou des titulaires concernés.",
+          "notAllowedIntro": "Vous n’êtes pas autorisé :",
+          "notAllowed": [
+            "à reproduire, copier, modifier, distribuer ou publier les Contenus sans autorisation écrite ;",
+            "à réutiliser des éléments graphiques, textes, captures ou code pour un usage public/commercial sans accord."
+          ],
+          "example": "Exemple concret : reprendre une page du portfolio (texte + visuels) sur votre site sans crédit ni autorisation est interdit."
+        },
+        "externalLinks": {
+          "title": "7. Liens externes et services tiers",
+          "p1": "Le site peut contenir des liens vers des Services tiers. L’éditeur n’exerce aucun contrôle sur ces services et ne peut être tenu responsable de leur contenu, disponibilité, ni de leurs pratiques (dont leurs politiques de confidentialité).",
+          "p2": "L’accès à ces Services tiers se fait sous votre responsabilité, selon leurs propres conditions."
+        },
+        "contact": {
+          "title": "8. Formulaire de contact et échanges",
+          "p1": "Si un formulaire de contact est disponible, vous vous engagez à fournir des informations exactes et à ne pas transmettre de contenu illicite, injurieux, diffamatoire, harcelant, ou malveillant.",
+          "rightsIntro": "L’éditeur se réserve le droit :",
+          "rights": [
+            "de ne pas répondre à des demandes abusives ou non pertinentes ;",
+            "de mettre en place des protections anti-spam ;",
+            "de bloquer l’accès au formulaire en cas d’abus."
+          ],
+          "example": "Exemple concret : envoyer des messages répétitifs (spam) ou des fichiers suspects peut entraîner un blocage."
+        },
+        "data": {
+          "title": "9. Données personnelles et cookies",
+          "p1": "Le site ne collecte pas de données personnelles à des fins commerciales, de profilage ou de suivi publicitaire.",
+          "p2": "Des données techniques, notamment l’adresse IP, peuvent être traitées ponctuellement lorsque cela est nécessaire à des fins de sécurité, de prévention des abus et de diagnostic.",
+          "p3": "Le formulaire de contact intègre des protections anti-abus via Cloudflare. Ces services peuvent traiter des données techniques nécessaires à leur fonctionnement.",
+          "p4": "Pour plus d’informations, consultez la <privacyLink>Politique de confidentialité</privacyLink>."
+        },
+        "liability": {
+          "title": "10. Limitation de responsabilité",
+          "p1": "L’éditeur met en œuvre des efforts raisonnables pour fournir des informations à jour et exactes, mais ne garantit pas l’exhaustivité ni l’absence d’erreurs.",
+          "p2": "Dans les limites permises par la loi, l’éditeur ne pourra être tenu responsable des dommages directs ou indirects liés à l’utilisation du site (ex : perte de données, interruption, incompatibilité, etc.).",
+          "example": "Exemple concret : si un lien externe ne fonctionne plus ou qu’un projet affiché a évolué depuis sa publication, cela ne constitue pas une faute engageant la responsabilité de l’éditeur."
+        },
+        "security": {
+          "title": "11. Sécurité",
+          "p1": "Vous vous engagez à ne pas compromettre la sécurité du site. Toute tentative de fraude, d’intrusion ou d’exploitation d’une vulnérabilité pourra entraîner des mesures de protection et, le cas échéant, des actions appropriées.",
+          "p2": "Si vous identifiez un problème de sécurité, merci de le signaler à l’éditeur via les informations de contact ci-dessus."
+        },
+        "changes": {
+          "title": "12. Modifications des CGU",
+          "p1": "Les présentes CGU peuvent être modifiées à tout moment. La version applicable est celle publiée sur cette page au moment de votre consultation.",
+          "p2": "La date de dernière mise à jour est indiquée en haut de page."
+        },
+        "law": {
+          "title": "13. Droit applicable et juridiction",
+          "p1": "Sauf dispositions impératives contraires, les présentes CGU sont régies par le droit français.",
+          "p2": "En cas de litige, une résolution amiable sera privilégiée avant toute action. À défaut d’accord, les tribunaux compétents seront ceux déterminés par les règles applicables."
+        }
+      }
+    },
+    "privacy-policy": {
+      "title": "Politique de confidentialité",
+      "description": "Cette politique explique quelles données peuvent être traitées, pourquoi et comment vous pouvez exercer vos droits.",
+      "sections": {
+        "intro": {
+          "title": "1. Présentation",
+          "p1": "La présente politique de confidentialité explique comment des données personnelles peuvent être traitées lors de l’utilisation de ce site portfolio.",
+          "p2": "L’éditeur s’engage à respecter la réglementation applicable, notamment le Règlement général sur la protection des données (RGPD)."
+        },
+        "controller": {
+          "title": "2. Responsable du traitement",
+          "p1": "Le responsable du traitement est l’éditeur du site.",
+          "nameLabel": "Nom & Prénom :",
+          "nameValue": "Viandier Paul",
+          "emailLabel": "Email :",
+          "emailValue": "contact@paulviandier.com",
+          "contactLine": "Pour exercer vos droits ou poser une question, vous pouvez <contactBtn>ouvrir le formulaire de contact</contactBtn>."
+        },
+        "data": {
+          "title": "3. Données traitées",
+          "p1": "Le site ne collecte pas de données personnelles à des fins commerciales, de profilage ou de suivi publicitaire.",
+          "ipTitle": "Adresse IP :",
+          "ipText": "l’adresse IP peut être traitée ponctuellement uniquement lorsque cela est nécessaire, notamment à des fins de sécurité, de prévention des abus et de diagnostic.",
+          "cloudflareTitle": "Formulaire de contact :",
+          "cloudflareText": "le formulaire intègre des protections contre les abus via des services Cloudflare (ex : anti-bot / anti-spam). Ces services peuvent traiter des données techniques nécessaires à leur fonctionnement.",
+          "p2": "Si vous choisissez de contacter l’éditeur, les informations que vous saisissez sont utilisées uniquement pour traiter votre demande et vous répondre."
+        },
+        "purposes": {
+          "title": "4. Finalités et bases légales",
+          "p1": "Les traitements éventuellement réalisés ont pour finalités :",
+          "items": [
+            "assurer la sécurité du site et prévenir les abus ;",
+            "répondre aux demandes envoyées via le formulaire de contact ;",
+            "diagnostiquer des incidents techniques et maintenir le bon fonctionnement du site."
+          ],
+          "p2": "Les bases légales sont, selon les cas, l’intérêt légitime de l’éditeur (sécurité, prévention des abus, maintien du service) et votre consentement lorsque vous initiez une prise de contact."
+        },
+        "recipients": {
+          "title": "5. Destinataires et sous-traitants",
+          "p1": "Les données éventuellement traitées sont destinées à l’éditeur du site. Elles peuvent être traitées par des prestataires techniques strictement nécessaires au fonctionnement et à la sécurité du site, dans la limite de leurs missions.",
+          "items": [
+            "Hébergement : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France.",
+            "Protection anti-abus du formulaire : Cloudflare (services anti-bot / anti-spam)."
+          ]
+        },
+        "retention": {
+          "title": "6. Durées de conservation",
+          "items": [
+            "Adresse IP et données techniques liées à la sécurité : conservées uniquement le temps nécessaire aux objectifs de sécurité et de diagnostic.",
+            "Messages envoyés via le formulaire de contact : conservés uniquement le temps nécessaire au traitement de la demande, puis supprimés, sauf obligation légale ou nécessité de suivi."
+          ]
+        },
+        "rights": {
+          "title": "7. Vos droits",
+          "p1": "Conformément au RGPD, vous disposez notamment des droits suivants : accès, rectification, effacement, limitation et opposition, lorsque applicable.",
+          "p2": "Pour exercer vos droits, contactez l’éditeur via le formulaire de contact ou par email.",
+          "p3": "Vous pouvez également introduire une réclamation auprès de la CNIL si vous estimez que vos droits ne sont pas respectés."
+        },
+        "cookies": {
+          "title": "8. Cookies et traceurs",
+          "p1": "Le site n’a pas vocation à déposer des cookies publicitaires ou de mesure d’audience à des fins marketing. Des cookies strictement nécessaires peuvent être utilisés si requis pour le fonctionnement et la sécurité (notamment pour la protection anti-abus du formulaire)."
+        },
+        "security": {
+          "title": "9. Sécurité",
+          "p1": "L’éditeur met en œuvre des mesures raisonnables pour protéger les données contre l’accès non autorisé, la perte, l’altération ou la divulgation, notamment via des protections contre les abus sur le formulaire de contact."
+        },
+        "changes": {
+          "title": "10. Modifications",
+          "p1": "La présente politique peut être mise à jour à tout moment. La version applicable est celle publiée sur cette page à la date de consultation."
+        }
+      }
+    },
+    "legal-notice": {
+      "title": "Mentions légales",
+      "description": "Les présentes mentions légales décrivent l’éditeur du site, son hébergement et les principales informations relatives à son utilisation.",
+      "sections": {
+        "publisher": {
+          "title": "1. Éditeur du site",
+          "p1": "Le présent site est un portfolio personnel présentant des projets, réalisations et informations professionnelles.",
+          "publisherTitle": "Éditeur :",
+          "publisherNameLabel": "Nom & Prénom :",
+          "publisherNameValue": "Viandier Paul",
+          "publisherEmailLabel": "Email :",
+          "publisherEmailValue": "contact@paulviandier.com",
+          "contactLine": "Pour toute question, vous pouvez <contactBtn>ouvrir le formulaire de contact</contactBtn>."
+        },
+        "hosting": {
+          "title": "2. Hébergement",
+          "hostTitle": "Hébergeur :",
+          "hostNameLabel": "Nom :",
+          "hostNameValue": "OVH SAS",
+          "hostAddressLabel": "Adresse :",
+          "hostAddressValue": "2 rue Kellermann, 59100 Roubaix, France",
+          "hostWebsiteLabel": "Site web :",
+          "hostWebsiteValue": "ovhcloud.com"
+        },
+        "ip": {
+          "title": "3. Propriété intellectuelle",
+          "p1": "Sauf mention contraire, l’ensemble des contenus présents sur le site (textes, visuels, code, éléments graphiques, identité) est protégé par le droit d’auteur et les droits de propriété intellectuelle.",
+          "p2": "Toute reproduction, représentation, adaptation ou diffusion, totale ou partielle, sans autorisation écrite préalable de l’éditeur, est interdite."
+        },
+        "liability": {
+          "title": "4. Limitation de responsabilité",
+          "p1": "L’éditeur s’efforce de fournir des informations exactes et à jour, mais ne garantit pas l’exactitude, l’exhaustivité ou l’actualité des contenus.",
+          "p2": "L’utilisation du site se fait sous la seule responsabilité de l’utilisateur. L’éditeur ne pourra être tenu responsable des dommages directs ou indirects pouvant résulter de l’accès ou de l’utilisation du site."
+        },
+        "links": {
+          "title": "5. Liens externes",
+          "p1": "Le site peut contenir des liens vers des sites ou services tiers. L’éditeur ne dispose d’aucun contrôle sur ces services et ne saurait être responsable de leur contenu, de leur disponibilité ou de leurs pratiques."
+        },
+        "data": {
+          "title": "6. Données personnelles",
+          "p1": "Pour toute information relative aux données personnelles, aux cookies, aux finalités de traitement, ainsi qu’à vos droits, veuillez consulter la <privacyLink>Politique de confidentialité</privacyLink>."
+        },
+        "law": {
+          "title": "7. Droit applicable",
+          "p1": "Sauf dispositions impératives contraires, les présentes mentions légales sont régies par le droit français."
+        }
+      }
+    }
   }
 }

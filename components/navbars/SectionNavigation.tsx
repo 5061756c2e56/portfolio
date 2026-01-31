@@ -1,6 +1,6 @@
 'use client';
 
-import { FileText, Gamepad2, Home, type LucideIcon, TrendingUp } from 'lucide-react';
+import { BarChart3, Gamepad2, HelpCircle, Home, type LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import Settings from '@/components/Settings';
@@ -16,8 +16,8 @@ export interface SectionNavLink {
 
 const DEFAULT_LINKS: SectionNavLink[] = [
     { href: '/', labelKey: 'home', icon: Home },
-    { href: '/faq', labelKey: 'faq', icon: FileText },
-    { href: '/stats', labelKey: 'statsGithub', icon: TrendingUp },
+    { href: '/faq', labelKey: 'faq', icon: HelpCircle },
+    { href: '/stats', labelKey: 'statsGithub', icon: BarChart3 },
     { href: '/games', labelKey: 'games', icon: Gamepad2 }
 ];
 

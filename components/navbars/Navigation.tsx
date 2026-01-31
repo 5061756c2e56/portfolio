@@ -11,7 +11,7 @@ import { useActiveSection } from '@/hooks/use-active-section';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { cn } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
-import { FileText, Gamepad2, TrendingUp } from 'lucide-react';
+import { BarChart3, Gamepad2, HelpCircle } from 'lucide-react';
 
 export default function Navigation() {
     const t = useTranslations('nav');
@@ -192,7 +192,7 @@ export default function Navigation() {
                             className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             FAQ
-                            <FileText className="w-4 h-4 opacity-70"/>
+                            <HelpCircle className="w-4 h-4 opacity-70"/>
                         </Link>
 
                         <Link
@@ -200,7 +200,7 @@ export default function Navigation() {
                             className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             {t('statsGithub')}
-                            <TrendingUp className="w-4 h-4 opacity-70"/>
+                            <BarChart3 className="w-4 h-4 opacity-70"/>
                         </Link>
 
                         <Link

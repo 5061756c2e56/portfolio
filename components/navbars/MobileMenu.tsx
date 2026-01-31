@@ -12,7 +12,7 @@ import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasOrnament } from '@/components/christmas/ChristmasOrnament';
 import { cn } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
-import { FileText, Gamepad2, TrendingUp } from 'lucide-react';
+import { BarChart3, Gamepad2, HelpCircle } from 'lucide-react';
 
 export default function MobileMenu() {
     const t = useTranslations('nav');
@@ -123,7 +123,7 @@ export default function MobileMenu() {
                         className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>FAQ</span>
-                        <FileText className="ml-2 w-4 h-4 opacity-70"/>
+                        <HelpCircle className="ml-2 w-4 h-4 opacity-70"/>
                     </Link>
                 </DropdownMenuItem>
 
@@ -133,7 +133,7 @@ export default function MobileMenu() {
                         className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>{t('statsGithub')}</span>
-                        <TrendingUp className="ml-2 w-4 h-4 opacity-70"/>
+                        <BarChart3 className="ml-2 w-4 h-4 opacity-70"/>
                     </Link>
                 </DropdownMenuItem>
 

@@ -14,6 +14,7 @@ import PatchnotesWidget from '@/components/patchnotes/PatchnotesWidget';
 import Footer from '@/components/home/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
+import { ContactModalProvider } from '@/hooks/useContactModal';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -258,13 +259,16 @@ export default async function RootLayout({
             <div className="min-h-screen flex flex-col relative z-10">
                 <StructuredData/>
                 <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
-                    <SkipLink />
-                    <ScrollToTop />
-                    <main id="main-content">
-                        {children}
-                    </main>
-                    <PatchnotesWidget locale={locale}/>
-                    <Footer/>
+                    <SkipLink/>
+                    <ScrollToTop/>
+
+                    <ContactModalProvider>
+                        <main id="main-content">
+                            {children}
+                        </main>
+                        <PatchnotesWidget locale={locale}/>
+                        <Footer/>
+                    </ContactModalProvider>
                 </LocaleProvider>
                 <Toaster/>
             </div>
