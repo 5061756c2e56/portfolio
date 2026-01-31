@@ -852,6 +852,24 @@ html {
     }
 }
 
+@layer base {
+    html {
+        word-break: normal;
+    }
+
+    body {
+        overflow-wrap: break-word;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, li, a, button {
+        word-break: normal;
+        overflow-wrap: break-word;
+        text-wrap: pretty;
+        hyphens: manual;
+    }
+}
+
+
 @keyframes snowfall {
     0% {
         transform: translateY(0) translateX(0) rotate(0deg);

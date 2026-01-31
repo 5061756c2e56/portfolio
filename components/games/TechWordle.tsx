@@ -106,6 +106,7 @@ export default function TechWordle() {
         setGuesses([]);
         setGameStatus('playing');
         setMessage('');
+        setShowHelp(false);
     }, [pickRandomWord]);
 
     useEffect(() => {
@@ -327,13 +328,19 @@ export default function TechWordle() {
                     <div className="flex items-center gap-2">
                         <Zap className="w-4 h-4 text-cyan-500"/>
                         <span className="font-mono text-lg">
-              {t('stats.streak', { current: currentStreak, max: maxStreak })}
-            </span>
+                            {t('stats.streak', { current: currentStreak, max: maxStreak })}
+                        </span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setShowHelp((v) => !v)} className="gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        aria-pressed={showHelp}
+                        onClick={() => setShowHelp((v) => !v)}
+                        className={cn('gap-2', showHelp && 'bg-cyan-500/10 border-cyan-500/40 text-cyan-500')}
+                    >
                         <Info className="w-4 h-4"/>
                         {t('help.button')}
                     </Button>

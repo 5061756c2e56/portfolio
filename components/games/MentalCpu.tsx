@@ -316,7 +316,9 @@ function CustomDifficultySelect({
                                 'w-full px-2.5 py-2 rounded-lg text-sm text-left',
                                 'flex items-center justify-between gap-2',
                                 'transition-all duration-200',
-                                active ? 'bg-blue-500/10 text-blue-500' : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
+                                active
+                                    ? 'bg-blue-500/10 text-blue-500'
+                                    : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
                             )}
                         >
                             <span>{labels[it]}</span>
@@ -434,9 +436,9 @@ export default function SpeedMath() {
             const bonus = Math.floor(streak / 3);
             setScore((prev) => prev + 1 + bonus);
             setStreak((prev) => {
-                const next = prev + 1;
-                setMaxStreak((m) => Math.max(m, next));
-                return next;
+                const nextStreak = prev + 1;
+                setMaxStreak((m) => Math.max(m, nextStreak));
+                return nextStreak;
             });
         } else {
             setStreak(0);
@@ -458,16 +460,16 @@ export default function SpeedMath() {
                     <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
                         <SquareFunction className="w-5 h-5 text-blue-500"/>
                     </div>
-                    <div>
-                        <h2 className="text-xl font-semibold">{t('title')}</h2>
-                        <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+                    <div className="min-w-0">
+                        <h2 className="text-xl font-semibold truncate">{t('title')}</h2>
+                        <p className="text-sm text-muted-foreground truncate">{t('subtitle')}</p>
                     </div>
                 </div>
 
                 <div
-                    className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-blue-500/20 bg-card">
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium">{t('levelLabel')}</span>
+                    className="p-4 rounded-xl border border-blue-500/20 bg-card grid gap-3 sm:flex sm:items-center sm:justify-between">
+                    <div className="flex flex-wrap items-center gap-2 min-w-0">
+                        <span className="text-sm font-medium shrink-0">{t('levelLabel')}</span>
                         <CustomDifficultySelect
                             value={difficulty}
                             onChange={handleDifficultyChange}
@@ -518,9 +520,9 @@ export default function SpeedMath() {
                     <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
                         <SquareFunction className="w-5 h-5 text-blue-500"/>
                     </div>
-                    <div>
-                        <h2 className="text-xl font-semibold">{t('title')}</h2>
-                        <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+                    <div className="min-w-0">
+                        <h2 className="text-xl font-semibold truncate">{t('title')}</h2>
+                        <p className="text-sm text-muted-foreground truncate">{t('subtitle')}</p>
                     </div>
                 </div>
 
@@ -539,7 +541,7 @@ export default function SpeedMath() {
                         </div>
                     </div>
 
-                    <div className="flex gap-2 justify-center pt-4">
+                    <div className="flex flex-col sm:flex-row gap-2 justify-center pt-4">
                         <CustomDifficultySelect
                             value={difficulty}
                             onChange={handleDifficultyChange}
@@ -576,29 +578,36 @@ export default function SpeedMath() {
                 <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
                     <SquareFunction className="w-5 h-5 text-blue-500"/>
                 </div>
-                <div>
-                    <h2 className="text-xl font-semibold">{t('title')}</h2>
-                    <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+                <div className="min-w-0">
+                    <h2 className="text-xl font-semibold truncate">{t('title')}</h2>
+                    <p className="text-sm text-muted-foreground truncate">{t('subtitle')}</p>
                 </div>
             </div>
 
             <div
-                className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-blue-500/20 bg-card">
-                <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                        <Clock className={cn('w-4 h-4', timer <= 10 ? 'text-red-500 animate-pulse' : 'text-blue-500')}/>
-                        <span
-                            className={cn('font-mono text-lg font-bold', timer <= 10 && 'text-red-500')}>{timer}s</span>
+                className="p-4 rounded-xl border border-blue-500/20 bg-card grid gap-3 sm:flex sm:items-center sm:justify-between">
+                <div className="grid grid-cols-3 gap-3 sm:flex sm:items-center sm:gap-4">
+                    <div className="flex items-center gap-2 min-w-0">
+                        <Clock
+                            className={cn(
+                                'w-4 h-4 shrink-0',
+                                timer <= 10 ? 'text-red-500 animate-pulse' : 'text-blue-500'
+                            )}
+                        />
+                        <span className={cn('font-mono text-base sm:text-lg font-bold tabular-nums', timer <= 10
+                                                                                                     && 'text-red-500')}>
+                            {timer}s
+                        </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                        <Trophy className="w-4 h-4 text-blue-500"/>
-                        <span className="font-mono text-lg">{score}</span>
+                    <div className="flex items-center gap-2 min-w-0">
+                        <Trophy className="w-4 h-4 text-blue-500 shrink-0"/>
+                        <span className="font-mono text-base sm:text-lg tabular-nums">{score}</span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-blue-500"/>
-                        <span className="font-mono text-lg">{t('streak', { streak })}</span>
+                    <div className="flex items-center gap-2 min-w-0 justify-end sm:justify-start">
+                        <Zap className="w-4 h-4 text-blue-500 shrink-0"/>
+                        <span className="font-mono text-base sm:text-lg truncate">{t('streak', { streak })}</span>
                     </div>
                 </div>
 
@@ -619,20 +628,21 @@ export default function SpeedMath() {
             </div>
 
             <div className="p-6 rounded-xl border border-blue-500/20 bg-card space-y-4">
-                <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono text-blue-500 uppercase">{typeLabel}</span>
-                    <span className="text-sm text-muted-foreground">
-            {t('question', { current: questionsAnswered + 1 })}
-          </span>
+                <div className="flex items-center justify-between gap-3 min-w-0">
+                    <span className="text-xs font-mono text-blue-500 uppercase shrink-0">{typeLabel}</span>
+                    <span className="text-sm text-muted-foreground text-right leading-snug">
+                        {t('question', { current: questionsAnswered + 1 })}
+                    </span>
                 </div>
 
                 <div className="text-center py-8">
-                    <div className="text-3xl sm:text-4xl font-bold font-mono">{currentChallenge.question}</div>
+                    <div
+                        className="text-3xl sm:text-4xl font-bold font-mono break-words">{currentChallenge.question}</div>
                     <div className="text-sm text-muted-foreground mt-2">{t('equals')}</div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                    {currentChallenge.options.map((option, index) => {
+                    {currentChallenge.options.map((option) => {
                         const isSelected = selectedAnswer === option;
                         const isCorrectOption = option === currentChallenge.answer;
 
@@ -648,12 +658,14 @@ export default function SpeedMath() {
 
                         return (
                             <button
-                                key={index}
+                                key={option}
                                 onClick={() => handleAnswerSelect(option)}
                                 disabled={isAnswered}
                                 className={cn(
                                     'p-4 rounded-xl border text-center transition-all duration-200',
-                                    'text-xl font-bold font-mono',
+                                    'text-lg sm:text-xl font-bold font-mono',
+                                    'leading-none',
+                                    'min-h-[52px] sm:min-h-[56px]',
                                     buttonStyle,
                                     isAnswered && 'cursor-not-allowed'
                                 )}

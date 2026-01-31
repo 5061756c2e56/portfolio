@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -547,6 +547,15 @@ function randInt(maxExclusive: number) {
     return Math.floor(Math.random() * maxExclusive);
 }
 
+function shuffledOptions() {
+    const arr = [0, 1, 2, 3];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = randInt(i + 1);
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 export default function BugHunt() {
     const t = useTranslations('games.bughunt');
 
@@ -558,43 +567,48 @@ export default function BugHunt() {
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [usedChallenges, setUsedChallenges] = useState<Set<number>>(() => new Set());
     const [showExplanation, setShowExplanation] = useState(false);
+    const [options, setOptions] = useState<number[]>(() => shuffledOptions());
+
+    const usedRef = useRef<Set<number>>(usedChallenges);
+    useEffect(() => {
+        usedRef.current = usedChallenges;
+    }, [usedChallenges]);
 
     const total = BUG_CHALLENGES.length;
 
     const getNextChallenge = useCallback(() => {
-        setUsedChallenges((prev) => {
-            const available = BUG_CHALLENGES.filter((c) => !prev.has(c.id));
+        const prev = usedRef.current;
 
-            const next =
-                available.length === 0
-                    ? BUG_CHALLENGES[randInt(BUG_CHALLENGES.length)]
-                    : available[randInt(available.length)];
+        const available = BUG_CHALLENGES.filter((c) => !prev.has(c.id));
+        const next =
+            available.length === 0
+                ? BUG_CHALLENGES[randInt(BUG_CHALLENGES.length)]
+                : available[randInt(available.length)];
 
-            const nextUsed = available.length === 0 ? new Set([next.id]) : new Set([...prev, next.id]);
+        const nextUsed = available.length === 0 ? new Set([next.id]) : new Set([...prev, next.id]);
 
-            setCurrentChallenge(next);
-            setSelectedAnswer(null);
-            setIsAnswered(false);
-            setShowExplanation(false);
+        usedRef.current = nextUsed;
+        setUsedChallenges(nextUsed);
 
-            return nextUsed;
-        });
+        setCurrentChallenge(next);
+        setOptions(shuffledOptions());
+        setSelectedAnswer(null);
+        setIsAnswered(false);
+        setShowExplanation(false);
     }, []);
 
     useEffect(() => {
         getNextChallenge();
     }, [getNextChallenge]);
 
-    const options = useMemo(() => [0, 1, 2, 3], []);
-
-    const handleAnswerSelect = (index: number) => {
+    const handleAnswerSelect = (optionId: number) => {
         if (isAnswered || !currentChallenge) return;
 
-        setSelectedAnswer(index);
+        setSelectedAnswer(optionId);
         setIsAnswered(true);
         setQuestionsAnswered((prev) => prev + 1);
 
-        if (index === currentChallenge.correctAnswer) {
+        if (optionId === currentChallenge.correctAnswer) {
             setScore((prev) => prev + 1);
             setStreak((prev) => prev + 1);
         } else {
@@ -610,21 +624,24 @@ export default function BugHunt() {
     };
 
     const handleReset = () => {
+        const empty = new Set<number>();
+        usedRef.current = empty;
+
         setScore(0);
         setStreak(0);
         setQuestionsAnswered(0);
-        setUsedChallenges(new Set());
+        setUsedChallenges(empty);
         setSelectedAnswer(null);
         setIsAnswered(false);
         setShowExplanation(false);
         setCurrentChallenge(null);
+
         requestAnimationFrame(() => getNextChallenge());
     };
 
     if (!currentChallenge) return null;
 
     const isCorrect = selectedAnswer === currentChallenge.correctAnswer;
-
     const questionNumber = isAnswered ? questionsAnswered : questionsAnswered + 1;
 
     return (
@@ -633,55 +650,55 @@ export default function BugHunt() {
                 <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20">
                     <Bug className="w-5 h-5 text-purple-500"/>
                 </div>
-                <div>
-                    <h2 className="text-xl font-semibold">{t('title')}</h2>
-                    <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+                <div className="min-w-0">
+                    <h2 className="text-xl font-semibold truncate">{t('title')}</h2>
+                    <p className="text-sm text-muted-foreground truncate">{t('subtitle')}</p>
                 </div>
             </div>
 
             <div
-                className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-purple-500/20 bg-card">
-                <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                        <Trophy className="w-4 h-4 text-purple-500"/>
-                        <span className="font-mono text-lg">{score}</span>
+                className="p-4 rounded-xl border border-purple-500/20 bg-card grid gap-3 sm:flex sm:items-center sm:justify-between">
+                <div className="grid grid-cols-3 gap-3 sm:flex sm:items-center sm:gap-4">
+                    <div className="flex items-center gap-2 min-w-0">
+                        <Trophy className="w-4 h-4 text-purple-500 shrink-0"/>
+                        <span className="font-mono text-base sm:text-lg tabular-nums">{score}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-purple-500"/>
-                        <span className="font-mono text-lg">{streak}x</span>
+                    <div className="flex items-center gap-2 min-w-0">
+                        <Zap className="w-4 h-4 text-purple-500 shrink-0"/>
+                        <span className="font-mono text-base sm:text-lg tabular-nums">{streak}x</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-purple-500"/>
-                        <span className="font-mono text-lg">
-              {questionsAnswered}/{total}
-            </span>
+                    <div className="flex items-center gap-2 min-w-0 justify-end sm:justify-start">
+                        <Clock className="w-4 h-4 text-purple-500 shrink-0"/>
+                        <span className="font-mono text-base sm:text-lg tabular-nums">
+                            {questionsAnswered}/{total}
+                        </span>
                     </div>
                 </div>
 
-                <Button variant="outline" size="sm" onClick={handleReset} className="gap-2">
+                <Button variant="outline" size="sm" onClick={handleReset} className="gap-2 w-full sm:w-auto">
                     <RotateCcw className="w-4 h-4"/>
                     {t('restart')}
                 </Button>
             </div>
 
             <div className="p-6 rounded-xl border border-purple-500/20 bg-card space-y-4">
-                <div className="flex items-center justify-between">
-                    <span className="text-sm font-mono text-purple-500">{currentChallenge.language}</span>
-                    <span className="text-sm text-muted-foreground">
-            {t('question', { current: questionNumber, total })}
-          </span>
+                <div className="flex items-center justify-between gap-3 min-w-0">
+                    <span className="text-sm font-mono text-purple-500 shrink-0">{currentChallenge.language}</span>
+                    <span className="text-sm text-muted-foreground text-right leading-snug">
+                        {t('question', { current: questionNumber, total })}
+                    </span>
                 </div>
 
                 <pre className="p-4 rounded-lg bg-muted/50 overflow-x-auto">
-          <code className="text-sm font-mono">{currentChallenge.code}</code>
-        </pre>
+                    <code className="text-sm font-mono">{currentChallenge.code}</code>
+                </pre>
 
                 <div className="space-y-2">
                     <p className="text-sm font-medium">{t('prompt')}</p>
                     <div className="grid gap-2">
-                        {options.map((index) => {
-                            const isSelected = selectedAnswer === index;
-                            const isCorrectOption = index === currentChallenge.correctAnswer;
+                        {options.map((optionId) => {
+                            const isSelected = selectedAnswer === optionId;
+                            const isCorrectOption = optionId === currentChallenge.correctAnswer;
 
                             let buttonStyle = 'border-purple-500/20 hover:border-purple-500/40 hover:bg-purple-500/5';
 
@@ -697,8 +714,8 @@ export default function BugHunt() {
 
                             return (
                                 <button
-                                    key={index}
-                                    onClick={() => handleAnswerSelect(index)}
+                                    key={optionId}
+                                    onClick={() => handleAnswerSelect(optionId)}
                                     disabled={isAnswered}
                                     className={cn(
                                         'p-4 rounded-xl border text-left transition-all duration-200 w-full',
@@ -719,8 +736,9 @@ export default function BugHunt() {
                                         {isAnswered && isCorrectOption && <Check className="w-4 h-4 text-white"/>}
                                         {isAnswered && isSelected && !isCorrect && <X className="w-4 h-4 text-white"/>}
                                     </div>
-                                    <span
-                                        className="text-sm">{t(`challenges.${currentChallenge.id}.options.${index}`)}</span>
+                                    <span className="text-sm leading-snug break-words">
+                                        {t(`challenges.${currentChallenge.id}.options.${optionId}`)}
+                                    </span>
                                 </button>
                             );
                         })}

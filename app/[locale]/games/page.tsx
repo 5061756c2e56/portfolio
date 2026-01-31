@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useMemo, useState, useSyncExternalStore } from 'react';
+import type { ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 import GamesNavigation from '@/components/navbars/Games/GamesNavigation';
 import Quiz from '@/components/games/Quiz';
@@ -83,7 +84,7 @@ function buildPagination(current: number, total: number): Array<number | 'ellips
 interface GameCardProps {
     title: string;
     description: string;
-    icon: React.ReactNode;
+    icon: ReactNode;
     isActive: boolean;
     onClick: () => void;
 }
@@ -108,9 +109,9 @@ function GameCard({ title, description, icon, isActive, onClick }: GameCardProps
                 >
                     {icon}
                 </div>
-                <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-1">{title}</h3>
-                    <p className="text-sm text-muted-foreground">{description}</p>
+                <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold mb-1 truncate">{title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
                 </div>
             </div>
         </button>
@@ -189,10 +190,30 @@ export default function GamesPage() {
         [t]
     );
 
-    const [page, setPage] = useState(1);
-
     const totalPages = Math.max(1, Math.ceil(games.length / itemsPerPage));
-    const currentPage = Math.min(page, totalPages);
+
+    const pageParam = searchParams.get('page');
+    const hasPageParam = searchParams.has('page');
+    const parsed = pageParam ? Number.parseInt(pageParam, 10) : 1;
+    const pageFromUrl = Number.isFinite(parsed) && parsed >= 1 ? parsed : 1;
+    const currentPage = Math.min(pageFromUrl, totalPages);
+
+    const setPageInUrl = useCallback(
+        (p: number) => {
+            const nextPage = Math.max(1, Math.min(totalPages, p));
+            const params = new URLSearchParams(searchParams.toString());
+            params.set('page', String(nextPage));
+            const qs = params.toString();
+            router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+        },
+        [pathname, router, searchParams, totalPages]
+    );
+
+    useEffect(() => {
+        if (!hasPageParam || pageFromUrl !== currentPage) {
+            setPageInUrl(currentPage);
+        }
+    }, [currentPage, hasPageParam, pageFromUrl, setPageInUrl]);
 
     const pagedGames = useMemo(() => {
         const start = (
@@ -211,25 +232,26 @@ export default function GamesPage() {
             } else {
                 params.set('id', gameId);
             }
+            params.set('page', String(currentPage));
             const qs = params.toString();
             router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
         },
-        [activeGame, pathname, router, searchParams]
+        [activeGame, currentPage, pathname, router, searchParams]
     );
 
     const goPrev = useCallback(() => {
-        setPage((p) => Math.max(1, Math.min(p, totalPages) - 1));
-    }, [totalPages]);
+        setPageInUrl(currentPage - 1);
+    }, [currentPage, setPageInUrl]);
 
     const goNext = useCallback(() => {
-        setPage((p) => Math.min(totalPages, Math.min(p, totalPages) + 1));
-    }, [totalPages]);
+        setPageInUrl(currentPage + 1);
+    }, [currentPage, setPageInUrl]);
 
     const goTo = useCallback(
         (p: number) => {
-            setPage(Math.max(1, Math.min(totalPages, p)));
+            setPageInUrl(p);
         },
-        [totalPages]
+        [setPageInUrl]
     );
 
     return (

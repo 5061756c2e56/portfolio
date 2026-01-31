@@ -286,8 +286,6 @@ export default function ConditionsUtilisationPage() {
                     ))}
 
                     <div className="rounded-xl border border-border bg-background/60 backdrop-blur p-6">
-                        <p className="text-xs text-muted-foreground text-center">{tCommon('disclaimer')}</p>
-
                         <div className="mt-4 flex flex-wrap justify-center gap-4 text-xs">
                             <Link
                                 href="/legal/legal-notice"
@@ -297,7 +295,7 @@ export default function ConditionsUtilisationPage() {
                             </Link>
 
                             <span className="hidden sm:inline text-muted-foreground" aria-hidden="true">•</span>
-                            
+
                             <Link
                                 href="/legal/privacy-policy"
                                 className="underline underline-offset-4 hover:text-foreground transition-colors"

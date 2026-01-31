@@ -114,12 +114,22 @@ export default function RegexRush() {
     const current = challenges[Math.min(idx, total - 1)];
     const progressLabel = t('question', { current: Math.min(idx + 1, total), total });
 
-    const lockAnswer = useCallback(
-        (choice: number) => {
-            if (phase !== 'idle') return;
-            setSelected(choice);
+    const optionOrder = useMemo(() => {
+        const len = current.options.length;
+        const indices = Array.from({ length: len }, (_, i) => i);
+        const seed = (
+                         baseSeed + nonce + idx * 101 + hashStringToSeed(current.id)
+                     ) >>> 0;
+        return seededShuffle(indices, seed);
+    }, [baseSeed, nonce, idx, current.id, current.options.length]);
 
-            const correct = choice === current.answerIndex;
+    const lockAnswer = useCallback(
+        (originalIndex: number) => {
+            if (phase !== 'idle') return;
+
+            setSelected(originalIndex);
+
+            const correct = originalIndex === current.answerIndex;
             setIsCorrect(correct);
             setLastExplanation(current.explanation);
             setPhase('locked');
@@ -173,30 +183,30 @@ export default function RegexRush() {
                 <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20">
                     <Regex className="w-5 h-5 text-blue-500"/>
                 </div>
-                <div>
-                    <h2 className="text-xl font-semibold">{t('title')}</h2>
-                    <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+                <div className="min-w-0">
+                    <h2 className="text-xl font-semibold truncate">{t('title')}</h2>
+                    <p className="text-sm text-muted-foreground truncate">{t('subtitle')}</p>
                 </div>
             </div>
 
             <div
-                className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-blue-500/20 bg-card">
-                <div className="flex items-center gap-4">
-                    <div className="inline-flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-blue-500"/>
-                        <span className="font-mono text-sm">{progressLabel}</span>
+                className="p-4 rounded-xl border border-blue-500/20 bg-card grid gap-3 sm:flex sm:items-center sm:justify-between">
+                <div className="grid gap-2 sm:flex sm:items-center sm:gap-4 min-w-0">
+                    <div className="inline-flex items-center gap-2 min-w-0">
+                        <Sparkles className="w-4 h-4 text-blue-500 shrink-0"/>
+                        <span className="font-mono text-sm truncate">{progressLabel}</span>
                     </div>
-                    <div className="inline-flex items-center gap-2">
-                        <Trophy className="w-4 h-4 text-blue-500"/>
-                        <span className="font-mono text-sm">{t('score', { score, total })}</span>
+                    <div className="inline-flex items-center gap-2 min-w-0">
+                        <Trophy className="w-4 h-4 text-blue-500 shrink-0"/>
+                        <span className="font-mono text-sm truncate">{t('score', { score, total })}</span>
                     </div>
-                    <div className="inline-flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-blue-500"/>
-                        <span className="font-mono text-sm">{t('streak', { streak, max: maxStreak })}</span>
+                    <div className="inline-flex items-center gap-2 min-w-0">
+                        <Zap className="w-4 h-4 text-blue-500 shrink-0"/>
+                        <span className="font-mono text-sm truncate">{t('streak', { streak, max: maxStreak })}</span>
                     </div>
                 </div>
 
-                <Button variant="outline" size="sm" onClick={restart} className="gap-2">
+                <Button variant="outline" size="sm" onClick={restart} className="gap-2 w-full sm:w-auto">
                     <RotateCcw className="w-4 h-4"/>
                     {t('restart')}
                 </Button>
@@ -216,53 +226,56 @@ export default function RegexRush() {
             ) : (
                 <div className="grid gap-4">
                     <div className="p-5 rounded-xl border border-blue-500/20 bg-card space-y-3">
-                        <div className="flex items-center justify-between gap-3">
-                            <h3 className="text-base font-semibold">{t('prompt')}</h3>
-                            {phase === 'locked' && isCorrect !== null && (
-                                <div
-                                    className={cn(
-                                        'inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm border',
-                                        isCorrect
-                                            ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-600 dark:text-emerald-400 shadow-[0_0_0_1px_rgba(16,185,129,0.35)]'
-                                            : 'bg-red-500/20 border-red-500/50 text-red-600 dark:text-red-400 shadow-[0_0_0_1px_rgba(239,68,68,0.35)]'
-                                    )}
-                                >
-                                    {isCorrect ? <CheckCircle2 className="w-4 h-4"/> : <XCircle className="w-4 h-4"/>}
-                                    <span className="font-medium">
-                    {isCorrect ? t('feedback.correct') : t('feedback.incorrect')}
-                  </span>
-                                </div>
-                            )}
+                        <div className="flex items-start justify-between gap-3 min-w-0">
+                            <h3 className="text-base font-semibold shrink-0">{t('prompt')}</h3>
                         </div>
 
+                        {phase === 'locked' && isCorrect !== null && (
+                            <div
+                                className={cn(
+                                    'inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm border shrink-0',
+                                    isCorrect
+                                        ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-600 dark:text-emerald-400 shadow-[0_0_0_1px_rgba(16,185,129,0.35)]'
+                                        : 'bg-red-500/20 border-red-500/50 text-red-600 dark:text-red-400 shadow-[0_0_0_1px_rgba(239,68,68,0.35)]'
+                                )}
+                            >
+                                {isCorrect ? <CheckCircle2 className="w-4 h-4"/> : <XCircle className="w-4 h-4"/>}
+                                <span
+                                    className="font-medium">{isCorrect ? t('feedback.correct') : t('feedback.incorrect')}</span>
+                            </div>
+                        )}
+                        
                         <div className="rounded-xl border border-blue-500/10 bg-muted/40 p-4">
-                            <div className="text-sm text-muted-foreground mb-2">{current.goal}</div>
+                            <div className="text-sm text-muted-foreground mb-2 break-words">{current.goal}</div>
                             <pre
                                 className="text-sm font-mono whitespace-pre-wrap break-words leading-relaxed">{current.input}</pre>
                         </div>
 
                         <div className="grid gap-2">
-                            {current.options.map((opt, i) => {
+                            {optionOrder.map((originalIndex) => {
+                                const opt = current.options[originalIndex];
                                 const locked = phase !== 'idle';
-                                const active = selected === i;
-                                const showCorrect = locked && i === current.answerIndex;
-                                const showWrong = locked && active && i !== current.answerIndex;
+                                const active = selected === originalIndex;
+                                const showCorrect = locked && originalIndex === current.answerIndex;
+                                const showWrong = locked && active && originalIndex !== current.answerIndex;
 
                                 return (
                                     <button
-                                        key={`${current.id}-${i}`}
+                                        key={`${current.id}-${originalIndex}`}
                                         type="button"
                                         disabled={locked}
-                                        onClick={() => lockAnswer(i)}
+                                        onClick={() => lockAnswer(originalIndex)}
                                         className={cn(
                                             'w-full text-left px-3 py-2 rounded-xl border transition-all duration-200',
-                                            'font-mono text-sm',
-                                            locked ? 'cursor-not-allowed opacity-90' : 'hover:bg-blue-500/5 hover:border-blue-500/30',
+                                            'font-mono text-sm leading-snug break-words',
+                                            locked
+                                                ? 'cursor-not-allowed opacity-90'
+                                                : 'hover:bg-blue-500/5 hover:border-blue-500/30',
                                             active ? 'border-blue-500/40 bg-blue-500/5' : 'border-border bg-transparent',
-                                            showCorrect
-                                            && 'border-emerald-500/70 bg-emerald-500/15 text-foreground shadow-[0_0_0_1px_rgba(16,185,129,0.25)]',
-                                            showWrong
-                                            && 'border-red-500/70 bg-red-500/15 text-foreground shadow-[0_0_0_1px_rgba(239,68,68,0.25)]'
+                                            showCorrect &&
+                                            'border-emerald-500/70 bg-emerald-500/15 text-foreground shadow-[0_0_0_1px_rgba(16,185,129,0.25)]',
+                                            showWrong &&
+                                            'border-red-500/70 bg-red-500/15 text-foreground shadow-[0_0_0_1px_rgba(239,68,68,0.25)]'
                                         )}
                                     >
                                         {opt}
@@ -273,13 +286,13 @@ export default function RegexRush() {
 
                         {phase === 'locked' && lastExplanation && (
                             <div
-                                className="mt-2 p-4 rounded-xl border border-blue-500/10 bg-muted/30 text-sm text-muted-foreground leading-relaxed">
+                                className="mt-2 p-4 rounded-xl border border-blue-500/10 bg-muted/30 text-sm text-muted-foreground leading-relaxed break-words">
                                 {lastExplanation}
                             </div>
                         )}
 
                         <div className="flex items-center justify-end gap-2">
-                            <Button onClick={next} disabled={phase !== 'locked'} className="gap-2">
+                            <Button onClick={next} disabled={phase !== 'locked'} className="gap-2 w-full sm:w-auto">
                                 {t('next')}
                             </Button>
                         </div>

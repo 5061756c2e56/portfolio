@@ -1153,7 +1153,7 @@
       "title": "HTTP Detective",
       "subtitle": "Lis la requête, puis choisis le meilleur diagnostic ou fix",
       "prompt": "Quel est le meilleur fix ?",
-      "question": "Cas {current}/{total}",
+      "question": "Question {current}/{total}",
       "score": "{score}/{total}",
       "streak": "{streak}🔥 (Max: {max})",
       "restart": "Recommencer",
@@ -1499,7 +1499,7 @@
       "title": "SQL Sleuth",
       "subtitle": "Trouve le bug ou la requête correcte sans te faire piéger",
       "prompt": "Quelle est la meilleure réponse ?",
-      "question": "Cas {current}/{total}",
+      "question": "Question {current}/{total}",
       "score": "{score}/{total}",
       "streak": "{streak}🔥 (Max: {max})",
       "restart": "Recommencer",
@@ -2150,7 +2150,6 @@
     "common": {
       "badge": "Document légal",
       "lastUpdatedLabel": "Dernière mise à jour :",
-      "disclaimer": "Ce document est fourni à titre informatif et ne constitue pas un avis juridique. Les informations doivent être adaptées à la situation réelle de l’éditeur du site.",
       "links": {
         "readPrivacy": "Lire la politique de confidentialité",
         "readLegalNotice": "Lire les mentions légales",

@@ -1153,7 +1153,7 @@
       "title": "HTTP Detective",
       "subtitle": "Read the request, then pick the best diagnosis or fix",
       "prompt": "What’s the best fix?",
-      "question": "Case {current}/{total}",
+      "question": "Question {current}/{total}",
       "score": "{score}/{total}",
       "streak": "{streak}🔥 (Max: {max})",
       "restart": "Restart",
@@ -2150,7 +2150,6 @@
     "common": {
       "badge": "Legal document",
       "lastUpdatedLabel": "Last updated:",
-      "disclaimer": "This document is provided for informational purposes only and does not constitute legal advice. The information must be adapted to the website publisher’s actual situation.",
       "links": {
         "readPrivacy": "Read the Privacy Policy",
         "readLegalNotice": "Read the Legal Notice",

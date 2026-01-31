@@ -2,12 +2,15 @@
 
 import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface LoadingOverlayProps {
     isLoading: boolean;
 }
 
 export function LoadingOverlay({ isLoading }: LoadingOverlayProps) {
+    const t = useTranslations('nav');
+
     return (
         <div
             className={cn(
@@ -15,7 +18,10 @@ export function LoadingOverlay({ isLoading }: LoadingOverlayProps) {
                 isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
             )}
         >
-            <Spinner className="h-12 w-12"/>
+            <div className="flex flex-col items-center text-center gap-3">
+                <Spinner className="h-12 w-12"/>
+                <p className="text-sm sm:text-base text-muted-foreground">{t('languageChanging')}</p>
+            </div>
         </div>
     );
 }
