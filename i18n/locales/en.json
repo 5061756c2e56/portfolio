@@ -127,8 +127,9 @@
     "gamesButton": "Explore the games"
   },
   "footer": {
+    "paulViandier": "Paul Viandier",
     "copyright": "All rights reserved",
-    "license": "Licensed under the MIT License",
+    "license": "Under proprietary license",
     "navigationTitle": "Navigation",
     "legalTitle": "Legal",
     "terms": "Terms of Use",

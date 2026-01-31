@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { QuizQuestion } from '../quiz-data';
 
 export const hardQuestions: QuizQuestion[] = [
@@ -9,8 +20,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a deep copy and a shallow copy in JavaScript?'
         },
         options: {
-            fr: ['Deep copy copie tous les niveaux, shallow copy seulement le premier niveau', 'Shallow copy est plus rapide', 'Aucune différence', 'Deep copy est obsolète'],
-            en: ['Deep copy copies all levels, shallow copy only the first level', 'Shallow copy is faster', 'No difference', 'Deep copy is deprecated']
+            fr: [
+                'Deep copy copie tous les niveaux, shallow copy seulement le premier niveau',
+                'Shallow copy est plus rapide', 'Aucune différence', 'Deep copy est obsolète'
+            ],
+            en: [
+                'Deep copy copies all levels, shallow copy only the first level', 'Shallow copy is faster',
+                'No difference', 'Deep copy is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -56,8 +73,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the main vulnerability of ECB (Electronic Codebook) mode in encryption?'
         },
         options: {
-            fr: ['Les blocs identiques produisent le même chiffrement', 'Il est trop lent', 'Il nécessite trop de mémoire', 'Il n\'est pas sécurisé du tout'],
-            en: ['Identical blocks produce the same ciphertext', 'It is too slow', 'It requires too much memory', 'It is not secure at all']
+            fr: [
+                'Les blocs identiques produisent le même chiffrement', 'Il est trop lent',
+                'Il nécessite trop de mémoire', 'Il n\'est pas sécurisé du tout'
+            ],
+            en: [
+                'Identical blocks produce the same ciphertext', 'It is too slow', 'It requires too much memory',
+                'It is not secure at all'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -86,8 +109,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the principle of least privilege in security?'
         },
         options: {
-            fr: ['Accorder uniquement les permissions minimales nécessaires', 'Donner tous les droits par défaut', 'Une méthode de chiffrement', 'Un protocole réseau'],
-            en: ['Grant only the minimum permissions necessary', 'Give all rights by default', 'An encryption method', 'A network protocol']
+            fr: [
+                'Accorder uniquement les permissions minimales nécessaires', 'Donner tous les droits par défaut',
+                'Une méthode de chiffrement', 'Un protocole réseau'
+            ],
+            en: [
+                'Grant only the minimum permissions necessary', 'Give all rights by default', 'An encryption method',
+                'A network protocol'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -103,8 +132,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between useMemo and useCallback in React?'
         },
         options: {
-            fr: ['useMemo mémorise une valeur, useCallback mémorise une fonction', 'useCallback est plus rapide', 'Aucune différence', 'useMemo est obsolète'],
-            en: ['useMemo memoizes a value, useCallback memoizes a function', 'useCallback is faster', 'No difference', 'useMemo is deprecated']
+            fr: [
+                'useMemo mémorise une valeur, useCallback mémorise une fonction', 'useCallback est plus rapide',
+                'Aucune différence', 'useMemo est obsolète'
+            ],
+            en: [
+                'useMemo memoizes a value, useCallback memoizes a function', 'useCallback is faster', 'No difference',
+                'useMemo is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -133,8 +168,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is code splitting in React applications?'
         },
         options: {
-            fr: ['Diviser le code en chunks chargés à la demande', 'Diviser le code en fichiers', 'Une méthode de compression', 'Un type de rendu'],
-            en: ['Splitting code into chunks loaded on demand', 'Splitting code into files', 'A compression method', 'A rendering type']
+            fr: [
+                'Diviser le code en chunks chargés à la demande', 'Diviser le code en fichiers',
+                'Une méthode de compression', 'Un type de rendu'
+            ],
+            en: [
+                'Splitting code into chunks loaded on demand', 'Splitting code into files', 'A compression method',
+                'A rendering type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -150,8 +191,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between authentication and authorization?'
         },
         options: {
-            fr: ['Authentication vérifie l\'identité, authorization vérifie les permissions', 'Aucune différence', 'Authorization est plus sécurisé', 'Authentication est obsolète'],
-            en: ['Authentication verifies identity, authorization verifies permissions', 'No difference', 'Authorization is more secure', 'Authentication is deprecated']
+            fr: [
+                'Authentication vérifie l\'identité, authorization vérifie les permissions', 'Aucune différence',
+                'Authorization est plus sécurisé', 'Authentication est obsolète'
+            ],
+            en: [
+                'Authentication verifies identity, authorization verifies permissions', 'No difference',
+                'Authorization is more secure', 'Authentication is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -180,8 +227,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is a race condition in asynchronous programming?'
         },
         options: {
-            fr: ['Un comportement imprévisible lorsque l\'ordre d\'exécution dépend du timing', 'Une erreur de syntaxe', 'Un type de boucle', 'Une méthode de cache'],
-            en: ['Unpredictable behavior when execution order depends on timing', 'A syntax error', 'A loop type', 'A caching method']
+            fr: [
+                'Un comportement imprévisible lorsque l\'ordre d\'exécution dépend du timing', 'Une erreur de syntaxe',
+                'Un type de boucle', 'Une méthode de cache'
+            ],
+            en: [
+                'Unpredictable behavior when execution order depends on timing', 'A syntax error', 'A loop type',
+                'A caching method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -227,8 +280,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the Virtual DOM in React?'
         },
         options: {
-            fr: ['Une représentation JavaScript en mémoire du DOM réel', 'Le DOM réel du navigateur', 'Une méthode de cache', 'Un type de composant'],
-            en: ['A JavaScript in-memory representation of the real DOM', 'The browser\'s real DOM', 'A caching method', 'A component type']
+            fr: [
+                'Une représentation JavaScript en mémoire du DOM réel', 'Le DOM réel du navigateur',
+                'Une méthode de cache', 'Un type de composant'
+            ],
+            en: [
+                'A JavaScript in-memory representation of the real DOM', 'The browser\'s real DOM', 'A caching method',
+                'A component type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -244,8 +303,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a salt and a pepper in cryptography?'
         },
         options: {
-            fr: ['Salt est unique par utilisateur, pepper est partagé et secret', 'Pepper est plus long', 'Aucune différence', 'Salt est obsolète'],
-            en: ['Salt is unique per user, pepper is shared and secret', 'Pepper is longer', 'No difference', 'Salt is deprecated']
+            fr: [
+                'Salt est unique par utilisateur, pepper est partagé et secret', 'Pepper est plus long',
+                'Aucune différence', 'Salt est obsolète'
+            ],
+            en: [
+                'Salt is unique per user, pepper is shared and secret', 'Pepper is longer', 'No difference',
+                'Salt is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -274,8 +339,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is double spending in the context of blockchain?'
         },
         options: {
-            fr: ['Dépenser la même unité de valeur deux fois', 'Une méthode de chiffrement', 'Un type de transaction', 'Une erreur de calcul'],
-            en: ['Spending the same unit of value twice', 'An encryption method', 'A transaction type', 'A calculation error']
+            fr: [
+                'Dépenser la même unité de valeur deux fois', 'Une méthode de chiffrement', 'Un type de transaction',
+                'Une erreur de calcul'
+            ],
+            en: [
+                'Spending the same unit of value twice', 'An encryption method', 'A transaction type',
+                'A calculation error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -291,8 +362,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a WeakMap and a Map in JavaScript?'
         },
         options: {
-            fr: ['WeakMap a des clés faibles et ne peut pas être itéré', 'Map est plus rapide', 'Aucune différence', 'WeakMap est obsolète'],
-            en: ['WeakMap has weak keys and cannot be iterated', 'Map is faster', 'No difference', 'WeakMap is deprecated']
+            fr: [
+                'WeakMap a des clés faibles et ne peut pas être itéré', 'Map est plus rapide', 'Aucune différence',
+                'WeakMap est obsolète'
+            ],
+            en: [
+                'WeakMap has weak keys and cannot be iterated', 'Map is faster', 'No difference',
+                'WeakMap is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -321,8 +398,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "lifting state up" in React?'
         },
         options: {
-            fr: ['Déplacer le state vers le composant parent commun', 'Élever le state vers le DOM', 'Une méthode de cache', 'Un type de hook'],
-            en: ['Moving state up to the common parent component', 'Lifting state to the DOM', 'A caching method', 'A hook type']
+            fr: [
+                'Déplacer le state vers le composant parent commun', 'Élever le state vers le DOM',
+                'Une méthode de cache', 'Un type de hook'
+            ],
+            en: [
+                'Moving state up to the common parent component', 'Lifting state to the DOM', 'A caching method',
+                'A hook type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -338,7 +421,10 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the main difference between AES-128 and AES-256?'
         },
         options: {
-            fr: ['La longueur de la clé (128 bits vs 256 bits)', 'La vitesse d\'exécution', 'Le type de chiffrement', 'Aucune différence'],
+            fr: [
+                'La longueur de la clé (128 bits vs 256 bits)', 'La vitesse d\'exécution', 'Le type de chiffrement',
+                'Aucune différence'
+            ],
             en: ['The key length (128 bits vs 256 bits)', 'The execution speed', 'The encryption type', 'No difference']
         },
         correctAnswer: 0,
@@ -368,8 +454,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "event delegation" in JavaScript?'
         },
         options: {
-            fr: ['Attacher un listener sur un parent pour gérer les événements des enfants', 'Déléguer les événements au serveur', 'Une méthode de cache', 'Un type d\'événement'],
-            en: ['Attaching a listener on a parent to handle children events', 'Delegating events to server', 'A caching method', 'An event type']
+            fr: [
+                'Attacher un listener sur un parent pour gérer les événements des enfants',
+                'Déléguer les événements au serveur', 'Une méthode de cache', 'Un type d\'événement'
+            ],
+            en: [
+                'Attaching a listener on a parent to handle children events', 'Delegating events to server',
+                'A caching method', 'An event type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -415,8 +507,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "memoization" in programming?'
         },
         options: {
-            fr: ['Stocker les résultats de calculs coûteux pour éviter de les recalculer', 'Une méthode de compression', 'Un type de cache', 'Une erreur de mémoire'],
-            en: ['Storing results of expensive calculations to avoid recalculating', 'A compression method', 'A cache type', 'A memory error']
+            fr: [
+                'Stocker les résultats de calculs coûteux pour éviter de les recalculer', 'Une méthode de compression',
+                'Un type de cache', 'Une erreur de mémoire'
+            ],
+            en: [
+                'Storing results of expensive calculations to avoid recalculating', 'A compression method',
+                'A cache type', 'A memory error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -432,8 +530,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a self-signed SSL certificate and one signed by a certificate authority?'
         },
         options: {
-            fr: ['Un certificat signé par une CA est vérifié et approuvé par les navigateurs', 'Aucune différence', 'Les auto-signés sont plus sécurisés', 'Les CA sont obsolètes'],
-            en: ['A CA-signed certificate is verified and trusted by browsers', 'No difference', 'Self-signed are more secure', 'CAs are deprecated']
+            fr: [
+                'Un certificat signé par une CA est vérifié et approuvé par les navigateurs', 'Aucune différence',
+                'Les auto-signés sont plus sécurisés', 'Les CA sont obsolètes'
+            ],
+            en: [
+                'A CA-signed certificate is verified and trusted by browsers', 'No difference',
+                'Self-signed are more secure', 'CAs are deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -462,8 +566,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "defense in depth" in cybersecurity?'
         },
         options: {
-            fr: ['Utiliser plusieurs couches de sécurité pour protéger un système', 'Une seule couche de sécurité maximale', 'Une méthode de chiffrement', 'Un type de firewall'],
-            en: ['Using multiple layers of security to protect a system', 'A single maximum security layer', 'An encryption method', 'A firewall type']
+            fr: [
+                'Utiliser plusieurs couches de sécurité pour protéger un système',
+                'Une seule couche de sécurité maximale', 'Une méthode de chiffrement', 'Un type de firewall'
+            ],
+            en: [
+                'Using multiple layers of security to protect a system', 'A single maximum security layer',
+                'An encryption method', 'A firewall type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -479,8 +589,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a thunk and a middleware in Redux?'
         },
         options: {
-            fr: ['Un thunk est un middleware spécifique pour les actions asynchrones', 'Un middleware est un type de thunk', 'Aucune différence', 'Les thunks sont obsolètes'],
-            en: ['A thunk is a specific middleware for asynchronous actions', 'A middleware is a type of thunk', 'No difference', 'Thunks are deprecated']
+            fr: [
+                'Un thunk est un middleware spécifique pour les actions asynchrones',
+                'Un middleware est un type de thunk', 'Aucune différence', 'Les thunks sont obsolètes'
+            ],
+            en: [
+                'A thunk is a specific middleware for asynchronous actions', 'A middleware is a type of thunk',
+                'No difference', 'Thunks are deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -509,8 +625,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "single source of truth" in state management?'
         },
         options: {
-            fr: ['Avoir une seule source fiable pour l\'état de l\'application', 'Avoir plusieurs sources d\'état', 'Une méthode de cache', 'Un type de base de données'],
-            en: ['Having a single reliable source for application state', 'Having multiple state sources', 'A caching method', 'A database type']
+            fr: [
+                'Avoir une seule source fiable pour l\'état de l\'application', 'Avoir plusieurs sources d\'état',
+                'Une méthode de cache', 'Un type de base de données'
+            ],
+            en: [
+                'Having a single reliable source for application state', 'Having multiple state sources',
+                'A caching method', 'A database type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -526,8 +648,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a hash and an HMAC (Hash-based Message Authentication Code)?'
         },
         options: {
-            fr: ['HMAC utilise une clé secrète pour authentifier le message', 'Hash est plus sécurisé', 'Aucune différence', 'HMAC est obsolète'],
-            en: ['HMAC uses a secret key to authenticate the message', 'Hash is more secure', 'No difference', 'HMAC is deprecated']
+            fr: [
+                'HMAC utilise une clé secrète pour authentifier le message', 'Hash est plus sécurisé',
+                'Aucune différence', 'HMAC est obsolète'
+            ],
+            en: [
+                'HMAC uses a secret key to authenticate the message', 'Hash is more secure', 'No difference',
+                'HMAC is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -556,8 +684,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "idempotence" in REST APIs?'
         },
         options: {
-            fr: ['Effectuer la même requête plusieurs fois produit le même résultat', 'Une méthode de cache', 'Un type de requête', 'Une erreur de requête'],
-            en: ['Performing the same request multiple times produces the same result', 'A caching method', 'A request type', 'A request error']
+            fr: [
+                'Effectuer la même requête plusieurs fois produit le même résultat', 'Une méthode de cache',
+                'Un type de requête', 'Une erreur de requête'
+            ],
+            en: [
+                'Performing the same request multiple times produces the same result', 'A caching method',
+                'A request type', 'A request error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -573,8 +707,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a JWT (JSON Web Token) and a classic session token?'
         },
         options: {
-            fr: ['JWT est stateless et contient les données, session token nécessite un stockage serveur', 'Session token est plus sécurisé', 'Aucune différence', 'JWT est obsolète'],
-            en: ['JWT is stateless and contains data, session token requires server storage', 'Session token is more secure', 'No difference', 'JWT is deprecated']
+            fr: [
+                'JWT est stateless et contient les données, session token nécessite un stockage serveur',
+                'Session token est plus sécurisé', 'Aucune différence', 'JWT est obsolète'
+            ],
+            en: [
+                'JWT is stateless and contains data, session token requires server storage',
+                'Session token is more secure', 'No difference', 'JWT is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -603,8 +743,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "dependency injection" in programming?'
         },
         options: {
-            fr: ['Fournir les dépendances d\'un objet de l\'extérieur plutôt que de les créer à l\'intérieur', 'Créer toutes les dépendances à l\'intérieur', 'Une méthode de cache', 'Un type de fonction'],
-            en: ['Providing an object\'s dependencies from outside rather than creating them inside', 'Creating all dependencies inside', 'A caching method', 'A function type']
+            fr: [
+                'Fournir les dépendances d\'un objet de l\'extérieur plutôt que de les créer à l\'intérieur',
+                'Créer toutes les dépendances à l\'intérieur', 'Une méthode de cache', 'Un type de fonction'
+            ],
+            en: [
+                'Providing an object\'s dependencies from outside rather than creating them inside',
+                'Creating all dependencies inside', 'A caching method', 'A function type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -620,8 +766,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a CSRF token and a JWT token?'
         },
         options: {
-            fr: ['CSRF token protège contre CSRF, JWT est pour l\'authentification', 'JWT protège contre CSRF', 'Aucune différence', 'CSRF token est obsolète'],
-            en: ['CSRF token protects against CSRF, JWT is for authentication', 'JWT protects against CSRF', 'No difference', 'CSRF token is deprecated']
+            fr: [
+                'CSRF token protège contre CSRF, JWT est pour l\'authentification', 'JWT protège contre CSRF',
+                'Aucune différence', 'CSRF token est obsolète'
+            ],
+            en: [
+                'CSRF token protects against CSRF, JWT is for authentication', 'JWT protects against CSRF',
+                'No difference', 'CSRF token is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -650,8 +802,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "event loop" in JavaScript?'
         },
         options: {
-            fr: ['Un mécanisme qui gère l\'exécution asynchrone en JavaScript', 'Une boucle de code', 'Une méthode de cache', 'Un type de fonction'],
-            en: ['A mechanism that manages asynchronous execution in JavaScript', 'A code loop', 'A caching method', 'A function type']
+            fr: [
+                'Un mécanisme qui gère l\'exécution asynchrone en JavaScript', 'Une boucle de code',
+                'Une méthode de cache', 'Un type de fonction'
+            ],
+            en: [
+                'A mechanism that manages asynchronous execution in JavaScript', 'A code loop', 'A caching method',
+                'A function type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -667,8 +825,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a wildcard certificate and a SAN (Subject Alternative Name) certificate?'
         },
         options: {
-            fr: ['Wildcard couvre *.domain.com, SAN liste plusieurs domaines spécifiques', 'SAN est plus sécurisé', 'Aucune différence', 'Wildcard est obsolète'],
-            en: ['Wildcard covers *.domain.com, SAN lists multiple specific domains', 'SAN is more secure', 'No difference', 'Wildcard is deprecated']
+            fr: [
+                'Wildcard couvre *.domain.com, SAN liste plusieurs domaines spécifiques', 'SAN est plus sécurisé',
+                'Aucune différence', 'Wildcard est obsolète'
+            ],
+            en: [
+                'Wildcard covers *.domain.com, SAN lists multiple specific domains', 'SAN is more secure',
+                'No difference', 'Wildcard is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -697,8 +861,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "tree shaking" in JavaScript bundling?'
         },
         options: {
-            fr: ['Éliminer le code mort non utilisé du bundle final', 'Ajouter du code supplémentaire', 'Une méthode de compression', 'Un type de cache'],
-            en: ['Eliminating unused dead code from the final bundle', 'Adding additional code', 'A compression method', 'A cache type']
+            fr: [
+                'Éliminer le code mort non utilisé du bundle final', 'Ajouter du code supplémentaire',
+                'Une méthode de compression', 'Un type de cache'
+            ],
+            en: [
+                'Eliminating unused dead code from the final bundle', 'Adding additional code', 'A compression method',
+                'A cache type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -714,8 +884,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between IP-based rate limiting and token-based rate limiting?'
         },
         options: {
-            fr: ['IP-based limite par adresse, token-based limite par utilisateur authentifié', 'Token-based est plus rapide', 'Aucune différence', 'IP-based est obsolète'],
-            en: ['IP-based limits by address, token-based limits by authenticated user', 'Token-based is faster', 'No difference', 'IP-based is deprecated']
+            fr: [
+                'IP-based limite par adresse, token-based limite par utilisateur authentifié',
+                'Token-based est plus rapide', 'Aucune différence', 'IP-based est obsolète'
+            ],
+            en: [
+                'IP-based limits by address, token-based limits by authenticated user', 'Token-based is faster',
+                'No difference', 'IP-based is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -744,7 +920,10 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the concept of "zero trust" in cybersecurity?'
         },
         options: {
-            fr: ['Ne faire confiance à aucun utilisateur ou appareil par défaut', 'Faire confiance à tous les utilisateurs', 'Une méthode de chiffrement', 'Un type de firewall'],
+            fr: [
+                'Ne faire confiance à aucun utilisateur ou appareil par défaut',
+                'Faire confiance à tous les utilisateurs', 'Une méthode de chiffrement', 'Un type de firewall'
+            ],
             en: ['Trust no user or device by default', 'Trust all users', 'An encryption method', 'A firewall type']
         },
         correctAnswer: 0,
@@ -761,8 +940,14 @@ export const hardQuestions: QuizQuestion[] = [
             en: 'What is the difference between a polyfill and a transpiler?'
         },
         options: {
-            fr: ['Polyfill ajoute des fonctionnalités manquantes, transpiler convertit le code', 'Transpiler est plus rapide', 'Aucune différence', 'Polyfill est obsolète'],
-            en: ['Polyfill adds missing features, transpiler converts code', 'Transpiler is faster', 'No difference', 'Polyfill is deprecated']
+            fr: [
+                'Polyfill ajoute des fonctionnalités manquantes, transpiler convertit le code',
+                'Transpiler est plus rapide', 'Aucune différence', 'Polyfill est obsolète'
+            ],
+            en: [
+                'Polyfill adds missing features, transpiler converts code', 'Transpiler is faster', 'No difference',
+                'Polyfill is deprecated'
+            ]
         },
         correctAnswer: 0,
         explanation: {

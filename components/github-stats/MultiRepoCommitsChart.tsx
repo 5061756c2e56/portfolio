@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useTranslations } from 'next-intl';
@@ -86,7 +97,9 @@ export function MultiRepoCommitsChart({ combinedTimeline, timelines }: MultiRepo
                             content={({ active, payload, label }) => {
                                 if (active && payload && payload.length > 0) {
                                     const totalDayCommits = payload.reduce((sum, entry) =>
-                                        sum + (typeof entry.value === 'number' ? entry.value : 0), 0);
+                                        sum + (
+                                                typeof entry.value === 'number' ? entry.value : 0
+                                            ), 0);
 
                                     return (
                                         <div
@@ -103,7 +116,8 @@ export function MultiRepoCommitsChart({ combinedTimeline, timelines }: MultiRepo
                                             </div>
                                             <div className="space-y-1.5">
                                                 {payload.map((entry) => {
-                                                    const timeline = timelines.find((tl) => tl.repoName === entry.dataKey);
+                                                    const timeline = timelines.find((tl) => tl.repoName
+                                                                                            === entry.dataKey);
                                                     const value = typeof entry.value === 'number' ? entry.value : 0;
 
                                                     return (

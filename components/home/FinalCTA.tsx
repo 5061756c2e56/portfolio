@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { Link } from '@/i18n/routing';
@@ -14,7 +25,8 @@ export default function FinalCTA() {
                     {t('title')}
                 </h2>
 
-                <div className="text-base sm:text-lg text-foreground/80 leading-relaxed bg-card rounded-xl p-6 sm:p-8 border border-border hover:border-foreground/20 transition-all duration-300">
+                <div
+                    className="text-base sm:text-lg text-foreground/80 leading-relaxed bg-card rounded-xl p-6 sm:p-8 border border-border hover:border-foreground/20 transition-all duration-300">
                     <p className="mb-8">
                         {t('description')}
                     </p>

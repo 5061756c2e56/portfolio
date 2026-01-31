@@ -1,23 +1,25 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
-import {
-    CircleCheckIcon,
-    InfoIcon,
-    Loader2Icon,
-    OctagonXIcon,
-    TriangleAlertIcon
-} from 'lucide-react';
+import { CircleCheckIcon, InfoIcon, Loader2Icon, OctagonXIcon, TriangleAlertIcon } from 'lucide-react';
 
-import {
-    Toaster as Sonner,
-    type ToasterProps
-} from 'sonner';
+import { Toaster as Sonner, type ToasterProps } from 'sonner';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Toaster = ({ ...props }: ToasterProps) => {
     const isMobile = useIsMobile();
-    
+
     return (
         <Sonner
             theme="system"

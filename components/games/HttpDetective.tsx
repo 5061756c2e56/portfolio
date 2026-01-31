@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useCallback, useId, useMemo, useState } from 'react';
@@ -43,8 +54,8 @@ function mulberry32(seed: number) {
         return (
                    (
                        r ^ (
-                             r >>> 14
-                         )
+                           r >>> 14
+                       )
                    ) >>> 0
                ) / 4294967296;
     };

@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useState } from 'react';
@@ -96,7 +107,8 @@ export default function Hero() {
                         className={`btn-fill-primary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 ${isDownloadingCV ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                         {isDownloadingCV ? (
-                            <svg className="w-5 h-5 animate-spin relative z-10" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg className="w-5 h-5 animate-spin relative z-10" fill="none" viewBox="0 0 24 24"
+                                 aria-hidden="true">
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                         strokeWidth="4"/>
                                 <path className="opacity-75" fill="currentColor"
@@ -105,7 +117,8 @@ export default function Hero() {
                         ) : (
                             <svg
                                 className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden="true">
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}
+                                aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round"
                                       d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                             </svg>
@@ -121,7 +134,8 @@ export default function Hero() {
                         className={`btn-fill-secondary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 ${isDownloadingLM ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                         {isDownloadingLM ? (
-                            <svg className="w-5 h-5 animate-spin relative z-10" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg className="w-5 h-5 animate-spin relative z-10" fill="none" viewBox="0 0 24 24"
+                                 aria-hidden="true">
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                         strokeWidth="4"/>
                                 <path className="opacity-75" fill="currentColor"
@@ -130,7 +144,8 @@ export default function Hero() {
                         ) : (
                             <svg
                                 className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden="true">
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}
+                                aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round"
                                       d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                             </svg>

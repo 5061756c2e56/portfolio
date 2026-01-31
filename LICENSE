@@ -1,21 +1,109 @@
-MIT License
+PROPRIETARY SOFTWARE LICENSE
+All Rights Reserved
 
-Copyright (c) 2025-2026 Paul Viandier
+Copyright © 2025–2026
+Paul Viandier
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+---
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Ownership
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+This software, including its source code, architecture, design, structure,
+and associated documentation (the “Software”), is the exclusive intellectual
+property of Paul Viandier.
+
+All rights not expressly granted in this license are strictly reserved.
+
+---
+
+2. Permitted Use
+
+Permission is granted to any individual to:
+
+- View the source code
+- Run the Software locally
+- Use the Software for personal, educational, or evaluation purposes only
+
+This permission is non-exclusive, non-transferable, non-sublicensable,
+and revocable at any time.
+
+---
+
+3. Prohibited Uses
+
+Without prior explicit written permission from the copyright holder, the
+following actions are strictly prohibited:
+
+- Any commercial use of the Software, in whole or in part
+- Selling, licensing, sublicensing, renting, or monetizing the Software
+- Using the Software as part of a commercial product, service, SaaS, or platform
+- Redistributing the Software, modified or unmodified
+- Copying, reproducing, or adapting the Software for commercial purposes
+- Circumventing or attempting to bypass the intent of this license
+
+Commercial use includes, but is not limited to, any use that generates
+revenue, is offered to paying users, or is developed within a for-profit
+organization.
+
+---
+
+4. Derivative Works
+
+The creation of derivative works is permitted for personal, educational,
+or evaluation purposes only.
+
+Any derivative work remains subject to this license and may not be
+redistributed or used for commercial purposes.
+
+---
+
+5. Third-Party Dependencies
+
+The Software may include or depend on third-party libraries or assets that
+are licensed under their own respective licenses.
+
+This license applies only to the original code and materials created by
+the copyright holder and does not override third-party licenses.
+
+---
+
+6. No Warranty
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+---
+
+7. Limitation of Liability
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+8. Termination
+
+Any violation of this license automatically terminates the permissions
+granted herein.
+
+Upon termination, you must immediately cease all use of the Software and
+destroy any copies in your possession.
+
+---
+
+9. Governing Law
+
+This license shall be governed and interpreted in accordance with the laws
+of France, without regard to conflict of law principles.
+
+---
+
+10. Contact
+
+For commercial licensing, permissions, or inquiries, contact:
+
+Paul Viandier
+contact@paulviandier.com

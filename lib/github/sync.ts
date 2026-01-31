@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { getPrisma } from '@/lib/prisma';
 import { ALLOWED_REPOSITORIES, GitHubAPIError } from './types';
 
@@ -228,7 +239,9 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
             let backfilled = 0;
             for (const commit of commitsWithoutLogin) {
                 const author = authorBySha.get(commit.sha);
-                if (author && (author.login !== null || author.avatar_url !== null)) {
+                if (author && (
+                    author.login !== null || author.avatar_url !== null
+                )) {
                     await prisma.commit.update({
                         where: { id: commit.id },
                         data: { authorLogin: author.login, authorAvatar: author.avatar_url }

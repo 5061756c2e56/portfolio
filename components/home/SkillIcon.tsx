@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import type { SVGProps } from 'react';
@@ -9,9 +20,9 @@ interface SkillIconProps {
 }
 
 export default function SkillIcon({
-                                      name,
-                                      className = 'w-6 h-6'
-                                  }: SkillIconProps) {
+    name,
+    className = 'w-6 h-6'
+}: SkillIconProps) {
     const iconClassName = className || 'w-6 h-6';
 
     const icons: Record<string, React.ReactElement<SVGProps<SVGSVGElement>>> = {

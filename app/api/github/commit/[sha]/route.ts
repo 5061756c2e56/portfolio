@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { NextRequest } from 'next/server';
 import { DEFAULT_OWNER, DEFAULT_REPO, getCommitDetail } from '@/lib/github/api';
 import { withCache } from '@/lib/github/cache';
@@ -17,8 +28,12 @@ export async function GET(
     }
 
     try {
-        const owner = (request.nextUrl.searchParams.get('owner') || DEFAULT_OWNER).slice(0, 100);
-        const repo = (request.nextUrl.searchParams.get('repo') || DEFAULT_REPO).slice(0, 100);
+        const owner = (
+            request.nextUrl.searchParams.get('owner') || DEFAULT_OWNER
+        ).slice(0, 100);
+        const repo = (
+            request.nextUrl.searchParams.get('repo') || DEFAULT_REPO
+        ).slice(0, 100);
         const { sha } = await params;
 
         if (!isAllowedRepository(owner, repo)) {

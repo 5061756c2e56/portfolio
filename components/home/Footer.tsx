@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useTranslations } from 'next-intl';
@@ -33,10 +44,18 @@ export default function Footer() {
             <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="space-y-3">
-                        <div className="text-sm text-muted-foreground">
-                            © {currentYear} {t('copyright')}
-                        </div>
-                        <div className="text-xs text-muted-foreground">{t('license')}</div>
+                        <footer className="text-muted-foreground text-sm space-y-1">
+                            <p>
+                                © 2025–{currentYear} {t('paulViandier')}
+                            </p>
+
+                            <p>
+                                {t('copyright')}
+                                <span className="text-xs block">
+                                    {t('license')}
+                                </span>
+                            </p>
+                        </footer>
 
                         <div className="flex items-center gap-3 pt-2">
                             <a

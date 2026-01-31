@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import StructuredData from '@/components/StructuredData';
@@ -6,7 +17,6 @@ import { LocaleProvider } from '@/components/LocaleProvider';
 import { Toaster } from '@/components/ui/sonner';
 import { Snowflakes } from '@/components/christmas/Snowflakes';
 import type { Metadata } from 'next';
-import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import '../globals.css';
 import { isChristmasMode } from '@/lib/christmas';
@@ -15,6 +25,7 @@ import Footer from '@/components/home/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
 import { ContactModalProvider } from '@/hooks/useContactModal';
+import { isLocale, Locale } from '@/i18n/routing';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -158,11 +169,12 @@ export default async function RootLayout({
 }) {
     const { locale: paramLocale } = await params;
 
-    if (!paramLocale || !routing.locales.includes(paramLocale as any)) {
+    if (!paramLocale || !isLocale(paramLocale)) {
         notFound();
     }
 
-    const locale = paramLocale as 'fr' | 'en';
+    const locale: Locale = paramLocale;
+
     const messagesFr = (
         await import('@/i18n/locales/fr.json')
     ).default;
@@ -258,7 +270,7 @@ export default async function RootLayout({
             <Snowflakes/>
             <div className="min-h-screen flex flex-col relative z-10">
                 <StructuredData/>
-                <LocaleProvider initialLocale={locale as 'fr' | 'en'} messages={{ fr: messagesFr, en: messagesEn }}>
+                <LocaleProvider initialLocale={locale} messages={{ fr: messagesFr, en: messagesEn }}>
                     <SkipLink/>
                     <ScrollToTop/>
 

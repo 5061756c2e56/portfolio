@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { NextRequest, NextResponse } from 'next/server';
 import { getCommitsList } from '@/lib/github/api';
 import { getTTLForRange } from '@/lib/github/cache';
@@ -6,9 +17,7 @@ import { addSecurityHeaders, createJsonResponse, validateRequest } from '@/lib/g
 import { parseMultiRepoQueryParams } from '@/lib/github/route-params';
 import { getStartDateForRange } from '@/lib/github/utils';
 import { getCommitsFromDB, isDatabaseConfigured } from '@/lib/github/db-queries';
-import {
-    ALLOWED_REPOSITORIES, CommitItem, GitHubAPIError, Repository
-} from '@/lib/github/types';
+import { ALLOWED_REPOSITORIES, CommitItem, GitHubAPIError, Repository } from '@/lib/github/types';
 
 export interface MultiRepoCommitItem extends CommitItem {
     repoOwner: string;

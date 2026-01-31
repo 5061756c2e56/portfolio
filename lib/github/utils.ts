@@ -1,13 +1,17 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import {
-    TimelinePoint,
-    CodePoint,
-    TimeRange,
-    PERIOD_CONFIGS,
-    VALID_TIME_RANGES,
-    Granularity,
-    GitHubCommitActivity,
-    GitHubCodeFrequency,
-    CommitItem,
+    CodePoint, CommitItem, GitHubCodeFrequency, GitHubCommitActivity, Granularity, PERIOD_CONFIGS, TimelinePoint,
+    TimeRange, VALID_TIME_RANGES
 } from './types';
 
 export function getStartDateForRange(range: TimeRange): Date {
@@ -26,13 +30,13 @@ export function formatDateLabel(
     if (granularity === 'daily') {
         return d.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
             weekday: 'short',
-            day: 'numeric',
+            day: 'numeric'
         });
     }
 
     return d.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
         month: 'short',
-        year: '2-digit',
+        year: '2-digit'
     });
 }
 
@@ -56,7 +60,7 @@ export function transformCommitActivity(
                 return {
                     date: weekDate.toISOString(),
                     commits: week.total,
-                    label: formatDateLabel(weekDate, 'weekly', locale),
+                    label: formatDateLabel(weekDate, 'weekly', locale)
                 };
             });
     }
@@ -74,7 +78,7 @@ export function transformCommitActivity(
                 dailyPoints.push({
                     date: dayDate.toISOString(),
                     commits,
-                    label: formatDateLabel(dayDate, 'daily', locale),
+                    label: formatDateLabel(dayDate, 'daily', locale)
                 });
             }
         });
@@ -108,7 +112,7 @@ export function transformCodeFrequency(
             additions: absAdditions,
             deletions: absDeletions,
             changes: absAdditions + absDeletions,
-            label: formatDateLabel(date, granularity, locale),
+            label: formatDateLabel(date, granularity, locale)
         };
     });
 }

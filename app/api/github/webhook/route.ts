@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { getPrisma } from '@/lib/prisma';
@@ -34,8 +45,8 @@ function isIPv4InCIDR(ip: string, cidr: string): boolean {
     const mask = ~(
         (
             1 << (
-                  32 - parseInt(bits)
-              )
+                32 - parseInt(bits)
+            )
         ) - 1
     ) >>> 0;
     const ipLong = ipToLong(ip);
@@ -100,7 +111,6 @@ function isGitHubIP(ip: string): boolean {
 
     return false;
 }
-
 
 interface GitHubPushPayload {
     ref: string;

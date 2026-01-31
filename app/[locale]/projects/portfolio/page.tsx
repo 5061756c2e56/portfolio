@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import Image from 'next/image';
@@ -163,6 +174,10 @@ const TECH_BADGES: TechBadge[] = [
     {
         name: 'EmailJS',
         url: 'https://img.shields.io/badge/EmailJS-Contact-blue?style=for-the-badge&logo=mailgun'
+    },
+    {
+        name: 'React',
+        url: 'https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react'
     }
 ];
 

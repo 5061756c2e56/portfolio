@@ -1,13 +1,21 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import {
-    cva,
-    type VariantProps
-} from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 const Dialog = DialogPrimitive.Root;
 

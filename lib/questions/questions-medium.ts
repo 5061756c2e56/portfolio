@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { QuizQuestion } from '../quiz-data';
 
 export const mediumQuestions: QuizQuestion[] = [
@@ -9,8 +20,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the main difference between let and var in JavaScript?'
         },
         options: {
-            fr: ['let a un scope de bloc, var a un scope de fonction', 'let est plus rapide que var', 'var est obsolète', 'Aucune différence'],
-            en: ['let has block scope, var has function scope', 'let is faster than var', 'var is deprecated', 'No difference']
+            fr: [
+                'let a un scope de bloc, var a un scope de fonction', 'let est plus rapide que var', 'var est obsolète',
+                'Aucune différence'
+            ],
+            en: [
+                'let has block scope, var has function scope', 'let is faster than var', 'var is deprecated',
+                'No difference'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -39,8 +56,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is SQL injection?'
         },
         options: {
-            fr: ['Une attaque qui injecte du code SQL malveillant', 'Une méthode d\'optimisation SQL', 'Un type de base de données', 'Une fonction SQL'],
-            en: ['An attack that injects malicious SQL code', 'A SQL optimization method', 'A database type', 'A SQL function']
+            fr: [
+                'Une attaque qui injecte du code SQL malveillant', 'Une méthode d\'optimisation SQL',
+                'Un type de base de données', 'Une fonction SQL'
+            ],
+            en: [
+                'An attack that injects malicious SQL code', 'A SQL optimization method', 'A database type',
+                'A SQL function'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -56,8 +79,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the recommended method for storing passwords?'
         },
         options: {
-            fr: ['Hachage avec un algorithme adapté (bcrypt, argon2)', 'Chiffrement symétrique', 'Stockage en clair', 'Compression'],
-            en: ['Hashing with an appropriate algorithm (bcrypt, argon2)', 'Symmetric encryption', 'Plain text storage', 'Compression']
+            fr: [
+                'Hachage avec un algorithme adapté (bcrypt, argon2)', 'Chiffrement symétrique', 'Stockage en clair',
+                'Compression'
+            ],
+            en: [
+                'Hashing with an appropriate algorithm (bcrypt, argon2)', 'Symmetric encryption', 'Plain text storage',
+                'Compression'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -86,8 +115,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is SSR (Server-Side Rendering)?'
         },
         options: {
-            fr: ['Le rendu des pages côté serveur avant l\'envoi au client', 'Le rendu uniquement côté client', 'Une méthode de cache', 'Un protocole réseau'],
-            en: ['Rendering pages on the server before sending to client', 'Client-side only rendering', 'A caching method', 'A network protocol']
+            fr: [
+                'Le rendu des pages côté serveur avant l\'envoi au client', 'Le rendu uniquement côté client',
+                'Une méthode de cache', 'Un protocole réseau'
+            ],
+            en: [
+                'Rendering pages on the server before sending to client', 'Client-side only rendering',
+                'A caching method', 'A network protocol'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -103,8 +138,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the difference between == and === in JavaScript?'
         },
         options: {
-            fr: ['=== compare valeur et type, == compare seulement la valeur', '== est plus rapide', '=== est obsolète', 'Aucune différence'],
-            en: ['=== compares value and type, == compares only value', '== is faster', '=== is deprecated', 'No difference']
+            fr: [
+                '=== compare valeur et type, == compare seulement la valeur', '== est plus rapide', '=== est obsolète',
+                'Aucune différence'
+            ],
+            en: [
+                '=== compares value and type, == compares only value', '== is faster', '=== is deprecated',
+                'No difference'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -133,8 +174,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is an XSS (Cross-Site Scripting) attack?'
         },
         options: {
-            fr: ['L\'injection de code JavaScript malveillant dans une page web', 'Une attaque sur les serveurs', 'Un type de virus', 'Une méthode de compression'],
-            en: ['Injection of malicious JavaScript code into a web page', 'An attack on servers', 'A type of virus', 'A compression method']
+            fr: [
+                'L\'injection de code JavaScript malveillant dans une page web', 'Une attaque sur les serveurs',
+                'Un type de virus', 'Une méthode de compression'
+            ],
+            en: [
+                'Injection of malicious JavaScript code into a web page', 'An attack on servers', 'A type of virus',
+                'A compression method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -180,8 +227,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is CSRF (Cross-Site Request Forgery)?'
         },
         options: {
-            fr: ['Une attaque qui force un utilisateur à exécuter des actions non désirées', 'Une méthode d\'optimisation', 'Un type de cookie', 'Une fonction JavaScript'],
-            en: ['An attack that forces a user to execute unwanted actions', 'An optimization method', 'A cookie type', 'A JavaScript function']
+            fr: [
+                'Une attaque qui force un utilisateur à exécuter des actions non désirées',
+                'Une méthode d\'optimisation', 'Un type de cookie', 'Une fonction JavaScript'
+            ],
+            en: [
+                'An attack that forces a user to execute unwanted actions', 'An optimization method', 'A cookie type',
+                'A JavaScript function'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -227,8 +280,13 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is a middleware in Express.js?'
         },
         options: {
-            fr: ['Une fonction qui s\'exécute entre la requête et la réponse', 'Un type de route', 'Une méthode HTTP', 'Un protocole'],
-            en: ['A function that executes between request and response', 'A route type', 'An HTTP method', 'A protocol']
+            fr: [
+                'Une fonction qui s\'exécute entre la requête et la réponse', 'Un type de route', 'Une méthode HTTP',
+                'Un protocole'
+            ],
+            en: [
+                'A function that executes between request and response', 'A route type', 'An HTTP method', 'A protocol'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -257,7 +315,10 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the difference between const and let in JavaScript?'
         },
         options: {
-            fr: ['const ne peut pas être réassigné, let peut l\'être', 'const est plus rapide', 'let est obsolète', 'Aucune différence'],
+            fr: [
+                'const ne peut pas être réassigné, let peut l\'être', 'const est plus rapide', 'let est obsolète',
+                'Aucune différence'
+            ],
             en: ['const cannot be reassigned, let can be', 'const is faster', 'let is deprecated', 'No difference']
         },
         correctAnswer: 0,
@@ -274,8 +335,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is lazy loading?'
         },
         options: {
-            fr: ['Charger des ressources uniquement quand elles sont nécessaires', 'Charger tout en une fois', 'Une méthode de cache', 'Un type de base de données'],
-            en: ['Loading resources only when they are needed', 'Loading everything at once', 'A caching method', 'A database type']
+            fr: [
+                'Charger des ressources uniquement quand elles sont nécessaires', 'Charger tout en une fois',
+                'Une méthode de cache', 'Un type de base de données'
+            ],
+            en: [
+                'Loading resources only when they are needed', 'Loading everything at once', 'A caching method',
+                'A database type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -304,8 +371,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is a custom hook in React?'
         },
         options: {
-            fr: ['Une fonction qui commence par "use" et peut utiliser d\'autres hooks', 'Un composant React', 'Une méthode de rendu', 'Un type de state'],
-            en: ['A function that starts with "use" and can use other hooks', 'A React component', 'A rendering method', 'A state type']
+            fr: [
+                'Une fonction qui commence par "use" et peut utiliser d\'autres hooks', 'Un composant React',
+                'Une méthode de rendu', 'Un type de state'
+            ],
+            en: [
+                'A function that starts with "use" and can use other hooks', 'A React component', 'A rendering method',
+                'A state type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -364,8 +437,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is debouncing?'
         },
         options: {
-            fr: ['Retarder l\'exécution d\'une fonction jusqu\'à ce qu\'un délai soit écoulé', 'Accélérer une fonction', 'Une méthode de cache', 'Un type d\'événement'],
-            en: ['Delaying function execution until a delay has passed', 'Speeding up a function', 'A caching method', 'An event type']
+            fr: [
+                'Retarder l\'exécution d\'une fonction jusqu\'à ce qu\'un délai soit écoulé', 'Accélérer une fonction',
+                'Une méthode de cache', 'Un type d\'événement'
+            ],
+            en: [
+                'Delaying function execution until a delay has passed', 'Speeding up a function', 'A caching method',
+                'An event type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -394,8 +473,13 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is hoisting in JavaScript?'
         },
         options: {
-            fr: ['Le déplacement des déclarations en haut de leur scope', 'Une méthode de tri', 'Un type de variable', 'Une erreur de syntaxe'],
-            en: ['Moving declarations to the top of their scope', 'A sorting method', 'A variable type', 'A syntax error']
+            fr: [
+                'Le déplacement des déclarations en haut de leur scope', 'Une méthode de tri', 'Un type de variable',
+                'Une erreur de syntaxe'
+            ],
+            en: [
+                'Moving declarations to the top of their scope', 'A sorting method', 'A variable type', 'A syntax error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -411,8 +495,13 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is a callback in JavaScript?'
         },
         options: {
-            fr: ['Une fonction passée en argument à une autre fonction', 'Un type de boucle', 'Une méthode de tableau', 'Un opérateur'],
-            en: ['A function passed as an argument to another function', 'A loop type', 'An array method', 'An operator']
+            fr: [
+                'Une fonction passée en argument à une autre fonction', 'Un type de boucle', 'Une méthode de tableau',
+                'Un opérateur'
+            ],
+            en: [
+                'A function passed as an argument to another function', 'A loop type', 'An array method', 'An operator'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -441,8 +530,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the spread operator (...) in JavaScript?'
         },
         options: {
-            fr: ['Un opérateur qui étend un itérable en éléments individuels', 'Un opérateur mathématique', 'Une méthode de tableau', 'Un type de fonction'],
-            en: ['An operator that expands an iterable into individual elements', 'A mathematical operator', 'An array method', 'A function type']
+            fr: [
+                'Un opérateur qui étend un itérable en éléments individuels', 'Un opérateur mathématique',
+                'Une méthode de tableau', 'Un type de fonction'
+            ],
+            en: [
+                'An operator that expands an iterable into individual elements', 'A mathematical operator',
+                'An array method', 'A function type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -458,8 +553,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is destructuring in JavaScript?'
         },
         options: {
-            fr: ['Extraire des valeurs d\'objets ou tableaux dans des variables', 'Détruire un objet', 'Une méthode de suppression', 'Un type de variable'],
-            en: ['Extracting values from objects or arrays into variables', 'Destroying an object', 'A deletion method', 'A variable type']
+            fr: [
+                'Extraire des valeurs d\'objets ou tableaux dans des variables', 'Détruire un objet',
+                'Une méthode de suppression', 'Un type de variable'
+            ],
+            en: [
+                'Extracting values from objects or arrays into variables', 'Destroying an object', 'A deletion method',
+                'A variable type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -488,8 +589,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "pure function" in programming?'
         },
         options: {
-            fr: ['Une fonction qui retourne toujours le même résultat pour les mêmes entrées', 'Une fonction rapide', 'Une fonction sans paramètres', 'Une fonction globale'],
-            en: ['A function that always returns the same result for the same inputs', 'A fast function', 'A function without parameters', 'A global function']
+            fr: [
+                'Une fonction qui retourne toujours le même résultat pour les mêmes entrées', 'Une fonction rapide',
+                'Une fonction sans paramètres', 'Une fonction globale'
+            ],
+            en: [
+                'A function that always returns the same result for the same inputs', 'A fast function',
+                'A function without parameters', 'A global function'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -505,8 +612,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "currying" in functional programming?'
         },
         options: {
-            fr: ['Transformer une fonction à plusieurs arguments en une série de fonctions à un argument', 'Une méthode de tri', 'Un type de boucle', 'Une erreur'],
-            en: ['Transforming a multi-argument function into a series of single-argument functions', 'A sorting method', 'A loop type', 'An error']
+            fr: [
+                'Transformer une fonction à plusieurs arguments en une série de fonctions à un argument',
+                'Une méthode de tri', 'Un type de boucle', 'Une erreur'
+            ],
+            en: [
+                'Transforming a multi-argument function into a series of single-argument functions', 'A sorting method',
+                'A loop type', 'An error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -535,8 +648,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "immutability" in programming?'
         },
         options: {
-            fr: ['L\'état ne peut pas être modifié après sa création', 'Un état qui change souvent', 'Une méthode de mutation', 'Un type de variable'],
-            en: ['State cannot be modified after creation', 'A state that changes often', 'A mutation method', 'A variable type']
+            fr: [
+                'L\'état ne peut pas être modifié après sa création', 'Un état qui change souvent',
+                'Une méthode de mutation', 'Un type de variable'
+            ],
+            en: [
+                'State cannot be modified after creation', 'A state that changes often', 'A mutation method',
+                'A variable type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -552,8 +671,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "composition" in React?'
         },
         options: {
-            fr: ['Combiner de petits composants pour créer des composants plus complexes', 'Un type de rendu', 'Une méthode de state', 'Un hook'],
-            en: ['Combining small components to create more complex components', 'A rendering type', 'A state method', 'A hook']
+            fr: [
+                'Combiner de petits composants pour créer des composants plus complexes', 'Un type de rendu',
+                'Une méthode de state', 'Un hook'
+            ],
+            en: [
+                'Combining small components to create more complex components', 'A rendering type', 'A state method',
+                'A hook'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -582,8 +707,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "higher-order component" (HOC) in React?'
         },
         options: {
-            fr: ['Une fonction qui prend un composant et retourne un nouveau composant', 'Un composant de haut niveau', 'Un type de hook', 'Une méthode de rendu'],
-            en: ['A function that takes a component and returns a new component', 'A high-level component', 'A hook type', 'A rendering method']
+            fr: [
+                'Une fonction qui prend un composant et retourne un nouveau composant', 'Un composant de haut niveau',
+                'Un type de hook', 'Une méthode de rendu'
+            ],
+            en: [
+                'A function that takes a component and returns a new component', 'A high-level component',
+                'A hook type', 'A rendering method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -599,8 +730,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "render props" in React?'
         },
         options: {
-            fr: ['Une technique où un composant accepte une fonction comme prop pour le rendu', 'Un type de prop', 'Une méthode de state', 'Un hook'],
-            en: ['A technique where a component accepts a function as a prop for rendering', 'A prop type', 'A state method', 'A hook']
+            fr: [
+                'Une technique où un composant accepte une fonction comme prop pour le rendu', 'Un type de prop',
+                'Une méthode de state', 'Un hook'
+            ],
+            en: [
+                'A technique where a component accepts a function as a prop for rendering', 'A prop type',
+                'A state method', 'A hook'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -629,8 +766,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "controlled component" in React?'
         },
         options: {
-            fr: ['Un composant dont la valeur est contrôlée par le state React', 'Un composant non contrôlé', 'Un type de hook', 'Une méthode de rendu'],
-            en: ['A component whose value is controlled by React state', 'An uncontrolled component', 'A hook type', 'A rendering method']
+            fr: [
+                'Un composant dont la valeur est contrôlée par le state React', 'Un composant non contrôlé',
+                'Un type de hook', 'Une méthode de rendu'
+            ],
+            en: [
+                'A component whose value is controlled by React state', 'An uncontrolled component', 'A hook type',
+                'A rendering method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -646,8 +789,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "uncontrolled component" in React?'
         },
         options: {
-            fr: ['Un composant qui stocke son état dans le DOM plutôt que dans React', 'Un composant sans state', 'Un type de hook', 'Une erreur'],
-            en: ['A component that stores its state in the DOM rather than in React', 'A component without state', 'A hook type', 'An error']
+            fr: [
+                'Un composant qui stocke son état dans le DOM plutôt que dans React', 'Un composant sans state',
+                'Un type de hook', 'Une erreur'
+            ],
+            en: [
+                'A component that stores its state in the DOM rather than in React', 'A component without state',
+                'A hook type', 'An error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -676,8 +825,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "key prop" in React?'
         },
         options: {
-            fr: ['Un identifiant unique pour aider React à identifier les éléments dans une liste', 'Une clé de chiffrement', 'Un type de prop', 'Une méthode'],
-            en: ['A unique identifier to help React identify elements in a list', 'An encryption key', 'A prop type', 'A method']
+            fr: [
+                'Un identifiant unique pour aider React à identifier les éléments dans une liste',
+                'Une clé de chiffrement', 'Un type de prop', 'Une méthode'
+            ],
+            en: [
+                'A unique identifier to help React identify elements in a list', 'An encryption key', 'A prop type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -693,8 +848,13 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "reconciliation" in React?'
         },
         options: {
-            fr: ['Le processus par lequel React met à jour le DOM de manière efficace', 'Un type de rendu', 'Une méthode de state', 'Un hook'],
-            en: ['The process by which React updates the DOM efficiently', 'A rendering type', 'A state method', 'A hook']
+            fr: [
+                'Le processus par lequel React met à jour le DOM de manière efficace', 'Un type de rendu',
+                'Une méthode de state', 'Un hook'
+            ],
+            en: [
+                'The process by which React updates the DOM efficiently', 'A rendering type', 'A state method', 'A hook'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -723,8 +883,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "code splitting" in web applications?'
         },
         options: {
-            fr: ['Diviser le code en chunks chargés à la demande', 'Diviser le code en fichiers', 'Une méthode de compression', 'Un type de rendu'],
-            en: ['Splitting code into chunks loaded on demand', 'Splitting code into files', 'A compression method', 'A rendering type']
+            fr: [
+                'Diviser le code en chunks chargés à la demande', 'Diviser le code en fichiers',
+                'Une méthode de compression', 'Un type de rendu'
+            ],
+            en: [
+                'Splitting code into chunks loaded on demand', 'Splitting code into files', 'A compression method',
+                'A rendering type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -740,8 +906,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "lazy loading" for images?'
         },
         options: {
-            fr: ['Charger les images uniquement quand elles sont sur le point d\'être visibles', 'Charger toutes les images en une fois', 'Une méthode de compression', 'Un type d\'image'],
-            en: ['Loading images only when they are about to be visible', 'Loading all images at once', 'A compression method', 'An image type']
+            fr: [
+                'Charger les images uniquement quand elles sont sur le point d\'être visibles',
+                'Charger toutes les images en une fois', 'Une méthode de compression', 'Un type d\'image'
+            ],
+            en: [
+                'Loading images only when they are about to be visible', 'Loading all images at once',
+                'A compression method', 'An image type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -770,8 +942,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "progressive enhancement" in web development?'
         },
         options: {
-            fr: ['Créer une base fonctionnelle puis ajouter des fonctionnalités avancées', 'Améliorer progressivement', 'Une méthode de test', 'Un type de framework'],
-            en: ['Creating a functional base then adding advanced features', 'Progressively improving', 'A testing method', 'A framework type']
+            fr: [
+                'Créer une base fonctionnelle puis ajouter des fonctionnalités avancées', 'Améliorer progressivement',
+                'Une méthode de test', 'Un type de framework'
+            ],
+            en: [
+                'Creating a functional base then adding advanced features', 'Progressively improving',
+                'A testing method', 'A framework type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -787,8 +965,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "memoization" in programming?'
         },
         options: {
-            fr: ['Stocker les résultats de fonctions coûteuses pour éviter de les recalculer', 'Une méthode de tri', 'Un type de cache', 'Une erreur'],
-            en: ['Storing results of expensive functions to avoid recalculating them', 'A sorting method', 'A cache type', 'An error']
+            fr: [
+                'Stocker les résultats de fonctions coûteuses pour éviter de les recalculer', 'Une méthode de tri',
+                'Un type de cache', 'Une erreur'
+            ],
+            en: [
+                'Storing results of expensive functions to avoid recalculating them', 'A sorting method',
+                'A cache type', 'An error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -817,8 +1001,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "closure" in JavaScript?'
         },
         options: {
-            fr: ['Une fonction qui a accès aux variables de son scope externe', 'Une méthode de fermeture', 'Un type de variable', 'Une erreur'],
-            en: ['A function that has access to variables from its outer scope', 'A closing method', 'A variable type', 'An error']
+            fr: [
+                'Une fonction qui a accès aux variables de son scope externe', 'Une méthode de fermeture',
+                'Un type de variable', 'Une erreur'
+            ],
+            en: [
+                'A function that has access to variables from its outer scope', 'A closing method', 'A variable type',
+                'An error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -834,8 +1024,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "event delegation" in JavaScript?'
         },
         options: {
-            fr: ['Attacher un gestionnaire d\'événement à un parent plutôt qu\'aux enfants', 'Déléguer des événements', 'Un type d\'événement', 'Une méthode'],
-            en: ['Attaching an event handler to a parent rather than children', 'Delegating events', 'An event type', 'A method']
+            fr: [
+                'Attacher un gestionnaire d\'événement à un parent plutôt qu\'aux enfants', 'Déléguer des événements',
+                'Un type d\'événement', 'Une méthode'
+            ],
+            en: [
+                'Attaching an event handler to a parent rather than children', 'Delegating events', 'An event type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -864,8 +1060,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "throttling" in JavaScript?'
         },
         options: {
-            fr: ['Limiter l\'exécution d\'une fonction à une fois par période de temps', 'Accélérer une fonction', 'Un type de boucle', 'Une méthode'],
-            en: ['Limiting function execution to once per time period', 'Speeding up a function', 'A loop type', 'A method']
+            fr: [
+                'Limiter l\'exécution d\'une fonction à une fois par période de temps', 'Accélérer une fonction',
+                'Un type de boucle', 'Une méthode'
+            ],
+            en: [
+                'Limiting function execution to once per time period', 'Speeding up a function', 'A loop type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -881,8 +1083,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "prototype chain" in JavaScript?'
         },
         options: {
-            fr: ['La chaîne de prototypes permettant l\'héritage en JavaScript', 'Une méthode de chaînage', 'Un type d\'objet', 'Une erreur'],
-            en: ['The chain of prototypes enabling inheritance in JavaScript', 'A chaining method', 'An object type', 'An error']
+            fr: [
+                'La chaîne de prototypes permettant l\'héritage en JavaScript', 'Une méthode de chaînage',
+                'Un type d\'objet', 'Une erreur'
+            ],
+            en: [
+                'The chain of prototypes enabling inheritance in JavaScript', 'A chaining method', 'An object type',
+                'An error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -911,7 +1119,9 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "virtual DOM" in React?'
         },
         options: {
-            fr: ['Une représentation JavaScript en mémoire du DOM réel', 'Le DOM réel', 'Un type de DOM', 'Une méthode'],
+            fr: [
+                'Une représentation JavaScript en mémoire du DOM réel', 'Le DOM réel', 'Un type de DOM', 'Une méthode'
+            ],
             en: ['A JavaScript in-memory representation of the real DOM', 'The real DOM', 'A DOM type', 'A method']
         },
         correctAnswer: 0,
@@ -928,8 +1138,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "server-side rendering" (SSR)?'
         },
         options: {
-            fr: ['Rendre le HTML sur le serveur avant de l\'envoyer au client', 'Rendre sur le client', 'Un type de rendu', 'Une méthode'],
-            en: ['Rendering HTML on the server before sending it to the client', 'Rendering on the client', 'A rendering type', 'A method']
+            fr: [
+                'Rendre le HTML sur le serveur avant de l\'envoyer au client', 'Rendre sur le client',
+                'Un type de rendu', 'Une méthode'
+            ],
+            en: [
+                'Rendering HTML on the server before sending it to the client', 'Rendering on the client',
+                'A rendering type', 'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -958,7 +1174,10 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "hydration" in React?'
         },
         options: {
-            fr: ['Attacher les gestionnaires d\'événements au HTML pré-rendu', 'Ajouter de l\'eau', 'Un type de rendu', 'Une méthode'],
+            fr: [
+                'Attacher les gestionnaires d\'événements au HTML pré-rendu', 'Ajouter de l\'eau', 'Un type de rendu',
+                'Une méthode'
+            ],
             en: ['Attaching event handlers to pre-rendered HTML', 'Adding water', 'A rendering type', 'A method']
         },
         correctAnswer: 0,
@@ -975,7 +1194,9 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "tree shaking" in JavaScript?'
         },
         options: {
-            fr: ['Éliminer le code mort lors du bundling', 'Secouer un arbre', 'Une méthode de tri', 'Un type de bundle'],
+            fr: [
+                'Éliminer le code mort lors du bundling', 'Secouer un arbre', 'Une méthode de tri', 'Un type de bundle'
+            ],
             en: ['Eliminating dead code during bundling', 'Shaking a tree', 'A sorting method', 'A bundle type']
         },
         correctAnswer: 0,
@@ -1005,8 +1226,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "transpilation" in JavaScript?'
         },
         options: {
-            fr: ['Convertir du code d\'un langage à un autre de même niveau d\'abstraction', 'Compiler du code', 'Traduire du code', 'Une méthode'],
-            en: ['Converting code from one language to another at the same abstraction level', 'Compiling code', 'Translating code', 'A method']
+            fr: [
+                'Convertir du code d\'un langage à un autre de même niveau d\'abstraction', 'Compiler du code',
+                'Traduire du code', 'Une méthode'
+            ],
+            en: [
+                'Converting code from one language to another at the same abstraction level', 'Compiling code',
+                'Translating code', 'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1022,7 +1249,10 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "middleware" in web frameworks?'
         },
         options: {
-            fr: ['Une fonction qui s\'exécute entre la requête et la réponse', 'Un type de route', 'Une méthode', 'Une erreur'],
+            fr: [
+                'Une fonction qui s\'exécute entre la requête et la réponse', 'Un type de route', 'Une méthode',
+                'Une erreur'
+            ],
             en: ['A function that executes between request and response', 'A route type', 'A method', 'An error']
         },
         correctAnswer: 0,
@@ -1052,8 +1282,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "GraphQL"?'
         },
         options: {
-            fr: ['Un langage de requête pour les APIs qui permet de demander exactement les données nécessaires', 'Un type de base de données', 'Une méthode HTTP', 'Un framework'],
-            en: ['A query language for APIs that allows requesting exactly the needed data', 'A database type', 'An HTTP method', 'A framework']
+            fr: [
+                'Un langage de requête pour les APIs qui permet de demander exactement les données nécessaires',
+                'Un type de base de données', 'Une méthode HTTP', 'Un framework'
+            ],
+            en: [
+                'A query language for APIs that allows requesting exactly the needed data', 'A database type',
+                'An HTTP method', 'A framework'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1069,7 +1305,10 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "WebSocket"?'
         },
         options: {
-            fr: ['Un protocole de communication bidirectionnel en temps réel', 'Un type de socket', 'Une méthode HTTP', 'Un framework'],
+            fr: [
+                'Un protocole de communication bidirectionnel en temps réel', 'Un type de socket', 'Une méthode HTTP',
+                'Un framework'
+            ],
             en: ['A bidirectional real-time communication protocol', 'A socket type', 'An HTTP method', 'A framework']
         },
         correctAnswer: 0,
@@ -1099,7 +1338,10 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "Progressive Web App" (PWA)?'
         },
         options: {
-            fr: ['Une application web qui fonctionne comme une application native', 'Un type d\'application', 'Une méthode', 'Un framework'],
+            fr: [
+                'Une application web qui fonctionne comme une application native', 'Un type d\'application',
+                'Une méthode', 'Un framework'
+            ],
             en: ['A web application that works like a native app', 'An application type', 'A method', 'A framework']
         },
         correctAnswer: 0,
@@ -1116,8 +1358,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "dependency injection" in programming?'
         },
         options: {
-            fr: ['Fournir les dépendances d\'un objet depuis l\'extérieur plutôt que de les créer à l\'intérieur', 'Injecter du code', 'Un type de dépendance', 'Une méthode'],
-            en: ['Providing an object\'s dependencies from outside rather than creating them inside', 'Injecting code', 'A dependency type', 'A method']
+            fr: [
+                'Fournir les dépendances d\'un objet depuis l\'extérieur plutôt que de les créer à l\'intérieur',
+                'Injecter du code', 'Un type de dépendance', 'Une méthode'
+            ],
+            en: [
+                'Providing an object\'s dependencies from outside rather than creating them inside', 'Injecting code',
+                'A dependency type', 'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1146,8 +1394,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "integration testing"?'
         },
         options: {
-            fr: ['Tester l\'interaction entre plusieurs composants ou modules', 'Tester un seul composant', 'Un type de test', 'Une méthode'],
-            en: ['Testing the interaction between multiple components or modules', 'Testing a single component', 'A test type', 'A method']
+            fr: [
+                'Tester l\'interaction entre plusieurs composants ou modules', 'Tester un seul composant',
+                'Un type de test', 'Une méthode'
+            ],
+            en: [
+                'Testing the interaction between multiple components or modules', 'Testing a single component',
+                'A test type', 'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1163,8 +1417,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "end-to-end testing" (E2E)?'
         },
         options: {
-            fr: ['Tester l\'application complète du début à la fin comme un utilisateur réel', 'Tester une fonction', 'Un type de test', 'Une méthode'],
-            en: ['Testing the complete application from start to end like a real user', 'Testing a function', 'A test type', 'A method']
+            fr: [
+                'Tester l\'application complète du début à la fin comme un utilisateur réel', 'Tester une fonction',
+                'Un type de test', 'Une méthode'
+            ],
+            en: [
+                'Testing the complete application from start to end like a real user', 'Testing a function',
+                'A test type', 'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1193,8 +1453,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "continuous integration" (CI)?'
         },
         options: {
-            fr: ['Automatiser les tests et builds à chaque commit', 'Intégrer continuellement', 'Un type de déploiement', 'Une méthode'],
-            en: ['Automating tests and builds on each commit', 'Continuously integrating', 'A deployment type', 'A method']
+            fr: [
+                'Automatiser les tests et builds à chaque commit', 'Intégrer continuellement', 'Un type de déploiement',
+                'Une méthode'
+            ],
+            en: [
+                'Automating tests and builds on each commit', 'Continuously integrating', 'A deployment type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1210,8 +1476,14 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "continuous deployment" (CD)?'
         },
         options: {
-            fr: ['Déployer automatiquement le code en production après les tests', 'Déployer continuellement', 'Un type de test', 'Une méthode'],
-            en: ['Automatically deploying code to production after tests', 'Continuously deploying', 'A test type', 'A method']
+            fr: [
+                'Déployer automatiquement le code en production après les tests', 'Déployer continuellement',
+                'Un type de test', 'Une méthode'
+            ],
+            en: [
+                'Automatically deploying code to production after tests', 'Continuously deploying', 'A test type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1240,7 +1512,10 @@ export const mediumQuestions: QuizQuestion[] = [
             en: 'What is the concept of "branch" in Git?'
         },
         options: {
-            fr: ['Une ligne de développement indépendante dans un dépôt', 'Une branche d\'arbre', 'Un type de commit', 'Une méthode'],
+            fr: [
+                'Une ligne de développement indépendante dans un dépôt', 'Une branche d\'arbre', 'Un type de commit',
+                'Une méthode'
+            ],
             en: ['An independent line of development in a repository', 'A tree branch', 'A commit type', 'A method']
         },
         correctAnswer: 0,

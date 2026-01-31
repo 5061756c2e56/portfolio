@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -86,8 +97,12 @@ export default function QuizModal({
             return;
         }
 
-        const timeSpent = timeout ? TIME_PER_QUESTION : Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
-        const userAnswer = timeout ? -1 : (selectedAnswerRef.current ?? -1);
+        const timeSpent = timeout ? TIME_PER_QUESTION : Math.floor((
+                                                                       Date.now() - questionStartTimeRef.current
+                                                                   ) / 1000);
+        const userAnswer = timeout ? -1 : (
+            selectedAnswerRef.current ?? -1
+        );
         const isCorrect = userAnswer === -1 ? false : userAnswer === currentQ.correctAnswer;
 
         const answerResult: AnswerResult = {
@@ -154,7 +169,9 @@ export default function QuizModal({
 
     const correctCount = answers.filter(a => a.isCorrect).length;
     const totalQuestions = questions.length;
-    const percentage = Math.round((correctCount / totalQuestions) * 100);
+    const percentage = Math.round((
+                                      correctCount / totalQuestions
+                                  ) * 100);
 
     if (showResults) {
         return (
@@ -175,9 +192,12 @@ export default function QuizModal({
                             </div>
                             <div className="text-lg">
                                 {percentage >= 80 && <span className="text-green-500">{t('results.excellent')}</span>}
-                                {percentage >= 60 && percentage < 80 && <span className="text-blue-500">{t('results.good')}</span>}
-                                {percentage >= 40 && percentage < 60 && <span className="text-yellow-500">{t('results.average')}</span>}
-                                {percentage < 40 && <span className="text-red-500">{t('results.needsImprovement')}</span>}
+                                {percentage >= 60 && percentage < 80 && <span
+                                    className="text-blue-500">{t('results.good')}</span>}
+                                {percentage >= 40 && percentage < 60 && <span
+                                    className="text-yellow-500">{t('results.average')}</span>}
+                                {percentage < 40 && <span
+                                    className="text-red-500">{t('results.needsImprovement')}</span>}
                             </div>
                         </div>
 
@@ -203,9 +223,9 @@ export default function QuizModal({
                                         >
                                             <div className="flex items-start gap-3 mb-2">
                                                 {isCorrect ? (
-                                                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
+                                                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 shrink-0"/>
                                                 ) : (
-                                                    <XCircle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
+                                                    <XCircle className="w-5 h-5 text-red-500 mt-0.5 shrink-0"/>
                                                 )}
                                                 <div className="flex-1">
                                                     <div className="font-semibold mb-1">
@@ -213,30 +233,50 @@ export default function QuizModal({
                                                     </div>
                                                     {isCorrect ? (
                                                         <div className="text-sm">
-                                                            <span className="font-medium">{t('results.yourAnswer')} : </span>
+                                                            <span
+                                                                className="font-medium">{t('results.yourAnswer')} : </span>
                                                             <span className="text-green-500">
                                                                 {isQuestionTrueFalse
-                                                                    ? (answer?.userAnswer === 0 ? t('results.true') : t('results.false'))
-                                                                    : (options[answer?.userAnswer ?? -1] || t('results.noAnswer'))}
+                                                                    ? (
+                                                                        answer?.userAnswer
+                                                                        === 0 ? t('results.true') : t('results.false')
+                                                                    )
+                                                                    : (
+                                                                        options[answer?.userAnswer ?? -1]
+                                                                        || t('results.noAnswer')
+                                                                    )}
                                                             </span>
                                                         </div>
                                                     ) : (
                                                         <div className="text-sm space-y-1">
                                                             <div>
-                                                                <span className="font-medium">{t('results.yourAnswer')} : </span>
+                                                                <span
+                                                                    className="font-medium">{t('results.yourAnswer')} : </span>
                                                                 <span className="text-red-500">
                                                                     {answer?.userAnswer === -1
                                                                         ? t('results.timeout')
-                                                                        : (isQuestionTrueFalse
-                                                                            ? (answer?.userAnswer === 0 ? t('results.true') : t('results.false'))
-                                                                            : (options[answer?.userAnswer ?? -1] || t('results.noAnswer')))}
+                                                                        : (
+                                                                            isQuestionTrueFalse
+                                                                                ? (
+                                                                                    answer?.userAnswer
+                                                                                    === 0 ? t('results.true') : t('results.false')
+                                                                                )
+                                                                                : (
+                                                                                    options[answer?.userAnswer ?? -1]
+                                                                                    || t('results.noAnswer')
+                                                                                )
+                                                                        )}
                                                                 </span>
                                                             </div>
                                                             <div>
-                                                                <span className="font-medium">{t('results.correctAnswer')} : </span>
+                                                                <span
+                                                                    className="font-medium">{t('results.correctAnswer')} : </span>
                                                                 <span className="text-green-500">
                                                                     {isQuestionTrueFalse
-                                                                        ? (question.correctAnswer === 0 ? t('results.true') : t('results.false'))
+                                                                        ? (
+                                                                            question.correctAnswer
+                                                                            === 0 ? t('results.true') : t('results.false')
+                                                                        )
                                                                         : options[question.correctAnswer]}
                                                                 </span>
                                                             </div>
@@ -266,8 +306,14 @@ export default function QuizModal({
         );
     }
 
-    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-    const timeProgress = (timeLeft / TIME_PER_QUESTION) * 100;
+    const progress = (
+                         (
+                             currentQuestionIndex + 1
+                         ) / questions.length
+                     ) * 100;
+    const timeProgress = (
+                             timeLeft / TIME_PER_QUESTION
+                         ) * 100;
 
     return (
         <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -296,7 +342,7 @@ export default function QuizModal({
                     <div className="space-y-2">
                         <div className="flex justify-between items-center text-sm">
                             <div className="flex items-center gap-2">
-                                <Clock className="w-4 h-4" />
+                                <Clock className="w-4 h-4"/>
                                 <span>{t('timeLeft')}</span>
                             </div>
                             <span className={cn(
@@ -349,7 +395,9 @@ export default function QuizModal({
                                     </button>
                                 </>
                             ) : (
-                                (currentQuestion ? getOptions(currentQuestion) : []).map((option, index) => (
+                                (
+                                    currentQuestion ? getOptions(currentQuestion) : []
+                                ).map((option, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleAnswerSelect(index)}
@@ -377,7 +425,7 @@ export default function QuizModal({
                             className="gap-2"
                         >
                             {isLastQuestion ? t('finish') : t('next')}
-                            {!isLastQuestion && <ArrowRight className="w-4 h-4" />}
+                            {!isLastQuestion && <ArrowRight className="w-4 h-4"/>}
                         </Button>
                     </div>
                 </div>

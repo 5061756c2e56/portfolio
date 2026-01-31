@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -155,7 +166,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
         if (searchQuery) {
             const q = searchQuery.toLowerCase();
             filtered = filtered.filter((c) => c.sha.toLowerCase().startsWith(q)
-                                         || c.shortSha.toLowerCase().startsWith(q));
+                                              || c.shortSha.toLowerCase().startsWith(q));
         }
 
         filtered.sort((a, b) => {
@@ -265,14 +276,16 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
                                                 className="text-xs text-muted-foreground px-2 py-0.5 rounded-full bg-blue-500/10 shrink-0">
                                                 {filteredCommits.length} commit{filteredCommits.length > 1 ? 's' : ''}
                                             </span>
-                                            <span className={cn('text-xs text-muted-foreground ml-auto', isRepoExpanded && 'text-blue-500')}>
+                                            <span className={cn('text-xs text-muted-foreground ml-auto', isRepoExpanded
+                                                                                                         && 'text-blue-500')}>
                                                 {isRepoExpanded ? '—' : '+'}
                                             </span>
                                         </button>
                                         {isRepoExpanded && (
                                             <button
                                                 type="button"
-                                                onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
+                                                onClick={() => setSortOrder(sortOrder
+                                                                            === 'newest' ? 'oldest' : 'newest')}
                                                 className={cn(
                                                     'flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs shrink-0',
                                                     'border border-blue-500/20 bg-blue-500/5',

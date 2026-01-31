@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { getPrisma } from '@/lib/prisma';
 import { getStartDateForRange } from '@/lib/github/utils';
 import { ALLOWED_REPOSITORIES, CommitItem, PERIOD_CONFIGS, RepoParam, TimeRange } from './types';
@@ -476,7 +487,9 @@ export async function getContributorCommitCountsFromDB(
 
     const dbRepos = await prisma.repository.findMany({
         where: {
-            OR: repos.map((r: RepoParam) => ({ owner: r.owner, name: r.name }))
+            OR: repos.map((r: RepoParam) => (
+                { owner: r.owner, name: r.name }
+            ))
         },
         select: { id: true }
     });

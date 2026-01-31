@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -375,17 +386,21 @@ function PatchnoteContent({
                                 node?.type === 'element' &&
                                 Array.isArray(node.children)
                                     ? node.children
-                                        .filter((c): c is { type: 'text'; value: string } => c.type === 'text')
-                                        .map(c => c.value)
-                                        .join('')
+                                          .filter((c): c is { type: 'text'; value: string } => c.type === 'text')
+                                          .map(c => c.value)
+                                          .join('')
                                     : null;
                             let value =
                                 raw ??
-                                (typeof children === 'string'
-                                    ? children
-                                    : Array.isArray(children)
-                                        ? children.map(c => (typeof c === 'string' ? c : '')).join('')
-                                        : String(children ?? ''));
+                                (
+                                    typeof children === 'string'
+                                        ? children
+                                        : Array.isArray(children)
+                                            ? children.map(c => (
+                                                typeof c === 'string' ? c : ''
+                                            )).join('')
+                                            : String(children ?? '')
+                                );
                             value = value.replace(/&#123;/g, '{').replace(/&#125;/g, '}');
                             return (
                                 <code className={className} {...props}>

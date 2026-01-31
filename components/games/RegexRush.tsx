@@ -1,6 +1,17 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
-import { useCallback, useId, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -62,6 +73,21 @@ function seededShuffle<T>(arr: T[], seed: number): T[] {
     return a;
 }
 
+function makeRandomSeed(): number {
+    try {
+        if (typeof crypto !== 'undefined' && 'getRandomValues' in crypto) {
+            const u = new Uint32Array(1);
+            crypto.getRandomValues(u);
+            return u[0] >>> 0;
+        }
+    } catch {
+        // ignore
+    }
+    return (
+               Math.random() * 4294967296
+           ) >>> 0;
+}
+
 type Challenge = {
     id: ChallengeId;
     goal: string;
@@ -76,11 +102,12 @@ type Phase = 'idle' | 'locked' | 'complete';
 export default function RegexRush() {
     const t = useTranslations('games.regexrush');
 
-    const uid = useId();
-    const baseSeed = useMemo(() => hashStringToSeed(uid), [uid]);
+    const [baseSeed] = useState(() => makeRandomSeed());
     const [nonce, setNonce] = useState(0);
 
-    const order = useMemo(() => seededShuffle(IDS, baseSeed + nonce), [baseSeed, nonce]);
+    const order = useMemo(() => seededShuffle(IDS, (
+                                                       baseSeed + nonce
+                                                   ) >>> 0), [baseSeed, nonce]);
 
     const [idx, setIdx] = useState(0);
     const [score, setScore] = useState(0);
@@ -98,7 +125,9 @@ export default function RegexRush() {
         };
 
         return order.map((id) => {
-            const options = t.raw(`challenges.${id}.options`) as unknown as string[];
+            const options = (
+                                t.raw(`challenges.${id}.options`) as unknown as string[]
+                            ) ?? [];
             return {
                 id,
                 goal: getText(`challenges.${id}.goal`),
@@ -118,10 +147,14 @@ export default function RegexRush() {
         const len = current.options.length;
         const indices = Array.from({ length: len }, (_, i) => i);
         const seed = (
-                         baseSeed + nonce + idx * 101 + hashStringToSeed(current.id)
+                         baseSeed +
+                         nonce +
+                         idx * 101 +
+                         hashStringToSeed(current.id) +
+                         hashStringToSeed(current.options.join('\u0000'))
                      ) >>> 0;
         return seededShuffle(indices, seed);
-    }, [baseSeed, nonce, idx, current.id, current.options.length]);
+    }, [baseSeed, nonce, idx, current.id, current.options]);
 
     const lockAnswer = useCallback(
         (originalIndex: number) => {
@@ -166,7 +199,9 @@ export default function RegexRush() {
     }, [idx, phase, total]);
 
     const restart = useCallback(() => {
-        setNonce((n) => n + 1);
+        setNonce((n) => (
+                            n + 1 + makeRandomSeed()
+                        ) >>> 0);
         setIdx(0);
         setScore(0);
         setStreak(0);
@@ -240,15 +275,17 @@ export default function RegexRush() {
                                 )}
                             >
                                 {isCorrect ? <CheckCircle2 className="w-4 h-4"/> : <XCircle className="w-4 h-4"/>}
-                                <span
-                                    className="font-medium">{isCorrect ? t('feedback.correct') : t('feedback.incorrect')}</span>
+                                <span className="font-medium">
+                                    {isCorrect ? t('feedback.correct') : t('feedback.incorrect')}
+                                </span>
                             </div>
                         )}
-                        
+
                         <div className="rounded-xl border border-blue-500/10 bg-muted/40 p-4">
                             <div className="text-sm text-muted-foreground mb-2 break-words">{current.goal}</div>
-                            <pre
-                                className="text-sm font-mono whitespace-pre-wrap break-words leading-relaxed">{current.input}</pre>
+                            <pre className="text-sm font-mono whitespace-pre-wrap break-words leading-relaxed">
+                                {current.input}
+                            </pre>
                         </div>
 
                         <div className="grid gap-2">
@@ -268,9 +305,7 @@ export default function RegexRush() {
                                         className={cn(
                                             'w-full text-left px-3 py-2 rounded-xl border transition-all duration-200',
                                             'font-mono text-sm leading-snug break-words',
-                                            locked
-                                                ? 'cursor-not-allowed opacity-90'
-                                                : 'hover:bg-blue-500/5 hover:border-blue-500/30',
+                                            locked ? 'cursor-not-allowed opacity-90' : 'hover:bg-blue-500/5 hover:border-blue-500/30',
                                             active ? 'border-blue-500/40 bg-blue-500/5' : 'border-border bg-transparent',
                                             showCorrect &&
                                             'border-emerald-500/70 bg-emerald-500/15 text-foreground shadow-[0_0_0_1px_rgba(16,185,129,0.25)]',

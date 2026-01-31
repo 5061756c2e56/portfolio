@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import { useCallback, useId, useMemo, useState } from 'react';
@@ -246,7 +257,7 @@ export default function SqlSleuth() {
                                 className="font-medium">{isCorrect ? t('feedback.correct') : t('feedback.incorrect')}</span>
                         </div>
                     )}
-                    
+
                     <div className="rounded-xl border border-blue-500/10 bg-muted/40 p-4">
                         <pre
                             className="text-sm font-mono whitespace-pre-wrap break-words leading-relaxed">{current.query}</pre>

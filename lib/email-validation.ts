@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { z } from 'zod';
 
 const MAX_NAME_LENGTH = 100;
@@ -9,7 +20,7 @@ function sanitizeString(input: unknown): string {
     if (typeof input !== 'string') {
         return '';
     }
-    
+
     return input
         .trim()
         .replace(/[\x00-\x1F\x7F]/g, '')
@@ -32,31 +43,31 @@ function sanitizeEmail(input: string): string {
 
 const emailFormSchema = z.object({
     from_name: z.string()
-        .min(3, { message: 'nameMin' })
-        .max(MAX_NAME_LENGTH, { message: 'nameMax' })
-        .transform((val) => sanitizeString(val).slice(0, MAX_NAME_LENGTH)),
+                .min(3, { message: 'nameMin' })
+                .max(MAX_NAME_LENGTH, { message: 'nameMax' })
+                .transform((val) => sanitizeString(val).slice(0, MAX_NAME_LENGTH)),
     from_email: z.string()
-        .max(MAX_EMAIL_LENGTH, { message: 'emailMax' })
-        .refine((val) => {
-            const trimmed = val.trim();
-            if (trimmed === '') return true;
-            return trimmed.includes('@');
-        }, { message: 'emailMissingAt' })
-        .refine((val) => {
-            const trimmed = val.trim();
-            if (trimmed === '') return true;
-            if (!trimmed.includes('@')) return true;
-            return z.string().email().safeParse(trimmed).success;
-        }, { message: 'emailInvalid' })
-        .transform((val) => sanitizeEmail(val)),
+                 .max(MAX_EMAIL_LENGTH, { message: 'emailMax' })
+                 .refine((val) => {
+                     const trimmed = val.trim();
+                     if (trimmed === '') return true;
+                     return trimmed.includes('@');
+                 }, { message: 'emailMissingAt' })
+                 .refine((val) => {
+                     const trimmed = val.trim();
+                     if (trimmed === '') return true;
+                     if (!trimmed.includes('@')) return true;
+                     return z.string().email().safeParse(trimmed).success;
+                 }, { message: 'emailInvalid' })
+                 .transform((val) => sanitizeEmail(val)),
     subject: z.string()
-        .min(10, { message: 'subjectMin' })
-        .max(MAX_SUBJECT_LENGTH, { message: 'subjectMax' })
-        .transform((val) => sanitizeString(val).slice(0, MAX_SUBJECT_LENGTH)),
+              .min(10, { message: 'subjectMin' })
+              .max(MAX_SUBJECT_LENGTH, { message: 'subjectMax' })
+              .transform((val) => sanitizeString(val).slice(0, MAX_SUBJECT_LENGTH)),
     message: z.string()
-        .min(20, { message: 'messageMin' })
-        .max(MAX_MESSAGE_LENGTH, { message: 'messageMax' })
-        .transform((val) => sanitizeString(val).slice(0, MAX_MESSAGE_LENGTH))
+              .min(20, { message: 'messageMin' })
+              .max(MAX_MESSAGE_LENGTH, { message: 'messageMax' })
+              .transform((val) => sanitizeString(val).slice(0, MAX_MESSAGE_LENGTH))
 }).strict();
 
 export type EmailFormData = z.infer<typeof emailFormSchema>;
@@ -101,26 +112,31 @@ export function validateEmailForm(data: unknown, t?: TranslationFunction): Valid
     } catch (error) {
         if (error instanceof z.ZodError) {
             const errors: Partial<Record<keyof EmailFormData, string>> = {};
-            
+
             error.issues.forEach((err) => {
                 let path: keyof EmailFormData | null = null;
-                
+
                 if (err.path && err.path.length > 0) {
                     path = err.path[0] as keyof EmailFormData;
                 }
-                
+
                 if (path) {
                     let messageKey: string | null = null;
-                    
+
                     if (err.code === 'too_small') {
-                        if (path === 'from_name') messageKey = 'nameMin';
-                        else if (path === 'subject') messageKey = 'subjectMin';
-                        else if (path === 'message') messageKey = 'messageMin';
+                        if (path === 'from_name') {
+                            messageKey = 'nameMin';
+                        } else if (path === 'subject') {
+                            messageKey = 'subjectMin';
+                        } else if (path === 'message') messageKey = 'messageMin';
                     } else if (err.code === 'too_big') {
-                        if (path === 'from_name') messageKey = 'nameMax';
-                        else if (path === 'from_email') messageKey = 'emailMax';
-                        else if (path === 'subject') messageKey = 'subjectMax';
-                        else if (path === 'message') messageKey = 'messageMax';
+                        if (path === 'from_name') {
+                            messageKey = 'nameMax';
+                        } else if (path === 'from_email') {
+                            messageKey = 'emailMax';
+                        } else if (path === 'subject') {
+                            messageKey = 'subjectMax';
+                        } else if (path === 'message') messageKey = 'messageMax';
                     } else if (err.code === 'invalid_format') {
                         if ('validation' in err && err.validation === 'email') {
                             messageKey = 'emailInvalid';
@@ -132,7 +148,7 @@ export function validateEmailForm(data: unknown, t?: TranslationFunction): Valid
                     } else if (err.message) {
                         messageKey = err.message;
                     }
-                    
+
                     if (messageKey) {
                         if (!errors[path]) {
                             errors[path] = getTranslation(messageKey);
@@ -140,13 +156,13 @@ export function validateEmailForm(data: unknown, t?: TranslationFunction): Valid
                     }
                 }
             });
-            
+
             return {
                 valid: false,
                 errors
             };
         }
-        
+
         return {
             valid: false,
             errors: {
@@ -163,17 +179,17 @@ export function sanitizeEmailForm(data: unknown): EmailFormData {
         return emailFormSchema.parse(data);
     } catch {
         const safeData = {
-            from_name: typeof data === 'object' && data !== null && 'from_name' in data 
-                ? sanitizeString(String(data.from_name)).slice(0, MAX_NAME_LENGTH) 
+            from_name: typeof data === 'object' && data !== null && 'from_name' in data
+                ? sanitizeString(String(data.from_name)).slice(0, MAX_NAME_LENGTH)
                 : '',
-            from_email: typeof data === 'object' && data !== null && 'from_email' in data 
+            from_email: typeof data === 'object' && data !== null && 'from_email' in data
                 ? sanitizeEmail(String(data.from_email))
                 : '',
-            subject: typeof data === 'object' && data !== null && 'subject' in data 
-                ? sanitizeString(String(data.subject)).slice(0, MAX_SUBJECT_LENGTH) 
+            subject: typeof data === 'object' && data !== null && 'subject' in data
+                ? sanitizeString(String(data.subject)).slice(0, MAX_SUBJECT_LENGTH)
                 : '',
-            message: typeof data === 'object' && data !== null && 'message' in data 
-                ? sanitizeString(String(data.message)).slice(0, MAX_MESSAGE_LENGTH) 
+            message: typeof data === 'object' && data !== null && 'message' in data
+                ? sanitizeString(String(data.message)).slice(0, MAX_MESSAGE_LENGTH)
                 : ''
         };
         return emailFormSchema.parse(safeData);

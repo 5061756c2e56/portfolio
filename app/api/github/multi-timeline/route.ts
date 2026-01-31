@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { NextRequest } from 'next/server';
 import { getCommitActivity } from '@/lib/github/api';
 import { getTTLForRange, withCache } from '@/lib/github/cache';
@@ -7,8 +18,8 @@ import { parseMultiRepoQueryParams } from '@/lib/github/route-params';
 import { getTimelineFromDB, isDatabaseConfigured } from '@/lib/github/db-queries';
 import { transformCommitActivity } from '@/lib/github/utils';
 import {
-    ALLOWED_REPOSITORIES, GitHubAPIError, MultiRepoTimelinePoint, REPO_COLORS, RepoParam,
-    RepoTimeline, TimeRange, VALID_TIME_RANGES
+    ALLOWED_REPOSITORIES, GitHubAPIError, MultiRepoTimelinePoint, REPO_COLORS, RepoParam, RepoTimeline, TimeRange,
+    VALID_TIME_RANGES
 } from '@/lib/github/types';
 
 function generateCacheKey(repos: RepoParam[], range: TimeRange, locale: string) {
@@ -36,13 +47,15 @@ export async function GET(request: NextRequest) {
 
             if (useDB) {
                 const db = await getTimelineFromDB(validRepos, range, locale);
-                timelines = db.timelines.map((t, index) => ({
-                    repoName: t.repoName,
-                    repoDisplayName: t.displayName,
-                    color: REPO_COLORS[index % REPO_COLORS.length],
-                    data: t.timeline,
-                    totalCommits: t.totalCommits
-                }));
+                timelines = db.timelines.map((t, index) => (
+                    {
+                        repoName: t.repoName,
+                        repoDisplayName: t.displayName,
+                        color: REPO_COLORS[index % REPO_COLORS.length],
+                        data: t.timeline,
+                        totalCommits: t.totalCommits
+                    }
+                ));
                 combinedTimeline = db.combinedTimeline as MultiRepoTimelinePoint[];
             } else {
                 const commitActivities = await Promise.all(
@@ -112,9 +125,10 @@ export async function GET(request: NextRequest) {
 
         return createJsonResponse(data, {
             headers: {
-                ...(useDB
-                    ? { 'Cache-Control': 'no-store, no-cache, must-revalidate', 'X-Data-Source': 'database' }
-                    : { 'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate` }
+                ...(
+                    useDB
+                        ? { 'Cache-Control': 'no-store, no-cache, must-revalidate', 'X-Data-Source': 'database' }
+                        : { 'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate` }
                 ),
                 'X-Cache': fromCache ? 'HIT' : 'MISS'
             }
