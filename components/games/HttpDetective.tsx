@@ -226,8 +226,8 @@ export default function HttpDetective() {
                                 className={cn(
                                     'inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm border',
                                     isCorrect
-                                        ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500'
-                                        : 'bg-red-500/10 border-red-500/20 text-red-500'
+                                        ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-600 dark:text-emerald-400 shadow-[0_0_0_1px_rgba(16,185,129,0.35)]'
+                                        : 'bg-red-500/20 border-red-500/50 text-red-600 dark:text-red-400 shadow-[0_0_0_1px_rgba(239,68,68,0.35)]'
                                 )}
                             >
                                 {isCorrect ? <CheckCircle2 className="w-4 h-4"/> : <XCircle className="w-4 h-4"/>}
@@ -261,8 +261,10 @@ export default function HttpDetective() {
                                         'text-sm',
                                         locked ? 'cursor-not-allowed opacity-90' : 'hover:bg-blue-500/5 hover:border-blue-500/30',
                                         active ? 'border-blue-500/40 bg-blue-500/5' : 'border-border bg-transparent',
-                                        showCorrect && 'border-emerald-500/40 bg-emerald-500/5',
-                                        showWrong && 'border-red-500/40 bg-red-500/5'
+                                        showCorrect
+                                        && 'border-emerald-500/70 bg-emerald-500/15 text-foreground shadow-[0_0_0_1px_rgba(16,185,129,0.25)]',
+                                        showWrong
+                                        && 'border-red-500/70 bg-red-500/15 text-foreground shadow-[0_0_0_1px_rgba(239,68,68,0.25)]'
                                     )}
                                 >
                                     {opt}
