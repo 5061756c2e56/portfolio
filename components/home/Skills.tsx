@@ -72,11 +72,13 @@ export default function Skills() {
     const [selectedCategory, setSelectedCategory] = useState<Category>('all');
     const [page, setPage] = useState(0);
 
-    const filteredSkills = useMemo(() => {
-        return selectedCategory === 'all' ? skills : skills.filter((s) => s.category === selectedCategory);
-    }, [selectedCategory]);
-
     const pageSize = isMobile ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE;
+
+    const filteredSkills = useMemo(() => {
+        return selectedCategory === 'all'
+            ? skills
+            : skills.filter((s) => s.category === selectedCategory);
+    }, [selectedCategory]);
 
     const pages = useMemo(() => {
         const out: Skill[][] = [];
@@ -89,11 +91,17 @@ export default function Skills() {
     const pageCount = pages.length;
 
     useEffect(() => {
-        setPage(0);
-    }, [selectedCategory, pageSize]);
+        if (page === 0) return;
+        const id = window.requestAnimationFrame(() => setPage(0));
+        return () => window.cancelAnimationFrame(id);
+    }, [pageSize, page]);
 
     useEffect(() => {
-        if (page > pageCount - 1) setPage(Math.max(0, pageCount - 1));
+        const clamped = Math.max(0, Math.min(page, pageCount - 1));
+        if (clamped === page) return;
+
+        const id = window.requestAnimationFrame(() => setPage(clamped));
+        return () => window.cancelAnimationFrame(id);
     }, [page, pageCount]);
 
     const categories: { key: Category; label: string }[] = [
@@ -104,13 +112,22 @@ export default function Skills() {
         { key: 'other', label: t('categories.other') }
     ];
 
-    const canPrev = page > 0;
-    const canNext = page < pageCount - 1;
+    const handleSelectCategory = (key: Category) => {
+        if (key === selectedCategory) return;
+        setSelectedCategory(key);
+        setPage(0);
+    };
+
+    const safePage = Math.max(0, Math.min(page, pageCount - 1));
+    const canPrev = safePage > 0;
+    const canNext = safePage < pageCount - 1;
 
     const goPrev = () => setPage((p) => Math.max(0, p - 1));
     const goNext = () => setPage((p) => Math.min(pageCount - 1, p + 1));
 
-    const pageItems = useMemo(() => getPageItems(page, pageCount), [page, pageCount]);
+    const pageItems = useMemo(() => getPageItems(safePage, pageCount), [safePage, pageCount]);
+
+    type DescKey = Parameters<typeof tDescriptions>[0];
 
     return (
         <section id="skills" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative">
@@ -125,7 +142,7 @@ export default function Skills() {
                             key={category.key}
                             variant={selectedCategory === category.key ? 'default' : 'outline'}
                             size="sm"
-                            onClick={() => setSelectedCategory(category.key)}
+                            onClick={() => handleSelectCategory(category.key)}
                         >
                             {category.label}
                         </Button>
@@ -137,17 +154,20 @@ export default function Skills() {
                         <div className="overflow-hidden">
                             <div
                                 className="flex transition-transform duration-500 ease-out"
-                                style={{ transform: `translateX(-${page * 100}%)` }}
+                                style={{ transform: `translateX(-${safePage * 100}%)` }}
                             >
                                 {pages.map((skillsPage, pageIndex) => {
                                     const fillers = Math.max(0, pageSize - skillsPage.length);
+
                                     return (
                                         <div key={pageIndex} className="w-full shrink-0">
                                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                                                 {skillsPage.map((skill, index) => {
                                                     let description: string | undefined;
+
                                                     try {
-                                                        description = tDescriptions(skill.name as any);
+                                                        description = tDescriptions(skill.name as unknown as DescKey);
+
                                                         if (
                                                             !description ||
                                                             description === skill.name ||
@@ -163,9 +183,11 @@ export default function Skills() {
                                                         <Tooltip key={`${pageIndex}-${index}`}>
                                                             <TooltipTrigger asChild>
                                                                 <div
-                                                                    className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer">
+                                                                    className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer"
+                                                                >
                                                                     <div
-                                                                        className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300">
+                                                                        className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300"
+                                                                    >
                                                                         <SkillIcon
                                                                             name={skill.name}
                                                                             className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300"
@@ -176,6 +198,7 @@ export default function Skills() {
                                                                     </h3>
                                                                 </div>
                                                             </TooltipTrigger>
+
                                                             {description && (
                                                                 <TooltipContent side="bottom" sideOffset={8}>
                                                                     <p className="leading-relaxed">{description}</p>
@@ -226,7 +249,7 @@ export default function Skills() {
                                             <PaginationItem key={it}>
                                                 <PaginationLink
                                                     href="#"
-                                                    isActive={it === page}
+                                                    isActive={it === safePage}
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         setPage(it);

@@ -37,50 +37,42 @@ interface AnswerResult {
 
 const TIME_PER_QUESTION = 30;
 
-export default function QuizModal({
-    isOpen,
-    onClose,
-    level,
-    questions,
-    locale
-}: QuizModalProps) {
+export default function QuizModal({ isOpen, onClose, level, questions, locale }: QuizModalProps) {
     const t = useTranslations('quiz.modal');
+
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
     const [answers, setAnswers] = useState<AnswerResult[]>([]);
     const [showResults, setShowResults] = useState(false);
-    const [questionStartTime, setQuestionStartTime] = useState(Date.now());
 
     const selectedAnswerRef = useRef<number | null>(null);
-    const questionStartTimeRef = useRef(Date.now());
+    const questionStartTimeRef = useRef<number>(Date.now());
     const answersRef = useRef<AnswerResult[]>([]);
 
-    if (!questions || questions.length === 0) {
-        return null;
-    }
-
-    const currentQuestion = questions[currentQuestionIndex];
-    const isLastQuestion = currentQuestionIndex === questions.length - 1;
+    const hasQuestions = Array.isArray(questions) && questions.length > 0;
+    const currentQuestion = hasQuestions ? questions[currentQuestionIndex] : null;
+    const isLastQuestion = hasQuestions ? currentQuestionIndex === questions.length - 1 : false;
     const isTrueFalse = currentQuestion?.type === 'true-false';
 
     const resetQuiz = useCallback(() => {
         setCurrentQuestionIndex(0);
         setSelectedAnswer(null);
         selectedAnswerRef.current = null;
+
         setTimeLeft(TIME_PER_QUESTION);
+
         setAnswers([]);
         answersRef.current = [];
+
         setShowResults(false);
+
         const now = Date.now();
-        setQuestionStartTime(now);
         questionStartTimeRef.current = now;
     }, []);
 
     useEffect(() => {
-        if (!isOpen) {
-            resetQuiz();
-        }
+        if (!isOpen) resetQuiz();
     }, [isOpen, resetQuiz]);
 
     const handleAnswerSelect = (answerIndex: number) => {
@@ -88,40 +80,46 @@ export default function QuizModal({
         selectedAnswerRef.current = answerIndex;
     };
 
-    const handleNextQuestion = useCallback((timeout: boolean = false) => {
-        const currentQ = questions[currentQuestionIndex];
-        if (currentQuestionIndex >= questions.length || !currentQ) {
-            if (answersRef.current.length < questions.length) {
-                setShowResults(true);
+    const handleNextQuestion = useCallback(
+        (timeout = false) => {
+            if (!hasQuestions) return;
+
+            const currentQ = questions[currentQuestionIndex];
+            if (!currentQ) {
+                if (answersRef.current.length < questions.length) setShowResults(true);
+                return;
             }
-            return;
-        }
 
-        const timeSpent = timeout ? TIME_PER_QUESTION : Math.floor((
-                                                                       Date.now() - questionStartTimeRef.current
-                                                                   ) / 1000);
-        const userAnswer = timeout ? -1 : (
-            selectedAnswerRef.current ?? -1
-        );
-        const isCorrect = userAnswer === -1 ? false : userAnswer === currentQ.correctAnswer;
+            const timeSpent = timeout
+                ? TIME_PER_QUESTION
+                : Math.floor((
+                                 Date.now() - questionStartTimeRef.current
+                             ) / 1000);
 
-        const answerResult: AnswerResult = {
-            questionId: currentQ.id,
-            userAnswer: userAnswer === -1 ? -1 : userAnswer,
-            correctAnswer: currentQ.correctAnswer,
-            isCorrect,
-            timeSpent
-        };
+            const userAnswer = timeout ? -1 : (
+                selectedAnswerRef.current ?? -1
+            );
+            const isCorrect = userAnswer !== -1 && userAnswer === currentQ.correctAnswer;
 
-        answersRef.current = [...answersRef.current, answerResult];
-        setAnswers([...answersRef.current]);
+            const answerResult: AnswerResult = {
+                questionId: currentQ.id,
+                userAnswer,
+                correctAnswer: currentQ.correctAnswer,
+                isCorrect,
+                timeSpent
+            };
 
-        if (currentQuestionIndex === questions.length - 1) {
-            setShowResults(true);
-        } else {
-            setCurrentQuestionIndex((prev) => prev + 1);
-        }
-    }, [currentQuestionIndex, questions]);
+            answersRef.current = [...answersRef.current, answerResult];
+            setAnswers(answersRef.current);
+
+            if (currentQuestionIndex === questions.length - 1) {
+                setShowResults(true);
+            } else {
+                setCurrentQuestionIndex((prev) => prev + 1);
+            }
+        },
+        [currentQuestionIndex, hasQuestions, questions]
+    );
 
     useEffect(() => {
         if (!isOpen || showResults || !currentQuestion) return;
@@ -129,14 +127,13 @@ export default function QuizModal({
         setTimeLeft(TIME_PER_QUESTION);
         setSelectedAnswer(null);
         selectedAnswerRef.current = null;
-        const now = Date.now();
-        setQuestionStartTime(now);
-        questionStartTimeRef.current = now;
 
-        const timer = setInterval(() => {
+        questionStartTimeRef.current = Date.now();
+
+        const timer = window.setInterval(() => {
             setTimeLeft((prev) => {
                 if (prev <= 1) {
-                    clearInterval(timer);
+                    window.clearInterval(timer);
                     handleNextQuestion(true);
                     return 0;
                 }
@@ -144,7 +141,7 @@ export default function QuizModal({
             });
         }, 1000);
 
-        return () => clearInterval(timer);
+        return () => window.clearInterval(timer);
     }, [currentQuestionIndex, isOpen, showResults, currentQuestion, handleNextQuestion]);
 
     const handleClose = () => {
@@ -152,20 +149,24 @@ export default function QuizModal({
         onClose();
     };
 
+    const effectiveLocale: 'fr' | 'en' = locale === 'fr' ? 'fr' : 'en';
+
     const getQuestionText = (question: QuizQuestion) => {
-        if (!question || !question.question) return '';
-        return locale === 'fr' ? question.question.fr : question.question.en;
+        if (!question?.question) return '';
+        return effectiveLocale === 'fr' ? question.question.fr : question.question.en;
     };
 
     const getOptions = (question: QuizQuestion) => {
-        if (!question || !question.options) return [];
-        return locale === 'fr' ? question.options.fr : question.options.en;
+        if (!question?.options) return [];
+        return effectiveLocale === 'fr' ? question.options.fr : question.options.en;
     };
 
     const getExplanation = (question: QuizQuestion) => {
-        if (!question || !question.explanation) return null;
-        return locale === 'fr' ? question.explanation.fr : question.explanation.en;
+        if (!question?.explanation) return null;
+        return effectiveLocale === 'fr' ? question.explanation.fr : question.explanation.en;
     };
+
+    if (!hasQuestions) return null;
 
     const correctCount = answers.filter(a => a.isCorrect).length;
     const totalQuestions = questions.length;
@@ -175,8 +176,8 @@ export default function QuizModal({
 
     if (showResults) {
         return (
-            <Dialog open={isOpen} onOpenChange={handleClose}>
-                <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+            <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
+                <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto" data-level={String(level)}>
                     <DialogHeader>
                         <DialogTitle className="text-2xl">{t('results.title')}</DialogTitle>
                         <DialogDescription>{t('results.description')}</DialogDescription>
@@ -192,12 +193,15 @@ export default function QuizModal({
                             </div>
                             <div className="text-lg">
                                 {percentage >= 80 && <span className="text-green-500">{t('results.excellent')}</span>}
-                                {percentage >= 60 && percentage < 80 && <span
-                                    className="text-blue-500">{t('results.good')}</span>}
-                                {percentage >= 40 && percentage < 60 && <span
-                                    className="text-yellow-500">{t('results.average')}</span>}
-                                {percentage < 40 && <span
-                                    className="text-red-500">{t('results.needsImprovement')}</span>}
+                                {percentage >= 60 && percentage < 80 && (
+                                    <span className="text-blue-500">{t('results.good')}</span>
+                                )}
+                                {percentage >= 40 && percentage < 60 && (
+                                    <span className="text-yellow-500">{t('results.average')}</span>
+                                )}
+                                {percentage < 40 && (
+                                    <span className="text-red-500">{t('results.needsImprovement')}</span>
+                                )}
                             </div>
                         </div>
 
@@ -231,6 +235,7 @@ export default function QuizModal({
                                                     <div className="font-semibold mb-1">
                                                         {t('results.question')} {index + 1}: {getQuestionText(question)}
                                                     </div>
+
                                                     {isCorrect ? (
                                                         <div className="text-sm">
                                                             <span
@@ -238,12 +243,13 @@ export default function QuizModal({
                                                             <span className="text-green-500">
                                                                 {isQuestionTrueFalse
                                                                     ? (
-                                                                        answer?.userAnswer
-                                                                        === 0 ? t('results.true') : t('results.false')
+                                                                        answer?.userAnswer === 0
+                                                                            ? t('results.true')
+                                                                            : t('results.false')
                                                                     )
                                                                     : (
-                                                                        options[answer?.userAnswer ?? -1]
-                                                                        || t('results.noAnswer')
+                                                                        options[answer?.userAnswer ?? -1] ??
+                                                                        t('results.noAnswer')
                                                                     )}
                                                             </span>
                                                         </div>
@@ -255,33 +261,35 @@ export default function QuizModal({
                                                                 <span className="text-red-500">
                                                                     {answer?.userAnswer === -1
                                                                         ? t('results.timeout')
-                                                                        : (
-                                                                            isQuestionTrueFalse
-                                                                                ? (
-                                                                                    answer?.userAnswer
-                                                                                    === 0 ? t('results.true') : t('results.false')
-                                                                                )
-                                                                                : (
-                                                                                    options[answer?.userAnswer ?? -1]
-                                                                                    || t('results.noAnswer')
-                                                                                )
-                                                                        )}
+                                                                        : isQuestionTrueFalse
+                                                                            ? (
+                                                                                answer?.userAnswer === 0
+                                                                                    ? t('results.true')
+                                                                                    : t('results.false')
+                                                                            )
+                                                                            : (
+                                                                                options[answer?.userAnswer ?? -1] ??
+                                                                                t('results.noAnswer')
+                                                                            )}
                                                                 </span>
                                                             </div>
                                                             <div>
-                                                                <span
-                                                                    className="font-medium">{t('results.correctAnswer')} : </span>
+                                                                <span className="font-medium">
+                                                                    {t('results.correctAnswer')} :{' '}
+                                                                </span>
                                                                 <span className="text-green-500">
                                                                     {isQuestionTrueFalse
                                                                         ? (
-                                                                            question.correctAnswer
-                                                                            === 0 ? t('results.true') : t('results.false')
+                                                                            question.correctAnswer === 0
+                                                                                ? t('results.true')
+                                                                                : t('results.false')
                                                                         )
                                                                         : options[question.correctAnswer]}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     )}
+
                                                     {explanation && (
                                                         <div className="mt-2 text-sm text-muted-foreground italic">
                                                             {explanation}
@@ -316,8 +324,8 @@ export default function QuizModal({
                          ) * 100;
 
     return (
-        <Dialog open={isOpen} onOpenChange={handleClose}>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-level={String(level)}>
                 <DialogHeader>
                     <DialogTitle className="text-xl">{t('title')}</DialogTitle>
                     <DialogDescription>
@@ -329,13 +337,13 @@ export default function QuizModal({
                     <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                             <span>{t('progress')}</span>
-                            <span>{currentQuestionIndex + 1} / {questions.length}</span>
+                            <span>
+                                {currentQuestionIndex + 1} / {questions.length}
+                            </span>
                         </div>
                         <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-foreground transition-all duration-300"
-                                style={{ width: `${progress}%` }}
-                            />
+                            <div className="h-full bg-foreground transition-all duration-300"
+                                 style={{ width: `${progress}%` }}/>
                         </div>
                     </div>
 
@@ -345,10 +353,12 @@ export default function QuizModal({
                                 <Clock className="w-4 h-4"/>
                                 <span>{t('timeLeft')}</span>
                             </div>
-                            <span className={cn(
-                                'font-semibold',
-                                timeLeft <= 5 ? 'text-red-500' : timeLeft <= 10 ? 'text-yellow-500' : ''
-                            )}>
+                            <span
+                                className={cn(
+                                    'font-semibold',
+                                    timeLeft <= 5 ? 'text-red-500' : timeLeft <= 10 ? 'text-yellow-500' : ''
+                                )}
+                            >
                                 {timeLeft}s
                             </span>
                         </div>
@@ -364,9 +374,7 @@ export default function QuizModal({
                     </div>
 
                     <div className="p-6 rounded-xl border border-border bg-card">
-                        <h3 className="text-lg font-semibold mb-4">
-                            {currentQuestion ? getQuestionText(currentQuestion) : ''}
-                        </h3>
+                        <h3 className="text-lg font-semibold mb-4">{currentQuestion ? getQuestionText(currentQuestion) : ''}</h3>
 
                         <div className="space-y-3">
                             {isTrueFalse ? (

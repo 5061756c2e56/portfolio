@@ -16,6 +16,37 @@ import { getClientIP } from '@/lib/request-utils';
 const RATE_LIMIT_WINDOW = 60 * 1000;
 const MAX_REQUESTS = 3;
 
+interface RateLimitEntry {
+    count: number;
+    resetTime: number;
+}
+
+type RateLimitStore = Record<string, RateLimitEntry>;
+
+type RedisPipelineExecResult = Array<[unknown, unknown] | null> | null;
+
+type GlobalWithRateLimit = typeof globalThis & {
+    __rateLimitStore?: RateLimitStore;
+};
+
+function getGlobalRateLimitStore(): RateLimitStore {
+    const g = globalThis as GlobalWithRateLimit;
+    if (!g.__rateLimitStore) g.__rateLimitStore = {};
+    return g.__rateLimitStore;
+}
+
+function parsePipelineNumber(results: RedisPipelineExecResult, index: number): number | null {
+    const row = results?.[index];
+    if (!row) return null;
+    const value = row[1];
+    if (typeof value === 'number') return value;
+    if (typeof value === 'string') {
+        const n = Number.parseInt(value, 10);
+        return Number.isFinite(n) ? n : null;
+    }
+    return null;
+}
+
 export async function rateLimit(request: NextRequest): Promise<{ allowed: boolean; remaining: number }> {
     const ip = getClientIP(request);
     const now = Date.now();
@@ -33,42 +64,35 @@ export async function rateLimit(request: NextRequest): Promise<{ allowed: boolea
             pipeline.zadd(key, now, `${now}-${Math.random()}`);
             pipeline.expire(key, Math.ceil(RATE_LIMIT_WINDOW / 1000));
 
-            const results = await pipeline.exec();
+            const results = (
+                await pipeline.exec()
+            ) as RedisPipelineExecResult;
+            const count = parsePipelineNumber(results, 1);
 
-            if (results && results[1] && results[1][1]) {
-                const count = results[1][1] as number;
-
+            if (count !== null) {
                 if (count >= MAX_REQUESTS) {
                     return { allowed: false, remaining: 0 };
                 }
-
                 return { allowed: true, remaining: MAX_REQUESTS - count - 1 };
             }
         }
 
         const fallbackKey = `rate_limit_memory_${ip}`;
-        const memoryStore = (
-                                global as any
-                            ).__rateLimitStore || {};
-        (
-            global as any
-        ).__rateLimitStore = memoryStore;
+        const memoryStore = getGlobalRateLimitStore();
 
-        if (!memoryStore[fallbackKey] || now > memoryStore[fallbackKey].resetTime) {
-            memoryStore[fallbackKey] = {
-                count: 1,
-                resetTime: now + RATE_LIMIT_WINDOW
-            };
+        const entry = memoryStore[fallbackKey];
+        if (!entry || now > entry.resetTime) {
+            memoryStore[fallbackKey] = { count: 1, resetTime: now + RATE_LIMIT_WINDOW };
             return { allowed: true, remaining: MAX_REQUESTS - 1 };
         }
 
-        if (memoryStore[fallbackKey].count >= MAX_REQUESTS) {
+        if (entry.count >= MAX_REQUESTS) {
             return { allowed: false, remaining: 0 };
         }
 
-        memoryStore[fallbackKey].count++;
-        return { allowed: true, remaining: MAX_REQUESTS - memoryStore[fallbackKey].count };
-    } catch (error) {
+        entry.count += 1;
+        return { allowed: true, remaining: MAX_REQUESTS - entry.count };
+    } catch {
         if (process.env.NODE_ENV !== 'production') {
             console.error('[Rate Limit] Error');
         }
@@ -141,10 +165,12 @@ export function validateOrigin(request: NextRequest): boolean {
                 const hostWithoutWww = hostLower.replace(/^www\./, '');
                 const originWithoutWww = originHost.replace(/^www\./, '');
 
-                if (originHost !== hostLower &&
+                if (
+                    originHost !== hostLower &&
                     originHost !== `www.${hostLower}` &&
                     originWithoutWww !== hostLower &&
-                    originWithoutWww !== hostWithoutWww) {
+                    originWithoutWww !== hostWithoutWww
+                ) {
                     logSecurityEvent(request, 'origin_host_mismatch', { origin: originHost, host });
                     return false;
                 }
@@ -180,10 +206,12 @@ export function validateOrigin(request: NextRequest): boolean {
                 const hostWithoutWww = hostLower.replace(/^www\./, '');
                 const refererWithoutWww = refererHost.replace(/^www\./, '');
 
-                if (refererHost !== hostLower &&
+                if (
+                    refererHost !== hostLower &&
                     refererHost !== `www.${hostLower}` &&
                     refererWithoutWww !== hostLower &&
-                    refererWithoutWww !== hostWithoutWww) {
+                    refererWithoutWww !== hostWithoutWww
+                ) {
                     logSecurityEvent(request, 'referer_host_mismatch', { referer: refererHost, host });
                     return false;
                 }
@@ -203,12 +231,14 @@ function logSecurityEvent(request: NextRequest, event: string, data?: Record<str
     if (process.env.NODE_ENV === 'production') {
         const ip = getClientIP(request);
         const timestamp = new Date().toISOString();
-        const sanitizedData = data ? Object.fromEntries(
-            Object.entries(data).map(([key, value]) => [
-                key,
-                typeof value === 'string' ? value.substring(0, 100) : value
-            ])
-        ) : {};
+        const sanitizedData = data
+            ? Object.fromEntries(
+                Object.entries(data).map(([key, value]) => [
+                    key,
+                    typeof value === 'string' ? value.substring(0, 100) : value
+                ])
+            )
+            : {};
         console.warn(`[SECURITY] ${timestamp} - ${event} - IP: ${ip}`, sanitizedData);
     }
 }

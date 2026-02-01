@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowRight, GitCommit, GitFork, Loader2, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -19,6 +19,12 @@ import { useInView } from '@/hooks/use-in-view';
 import { Link } from '@/i18n/routing';
 import { ALLOWED_REPOSITORIES, LoadingState, MultiRepoStatsResponse } from '@/lib/github/types';
 import { SiGithub } from 'react-icons/si';
+
+const REPOS_QUERY = encodeURIComponent(
+    JSON.stringify(ALLOWED_REPOSITORIES.map(({ owner, name }) => (
+        { owner, name }
+    )))
+);
 
 export function GitHubActivities() {
     const t = useTranslations('githubStats');
@@ -28,42 +34,50 @@ export function GitHubActivities() {
     const [loadingState, setLoadingState] = useState<LoadingState>('idle');
     const [error, setError] = useState<string | null>(null);
 
-    const fetchStats = useCallback(async () => {
+    const hasFetchedRef = useRef(false);
+    const inFlightRef = useRef(false);
+
+    const fetchStats = useCallback(async (signal: AbortSignal) => {
+        if (inFlightRef.current) return;
+        inFlightRef.current = true;
+
         setLoadingState('loading');
         setError(null);
 
         try {
-            const reposParam = ALLOWED_REPOSITORIES.map(r => (
-                {
-                    owner: r.owner,
-                    name: r.name
-                }
-            ));
             const response = await fetch(
-                `/api/github/multi-stats?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=12m`
+                `/api/github/multi-stats?repos=${REPOS_QUERY}&range=12m`,
+                { signal }
             );
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch stats');
-            }
+            if (!response.ok) throw new Error('Failed to fetch stats');
 
             const data: MultiRepoStatsResponse = await response.json();
             setStats(data);
             setLoadingState('success');
         } catch (err) {
+            if (err instanceof DOMException && err.name === 'AbortError') return;
+
             console.error('Error fetching stats:', err);
             setError(err instanceof Error ? err.message : 'Une erreur est survenue');
             setLoadingState('error');
+        } finally {
+            inFlightRef.current = false;
         }
     }, []);
 
     useEffect(() => {
-        fetchStats();
-    }, [fetchStats]);
+        if (!isInView || hasFetchedRef.current) return;
 
-    if (error && loadingState === 'error') {
-        return null;
-    }
+        hasFetchedRef.current = true;
+        const controller = new AbortController();
+
+        void fetchStats(controller.signal);
+
+        return () => controller.abort();
+    }, [isInView, fetchStats]);
+
+    if (error && loadingState === 'error') return null;
 
     const commits = stats?.stats?.totalCommits ?? 0;
     const stars = stats?.stats?.stars ?? 0;

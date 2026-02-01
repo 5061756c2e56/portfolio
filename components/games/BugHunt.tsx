@@ -570,13 +570,24 @@ function shuffledOptions() {
 export default function BugHunt() {
     const t = useTranslations('games.bughunt');
 
-    const [currentChallenge, setCurrentChallenge] = useState<BugChallenge | null>(null);
+    const [initialChallenge] = useState<BugChallenge>(
+        () => BUG_CHALLENGES[randInt(BUG_CHALLENGES.length)]
+    );
+
+    const [currentChallenge, setCurrentChallenge] = useState<BugChallenge | null>(
+        () => initialChallenge
+    );
+
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [isAnswered, setIsAnswered] = useState(false);
     const [score, setScore] = useState(0);
     const [streak, setStreak] = useState(0);
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
-    const [usedChallenges, setUsedChallenges] = useState<Set<number>>(() => new Set());
+
+    const [usedChallenges, setUsedChallenges] = useState<Set<number>>(
+        () => new Set([initialChallenge.id])
+    );
+
     const [showExplanation, setShowExplanation] = useState(false);
     const [options, setOptions] = useState<number[]>(() => shuffledOptions());
 
@@ -607,10 +618,6 @@ export default function BugHunt() {
         setIsAnswered(false);
         setShowExplanation(false);
     }, []);
-
-    useEffect(() => {
-        getNextChallenge();
-    }, [getNextChallenge]);
 
     const handleAnswerSelect = (optionId: number) => {
         if (isAnswered || !currentChallenge) return;

@@ -129,11 +129,11 @@ const BANK = {
             'L\'essentiel, c\'est d\'être régulier, pas parfait.',
             'Les bonnes habitudes rendent les journées plus légères.',
             'Fais simple, puis améliore.',
-            'Quand c\'est flou, note-le.',
+            'Quand c’est flou, note-le.',
             'Une liste courte vaut mieux qu’un plan immense.',
             'La meilleure énergie vient d\'un départ net.',
             'La qualité naît des détails répétés.',
-            'Un petit pas maintenant, c\'est énorme demain.',
+            'Un petit pas maintenant, c’est énorme demain.',
             'Une décision claire enlève beaucoup de stress.',
             'Le calme est un super pouvoir moderne.',
             'Tu peux changer d\'avis, pas ton effort.',
@@ -154,7 +154,7 @@ const BANK = {
             'Objectif : 2 tâches importantes, puis 1 pause.',
             'Rappel : 1 % par jour, c\'est énorme sur une année.',
             'Plan : 25 minutes focus, 5 minutes off, et on recommence.',
-            'Budget : 120 € pour l\'essentiel, 30 € pour le plaisir.',
+            'Budget : 120 € pour l’essentiel, 30 € pour le plaisir.',
             'Trajet : 18 minutes à pied, 4 minutes de marge.',
             'Routine : eau, lumière, mouvement, puis travail.',
             'Score : 9 / 10 quand tu restes simple et constant.',
@@ -169,7 +169,7 @@ const BANK = {
             'Respire : inspire, expire, recommence.',
             'Tu peux hésiter — mais tu avances quand même.',
             'Ce n\'est pas parfait, et alors ?',
-            'Un pas, puis un autre ; c\'est tout.',
+            'Un pas, puis un autre ; c’est tout.',
             'Parfois, "assez bien" est déjà excellent.',
             'On se concentre ici : maintenant.',
             'Ça arrive ; on corrige ; on continue.'
@@ -215,7 +215,7 @@ const BANK = {
                 'Rappelle-toi que la régularité bat la vitesse.',
                 'Mieux vaut faire peu, mais le faire bien.',
                 'La constance transforme les journées.',
-                'Un petit pas maintenant vaut beaucoup plus qu\'une intention.',
+                'Un petit pas maintenant vaut beaucoup plus qu’une intention.',
                 'L\'important est de continuer, même lentement.'
             ]
         }
@@ -396,6 +396,27 @@ function generateChunk(locale: 'fr' | 'en', mode: Mode, difficulty: Difficulty, 
     return parts.join(' ');
 }
 
+function readBest(key: string): number | null {
+    try {
+        if (typeof window === 'undefined') return null;
+        const raw = window.localStorage.getItem(key);
+        const n = raw == null ? null : Number(raw);
+        return Number.isFinite(n) ? n : null;
+    } catch {
+        return null;
+    }
+}
+
+function writeBest(key: string, value: number): boolean {
+    try {
+        if (typeof window === 'undefined') return false;
+        window.localStorage.setItem(key, String(value));
+        return true;
+    } catch {
+        return false;
+    }
+}
+
 function CustomSelect<T extends string>({
     value,
     onChange,
@@ -412,43 +433,40 @@ function CustomSelect<T extends string>({
     dropdownAlign?: 'left' | 'right';
 }) {
     const [open, setOpen] = useState(false);
-    const rootRef = useRef<HTMLDivElement | null>(null);
+    const openEffective = Boolean(open && !disabled);
 
-    useEffect(() => {
-        const onPointerDown = (e: PointerEvent) => {
-            if (!rootRef.current) return;
-            if (!rootRef.current.contains(e.target as Node)) setOpen(false);
-        };
-        window.addEventListener('pointerdown', onPointerDown);
-        return () => window.removeEventListener('pointerdown', onPointerDown);
-    }, []);
-
-    useEffect(() => {
-        if (disabled) setOpen(false);
+    const close = useCallback(() => setOpen(false), []);
+    const toggle = useCallback(() => {
+        if (disabled) return;
+        setOpen((v) => !v);
     }, [disabled]);
 
     const current = options.find((o) => o.value === value);
 
     return (
-        <div ref={rootRef} className="relative inline-block">
+        <div className="relative inline-block">
             <button
                 type="button"
                 aria-label={label}
                 aria-haspopup="listbox"
-                aria-expanded={open}
+                aria-expanded={openEffective}
                 disabled={disabled}
-                onClick={() => !disabled && setOpen((v) => !v)}
+                onClick={toggle}
                 className={cn(
                     'h-10 px-3 rounded-xl border border-blue-500/20 bg-transparent text-sm',
                     'inline-flex items-center gap-2',
                     'transition-all duration-300',
-                    disabled ? 'opacity-60 cursor-not-allowed' : 'hover:bg-blue-500/10 hover:border-blue-500/40 hover:text-blue-500',
+                    disabled
+                        ? 'opacity-60 cursor-not-allowed'
+                        : 'hover:bg-blue-500/10 hover:border-blue-500/40 hover:text-blue-500',
                     'focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30'
                 )}
             >
                 <span className="whitespace-nowrap">{current?.label ?? value}</span>
-                <ChevronDown className={cn('w-4 h-4 transition-transform', open && 'rotate-180')}/>
+                <ChevronDown className={cn('w-4 h-4 transition-transform', openEffective && 'rotate-180')}/>
             </button>
+
+            {openEffective && <div aria-hidden="true" className="fixed inset-0 z-40" onPointerDown={close}/>}
 
             <div
                 role="listbox"
@@ -457,7 +475,7 @@ function CustomSelect<T extends string>({
                     'absolute top-full mt-2 min-w-48 rounded-xl border border-blue-500/20 bg-card/95 backdrop-blur-md shadow-xl shadow-blue-500/5 p-1 z-50',
                     'transition-all duration-150',
                     dropdownAlign === 'right' ? 'right-0 origin-top-right' : 'left-0 origin-top-left',
-                    open ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
+                    openEffective ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
                 )}
             >
                 {options.map((opt) => {
@@ -470,13 +488,15 @@ function CustomSelect<T extends string>({
                             aria-selected={active}
                             onClick={() => {
                                 onChange(opt.value);
-                                setOpen(false);
+                                close();
                             }}
                             className={cn(
                                 'w-full px-2.5 py-2 rounded-lg text-sm text-left',
                                 'flex items-center justify-between gap-2',
                                 'transition-all duration-200',
-                                active ? 'bg-blue-500/10 text-blue-500' : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
+                                active
+                                    ? 'bg-blue-500/10 text-blue-500'
+                                    : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
                             )}
                         >
                             <span>{opt.label}</span>
@@ -489,16 +509,21 @@ function CustomSelect<T extends string>({
     );
 }
 
+type DurationValue = ( typeof GAME_DURATIONS )[number];
+type DurationString = `${DurationValue}`;
+
 export default function TypingSpeed() {
     const t = useTranslations('games.typing');
     const rawLocale = useLocale();
-    const locale = rawLocale === 'fr' || rawLocale === 'en' ? rawLocale : 'fr';
+    const locale: 'fr' | 'en' = rawLocale === 'fr' || rawLocale === 'en' ? rawLocale : 'fr';
 
     const [gameState, setGameState] = useState<GameState>('idle');
 
     const [difficulty, setDifficulty] = useState<Difficulty>(DEFAULT_DIFFICULTY);
     const [mode, setMode] = useState<Mode>(DEFAULT_MODE);
-    const [duration, setDuration] = useState<( typeof GAME_DURATIONS )[number]>(DEFAULT_DURATION);
+    const [duration, setDuration] = useState<DurationValue>(DEFAULT_DURATION);
+
+    const [runDuration, setRunDuration] = useState<DurationValue>(DEFAULT_DURATION);
 
     const [text, setText] = useState('');
     const [typed, setTyped] = useState('');
@@ -506,6 +531,10 @@ export default function TypingSpeed() {
     const [timeLeft, setTimeLeft] = useState<number>(DEFAULT_DURATION);
 
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const timeLeftRef = useRef<number>(DEFAULT_DURATION);
+    const runDurationRef = useRef<number>(DEFAULT_DURATION);
+    const runBestKeyRef = useRef<string>('');
+
     const usedRef = useRef<Set<string>>(new Set());
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -516,32 +545,22 @@ export default function TypingSpeed() {
     const [mistakeKeystrokes, setMistakeKeystrokes] = useState(0);
     const [correctKeystrokes, setCorrectKeystrokes] = useState(0);
 
-    const [bestWpm, setBestWpm] = useState<number | null>(null);
+    const totalRef = useRef(0);
+    const mistakeRef = useRef(0);
+    const correctRef = useRef(0);
+
     const [isNewBest, setIsNewBest] = useState(false);
+    const [bestVersion, setBestVersion] = useState(0);
 
     const bestKey = useMemo(() => {
         return `${BEST_WPM_PREFIX}:${locale}:${difficulty}:${mode}:${duration}`;
     }, [difficulty, duration, locale, mode]);
 
+    const bestWpm = useMemo(() => readBest(bestKey), [bestKey, bestVersion]);
+
     useEffect(() => {
         textRef.current = text;
     }, [text]);
-
-    useEffect(() => {
-        if (gameState === 'idle') setTimeLeft(duration);
-    }, [duration, gameState]);
-
-    useEffect(() => {
-        try {
-            const raw = localStorage.getItem(bestKey);
-            const n = raw == null ? null : Number(raw);
-            setBestWpm(Number.isFinite(n as number) ? (
-                n as number
-            ) : null);
-        } catch {
-            setBestWpm(null);
-        }
-    }, [bestKey]);
 
     const stopTimer = useCallback(() => {
         if (intervalRef.current) {
@@ -549,6 +568,47 @@ export default function TypingSpeed() {
             intervalRef.current = null;
         }
     }, []);
+
+    useEffect(() => {
+        return () => stopTimer();
+    }, [stopTimer]);
+
+    const computeNetWpmForRun = useCallback(() => {
+        const seconds = runDurationRef.current;
+        if (seconds <= 0) return 0;
+        const minutes = seconds / 60;
+
+        const gross = (
+                      totalRef.current / 5
+                      ) / minutes;
+        const penalty = (
+                        mistakeRef.current / 5
+                        ) / minutes;
+        const net = Math.max(0, gross - penalty);
+
+        return Math.round(Math.min(300, net));
+    }, []);
+
+    const finishRun = useCallback(() => {
+        stopTimer();
+        setGameState('finished');
+
+        const key = runBestKeyRef.current || bestKey;
+        const wpm = computeNetWpmForRun();
+
+        const prevBest = readBest(key);
+        const improved = prevBest == null ? true : wpm > prevBest;
+
+        if (improved) {
+            const wrote = writeBest(key, wpm);
+            if (wrote) setBestVersion((v) => v + 1);
+            setIsNewBest(true);
+        } else {
+            setIsNewBest(false);
+        }
+
+        requestAnimationFrame(() => inputRef.current?.blur());
+    }, [bestKey, computeNetWpmForRun, stopTimer]);
 
     const hardReset = useCallback(() => {
         stopTimer();
@@ -560,12 +620,20 @@ export default function TypingSpeed() {
         setMode(DEFAULT_MODE);
         setDuration(DEFAULT_DURATION);
 
+        setRunDuration(DEFAULT_DURATION);
+        runDurationRef.current = DEFAULT_DURATION;
+
         setText('');
         setTyped('');
         typedRef.current = '';
         textRef.current = '';
 
         setTimeLeft(DEFAULT_DURATION);
+        timeLeftRef.current = DEFAULT_DURATION;
+
+        totalRef.current = 0;
+        correctRef.current = 0;
+        mistakeRef.current = 0;
 
         setTotalKeystrokes(0);
         setCorrectKeystrokes(0);
@@ -587,7 +655,15 @@ export default function TypingSpeed() {
         typedRef.current = '';
         textRef.current = '';
 
+        setRunDuration(duration);
+        runDurationRef.current = duration;
+
         setTimeLeft(duration);
+        timeLeftRef.current = duration;
+
+        totalRef.current = 0;
+        correctRef.current = 0;
+        mistakeRef.current = 0;
 
         setTotalKeystrokes(0);
         setCorrectKeystrokes(0);
@@ -609,7 +685,15 @@ export default function TypingSpeed() {
         typedRef.current = '';
         textRef.current = '';
 
+        setRunDuration(duration);
+        runDurationRef.current = duration;
+
         setTimeLeft(duration);
+        timeLeftRef.current = duration;
+
+        totalRef.current = 0;
+        correctRef.current = 0;
+        mistakeRef.current = 0;
 
         setTotalKeystrokes(0);
         setCorrectKeystrokes(0);
@@ -619,10 +703,6 @@ export default function TypingSpeed() {
 
         requestAnimationFrame(() => inputRef.current?.blur());
     }, [duration, stopTimer]);
-
-    useEffect(() => {
-        return () => stopTimer();
-    }, [stopTimer]);
 
     const ensureMoreText = useCallback(() => {
         const need = Math.max(120, difficulty === 'easy' ? 160 : difficulty === 'medium' ? 240 : 320);
@@ -640,6 +720,22 @@ export default function TypingSpeed() {
         usedRef.current.clear();
         setIsNewBest(false);
 
+        runBestKeyRef.current = bestKey;
+
+        setRunDuration(duration);
+        runDurationRef.current = duration;
+
+        timeLeftRef.current = duration;
+        setTimeLeft(duration);
+
+        totalRef.current = 0;
+        correctRef.current = 0;
+        mistakeRef.current = 0;
+
+        setTotalKeystrokes(0);
+        setCorrectKeystrokes(0);
+        setMistakeKeystrokes(0);
+
         const used = usedRef.current;
         const initial = generateChunk(locale, mode, difficulty, used);
         const second = generateChunk(locale, mode, difficulty, used);
@@ -651,26 +747,17 @@ export default function TypingSpeed() {
         setTyped('');
         typedRef.current = '';
 
-        setTotalKeystrokes(0);
-        setCorrectKeystrokes(0);
-        setMistakeKeystrokes(0);
-
-        setTimeLeft(duration);
         setGameState('playing');
 
         intervalRef.current = setInterval(() => {
-            setTimeLeft((prev) => {
-                if (prev <= 1) {
-                    stopTimer();
-                    setGameState('finished');
-                    return 0;
-                }
-                return prev - 1;
-            });
+            const next = Math.max(0, timeLeftRef.current - 1);
+            timeLeftRef.current = next;
+            setTimeLeft(next);
+            if (next === 0) finishRun();
         }, 1000);
 
         requestAnimationFrame(() => inputRef.current?.focus());
-    }, [difficulty, duration, locale, mode, stopTimer]);
+    }, [bestKey, difficulty, duration, finishRun, locale, mode, stopTimer]);
 
     const pushChars = useCallback(
         (raw: string) => {
@@ -678,7 +765,7 @@ export default function TypingSpeed() {
             if (!raw) return;
 
             const target = textRef.current;
-            let next = typedRef.current;
+            let nextTyped = typedRef.current;
 
             let addTotal = 0;
             let addCorrect = 0;
@@ -687,7 +774,7 @@ export default function TypingSpeed() {
             for (const ch of raw) {
                 if (ch === '\n' || ch === '\r') continue;
 
-                const pos = next.length;
+                const pos = nextTyped.length;
                 const expected = target[pos] ?? '';
 
                 addTotal += 1;
@@ -697,15 +784,19 @@ export default function TypingSpeed() {
                     addMistakes += 1;
                 }
 
-                next += ch;
+                nextTyped += ch;
             }
 
-            typedRef.current = next;
-            setTyped(next);
+            typedRef.current = nextTyped;
+            setTyped(nextTyped);
 
-            setTotalKeystrokes((v) => v + addTotal);
-            setCorrectKeystrokes((v) => v + addCorrect);
-            setMistakeKeystrokes((v) => v + addMistakes);
+            totalRef.current += addTotal;
+            correctRef.current += addCorrect;
+            mistakeRef.current += addMistakes;
+
+            setTotalKeystrokes(totalRef.current);
+            setCorrectKeystrokes(correctRef.current);
+            setMistakeKeystrokes(mistakeRef.current);
 
             ensureMoreText();
         },
@@ -723,6 +814,7 @@ export default function TypingSpeed() {
             const next = cur.slice(0, -1);
             typedRef.current = next;
             setTyped(next);
+
             return;
         }
 
@@ -732,11 +824,20 @@ export default function TypingSpeed() {
         }
     };
 
-    const handleBeforeInput = (e: any) => {
+    const handleBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
         if (gameState !== 'playing') return;
-        const data = e?.data as string | undefined;
+
+        const native = e.nativeEvent;
+        if (!(
+            native instanceof InputEvent
+        )) {
+            return;
+        }
+
+        const data = native.data;
         if (!data) return;
-        e.preventDefault();
+
+        native.preventDefault();
         pushChars(data);
     };
 
@@ -744,11 +845,14 @@ export default function TypingSpeed() {
         e.preventDefault();
     };
 
+    const activeDuration = gameState === 'idle' ? duration : runDuration;
+    const displayTimeLeft = gameState === 'idle' ? duration : timeLeft;
+
     const elapsedSeconds = useMemo(() => {
         if (gameState === 'idle') return 0;
-        const elapsed = duration - timeLeft;
+        const elapsed = activeDuration - displayTimeLeft;
         return Math.max(0, elapsed);
-    }, [duration, gameState, timeLeft]);
+    }, [activeDuration, displayTimeLeft, gameState]);
 
     const netWpm = useMemo(() => {
         if (elapsedSeconds <= 0) return 0;
@@ -773,41 +877,13 @@ export default function TypingSpeed() {
     }, [correctKeystrokes, totalKeystrokes]);
 
     const progress = useMemo(() => {
-        if (duration <= 0) return 0;
+        if (activeDuration <= 0) return 0;
         return Math.max(0, Math.min(100, Math.round((
                                                         (
-                                                            duration - timeLeft
-                                                        ) / duration
+                                                            activeDuration - displayTimeLeft
+                                                        ) / activeDuration
                                                     ) * 100)));
-    }, [duration, timeLeft]);
-
-    useEffect(() => {
-        if (gameState !== 'finished') return;
-
-        let prevBest: number | null = null;
-        try {
-            const raw = localStorage.getItem(bestKey);
-            const n = raw == null ? null : Number(raw);
-            prevBest = Number.isFinite(n as number) ? (
-                n as number
-            ) : null;
-        } catch {
-            prevBest = bestWpm;
-        }
-
-        const improved = prevBest == null ? true : netWpm > prevBest;
-        if (improved) {
-            try {
-                localStorage.setItem(bestKey, String(netWpm));
-            } catch {
-            }
-            setBestWpm(netWpm);
-            setIsNewBest(true);
-        } else {
-            setBestWpm(prevBest);
-            setIsNewBest(false);
-        }
-    }, [bestKey, bestWpm, gameState, netWpm]);
+    }, [activeDuration, displayTimeLeft]);
 
     const renderText = () => {
         const out: React.ReactNode[] = [];
@@ -824,15 +900,15 @@ export default function TypingSpeed() {
                         className={cn('text-muted-foreground', isCaret
                                                                && 'bg-foreground/20 text-foreground rounded-sm')}
                     >
-            {target}
-          </span>
+                        {target}
+                    </span>
                 );
             } else {
                 const ok = typedChar === target;
                 out.push(
                     <span key={i} className={cn(ok ? 'text-green-500' : 'text-red-500 bg-red-500/20 rounded-sm')}>
-            {target}
-          </span>
+                        {target}
+                    </span>
                 );
             }
         }
@@ -862,7 +938,7 @@ export default function TypingSpeed() {
         () =>
             GAME_DURATIONS.map((d) => (
                 {
-                    value: String(d) as `${typeof d}`,
+                    value: String(d) as DurationString,
                     label: `${d}s`
                 }
             )),
@@ -945,10 +1021,10 @@ export default function TypingSpeed() {
                     <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
                         <div className="flex items-center gap-2">
                             <Clock className="w-4 h-4 text-blue-500"/>
-                            <span className={cn('font-mono text-lg', timeLeft <= 10 && gameState === 'playing'
+                            <span className={cn('font-mono text-lg', displayTimeLeft <= 10 && gameState === 'playing'
                                                                      && 'text-red-500')}>
-                {timeLeft}s
-              </span>
+                                {displayTimeLeft}s
+                            </span>
                         </div>
 
                         <div className="flex items-center gap-2">
@@ -995,23 +1071,26 @@ export default function TypingSpeed() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-2 justify-between">
                     <div className="flex items-center gap-2 flex-wrap">
                         <CustomSelect
+                            key={`difficulty-${controlsDisabled ? 'd' : 'e'}`}
                             value={difficulty}
-                            onChange={(v) => setDifficulty(v as Difficulty)}
+                            onChange={setDifficulty}
                             options={difficultyOptions}
                             label="Difficulty"
                             disabled={controlsDisabled}
                         />
                         <CustomSelect
+                            key={`mode-${controlsDisabled ? 'd' : 'e'}`}
                             value={mode}
-                            onChange={(v) => setMode(v as Mode)}
+                            onChange={setMode}
                             options={modeOptions}
                             label="Mode"
                             disabled={controlsDisabled}
                         />
-                        <CustomSelect
-                            value={String(duration) as any}
-                            onChange={(v) => setDuration(Number(v) as any)}
-                            options={durationOptions as any}
+                        <CustomSelect<DurationString>
+                            key={`duration-${controlsDisabled ? 'd' : 'e'}`}
+                            value={String(duration) as DurationString}
+                            onChange={(v) => setDuration(Number(v) as DurationValue)}
+                            options={durationOptions}
                             label="Duration"
                             disabled={controlsDisabled}
                             dropdownAlign="right"

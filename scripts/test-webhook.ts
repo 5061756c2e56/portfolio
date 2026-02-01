@@ -97,4 +97,7 @@ async function testWebhook() {
     }
 }
 
-testWebhook();
+void testWebhook().catch((error) => {
+    console.error('❌ Unhandled error in testWebhook:', error);
+    process.exit(1);
+});

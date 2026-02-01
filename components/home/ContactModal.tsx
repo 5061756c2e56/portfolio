@@ -30,10 +30,22 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { validateEmailForm } from '@/lib/email-validation';
 
+type TurnstileTheme = 'light' | 'dark' | 'auto';
+
+interface TurnstileRenderOptions {
+    sitekey: string;
+    theme?: TurnstileTheme;
+    callback?: (token: string) => void;
+    'expired-callback'?: () => void;
+    'error-callback'?: () => void;
+
+    [key: string]: unknown;
+}
+
 declare global {
     interface Window {
         turnstile?: {
-            render: (el: HTMLElement, options: any) => string;
+            render: (el: HTMLElement, options: TurnstileRenderOptions) => string;
             remove: (widgetId: string) => void;
             reset: (widgetId: string) => void;
         };
@@ -104,7 +116,7 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
     const translateValidation = useCallback(
         (key: string) => {
             try {
-                return tValidation(key as any);
+                return tValidation(key as unknown as Parameters<typeof tValidation>[0]);
             } catch {
                 return key;
             }

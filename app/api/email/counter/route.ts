@@ -13,23 +13,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getEmailCounter } from '@/lib/db';
 import { rateLimit, validateOrigin } from '@/lib/rate-limit';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 export async function GET(request: NextRequest) {
-    if (request.method !== 'GET') {
-        return NextResponse.json(
-            { error: 'Méthode non autorisée' },
-            {
-                status: 405,
-                headers: {
-                    'Allow': 'GET',
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY'
-                }
-            }
-        );
-    }
-
     const rateLimitResult = await rateLimit(request);
 
     if (!rateLimitResult.allowed) {
@@ -62,18 +46,15 @@ export async function GET(request: NextRequest) {
 
     try {
         const counter = await getEmailCounter();
-        return NextResponse.json(
-            counter,
-            {
-                headers: {
-                    'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY',
-                    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
-                }
+        return NextResponse.json(counter, {
+            headers: {
+                'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+                'X-Content-Type-Options': 'nosniff',
+                'X-Frame-Options': 'DENY',
+                'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
             }
-        );
-    } catch (error) {
+        });
+    } catch {
         if (process.env.NODE_ENV !== 'production') {
             console.error('[Counter API] Error');
         }

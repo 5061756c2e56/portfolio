@@ -6,8 +6,7 @@
     "available": "Available for new opportunities",
     "location": "France",
     "role": "Web Integrator",
-    "downloadCVButton": "Download my Curriculum Vitae",
-    "downloadingCV": "Downloading...",
+    "viewCVButton": "See my Curriculum Vitae",
     "downloadingLM": "Downloading...",
     "downloadLMButton": "Download my motivation letter"
   },
@@ -2395,6 +2394,89 @@
         "law": {
           "title": "7. Governing law",
           "p1": "Unless mandatory provisions provide otherwise, this legal notice is governed by French law."
+        }
+      }
+    }
+  },
+  "cv": {
+    "role": "Web Integrator",
+    "badge": "Curriculum Vitae",
+    "title": "Curriculum Vitae",
+    "description": "Detailed overview — {role}, skills and background.",
+    "lastUpdatedLabel": "Last updated:",
+    "actions": {
+      "backHome": "Back to home",
+      "downloadPdf": "Download PDF",
+      "downloadPdfLoading": "Downloading..."
+    },
+    "sections": {
+      "profile": {
+        "title": "Profile",
+        "p1": "I am a curious, dedicated, and motivated person, always ready to take on new challenges. I am passionate about discovering new technologies, continuously learning, and adapting to different environments. My enthusiasm and commitment drive me to give my best in every project and to invest myself fully in achieving the goals set.",
+        "github": "GitHub: add the exact URL",
+        "linkedin": "Linkedln: add the exact URL"
+      },
+      "skills": {
+        "title": "Skills",
+        "frontend": "Front-end",
+        "stateApi": "State & API",
+        "backendData": "Back & Data",
+        "tooling": "Tools & methods",
+        "security": "Security"
+      },
+      "experience": {
+        "title": "Experience",
+        "todoTitle": "To be completed",
+        "todoLine": "Role • Company • Dates • 3–5 measurable outcomes"
+      },
+      "education": {
+        "title": "Education",
+        "badge": "Path"
+      }
+    },
+    "education": {
+      "openclassroom": {
+        "title": "Web Integrator",
+        "level": "Level 5 Diploma (equivalent to a 2-year degree after high school)",
+        "note": "Work-study program",
+        "date": "Present",
+        "bullets": {
+          "1": "Build responsive interfaces with HTML and CSS",
+          "2": "Bring a web page to life with JavaScript and React",
+          "3": "Implement data/state management with Redux",
+          "4": "Use Git for version control and team collaboration",
+          "5": "Debug and optimize an existing website"
+        }
+      },
+      "rascol": {
+        "title": "STI2D Baccalaureate (SIN option)",
+        "org": "Louis Rascol High School | 10 Rue de la République | 81000 Albi",
+        "level": "Technological Baccalaureate",
+        "bullets": {
+          "1": "Python programming",
+          "2": "Web programming (HTML, CSS, JavaScript)",
+          "3": "Database design and administration"
+        }
+      }
+    },
+    "experience": {
+      "pinkail": {
+        "title": "PinkAil Seeds SARL",
+        "date": "01/09/2025 - 08/09/2025",
+        "bullets": {
+          "1": "Sorting and packaging garlic: removal of rotten/damaged/soft/stained/sprouted/deformed bulbs",
+          "2": "Thermotherapies performed"
+        }
+      },
+      "volunteering": {
+        "groupTitle": "Volunteering",
+        "it": {
+          "title": "IT Support",
+          "date": "2022 - Present",
+          "bullets": {
+            "1": "Installation and configuration of Windows & Linux workstations (software, updates), printers, and accounts (Microsoft 365 / Google Workspace)",
+            "2": "User support: onboarding and guidance, troubleshooting common issues, writing short procedures/documentation"
+          }
         }
       }
     }

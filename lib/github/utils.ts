@@ -152,11 +152,8 @@ export function filterCommitsBySearch(
             return true;
         }
 
-        if (commit.message.toLowerCase().includes(lowerQuery)) {
-            return true;
-        }
+        return !!commit.message.toLowerCase().includes(lowerQuery);
 
-        return false;
     });
 }
 

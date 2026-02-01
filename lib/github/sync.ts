@@ -65,15 +65,15 @@ async function githubFetch<T>(endpoint: string, params?: Record<string, string |
 
     const response = await fetch(url.toString(), {
         headers: {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/vnd.github.v3+json',
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github.v3+json',
             'X-GitHub-Api-Version': '2022-11-28'
         }
     });
 
     if (!response.ok) {
-        const rateLimitRemaining = parseInt(response.headers.get('x-ratelimit-remaining') || '0');
-        const rateLimitReset = parseInt(response.headers.get('x-ratelimit-reset') || '0');
+        const rateLimitRemaining = parseInt(response.headers.get('x-ratelimit-remaining') || '0', 10);
+        const rateLimitReset = parseInt(response.headers.get('x-ratelimit-reset') || '0', 10);
 
         if (response.status === 403 && rateLimitRemaining === 0) {
             throw new GitHubAPIError('Rate limit GitHub atteint', 403, rateLimitRemaining, rateLimitReset);
@@ -81,7 +81,9 @@ async function githubFetch<T>(endpoint: string, params?: Record<string, string |
         throw new GitHubAPIError(`Erreur GitHub API: ${response.status}`, response.status);
     }
 
-    return response.json();
+    return (
+        await response.json()
+    ) as T;
 }
 
 async function fetchAllCommitsFromGitHub(owner: string, repo: string): Promise<GitHubCommitRaw[]> {
@@ -109,9 +111,9 @@ async function fetchAllCommitsFromGitHub(owner: string, repo: string): Promise<G
             }
 
             if (hasMore) {
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise<void>((resolve) => setTimeout(resolve, 100));
             }
-        } catch (error) {
+        } catch (error: unknown) {
             console.error(`[Sync] Error fetching page ${page}:`, error);
             throw error;
         }
@@ -160,17 +162,17 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
         const githubCommits = await fetchAllCommitsFromGitHub(owner, repo);
         console.log(`[Sync] Found ${githubCommits.length} commits for ${owner}/${repo}`);
 
-        const existingShas = new Set(
-            (
-                await prisma.commit.findMany({
-                    where: { repositoryId: repository.id },
-                    select: { sha: true }
+        type ShaRow = { sha: string };
+        const shaRows = (
+            await prisma.commit.findMany({
+                where: { repositoryId: repository.id },
+                select: { sha: true }
+            })
+        ) as ShaRow[];
 
-                })
-            ).map((c: any) => c.sha)
-        );
+        const existingShas = new Set<string>(shaRows.map((c) => c.sha));
 
-        const newCommits = githubCommits.filter(c => !existingShas.has(c.sha));
+        const newCommits = githubCommits.filter((c) => !existingShas.has(c.sha));
         console.log(`[Sync] ${newCommits.length} new commits to add`);
 
         const batchSize = 50;
@@ -189,6 +191,7 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
             const commitData = commitsWithDetails.map(({ raw, details }) => {
                 const authorLogin = details?.author?.login ?? raw.author?.login ?? null;
                 const authorAvatar = details?.author?.avatar_url ?? raw.author?.avatar_url ?? null;
+
                 return {
                     sha: raw.sha,
                     shortSha: raw.sha.substring(0, 7),
@@ -199,9 +202,9 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
                     authorAvatar,
                     authorLogin,
                     committedAt: new Date(raw.commit.author.date),
-                    additions: details?.stats?.additions || 0,
-                    deletions: details?.stats?.deletions || 0,
-                    filesChanged: details?.files?.length || 0,
+                    additions: details?.stats?.additions ?? 0,
+                    deletions: details?.stats?.deletions ?? 0,
+                    filesChanged: details?.files?.length ?? 0,
                     htmlUrl: raw.html_url,
                     isMergeCommit: raw.parents.length > 1,
                     repositoryId: repository.id
@@ -217,7 +220,7 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
             console.log(`[Sync] Processed ${Math.min(i + batchSize, newCommits.length)}/${newCommits.length} commits`);
 
             if (i + batchSize < newCommits.length) {
-                await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise<void>((resolve) => setTimeout(resolve, 500));
             }
         }
 
@@ -234,8 +237,10 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
             where: { repositoryId: repository.id, authorLogin: null },
             select: { id: true, sha: true }
         });
+
         if (commitsWithoutLogin.length > 0 && authorBySha.size > 0) {
             console.log(`[Sync] Backfilling authorLogin for ${commitsWithoutLogin.length} existing commits (from list)`);
+
             let backfilled = 0;
             for (const commit of commitsWithoutLogin) {
                 const author = authorBySha.get(commit.sha);
@@ -249,6 +254,7 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
                     backfilled++;
                 }
             }
+
             if (backfilled > 0) {
                 console.log(`[Sync] Backfilled authorLogin for ${backfilled} commits`);
             }
@@ -270,8 +276,7 @@ export async function syncRepository(owner: string, repo: string, displayName?: 
 
         console.log(`[Sync] Completed for ${owner}/${repo}: ${commitsAdded} commits added`);
         return { success: true, commitsAdded };
-
-    } catch (error) {
+    } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         console.error(`[Sync] Failed for ${owner}/${repo}:`, errorMessage);
 
@@ -305,11 +310,11 @@ export async function syncAllRepositories(): Promise<{
             ...result
         });
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise<void>((resolve) => setTimeout(resolve, 1000));
     }
 
-    const success = results.filter(r => r.success).length;
-    const failed = results.filter(r => !r.success).length;
+    const success = results.filter((r) => r.success).length;
+    const failed = results.filter((r) => !r.success).length;
 
     console.log(`[Sync] Completed: ${success} success, ${failed} failed`);
 
@@ -361,9 +366,9 @@ export async function addCommitFromWebhook(
                 }
             },
             update: {
-                additions: details?.stats?.additions || 0,
-                deletions: details?.stats?.deletions || 0,
-                filesChanged: details?.files?.length || 0,
+                additions: details?.stats?.additions ?? 0,
+                deletions: details?.stats?.deletions ?? 0,
+                filesChanged: details?.files?.length ?? 0,
                 authorLogin,
                 authorAvatar
             },
@@ -377,12 +382,12 @@ export async function addCommitFromWebhook(
                 authorAvatar,
                 authorLogin,
                 committedAt: new Date(commitData.timestamp),
-                additions: details?.stats?.additions || 0,
-                deletions: details?.stats?.deletions || 0,
-                filesChanged: details?.files?.length || 0,
+                additions: details?.stats?.additions ?? 0,
+                deletions: details?.stats?.deletions ?? 0,
+                filesChanged: details?.files?.length ?? 0,
                 htmlUrl: commitData.url,
                 isMergeCommit: (
-                                   details?.parents?.length || 0
+                                   details?.parents?.length ?? 0
                                ) > 1,
                 repositoryId: repository.id
             }
@@ -390,8 +395,8 @@ export async function addCommitFromWebhook(
 
         console.log(`[Webhook] Added commit ${commitData.sha.substring(0, 7)} to ${owner}/${repo}`);
         return true;
-    } catch (error) {
-        console.error(`[Webhook] Failed to add commit:`, error);
+    } catch (error: unknown) {
+        console.error('[Webhook] Failed to add commit:', error);
         return false;
     }
 }

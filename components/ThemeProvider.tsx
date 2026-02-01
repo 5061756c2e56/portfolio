@@ -1,36 +1,34 @@
-/*
- * Copyright (c) 2025–2026 Paul Viandier
- * All rights reserved.
- *
- * This source code is proprietary.
- * Commercial use, redistribution, or modification is strictly prohibited
- * without prior written permission.
- *
- * See the LICENSE file in the project root for full license terms.
- */
-
 'use client';
 
 import { useEffect, useState } from 'react';
 import { useTheme } from '@/hooks/use-theme';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const { mounted } = useTheme();
+    const { mounted, theme } = useTheme();
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
-        if (mounted) {
-            const root = document.documentElement;
+        if (!mounted) return;
 
-            if (!root.classList.contains('light') && !root.classList.contains('dark')) {
-                root.classList.add('light');
-            }
+        const root = document.documentElement;
+        const hasThemeClass = root.classList.contains('light') || root.classList.contains('dark');
 
-            requestAnimationFrame(() => {
-                setIsReady(true);
-            });
+        if (!hasThemeClass) {
+            const effectiveTheme =
+                theme === 'system'
+                    ? (
+                        window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+                    )
+                    : theme;
+
+            root.classList.add(effectiveTheme);
+            root.style.colorScheme = effectiveTheme;
         }
-    }, [mounted]);
+
+        requestAnimationFrame(() => {
+            setIsReady(true);
+        });
+    }, [mounted, theme]);
 
     return (
         <div

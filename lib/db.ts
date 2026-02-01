@@ -75,7 +75,7 @@ function getRedisClient(): Redis | null {
             });
         }
 
-        redisClient.on('error', (error) => {
+        redisClient.on('error', () => {
             if (process.env.NODE_ENV !== 'production') {
                 console.error('[Redis] Connection error');
             }
@@ -83,7 +83,7 @@ function getRedisClient(): Redis | null {
         });
 
         return redisClient;
-    } catch (error) {
+    } catch {
         if (process.env.NODE_ENV !== 'production') {
             console.error('[Redis] Failed to create client');
         }
@@ -102,7 +102,7 @@ export async function getKVInstance(): Promise<{ redis: Redis | null; hasRedis: 
             await redis.connect();
         }
         return { redis, hasRedis: true };
-    } catch (error) {
+    } catch {
         if (process.env.NODE_ENV !== 'production') {
             console.error('[Redis] Connection failed');
         }
@@ -150,7 +150,12 @@ export async function getEmailCounter() {
     const key = `email_counter:${month}`;
 
     if (!hasRedis || !redis) {
-        return { count: 0, month };
+        const fileData = await readCounterFile();
+        if (fileData.month !== month) {
+            await writeCounterFile({ count: 0, month });
+            return { count: 0, month };
+        }
+        return { count: fileData.count, month };
     }
 
     const value = await redis.get(key);
@@ -170,7 +175,19 @@ export async function incrementEmailCounter(): Promise<{
     const key = `email_counter:${month}`;
 
     if (!hasRedis || !redis) {
-        return { allowed: false, count: 0, month };
+        const fileData = await readCounterFile();
+
+        if (fileData.month !== month) {
+            const next: CounterData = { count: 1, month };
+            await writeCounterFile(next);
+            return { allowed: 1 <= MONTHLY_LIMIT, count: next.count, month: next.month };
+        }
+
+        const nextCount = fileData.count + 1;
+        const next: CounterData = { count: nextCount, month: fileData.month };
+        await writeCounterFile(next);
+
+        return { allowed: nextCount <= MONTHLY_LIMIT, count: nextCount, month: next.month };
     }
 
     const count = await redis.incr(key);

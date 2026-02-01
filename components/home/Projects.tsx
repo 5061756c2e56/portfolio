@@ -23,13 +23,14 @@ import Image from 'next/image';
 import { SiGithub } from 'react-icons/si';
 
 const techBadges: Record<string, string> = {
-    TypeScript:
-        'https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white',
+    TypeScript: 'https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white',
     NextJS: 'https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js',
     'Tailwind CSS': 'https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=for-the-badge&logo=tailwind-css',
     Redis: 'https://img.shields.io/badge/Redis-7.0-orange?style=for-the-badge&logo=redis',
     EmailJS: 'https://img.shields.io/badge/EmailJS-Contact-blue?style=for-the-badge&logo=mailgun',
-    React: 'https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react'
+    React: 'https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react',
+    PostgreSQL: 'https://img.shields.io/badge/PostgreSQL-DB-4169E1?style=for-the-badge&logo=postgresql&logoColor=white',
+    Prisma: 'https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma'
 };
 
 export default function Projects() {
@@ -48,7 +49,9 @@ export default function Projects() {
                 slug: 'portfolio',
                 title: t('portfolio.title'),
                 description: t('portfolio.description'),
-                technologies: ['TypeScript', 'NextJS', 'Tailwind CSS', 'Redis', 'EmailJS', 'React'],
+                technologies: [
+                    'TypeScript', 'NextJS', 'Tailwind CSS', 'Redis', 'EmailJS', 'React', 'Prisma', 'PostgreSQL'
+                ],
                 buttons: [
                     {
                         label: t('buttonGitHub'),

@@ -65,6 +65,19 @@ function shuffleArray<T>(array: T[]): T[] {
     return shuffled;
 }
 
+function buildDeck(diff: Difficulty): Card[] {
+    const { pairs } = GRID_CONFIG[diff];
+    const selected = shuffleArray(TECH_EMOJIS).slice(0, pairs);
+    return shuffleArray([...selected, ...selected]).map((emoji, index) => (
+        {
+            id: index,
+            emoji,
+            isFlipped: false,
+            isMatched: false
+        }
+    ));
+}
+
 function CustomDifficultySelect({
     value,
     onChange,
@@ -83,17 +96,15 @@ function CustomDifficultySelect({
 
     useEffect(() => {
         const onPointerDown = (e: PointerEvent) => {
-            if (!rootRef.current) return;
-            if (!rootRef.current.contains(e.target as Node)) setOpen(false);
+            const root = rootRef.current;
+            if (!root) return;
+            if (!root.contains(e.target as Node)) setOpen(false);
         };
         window.addEventListener('pointerdown', onPointerDown);
         return () => window.removeEventListener('pointerdown', onPointerDown);
     }, []);
 
-    useEffect(() => {
-        if (disabled) setOpen(false);
-    }, [disabled]);
-
+    const effectiveOpen = open && !disabled;
     const items: Difficulty[] = ['easy', 'medium', 'hard'];
 
     return (
@@ -102,8 +113,11 @@ function CustomDifficultySelect({
                 type="button"
                 aria-label={ariaLabel}
                 aria-haspopup="listbox"
-                aria-expanded={open}
-                onClick={() => !disabled && setOpen((v) => !v)}
+                aria-expanded={effectiveOpen}
+                onClick={() => {
+                    if (disabled) return;
+                    setOpen((v) => !v);
+                }}
                 disabled={disabled}
                 className={cn(
                     'h-10 px-3 rounded-xl border border-blue-500/20 bg-transparent text-sm',
@@ -116,14 +130,14 @@ function CustomDifficultySelect({
                 )}
             >
                 <span className="whitespace-nowrap">{labels[value]}</span>
-                <ChevronDown className={cn('w-4 h-4 transition-transform', open && 'rotate-180')}/>
+                <ChevronDown className={cn('w-4 h-4 transition-transform', effectiveOpen && 'rotate-180')}/>
             </button>
 
             <div
                 className={cn(
                     'absolute left-0 sm:left-auto sm:right-0 mt-2 w-44 origin-top-left sm:origin-top-right rounded-xl border border-blue-500/20 bg-card/95 backdrop-blur-md shadow-xl shadow-blue-500/5 p-1 z-50',
                     'transition-all duration-150',
-                    open ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
+                    effectiveOpen ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
                 )}
                 role="listbox"
                 aria-label={ariaLabel}
@@ -144,7 +158,9 @@ function CustomDifficultySelect({
                                 'w-full px-2.5 py-2 rounded-lg text-sm text-left',
                                 'flex items-center justify-between gap-2',
                                 'transition-all duration-200',
-                                active ? 'bg-blue-500/10 text-blue-500' : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
+                                active
+                                    ? 'bg-blue-500/10 text-blue-500'
+                                    : 'hover:bg-blue-500/10 text-muted-foreground hover:text-blue-500'
                             )}
                         >
                             <span>{labels[it]}</span>
@@ -161,12 +177,11 @@ export default function MemoryGame() {
     const t = useTranslations('games.memory');
 
     const [difficulty, setDifficulty] = useState<Difficulty>('easy');
-    const [cards, setCards] = useState<Card[]>([]);
+    const [cards, setCards] = useState<Card[]>(() => buildDeck('easy'));
     const [flippedIds, setFlippedIds] = useState<number[]>([]);
     const [moves, setMoves] = useState(0);
     const [matches, setMatches] = useState(0);
     const [gameStarted, setGameStarted] = useState(false);
-    const [gameComplete, setGameComplete] = useState(false);
     const [timer, setTimer] = useState(0);
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSwitching, setIsSwitching] = useState(false);
@@ -175,6 +190,7 @@ export default function MemoryGame() {
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     const { pairs, cols } = useMemo(() => GRID_CONFIG[difficulty], [difficulty]);
+    const gameComplete = gameStarted && matches === pairs;
 
     const labels = useMemo(
         () => (
@@ -199,20 +215,6 @@ export default function MemoryGame() {
         }
     }, []);
 
-    const buildDeck = useCallback((diff: Difficulty) => {
-        const { pairs } = GRID_CONFIG[diff];
-        const selected = shuffleArray(TECH_EMOJIS).slice(0, pairs);
-        const deck = shuffleArray([...selected, ...selected]).map((emoji, index) => (
-            {
-                id: index,
-                emoji,
-                isFlipped: false,
-                isMatched: false
-            }
-        ));
-        return deck;
-    }, []);
-
     const applyNewGameState = useCallback(
         (diff: Difficulty) => {
             clearFlipTimeouts();
@@ -222,11 +224,10 @@ export default function MemoryGame() {
             setMoves(0);
             setMatches(0);
             setGameStarted(false);
-            setGameComplete(false);
             setTimer(0);
             setIsProcessing(false);
         },
-        [buildDeck, clearFlipTimeouts, stopTimer]
+        [clearFlipTimeouts, stopTimer]
     );
 
     const initializeGame = useCallback(
@@ -240,12 +241,11 @@ export default function MemoryGame() {
     );
 
     useEffect(() => {
-        initializeGame('easy');
         return () => {
             clearFlipTimeouts();
             stopTimer();
         };
-    }, [initializeGame, clearFlipTimeouts, stopTimer]);
+    }, [clearFlipTimeouts, stopTimer]);
 
     useEffect(() => {
         stopTimer();
@@ -254,51 +254,6 @@ export default function MemoryGame() {
         }
         return stopTimer;
     }, [gameStarted, gameComplete, stopTimer]);
-
-    useEffect(() => {
-        if (gameStarted && matches === pairs) {
-            setGameComplete(true);
-            setIsProcessing(false);
-            setFlippedIds([]);
-            clearFlipTimeouts();
-        }
-    }, [matches, pairs, gameStarted, clearFlipTimeouts]);
-
-    useEffect(() => {
-        if (flippedIds.length !== 2 || isProcessing || gameComplete || isSwitching) return;
-
-        const [aId, bId] = flippedIds;
-        const a = cards.find((c) => c.id === aId);
-        const b = cards.find((c) => c.id === bId);
-        if (!a || !b) return;
-
-        setIsProcessing(true);
-        setMoves((m) => m + 1);
-
-        const isMatch = a.emoji === b.emoji;
-
-        const timeoutId = window.setTimeout(() => {
-            if (isMatch) {
-                setCards((prev) =>
-                    prev.map((c) => (
-                        c.id === aId || c.id === bId ? { ...c, isMatched: true } : c
-                    ))
-                );
-                setMatches((m) => m + 1);
-            } else {
-                setCards((prev) =>
-                    prev.map((c) => (
-                        c.id === aId || c.id === bId ? { ...c, isFlipped: false } : c
-                    ))
-                );
-            }
-
-            setFlippedIds([]);
-            setIsProcessing(false);
-        }, isMatch ? 450 : 850);
-
-        flipTimeoutsRef.current.push(timeoutId);
-    }, [flippedIds, isProcessing, gameComplete, cards, isSwitching]);
 
     const handleDifficultyChange = (d: Difficulty) => {
         if (d === difficulty) return;
@@ -314,10 +269,48 @@ export default function MemoryGame() {
 
         if (!gameStarted) setGameStarted(true);
 
-        setCards((prev) => prev.map((c) => (
-            c.id === cardId ? { ...c, isFlipped: true } : c
-        )));
-        setFlippedIds((prev) => [...prev, cardId]);
+        const nextFlipped = [...flippedIds, cardId];
+
+        setCards((prev) =>
+            prev.map((c) => (
+                c.id === cardId ? { ...c, isFlipped: true } : c
+            ))
+        );
+        setFlippedIds(nextFlipped);
+
+        if (nextFlipped.length !== 2) return;
+
+        const [aId, bId] = nextFlipped;
+        const a = cards.find((c) => c.id === aId);
+        const b = cards.find((c) => c.id === bId);
+        if (!a || !b) return;
+
+        setIsProcessing(true);
+        setMoves((m) => m + 1);
+
+        const isMatch = a.emoji === b.emoji;
+
+        const timeoutId = window.setTimeout(() => {
+            if (isMatch) {
+                setCards((prev) =>
+                    prev.map((c) =>
+                        c.id === aId || c.id === bId ? { ...c, isMatched: true } : c
+                    )
+                );
+                setMatches((m) => m + 1);
+            } else {
+                setCards((prev) =>
+                    prev.map((c) =>
+                        c.id === aId || c.id === bId ? { ...c, isFlipped: false } : c
+                    )
+                );
+            }
+
+            setFlippedIds([]);
+            setIsProcessing(false);
+        }, isMatch ? 450 : 850);
+
+        flipTimeoutsRef.current.push(timeoutId);
     };
 
     const formatTime = (seconds: number) => {
@@ -356,13 +349,14 @@ export default function MemoryGame() {
                     <div className="flex items-center gap-2">
                         <Trophy className="w-4 h-4 text-blue-500"/>
                         <span className="font-mono text-lg">
-              {matches}/{pairs}
-            </span>
+                            {matches}/{pairs}
+                        </span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                     <CustomDifficultySelect
+                        key={isSwitching ? '1' : '0'}
                         value={difficulty}
                         onChange={handleDifficultyChange}
                         labels={labels}
@@ -425,9 +419,10 @@ export default function MemoryGame() {
                                 ) && !card.isMatched && 'cursor-not-allowed'
                             )}
                         >
-              <span className={cn('transition-opacity duration-150', shown ? 'opacity-100' : 'opacity-0')}>
-                {card.emoji}
-              </span>
+                            <span
+                                className={cn('transition-opacity duration-150', shown ? 'opacity-100' : 'opacity-0')}>
+                                {card.emoji}
+                            </span>
                         </button>
                     );
                 })}

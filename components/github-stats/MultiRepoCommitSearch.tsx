@@ -102,7 +102,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
 
     useEffect(() => {
         if (selectedRepos.length > 0) {
-            fetchCommits(searchQuery, selectedRange);
+            void fetchCommits(searchQuery, selectedRange);
         } else {
             setCommitsData(null);
         }
@@ -120,7 +120,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
         if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
 
         searchTimeoutRef.current = setTimeout(() => {
-            fetchCommits(sanitized, selectedRange);
+            void fetchCommits(sanitized, selectedRange);
         }, 300);
     };
 

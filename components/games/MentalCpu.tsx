@@ -266,17 +266,21 @@ function CustomDifficultySelect({
 
     useEffect(() => {
         const onPointerDown = (e: PointerEvent) => {
-            if (!rootRef.current) return;
-            if (!rootRef.current.contains(e.target as Node)) setOpen(false);
+            const root = rootRef.current;
+            if (!root) return;
+            if (!root.contains(e.target as Node)) setOpen(false);
         };
         window.addEventListener('pointerdown', onPointerDown);
         return () => window.removeEventListener('pointerdown', onPointerDown);
     }, []);
 
     useEffect(() => {
-        if (disabled) setOpen(false);
+        if (!disabled) return;
+        const id = window.requestAnimationFrame(() => setOpen(false));
+        return () => window.cancelAnimationFrame(id);
     }, [disabled]);
 
+    const effectiveOpen = open && !disabled;
     const items: Difficulty[] = ['easy', 'medium', 'hard'];
 
     return (
@@ -285,8 +289,11 @@ function CustomDifficultySelect({
                 type="button"
                 aria-label={ariaLabel}
                 aria-haspopup="listbox"
-                aria-expanded={open}
-                onClick={() => !disabled && setOpen((v) => !v)}
+                aria-expanded={effectiveOpen}
+                onClick={() => {
+                    if (disabled) return;
+                    setOpen((v) => !v);
+                }}
                 disabled={disabled}
                 className={cn(
                     'h-10 px-3 rounded-xl border border-blue-500/20 bg-transparent text-sm',
@@ -299,14 +306,14 @@ function CustomDifficultySelect({
                 )}
             >
                 <span className="whitespace-nowrap">{labels[value]}</span>
-                <ChevronDown className={cn('w-4 h-4 transition-transform', open && 'rotate-180')}/>
+                <ChevronDown className={cn('w-4 h-4 transition-transform', effectiveOpen && 'rotate-180')}/>
             </button>
 
             <div
                 className={cn(
                     'absolute left-0 sm:left-auto sm:right-0 mt-2 w-44 origin-top-left sm:origin-top-right rounded-xl border border-blue-500/20 bg-card/95 backdrop-blur-md shadow-xl shadow-blue-500/5 p-1 z-50',
                     'transition-all duration-150',
-                    open ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
+                    effectiveOpen ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'
                 )}
                 role="listbox"
                 aria-label={ariaLabel}
@@ -605,8 +612,12 @@ export default function SpeedMath() {
                                 timer <= 10 ? 'text-red-500 animate-pulse' : 'text-blue-500'
                             )}
                         />
-                        <span className={cn('font-mono text-base sm:text-lg font-bold tabular-nums', timer <= 10
-                                                                                                     && 'text-red-500')}>
+                        <span
+                            className={cn(
+                                'font-mono text-base sm:text-lg font-bold tabular-nums',
+                                timer <= 10 && 'text-red-500'
+                            )}
+                        >
                             {timer}s
                         </span>
                     </div>
@@ -662,7 +673,9 @@ export default function SpeedMath() {
                         if (isAnswered) {
                             if (isCorrectOption) {
                                 buttonStyle = 'border-green-500/40 bg-green-500/10';
-                            } else if (isSelected && !isCorrect) buttonStyle = 'border-red-500/40 bg-red-500/10';
+                            } else if (isSelected && !isCorrect) {
+                                buttonStyle = 'border-red-500/40 bg-red-500/10';
+                            }
                         } else if (isSelected) {
                             buttonStyle = 'border-blue-500/40 bg-blue-500/10';
                         }

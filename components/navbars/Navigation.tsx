@@ -12,7 +12,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { type MouseEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { type MouseEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Settings from '@/components/Settings';
 import MobileMenu from '@/components/navbars/MobileMenu';
@@ -35,7 +35,7 @@ export default function Navigation() {
     const labelRefs = useRef<Record<string, HTMLSpanElement | null>>({});
     const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
 
-    const updateIndicator = () => {
+    const updateIndicator = useCallback(() => {
         const container = sectionsContainerRef.current;
         const label = labelRefs.current[activeSection];
 
@@ -55,28 +55,37 @@ export default function Navigation() {
         ) / 2;
 
         setIndicator({ left, width: w, opacity: 1 });
-    };
-
-    useLayoutEffect(() => {
-        updateIndicator();
     }, [activeSection]);
 
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+    useLayoutEffect(() => {
+        const raf = window.requestAnimationFrame(updateIndicator);
+        return () => window.cancelAnimationFrame(raf);
+    }, [updateIndicator]);
+
+    const handleScroll = useCallback(() => {
+        setScrolled(window.scrollY > 20);
     }, []);
+
+    useEffect(() => {
+        const raf = window.requestAnimationFrame(handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.cancelAnimationFrame(raf);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [handleScroll]);
 
     useEffect(() => {
         window.addEventListener('resize', updateIndicator);
         window.addEventListener('load', updateIndicator);
-        const t = window.setTimeout(updateIndicator, 250);
+        const timeoutId = window.setTimeout(updateIndicator, 250);
+
         return () => {
             window.removeEventListener('resize', updateIndicator);
             window.removeEventListener('load', updateIndicator);
-            window.clearTimeout(t);
+            window.clearTimeout(timeoutId);
         };
-    }, []);
+    }, [updateIndicator]);
 
     const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
@@ -124,37 +133,46 @@ export default function Navigation() {
                                className={linkClass('about')}>
                                 <span
                                     ref={(el) => {
-                                        labelRefs.current['about'] = el;
+                                        labelRefs.current.about = el;
                                     }}
                                 >
-                                {t('about')}
+                                    {t('about')}
                                 </span>
                             </a>
 
-                            <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')}
-                               className={linkClass('skills')}>
+                            <a
+                                href="#skills"
+                                onClick={(e) => handleNavClick(e, '#skills')}
+                                className={linkClass('skills')}
+                            >
                                 <span
                                     ref={(el) => {
-                                        labelRefs.current['skills'] = el;
+                                        labelRefs.current.skills = el;
                                     }}
                                 >
-                                {t('skills')}
+                                    {t('skills')}
                                 </span>
                             </a>
 
-                            <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')}
-                               className={linkClass('projects')}>
-                            <span
-                                ref={(el) => {
-                                    labelRefs.current['projects'] = el;
-                                }}
+                            <a
+                                href="#projects"
+                                onClick={(e) => handleNavClick(e, '#projects')}
+                                className={linkClass('projects')}
                             >
-                                {t('projects')}
-                            </span>
+                                <span
+                                    ref={(el) => {
+                                        labelRefs.current.projects = el;
+                                    }}
+                                >
+                                    {t('projects')}
+                                </span>
                             </a>
 
-                            <a href="#github-activities" onClick={(e) => handleNavClick(e, '#github-activities')}
-                               className={linkClass('github-activities')}>
+                            <a
+                                href="#github-activities"
+                                onClick={(e) => handleNavClick(e, '#github-activities')}
+                                className={linkClass('github-activities')}
+                            >
                                 <span
                                     ref={(el) => {
                                         labelRefs.current['github-activities'] = el;
@@ -164,25 +182,31 @@ export default function Navigation() {
                                 </span>
                             </a>
 
-                            <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}
-                               className={linkClass('contact')}>
+                            <a
+                                href="#contact"
+                                onClick={(e) => handleNavClick(e, '#contact')}
+                                className={linkClass('contact')}
+                            >
                                 <span
                                     ref={(el) => {
-                                        labelRefs.current['contact'] = el;
+                                        labelRefs.current.contact = el;
                                     }}
                                 >
-                                  {t('contact')}
+                                    {t('contact')}
                                 </span>
                             </a>
 
-                            <a href="#extras" onClick={(e) => handleNavClick(e, '#extras')}
-                               className={linkClass('extras')}>
+                            <a
+                                href="#extras"
+                                onClick={(e) => handleNavClick(e, '#extras')}
+                                className={linkClass('extras')}
+                            >
                                 <span
                                     ref={(el) => {
-                                        labelRefs.current['extras'] = el;
+                                        labelRefs.current.extras = el;
                                     }}
                                 >
-                                  Extras
+                                    Extras
                                 </span>
                             </a>
 

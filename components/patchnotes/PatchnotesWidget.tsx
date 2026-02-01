@@ -11,13 +11,13 @@
 
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { type RefObject, useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
-import Image from 'next/image';
-import { Bell, CalendarDays, ChevronDown, Home, Menu, Search, Sparkles, X } from 'lucide-react';
+import Image, { type ImageLoaderProps } from 'next/image';
+import { Bell, CalendarDays, ChevronDown, Home, Menu, Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import type { Lang, Patchnote, PatchnoteMeta, SortOrder } from './types';
@@ -49,14 +49,16 @@ function FloatingButton({ onClick, unreadCount }: { onClick: () => void; unreadC
             <Bell
                 className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground transition-transform duration-300 group-hover:rotate-12"/>
             {unreadCount > 0 && (
-                <span className={cn(
-                    'absolute -top-1 -right-1',
-                    'flex items-center justify-center',
-                    'min-w-5 h-5 px-1.5 rounded-full',
-                    'bg-red-500 text-white text-xs font-bold',
-                    'ring-2 ring-background',
-                    'animate-in zoom-in duration-200'
-                )}>
+                <span
+                    className={cn(
+                        'absolute -top-1 -right-1',
+                        'flex items-center justify-center',
+                        'min-w-5 h-5 px-1.5 rounded-full',
+                        'bg-red-500 text-white text-xs font-bold',
+                        'ring-2 ring-background',
+                        'animate-in zoom-in duration-200'
+                    )}
+                >
                     {unreadCount > 9 ? '9+' : unreadCount}
                 </span>
             )}
@@ -77,15 +79,16 @@ function SortDropdown({
     setSortOpen: (v: boolean | ( (prev: boolean) => boolean )) => void;
     setSort: (v: SortOrder) => void;
     locale: 'fr' | 'en';
-    sortRef: React.RefObject<HTMLDivElement | null>;
+    sortRef: RefObject<HTMLDivElement | null>;
 }) {
-    const sortLabel = sort === 'newest'
-        ? (
-            locale === 'fr' ? 'Plus récent' : 'Newest first'
-        )
-        : (
-            locale === 'fr' ? 'Plus ancien' : 'Oldest first'
-        );
+    const sortLabel =
+        sort === 'newest'
+            ? locale === 'fr'
+                ? 'Plus récent'
+                : 'Newest first'
+            : locale === 'fr'
+                ? 'Plus ancien'
+                : 'Oldest first';
 
     return (
         <div className="relative" ref={sortRef}>
@@ -104,23 +107,27 @@ function SortDropdown({
                 aria-expanded={sortOpen}
             >
                 <span>{sortLabel}</span>
-                <ChevronDown className={cn(
-                    'h-4 w-4 text-muted-foreground transition-transform duration-200',
-                    sortOpen && 'rotate-180'
-                )}/>
+                <ChevronDown
+                    className={cn(
+                        'h-4 w-4 text-muted-foreground transition-transform duration-200',
+                        sortOpen && 'rotate-180'
+                    )}
+                />
             </button>
 
             {sortOpen && (
-                <div className={cn(
-                    'absolute left-0 right-0 mt-2 z-50',
-                    'rounded-xl border border-border/50 bg-popover/95 backdrop-blur-xl',
-                    'shadow-xl shadow-black/10',
-                    'overflow-hidden',
-                    'animate-in fade-in slide-in-from-top-2 duration-200'
-                )}>
+                <div
+                    className={cn(
+                        'absolute left-0 right-0 mt-2 z-50',
+                        'rounded-xl border border-border/50 bg-popover/95 backdrop-blur-xl',
+                        'shadow-xl shadow-black/10',
+                        'overflow-hidden',
+                        'animate-in fade-in slide-in-from-top-2 duration-200'
+                    )}
+                >
                     {(
                         ['newest', 'oldest'] as const
-                    ).map((value) => (
+                    ).map(value => (
                         <button
                             key={value}
                             type="button"
@@ -136,23 +143,24 @@ function SortDropdown({
                                 sort === value && 'bg-primary/10'
                             )}
                         >
-                            <span className={cn(
-                                'h-4 w-4 rounded-full border-2 flex items-center justify-center',
-                                'transition-colors duration-150',
-                                sort === value ? 'border-primary' : 'border-muted-foreground/30'
-                            )}>
-                                {sort === value && (
-                                    <span className="h-2 w-2 rounded-full bg-primary"/>
+                            <span
+                                className={cn(
+                                    'h-4 w-4 rounded-full border-2 flex items-center justify-center',
+                                    'transition-colors duration-150',
+                                    sort === value ? 'border-primary' : 'border-muted-foreground/30'
                                 )}
+                            >
+                                {sort === value && <span className="h-2 w-2 rounded-full bg-primary"/>}
                             </span>
-                            <span>{value === 'newest'
-                                ? (
-                                    locale === 'fr' ? 'Plus récent au plus ancien' : 'Newest to oldest'
-                                )
-                                : (
-                                    locale === 'fr' ? 'Plus ancien au plus récent' : 'Oldest to newest'
-                                )
-                            }</span>
+                            <span>
+                                {value === 'newest'
+                                    ? locale === 'fr'
+                                        ? 'Plus récent au plus ancien'
+                                        : 'Newest to oldest'
+                                    : locale === 'fr'
+                                        ? 'Plus ancien au plus récent'
+                                        : 'Oldest to newest'}
+                            </span>
                         </button>
                     ))}
                 </div>
@@ -216,29 +224,30 @@ function PatchnoteListItem({
                 isActive && 'bg-primary/5'
             )}
         >
-            <div className={cn(
-                'absolute left-0 top-0 bottom-0 w-0.5',
-                'transition-all duration-200',
-                isActive ? 'bg-primary' : 'bg-transparent'
-            )}/>
+            <div
+                className={cn(
+                    'absolute left-0 top-0 bottom-0 w-0.5',
+                    'transition-all duration-200',
+                    isActive ? 'bg-primary' : 'bg-transparent'
+                )}
+            />
 
             <div className="flex items-start gap-3">
                 {isHome && (
-                    <div className={cn(
-                        'shrink-0 w-8 h-8 rounded-lg',
-                        'bg-linear-to-br from-primary/20 to-primary/5',
-                        'flex items-center justify-center'
-                    )}>
+                    <div
+                        className={cn(
+                            'shrink-0 w-8 h-8 rounded-lg',
+                            'bg-linear-to-br from-primary/20 to-primary/5',
+                            'flex items-center justify-center'
+                        )}
+                    >
                         <Home className="h-4 w-4 text-primary"/>
                     </div>
                 )}
 
                 <div className="flex-1 min-w-0">
-                    <div className={cn(
-                        'font-medium text-sm leading-tight',
-                        'line-clamp-2',
-                        isActive && 'text-primary'
-                    )}>
+                    <div
+                        className={cn('font-medium text-sm leading-tight', 'line-clamp-2', isActive && 'text-primary')}>
                         {item.title}
                     </div>
                     {(
@@ -254,12 +263,14 @@ function PatchnoteListItem({
                 </div>
 
                 {isUnread && (
-                    <span className={cn(
-                        'shrink-0 mt-1',
-                        'h-2.5 w-2.5 rounded-full',
-                        'bg-red-500',
-                        'ring-2 ring-background'
-                    )}/>
+                    <span
+                        className={cn(
+                            'shrink-0 mt-1',
+                            'h-2.5 w-2.5 rounded-full',
+                            'bg-red-500',
+                            'ring-2 ring-background'
+                        )}
+                    />
                 )}
             </div>
         </button>
@@ -276,32 +287,21 @@ function HomeContent({
     return (
         <div className="h-full flex items-center justify-center p-6">
             <div className="max-w-lg w-full text-center">
-                <div className={cn(
-                    'inline-flex items-center justify-center',
-                    'w-16 h-16 rounded-2xl mb-6',
-                    'bg-linear-to-br from-primary/20 to-primary/5',
-                    'ring-1 ring-primary/10'
-                )}>
-                    <Sparkles className="h-8 w-8 text-primary"/>
-                </div>
-
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                    {homeMeta.title}
-                </h2>
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{homeMeta.title}</h2>
 
                 <div className="mt-4">
-                    <span className={cn(
-                        'inline-flex items-center gap-2',
-                        'px-3 py-1.5 rounded-full',
-                        'bg-primary/10 text-primary text-sm font-medium'
-                    )}>
+                    <span
+                        className={cn(
+                            'inline-flex items-center gap-2',
+                            'px-3 py-1.5 rounded-full',
+                            'bg-primary/10 text-primary text-sm font-medium'
+                        )}
+                    >
                         {homeGuide.badge}
                     </span>
                 </div>
 
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                    {homeGuide.subtitle}
-                </p>
+                <p className="mt-4 text-muted-foreground leading-relaxed">{homeGuide.subtitle}</p>
 
                 <div className="mt-8 space-y-3">
                     {homeGuide.items.map((item, idx) => (
@@ -313,17 +313,17 @@ function HomeContent({
                                 'bg-muted/30 border border-border/50'
                             )}
                         >
-                            <span className={cn(
-                                'shrink-0 w-6 h-6 rounded-lg',
-                                'bg-primary/10 text-primary',
-                                'flex items-center justify-center',
-                                'text-xs font-bold'
-                            )}>
+                            <span
+                                className={cn(
+                                    'shrink-0 w-6 h-6 rounded-lg',
+                                    'bg-primary/10 text-primary',
+                                    'flex items-center justify-center',
+                                    'text-xs font-bold'
+                                )}
+                            >
                                 {idx + 1}
                             </span>
-                            <p className="text-sm text-foreground/80 leading-relaxed">
-                                {item}
-                            </p>
+                            <p className="text-sm text-foreground/80 leading-relaxed">{item}</p>
                         </div>
                     ))}
                 </div>
@@ -331,6 +331,8 @@ function HomeContent({
         </div>
     );
 }
+
+const passthroughLoader = ({ src }: ImageLoaderProps) => src;
 
 function PatchnoteContent({
     title,
@@ -346,14 +348,8 @@ function PatchnoteContent({
     return (
         <div className="p-6">
             <header className="pb-6 border-b border-border/50">
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                    {title}
-                </h2>
-                {description && (
-                    <p className="mt-2 text-muted-foreground leading-relaxed">
-                        {description}
-                    </p>
-                )}
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{title}</h2>
+                {description && <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>}
                 {date && (
                     <div className="flex items-center gap-2 mt-4">
                         <CalendarDays className="h-4 w-4 text-muted-foreground/60"/>
@@ -362,46 +358,36 @@ function PatchnoteContent({
                 )}
             </header>
 
-            <div className={cn(
-                'mt-6',
-                'prose prose-neutral dark:prose-invert max-w-none',
-                'prose-headings:font-semibold prose-headings:tracking-tight',
-                'prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4',
-                'prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3',
-                'prose-p:leading-7 prose-p:text-foreground/80',
-                'prose-li:leading-7 prose-li:text-foreground/80',
-                'prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline',
-                'prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm',
-                'prose-pre:bg-muted prose-pre:border prose-pre:border-border/50 prose-pre:rounded-xl',
-                'prose-blockquote:border-l-primary prose-blockquote:bg-muted/30 prose-blockquote:rounded-r-xl prose-blockquote:py-1',
-                'prose-img:rounded-xl prose-img:border prose-img:border-border/50'
-            )}>
+            <div
+                className={cn(
+                    'mt-6',
+                    'prose prose-neutral dark:prose-invert max-w-none',
+                    'prose-headings:font-semibold prose-headings:tracking-tight',
+                    'prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4',
+                    'prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3',
+                    'prose-p:leading-7 prose-p:text-foreground/80',
+                    'prose-li:leading-7 prose-li:text-foreground/80',
+                    'prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline',
+                    'prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm',
+                    'prose-pre:bg-muted prose-pre:border prose-pre:border-border/50 prose-pre:rounded-xl',
+                    'prose-blockquote:border-l-primary prose-blockquote:bg-muted/30 prose-blockquote:rounded-r-xl prose-blockquote:py-1',
+                    'prose-img:rounded-xl prose-img:border prose-img:border-border/50'
+                )}
+            >
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[[rehypeSanitize, sanitizeSchema]]}
                     skipHtml
                     components={{
-                        code: ({ node, children, className, ...props }) => {
-                            const raw =
-                                node?.type === 'element' &&
-                                Array.isArray(node.children)
-                                    ? node.children
-                                          .filter((c): c is { type: 'text'; value: string } => c.type === 'text')
-                                          .map(c => c.value)
-                                          .join('')
-                                    : null;
-                            let value =
-                                raw ??
-                                (
-                                    typeof children === 'string'
-                                        ? children
-                                        : Array.isArray(children)
-                                            ? children.map(c => (
-                                                typeof c === 'string' ? c : ''
-                                            )).join('')
-                                            : String(children ?? '')
-                                );
-                            value = value.replace(/&#123;/g, '{').replace(/&#125;/g, '}');
+                        code: ({ children, className, ...props }) => {
+                            const text = Array.isArray(children)
+                                ? children.map((c) => (
+                                    typeof c === 'string' ? c : ''
+                                )).join('')
+                                : typeof children === 'string'
+                                    ? children
+                                    : '';
+                            const value = text.replace(/&#123;/g, '{').replace(/&#125;/g, '}');
                             return (
                                 <code className={className} {...props}>
                                     {value}
@@ -410,25 +396,8 @@ function PatchnoteContent({
                         },
                         a: (props) => <a {...props} target="_blank" rel="noreferrer noopener"/>,
                         img: ({ src, alt }) => {
-                            const s = (
-                                src ?? ''
-                            ).toString();
+                            const s = typeof src === 'string' ? src : '';
                             if (!s) return null;
-
-                            const isHttp = /^https?:\/\//i.test(s);
-                            const isLocal = s.startsWith('/');
-
-                            if (!isHttp && !isLocal) {
-                                return (
-                                    <img
-                                        src={s}
-                                        alt={alt ?? ''}
-                                        loading="lazy"
-                                        decoding="async"
-                                        className="rounded-xl border border-border/50 max-w-full"
-                                    />
-                                );
-                            }
 
                             return (
                                 <span
@@ -440,7 +409,8 @@ function PatchnoteContent({
                                         height={900}
                                         sizes="(max-width: 768px) 92vw, 760px"
                                         className="h-auto w-full"
-                                        priority={false}
+                                        loader={passthroughLoader}
+                                        unoptimized
                                     />
                                 </span>
                             );
@@ -454,178 +424,172 @@ function PatchnoteContent({
     );
 }
 
+type ParsedPatchnote = { title: string; description: string; displayDate: string; body: string };
+
 export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    const [open, setOpen] = useState(false);
+    const open = searchParams.has('changelog');
+
     const [sort, setSort] = useState<SortOrder>('newest');
     const [sortOpen, setSortOpen] = useState(false);
     const [query, setQuery] = useState('');
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
-    const homeMeta = useMemo(() => getHomeMeta(locale), [locale]);
-    const homeGuide = useMemo(() => getHomeGuide(locale), [locale]);
-
-    const [list, setList] = useState<PatchnoteMeta[]>(() => [getHomeMeta(locale)]);
-    const [activeId, setActiveId] = useState<string | null>(HOME_ID);
+    const [patchnotes, setPatchnotes] = useState<PatchnoteMeta[]>([]);
+    const [activeId, setActiveId] = useState<string>(HOME_ID);
     const [active, setActive] = useState<Patchnote | null>(null);
-    const [readSet, setReadSet] = useState<Set<string>>(new Set());
+    const [activeParsed, setActiveParsed] = useState<ParsedPatchnote>({
+        title: '', description: '', displayDate: '', body: ''
+    });
+
+    const [readSet, setReadSet] = useState<Set<string>>(() => {
+        if (typeof window === 'undefined') return new Set<string>();
+        try {
+            return loadReadSet();
+        } catch {
+            return new Set<string>();
+        }
+    });
+
+    const homeMeta = getHomeMeta(locale);
+    const homeGuide = getHomeGuide(locale);
 
     const lang: Lang = locale === 'fr' ? 'FR' : 'EN';
 
     const sortRef = useRef<HTMLDivElement | null>(null);
-    useClickOutside(sortRef, () => setSortOpen(false), sortOpen);
-
     const modalRef = useRef<HTMLDivElement | null>(null);
-    const prevSearchParamsRef = useRef(searchParams.toString());
+
+    const visibleSortOpen = open ? sortOpen : false;
+    const visibleMobileSidebarOpen = open ? mobileSidebarOpen : false;
+
+    useClickOutside(sortRef, () => setSortOpen(false), visibleSortOpen);
 
     useLockBodyScroll(open);
 
-    const syncURLWithState = useCallback((isOpen: boolean) => {
+    const setChangelogOpen = (nextOpen: boolean) => {
         const params = new URLSearchParams(searchParams.toString());
         const hasChangelog = params.has('changelog');
 
-        if (isOpen === hasChangelog) return;
+        if (nextOpen === hasChangelog) return;
 
         params.delete('changelog');
         const otherParams = params.toString();
 
-        let newURL: string;
-        if (isOpen) {
-            newURL = otherParams
+        const newURL = nextOpen
+            ? otherParams
                 ? `${pathname}?${otherParams}&changelog`
-                : `${pathname}?changelog`;
-        } else {
-            newURL = otherParams ? `${pathname}?${otherParams}` : pathname;
-        }
+                : `${pathname}?changelog`
+            : otherParams
+                ? `${pathname}?${otherParams}`
+                : pathname;
 
         router.replace(newURL, { scroll: false });
-    }, [pathname, router, searchParams]);
+    };
 
     useEffect(() => {
-        const currentParams = searchParams.toString();
-        const hasChangelog = searchParams.has('changelog');
+        let cancelled = false;
 
-        if (currentParams !== prevSearchParamsRef.current) {
-            prevSearchParamsRef.current = currentParams;
-
-            if (hasChangelog && !open) {
-                setOpen(true);
-                setQuery('');
-                setActiveId(HOME_ID);
+        (
+            async () => {
+                try {
+                    const res = await fetch(`/api/patchnotes?lang=${lang}&sort=${sort}`, { cache: 'no-store' });
+                    if (!res.ok) return;
+                    const data = (
+                        await res.json()
+                    ) as PatchnoteMeta[];
+                    if (cancelled) return;
+                    setPatchnotes(data);
+                } catch {
+                }
             }
+        )();
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lang, sort]);
+
+    const list: PatchnoteMeta[] = [homeMeta, ...patchnotes];
+
+    const filteredList = (
+        () => {
+            const q = query.trim().toLowerCase();
+            const rest = list.filter(p => p.id !== HOME_ID);
+            if (!q) return [homeMeta, ...rest];
+            const matches = rest.filter(p => p.title.toLowerCase().includes(q));
+            return [homeMeta, ...matches];
         }
-    }, [searchParams, open]);
+    )();
 
-    useEffect(() => {
-        setReadSet(loadReadSet());
-    }, []);
-
-    useEffect(() => {
-        setList(prev => [homeMeta, ...prev.filter(p => p.id !== HOME_ID)]);
-    }, [homeMeta]);
+    const effectiveActiveId = (
+        () => {
+            if (activeId === HOME_ID) return HOME_ID;
+            if (filteredList.some(p => p.id === activeId)) return activeId;
+            return filteredList[0]?.id ?? HOME_ID;
+        }
+    )();
 
     useEffect(() => {
         if (!open) return;
-        setMobileSidebarOpen(false);
-        setSortOpen(false);
+        if (effectiveActiveId === HOME_ID) return;
+
+        let cancelled = false;
+
+        (
+            async () => {
+                try {
+                    const res = await fetch(`/api/patchnotes?id=${encodeURIComponent(effectiveActiveId)}`, { cache: 'no-store' });
+                    if (!res.ok) return;
+                    const data = (
+                        await res.json()
+                    ) as Patchnote;
+                    if (cancelled) return;
+
+                    setActive(data);
+                    if (typeof data.content === 'string') {
+                        const parsed = splitPatchnote(data.content);
+                        setActiveParsed(parsed);
+                    } else {
+                        setActiveParsed({ title: '', description: '', displayDate: '', body: '' });
+                    }
+                } catch {
+                }
+            }
+        )();
+
+        return () => {
+            cancelled = true;
+        };
+    }, [open, effectiveActiveId]);
+
+    const unreadCount = list.filter(p => p.id !== HOME_ID && !readSet.has(p.id)).length;
+
+    const openModal = () => {
         setQuery('');
         setActiveId(HOME_ID);
-    }, [open]);
-
-    useEffect(() => {
-        (
-            async () => {
-                const res = await fetch(`/api/patchnotes?lang=${lang}&sort=${sort}`, { cache: 'no-store' });
-                const data = (
-                    await res.json()
-                ) as PatchnoteMeta[];
-                setList([homeMeta, ...data]);
-                setActiveId(prev => prev ?? HOME_ID);
-            }
-        )();
-    }, [lang, sort, homeMeta]);
-
-    useEffect(() => {
-        if (!activeId) return;
-        if (activeId === HOME_ID) {
-            setActive(null);
-            return;
-        }
-        (
-            async () => {
-                const res = await fetch(`/api/patchnotes?id=${encodeURIComponent(activeId)}`, { cache: 'no-store' });
-                const data = (
-                    await res.json()
-                ) as Patchnote;
-                setActive(data);
-            }
-        )();
-    }, [activeId]);
-
-    useEffect(() => {
-        if (!open || !activeId || activeId === HOME_ID) return;
-
-        setReadSet(prev => {
-            if (prev.has(activeId)) return prev;
-            const next = new Set(prev);
-            next.add(activeId);
-            saveReadSet(next);
-            return next;
-        });
-    }, [open, activeId]);
-
-    const unreadCount = useMemo(
-        () => list.filter(p => p.id !== HOME_ID && !readSet.has(p.id)).length,
-        [list, readSet]
-    );
-
-    const filteredList = useMemo(() => {
-        const q = query.trim().toLowerCase();
-        const home = list.find(p => p.id === HOME_ID);
-        const rest = list.filter(p => p.id !== HOME_ID);
-
-        if (!q) return home ? [home, ...rest] : rest;
-
-        const matches = rest.filter(p => p.title.toLowerCase().includes(q));
-        return home ? [home, ...matches] : matches;
-    }, [list, query]);
-
-    useEffect(() => {
-        if (!activeId || activeId === HOME_ID) return;
-        if (filteredList.some(p => p.id === activeId)) return;
-        setActiveId(filteredList[0]?.id ?? HOME_ID);
-    }, [filteredList, activeId]);
-
-    const activeParsed = useMemo(() => {
-        if (!active?.content) return { title: '', description: '', displayDate: '', body: '' };
-        return splitPatchnote(active.content);
-    }, [active?.content]);
-
-    const headerTitle = activeParsed.title || active?.title || '';
-    const headerDescription = activeParsed.description || active?.description || '';
-    const headerDate = activeParsed.displayDate || active?.displayDate || active?.fileDate || '';
-
-    const close = useCallback(() => {
-        setOpen(false);
         setSortOpen(false);
         setMobileSidebarOpen(false);
-        syncURLWithState(false);
-    }, [syncURLWithState]);
+        setChangelogOpen(true);
+    };
+
+    const closeModal = () => {
+        setChangelogOpen(false);
+    };
 
     useEffect(() => {
         if (!open) return;
 
         const onKey = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') close();
+            if (e.key === 'Escape') closeModal();
         };
 
         const onDown = (e: MouseEvent | TouchEvent) => {
             const el = modalRef.current;
             if (!el) return;
-            if (e.target instanceof Node && !el.contains(e.target)) close();
+            if (e.target instanceof Node && !el.contains(e.target)) closeModal();
         };
 
         document.addEventListener('keydown', onKey);
@@ -637,12 +601,27 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
             document.removeEventListener('mousedown', onDown);
             document.removeEventListener('touchstart', onDown);
         };
-    }, [open, close]);
+    }, [open, pathname, router, searchParams]);
 
     const onSelect = (id: string) => {
         setActiveId(id);
         setSortOpen(false);
         setMobileSidebarOpen(false);
+
+        if (id !== HOME_ID) {
+            setReadSet(prev => {
+                if (prev.has(id)) return prev;
+                const next = new Set(prev);
+                next.add(id);
+                if (typeof window !== 'undefined') {
+                    try {
+                        saveReadSet(next);
+                    } catch {
+                    }
+                }
+                return next;
+            });
+        }
     };
 
     const searchPlaceholder = locale === 'fr' ? 'Rechercher...' : 'Search...';
@@ -650,25 +629,18 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
     const closeLabel = locale === 'fr' ? 'Fermer' : 'Close';
     const menuLabel = locale === 'fr' ? 'Menu' : 'Menu';
 
+    const headerTitle = activeParsed.title || active?.title || '';
+    const headerDescription = activeParsed.description || active?.description || '';
+    const headerDate = activeParsed.displayDate || active?.displayDate || active?.fileDate || '';
+
     return (
         <>
-            <FloatingButton
-                onClick={() => {
-                    setOpen(true);
-                    setQuery('');
-                    setActiveId(HOME_ID);
-                    syncURLWithState(true);
-                }}
-                unreadCount={unreadCount}
-            />
+            <FloatingButton onClick={openModal} unreadCount={unreadCount}/>
 
             {open && (
                 <div className="fixed inset-0 z-50">
-                    <div className={cn(
-                        'absolute inset-0',
-                        'bg-black/60 backdrop-blur-sm',
-                        'animate-in fade-in duration-200'
-                    )}/>
+                    <div
+                        className={cn('absolute inset-0', 'bg-black/60 backdrop-blur-sm', 'animate-in fade-in duration-200')}/>
 
                     <div
                         ref={modalRef}
@@ -687,17 +659,21 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                             'animate-in fade-in zoom-in-95 duration-300'
                         )}
                     >
-                        <header className={cn(
-                            'md:hidden',
-                            'flex items-center justify-between',
-                            'px-4 py-3',
-                            'bg-muted/30 border-b border-border/50'
-                        )}>
+                        <header
+                            className={cn(
+                                'md:hidden',
+                                'flex items-center gap-3',
+                                'px-4 py-3',
+                                'bg-muted/30 border-b border-border/50',
+                                'min-w-0 overflow-hidden'
+                            )}
+                        >
                             <button
                                 type="button"
                                 onClick={() => setMobileSidebarOpen(v => !v)}
                                 aria-label={menuLabel}
                                 className={cn(
+                                    'shrink-0',
                                     'p-2.5 rounded-xl',
                                     'bg-background border border-border/50',
                                     'transition-colors duration-200',
@@ -705,14 +681,25 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
                                 )}
                             >
-                                {mobileSidebarOpen ? <X className="h-5 w-5"/> : <Menu className="h-5 w-5"/>}
+                                {visibleMobileSidebarOpen ? <X className="block h-5 w-5"/> :
+                                    <Menu className="block h-5 w-5"/>}
                             </button>
+
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-center gap-2 min-w-0 leading-none">
+                                    <Bell className="block h-4 w-4 shrink-0 text-muted-foreground"/>
+                                    <span className="truncate text-sm font-medium leading-none">
+                                        {headerTitle || 'Patchnotes'}
+                                    </span>
+                                </div>
+                            </div>
 
                             <button
                                 type="button"
-                                onClick={close}
+                                onClick={closeModal}
                                 aria-label={closeLabel}
                                 className={cn(
+                                    'shrink-0',
                                     'p-2.5 rounded-xl',
                                     'bg-background border border-border/50',
                                     'transition-colors duration-200',
@@ -720,13 +707,13 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
                                 )}
                             >
-                                <X className="h-5 w-5"/>
+                                <X className="block h-5 w-5"/>
                             </button>
                         </header>
 
                         <button
                             type="button"
-                            onClick={close}
+                            onClick={closeModal}
                             aria-label={closeLabel}
                             className={cn(
                                 'hidden md:flex',
@@ -741,34 +728,32 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                             <X className="h-5 w-5"/>
                         </button>
 
-                        {mobileSidebarOpen && (
+                        {visibleMobileSidebarOpen && (
                             <div className="md:hidden absolute inset-0 z-20">
                                 <div
                                     className="absolute inset-0 bg-black/40 animate-in fade-in duration-200"
                                     onClick={() => setMobileSidebarOpen(false)}
                                 />
 
-                                <aside className={cn(
-                                    'absolute left-0 top-0 h-full',
-                                    'w-[85vw] max-w-[320px]',
-                                    'bg-background border-r border-border/50',
-                                    'flex flex-col',
-                                    'animate-in slide-in-from-left duration-300'
-                                )}>
+                                <aside
+                                    className={cn(
+                                        'absolute left-0 top-0 h-full',
+                                        'w-[85vw] max-w-[320px]',
+                                        'bg-background border-r border-border/50',
+                                        'flex flex-col',
+                                        'animate-in slide-in-from-left duration-300'
+                                    )}
+                                >
                                     <div className="p-4 space-y-3 border-b border-border/50">
                                         <SortDropdown
                                             sort={sort}
-                                            sortOpen={sortOpen}
+                                            sortOpen={visibleSortOpen}
                                             setSortOpen={setSortOpen}
                                             setSort={setSort}
                                             locale={locale}
                                             sortRef={sortRef}
                                         />
-                                        <SearchInput
-                                            value={query}
-                                            onChange={setQuery}
-                                            placeholder={searchPlaceholder}
-                                        />
+                                        <SearchInput value={query} onChange={setQuery} placeholder={searchPlaceholder}/>
                                     </div>
 
                                     <div className="flex-1 overflow-auto">
@@ -776,42 +761,39 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                                             <PatchnoteListItem
                                                 key={p.id}
                                                 item={p}
-                                                isActive={p.id === activeId}
+                                                isActive={p.id === effectiveActiveId}
                                                 isUnread={p.id !== HOME_ID && !readSet.has(p.id)}
                                                 onClick={() => onSelect(p.id)}
                                             />
                                         ))}
 
                                         {filteredList.length === 0 && (
-                                            <div className="p-6 text-center text-sm text-muted-foreground">
-                                                {noResultsText}
-                                            </div>
+                                            <div
+                                                className="p-6 text-center text-sm text-muted-foreground">{noResultsText}</div>
                                         )}
                                     </div>
                                 </aside>
                             </div>
                         )}
 
-                        <aside className={cn(
-                            'hidden md:flex md:flex-col',
-                            'w-[320px] min-w-70',
-                            'border-r border-border/50',
-                            'bg-muted/20'
-                        )}>
+                        <aside
+                            className={cn(
+                                'hidden md:flex md:flex-col',
+                                'w-[320px] min-w-70',
+                                'border-r border-border/50',
+                                'bg-muted/20'
+                            )}
+                        >
                             <div className="p-4 space-y-3 border-b border-border/50">
                                 <SortDropdown
                                     sort={sort}
-                                    sortOpen={sortOpen}
+                                    sortOpen={visibleSortOpen}
                                     setSortOpen={setSortOpen}
                                     setSort={setSort}
                                     locale={locale}
                                     sortRef={sortRef}
                                 />
-                                <SearchInput
-                                    value={query}
-                                    onChange={setQuery}
-                                    placeholder={searchPlaceholder}
-                                />
+                                <SearchInput value={query} onChange={setQuery} placeholder={searchPlaceholder}/>
                             </div>
 
                             <div className="flex-1 overflow-auto">
@@ -819,22 +801,20 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                                     <PatchnoteListItem
                                         key={p.id}
                                         item={p}
-                                        isActive={p.id === activeId}
+                                        isActive={p.id === effectiveActiveId}
                                         isUnread={p.id !== HOME_ID && !readSet.has(p.id)}
                                         onClick={() => onSelect(p.id)}
                                     />
                                 ))}
 
                                 {filteredList.length === 0 && (
-                                    <div className="p-6 text-center text-sm text-muted-foreground">
-                                        {noResultsText}
-                                    </div>
+                                    <div className="p-6 text-center text-sm text-muted-foreground">{noResultsText}</div>
                                 )}
                             </div>
                         </aside>
 
                         <main className="flex-1 min-h-0 overflow-auto">
-                            {activeId === HOME_ID ? (
+                            {effectiveActiveId === HOME_ID ? (
                                 <HomeContent homeMeta={homeMeta} homeGuide={homeGuide}/>
                             ) : (
                                 <PatchnoteContent

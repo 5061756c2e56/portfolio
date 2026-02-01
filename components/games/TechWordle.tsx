@@ -94,10 +94,15 @@ function randInt(maxExclusive: number) {
     return Math.floor(Math.random() * maxExclusive);
 }
 
+function pickWord(): string {
+    if (TECH_WORDS.length === 0) return 'REACT';
+    return TECH_WORDS[randInt(TECH_WORDS.length)] ?? 'REACT';
+}
+
 export default function TechWordle() {
     const t = useTranslations('games.wordle');
 
-    const [targetWord, setTargetWord] = useState('');
+    const [targetWord, setTargetWord] = useState(() => pickWord());
     const [currentGuess, setCurrentGuess] = useState('');
     const [guesses, setGuesses] = useState<CellData[][]>([]);
     const [gameStatus, setGameStatus] = useState<GameStatus>('playing');
@@ -109,20 +114,14 @@ export default function TechWordle() {
     const [maxStreak, setMaxStreak] = useState(0);
     const [showHelp, setShowHelp] = useState(false);
 
-    const pickRandomWord = useCallback(() => TECH_WORDS[randInt(TECH_WORDS.length)], []);
-
     const initializeGame = useCallback(() => {
-        setTargetWord(pickRandomWord());
+        setTargetWord(pickWord());
         setCurrentGuess('');
         setGuesses([]);
         setGameStatus('playing');
         setMessage('');
         setShowHelp(false);
-    }, [pickRandomWord]);
-
-    useEffect(() => {
-        initializeGame();
-    }, [initializeGame]);
+    }, []);
 
     const checkGuess = useCallback(
         (guess: string): CellData[] => {
@@ -338,9 +337,9 @@ export default function TechWordle() {
                     </div>
                     <div className="flex items-center gap-2">
                         <Zap className="w-4 h-4 text-cyan-500"/>
-                        <span className="font-mono text-lg">
-                            {t('stats.streak', { current: currentStreak, max: maxStreak })}
-                        </span>
+                        <span className="font-mono text-lg">{t('stats.streak', {
+                            current: currentStreak, max: maxStreak
+                        })}</span>
                     </div>
                 </div>
 
@@ -373,22 +372,19 @@ export default function TechWordle() {
                         <div className="space-y-2 mt-3">
                             <div className="flex items-center gap-3">
                                 <div
-                                    className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                    R
+                                    className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">R
                                 </div>
                                 <span>{t('help.legend.correct')}</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <div
-                                    className="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center text-white font-bold">
-                                    E
+                                    className="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center text-white font-bold">E
                                 </div>
                                 <span>{t('help.legend.present')}</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <div
-                                    className="w-10 h-10 bg-muted border border-muted-foreground/20 rounded-lg flex items-center justify-center text-muted-foreground font-bold">
-                                    A
+                                    className="w-10 h-10 bg-muted border border-muted-foreground/20 rounded-lg flex items-center justify-center text-muted-foreground font-bold">A
                                 </div>
                                 <span>{t('help.legend.absent')}</span>
                             </div>

@@ -21,6 +21,17 @@ const EMAILJS_LAST_SENT_KEY = 'emailjs_last_sent';
 const EMAILJS_LOCK_KEY = 'emailjs_lock';
 const EMAILJS_LOCK_TTL = 2;
 
+type UnknownRecord = Record<string, unknown>;
+
+function isRecord(value: unknown): value is UnknownRecord {
+    return typeof value === 'object' && value !== null;
+}
+
+function getStringField(obj: UnknownRecord, key: string): string | undefined {
+    const v = obj[key];
+    return typeof v === 'string' ? v : undefined;
+}
+
 async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
     const secret = process.env.TURNSTILE_SECRET_KEY;
     if (!secret) return false;
@@ -36,8 +47,41 @@ async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
         body: formData.toString()
     });
 
-    const data = await res.json().catch(() => null);
-    return !!data?.success;
+    const data: unknown = await res.json().catch(() => null);
+    return isRecord(data) && data.success === true;
+}
+
+interface EmailJSTemplateParams {
+    to_email: string;
+    from_name: string;
+    from_email: string;
+    subject: string;
+    message: string;
+}
+
+interface EmailJSRequestBody {
+    service_id: string;
+    template_id: string;
+    user_id: string;
+    template_params: EmailJSTemplateParams;
+    accessToken?: string;
+}
+
+function stringifyEmailJSError(details: unknown): string | null {
+    if (!isRecord(details)) return null;
+
+    const pick = (k: string) => (
+        typeof details[k] === 'string' ? details[k] : undefined
+    );
+
+    const text = pick('text') ?? pick('error') ?? pick('message');
+    if (text) return text;
+
+    try {
+        return JSON.stringify(details);
+    } catch {
+        return null;
+    }
 }
 
 async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: boolean; error?: string }> {
@@ -47,7 +91,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
     const privateKey = process.env.EMAILJS_PRIVATE_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
-        const missing = [];
+        const missing: string[] = [];
         if (!serviceId) missing.push('NEXT_PUBLIC_EMAILJS_SERVICE_ID');
         if (!templateId) missing.push('NEXT_PUBLIC_EMAILJS_TEMPLATE_ID');
         if (!publicKey) missing.push('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY');
@@ -72,17 +116,15 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         const startTime = Date.now();
 
         if (hasRedis && redis) {
-            while (!lockAcquired && (
-                Date.now() - startTime
-            ) < maxWaitTime) {
+            while (!lockAcquired && Date.now() - startTime < maxWaitTime) {
                 const lastSent = await redis.get(EMAILJS_LAST_SENT_KEY);
                 const now = Date.now();
 
                 if (lastSent) {
-                    const timeSinceLastSent = now - parseInt(lastSent, 10);
+                    const timeSinceLastSent = now - Number.parseInt(lastSent, 10);
                     if (timeSinceLastSent < EMAILJS_RATE_LIMIT_MS) {
                         const waitTime = EMAILJS_RATE_LIMIT_MS - timeSinceLastSent;
-                        await new Promise(resolve => setTimeout(resolve, waitTime));
+                        await new Promise<void>((resolve) => setTimeout(resolve, waitTime));
                     }
                 }
 
@@ -90,7 +132,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
                 if (lockResult === 'OK') {
                     lockAcquired = true;
                 } else {
-                    await new Promise(resolve => setTimeout(resolve, 100));
+                    await new Promise<void>((resolve) => setTimeout(resolve, 100));
                 }
             }
 
@@ -102,7 +144,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
             }
         }
 
-        const templateParams = {
+        const templateParams: EmailJSTemplateParams = {
             to_email: 'contact@paulviandier.com',
             from_name: data.from_name,
             from_email: data.from_email,
@@ -110,7 +152,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
             message: data.message
         };
 
-        const requestBody: any = {
+        const requestBody: EmailJSRequestBody = {
             service_id: serviceId,
             template_id: templateId,
             user_id: publicKey,
@@ -139,17 +181,12 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
 
         if (!response.ok) {
             let errorText = 'Erreur EmailJS';
-            let errorDetails: any = null;
 
             try {
                 const contentType = response.headers.get('content-type');
                 if (contentType && contentType.includes('application/json')) {
-                    errorDetails = await response.json();
-                    errorText =
-                        errorDetails.text ||
-                        errorDetails.error ||
-                        errorDetails.message ||
-                        JSON.stringify(errorDetails);
+                    const errorDetails: unknown = await response.json();
+                    errorText = stringifyEmailJSError(errorDetails) ?? errorText;
                 } else {
                     errorText = await response.text();
                 }
@@ -184,7 +221,7 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
         }
 
         return { success: true };
-    } catch (error) {
+    } catch (err: unknown) {
         if (hasRedis && redis && lockAcquired) {
             try {
                 await redis.del(EMAILJS_LOCK_KEY);
@@ -192,23 +229,23 @@ async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: bool
             }
         }
 
-        if (!isProduction && error instanceof Error) {
-            console.error('[EmailJS Exception]', error.message.substring(0, 200));
+        if (!isProduction && err instanceof Error) {
+            console.error('[EmailJS Exception]', err.message.substring(0, 200));
         }
 
-        if (error instanceof Error) {
-            if (error.name === 'AbortError') {
+        if (err instanceof Error) {
+            if (err.name === 'AbortError') {
                 return { success: false, error: 'Le délai d\'attente a été dépassé' };
             }
             if (
-                error.message.includes('Network') ||
-                error.message.includes('network') ||
-                error.message.includes('fetch') ||
-                error.message.includes('Failed to fetch')
+                err.message.includes('Network') ||
+                err.message.includes('network') ||
+                err.message.includes('fetch') ||
+                err.message.includes('Failed to fetch')
             ) {
                 return { success: false, error: 'Erreur de connexion réseau' };
             }
-            return { success: false, error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : error.message };
+            return { success: false, error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : err.message };
         }
 
         return { success: false, error: 'Erreur inconnue lors de l\'envoi de l\'email' };
@@ -259,11 +296,15 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-        const body = await request.json().catch(() => {
+        const rawBody: unknown = await request.json().catch(() => {
             throw new Error('Invalid JSON');
         });
 
-        const token = body?.turnstileToken;
+        if (!isRecord(rawBody)) {
+            return NextResponse.json({ error: 'Données invalides' }, { status: 400 });
+        }
+
+        const token = rawBody.turnstileToken;
         if (!token || typeof token !== 'string') {
             return NextResponse.json({ error: 'Captcha requis' }, { status: 400 });
         }
@@ -278,11 +319,11 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Captcha invalide' }, { status: 403 });
         }
 
-        const payload = {
-            from_name: body?.from_name,
-            from_email: body?.from_email,
-            subject: body?.subject,
-            message: body?.message
+        const payload: Partial<EmailFormData> = {
+            from_name: getStringField(rawBody, 'from_name'),
+            from_email: getStringField(rawBody, 'from_email'),
+            subject: getStringField(rawBody, 'subject'),
+            message: getStringField(rawBody, 'message')
         };
 
         const validation = validateEmailForm(payload);
@@ -322,9 +363,7 @@ export async function POST(request: NextRequest) {
         }
 
         const counterResult = await incrementEmailCounter();
-        const nextCount = counterResult.count || (
-            current.count + 1
-        );
+        const nextCount = counterResult.count || current.count + 1;
 
         return NextResponse.json(
             { success: true, count: nextCount },
@@ -337,9 +376,9 @@ export async function POST(request: NextRequest) {
                 }
             }
         );
-    } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
-        const errorStack = error instanceof Error ? error.stack : undefined;
+    } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Erreur inconnue';
+        const errorStack = err instanceof Error ? err.stack : undefined;
 
         if (!isProduction) {
             console.error('[API Error]', {

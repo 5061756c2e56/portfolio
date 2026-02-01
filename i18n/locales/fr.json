@@ -6,8 +6,7 @@
     "available": "Disponible pour de nouvelles opportunités",
     "location": "France",
     "role": "Intégrateur Web",
-    "downloadCVButton": "Télécharger mon Curriculum Vitae",
-    "downloadingCV": "Téléchargement en cours...",
+    "viewCVButton": "Voir mon Curriculum Vitae",
     "downloadLMButton": "Télécharger ma lettre de motivation",
     "downloadingLM": "Téléchargement en cours..."
   },
@@ -2395,6 +2394,89 @@
         "law": {
           "title": "7. Droit applicable",
           "p1": "Sauf dispositions impératives contraires, les présentes mentions légales sont régies par le droit français."
+        }
+      }
+    }
+  },
+  "cv": {
+    "role": "Intégrateur Web",
+    "badge": "Curriculum Vitae",
+    "title": "Curriculum Vitae",
+    "description": "Présentation détaillée — {role}, compétences et parcours.",
+    "lastUpdatedLabel": "Dernière mise à jour :",
+    "actions": {
+      "backHome": "Retour à l'accueil",
+      "downloadPdf": "Télécharger le PDF",
+      "downloadPdfLoading": "Téléchargement en cours..."
+    },
+    "sections": {
+      "profile": {
+        "title": "Profil",
+        "p1": "Je suis une personne curieuse, dévouée et motivée, toujours prête à relever de nouveaux défis. J’ai à cœur de découvrir de nouvelles technologies, d’apprendre en continu et de m’adapter à des environnements variés. Mon enthousiasme et mon engagement me poussent à donner le meilleur de moi-même dans chaque projet, et à m’investir pleinement pour atteindre les objectifs fixés.",
+        "github": "GitHub : ajoute l’URL exacte",
+        "linkedin": "LinkedIn : ajoute l’URL exacte"
+      },
+      "skills": {
+        "title": "Compétences",
+        "frontend": "Front-end",
+        "stateApi": "State & API",
+        "backendData": "Back & Data",
+        "tooling": "Outils & méthodes",
+        "security": "Sécurité"
+      },
+      "experience": {
+        "title": "Expériences",
+        "todoTitle": "À compléter",
+        "todoLine": "Rôle • Entreprise • Dates • 3–5 résultats mesurables"
+      },
+      "education": {
+        "title": "Formations",
+        "badge": "Parcours"
+      }
+    },
+    "education": {
+      "openclassroom": {
+        "title": "Intégrateur Web",
+        "level": "Diplôme de Niveau 5 (bac +2)",
+        "note": "Formation en alternance",
+        "date": "Aujourd'hui",
+        "bullets": {
+          "1": "Créer des interfaces responsives avec HTML et CSS",
+          "2": "Dynamiser une page web avec JavaScript et React",
+          "3": "Implémenter la gestion de données avec Redux",
+          "4": "Versionner et collaborer sur un projet avec Git",
+          "5": "Déboguer et optimiser un site web existant"
+        }
+      },
+      "rascol": {
+        "title": "Bac STI2D option SIN",
+        "org": "Lycée Louis Rascol | 10 Rue de la République | 81000 Albi",
+        "level": "Bac technologique",
+        "bullets": {
+          "1": "Programmation Python",
+          "2": "Programmation Web (HTML, CSS, JavaScript)",
+          "3": "Création et administration de bases de données"
+        }
+      }
+    },
+    "experience": {
+      "pinkail": {
+        "title": "PinkAil Seeds SARL",
+        "date": "01/09/2025 - 08/09/2025",
+        "bullets": {
+          "1": "Triage et conditionnement de l’ail : retrait des bulbes pourris / blessés / mous / tachés / germés / déformés",
+          "2": "Thermothérapies réalisées"
+        }
+      },
+      "volunteering": {
+        "groupTitle": "Bénévolat",
+        "it": {
+          "title": "Support Informatique",
+          "date": "2022 - Aujourd'hui",
+          "bullets": {
+            "1": "Installation et configuration de postes Windows & Linux (logiciels, mises à jour), imprimantes, et comptes Microsoft 365 / Google Workspace",
+            "2": "Assistance utilisateurs : prise en main, résolution d’incidents courants, rédaction de procédures courtes"
+          }
         }
       }
     }

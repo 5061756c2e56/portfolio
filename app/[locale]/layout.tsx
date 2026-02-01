@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: {
             default: isFrench
                 ? 'Portfolio de Paul Viandier'
-                : 'Portfolio de Paul Viandier',
-            template: '%s | Paul Viandier - Développeur Web'
+                : 'Paul Viandier Portfolio',
+            template: '%s - Paul Viandier'
         },
         description: isFrench
             ? 'Développeur web passionné de cybersécurité. Dans ce portfolio, je présente mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             url: `${baseUrl}${isFrench ? '' : '/en'}`,
             siteName: 'Portfolio de Paul Viandier',
             title: isFrench
-                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité\n'
+                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité'
                 : 'Paul Viandier - Web Developer & Cybersecurity Enthusiast',
             description: isFrench
                 ? 'Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l’administration systèmes, trois domaines que je relie entre eux.'
@@ -100,7 +100,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         twitter: {
             card: 'summary_large_image',
             title: isFrench
-                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité\n'
+                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité'
                 : 'Paul Viandier - Web Developer & Cybersecurity Enthusiast',
             description: isFrench
                 ? 'Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l’administration systèmes, trois domaines que je relie entre eux.'

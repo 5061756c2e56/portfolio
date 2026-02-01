@@ -17,6 +17,8 @@ import { LoadingOverlay } from '@/components/LoadingOverlay';
 
 type Locale = 'fr' | 'en';
 
+type Messages = Record<string, unknown>;
+
 interface LocaleContextType {
     locale: Locale;
     setLocale: (locale: Locale) => void;
@@ -37,8 +39,8 @@ interface LocaleProviderProps {
     children: ReactNode;
     initialLocale: Locale;
     messages: {
-        fr: Record<string, any>;
-        en: Record<string, any>;
+        fr: Messages;
+        en: Messages;
     };
 }
 

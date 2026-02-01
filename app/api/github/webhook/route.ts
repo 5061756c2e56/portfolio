@@ -210,7 +210,6 @@ export async function POST(request: NextRequest) {
 
     const signature = request.headers.get('x-hub-signature-256');
     const event = request.headers.get('x-github-event');
-    const deliveryId = request.headers.get('x-github-delivery');
 
     if (!verifySignature(rawBody, signature, webhookSecret)) {
         console.warn('[Webhook] Invalid signature');

@@ -13,7 +13,7 @@
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
 ![Redis](https://img.shields.io/badge/Redis-7.0-orange?style=for-the-badge&logo=redis)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-DB-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![EmailJS](https://img.shields.io/badge/EmailJS-Contact-blue?style=for-the-badge&logo=maildotru)
+![EmailJS](https://img.shields.io/badge/EmailJS-Contact-blue?style=for-the-badge&logo=mailgun)
 
 Portfolio moderne développé avec Next.js, TypeScript, React, Tailwind CSS, Prisma, EmailJS, avec support multilingue (FR/EN).
 

@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/hooks/use-in-view';
@@ -24,7 +24,6 @@ export default function Contact() {
         ref,
         isInView
     } = useInView({ threshold: 0.2 });
-    const [mailtoMode, setMailtoMode] = useState(false);
     const { openContact } = useContactModal();
 
     const handleEmailClick = useCallback(async () => {
@@ -43,7 +42,6 @@ export default function Contact() {
             }
         } catch {
         } finally {
-            setMailtoMode(shouldMailto);
             openContact({ mailtoMode: shouldMailto });
         }
     }, [openContact]);

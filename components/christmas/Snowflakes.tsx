@@ -13,12 +13,11 @@
 
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { useTheme } from '@/hooks/use-theme';
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 
 interface Snowflake {
     id: number;
     left: number;
-    delay: number;
     duration: number;
     size: number;
     opacity: number;
@@ -36,6 +35,7 @@ function hexToRgb(hex: string): [number, number, number] {
 function mixColors(color1: string, color2: string, ratio: number): string {
     const rgb1 = hexToRgb(color1);
     const rgb2 = hexToRgb(color2);
+
     const r = Math.round(rgb1[0] * (
         1 - ratio
     ) + rgb2[0] * ratio);
@@ -45,81 +45,111 @@ function mixColors(color1: string, color2: string, ratio: number): string {
     const b = Math.round(rgb1[2] * (
         1 - ratio
     ) + rgb2[2] * ratio);
+
     return `rgb(${r}, ${g}, ${b})`;
+}
+
+function clamp(n: number, min: number, max: number): number {
+    return Math.max(min, Math.min(max, n));
+}
+
+function createSnowflakes(minOpacity: number, maxOpacity: number): Snowflake[] {
+    const count = 20;
+    const columns = 5;
+    const columnWidth = 100 / columns;
+
+    const color1 = '#7da8f0';
+    const color2 = '#f0877d';
+
+    const out: Snowflake[] = [];
+
+    for (let i = 0; i < count; i++) {
+        const column = i % columns;
+        const baseLeft = column * columnWidth;
+        const offset = (
+                           Math.random() - 0.5
+                       ) * columnWidth * 0.6;
+        const left = clamp(baseLeft + columnWidth / 2 + offset, 0, 100);
+
+        const mixedColor = mixColors(color1, color2, Math.random());
+        const duration = 10 + Math.random() * 20;
+        const initialProgress = Math.random();
+
+        out.push({
+            id: i,
+            left,
+            duration,
+            size: 16 + Math.random() * 20,
+            opacity: minOpacity + Math.random() * (
+                maxOpacity - minOpacity
+            ),
+            color: mixedColor,
+            initialTop: -20 - initialProgress * 100
+        });
+    }
+
+    return out;
+}
+
+function updateOpacities(
+    snowflakes: Snowflake[],
+    minOpacity: number,
+    maxOpacity: number
+): Snowflake[] {
+    return snowflakes.map((s) => (
+        {
+            ...s,
+            opacity: minOpacity + Math.random() * (
+                maxOpacity - minOpacity
+            )
+        }
+    ));
 }
 
 export function Snowflakes() {
     const isChristmasMode = useChristmasMode();
     const { theme } = useTheme();
-    const [snowflakes, setSnowflakes] = useState<Snowflake[]>([]);
 
-    useEffect(() => {
-        if (!isChristmasMode) {
-            setSnowflakes([]);
-            return;
+    const snowflakesRef = useRef<Snowflake[]>([]);
+    const lastModeRef = useRef<boolean>(false);
+    const lastOpacityKeyRef = useRef<string>('');
+
+    if (typeof window === 'undefined') {
+        return null;
+    }
+
+    if (!isChristmasMode) {
+        if (lastModeRef.current) {
+            lastModeRef.current = false;
+            snowflakesRef.current = [];
+            lastOpacityKeyRef.current = '';
         }
+        return null;
+    }
 
-        const isDark = theme === 'dark' || (
+    const isDark =
+        theme === 'dark' ||
+        (
             theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches
         );
-        const minOpacity = isDark ? 0.1 : 0.2;
-        const maxOpacity = isDark ? 0.25 : 0.45;
 
-        setSnowflakes(prevSnowflakes => {
-            if (prevSnowflakes.length === 0) {
-                const count = 20;
-                const newSnowflakes: Snowflake[] = [];
-                const columns = 5;
-                const columnWidth = 100 / columns;
+    const minOpacity = isDark ? 0.1 : 0.2;
+    const maxOpacity = isDark ? 0.25 : 0.45;
 
-                const color1 = '#7da8f0';
-                const color2 = '#f0877d';
+    const opacityKey = `${isDark}:${minOpacity}:${maxOpacity}`;
 
-                for (let i = 0; i < count; i++) {
-                    const column = i % columns;
-                    const baseLeft = column * columnWidth;
-                    const offset = (
-                                       Math.random() - 0.5
-                                   ) * columnWidth * 0.6;
-                    const left = Math.max(0, Math.min(100, baseLeft + columnWidth / 2 + offset));
-                    const colorRatio = Math.random();
-                    const mixedColor = mixColors(color1, color2, colorRatio);
+    if (!lastModeRef.current || snowflakesRef.current.length === 0) {
+        snowflakesRef.current = createSnowflakes(minOpacity, maxOpacity);
+        lastModeRef.current = true;
+        lastOpacityKeyRef.current = opacityKey;
+    } else if (lastOpacityKeyRef.current !== opacityKey) {
+        snowflakesRef.current = updateOpacities(snowflakesRef.current, minOpacity, maxOpacity);
+        lastOpacityKeyRef.current = opacityKey;
+    }
 
-                    const duration = 10 + Math.random() * 20;
-                    const initialProgress = Math.random();
+    const snowflakes = snowflakesRef.current;
 
-                    newSnowflakes.push({
-                        id: i,
-                        left: left,
-                        delay: 0,
-                        duration: duration,
-                        size: 16 + Math.random() * 20,
-                        opacity: minOpacity + Math.random() * (
-                            maxOpacity - minOpacity
-                        ),
-                        color: mixedColor,
-                        initialTop: -20 - (
-                            initialProgress * 100
-                        )
-                    });
-                }
-
-                return newSnowflakes;
-            } else {
-                return prevSnowflakes.map(snowflake => {
-                    const newOpacity = minOpacity + Math.random() * (
-                        maxOpacity - minOpacity
-                    );
-                    return {
-                        ...snowflake,
-                        opacity: newOpacity
-                    };
-                });
-            }
-        });
-    }, [isChristmasMode, theme]);
-
-    if (!isChristmasMode || snowflakes.length === 0) {
+    if (snowflakes.length === 0) {
         return null;
     }
 
@@ -138,9 +168,14 @@ export function Snowflakes() {
                         opacity: snowflake.opacity,
                         color: snowflake.color,
                         animation: `snowfall ${snowflake.duration}s linear infinite`,
-                        animationDelay: snowflake.initialTop !== undefined ? `${(
-                                                                                    snowflake.initialTop + 20
-                                                                                ) / 100 * snowflake.duration}s` : '0s',
+                        animationDelay:
+                            snowflake.initialTop !== undefined
+                                ? `${(
+                                         (
+                                             snowflake.initialTop + 20
+                                         ) / 100
+                                     ) * snowflake.duration}s`
+                                : '0s',
                         willChange: 'transform',
                         userSelect: 'none',
                         fontFamily: 'system-ui, -apple-system, sans-serif'
@@ -152,4 +187,3 @@ export function Snowflakes() {
         </div>
     );
 }
-
