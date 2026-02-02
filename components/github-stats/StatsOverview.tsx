@@ -12,9 +12,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Code2, GitCommit, GitFork, Loader2, Minus, Plus, Star } from 'lucide-react';
+import { Code2, GitCommit, GitFork, Minus, Plus, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { RepoStats } from '@/lib/github/types';
+import { Spinner } from '@/components/ui/spinner';
 
 interface StatsOverviewProps {
     stats: RepoStats | null;
@@ -73,7 +74,7 @@ function StatCard({ icon, label, value, color, isLoading }: StatCardProps) {
         return (
             <div
                 className={cn('rounded-xl border bg-card/50 p-4 flex flex-col items-center justify-center', classes.border)}>
-                <Loader2 className={cn('w-6 h-6 animate-spin mb-2', classes.spinner)}/>
+                <Spinner className={cn('w-6 h-6 mb-2', classes.spinner)}/>
                 <span className="text-xs text-muted-foreground">{label}</span>
             </div>
         );

@@ -11,21 +11,75 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
+import { Download, Eye, FileTypeCorner, Folder } from 'lucide-react';
+import {
+    DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 
 export default function Hero() {
     const t = useTranslations('hero');
     const router = useRouter();
+
+    const [isDownloadingCV, setIsDownloadingCV] = useState(false);
     const [isDownloadingLM, setIsDownloadingLM] = useState(false);
 
-    const handleDownload = (fileUrl: string, fileName: string) => {
-        if (isDownloadingLM) return;
+    const [cvOpen, setCvOpen] = useState(false);
+    const [lmOpen, setLmOpen] = useState(false);
 
-        setIsDownloadingLM(true);
+    const cvLongPressTimerRef = useRef<number | null>(null);
+    const lmLongPressTimerRef = useRef<number | null>(null);
 
-        const reset = () => setIsDownloadingLM(false);
+    const didLongPressCVRef = useRef(false);
+    const didLongPressLMRef = useRef(false);
+
+    const allowOpenCVRef = useRef(false);
+    const allowOpenLMRef = useRef(false);
+
+    const onCvOpenChange = (next: boolean) => {
+        if (next && !allowOpenCVRef.current) return;
+        allowOpenCVRef.current = false;
+        setCvOpen(next);
+    };
+
+    const onLmOpenChange = (next: boolean) => {
+        if (next && !allowOpenLMRef.current) return;
+        allowOpenLMRef.current = false;
+        setLmOpen(next);
+    };
+
+    useEffect(() => {
+        if (!cvOpen && !lmOpen) return;
+
+        const close = () => {
+            setCvOpen(false);
+            setLmOpen(false);
+        };
+
+        window.addEventListener('scroll', close, true);
+        window.addEventListener('wheel', close, { passive: true });
+        window.addEventListener('touchmove', close, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', close, true);
+            window.removeEventListener('wheel', close as any);
+            window.removeEventListener('touchmove', close as any);
+        };
+    }, [cvOpen, lmOpen]);
+
+    const downloadFile = (
+        fileUrl: string,
+        fileName: string,
+        isDownloading: boolean,
+        setIsDownloading: (v: boolean) => void
+    ) => {
+        if (isDownloading) return;
+
+        setIsDownloading(true);
+
+        const reset = () => setIsDownloading(false);
 
         const onVisibility = () => {
             if (document.visibilityState === 'visible') reset();
@@ -50,6 +104,33 @@ export default function Hero() {
             document.removeEventListener('visibilitychange', onVisibility);
             window.clearTimeout(resetTimer);
         }, 3000);
+    };
+
+    const startLongPress = (
+        timerRef: React.MutableRefObject<number | null>,
+        didLongPressRef: React.MutableRefObject<boolean>,
+        allowOpenRef: React.MutableRefObject<boolean>,
+        setOpen: (v: boolean) => void
+    ) => {
+        didLongPressRef.current = false;
+
+        if (timerRef.current) {
+            window.clearTimeout(timerRef.current);
+            timerRef.current = null;
+        }
+
+        timerRef.current = window.setTimeout(() => {
+            didLongPressRef.current = true;
+            allowOpenRef.current = true;
+            setOpen(true);
+        }, 450);
+    };
+
+    const cancelLongPress = (timerRef: React.MutableRefObject<number | null>) => {
+        if (timerRef.current) {
+            window.clearTimeout(timerRef.current);
+            timerRef.current = null;
+        }
     };
 
     return (
@@ -112,65 +193,192 @@ export default function Hero() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <button
-                        type="button"
-                        onClick={() => router.push('/curriculum-vitae')}
-                        className="btn-fill-primary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 cursor-pointer"
-                    >
-                        <svg
-                            className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2}
-                            aria-hidden="true"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V11.25M13.5 6l7.5 5.25M13.5 6v5.25H21"
-                            />
-                        </svg>
-                        <span className="relative z-10">{t('viewCVButton')}</span>
-                    </button>
+                    <DropdownMenu modal={false} open={cvOpen} onOpenChange={onCvOpenChange}>
+                        <DropdownMenuTrigger asChild>
+                            <button
+                                type="button"
+                                onContextMenu={(e) => {
+                                    e.preventDefault();
+                                    allowOpenCVRef.current = true;
+                                    setCvOpen(true);
+                                }}
+                                onClick={() => {
+                                    if (cvOpen) return;
+                                    if (didLongPressCVRef.current) {
+                                        didLongPressCVRef.current = false;
+                                        return;
+                                    }
+                                    router.push('/curriculum-vitae');
+                                }}
+                                onPointerDown={(e) => {
+                                    if (e.pointerType !== 'touch') return;
+                                    e.preventDefault();
 
-                    <button
-                        onClick={() => handleDownload('/Lettre de motivation - Paul Viandier.pdf', 'Lettre de motivation - Paul Viandier.pdf')}
-                        disabled={isDownloadingLM}
-                        aria-busy={isDownloadingLM}
-                        className={`btn-fill-secondary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 ${isDownloadingLM ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
-                    >
-                        {isDownloadingLM ? (
-                            <svg className="w-5 h-5 animate-spin relative z-10" fill="none" viewBox="0 0 24 24"
-                                 aria-hidden="true">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        strokeWidth="4"/>
-                                <path
-                                    className="opacity-75"
-                                    fill="currentColor"
-                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                />
-                            </svg>
-                        ) : (
-                            <svg
-                                className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                strokeWidth={2}
-                                aria-hidden="true"
+                                    const startX = e.clientX;
+                                    const startY = e.clientY;
+
+                                    startLongPress(
+                                        cvLongPressTimerRef,
+                                        didLongPressCVRef,
+                                        allowOpenCVRef,
+                                        setCvOpen
+                                    );
+
+                                    const onMove = (ev: PointerEvent) => {
+                                        if (Math.abs(ev.clientX - startX) + Math.abs(ev.clientY - startY) > 10) {
+                                            cancelLongPress(cvLongPressTimerRef);
+                                        }
+                                    };
+
+                                    const cleanup = () => {
+                                        window.removeEventListener('pointermove', onMove);
+                                        cancelLongPress(cvLongPressTimerRef);
+                                    };
+
+                                    window.addEventListener('pointermove', onMove, { passive: true });
+                                    window.addEventListener('pointerup', cleanup, { passive: true, once: true });
+                                    window.addEventListener('pointercancel', cleanup, { passive: true, once: true });
+                                }}
+                                onPointerLeave={() => cancelLongPress(cvLongPressTimerRef)}
+                                className="btn-fill-primary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 cursor-pointer select-none"
+                                style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
                             >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
-                                />
-                            </svg>
-                        )}
-                        <span
-                            className="relative z-10">{isDownloadingLM ? t('downloadingLM') : t('downloadLMButton')}</span>
-                    </button>
+                                <Folder
+                                    className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"/>
+                                <span className="relative z-10">{t('viewCVButton')}</span>
+                            </button>
+                        </DropdownMenuTrigger>
+
+                        <DropdownMenuContent side="bottom" align="center" sideOffset={8} className="min-w-[200px]">
+                            <DropdownMenuItem
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    downloadFile(
+                                        '/Curriculum Vitae - Paul Viandier.pdf',
+                                        'Curriculum Vitae - Paul Viandier.pdf',
+                                        isDownloadingCV,
+                                        setIsDownloadingCV
+                                    );
+                                }}
+                                disabled={isDownloadingCV}
+                                className="cursor-pointer gap-3"
+                            >
+                                <span className="inline-flex w-6 items-center justify-center">
+                                    <Download className="size-4 shrink-0"/>
+                                </span>
+                                <span className="leading-none">{t('downloadCVButton')}</span>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    router.push('/curriculum-vitae');
+                                }}
+                                className="cursor-pointer gap-3"
+                            >
+                                <span className="inline-flex w-6 items-center justify-center">
+                                    <Eye className="size-4 shrink-0"/>
+                                </span>
+                                <span className="leading-none">{t('viewButtonDropdown')}</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    <DropdownMenu modal={false} open={lmOpen} onOpenChange={onLmOpenChange}>
+                        <DropdownMenuTrigger asChild>
+                            <button
+                                type="button"
+                                onContextMenu={(e) => {
+                                    e.preventDefault();
+                                    allowOpenLMRef.current = true;
+                                    setLmOpen(true);
+                                }}
+                                onClick={() => {
+                                    if (lmOpen) return;
+                                    if (didLongPressLMRef.current) {
+                                        didLongPressLMRef.current = false;
+                                        return;
+                                    }
+                                    router.push('/motivation-letter');
+                                }}
+                                onPointerDown={(e) => {
+                                    if (e.pointerType !== 'touch') return;
+                                    e.preventDefault();
+
+                                    const startX = e.clientX;
+                                    const startY = e.clientY;
+
+                                    startLongPress(
+                                        lmLongPressTimerRef,
+                                        didLongPressLMRef,
+                                        allowOpenLMRef,
+                                        setLmOpen
+                                    );
+
+                                    const onMove = (ev: PointerEvent) => {
+                                        if (Math.abs(ev.clientX - startX) + Math.abs(ev.clientY - startY) > 10) {
+                                            cancelLongPress(lmLongPressTimerRef);
+                                        }
+                                    };
+
+                                    const cleanup = () => {
+                                        window.removeEventListener('pointermove', onMove);
+                                        cancelLongPress(lmLongPressTimerRef);
+                                    };
+
+                                    window.addEventListener('pointermove', onMove, { passive: true });
+                                    window.addEventListener('pointerup', cleanup, { passive: true, once: true });
+                                    window.addEventListener('pointercancel', cleanup, { passive: true, once: true });
+                                }}
+                                onPointerLeave={() => cancelLongPress(lmLongPressTimerRef)}
+                                className="btn-fill-secondary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 cursor-pointer select-none"
+                                style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
+                            >
+                                <FileTypeCorner
+                                    className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"/>
+                                <span className="relative z-10">{t('viewLMButton')}</span>
+                            </button>
+                        </DropdownMenuTrigger>
+
+                        <DropdownMenuContent side="bottom" align="center" sideOffset={8} className="min-w-[200px]">
+                            <DropdownMenuItem
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    downloadFile(
+                                        '/Lettre de motivation - Paul Viandier.pdf',
+                                        'Lettre de motivation - Paul Viandier.pdf',
+                                        isDownloadingLM,
+                                        setIsDownloadingLM
+                                    );
+                                }}
+                                disabled={isDownloadingLM}
+                                className="cursor-pointer gap-3"
+                            >
+                                <span className="inline-flex w-6 items-center justify-center">
+                                    <Download className="size-4 shrink-0"/>
+                                </span>
+                                <span className="leading-none">{t('downloadLMButton')}</span>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    router.push('/motivation-letter');
+                                }}
+                                className="cursor-pointer gap-3"
+                            >
+                                <span className="inline-flex w-6 items-center justify-center">
+                                    <Eye className="size-4 shrink-0"/>
+                                </span>
+                                <span className="leading-none">{t('viewButtonDropdown')}</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
+
+                <p className="mt-6 text-xs sm:text-sm text-muted-foreground/70 max-w-md mx-auto">
+                    {t('quickActionsHint')}
+                </p>
             </div>
         </section>
     );

@@ -26,24 +26,8 @@ export default function Contact() {
     } = useInView({ threshold: 0.2 });
     const { openContact } = useContactModal();
 
-    const handleEmailClick = useCallback(async () => {
-        let shouldMailto = false;
-
-        try {
-            const response = await fetch('/api/email/counter', {
-                method: 'GET',
-                credentials: 'same-origin'
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                const count = typeof data.count === 'string' ? parseInt(data.count, 10) : data.count;
-                shouldMailto = count >= 200;
-            }
-        } catch {
-        } finally {
-            openContact({ mailtoMode: shouldMailto });
-        }
+    const handleEmailClick = useCallback(() => {
+        void openContact();
     }, [openContact]);
 
     const contacts = [

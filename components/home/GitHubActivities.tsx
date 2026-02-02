@@ -13,12 +13,13 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowRight, GitCommit, GitFork, Loader2, Star } from 'lucide-react';
+import { ArrowRight, GitCommit, GitFork, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useInView } from '@/hooks/use-in-view';
 import { Link } from '@/i18n/routing';
 import { ALLOWED_REPOSITORIES, LoadingState, MultiRepoStatsResponse } from '@/lib/github/types';
 import { SiGithub } from 'react-icons/si';
+import { Spinner } from '@/components/ui/spinner';
 
 const REPOS_QUERY = encodeURIComponent(
     JSON.stringify(ALLOWED_REPOSITORIES.map(({ owner, name }) => (
@@ -136,7 +137,7 @@ export function GitHubActivities() {
                             >
                                 {loadingState === 'loading' ? (
                                     <div className="flex flex-col items-center justify-center py-2">
-                                        <Loader2 className="w-6 h-6 text-blue-500 animate-spin mb-2"/>
+                                        <Spinner className="w-6 h-6 text-blue-500 mb-2"/>
                                         <span className="text-xs text-muted-foreground">{t('loading')}</span>
                                     </div>
                                 ) : (

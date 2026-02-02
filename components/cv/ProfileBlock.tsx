@@ -16,10 +16,17 @@ import { Download, Globe, Mail } from 'lucide-react';
 import { useContactModal } from '@/hooks/useContactModal';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 
-const CV_PDF_PATH = '/Curriculum Vitae - Viandier Paul.pdf';
-const CV_PDF_FILENAME = 'Curriculum Vitae - Viandier Paul.pdf';
-
-export function CvDownloadButton({ label, loadingLabel }: { label: string; loadingLabel: string }) {
+export function CvDownloadButton({
+    label,
+    loadingLabel,
+    href,
+    filename
+}: {
+    label: string;
+    loadingLabel: string;
+    href: string;
+    filename: string;
+}) {
     const [isDownloading, setIsDownloading] = useState(false);
 
     const handleDownload = useCallback(() => {
@@ -40,15 +47,15 @@ export function CvDownloadButton({ label, loadingLabel }: { label: string; loadi
         window.addEventListener('pagehide', reset, { once: true });
 
         const link = document.createElement('a');
-        link.href = CV_PDF_PATH;
-        link.download = CV_PDF_FILENAME;
+        link.href = href;
+        link.download = filename;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
 
         const t = window.setTimeout(reset, 2500);
         window.setTimeout(() => window.clearTimeout(t), 3000);
-    }, [isDownloading]);
+    }, [isDownloading, href, filename]);
 
     return (
         <button
@@ -108,19 +115,8 @@ export default function ProfileBlock({
 }: CvProfileBlockProps) {
     const { openContact } = useContactModal();
 
-    const handleEmailClick = useCallback(async () => {
-        let shouldMailto = false;
-        try {
-            const response = await fetch('/api/email/counter', { method: 'GET', credentials: 'same-origin' });
-            if (response.ok) {
-                const data = await response.json();
-                const count = typeof data.count === 'string' ? parseInt(data.count, 10) : data.count;
-                shouldMailto = count >= 200;
-            }
-        } catch {
-            // ignore
-        }
-        openContact({ mailtoMode: shouldMailto });
+    const handleEmailClick = useCallback(() => {
+        void openContact();
     }, [openContact]);
 
     const initials = name

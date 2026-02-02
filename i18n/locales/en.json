@@ -7,8 +7,11 @@
     "location": "France",
     "role": "Web Integrator",
     "viewCVButton": "See my Curriculum Vitae",
-    "downloadingLM": "Downloading...",
-    "downloadLMButton": "Download my motivation letter"
+    "downloadCVButton": "Download my Curriculum Vitae",
+    "viewLMButton": "See my cover letter",
+    "downloadLMButton": "Download my cover letter",
+    "viewButtonDropdown": "View the web version",
+    "quickActionsHint": "Right-click or long-press to view quick actions"
   },
   "about": {
     "title": "About me",
@@ -75,6 +78,7 @@
     "linkedin": "LinkedIn",
     "sendMessage": "Send a message",
     "modal": {
+      "loading": "Loading...",
       "title": "Contact me",
       "name": "Name",
       "namePlaceholder": "Viandier Paul",
@@ -2479,6 +2483,30 @@
           }
         }
       }
+    }
+  },
+  "motivation-letter": {
+    "badge": "Cover letter",
+    "title": "Cover letter",
+    "lastUpdatedLabel": "Last updated:",
+    "topCentered": {
+      "top": "VIANDIER PAUL",
+      "bottom": "contact@paulviandier.com"
+    },
+    "bannerText": "WEB INTEGRATOR APPRENTICESHIP (WORK-STUDY PROGRAM)",
+    "body": [
+      "Dear Sir or Madam,",
+      "I am currently seeking a work-study apprenticeship as a web integrator, and I would like to join your company to develop my skills in a structured and demanding professional environment. Although I am at the beginning of my professional journey, I am very comfortable with IT in general and have already explored several technical fields.",
+      "In particular, I have trained in front-end development and built a solid foundation in HTML, CSS, and JavaScript, along with initial experience with React, Redux, API usage, Git, and responsive design. I am used to integrating interfaces from Figma mockups, ensuring the visual result, code structure, and user experience are all respected.",
+      "Much like a well-organized construction site, I take the time to lay clean foundations before adding features. This approach allows me to produce clear, consistent interfaces that adapt well to different devices.",
+      "My interest in systems, networks, and cybersecurity has made me aware of robustness, best practices, and maintainability. I try to apply these principles from the integration phase onward, in order to deliver code that is reliable and easy for other developers to understand.",
+      "Serious, motivated, and appreciative of teamwork, I am ready to fully commit to your projects while continuing to learn from experienced professionals. This apprenticeship represents an essential step for me to progress technically and contribute concretely to your work.",
+      "I would be delighted to meet with you to discuss my application in more detail.",
+      "Yours sincerely,"
+    ],
+    "actions": {
+      "downloadPdf": "Download PDF",
+      "downloadPdfLoading": "Downloading..."
     }
   }
 }

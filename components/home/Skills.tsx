@@ -13,7 +13,6 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import SkillIcon from './SkillIcon';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -27,25 +26,26 @@ type Category = 'all' | 'frontend' | 'backend' | 'tools' | 'other';
 interface Skill {
     name: string;
     category: Category;
+    iconId: string;
 }
 
 const skills: Skill[] = [
-    { name: 'HTML5', category: 'frontend' },
-    { name: 'JavaScript', category: 'frontend' },
-    { name: 'TypeScript', category: 'frontend' },
-    { name: 'CSS', category: 'frontend' },
-    { name: 'React', category: 'frontend' },
-    { name: 'Tailwind CSS', category: 'frontend' },
-    { name: 'NextJS', category: 'frontend' },
-    { name: 'Responsive Design', category: 'frontend' },
-    { name: 'NodeJS', category: 'backend' },
-    { name: 'PostgreSQL', category: 'backend' },
-    { name: 'API REST', category: 'backend' },
-    { name: 'Git', category: 'tools' },
-    { name: 'GitHub', category: 'tools' },
-    { name: 'EmailJS', category: 'tools' },
-    { name: 'Cybersecurity', category: 'other' },
-    { name: 'SEO', category: 'other' }
+    { name: 'HTML5', category: 'frontend', iconId: 'html5' },
+    { name: 'JavaScript', category: 'frontend', iconId: 'javascript' },
+    { name: 'TypeScript', category: 'frontend', iconId: 'typescript' },
+    { name: 'CSS', category: 'frontend', iconId: 'css' },
+    { name: 'React', category: 'frontend', iconId: 'react' },
+    { name: 'Tailwind CSS', category: 'frontend', iconId: 'tailwind' },
+    { name: 'NextJS', category: 'frontend', iconId: 'nextjs' },
+    { name: 'Responsive Design', category: 'frontend', iconId: 'responsive' },
+    { name: 'NodeJS', category: 'backend', iconId: 'nodejs' },
+    { name: 'PostgreSQL', category: 'backend', iconId: 'postgresql' },
+    { name: 'API REST', category: 'backend', iconId: 'api' },
+    { name: 'Git', category: 'tools', iconId: 'git' },
+    { name: 'GitHub', category: 'tools', iconId: 'github' },
+    { name: 'EmailJS', category: 'tools', iconId: 'emailjs' },
+    { name: 'Cybersecurity', category: 'other', iconId: 'cybersecurity' },
+    { name: 'SEO', category: 'other', iconId: 'seo' }
 ];
 
 const MOBILE_PAGE_SIZE = 4;
@@ -91,18 +91,10 @@ export default function Skills() {
     const pageCount = pages.length;
 
     useEffect(() => {
-        if (page === 0) return;
-        const id = window.requestAnimationFrame(() => setPage(0));
-        return () => window.cancelAnimationFrame(id);
-    }, [pageSize, page]);
-
-    useEffect(() => {
-        const clamped = Math.max(0, Math.min(page, pageCount - 1));
-        if (clamped === page) return;
-
-        const id = window.requestAnimationFrame(() => setPage(clamped));
-        return () => window.cancelAnimationFrame(id);
-    }, [page, pageCount]);
+        if (page >= pageCount && pageCount > 0) {
+            setPage(Math.max(0, pageCount - 1));
+        }
+    }, [pageCount, page]);
 
     const categories: { key: Category; label: string }[] = [
         { key: 'all', label: t('categories.all') },
@@ -180,7 +172,7 @@ export default function Skills() {
                                                     }
 
                                                     return (
-                                                        <Tooltip key={`${pageIndex}-${index}`}>
+                                                        <Tooltip key={skill.name}>
                                                             <TooltipTrigger asChild>
                                                                 <div
                                                                     className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer"
@@ -188,10 +180,11 @@ export default function Skills() {
                                                                     <div
                                                                         className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300"
                                                                     >
-                                                                        <SkillIcon
-                                                                            name={skill.name}
-                                                                            className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300"
-                                                                        />
+                                                                        <svg
+                                                                            className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                                                                            <use
+                                                                                href={`/icons.svg#icon-${skill.iconId}`}/>
+                                                                        </svg>
                                                                     </div>
                                                                     <h3 className="text-sm font-medium text-foreground/80 text-center group-hover:text-foreground transition-colors duration-300">
                                                                         {skill.name}

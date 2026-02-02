@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils';
 import { CommitDetail, Repository, TimeRange, VALID_TIME_RANGES } from '@/lib/github/types';
 import { CommitDetailPanel } from './CommitDetail';
 import { PeriodSelector } from './PeriodSelector';
+import { Spinner } from '@/components/ui/spinner';
 
 interface MultiRepoCommitItem {
     sha: string;
@@ -245,7 +246,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
 
                 {isLoading && !commitsData ? (
                     <div className="p-8 text-center">
-                        <Loader2 className="w-6 h-6 animate-spin text-blue-500 mx-auto mb-2"/>
+                        <Spinner className="w-6 h-6 text-blue-500 mx-auto mb-2"/>
                         <span className="text-sm text-muted-foreground">{t('loading')}</span>
                     </div>
                 ) : commitsData && Object.keys(commitsData.commitsByRepo).length > 0 ? (

@@ -35,6 +35,20 @@ function getCurrentMonthParis(): string {
     return `${year}-${month}`;
 }
 
+function getPreviousMonth(month: string): string {
+    const [yStr, mStr] = month.split('-');
+    let y = parseInt(yStr, 10);
+    let m = parseInt(mStr, 10);
+
+    m -= 1;
+    if (m === 0) {
+        m = 12;
+        y -= 1;
+    }
+
+    return `${y}-${String(m).padStart(2, '0')}`;
+}
+
 let redisClient: Redis | null = null;
 
 function getRedisClient(): Redis | null {
@@ -194,6 +208,10 @@ export async function incrementEmailCounter(): Promise<{
 
     if (count === 1) {
         await redis.expire(key, 60 * 60 * 24 * 40);
+
+        const prevMonth = getPreviousMonth(month);
+        const prevKey = `email_counter:${prevMonth}`;
+        await redis.expire(prevKey, 1);
     }
 
     if (count > MONTHLY_LIMIT) {

@@ -29,6 +29,7 @@ import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { validateEmailForm } from '@/lib/email-validation';
+import { Spinner } from '@/components/ui/spinner';
 
 type TurnstileTheme = 'light' | 'dark' | 'auto';
 
@@ -113,6 +114,8 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
     const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
     const turnstileWidgetIdRef = useRef<string | null>(null);
 
+    const [turnstileLoading, setTurnstileLoading] = useState(false);
+
     const translateValidation = useCallback(
         (key: string) => {
             try {
@@ -149,10 +152,12 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
     useEffect(() => {
         if (!isOpen) return;
 
+        setTurnstileLoading(true);
         setTurnstileToken(null);
         setTurnstileError(null);
 
         if (!siteKey) {
+            setTurnstileLoading(false);
             setTurnstileError('Captcha non configuré (NEXT_PUBLIC_TURNSTILE_SITE_KEY manquante).');
             return;
         }
@@ -197,15 +202,18 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
                     });
 
                     turnstileWidgetIdRef.current = widgetId;
+                    setTurnstileLoading(false);
                 } catch {
                     setTurnstileToken(null);
                     setTurnstileError('Impossible de charger le captcha.');
+                    setTurnstileLoading(false);
                 }
             }
         )();
 
         return () => {
             cancelled = true;
+            setTurnstileLoading(false);
 
             if (turnstileWidgetIdRef.current && window.turnstile) {
                 try {
@@ -434,7 +442,22 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
 
                         <div className="space-y-2">
                             <div className="flex justify-center">
-                                <div ref={turnstileContainerRef}/>
+                                <div className="relative min-h-[70px]">
+                                    <div
+                                        ref={turnstileContainerRef}
+                                        className={turnstileLoading ? 'opacity-0 pointer-events-none' : ''}
+                                    />
+
+                                    {turnstileLoading && (
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div
+                                                className="flex items-center gap-2 rounded-md border px-3 py-2 text-sm text-muted-foreground">
+                                                <Spinner className="w-4 h-4 border-2 text-blue-500"/>
+                                                <span>t{'loading'}</span>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                             {turnstileError && (

@@ -16,12 +16,17 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { useContactModal } from '@/hooks/useContactModal';
 import { BarChart3, FileText, Gamepad2, HelpCircle, Home, Mail, Scale, ShieldCheck } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import { useCallback } from 'react';
 
 export default function Footer() {
     const t = useTranslations('footer');
     const tNav = useTranslations('nav');
     const currentYear = new Date().getFullYear();
     const { openContact } = useContactModal();
+
+    const handleEmailClick = useCallback(() => {
+        void openContact();
+    }, [openContact]);
 
     const navLinks = [
         { label: tNav('home'), href: '/', icon: Home },
@@ -99,7 +104,7 @@ export default function Footer() {
                             <li>
                                 <button
                                     type="button"
-                                    onClick={() => openContact()}
+                                    onClick={handleEmailClick}
                                     className={`${linkClass} text-left`}
                                 >
                                     <Mail className="w-4 h-4 shrink-0"/>

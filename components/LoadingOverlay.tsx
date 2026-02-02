@@ -11,9 +11,9 @@
 
 'use client';
 
-import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
+import { Spinner } from '@/components/ui/spinner';
 
 interface LoadingOverlayProps {
     isLoading: boolean;
@@ -29,9 +29,11 @@ export function LoadingOverlay({ isLoading }: LoadingOverlayProps) {
                 isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
             )}
         >
-            <div className="flex flex-col items-center text-center gap-3">
-                <Spinner className="h-12 w-12"/>
-                <p className="text-sm sm:text-base text-muted-foreground">{t('languageChanging')}</p>
+            <div className="flex items-center gap-3">
+                <Spinner className="h-8 w-8 shrink-0 text-muted-foreground"/>
+                <p className="text-sm sm:text-base text-muted-foreground">
+                    {t('languageChanging')}
+                </p>
             </div>
         </div>
     );

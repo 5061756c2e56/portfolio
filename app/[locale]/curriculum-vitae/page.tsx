@@ -12,9 +12,10 @@
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { getFormatter, getTranslations } from 'next-intl/server';
-import { Briefcase, Calendar, Code2, Database, GraduationCap, Home, Layers, Shield, User, Wrench } from 'lucide-react';
+import {
+    Briefcase, Calendar, Code2, Database, FileText, GraduationCap, Layers, Shield, User, Wrench
+} from 'lucide-react';
 import Image from 'next/image';
-import { Link } from '@/i18n/routing';
 import LegalNavigation from '@/components/navbars/Legal/LegalNavigation';
 import ProfileBlock, { CvDownloadButton } from '@/components/cv/ProfileBlock';
 
@@ -26,6 +27,8 @@ type CvSection = {
 };
 
 const LAST_UPDATED_ISO = '2026-01-31';
+const CV_PDF_PATH = '/Curriculum Vitae - Viandier Paul.pdf';
+const CV_PDF_FILENAME = 'Curriculum Vitae - Viandier Paul.pdf';
 
 export const metadata: Metadata = {
     title: 'Curriculum Vitae',
@@ -182,22 +185,43 @@ function SkillCard({
     );
 }
 
-function FileBadge() {
+function LogoCloud() {
+    const items = [
+        { iconId: 'nextjs', x: 12, y: 18, r: -10, s: 1.02 },
+        { iconId: 'react', x: 34, y: 26, r: 8, s: 1.0 },
+        { iconId: 'typescript', x: 55, y: 14, r: 12, s: 1.02 },
+        { iconId: 'tailwind', x: 78, y: 24, r: -7, s: 1.0 },
+        { iconId: 'nodejs', x: 18, y: 52, r: 10, s: 1.0 },
+        { iconId: 'postgresql', x: 44, y: 58, r: -10, s: 1.02 },
+        { iconId: 'git', x: 70, y: 52, r: 7, s: 1.0 },
+        { iconId: 'github', x: 14, y: 82, r: -8, s: 1.0 },
+        { iconId: 'html5', x: 50, y: 86, r: 10, s: 1.02 },
+        { iconId: 'css', x: 84, y: 80, r: -10, s: 1.0 }
+    ];
+
     return (
-        <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            className="h-4 w-4 text-foreground/70"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
+        <div
+            className={[
+                'relative mt-8 flex-1 min-h-[140px]',
+                '-mx-2 sm:-mx-6',
+                'w-[calc(100%+1rem)] sm:w-[calc(100%+3rem)]',
+                'overflow-hidden'
+            ].join(' ')}
         >
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <path d="M14 2v6h6"/>
-            <path d="M8 13h8"/>
-            <path d="M8 17h8"/>
-            <path d="M8 9h2"/>
-        </svg>
+            {items.map((it, idx) => (
+                <svg
+                    key={idx}
+                    className="absolute h-7 sm:h-8 w-auto"
+                    style={{
+                        left: `${it.x}%`,
+                        top: `${it.y}%`,
+                        transform: `translate(-50%, -50%) rotate(${it.r}deg) scale(${it.s})`
+                    }}
+                >
+                    <use href={`/icons.svg#icon-${it.iconId}`}/>
+                </svg>
+            ))}
+        </div>
     );
 }
 
@@ -294,21 +318,8 @@ export default async function CurriculumVitaePage() {
                                     <Pill index={3}>TypeScript</Pill>
                                     <Pill index={4}>PostgreSQL</Pill>
                                 </div>
-                            </div>
 
-                            <div className="mt-auto flex flex-wrap gap-3 pt-6">
-                                <Link
-                                    href="/"
-                                    className="btn-fill-secondary group inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300"
-                                >
-                                    <Home className="h-4 w-4"/>
-                                    {t('actions.backHome')}
-                                </Link>
-
-                                <CvDownloadButton
-                                    label={t('actions.downloadPdf')}
-                                    loadingLabel={t('actions.downloadPdfLoading')}
-                                />
+                                <LogoCloud/>
                             </div>
                         </div>
 
@@ -383,7 +394,7 @@ export default async function CurriculumVitaePage() {
                                             {ed.key === 'openclassrooms' ? (
                                                 <span className="inline-flex items-center gap-2">
                                                     <Image
-                                                        src="/OC.svg"
+                                                        src="/SVG/OC.svg"
                                                         alt="OpenClassrooms"
                                                         width={13}
                                                         height={16}
@@ -410,7 +421,7 @@ export default async function CurriculumVitaePage() {
                                             <div className="flex items-center gap-2">
                                                 {ed.key === 'openclassrooms' ? (
                                                     <Image
-                                                        src="/OC.svg"
+                                                        src="/SVG/OC.svg"
                                                         alt="OpenClassrooms"
                                                         width={13}
                                                         height={16}
@@ -555,7 +566,7 @@ export default async function CurriculumVitaePage() {
                     <header className="text-center mb-12">
                         <div
                             className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground">
-                            <FileBadge/>
+                            <FileText className="h-4 w-4"/>
                             {t('badge')}
                         </div>
 
@@ -564,6 +575,15 @@ export default async function CurriculumVitaePage() {
                         <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
                             {t('description', { role: CV.role })}
                         </p>
+
+                        <div className="mt-6 flex justify-center">
+                            <CvDownloadButton
+                                label={t('actions.downloadPdf')}
+                                loadingLabel={t('actions.downloadPdfLoading')}
+                                href={CV_PDF_PATH}
+                                filename={CV_PDF_FILENAME}
+                            />
+                        </div>
 
                         <p className="text-xs text-muted-foreground mt-4">
                             {t('lastUpdatedLabel')}{' '}

@@ -13,9 +13,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Calendar, Check, ChevronDown, Loader2 } from 'lucide-react';
+import { Calendar, Check, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TimeRange, VALID_TIME_RANGES } from '@/lib/github/types';
+import { Spinner } from '@/components/ui/spinner';
 
 interface PeriodSelectorProps {
     selectedRange: TimeRange;
@@ -91,7 +92,7 @@ export function PeriodSelector({
                 )}
             >
                 {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin text-blue-500"/>
+                    <Spinner className="w-4 h-4 text-blue-500"/>
                 ) : (
                     <Calendar
                         className={cn(

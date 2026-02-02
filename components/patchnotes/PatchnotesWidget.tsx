@@ -285,8 +285,12 @@ function HomeContent({
     homeGuide: { badge: string; subtitle: string; items: string[] };
 }) {
     return (
-        <div className="h-full flex items-center justify-center p-6">
+        <div className="h-full flex items-center justify-center p-6 pt-24 md:pt-6">
             <div className="max-w-lg w-full text-center">
+                <div className="mx-auto mb-4 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <Home className="h-7 w-7 text-primary"/>
+                </div>
+
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{homeMeta.title}</h2>
 
                 <div className="mt-4">
@@ -577,6 +581,9 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
 
     const closeModal = () => {
         setChangelogOpen(false);
+        setActiveId(HOME_ID);
+        setActive(null);
+        setActiveParsed({ title: '', description: '', displayDate: '', body: '' });
     };
 
     useEffect(() => {
@@ -605,23 +612,28 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
 
     const onSelect = (id: string) => {
         setActiveId(id);
+
         setSortOpen(false);
         setMobileSidebarOpen(false);
 
-        if (id !== HOME_ID) {
-            setReadSet(prev => {
-                if (prev.has(id)) return prev;
-                const next = new Set(prev);
-                next.add(id);
-                if (typeof window !== 'undefined') {
-                    try {
-                        saveReadSet(next);
-                    } catch {
-                    }
-                }
-                return next;
-            });
+        if (id === HOME_ID) {
+            setActive(null);
+            setActiveParsed({ title: '', description: '', displayDate: '', body: '' });
+            return;
         }
+
+        setReadSet(prev => {
+            if (prev.has(id)) return prev;
+            const next = new Set(prev);
+            next.add(id);
+            if (typeof window !== 'undefined') {
+                try {
+                    saveReadSet(next);
+                } catch {
+                }
+            }
+            return next;
+        });
     };
 
     const searchPlaceholder = locale === 'fr' ? 'Rechercher...' : 'Search...';
@@ -629,16 +641,32 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
     const closeLabel = locale === 'fr' ? 'Fermer' : 'Close';
     const menuLabel = locale === 'fr' ? 'Menu' : 'Menu';
 
-    const headerTitle = activeParsed.title || active?.title || '';
-    const headerDescription = activeParsed.description || active?.description || '';
-    const headerDate = activeParsed.displayDate || active?.displayDate || active?.fileDate || '';
+    const isHomeActive = effectiveActiveId === HOME_ID;
+
+    const headerTitle = isHomeActive
+        ? homeMeta.title
+        : (
+            activeParsed.title || active?.title || ''
+        );
+
+    const headerDescription = isHomeActive
+        ? ''
+        : (
+            activeParsed.description || active?.description || ''
+        );
+
+    const headerDate = isHomeActive
+        ? ''
+        : (
+            activeParsed.displayDate || active?.displayDate || active?.fileDate || ''
+        );
 
     return (
         <>
             <FloatingButton onClick={openModal} unreadCount={unreadCount}/>
 
             {open && (
-                <div className="fixed inset-0 z-50">
+                <div className="fixed inset-0 z-50 overscroll-contain">
                     <div
                         className={cn('absolute inset-0', 'bg-black/60 backdrop-blur-sm', 'animate-in fade-in duration-200')}/>
 
@@ -813,7 +841,7 @@ export default function PatchnotesWidget({ locale }: { locale: 'fr' | 'en' }) {
                             </div>
                         </aside>
 
-                        <main className="flex-1 min-h-0 overflow-auto">
+                        <main className="flex-1 min-h-0 overflow-auto overscroll-contain">
                             {effectiveActiveId === HOME_ID ? (
                                 <HomeContent homeMeta={homeMeta} homeGuide={homeGuide}/>
                             ) : (

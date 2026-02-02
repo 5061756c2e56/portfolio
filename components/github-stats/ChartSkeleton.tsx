@@ -12,8 +12,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Spinner } from '@/components/ui/spinner';
 
 export function ChartSkeleton() {
     const t = useTranslations('githubStats');
@@ -37,7 +37,7 @@ export function ChartSkeleton() {
                 <div className="flex flex-col items-center gap-2">
                     <div className="relative">
                         <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping"/>
-                        <Loader2 className="w-10 h-10 animate-spin text-blue-500 relative"/>
+                        <Spinner className="w-10 h-10 animate-spin text-blue-500 relative"/>
                     </div>
 
                     <p className="text-sm text-muted-foreground font-medium">

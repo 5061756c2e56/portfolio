@@ -7,8 +7,11 @@
     "location": "France",
     "role": "Intégrateur Web",
     "viewCVButton": "Voir mon Curriculum Vitae",
+    "downloadCVButton": "Télécharger mon Curriculum Vitae",
+    "viewLMButton": "Voir ma lettre de motivation",
     "downloadLMButton": "Télécharger ma lettre de motivation",
-    "downloadingLM": "Téléchargement en cours..."
+    "viewButtonDropdown": "Voir la version web",
+    "quickActionsHint": "Faites un clic-droit ou restez appuyé pour voir les actions rapides"
   },
   "about": {
     "title": "À propos de moi",
@@ -75,6 +78,7 @@
     "linkedin": "LinkedIn",
     "sendMessage": "Envoyer un message",
     "modal": {
+      "loading": "Chargement...",
       "title": "Me contacter",
       "name": "Nom",
       "namePlaceholder": "Viandier Paul",
@@ -2479,6 +2483,30 @@
           }
         }
       }
+    }
+  },
+  "motivation-letter": {
+    "badge": "Lettre de motivation",
+    "title": "Lettre de motivation",
+    "lastUpdatedLabel": "Dernière mise à jour :",
+    "topCentered": {
+      "top": "VIANDIER PAUL",
+      "bottom": "contact@paulviandier.com"
+    },
+    "bannerText": "INTÉGRATEUR WEB EN ALTERNANCE",
+    "body": [
+      "Madame, Monsieur,",
+      "Actuellement à la recherche d'une alternance en tant qu'intégrateur web, je souhaite intégrer votre entreprise afin de développer mes compétences dans un cadre professionnel structuré et exigeant. Bien que débutant dans le monde professionnel, je suis très à l'aise avec l'informatique de manière générale et j'ai déjà exploré plusieurs domaines techniques.",
+      "Je me suis notamment formé au développement front-end et j'ai acquis de bonnes bases en HTML, CSS et JavaScript, ainsi qu'une première expérience avec React, Redux, l'utilisation d'API, Git et le responsive design. J'ai l'habitude d'intégrer des interfaces à partir de maquettes Figma, en veillant à respecter le rendu visuel, la structure du code et l'expérience utilisateur.",
+      "Comme sur un chantier bien organisé, je prends le temps de poser des bases propres avant d'ajouter des fonctionnalités. Cette approche me permet de produire des interfaces claires, cohérentes et adaptées à différents supports.",
+      "Mon intérêt pour les systèmes, les réseaux et la cybersécurité m'a sensibilisé aux notions de robustesse, de bonnes pratiques et de maintenabilité. J'essaie d'appliquer ces principes dès la phase d'intégration, afin de livrer un code fiable et compréhensible par d'autres développeurs.",
+      "Sérieux, motivé et appréciant le travail en équipe, je suis prêt à m'investir pleinement dans vos projets tout en continuant à apprendre auprès de professionnels expérimentés. Cette alternance représente pour moi une étape essentielle pour progresser techniquement et contribuer concrètement à vos réalisations.",
+      "Je serais ravi de pouvoir vous rencontrer afin d'échanger plus en détail sur ma candidature.",
+      "Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
+    ],
+    "actions": {
+      "downloadPdf": "Télécharger le PDF",
+      "downloadPdfLoading": "Téléchargement en cours..."
     }
   }
 }

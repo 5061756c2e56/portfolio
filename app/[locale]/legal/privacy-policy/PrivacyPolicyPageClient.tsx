@@ -16,6 +16,7 @@ import LegalNavigation from '@/components/navbars/Legal/LegalNavigation';
 import { useContactModal } from '@/hooks/useContactModal';
 import { Link } from '@/i18n/routing';
 import { useFormatter, useTranslations } from 'next-intl';
+import { useCallback } from 'react';
 
 type ListItem = string;
 
@@ -32,6 +33,10 @@ export default function PrivacyPolicyPageClient() {
     const t = useTranslations('legal.privacy-policy');
     const format = useFormatter();
     const { openContact } = useContactModal();
+
+    const handleEmailClick = useCallback(() => {
+        void openContact();
+    }, [openContact]);
 
     const lastUpdated = format.dateTime(new Date(LAST_UPDATED_ISO), { dateStyle: 'long' });
 
@@ -72,7 +77,7 @@ export default function PrivacyPolicyPageClient() {
                             contactBtn: (chunks) => (
                                 <button
                                     type="button"
-                                    onClick={() => openContact()}
+                                    onClick={handleEmailClick}
                                     className="underline underline-offset-4 hover:text-foreground transition-colors"
                                 >
                                     {chunks}

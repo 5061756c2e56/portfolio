@@ -14,12 +14,13 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { ExternalLink, GitCommit, Loader2, Users } from 'lucide-react';
+import { ExternalLink, GitCommit, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Contributor } from '@/lib/github/types';
 import {
     Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious
 } from '@/components/ui/pagination';
+import { Spinner } from '@/components/ui/spinner';
 
 interface ContributorsSectionProps {
     contributors: Contributor[];
@@ -56,7 +57,7 @@ export function ContributorsSection({
         return (
             <div
                 className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6 min-h-50 flex flex-col items-center justify-center">
-                <Loader2 className="w-8 h-8 animate-spin text-purple-500 mb-3"/>
+                <Spinner className="w-8 h-8 text-purple-500 mb-3"/>
                 <span className="text-sm text-muted-foreground">{t('title', { count: 0 })}...</span>
             </div>
         );

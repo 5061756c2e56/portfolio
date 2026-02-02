@@ -12,9 +12,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Code2, Loader2 } from 'lucide-react';
+import { Code2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { LanguageStats } from '@/lib/github/types';
+import { Spinner } from '@/components/ui/spinner';
 
 interface LanguagesChartProps {
     languages: LanguageStats[];
@@ -28,7 +29,7 @@ export function LanguagesChart({ languages, isLoading }: LanguagesChartProps) {
         return (
             <div
                 className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6 min-h-50 flex flex-col items-center justify-center">
-                <Loader2 className="w-8 h-8 animate-spin text-blue-500 mb-3"/>
+                <Spinner className="w-8 h-8 animate-spin text-blue-500 mb-3"/>
                 <span className="text-sm text-muted-foreground">{t('title', { count: 0 })}...</span>
             </div>
         );

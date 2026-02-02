@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -42,12 +42,18 @@ export default function StatsPageClient() {
     const [chartLoading, setChartLoading] = useState(false);
     const [combinedTimeline, setCombinedTimeline] = useState<MultiRepoStatsResponse['combinedTimeline']>([]);
     const [timelines, setTimelines] = useState<MultiRepoStatsResponse['timelines']>([]);
+    const statsAbortRef = useRef<AbortController | null>(null);
+    const timelineAbortRef = useRef<AbortController | null>(null);
 
     const fetchStats = useCallback(async (repos: Repository[], range: TimeRange) => {
         if (repos.length === 0) return;
 
         setLoadingState('loading');
         setError(null);
+
+        statsAbortRef.current?.abort();
+        const controller = new AbortController();
+        statsAbortRef.current = controller;
 
         try {
             const reposParam = repos.map(r => (
@@ -58,7 +64,7 @@ export default function StatsPageClient() {
             ));
             const response = await fetch(
                 `/api/github/multi-stats?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=${range}`,
-                { cache: 'no-store' }
+                { signal: controller.signal }
             );
 
             if (!response.ok) {
@@ -73,9 +79,15 @@ export default function StatsPageClient() {
             setStats(data);
             setLoadingState('success');
         } catch (err) {
+            if (err instanceof DOMException && err.name === 'AbortError') return;
+
             console.error('Error fetching stats:', err);
             setError(err instanceof Error ? err.message : 'Une erreur est survenue');
             setLoadingState('error');
+        } finally {
+            if (statsAbortRef.current === controller) {
+                statsAbortRef.current = null;
+            }
         }
     }, []);
 
@@ -84,13 +96,17 @@ export default function StatsPageClient() {
 
         setChartLoading(true);
 
+        timelineAbortRef.current?.abort();
+        const controller = new AbortController();
+        timelineAbortRef.current = controller;
+
         try {
             const reposParam = repos.map(r => (
                 { owner: r.owner, name: r.name }
             ));
             const response = await fetch(
                 `/api/github/multi-timeline?repos=${encodeURIComponent(JSON.stringify(reposParam))}&range=${range}`,
-                { cache: 'no-store' }
+                { signal: controller.signal }
             );
 
             if (!response.ok) throw new Error('Failed to fetch timeline');
@@ -99,8 +115,14 @@ export default function StatsPageClient() {
             setCombinedTimeline(data.combinedTimeline ?? []);
             setTimelines(data.timelines ?? []);
         } catch (err) {
+            if (err instanceof DOMException && err.name === 'AbortError') return;
+
             console.error('Error fetching timeline:', err);
         } finally {
+            if (timelineAbortRef.current === controller) {
+                timelineAbortRef.current = null;
+            }
+
             setChartLoading(false);
         }
     }, []);

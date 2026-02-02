@@ -12,9 +12,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Calendar, ExternalLink, FileText, GitCommit, Loader2, Minus, Plus, User } from 'lucide-react';
+import { Calendar, ExternalLink, FileText, GitCommit, Minus, Plus, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { CommitDetail as CommitDetailType } from '@/lib/github/types';
+import { Spinner } from '@/components/ui/spinner';
 
 interface CommitDetailPanelProps {
     commit: CommitDetailType | null;
@@ -33,7 +34,7 @@ export function CommitDetailPanel({ commit, isLoading }: CommitDetailPanelProps)
             )}>
                 <div className="relative">
                     <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping"/>
-                    <Loader2 className="w-10 h-10 animate-spin text-blue-500 relative"/>
+                    <Spinner className="w-10 h-10 text-blue-500 relative"/>
                 </div>
                 <p className="text-sm text-muted-foreground mt-4">{t('loading')}</p>
             </div>
