@@ -20,7 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: isFrench ? 'Conditions d’utilisation' : 'Terms of Use',
         description: isFrench
             ? 'Ces conditions encadrent l’accès et l’utilisation de ce site portfolio. En naviguant sur le site, vous acceptez les règles ci-dessous'
-            : 'These terms govern access to and use of this portfolio website. By browsing the site, you agree to the rules below'
+            : 'These terms govern access to and use of this portfolio website. By browsing the site, you agree to the rules below',
+        robots: { index: false, follow: false }
     };
 }
 

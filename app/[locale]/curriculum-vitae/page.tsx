@@ -29,7 +29,8 @@ const LAST_UPDATED_ISO = '2026-01-31';
 
 export const metadata: Metadata = {
     title: 'Curriculum Vitae',
-    description: 'CV Viandier Paul'
+    description: 'CV Viandier Paul',
+    robots: { index: false, follow: false }
 };
 
 const CV_BASE = {

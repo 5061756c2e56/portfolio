@@ -18,6 +18,7 @@ const baseUrl = 'https://paulviandier.com';
 export const metadata: Metadata = {
     title: 'Portfolio de Paul Viandier',
     description: 'Développeur web fullstack en formation. Découvrez mes projets, compétences en TypeScript, React, Next.js, cybersécurité et développement web moderne.',
+    robots: { index: false, follow: false },
     alternates: {
         canonical: baseUrl,
         languages: {

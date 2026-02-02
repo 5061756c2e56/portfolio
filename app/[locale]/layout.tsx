@@ -111,16 +111,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             creator: '@paulviandier'
         },
         robots: {
-            index: true,
-            follow: true,
-            nocache: false,
+            index: false,
+            follow: false,
             googleBot: {
-                index: true,
-                follow: true,
-                noimageindex: false,
-                'max-video-preview': -1,
-                'max-image-preview': 'large',
-                'max-snippet': -1
+                index: false,
+                follow: false
             }
         },
         alternates: {

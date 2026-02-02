@@ -20,7 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: isFrench ? 'Statistiques GitHub' : 'GitHub Statistics',
         description: isFrench
             ? 'Statistiques de mes projets open source'
-            : 'Statistics from my open source projects'
+            : 'Statistics from my open source projects',
+        robots: { index: false, follow: false }
     };
 }
 

@@ -20,7 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: isFrench ? 'Projet Portfolio' : 'Portfolio Project',
         description: isFrench
             ? 'Un portfolio moderne et performant, conçu pour démontrer mes compétences en développement web et offrir une expérience utilisateur soignée'
-            : 'A modern and performant portfolio, designed to showcase my web development skills and deliver a polished user experience'
+            : 'A modern and performant portfolio, designed to showcase my web development skills and deliver a polished user experience',
+        robots: { index: false, follow: false }
     };
 }
 
