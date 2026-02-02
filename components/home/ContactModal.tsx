@@ -453,7 +453,7 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
                                             <div
                                                 className="flex items-center gap-2 rounded-md border px-3 py-2 text-sm text-muted-foreground">
                                                 <Spinner className="w-4 h-4 border-2 text-blue-500"/>
-                                                <span>t{'loading'}</span>
+                                                <span>{t('loading')}</span>
                                             </div>
                                         </div>
                                     )}
