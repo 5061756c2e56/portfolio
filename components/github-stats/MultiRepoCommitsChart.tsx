@@ -51,9 +51,9 @@ export function MultiRepoCommitsChart({ combinedTimeline, timelines }: MultiRepo
                 )}
             </div>
 
-            <div className="w-full h-[260px] sm:h-[300px] md:h-[340px]">
+            <div className="w-full h-[280px] sm:h-[320px] md:h-[360px]">
                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={combinedTimeline} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <AreaChart data={combinedTimeline} margin={{ top: 15, right: 25, left: 5, bottom: 5 }}>
                         <defs>
                             {timelines.map((tl) => (
                                 <linearGradient
@@ -64,33 +64,49 @@ export function MultiRepoCommitsChart({ combinedTimeline, timelines }: MultiRepo
                                     x2="0"
                                     y2="1"
                                 >
-                                    <stop offset="0%" stopColor={tl.color} stopOpacity={0.4}/>
-                                    <stop offset="50%" stopColor={tl.color} stopOpacity={0.15}/>
-                                    <stop offset="100%" stopColor={tl.color} stopOpacity={0}/>
+                                    <stop offset="0%" stopColor={tl.color} stopOpacity={0.5}/>
+                                    <stop offset="50%" stopColor={tl.color} stopOpacity={0.2}/>
+                                    <stop offset="100%" stopColor={tl.color} stopOpacity={0.05}/>
                                 </linearGradient>
                             ))}
                         </defs>
 
-                        <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" opacity={0.3} vertical={false}/>
+                        <CartesianGrid
+                            strokeDasharray="3 3"
+                            stroke="var(--border)"
+                            vertical={true}
+                            horizontal={true}
+                        />
 
                         <XAxis
                             dataKey="label"
                             tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={12}
+                            tickLine={{ stroke: 'var(--border)', strokeWidth: 1 }}
+                            axisLine={{ stroke: 'var(--border)', strokeWidth: 1 }}
+                            tickMargin={10}
                             interval="preserveStartEnd"
                             minTickGap={50}
-                            padding={{ left: 15, right: 15 }}
+                            padding={{ left: 20, right: 20 }}
                         />
 
                         <YAxis
+                            orientation="left"
                             tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
-                            tickLine={false}
-                            axisLine={false}
+                            tickLine={{ stroke: 'var(--border)', strokeWidth: 1 }}
+                            axisLine={{ stroke: 'var(--border)', strokeWidth: 1 }}
                             allowDecimals={false}
-                            tickMargin={8}
-                            width={35}
+                            tickMargin={10}
+                            width={50}
+                            label={{
+                                value: 'Commits',
+                                angle: -90,
+                                position: 'insideLeft',
+                                style: {
+                                    fill: 'var(--muted-foreground)',
+                                    fontSize: 11,
+                                    fontWeight: 500
+                                }
+                            }}
                         />
 
                         <Tooltip
@@ -151,9 +167,9 @@ export function MultiRepoCommitsChart({ combinedTimeline, timelines }: MultiRepo
                             }}
                             cursor={{
                                 stroke: '#3b82f6',
-                                strokeWidth: 1,
-                                strokeDasharray: '4 4',
-                                strokeOpacity: 0.5
+                                strokeWidth: 1.5,
+                                strokeDasharray: '5 5',
+                                strokeOpacity: 0.6
                             }}
                         />
 
@@ -167,20 +183,23 @@ export function MultiRepoCommitsChart({ combinedTimeline, timelines }: MultiRepo
                                 name={tl.repoDisplayName}
                                 stroke={tl.color}
                                 fill={`url(#gradient-${tl.repoName})`}
-                                strokeWidth={2.5}
+                                strokeWidth={3}
                                 dot={{
-                                    r: 2,
+                                    r: 3,
                                     fill: tl.color,
-                                    strokeWidth: 0
+                                    strokeWidth: 2,
+                                    stroke: '#fff'
                                 }}
                                 activeDot={{
-                                    r: 6,
+                                    r: 7,
                                     fill: tl.color,
                                     stroke: '#fff',
-                                    strokeWidth: 2
+                                    strokeWidth: 3
                                 }}
                                 connectNulls={false}
-                                isAnimationActive={false}
+                                isAnimationActive={true}
+                                animationDuration={800}
+                                animationEasing="ease-in-out"
                             />
                         ))}
                     </AreaChart>
