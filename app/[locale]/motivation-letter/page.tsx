@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     return {
         title: isFrench ? 'Lettre de Motivation' : 'Cover Letter',
         description: isFrench ? 'Lettre de motivation de Paul Viandier' : 'Cover letter from Paul Viandier',
-        robots: { index: false, follow: false }
+        robots: { index: true, follow: true }
     };
 }
 

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: isFrench
             ? 'Vous trouverez ici les réponses aux questions les plus fréquentes concernant mon travail, mes compétences et mes projets'
             : 'Here you will find answers to frequently asked questions about my work, skills, and projects',
-        robots: { index: false, follow: false }
+        robots: { index: true, follow: true }
     };
 }
 

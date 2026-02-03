@@ -154,7 +154,7 @@ export default function StatsPageClient() {
     return (
         <>
             <StatsNavigation/>
-            <main className="min-h-screen text-foreground">
+            <div className="min-h-screen text-foreground">
                 <section className="min-h-[40vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-12">
                     <div className="max-w-5xl mx-auto text-center w-full">
                         <div
@@ -309,7 +309,7 @@ export default function StatsPageClient() {
                         </div>
                     </section>
                 )}
-            </main>
+            </div>
         </>
     );
 }

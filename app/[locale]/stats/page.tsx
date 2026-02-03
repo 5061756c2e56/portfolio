@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: isFrench
             ? 'Statistiques de mes projets open source'
             : 'Statistics from my open source projects',
-        robots: { index: false, follow: false }
+        robots: { index: true, follow: true }
     };
 }
 

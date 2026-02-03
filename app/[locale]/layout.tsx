@@ -54,27 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: isFrench
             ? 'Développeur web passionné de cybersécurité. Dans ce portfolio, je présente mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
             : 'Web developer passionate about cybersecurity. In this portofolio, I show my projects, web development skills, TypeScript, React, Next.js and cybersecurity.',
-        keywords: isFrench
-            ? [
-                'Paul Viandier', 'Viandier', 'Paul', 'développeur', 'développeur web', 'portfolio', 'Portfolio',
-                'cybersécurité', 'fullstack', 'développement web', 'TypeScript', 'React', 'Next.js', 'NextJS',
-                'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub',
-                'API REST', 'intégrateur web', 'développeur frontend', 'développeur backend', 'alternance',
-                'formation développeur', 'développeur France', 'développeur web France', 'portfolio développeur',
-                'Paul Viandier développeur', 'Viandier développeur', 'Paul développeur web'
-            ]
-            : [
-                'Paul Viandier', 'Viandier', 'Paul', 'developer', 'web developer', 'portfolio', 'Portfolio',
-                'cybersecurity', 'fullstack', 'web development', 'TypeScript', 'React', 'Next.js', 'NextJS',
-                'Node.js', 'PostgreSQL', 'Redis', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS', 'Git', 'GitHub',
-                'REST API', 'web integrator', 'frontend developer', 'backend developer', 'backend developer',
-                'apprenticeship',
-                'developer training', 'developer France', 'web developer France', 'developer portfolio',
-                'Paul Viandier developer', 'Viandier developer', 'Paul web developer'
-            ],
         authors: [{ name: 'Paul Viandier' }],
-        creator: 'Paul Viandier',
-        publisher: 'Paul Viandier',
         openGraph: {
             type: 'website',
             locale: isFrench ? 'fr_FR' : 'en_US',
@@ -112,19 +92,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         },
         robots: {
             index: false,
-            follow: false,
-            googleBot: {
-                index: false,
-                follow: false
-            }
+            follow: true
         },
         alternates: {
             canonical: `${baseUrl}${isFrench ? '' : '/en'}`,
             languages: {
                 'fr': `${baseUrl}`,
-                'fr-FR': `${baseUrl}`,
                 'en': `${baseUrl}/en`,
-                'en-US': `${baseUrl}/en`,
                 'x-default': `${baseUrl}`
             }
         },
@@ -145,11 +119,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         },
         manifest: '/manifest.webmanifest',
         other: {
-            'dns-prefetch': 'https://api.emailjs.com',
             'theme-color': '#fafafa',
             'format-detection': 'telephone=no',
             'apple-mobile-web-app-capable': 'yes',
-            'apple-mobile-web-app-status-bar-style': 'default',
             'apple-mobile-web-app-title': 'Portfolio de Paul Viandier'
         }
     };

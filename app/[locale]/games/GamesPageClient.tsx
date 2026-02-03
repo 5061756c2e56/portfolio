@@ -268,7 +268,7 @@ export default function GamesPageClient() {
     return (
         <>
             <GamesNavigation/>
-            <main className="min-h-screen text-foreground">
+            <div className="min-h-screen text-foreground">
                 <section className="min-h-[50vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-12">
                     <div className="max-w-5xl mx-auto text-center w-full">
                         <div
@@ -363,7 +363,7 @@ export default function GamesPageClient() {
                         )}
                     </div>
                 </section>
-            </main>
+            </div>
         </>
     );
 }

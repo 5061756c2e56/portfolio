@@ -17,10 +17,9 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: ['/api/', '/admin/']
+                disallow: ['/api/']
             }
         ],
-        sitemap: 'https://paulviandier.com/sitemap.xml',
-        host: 'paulviandier.com'
+        sitemap: 'https://paulviandier.com/sitemap.xml'
     };
 }

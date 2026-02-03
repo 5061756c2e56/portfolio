@@ -85,7 +85,7 @@ export default function FAQPageClient() {
         <>
             <FAQNavigation/>
 
-            <main className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12">
+            <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12">
                 <h1 className="text-4xl font-bold mb-6 text-center">{t('title')}</h1>
                 <p className="text-lg text-muted-foreground mb-12 text-center">
                     {t('description')}
@@ -108,7 +108,7 @@ export default function FAQPageClient() {
                         </AccordionItem>
                     ))}
                 </Accordion>
-            </main>
+            </div>
         </>
     );
 }

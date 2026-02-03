@@ -183,7 +183,7 @@ export default function PrivacyPolicyPageClient() {
         <>
             <LegalNavigation/>
 
-            <main className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12">
+            <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12">
                 <header className="text-center mb-10">
                     <div
                         className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-muted-foreground">
@@ -236,7 +236,7 @@ export default function PrivacyPolicyPageClient() {
                         </div>
                     </div>
                 </section>
-            </main>
+            </div>
         </>
     );
 }

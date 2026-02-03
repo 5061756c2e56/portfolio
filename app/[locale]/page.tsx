@@ -28,7 +28,7 @@ export default function Home() {
     return (
         <>
             <Navigation/>
-            <main className="min-h-screen text-foreground transition-colors duration-300">
+            <div className="min-h-screen text-foreground transition-colors duration-300">
                 <Hero/>
                 <About/>
                 <Skills/>
@@ -36,7 +36,7 @@ export default function Home() {
                 <GitHubActivities/>
                 <Contact/>
                 <FinalCTA/>
-            </main>
+            </div>
         </>
     );
 }
