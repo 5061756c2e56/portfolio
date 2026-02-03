@@ -254,8 +254,8 @@ export default function Hero() {
                                 onSelect={(e) => {
                                     e.preventDefault();
                                     downloadFile(
-                                        '/Curriculum Vitae - Paul Viandier.pdf',
-                                        'Curriculum Vitae - Paul Viandier.pdf',
+                                        '/Curriculum Vitae - Viandier Paul.pdf',
+                                        'Curriculum Vitae - Viandier Paul.pdf',
                                         isDownloadingCV,
                                         setIsDownloadingCV
                                     );
@@ -345,8 +345,8 @@ export default function Hero() {
                                 onSelect={(e) => {
                                     e.preventDefault();
                                     downloadFile(
-                                        '/Lettre de motivation - Paul Viandier.pdf',
-                                        'Lettre de motivation - Paul Viandier.pdf',
+                                        '/Lettre de motivation - Viandier Paul.pdf',
+                                        'Lettre de motivation - Viandier Paul.pdf',
                                         isDownloadingLM,
                                         setIsDownloadingLM
                                     );

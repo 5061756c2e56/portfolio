@@ -21,8 +21,8 @@ import { useContactModal } from '@/hooks/useContactModal';
 import { CvDownloadButton } from '@/components/cv/ProfileBlock';
 
 const LAST_UPDATED_ISO = '2026-01-31';
-const MOTIVATION_PDF_PATH = '/Lettre de motivation - Paul Viandier.pdf';
-const MOTIVATION_PDF_FILENAME = 'Lettre de motivation - Paul Viandier.pdf';
+const MOTIVATION_PDF_PATH = '/Lettre de motivation - Viandier Paul.pdf';
+const MOTIVATION_PDF_FILENAME = 'Lettre de motivation - Viandier Paul.pdf';
 
 const signatureFont = Great_Vibes({
     subsets: ['latin'],
