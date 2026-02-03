@@ -121,10 +121,12 @@ export async function GET(request: NextRequest) {
         };
         let fromCache = false;
 
+        const cacheKey = generateCacheKey(validRepos, range, locale);
         if (useDB) {
-            data = await fetchData();
+            const result = await withCache(cacheKey, 60, fetchData);
+            data = result.data;
+            fromCache = result.fromCache;
         } else {
-            const cacheKey = generateCacheKey(validRepos, range, locale);
             const result = await withCache(cacheKey, getTTLForRange(range), fetchData);
             data = result.data;
             fromCache = result.fromCache;
@@ -133,7 +135,7 @@ export async function GET(request: NextRequest) {
         return createJsonResponse(data, {
             headers: {
                 'Cache-Control': useDB
-                    ? 'no-store, no-cache, must-revalidate'
+                    ? 'public, s-maxage=60, stale-while-revalidate=30'
                     : `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
                 'X-Cache': fromCache ? 'HIT' : 'MISS',
                 ...(

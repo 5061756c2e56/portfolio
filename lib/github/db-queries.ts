@@ -9,6 +9,7 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
+import { Prisma } from '@prisma/client';
 import { getPrisma } from '@/lib/prisma';
 import { getStartDateForRange } from '@/lib/github/utils';
 import { ALLOWED_REPOSITORIES, CommitItem, PERIOD_CONFIGS, RepoParam, TimeRange } from './types';
@@ -255,49 +256,25 @@ export async function getCommitStatsFromDB(
     }
 
     const repoIds = dbRepos.map((r: any) => r.id);
-
-    const [totalCommits, commits] = await Promise.all([
-        prisma.commit.count({
-            where: {
-                repositoryId: { in: repoIds },
-                committedAt: { gte: startDate }
-            }
-        }),
-        prisma.commit.findMany({
-            where: {
-                repositoryId: { in: repoIds },
-                committedAt: { gte: startDate }
-            },
-            select: { committedAt: true },
-            orderBy: { committedAt: 'asc' }
-        })
-    ]);
-
     const granularity = PERIOD_CONFIGS[range].granularity;
-    const groupedCommits = new Map<string, number>();
 
-    for (const commit of commits) {
-        const date = commit.committedAt;
-        let key: string;
+    type GroupedRow = { date: string; count: number };
+    const grouped: GroupedRow[] = granularity === 'daily'
+        ? await prisma.$queryRaw<GroupedRow[]>`
+            SELECT DATE("committedAt")::text as date, COUNT(*)::int as count
+            FROM "Commit"
+            WHERE "repositoryId" IN (${Prisma.join(repoIds)}) AND "committedAt" >= ${startDate}
+            GROUP BY DATE("committedAt")
+            ORDER BY date`
+        : await prisma.$queryRaw<GroupedRow[]>`
+            SELECT DATE(DATE_TRUNC('week', "committedAt"))::text as date, COUNT(*)::int as count
+            FROM "Commit"
+            WHERE "repositoryId" IN (${Prisma.join(repoIds)}) AND "committedAt" >= ${startDate}
+            GROUP BY DATE(DATE_TRUNC('week', "committedAt"))
+            ORDER BY date`;
 
-        if (granularity === 'daily') {
-            key = date.toISOString().split('T')[0];
-        } else {
-            const monday = new Date(date);
-            monday.setDate(date.getDate() - date.getDay() + 1);
-            key = monday.toISOString().split('T')[0];
-        }
-
-        groupedCommits.set(key, (
-                                    groupedCommits.get(key) || 0
-                                ) + 1);
-    }
-
-    const commitsByDate = Array.from(groupedCommits.entries())
-                               .map(([date, commits]) => (
-                                   { date, commits }
-                               ))
-                               .sort((a, b) => a.date.localeCompare(b.date));
+    const commitsByDate = grouped.map((row: GroupedRow) => ({ date: row.date, commits: row.count }));
+    const totalCommits = commitsByDate.reduce((sum, r) => sum + r.commits, 0);
 
     return { totalCommits, commitsByDate };
 }
@@ -388,43 +365,29 @@ export async function getTimelineFromDB(
     const allDates = generateAllDatesInRange(startDate, endDate, config.granularity);
     const repoIds = dbRepos.map((r: any) => r.id);
 
-    const commits = await prisma.commit.findMany({
-        where: {
-            repositoryId: { in: repoIds },
-            committedAt: { gte: startDate }
-        },
-        select: {
-            committedAt: true,
-            repositoryId: true
-        },
-        orderBy: { committedAt: 'asc' }
-    });
+    type TimelineRow = { repositoryId: string; date: string; count: number };
+    const grouped: TimelineRow[] = config.granularity === 'daily'
+        ? await prisma.$queryRaw<TimelineRow[]>`
+            SELECT "repositoryId", DATE("committedAt")::text as date, COUNT(*)::int as count
+            FROM "Commit"
+            WHERE "repositoryId" IN (${Prisma.join(repoIds)}) AND "committedAt" >= ${startDate}
+            GROUP BY "repositoryId", DATE("committedAt")
+            ORDER BY date`
+        : await prisma.$queryRaw<TimelineRow[]>`
+            SELECT "repositoryId", DATE(DATE_TRUNC('week', "committedAt"))::text as date, COUNT(*)::int as count
+            FROM "Commit"
+            WHERE "repositoryId" IN (${Prisma.join(repoIds)}) AND "committedAt" >= ${startDate}
+            GROUP BY "repositoryId", DATE(DATE_TRUNC('week', "committedAt"))
+            ORDER BY date`;
 
     const commitsByRepoAndDate = new Map<string, Map<string, number>>();
-
     for (const repo of dbRepos) {
         commitsByRepoAndDate.set(repo.id, new Map());
     }
-
-    for (const commit of commits) {
-        const date = new Date(commit.committedAt);
-        let key: string;
-
-        if (config.granularity === 'daily') {
-            key = date.toISOString().split('T')[0];
-        } else {
-            const dayOfWeek = date.getUTCDay();
-            const monday = new Date(date);
-            const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
-            monday.setUTCDate(date.getUTCDate() - daysToMonday);
-            key = monday.toISOString().split('T')[0];
-        }
-
-        const repoMap = commitsByRepoAndDate.get(commit.repositoryId);
+    for (const row of grouped) {
+        const repoMap = commitsByRepoAndDate.get(row.repositoryId);
         if (repoMap) {
-            repoMap.set(key, (
-                                 repoMap.get(key) || 0
-                             ) + 1);
+            repoMap.set(row.date, row.count);
         }
     }
 

@@ -55,7 +55,8 @@ async function fetchRepoDataWithFallback(
     repo: RepoParam,
     index: number,
     range: TimeRange,
-    locale: string
+    locale: string,
+    skipHeavyCalls: boolean = false
 ): Promise<RepoDataResult | null> {
     const repoConfig = ALLOWED_REPOSITORIES.find(
         r => r.owner === repo.owner && r.name === repo.name
@@ -74,7 +75,7 @@ async function fetchRepoDataWithFallback(
         );
 
         const { data: cachedRepo } = await withCache<RepoDataCache>(
-            repoDataKey,
+            skipHeavyCalls ? `${repoDataKey}:light` : repoDataKey,
             CACHE_TTL.stats,
             async () => {
                 const [repoInfo, languages] = await Promise.all([
@@ -85,15 +86,17 @@ async function fetchRepoDataWithFallback(
                 let codeFrequency: GitHubCodeFrequency = [];
                 let commitActivity: GitHubCommitActivity[] = [];
 
-                try {
-                    codeFrequency = await getCodeFrequency(repo.owner, repo.name);
-                } catch (e) {
-                    console.warn(`[Multi-stats] Code frequency unavailable for ${repo.name}`, e);
-                }
-                try {
-                    commitActivity = await getCommitActivity(repo.owner, repo.name);
-                } catch (e) {
-                    console.warn(`[Multi-stats] Commit activity unavailable for ${repo.name}`, e);
+                if (!skipHeavyCalls) {
+                    try {
+                        codeFrequency = await getCodeFrequency(repo.owner, repo.name);
+                    } catch (e) {
+                        console.warn(`[Multi-stats] Code frequency unavailable for ${repo.name}`, e);
+                    }
+                    try {
+                        commitActivity = await getCommitActivity(repo.owner, repo.name);
+                    } catch (e) {
+                        console.warn(`[Multi-stats] Commit activity unavailable for ${repo.name}`, e);
+                    }
                 }
 
                 let totalAdditions = 0;
@@ -170,7 +173,7 @@ export async function GET(request: NextRequest) {
         const buildResponse = async (): Promise<MultiRepoStatsResponse> => {
             const results = await Promise.all(
                 validRepos.map((repo, index) =>
-                    fetchRepoDataWithFallback(repo, index, range, locale)
+                    fetchRepoDataWithFallback(repo, index, range, locale, useDB)
                 )
             );
 
@@ -382,7 +385,21 @@ export async function GET(request: NextRequest) {
             };
         };
 
-        const cachedResponse = await buildResponse();
+        let cachedResponse: MultiRepoStatsResponse;
+        let fromCache = false;
+
+        if (useDB) {
+            const cacheKey = generateCacheKey(validRepos, range);
+            const cached = await withCache<MultiRepoStatsResponse>(
+                cacheKey,
+                60,
+                buildResponse
+            );
+            cachedResponse = cached.data;
+            fromCache = cached.fromCache;
+        } else {
+            cachedResponse = await buildResponse();
+        }
 
         const responseData = {
             ...cachedResponse,
@@ -393,9 +410,9 @@ export async function GET(request: NextRequest) {
         return createJsonResponse(responseData, {
             headers: {
                 'Cache-Control': useDB
-                    ? 'no-store, no-cache, must-revalidate'
+                    ? 'public, s-maxage=60, stale-while-revalidate=30'
                     : `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
-                'X-Cache': 'MISS',
+                'X-Cache': fromCache ? 'HIT' : 'MISS',
                 ...(
                     useDB ? { 'X-Data-Source': 'database' } : {}
                 )
