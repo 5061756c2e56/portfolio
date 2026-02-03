@@ -165,8 +165,6 @@ export async function GET(request: NextRequest) {
     const { repos: validRepos, range, locale } = parsed;
 
     try {
-        const cacheKey = generateCacheKey(validRepos, range);
-
         const useDB = await isDatabaseConfigured();
 
         const buildResponse = async (): Promise<MultiRepoStatsResponse> => {
@@ -187,7 +185,6 @@ export async function GET(request: NextRequest) {
                 forks: allResults.reduce((sum, r) => sum + r.stats.forks, 0),
                 issues: allResults.reduce((sum, r) => sum + r.stats.issues, 0),
                 size: allResults.reduce((sum, r) => sum + r.stats.size, 0),
-
                 lastPush: allResults.reduce(
                     (newest, r) => (
                         r.stats.lastPush > newest ? r.stats.lastPush : newest
@@ -196,172 +193,9 @@ export async function GET(request: NextRequest) {
                 ),
                 defaultBranch: allResults[0].stats.defaultBranch,
                 totalCommits: allResults.reduce((sum, r) => sum + r.stats.totalCommits, 0),
-
                 totalAdditions: allResults.reduce((sum, r) => sum + r.stats.totalAdditions, 0),
                 totalDeletions: allResults.reduce((sum, r) => sum + r.stats.totalDeletions, 0)
             };
-
-            if (useDB) {
-                try {
-                    const dbResults = await Promise.allSettled([
-                        getCommitStatsFromDB(validRepos, range),
-                        getCodeTotalsFromDB(validRepos, range),
-                        getContributorCommitCountsFromDB(validRepos, range),
-                        getTimelineFromDB(validRepos, range, locale)
-                    ]);
-
-                    const [commitStatsResult, codeTotalsResult, contributorCountsResult, timelinesResult] = dbResults;
-
-                    if (commitStatsResult.status === 'fulfilled') {
-                        aggregatedStats.totalCommits = commitStatsResult.value.totalCommits;
-                    }
-
-                    if (codeTotalsResult.status === 'fulfilled') {
-                        aggregatedStats.totalAdditions = codeTotalsResult.value.additions;
-                        aggregatedStats.totalDeletions = codeTotalsResult.value.deletions;
-                    }
-
-                    const languageMap = new Map<string, { bytes: number; color: string }>();
-                    for (const result of allResults) {
-                        for (const lang of result.languages) {
-                            const existing = languageMap.get(lang.name);
-                            if (existing) {
-                                existing.bytes += lang.bytes;
-                            } else {
-                                languageMap.set(lang.name, { bytes: lang.bytes, color: lang.color });
-                            }
-                        }
-                    }
-                    const totalBytes = Array.from(languageMap.values()).reduce((sum, l) => sum + l.bytes, 0);
-                    const aggregatedLanguages: LanguageStats[] = Array.from(languageMap.entries())
-                                                                      .map(([name, data]) => (
-                                                                          {
-                                                                              name,
-                                                                              bytes: data.bytes,
-                                                                              percentage: totalBytes > 0 ? Math.round((
-                                                                                                                          data.bytes
-                                                                                                                          / totalBytes
-                                                                                                                      )
-                                                                                                                      * 1000)
-                                                                                                           / 10 : 0,
-                                                                              color: data.color
-                                                                          }
-                                                                      ))
-                                                                      .sort((a, b) => b.bytes - a.bytes);
-
-                    const contributorMap = new Map<string, Contributor>();
-                    for (const result of allResults) {
-                        for (const contrib of result.contributors) {
-                            const existing = contributorMap.get(contrib.username);
-                            if (existing) {
-                                existing.commits += contrib.commits;
-                            } else {
-                                contributorMap.set(contrib.username, { ...contrib });
-                            }
-                        }
-                    }
-
-                    let aggregatedContributors: Contributor[] = Array.from(contributorMap.values())
-                                                                     .sort((a, b) => b.commits - a.commits)
-                                                                     .slice(0, 10);
-
-                    if (contributorCountsResult.status === 'fulfilled') {
-                        const dbContributorCounts = contributorCountsResult.value;
-                        const apiUsernames = new Set(aggregatedContributors.map((c) => c.username));
-                        const fromApi = aggregatedContributors.map((c) => (
-                            {
-                                ...c,
-                                commits: dbContributorCounts[c.username] ?? 0
-                            }
-                        ));
-                        const fromDbOnly = Object.entries(dbContributorCounts)
-                                                 .filter(([login]) => !apiUsernames.has(login))
-                                                 .map(([username, commits]) => (
-                                                     {
-                                                         username,
-                                                         avatar: `https://github.com/${username}.png`,
-                                                         profileUrl: `https://github.com/${username}`,
-                                                         commits
-                                                     }
-                                                 ));
-                        aggregatedContributors = [...fromApi, ...fromDbOnly]
-                            .filter((c) => c.commits > 0)
-                            .sort((a, b) => b.commits - a.commits)
-                            .slice(0, 10);
-                    }
-
-                    let timelines: RepoTimeline[];
-                    let combinedTimeline: MultiRepoTimelinePoint[];
-
-                    if (timelinesResult.status === 'fulfilled') {
-                        const dbTimelines = timelinesResult.value;
-
-                        timelines = dbTimelines.timelines.map((t, index) => (
-                            {
-                                repoName: t.repoName,
-                                repoDisplayName: t.displayName,
-                                color: REPO_COLORS[index % REPO_COLORS.length],
-                                data: t.timeline,
-                                totalCommits: t.totalCommits
-                            }
-                        ));
-
-                        combinedTimeline = dbTimelines.combinedTimeline as MultiRepoTimelinePoint[];
-                    } else {
-                        timelines = allResults.map(r => {
-                            const data = transformCommitActivity(r.commitActivity, range, locale);
-
-                            return {
-                                repoName: r.repoName,
-                                repoDisplayName: r.displayName,
-                                color: r.color,
-                                data,
-                                totalCommits: data.reduce((sum, p) => sum + p.commits, 0)
-                            };
-                        });
-
-                        const dateMap = new Map<string, MultiRepoTimelinePoint>();
-                        for (const t of timelines) {
-                            for (const point of t.data) {
-                                const existing = dateMap.get(point.date);
-                                if (existing) {
-                                    existing[t.repoName] = point.commits;
-                                } else {
-                                    const newPoint: MultiRepoTimelinePoint = {
-                                        date: point.date,
-                                        label: point.label
-                                    };
-                                    newPoint[t.repoName] = point.commits;
-                                    dateMap.set(point.date, newPoint);
-                                }
-                            }
-                        }
-
-                        for (const t of timelines) {
-                            for (const [, point] of dateMap) {
-                                if (point[t.repoName] === undefined) point[t.repoName] = 0;
-                            }
-                        }
-
-                        combinedTimeline = Array.from(dateMap.values()).sort(
-                            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-                        );
-                    }
-
-                    return {
-                        stats: aggregatedStats,
-                        languages: aggregatedLanguages,
-                        contributors: aggregatedContributors,
-                        codeChanges: [],
-                        timelines,
-                        combinedTimeline,
-                        availablePeriods: [...VALID_TIME_RANGES],
-                        defaultPeriod: '7d' as TimeRange
-                    };
-                } catch (dbError) {
-                    console.warn('[Multi-stats] DB operations failed, using API fallback:', dbError);
-                }
-            }
 
             const languageMap = new Map<string, { bytes: number; color: string }>();
             for (const result of allResults) {
@@ -383,8 +217,7 @@ export async function GET(request: NextRequest) {
                                                                       percentage: totalBytes > 0 ? Math.round((
                                                                                                                   data.bytes
                                                                                                                   / totalBytes
-                                                                                                              )
-                                                                                                              * 1000)
+                                                                                                              ) * 1000)
                                                                                                    / 10 : 0,
                                                                       color: data.color
                                                                   }
@@ -402,48 +235,140 @@ export async function GET(request: NextRequest) {
                     }
                 }
             }
-            const aggregatedContributors: Contributor[] = Array.from(contributorMap.values())
-                                                               .sort((a, b) => b.commits - a.commits)
-                                                               .slice(0, 10);
 
-            const timelines = allResults.map(r => {
-                const data = transformCommitActivity(r.commitActivity, range, locale);
+            let aggregatedContributors: Contributor[] = Array.from(contributorMap.values())
+                                                             .sort((a, b) => b.commits - a.commits)
+                                                             .slice(0, 10);
 
-                return {
-                    repoName: r.repoName,
-                    repoDisplayName: r.displayName,
-                    color: r.color,
-                    data,
-                    totalCommits: data.reduce((sum, p) => sum + p.commits, 0)
-                };
-            });
+            let timelines: RepoTimeline[];
+            let combinedTimeline: MultiRepoTimelinePoint[];
 
-            const dateMap = new Map<string, MultiRepoTimelinePoint>();
-            for (const t of timelines) {
-                for (const point of t.data) {
-                    const existing = dateMap.get(point.date);
-                    if (existing) {
-                        existing[t.repoName] = point.commits;
-                    } else {
-                        const newPoint: MultiRepoTimelinePoint = {
-                            date: point.date,
-                            label: point.label
+            if (useDB) {
+                try {
+                    const [commitStatsResult, codeTotalsResult, contributorCountsResult, timelinesResult] = await Promise.all([
+                        getCommitStatsFromDB(validRepos, range),
+                        getCodeTotalsFromDB(validRepos, range),
+                        getContributorCommitCountsFromDB(validRepos, range),
+                        getTimelineFromDB(validRepos, range, locale)
+                    ]);
+
+                    aggregatedStats.totalCommits = commitStatsResult.totalCommits;
+                    aggregatedStats.totalAdditions = codeTotalsResult.additions;
+                    aggregatedStats.totalDeletions = codeTotalsResult.deletions;
+
+                    const apiUsernames = new Set(aggregatedContributors.map((c) => c.username));
+                    const fromApi = aggregatedContributors.map((c) => (
+                        {
+                            ...c,
+                            commits: contributorCountsResult[c.username] ?? 0
+                        }
+                    ));
+                    const fromDbOnly = Object.entries(contributorCountsResult)
+                                             .filter(([login]) => !apiUsernames.has(login))
+                                             .map(([username, commits]) => (
+                                                 {
+                                                     username,
+                                                     avatar: `https://github.com/${username}.png`,
+                                                     profileUrl: `https://github.com/${username}`,
+                                                     commits
+                                                 }
+                                             ));
+                    aggregatedContributors = [...fromApi, ...fromDbOnly]
+                        .filter((c) => c.commits > 0)
+                        .sort((a, b) => b.commits - a.commits)
+                        .slice(0, 10);
+
+                    timelines = timelinesResult.timelines.map((t, index) => (
+                        {
+                            repoName: t.repoName,
+                            repoDisplayName: t.displayName,
+                            color: REPO_COLORS[index % REPO_COLORS.length],
+                            data: t.timeline,
+                            totalCommits: t.totalCommits
+                        }
+                    ));
+
+                    combinedTimeline = timelinesResult.combinedTimeline as MultiRepoTimelinePoint[];
+                } catch (dbError) {
+                    console.warn('[Multi-stats] DB operations failed, using API fallback:', dbError);
+
+                    timelines = allResults.map(r => {
+                        const data = transformCommitActivity(r.commitActivity, range, locale);
+                        return {
+                            repoName: r.repoName,
+                            repoDisplayName: r.displayName,
+                            color: r.color,
+                            data,
+                            totalCommits: data.reduce((sum, p) => sum + p.commits, 0)
                         };
-                        newPoint[t.repoName] = point.commits;
-                        dateMap.set(point.date, newPoint);
+                    });
+
+                    const dateMap = new Map<string, MultiRepoTimelinePoint>();
+                    for (const t of timelines) {
+                        for (const point of t.data) {
+                            const existing = dateMap.get(point.date);
+                            if (existing) {
+                                existing[t.repoName] = point.commits;
+                            } else {
+                                const newPoint: MultiRepoTimelinePoint = {
+                                    date: point.date,
+                                    label: point.label
+                                };
+                                newPoint[t.repoName] = point.commits;
+                                dateMap.set(point.date, newPoint);
+                            }
+                        }
+                    }
+
+                    for (const t of timelines) {
+                        for (const [, point] of dateMap) {
+                            if (point[t.repoName] === undefined) point[t.repoName] = 0;
+                        }
+                    }
+
+                    combinedTimeline = Array.from(dateMap.values()).sort(
+                        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+                    );
+                }
+            } else {
+                timelines = allResults.map(r => {
+                    const data = transformCommitActivity(r.commitActivity, range, locale);
+                    return {
+                        repoName: r.repoName,
+                        repoDisplayName: r.displayName,
+                        color: r.color,
+                        data,
+                        totalCommits: data.reduce((sum, p) => sum + p.commits, 0)
+                    };
+                });
+
+                const dateMap = new Map<string, MultiRepoTimelinePoint>();
+                for (const t of timelines) {
+                    for (const point of t.data) {
+                        const existing = dateMap.get(point.date);
+                        if (existing) {
+                            existing[t.repoName] = point.commits;
+                        } else {
+                            const newPoint: MultiRepoTimelinePoint = {
+                                date: point.date,
+                                label: point.label
+                            };
+                            newPoint[t.repoName] = point.commits;
+                            dateMap.set(point.date, newPoint);
+                        }
                     }
                 }
-            }
 
-            for (const t of timelines) {
-                for (const [, point] of dateMap) {
-                    if (point[t.repoName] === undefined) point[t.repoName] = 0;
+                for (const t of timelines) {
+                    for (const [, point] of dateMap) {
+                        if (point[t.repoName] === undefined) point[t.repoName] = 0;
+                    }
                 }
-            }
 
-            const combinedTimeline = Array.from(dateMap.values()).sort(
-                (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-            );
+                combinedTimeline = Array.from(dateMap.values()).sort(
+                    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+                );
+            }
 
             return {
                 stats: aggregatedStats,
@@ -457,17 +382,7 @@ export async function GET(request: NextRequest) {
             };
         };
 
-        let cachedResponse: MultiRepoStatsResponse;
-        let fromCache: boolean;
-
-        if (useDB) {
-            cachedResponse = await buildResponse();
-            fromCache = false;
-        } else {
-            const result = await withCache<MultiRepoStatsResponse>(cacheKey, getTTLForRange(range), buildResponse);
-            cachedResponse = result.data;
-            fromCache = result.fromCache;
-        }
+        const cachedResponse = await buildResponse();
 
         const responseData = {
             ...cachedResponse,
@@ -477,12 +392,10 @@ export async function GET(request: NextRequest) {
 
         return createJsonResponse(responseData, {
             headers: {
-                ...(
-                    useDB
-                        ? { 'Cache-Control': 'no-store, no-cache, must-revalidate' }
-                        : { 'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate` }
-                ),
-                'X-Cache': fromCache ? 'HIT' : 'MISS',
+                'Cache-Control': useDB
+                    ? 'no-store, no-cache, must-revalidate'
+                    : `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
+                'X-Cache': 'MISS',
                 ...(
                     useDB ? { 'X-Data-Source': 'database' } : {}
                 )

@@ -64,7 +64,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
     const [commitDetailLoading, setCommitDetailLoading] = useState(false);
 
     const [expandedRepos, setExpandedRepos] = useState<string[]>([]);
-    const [selectedRange, setSelectedRange] = useState<TimeRange>('7d');
+    const [selectedRange, setSelectedRange] = useState<TimeRange>('12m');
     const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
 
     const searchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);

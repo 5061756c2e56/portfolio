@@ -39,64 +39,71 @@ export async function GET(request: NextRequest) {
 
     try {
         const useDB = await isDatabaseConfigured();
-        const cacheKey = generateCacheKey(validRepos, range, locale);
 
         const fetchData = async () => {
-            let timelines: RepoTimeline[] = [];
-            let combinedTimeline: MultiRepoTimelinePoint[] = [];
-
             if (useDB) {
-                const db = await getTimelineFromDB(validRepos, range, locale);
-                timelines = db.timelines.map((t, index) => (
-                    {
-                        repoName: t.repoName,
-                        repoDisplayName: t.displayName,
-                        color: REPO_COLORS[index % REPO_COLORS.length],
-                        data: t.timeline,
-                        totalCommits: t.totalCommits
-                    }
-                ));
-                combinedTimeline = db.combinedTimeline as MultiRepoTimelinePoint[];
-            } else {
-                const commitActivities = await Promise.all(
-                    validRepos.map(r => getCommitActivity(r.owner, r.name).catch(() => []))
-                );
-
-                timelines = validRepos.map((r, index) => {
-                    const repoConfig = ALLOWED_REPOSITORIES.find(a => a.owner === r.owner && a.name === r.name);
-                    const displayName = repoConfig?.displayName || r.name;
-                    const color = REPO_COLORS[index % REPO_COLORS.length];
-
-                    const data = transformCommitActivity(commitActivities[index], range, locale);
-                    return {
-                        repoName: r.name,
-                        repoDisplayName: displayName,
-                        color,
-                        data,
-                        totalCommits: data.reduce((s, p) => s + p.commits, 0)
-                    };
-                });
-
-                const dateMap = new Map<string, MultiRepoTimelinePoint>();
-                for (const t of timelines) {
-                    for (const p of t.data) {
-                        const existing = dateMap.get(p.date);
-                        if (existing) {
-                            existing[t.repoName] = p.commits;
-                        } else {
-                            const pt: MultiRepoTimelinePoint = { date: p.date, label: p.label };
-                            pt[t.repoName] = p.commits;
-                            dateMap.set(p.date, pt);
+                try {
+                    const db = await getTimelineFromDB(validRepos, range, locale);
+                    const timelines: RepoTimeline[] = db.timelines.map((t, index) => (
+                        {
+                            repoName: t.repoName,
+                            repoDisplayName: t.displayName,
+                            color: REPO_COLORS[index % REPO_COLORS.length],
+                            data: t.timeline,
+                            totalCommits: t.totalCommits
                         }
+                    ));
+                    const combinedTimeline = db.combinedTimeline as MultiRepoTimelinePoint[];
+
+                    return {
+                        timelines,
+                        combinedTimeline,
+                        availablePeriods: [...VALID_TIME_RANGES],
+                        defaultPeriod: '7d' as TimeRange
+                    };
+                } catch (dbError) {
+                    console.warn('[Multi-timeline] DB query failed, falling back to API:', dbError);
+                }
+            }
+
+            const commitActivities = await Promise.all(
+                validRepos.map(r => getCommitActivity(r.owner, r.name).catch(() => []))
+            );
+
+            const timelines: RepoTimeline[] = validRepos.map((r, index) => {
+                const repoConfig = ALLOWED_REPOSITORIES.find(a => a.owner === r.owner && a.name === r.name);
+                const displayName = repoConfig?.displayName || r.name;
+                const color = REPO_COLORS[index % REPO_COLORS.length];
+
+                const data = transformCommitActivity(commitActivities[index], range, locale);
+                return {
+                    repoName: r.name,
+                    repoDisplayName: displayName,
+                    color,
+                    data,
+                    totalCommits: data.reduce((s, p) => s + p.commits, 0)
+                };
+            });
+
+            const dateMap = new Map<string, MultiRepoTimelinePoint>();
+            for (const t of timelines) {
+                for (const p of t.data) {
+                    const existing = dateMap.get(p.date);
+                    if (existing) {
+                        existing[t.repoName] = p.commits;
+                    } else {
+                        const pt: MultiRepoTimelinePoint = { date: p.date, label: p.label };
+                        pt[t.repoName] = p.commits;
+                        dateMap.set(p.date, pt);
                     }
                 }
-                for (const t of timelines) {
-                    for (const [, pt] of dateMap) if (pt[t.repoName] === undefined) pt[t.repoName] = 0;
-                }
-                combinedTimeline = Array.from(dateMap.values()).sort(
-                    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-                );
             }
+            for (const t of timelines) {
+                for (const [, pt] of dateMap) if (pt[t.repoName] === undefined) pt[t.repoName] = 0;
+            }
+            const combinedTimeline = Array.from(dateMap.values()).sort(
+                (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+            );
 
             return {
                 timelines,
@@ -112,12 +119,12 @@ export async function GET(request: NextRequest) {
             availablePeriods: TimeRange[];
             defaultPeriod: TimeRange;
         };
-        let fromCache: boolean;
+        let fromCache = false;
 
         if (useDB) {
             data = await fetchData();
-            fromCache = false;
         } else {
+            const cacheKey = generateCacheKey(validRepos, range, locale);
             const result = await withCache(cacheKey, getTTLForRange(range), fetchData);
             data = result.data;
             fromCache = result.fromCache;
@@ -125,12 +132,13 @@ export async function GET(request: NextRequest) {
 
         return createJsonResponse(data, {
             headers: {
+                'Cache-Control': useDB
+                    ? 'no-store, no-cache, must-revalidate'
+                    : `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
+                'X-Cache': fromCache ? 'HIT' : 'MISS',
                 ...(
-                    useDB
-                        ? { 'Cache-Control': 'no-store, no-cache, must-revalidate', 'X-Data-Source': 'database' }
-                        : { 'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate` }
-                ),
-                'X-Cache': fromCache ? 'HIT' : 'MISS'
+                    useDB ? { 'X-Data-Source': 'database' } : {}
+                )
             }
         }, securityCheck);
     } catch (e) {

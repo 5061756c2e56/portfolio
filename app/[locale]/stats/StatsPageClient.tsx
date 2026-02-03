@@ -38,7 +38,7 @@ export default function StatsPageClient() {
     const [loadingState, setLoadingState] = useState<LoadingState>('idle');
     const [error, setError] = useState<string | null>(null);
     const [selectedStatsRange, setSelectedStatsRange] = useState<TimeRange>('12m');
-    const [selectedRange, setSelectedRange] = useState<TimeRange>('7d');
+    const [selectedRange, setSelectedRange] = useState<TimeRange>('30d');
     const [chartLoading, setChartLoading] = useState(false);
     const [combinedTimeline, setCombinedTimeline] = useState<MultiRepoStatsResponse['combinedTimeline']>([]);
     const [timelines, setTimelines] = useState<MultiRepoStatsResponse['timelines']>([]);

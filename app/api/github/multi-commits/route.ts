@@ -11,7 +11,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getCommitsList } from '@/lib/github/api';
-import { getTTLForRange } from '@/lib/github/cache';
 import { apiError } from '@/lib/github/errors';
 import { addSecurityHeaders, createJsonResponse, validateRequest } from '@/lib/github/security';
 import { parseMultiRepoQueryParams } from '@/lib/github/route-params';
@@ -123,20 +122,24 @@ export async function GET(request: NextRequest) {
         const useDB = await isDatabaseConfigured();
 
         if (useDB) {
-            const dbResult = await getCommitsFromDB(validRepos, range, searchQuery || undefined);
+            try {
+                const dbResult = await getCommitsFromDB(validRepos, range, searchQuery || undefined);
 
-            const response: MultiRepoCommitsResponse = {
-                commitsByRepo: dbResult.commitsByRepo,
-                allCommits: dbResult.allCommits.slice(0, 100),
-                total: dbResult.total
-            };
+                const response: MultiRepoCommitsResponse = {
+                    commitsByRepo: dbResult.commitsByRepo,
+                    allCommits: dbResult.allCommits.slice(0, 100),
+                    total: dbResult.total
+                };
 
-            return addSecurityHeaders(NextResponse.json(response, {
-                headers: {
-                    'Cache-Control': 'no-store, no-cache, must-revalidate',
-                    'X-Data-Source': 'database'
-                }
-            }), securityCheck.rateLimitRemaining);
+                return addSecurityHeaders(NextResponse.json(response, {
+                    headers: {
+                        'Cache-Control': 'no-store, no-cache, must-revalidate',
+                        'X-Data-Source': 'database'
+                    }
+                }), securityCheck.rateLimitRemaining);
+            } catch (dbError) {
+                console.warn('[Multi-commits] DB query failed, falling back to API:', dbError);
+            }
         }
 
         const startDate = ['6m', '12m'].includes(range)
@@ -175,7 +178,7 @@ export async function GET(request: NextRequest) {
 
         return createJsonResponse(response, {
             headers: {
-                'Cache-Control': `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
+                'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate',
                 'X-Data-Source': 'github-api'
             }
         }, securityCheck);
