@@ -2404,10 +2404,10 @@
     }
   },
   "cv": {
-    "role": "Web Integrator",
+    "role": "Web Integrator Student",
     "badge": "Curriculum Vitae",
     "title": "Curriculum Vitae",
-    "description": "Detailed overview — {role}, skills and background.",
+    "description": "Detailed overview — skills, experience and background.",
     "lastUpdatedLabel": "Last updated:",
     "actions": {
       "backHome": "Back to home",
@@ -2467,6 +2467,7 @@
     "experience": {
       "pinkail": {
         "title": "PinkAil Seeds SARL",
+        "note": "Warehouse worker - Seasonal contract",
         "date": "01/09/2025 - 08/09/2025",
         "bullets": {
           "1": "Sorting and packaging garlic: removal of rotten/damaged/soft/stained/sprouted/deformed bulbs",

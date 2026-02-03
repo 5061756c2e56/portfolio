@@ -26,7 +26,7 @@ type CvSection = {
     content: ReactNode;
 };
 
-const LAST_UPDATED_ISO = '2026-01-31';
+const LAST_UPDATED_ISO = '2026-02-03';
 const CV_PDF_PATH = '/Curriculum Vitae - Viandier Paul.pdf';
 const CV_PDF_FILENAME = 'Curriculum Vitae - Viandier Paul.pdf';
 
@@ -271,6 +271,7 @@ export default async function CurriculumVitaePage() {
                     {
                         key: 'pinkail',
                         title: t('experience.pinkail.title'),
+                        note: t('experience.pinkail.note'),
                         date: t('experience.pinkail.date'),
                         bullets: [
                             t('experience.pinkail.bullets.1'),
@@ -474,7 +475,7 @@ export default async function CurriculumVitaePage() {
                     const Card = ({
                         xp
                     }: {
-                        xp: { key: string; title: string; date: string; bullets: string[] };
+                        xp: { key: string; title: string; note?: string; date: string; bullets: string[] };
                     }) => (
                         <div
                             key={xp.key}
@@ -483,6 +484,12 @@ export default async function CurriculumVitaePage() {
                             <div className="flex flex-wrap items-center justify-between gap-3">
                                 <div>
                                     <p className="text-base font-semibold text-foreground">{xp.title}</p>
+
+                                    {xp.note ? (
+                                        <p className="mt-1 text-sm text-muted-foreground">
+                                            {xp.note}
+                                        </p>
+                                    ) : null}
                                 </div>
 
                                 <div
@@ -573,7 +580,7 @@ export default async function CurriculumVitaePage() {
                         <h1 className="text-4xl sm:text-5xl font-bold mt-5 gradient-text">{t('title')}</h1>
 
                         <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-                            {t('description', { role: CV.role })}
+                            {t('description')}
                         </p>
 
                         <div className="mt-6 flex justify-center">

@@ -20,7 +20,7 @@ import { FileText } from 'lucide-react';
 import { useContactModal } from '@/hooks/useContactModal';
 import { CvDownloadButton } from '@/components/cv/ProfileBlock';
 
-const LAST_UPDATED_ISO = '2026-01-31';
+const LAST_UPDATED_ISO = '2026-02-03';
 const MOTIVATION_PDF_PATH = '/Lettre de motivation - Viandier Paul.pdf';
 const MOTIVATION_PDF_FILENAME = 'Lettre de motivation - Viandier Paul.pdf';
 
@@ -102,8 +102,8 @@ export default function MotivationLetterPageClient() {
                         <div className="mt-8">
                             <div className="-mx-8 sm:-mx-10">
                                 <div
-                                    className="w-full sm:w-[60%] rounded-r-2xl border border-blue-500/25 bg-blue-500/10 px-6 py-3">
-                                    <p className="text-center text-sm sm:text-base font-medium text-foreground/80">
+                                    className="w-full sm:w-[60%] rounded-r-2xl border bg-[#323b4c] px-6 py-3">
+                                    <p className="text-center text-sm sm:text-base font-medium text-white">
                                         {t('bannerText')}
                                     </p>
                                 </div>

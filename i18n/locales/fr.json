@@ -2404,10 +2404,10 @@
     }
   },
   "cv": {
-    "role": "Intégrateur Web",
+    "role": "Étudiant Intégrateur Web",
     "badge": "Curriculum Vitae",
     "title": "Curriculum Vitae",
-    "description": "Présentation détaillée — {role}, compétences et parcours.",
+    "description": "Présentation détaillée — compétences, expériences et parcours.",
     "lastUpdatedLabel": "Dernière mise à jour :",
     "actions": {
       "backHome": "Retour à l'accueil",
@@ -2467,6 +2467,7 @@
     "experience": {
       "pinkail": {
         "title": "PinkAil Seeds SARL",
+        "note": "Manutentionnaire - Contrat saisonnier",
         "date": "01/09/2025 - 08/09/2025",
         "bullets": {
           "1": "Triage et conditionnement de l’ail : retrait des bulbes pourris / blessés / mous / tachés / germés / déformés",
