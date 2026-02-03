@@ -9,7 +9,6 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type PrismaClientType = any;
 
 const globalForPrisma = globalThis as unknown as {
@@ -34,7 +33,12 @@ function createPrismaClientSync(): PrismaClientType | null {
         }
 
         return new PrismaClient({
-            log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error']
+            log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
+            datasources: {
+                db: {
+                    url: process.env.DATABASE_URL
+                }
+            }
         });
     } catch (error) {
         console.warn('[Prisma] Failed to create PrismaClient:', error);
@@ -54,7 +58,7 @@ export function getPrisma(): PrismaClientType | null {
 
     prismaInstance = createPrismaClientSync();
 
-    if (prismaInstance) {
+    if (prismaInstance && process.env.NODE_ENV !== 'production') {
         globalForPrisma.prisma = prismaInstance;
     }
 

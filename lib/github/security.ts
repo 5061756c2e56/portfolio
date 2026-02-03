@@ -27,9 +27,12 @@ function getAllowedOrigins(): string[] {
             //
         }
     }
+
+    if (process.env.NODE_ENV === 'production') {
+        return ['https://paulviandier.com'];
+    }
+
     return [
-        'https://paulviandier.com',
-        'https://www.paulviandier.com',
         'http://localhost:3000',
         'http://localhost:3001'
     ];

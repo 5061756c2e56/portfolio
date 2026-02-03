@@ -62,6 +62,7 @@ model Commit {
     @@index([sha])
     @@index([repositoryId, committedAt])
     @@index([authorLogin])
+    @@index([repositoryId, authorLogin, committedAt])
 }
 
 model WebhookEvent {

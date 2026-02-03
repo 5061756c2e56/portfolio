@@ -70,6 +70,12 @@ export async function getCommitsFromDB(
             OR: repos.map((r: RepoParam) => (
                 { owner: r.owner, name: r.name }
             ))
+        },
+        select: {
+            id: true,
+            owner: true,
+            name: true,
+            displayName: true
         }
     });
 
@@ -77,9 +83,7 @@ export async function getCommitsFromDB(
         return { commitsByRepo: {}, allCommits: [], total: 0 };
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const whereClause: any = {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         repositoryId: { in: dbRepos.map((r: any) => r.id) },
         committedAt: { gte: startDate }
     };
@@ -93,8 +97,19 @@ export async function getCommitsFromDB(
 
     const commits = await prisma.commit.findMany({
         where: whereClause,
-        include: {
-            repository: true
+        select: {
+            sha: true,
+            shortSha: true,
+            message: true,
+            messageTitle: true,
+            committedAt: true,
+            author: true,
+            authorAvatar: true,
+            additions: true,
+            deletions: true,
+            filesChanged: true,
+            isMergeCommit: true,
+            repositoryId: true
         },
         orderBy: { committedAt: 'desc' }
     });
@@ -115,7 +130,6 @@ export async function getCommitsFromDB(
     }
 
     for (const commit of commits) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const repo = dbRepos.find((r: any) => r.id === commit.repositoryId)!;
         const repoConfig = ALLOWED_REPOSITORIES.find(
             r => r.owner === repo.owner && r.name === repo.name
@@ -161,7 +175,8 @@ export async function getCommitDetailFromDB(
     }
 
     const repository = await prisma.repository.findUnique({
-        where: { owner_name: { owner, name: repo } }
+        where: { owner_name: { owner, name: repo } },
+        select: { id: true, owner: true, name: true, displayName: true }
     });
 
     if (!repository) return null;
@@ -173,7 +188,19 @@ export async function getCommitDetailFromDB(
                 sha
             }
         },
-        include: { repository: true }
+        select: {
+            sha: true,
+            shortSha: true,
+            message: true,
+            messageTitle: true,
+            committedAt: true,
+            author: true,
+            authorAvatar: true,
+            additions: true,
+            deletions: true,
+            filesChanged: true,
+            isMergeCommit: true
+        }
     });
 
     if (!commit) return null;
@@ -219,30 +246,32 @@ export async function getCommitStatsFromDB(
             OR: repos.map((r: RepoParam) => (
                 { owner: r.owner, name: r.name }
             ))
-        }
+        },
+        select: { id: true }
     });
 
     if (dbRepos.length === 0) {
         return { totalCommits: 0, commitsByDate: [] };
     }
 
-    const totalCommits = await prisma.commit.count({
-        where: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            repositoryId: { in: dbRepos.map((r: any) => r.id) },
-            committedAt: { gte: startDate }
-        }
-    });
+    const repoIds = dbRepos.map((r: any) => r.id);
 
-    const commits = await prisma.commit.findMany({
-        where: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            repositoryId: { in: dbRepos.map((r: any) => r.id) },
-            committedAt: { gte: startDate }
-        },
-        select: { committedAt: true },
-        orderBy: { committedAt: 'asc' }
-    });
+    const [totalCommits, commits] = await Promise.all([
+        prisma.commit.count({
+            where: {
+                repositoryId: { in: repoIds },
+                committedAt: { gte: startDate }
+            }
+        }),
+        prisma.commit.findMany({
+            where: {
+                repositoryId: { in: repoIds },
+                committedAt: { gte: startDate }
+            },
+            select: { committedAt: true },
+            orderBy: { committedAt: 'asc' }
+        })
+    ]);
 
     const granularity = PERIOD_CONFIGS[range].granularity;
     const groupedCommits = new Map<string, number>();
@@ -343,6 +372,12 @@ export async function getTimelineFromDB(
             OR: repos.map((r: RepoParam) => (
                 { owner: r.owner, name: r.name }
             ))
+        },
+        select: {
+            id: true,
+            owner: true,
+            name: true,
+            displayName: true
         }
     });
 
@@ -351,11 +386,11 @@ export async function getTimelineFromDB(
     }
 
     const allDates = generateAllDatesInRange(startDate, endDate, config.granularity);
+    const repoIds = dbRepos.map((r: any) => r.id);
 
     const commits = await prisma.commit.findMany({
         where: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            repositoryId: { in: dbRepos.map((r: any) => r.id) },
+            repositoryId: { in: repoIds },
             committedAt: { gte: startDate }
         },
         select: {
@@ -422,10 +457,8 @@ export async function getTimelineFromDB(
         });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const combinedTimeline: Array<any> = allDates.map(date => {
         const key = date.toISOString().split('T')[0];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const point: any = {
             date: key,
             label: formatDateLabel(date, config.granularity, locale)
