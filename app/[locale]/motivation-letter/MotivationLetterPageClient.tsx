@@ -21,8 +21,8 @@ import { useContactModal } from '@/hooks/useContactModal';
 import { CvDownloadButton } from '@/components/cv/ProfileBlock';
 
 const LAST_UPDATED_ISO = '2026-01-31';
-const MOTIVATION_PDF_PATH = '/Lettre de motivation - Viandier Paul.pdf';
-const MOTIVATION_PDF_FILENAME = 'Lettre de motivation - Viandier Paul.pdf';
+const MOTIVATION_PDF_PATH = '/Lettre de motivation - Paul Viandier.pdf';
+const MOTIVATION_PDF_FILENAME = 'Lettre de motivation - Paul Viandier.pdf';
 
 const signatureFont = Great_Vibes({
     subsets: ['latin'],
@@ -43,15 +43,7 @@ export default function MotivationLetterPageClient() {
     const topCenteredTop = t('topCentered.top');
     const topCenteredBottom = t('topCentered.bottom');
 
-    const bodyRaw = t.raw('body');
-    const body: string[] = Array.isArray(bodyRaw)
-        ? (
-            bodyRaw as string[]
-        )
-        : String(bodyRaw)
-            .split('\n\n')
-            .map((s) => s.trim())
-            .filter(Boolean);
+    const bodyKeys = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'] as const;
 
     return (
         <>
@@ -119,8 +111,14 @@ export default function MotivationLetterPageClient() {
                         </div>
 
                         <div className="mt-8 space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
-                            {body.map((p, idx) => (
-                                <p key={`${idx}-${p.slice(0, 24)}`}>{p}</p>
+                            {bodyKeys.map((k) => (
+                                <p key={k}>
+                                    {t.rich(`body.${k}`, {
+                                        b: (chunks) => (
+                                            <strong className="font-semibold text-foreground/90">{chunks}</strong>
+                                        )
+                                    })}
+                                </p>
                             ))}
                         </div>
 

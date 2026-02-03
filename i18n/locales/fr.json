@@ -152,6 +152,7 @@
     "statsGithub": "Stats GitHub",
     "github-activities": "Activité GitHub",
     "contact": "Contact",
+    "status": "Statut",
     "loading": "Chargement...",
     "language": "Langue",
     "french": "Français",
@@ -2494,16 +2495,16 @@
       "bottom": "contact@paulviandier.com"
     },
     "bannerText": "INTÉGRATEUR WEB EN ALTERNANCE",
-    "body": [
-      "Madame, Monsieur,",
-      "Actuellement à la recherche d'une alternance en tant qu'intégrateur web, je souhaite intégrer votre entreprise afin de développer mes compétences dans un cadre professionnel structuré et exigeant. Bien que débutant dans le monde professionnel, je suis très à l'aise avec l'informatique de manière générale et j'ai déjà exploré plusieurs domaines techniques.",
-      "Je me suis notamment formé au développement front-end et j'ai acquis de bonnes bases en HTML, CSS et JavaScript, ainsi qu'une première expérience avec React, Redux, l'utilisation d'API, Git et le responsive design. J'ai l'habitude d'intégrer des interfaces à partir de maquettes Figma, en veillant à respecter le rendu visuel, la structure du code et l'expérience utilisateur.",
-      "Comme sur un chantier bien organisé, je prends le temps de poser des bases propres avant d'ajouter des fonctionnalités. Cette approche me permet de produire des interfaces claires, cohérentes et adaptées à différents supports.",
-      "Mon intérêt pour les systèmes, les réseaux et la cybersécurité m'a sensibilisé aux notions de robustesse, de bonnes pratiques et de maintenabilité. J'essaie d'appliquer ces principes dès la phase d'intégration, afin de livrer un code fiable et compréhensible par d'autres développeurs.",
-      "Sérieux, motivé et appréciant le travail en équipe, je suis prêt à m'investir pleinement dans vos projets tout en continuant à apprendre auprès de professionnels expérimentés. Cette alternance représente pour moi une étape essentielle pour progresser techniquement et contribuer concrètement à vos réalisations.",
-      "Je serais ravi de pouvoir vous rencontrer afin d'échanger plus en détail sur ma candidature.",
-      "Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
-    ],
+    "body": {
+      "p1": "Madame, Monsieur,",
+      "p2": "Actuellement à la recherche d'une alternance en tant <b>qu'intégrateur web</b>, je souhaite intégrer votre entreprise afin de développer mes compétences dans un cadre professionnel structuré et exigeant. Bien que débutant dans le monde professionnel, je suis très à l'aise avec l'informatique de manière générale et j'ai déjà exploré plusieurs domaines techniques.",
+      "p3": "Je me suis notamment formé au <b>développement front-end</b> et j'ai acquis de bonnes bases en <b>HTML</b>, <b>CSS</b> et <b>JavaScript</b>, ainsi qu'une première expérience avec <b>React</b>, <b>Redux</b>, l'utilisation d’<b>API</b>, <b>Git</b> et le <b>responsive design</b>. J'ai l'habitude d'intégrer des interfaces à partir de <b>maquettes Figma</b>, en veillant à respecter le rendu visuel, la structure du code et l'expérience utilisateur.",
+      "p4": "Comme sur un chantier bien organisé, je prends le temps de poser des bases propres avant d'ajouter des fonctionnalités. Cette approche me permet de produire des <b>interfaces claires</b>, <b>cohérentes</b> et <b>adaptées</b> à différents supports.",
+      "p5": "Mon intérêt pour les <b>systèmes</b>, les <b>réseaux</b> et la <b>cybersécurité</b> m'a sensibilisé aux notions de robustesse, de bonnes pratiques et de maintenabilité. J'essaie d'appliquer ces principes dès la phase d'intégration, afin de livrer un code fiable et compréhensible par d'autres développeurs.",
+      "p6": "<b>Sérieux</b>, <b>motivé</b> et <b>appréciant</b> le travail en équipe, je suis prêt à m'investir pleinement dans vos projets tout en continuant à apprendre auprès de professionnels expérimentés. Cette alternance représente pour moi une étape essentielle pour progresser techniquement et contribuer concrètement à vos réalisations.",
+      "p7": "Je serais ravi de pouvoir vous rencontrer afin d'échanger plus en détail sur ma candidature.",
+      "p8": "Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
+    },
     "actions": {
       "downloadPdf": "Télécharger le PDF",
       "downloadPdfLoading": "Téléchargement en cours..."

@@ -468,7 +468,7 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
                         </div>
 
                         <DialogFooter>
-                            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+                            <Button type="button" variant="outline" onClick={onClose}>
                                 {t('close')}
                             </Button>
                             <Button type="submit" disabled={!canSubmit}>

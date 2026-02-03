@@ -14,7 +14,7 @@
 import { useTranslations } from 'next-intl';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { useContactModal } from '@/hooks/useContactModal';
-import { BarChart3, FileText, Gamepad2, HelpCircle, Home, Mail, Scale, ShieldCheck } from 'lucide-react';
+import { BarChart3, ChartLine, FileText, Gamepad2, HelpCircle, Home, Mail, Scale, ShieldCheck } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { useCallback } from 'react';
 
@@ -32,7 +32,8 @@ export default function Footer() {
         { label: tNav('home'), href: '/', icon: Home },
         { label: 'FAQ', href: '/faq', icon: HelpCircle },
         { label: tNav('githubStats'), href: '/stats', icon: BarChart3 },
-        { label: tNav('games'), href: '/games', icon: Gamepad2 }
+        { label: tNav('games'), href: '/games', icon: Gamepad2 },
+        { label: tNav('status'), href: 'https://status.paulviandier.com/fr', icon: ChartLine }
     ];
 
     const legalLinks = [
@@ -91,12 +92,26 @@ export default function Footer() {
                         <ul className="space-y-2 text-sm">
                             {navLinks.map(link => {
                                 const Icon = link.icon;
+                                const isExternal = link.href.startsWith('https');
+
                                 return (
                                     <li key={link.href}>
-                                        <Link href={link.href} className={linkClass}>
-                                            <Icon className="w-4 h-4 shrink-0"/>
-                                            <span>{link.label}</span>
-                                        </Link>
+                                        {isExternal ? (
+                                            <a
+                                                href={link.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={linkClass}
+                                            >
+                                                <Icon className="w-4 h-4 shrink-0"/>
+                                                <span>{link.label}</span>
+                                            </a>
+                                        ) : (
+                                            <Link href={link.href} className={linkClass}>
+                                                <Icon className="w-4 h-4 shrink-0"/>
+                                                <span>{link.label}</span>
+                                            </Link>
+                                        )}
                                     </li>
                                 );
                             })}
