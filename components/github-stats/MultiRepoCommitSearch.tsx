@@ -13,9 +13,23 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowDownWideNarrow, ArrowUpNarrowWide, GitBranch, GitCommit, Hash, Loader2, Search, X } from 'lucide-react';
+import {
+    ArrowDownWideNarrow,
+    ArrowUpNarrowWide,
+    GitBranch,
+    GitCommit,
+    Hash,
+    Loader2,
+    Search,
+    X
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CommitDetail, Repository, TimeRange, VALID_TIME_RANGES } from '@/lib/github/types';
+import {
+    CommitDetail,
+    Repository,
+    TimeRange,
+    VALID_TIME_RANGES
+} from '@/lib/github/types';
 import { CommitDetailPanel } from './CommitDetail';
 import { PeriodSelector } from './PeriodSelector';
 import { Spinner } from '@/components/ui/spinner';
@@ -52,15 +66,21 @@ interface MultiRepoCommitSearchProps {
 
 type SelectedCommitRef = { owner: string; name: string; sha: string } | null;
 
-export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchProps) {
+export function MultiRepoCommitSearch({
+    selectedRepos
+}: MultiRepoCommitSearchProps) {
     const t = useTranslations('githubStats.search');
 
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [commitsData, setCommitsData] = useState<MultiRepoCommitsResponse | null>(null);
+    const [commitsData, setCommitsData] =
+        useState<MultiRepoCommitsResponse | null>(null);
 
-    const [selectedCommit, setSelectedCommit] = useState<CommitDetail | null>(null);
-    const [selectedCommitRef, setSelectedCommitRef] = useState<SelectedCommitRef>(null);
+    const [selectedCommit, setSelectedCommit] = useState<CommitDetail | null>(
+        null
+    );
+    const [selectedCommitRef, setSelectedCommitRef] =
+        useState<SelectedCommitRef>(null);
     const [commitDetailLoading, setCommitDetailLoading] = useState(false);
 
     const [expandedRepos, setExpandedRepos] = useState<string[]>([]);
@@ -76,17 +96,23 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
             setIsLoading(true);
 
             try {
-                const reposParam = selectedRepos.map((r) => (
-                    { owner: r.owner, name: r.name }
-                ));
+                const reposParam = selectedRepos.map((r) => ({
+                    owner: r.owner,
+                    name: r.name
+                }));
 
-                const url = new URL('/api/github/multi-commits', window.location.origin);
+                const url = new URL(
+                    '/api/github/multi-commits',
+                    window.location.origin
+                );
                 url.searchParams.set('repos', JSON.stringify(reposParam));
                 url.searchParams.set('range', range);
 
                 if (query) url.searchParams.set('q', query);
 
-                const response = await fetch(url.toString(), { cache: 'no-store' });
+                const response = await fetch(url.toString(), {
+                    cache: 'no-store'
+                });
                 if (!response.ok) throw new Error('Failed to fetch commits');
 
                 const data: MultiRepoCommitsResponse = await response.json();
@@ -128,7 +154,11 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
     const handleSelectCommit = async (commit: MultiRepoCommitItem) => {
         setCommitDetailLoading(true);
         setSelectedCommit(null);
-        setSelectedCommitRef({ owner: commit.repoOwner, name: commit.repoName, sha: commit.sha });
+        setSelectedCommitRef({
+            owner: commit.repoOwner,
+            name: commit.repoName,
+            sha: commit.sha
+        });
         setExpandedRepos([]);
 
         try {
@@ -156,9 +186,11 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
     };
 
     const toggleRepoExpanded = (repoName: string) => {
-        setExpandedRepos((prev) => (
-            prev.includes(repoName) ? prev.filter((r) => r !== repoName) : [...prev, repoName]
-        ));
+        setExpandedRepos((prev) =>
+            prev.includes(repoName)
+                ? prev.filter((r) => r !== repoName)
+                : [...prev, repoName]
+        );
     };
 
     const getFilteredCommits = (commits: MultiRepoCommitItem[]) => {
@@ -166,8 +198,11 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
 
         if (searchQuery) {
             const q = searchQuery.toLowerCase();
-            filtered = filtered.filter((c) => c.sha.toLowerCase().startsWith(q)
-                                              || c.shortSha.toLowerCase().startsWith(q));
+            filtered = filtered.filter(
+                (c) =>
+                    c.sha.toLowerCase().startsWith(q) ||
+                    c.shortSha.toLowerCase().startsWith(q)
+            );
         }
 
         filtered.sort((a, b) => {
@@ -176,7 +211,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
             return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
         });
 
-        return filtered.slice(0, 50);
+        return filtered;
     };
 
     return (
@@ -185,11 +220,13 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div className="flex items-center gap-3">
                         <div className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                            <Search className="w-4 h-4 text-blue-500"/>
+                            <Search className="w-4 h-4 text-blue-500" />
                         </div>
                         <div>
                             <h3 className="font-medium">{t('title')}</h3>
-                            <p className="text-xs text-muted-foreground mt-0.5">{t('placeholder')}</p>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                                {t('placeholder')}
+                            </p>
                         </div>
                     </div>
 
@@ -215,7 +252,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
                                     'transition-all duration-200'
                                 )}
                             >
-                                <X className="w-4 h-4"/>
+                                <X className="w-4 h-4" />
                                 <span>{t('clearSelection')}</span>
                             </button>
                         )}
@@ -225,7 +262,7 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
 
             <div className="p-4 sm:p-6 space-y-4">
                 <div className="relative">
-                    <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500/50"/>
+                    <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500/50" />
                     <input
                         type="text"
                         placeholder={t('placeholder')}
@@ -240,135 +277,204 @@ export function MultiRepoCommitSearch({ selectedRepos }: MultiRepoCommitSearchPr
                             'transition-all duration-300'
                         )}
                     />
-                    {isLoading && <Loader2
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 animate-spin text-blue-500"/>}
+                    {isLoading && (
+                        <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 animate-spin text-blue-500" />
+                    )}
                 </div>
 
                 {isLoading && !commitsData ? (
                     <div className="p-8 text-center">
-                        <Spinner className="w-6 h-6 text-blue-500 mx-auto mb-2"/>
-                        <span className="text-sm text-muted-foreground">{t('loading')}</span>
+                        <Spinner className="w-6 h-6 text-blue-500 mx-auto mb-2" />
+                        <span className="text-sm text-muted-foreground">
+                            {t('loading')}
+                        </span>
                     </div>
-                ) : commitsData && Object.keys(commitsData.commitsByRepo).length > 0 ? (
+                ) : commitsData &&
+                  Object.keys(commitsData.commitsByRepo).length > 0 ? (
                     <div className="space-y-2">
-                        {Object.entries(commitsData.commitsByRepo).map(([repoName, repoData]) => {
-                            const filteredCommits = getFilteredCommits(repoData.commits);
-                            const isRepoExpanded = expandedRepos.includes(repoName);
+                        {Object.entries(commitsData.commitsByRepo).map(
+                            ([repoName, repoData]) => {
+                                const filteredCommits = getFilteredCommits(
+                                    repoData.commits
+                                );
+                                const isRepoExpanded =
+                                    expandedRepos.includes(repoName);
 
-                            if (filteredCommits.length === 0 && searchQuery) return null;
+                                if (filteredCommits.length === 0 && searchQuery)
+                                    return null;
 
-                            return (
-                                <div key={repoName} className="rounded-xl border border-blue-500/10 overflow-hidden">
+                                return (
                                     <div
-                                        className={cn(
-                                            'w-full flex items-center justify-between gap-3 px-4 py-3',
-                                            'text-left transition-all duration-200',
-                                            isRepoExpanded && 'bg-blue-500/5 border-b border-blue-500/10'
-                                        )}
+                                        key={repoName}
+                                        className="rounded-xl border border-blue-500/10 overflow-hidden"
                                     >
-                                        <button
-                                            type="button"
-                                            onClick={() => toggleRepoExpanded(repoName)}
-                                            className="flex items-center gap-3 flex-1 min-w-0 hover:opacity-80 transition-opacity"
+                                        <div
+                                            className={cn(
+                                                'w-full flex items-center justify-between gap-3 px-4 py-3',
+                                                'text-left transition-all duration-200',
+                                                isRepoExpanded &&
+                                                    'bg-blue-500/5 border-b border-blue-500/10'
+                                            )}
                                         >
-                                            <GitBranch className="w-4 h-4 text-blue-500 shrink-0"/>
-                                            <span className="font-medium truncate">{repoData.displayName}</span>
-                                            <span
-                                                className="text-xs text-muted-foreground px-2 py-0.5 rounded-full bg-blue-500/10 shrink-0">
-                                                {filteredCommits.length} commit{filteredCommits.length > 1 ? 's' : ''}
-                                            </span>
-                                            <span className={cn('text-xs text-muted-foreground ml-auto', isRepoExpanded
-                                                                                                         && 'text-blue-500')}>
-                                                {isRepoExpanded ? '—' : '+'}
-                                            </span>
-                                        </button>
-                                        {isRepoExpanded && (
                                             <button
                                                 type="button"
-                                                onClick={() => setSortOrder(sortOrder
-                                                                            === 'newest' ? 'oldest' : 'newest')}
-                                                className={cn(
-                                                    'flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs shrink-0',
-                                                    'border border-blue-500/20 bg-blue-500/5',
-                                                    'hover:bg-blue-500/10 hover:border-blue-500/40',
-                                                    'transition-all duration-200'
-                                                )}
-                                                title={sortOrder === 'newest' ? t('sortOldest') : t('sortNewest')}
+                                                onClick={() =>
+                                                    toggleRepoExpanded(repoName)
+                                                }
+                                                className="flex items-center gap-3 flex-1 min-w-0 hover:opacity-80 transition-opacity"
                                             >
-                                                {sortOrder === 'newest' ? (
-                                                    <ArrowDownWideNarrow className="w-3.5 h-3.5 text-blue-500"/>
-                                                ) : (
-                                                    <ArrowUpNarrowWide className="w-3.5 h-3.5 text-blue-500"/>
-                                                )}
-                                                <span className="text-muted-foreground hidden sm:inline">
-                                                    {sortOrder === 'newest' ? t('sortNewest') : t('sortOldest')}
+                                                <GitBranch className="w-4 h-4 text-blue-500 shrink-0" />
+                                                <span className="font-medium truncate">
+                                                    {repoData.displayName}
+                                                </span>
+                                                <span className="text-xs text-muted-foreground px-2 py-0.5 rounded-full bg-blue-500/10 shrink-0">
+                                                    {filteredCommits.length}{' '}
+                                                    commit
+                                                    {filteredCommits.length > 1
+                                                        ? 's'
+                                                        : ''}
+                                                </span>
+                                                <span
+                                                    className={cn(
+                                                        'text-xs text-muted-foreground ml-auto',
+                                                        isRepoExpanded &&
+                                                            'text-blue-500'
+                                                    )}
+                                                >
+                                                    {isRepoExpanded ? '—' : '+'}
                                                 </span>
                                             </button>
-                                        )}
-                                    </div>
-
-                                    <div
-                                        className={cn('overflow-hidden transition-all duration-300 ease-in-out', isRepoExpanded ? 'max-h-96' : 'max-h-0')}>
-                                        <div className="max-h-80 overflow-auto scrollbar-custom scrollbar-autohide">
-                                            {filteredCommits.length === 0 ? (
-                                                <div
-                                                    className="p-4 text-center text-muted-foreground text-sm">{t('noResults')}</div>
-                                            ) : (
-                                                <ul>
-                                                    {filteredCommits.map((commit, index) => {
-                                                        const isSelected =
-                                                            selectedCommitRef?.sha === commit.sha &&
-                                                            selectedCommitRef?.owner === commit.repoOwner &&
-                                                            selectedCommitRef?.name === commit.repoName;
-
-                                                        return (
-                                                            <li key={`${commit.repoOwner}/${commit.repoName}@${commit.sha}`}>
-                                                                <button
-                                                                    type="button"
-                                                                    onClick={() => handleSelectCommit(commit)}
-                                                                    className={cn(
-                                                                        'w-full px-4 py-3 text-left transition-all duration-200 flex items-start gap-3',
-                                                                        'hover:bg-blue-500/10',
-                                                                        isSelected && 'bg-blue-500/10',
-                                                                        index !== filteredCommits.length - 1
-                                                                        && 'border-b border-border/50'
-                                                                    )}
-                                                                >
-                                                                    <GitCommit
-                                                                        className="w-4 h-4 mt-0.5 text-blue-500 shrink-0"/>
-                                                                    <div className="min-w-0 flex-1">
-                                                                        <div
-                                                                            className="flex items-center gap-2 flex-wrap">
-                                                                            <code
-                                                                                className="text-xs bg-blue-500/10 text-blue-500 px-1.5 py-0.5 rounded font-mono border border-blue-500/20">
-                                                                                {commit.shortSha}
-                                                                            </code>
-                                                                            <span
-                                                                                className="text-xs text-muted-foreground">
-                                        {new Date(commit.date).toLocaleDateString()}
-                                      </span>
-                                                                        </div>
-                                                                        <p className="text-sm truncate mt-1.5 text-foreground/80">{commit.messageTitle}</p>
-                                                                    </div>
-                                                                </button>
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </ul>
+                                            {isRepoExpanded && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        setSortOrder(
+                                                            sortOrder ===
+                                                                'newest'
+                                                                ? 'oldest'
+                                                                : 'newest'
+                                                        )
+                                                    }
+                                                    className={cn(
+                                                        'flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs shrink-0',
+                                                        'border border-blue-500/20 bg-blue-500/5',
+                                                        'hover:bg-blue-500/10 hover:border-blue-500/40',
+                                                        'transition-all duration-200'
+                                                    )}
+                                                    title={
+                                                        sortOrder === 'newest'
+                                                            ? t('sortOldest')
+                                                            : t('sortNewest')
+                                                    }
+                                                >
+                                                    {sortOrder === 'newest' ? (
+                                                        <ArrowDownWideNarrow className="w-3.5 h-3.5 text-blue-500" />
+                                                    ) : (
+                                                        <ArrowUpNarrowWide className="w-3.5 h-3.5 text-blue-500" />
+                                                    )}
+                                                    <span className="text-muted-foreground hidden sm:inline">
+                                                        {sortOrder === 'newest'
+                                                            ? t('sortNewest')
+                                                            : t('sortOldest')}
+                                                    </span>
+                                                </button>
                                             )}
                                         </div>
+
+                                        <div
+                                            className={cn(
+                                                'overflow-hidden transition-all duration-300 ease-in-out',
+                                                isRepoExpanded
+                                                    ? 'max-h-96'
+                                                    : 'max-h-0'
+                                            )}
+                                        >
+                                            <div className="max-h-80 overflow-auto scrollbar-custom scrollbar-autohide">
+                                                {filteredCommits.length ===
+                                                0 ? (
+                                                    <div className="p-4 text-center text-muted-foreground text-sm">
+                                                        {t('noResults')}
+                                                    </div>
+                                                ) : (
+                                                    <ul>
+                                                        {filteredCommits.map(
+                                                            (commit, index) => {
+                                                                const isSelected =
+                                                                    selectedCommitRef?.sha ===
+                                                                        commit.sha &&
+                                                                    selectedCommitRef?.owner ===
+                                                                        commit.repoOwner &&
+                                                                    selectedCommitRef?.name ===
+                                                                        commit.repoName;
+
+                                                                return (
+                                                                    <li
+                                                                        key={`${commit.repoOwner}/${commit.repoName}@${commit.sha}`}
+                                                                    >
+                                                                        <button
+                                                                            type="button"
+                                                                            onClick={() =>
+                                                                                handleSelectCommit(
+                                                                                    commit
+                                                                                )
+                                                                            }
+                                                                            className={cn(
+                                                                                'w-full px-4 py-3 text-left transition-all duration-200 flex items-start gap-3',
+                                                                                'hover:bg-blue-500/10',
+                                                                                isSelected &&
+                                                                                    'bg-blue-500/10',
+                                                                                index !==
+                                                                                    filteredCommits.length -
+                                                                                        1 &&
+                                                                                    'border-b border-border/50'
+                                                                            )}
+                                                                        >
+                                                                            <GitCommit className="w-4 h-4 mt-0.5 text-blue-500 shrink-0" />
+                                                                            <div className="min-w-0 flex-1">
+                                                                                <div className="flex items-center gap-2 flex-wrap">
+                                                                                    <code className="text-xs bg-blue-500/10 text-blue-500 px-1.5 py-0.5 rounded font-mono border border-blue-500/20">
+                                                                                        {
+                                                                                            commit.shortSha
+                                                                                        }
+                                                                                    </code>
+                                                                                    <span className="text-xs text-muted-foreground">
+                                                                                        {new Date(
+                                                                                            commit.date
+                                                                                        ).toLocaleDateString()}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <p className="text-sm truncate mt-1.5 text-foreground/80">
+                                                                                    {
+                                                                                        commit.messageTitle
+                                                                                    }
+                                                                                </p>
+                                                                            </div>
+                                                                        </button>
+                                                                    </li>
+                                                                );
+                                                            }
+                                                        )}
+                                                    </ul>
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            }
+                        )}
                     </div>
                 ) : (
-                    <div className="p-8 text-center text-muted-foreground text-sm">{t('noResults')}</div>
+                    <div className="p-8 text-center text-muted-foreground text-sm">
+                        {t('noResults')}
+                    </div>
                 )}
 
-                {(
-                     selectedCommit || commitDetailLoading
-                 ) && <CommitDetailPanel commit={selectedCommit} isLoading={commitDetailLoading}/>}
+                {(selectedCommit || commitDetailLoading) && (
+                    <CommitDetailPanel
+                        commit={selectedCommit}
+                        isLoading={commitDetailLoading}
+                    />
+                )}
             </div>
         </div>
     );
