@@ -21,17 +21,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'let a un scope de bloc, var a un scope de fonction', 'let est plus rapide que var', 'var est obsolète',
+                'let a un scope de bloc, var a un scope de fonction',
+                'let est plus rapide que var',
+                'var est obsolète',
                 'Aucune différence'
             ],
             en: [
-                'let has block scope, var has function scope', 'let is faster than var', 'var is deprecated',
+                'let has block scope, var has function scope',
+                'let is faster than var',
+                'var is deprecated',
                 'No difference'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'let a un scope de bloc, ce qui signifie qu\'il est accessible uniquement dans le bloc où il est déclaré, tandis que var a un scope de fonction.',
+            fr: "let a un scope de bloc, ce qui signifie qu'il est accessible uniquement dans le bloc où il est déclaré, tandis que var a un scope de fonction.",
             en: 'let has block scope, meaning it is only accessible within the block where it is declared, while var has function scope.'
         }
     },
@@ -52,22 +56,26 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-3',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce qu\'une injection SQL ?',
+            fr: "Qu'est-ce qu'une injection SQL ?",
             en: 'What is SQL injection?'
         },
         options: {
             fr: [
-                'Une attaque qui injecte du code SQL malveillant', 'Une méthode d\'optimisation SQL',
-                'Un type de base de données', 'Une fonction SQL'
+                'Une attaque qui injecte du code SQL malveillant',
+                "Une méthode d'optimisation SQL",
+                'Un type de base de données',
+                'Une fonction SQL'
             ],
             en: [
-                'An attack that injects malicious SQL code', 'A SQL optimization method', 'A database type',
+                'An attack that injects malicious SQL code',
+                'A SQL optimization method',
+                'A database type',
                 'A SQL function'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'L\'injection SQL est une vulnérabilité de sécurité qui permet à un attaquant d\'exécuter des commandes SQL malveillantes.',
+            fr: "L'injection SQL est une vulnérabilité de sécurité qui permet à un attaquant d'exécuter des commandes SQL malveillantes.",
             en: 'SQL injection is a security vulnerability that allows an attacker to execute malicious SQL commands.'
         }
     },
@@ -80,11 +88,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Hachage avec un algorithme adapté (bcrypt, argon2)', 'Chiffrement symétrique', 'Stockage en clair',
+                'Hachage avec un algorithme adapté (bcrypt, argon2)',
+                'Chiffrement symétrique',
+                'Stockage en clair',
                 'Compression'
             ],
             en: [
-                'Hashing with an appropriate algorithm (bcrypt, argon2)', 'Symmetric encryption', 'Plain text storage',
+                'Hashing with an appropriate algorithm (bcrypt, argon2)',
+                'Symmetric encryption',
+                'Plain text storage',
                 'Compression'
             ]
         },
@@ -111,17 +123,21 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-6',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce que le SSR (Server-Side Rendering) ?',
+            fr: "Qu'est-ce que le SSR (Server-Side Rendering) ?",
             en: 'What is SSR (Server-Side Rendering)?'
         },
         options: {
             fr: [
-                'Le rendu des pages côté serveur avant l\'envoi au client', 'Le rendu uniquement côté client',
-                'Une méthode de cache', 'Un protocole réseau'
+                "Le rendu des pages côté serveur avant l'envoi au client",
+                'Le rendu uniquement côté client',
+                'Une méthode de cache',
+                'Un protocole réseau'
             ],
             en: [
-                'Rendering pages on the server before sending to client', 'Client-side only rendering',
-                'A caching method', 'A network protocol'
+                'Rendering pages on the server before sending to client',
+                'Client-side only rendering',
+                'A caching method',
+                'A network protocol'
             ]
         },
         correctAnswer: 0,
@@ -139,11 +155,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                '=== compare valeur et type, == compare seulement la valeur', '== est plus rapide', '=== est obsolète',
+                '=== compare valeur et type, == compare seulement la valeur',
+                '== est plus rapide',
+                '=== est obsolète',
                 'Aucune différence'
             ],
             en: [
-                '=== compares value and type, == compares only value', '== is faster', '=== is deprecated',
+                '=== compares value and type, == compares only value',
+                '== is faster',
+                '=== is deprecated',
                 'No difference'
             ]
         },
@@ -170,23 +190,27 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-9',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce qu\'une attaque XSS (Cross-Site Scripting) ?',
+            fr: "Qu'est-ce qu'une attaque XSS (Cross-Site Scripting) ?",
             en: 'What is an XSS (Cross-Site Scripting) attack?'
         },
         options: {
             fr: [
-                'L\'injection de code JavaScript malveillant dans une page web', 'Une attaque sur les serveurs',
-                'Un type de virus', 'Une méthode de compression'
+                "L'injection de code JavaScript malveillant dans une page web",
+                'Une attaque sur les serveurs',
+                'Un type de virus',
+                'Une méthode de compression'
             ],
             en: [
-                'Injection of malicious JavaScript code into a web page', 'An attack on servers', 'A type of virus',
+                'Injection of malicious JavaScript code into a web page',
+                'An attack on servers',
+                'A type of virus',
                 'A compression method'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'XSS est une vulnérabilité qui permet d\'injecter du code JavaScript malveillant qui s\'exécute dans le navigateur de la victime.',
-            en: 'XSS is a vulnerability that allows injecting malicious JavaScript code that executes in the victim\'s browser.'
+            fr: "XSS est une vulnérabilité qui permet d'injecter du code JavaScript malveillant qui s'exécute dans le navigateur de la victime.",
+            en: "XSS is a vulnerability that allows injecting malicious JavaScript code that executes in the victim's browser."
         }
     },
     {
@@ -202,7 +226,7 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'useMemo permet de mémoriser le résultat d\'un calcul coûteux et de ne le recalculer que si les dépendances changent.',
+            fr: "useMemo permet de mémoriser le résultat d'un calcul coûteux et de ne le recalculer que si les dépendances changent.",
             en: 'useMemo allows memoizing the result of an expensive calculation and only recalculating it if dependencies change.'
         }
     },
@@ -223,16 +247,20 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-12',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce que le CSRF (Cross-Site Request Forgery) ?',
+            fr: "Qu'est-ce que le CSRF (Cross-Site Request Forgery) ?",
             en: 'What is CSRF (Cross-Site Request Forgery)?'
         },
         options: {
             fr: [
                 'Une attaque qui force un utilisateur à exécuter des actions non désirées',
-                'Une méthode d\'optimisation', 'Un type de cookie', 'Une fonction JavaScript'
+                "Une méthode d'optimisation",
+                'Un type de cookie',
+                'Une fonction JavaScript'
             ],
             en: [
-                'An attack that forces a user to execute unwanted actions', 'An optimization method', 'A cookie type',
+                'An attack that forces a user to execute unwanted actions',
+                'An optimization method',
+                'A cookie type',
                 'A JavaScript function'
             ]
         },
@@ -246,7 +274,7 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-13',
         type: 'qcm',
         question: {
-            fr: 'Quelle est la complexité temporelle moyenne d\'une recherche dans un tableau non trié ?',
+            fr: "Quelle est la complexité temporelle moyenne d'une recherche dans un tableau non trié ?",
             en: 'What is the average time complexity of searching in an unsorted array?'
         },
         options: {
@@ -276,21 +304,26 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-15',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce qu\'un middleware dans Express.js ?',
+            fr: "Qu'est-ce qu'un middleware dans Express.js ?",
             en: 'What is a middleware in Express.js?'
         },
         options: {
             fr: [
-                'Une fonction qui s\'exécute entre la requête et la réponse', 'Un type de route', 'Une méthode HTTP',
+                "Une fonction qui s'exécute entre la requête et la réponse",
+                'Un type de route',
+                'Une méthode HTTP',
                 'Un protocole'
             ],
             en: [
-                'A function that executes between request and response', 'A route type', 'An HTTP method', 'A protocol'
+                'A function that executes between request and response',
+                'A route type',
+                'An HTTP method',
+                'A protocol'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Un middleware est une fonction qui a accès à l\'objet requête, l\'objet réponse et la fonction next dans le cycle requête-réponse.',
+            fr: "Un middleware est une fonction qui a accès à l'objet requête, l'objet réponse et la fonction next dans le cycle requête-réponse.",
             en: 'A middleware is a function that has access to the request object, response object, and next function in the request-response cycle.'
         }
     },
@@ -316,10 +349,17 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'const ne peut pas être réassigné, let peut l\'être', 'const est plus rapide', 'let est obsolète',
+                "const ne peut pas être réassigné, let peut l'être",
+                'const est plus rapide',
+                'let est obsolète',
                 'Aucune différence'
             ],
-            en: ['const cannot be reassigned, let can be', 'const is faster', 'let is deprecated', 'No difference']
+            en: [
+                'const cannot be reassigned, let can be',
+                'const is faster',
+                'let is deprecated',
+                'No difference'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -331,22 +371,26 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-18',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce que le lazy loading ?',
+            fr: "Qu'est-ce que le lazy loading ?",
             en: 'What is lazy loading?'
         },
         options: {
             fr: [
-                'Charger des ressources uniquement quand elles sont nécessaires', 'Charger tout en une fois',
-                'Une méthode de cache', 'Un type de base de données'
+                'Charger des ressources uniquement quand elles sont nécessaires',
+                'Charger tout en une fois',
+                'Une méthode de cache',
+                'Un type de base de données'
             ],
             en: [
-                'Loading resources only when they are needed', 'Loading everything at once', 'A caching method',
+                'Loading resources only when they are needed',
+                'Loading everything at once',
+                'A caching method',
                 'A database type'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Le lazy loading consiste à charger des ressources (images, composants) uniquement lorsqu\'elles sont nécessaires, améliorant les performances.',
+            fr: "Le lazy loading consiste à charger des ressources (images, composants) uniquement lorsqu'elles sont nécessaires, améliorant les performances.",
             en: 'Lazy loading involves loading resources (images, components) only when needed, improving performance.'
         }
     },
@@ -354,12 +398,12 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-19',
         type: 'true-false',
         question: {
-            fr: 'Les cookies HTTP peuvent être sécurisés avec l\'attribut Secure et HttpOnly.',
+            fr: "Les cookies HTTP peuvent être sécurisés avec l'attribut Secure et HttpOnly.",
             en: 'HTTP cookies can be secured with the Secure and HttpOnly attributes.'
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, Secure force HTTPS et HttpOnly empêche l\'accès JavaScript aux cookies, réduisant les risques XSS.',
+            fr: "Oui, Secure force HTTPS et HttpOnly empêche l'accès JavaScript aux cookies, réduisant les risques XSS.",
             en: 'Yes, Secure enforces HTTPS and HttpOnly prevents JavaScript access to cookies, reducing XSS risks.'
         }
     },
@@ -367,16 +411,20 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-20',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce qu\'un hook personnalisé en React ?',
+            fr: "Qu'est-ce qu'un hook personnalisé en React ?",
             en: 'What is a custom hook in React?'
         },
         options: {
             fr: [
-                'Une fonction qui commence par "use" et peut utiliser d\'autres hooks', 'Un composant React',
-                'Une méthode de rendu', 'Un type de state'
+                'Une fonction qui commence par "use" et peut utiliser d\'autres hooks',
+                'Un composant React',
+                'Une méthode de rendu',
+                'Un type de state'
             ],
             en: [
-                'A function that starts with "use" and can use other hooks', 'A React component', 'A rendering method',
+                'A function that starts with "use" and can use other hooks',
+                'A React component',
+                'A rendering method',
                 'A state type'
             ]
         },
@@ -403,16 +451,26 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-22',
         type: 'qcm',
         question: {
-            fr: 'Quelle est la méthode pour créer une copie superficielle (shallow copy) d\'un objet en JavaScript ?',
+            fr: "Quelle est la méthode pour créer une copie superficielle (shallow copy) d'un objet en JavaScript ?",
             en: 'What is the method to create a shallow copy of an object in JavaScript?'
         },
         options: {
-            fr: ['Object.assign() ou spread operator', 'Object.clone()', 'Object.copy()', 'Object.duplicate()'],
-            en: ['Object.assign() or spread operator', 'Object.clone()', 'Object.copy()', 'Object.duplicate()']
+            fr: [
+                'Object.assign() ou spread operator',
+                'Object.clone()',
+                'Object.copy()',
+                'Object.duplicate()'
+            ],
+            en: [
+                'Object.assign() or spread operator',
+                'Object.clone()',
+                'Object.copy()',
+                'Object.duplicate()'
+            ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Object.assign({}, obj) ou {...obj} créent une copie superficielle d\'un objet.',
+            fr: "Object.assign({}, obj) ou {...obj} créent une copie superficielle d'un objet.",
             en: 'Object.assign({}, obj) or {...obj} create a shallow copy of an object.'
         }
     },
@@ -433,22 +491,26 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-24',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce que le debouncing ?',
+            fr: "Qu'est-ce que le debouncing ?",
             en: 'What is debouncing?'
         },
         options: {
             fr: [
-                'Retarder l\'exécution d\'une fonction jusqu\'à ce qu\'un délai soit écoulé', 'Accélérer une fonction',
-                'Une méthode de cache', 'Un type d\'événement'
+                "Retarder l'exécution d'une fonction jusqu'à ce qu'un délai soit écoulé",
+                'Accélérer une fonction',
+                'Une méthode de cache',
+                "Un type d'événement"
             ],
             en: [
-                'Delaying function execution until a delay has passed', 'Speeding up a function', 'A caching method',
+                'Delaying function execution until a delay has passed',
+                'Speeding up a function',
+                'A caching method',
                 'An event type'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Le debouncing retarde l\'exécution d\'une fonction jusqu\'à ce qu\'un certain temps s\'écoule sans nouveaux appels, utile pour les recherches en temps réel.',
+            fr: "Le debouncing retarde l'exécution d'une fonction jusqu'à ce qu'un certain temps s'écoule sans nouveaux appels, utile pour les recherches en temps réel.",
             en: 'Debouncing delays function execution until a certain time passes without new calls, useful for real-time searches.'
         }
     },
@@ -469,16 +531,21 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-26',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce que le hoisting en JavaScript ?',
+            fr: "Qu'est-ce que le hoisting en JavaScript ?",
             en: 'What is hoisting in JavaScript?'
         },
         options: {
             fr: [
-                'Le déplacement des déclarations en haut de leur scope', 'Une méthode de tri', 'Un type de variable',
+                'Le déplacement des déclarations en haut de leur scope',
+                'Une méthode de tri',
+                'Un type de variable',
                 'Une erreur de syntaxe'
             ],
             en: [
-                'Moving declarations to the top of their scope', 'A sorting method', 'A variable type', 'A syntax error'
+                'Moving declarations to the top of their scope',
+                'A sorting method',
+                'A variable type',
+                'A syntax error'
             ]
         },
         correctAnswer: 0,
@@ -491,16 +558,21 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-27',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce qu\'un callback en JavaScript ?',
+            fr: "Qu'est-ce qu'un callback en JavaScript ?",
             en: 'What is a callback in JavaScript?'
         },
         options: {
             fr: [
-                'Une fonction passée en argument à une autre fonction', 'Un type de boucle', 'Une méthode de tableau',
+                'Une fonction passée en argument à une autre fonction',
+                'Un type de boucle',
+                'Une méthode de tableau',
                 'Un opérateur'
             ],
             en: [
-                'A function passed as an argument to another function', 'A loop type', 'An array method', 'An operator'
+                'A function passed as an argument to another function',
+                'A loop type',
+                'An array method',
+                'An operator'
             ]
         },
         correctAnswer: 0,
@@ -518,7 +590,7 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, les tableaux JavaScript sont un type spécial d\'objet avec des méthodes et propriétés spécifiques.',
+            fr: "Oui, les tableaux JavaScript sont un type spécial d'objet avec des méthodes et propriétés spécifiques.",
             en: 'Yes, JavaScript arrays are a special type of object with specific methods and properties.'
         }
     },
@@ -526,22 +598,26 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-29',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce que le spread operator (...) en JavaScript ?',
+            fr: "Qu'est-ce que le spread operator (...) en JavaScript ?",
             en: 'What is the spread operator (...) in JavaScript?'
         },
         options: {
             fr: [
-                'Un opérateur qui étend un itérable en éléments individuels', 'Un opérateur mathématique',
-                'Une méthode de tableau', 'Un type de fonction'
+                'Un opérateur qui étend un itérable en éléments individuels',
+                'Un opérateur mathématique',
+                'Une méthode de tableau',
+                'Un type de fonction'
             ],
             en: [
-                'An operator that expands an iterable into individual elements', 'A mathematical operator',
-                'An array method', 'A function type'
+                'An operator that expands an iterable into individual elements',
+                'A mathematical operator',
+                'An array method',
+                'A function type'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Le spread operator (...) permet d\'étendre un itérable (tableau, objet) en éléments individuels.',
+            fr: "Le spread operator (...) permet d'étendre un itérable (tableau, objet) en éléments individuels.",
             en: 'The spread operator (...) allows expanding an iterable (array, object) into individual elements.'
         }
     },
@@ -549,22 +625,26 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-30',
         type: 'qcm',
         question: {
-            fr: 'Qu\'est-ce que le destructuring en JavaScript ?',
+            fr: "Qu'est-ce que le destructuring en JavaScript ?",
             en: 'What is destructuring in JavaScript?'
         },
         options: {
             fr: [
-                'Extraire des valeurs d\'objets ou tableaux dans des variables', 'Détruire un objet',
-                'Une méthode de suppression', 'Un type de variable'
+                "Extraire des valeurs d'objets ou tableaux dans des variables",
+                'Détruire un objet',
+                'Une méthode de suppression',
+                'Un type de variable'
             ],
             en: [
-                'Extracting values from objects or arrays into variables', 'Destroying an object', 'A deletion method',
+                'Extracting values from objects or arrays into variables',
+                'Destroying an object',
+                'A deletion method',
                 'A variable type'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Le destructuring permet d\'extraire des valeurs d\'objets ou tableaux dans des variables distinctes.',
+            fr: "Le destructuring permet d'extraire des valeurs d'objets ou tableaux dans des variables distinctes.",
             en: 'Destructuring allows extracting values from objects or arrays into separate variables.'
         }
     },
@@ -577,7 +657,7 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, async/await permet d\'écrire du code asynchrone de manière synchrone et plus lisible.',
+            fr: "Oui, async/await permet d'écrire du code asynchrone de manière synchrone et plus lisible.",
             en: 'Yes, async/await allows writing asynchronous code in a synchronous and more readable way.'
         }
     },
@@ -590,17 +670,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une fonction qui retourne toujours le même résultat pour les mêmes entrées', 'Une fonction rapide',
-                'Une fonction sans paramètres', 'Une fonction globale'
+                'Une fonction qui retourne toujours le même résultat pour les mêmes entrées',
+                'Une fonction rapide',
+                'Une fonction sans paramètres',
+                'Une fonction globale'
             ],
             en: [
-                'A function that always returns the same result for the same inputs', 'A fast function',
-                'A function without parameters', 'A global function'
+                'A function that always returns the same result for the same inputs',
+                'A fast function',
+                'A function without parameters',
+                'A global function'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Une pure function retourne toujours le même résultat pour les mêmes entrées et n\'a pas d\'effets de bord.',
+            fr: "Une pure function retourne toujours le même résultat pour les mêmes entrées et n'a pas d'effets de bord.",
             en: 'A pure function always returns the same result for the same inputs and has no side effects.'
         }
     },
@@ -614,11 +698,15 @@ export const mediumQuestions: QuizQuestion[] = [
         options: {
             fr: [
                 'Transformer une fonction à plusieurs arguments en une série de fonctions à un argument',
-                'Une méthode de tri', 'Un type de boucle', 'Une erreur'
+                'Une méthode de tri',
+                'Un type de boucle',
+                'Une erreur'
             ],
             en: [
-                'Transforming a multi-argument function into a series of single-argument functions', 'A sorting method',
-                'A loop type', 'An error'
+                'Transforming a multi-argument function into a series of single-argument functions',
+                'A sorting method',
+                'A loop type',
+                'An error'
             ]
         },
         correctAnswer: 0,
@@ -636,7 +724,7 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, sessionStorage stocke les données uniquement pour la session actuelle et les supprime à la fermeture de l\'onglet.',
+            fr: "Oui, sessionStorage stocke les données uniquement pour la session actuelle et les supprime à la fermeture de l'onglet.",
             en: 'Yes, sessionStorage stores data only for the current session and deletes it when the tab closes.'
         }
     },
@@ -649,17 +737,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'L\'état ne peut pas être modifié après sa création', 'Un état qui change souvent',
-                'Une méthode de mutation', 'Un type de variable'
+                "L'état ne peut pas être modifié après sa création",
+                'Un état qui change souvent',
+                'Une méthode de mutation',
+                'Un type de variable'
             ],
             en: [
-                'State cannot be modified after creation', 'A state that changes often', 'A mutation method',
+                'State cannot be modified after creation',
+                'A state that changes often',
+                'A mutation method',
                 'A variable type'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'L\'immutabilité signifie qu\'un objet ne peut pas être modifié après sa création, on crée plutôt de nouveaux objets.',
+            fr: "L'immutabilité signifie qu'un objet ne peut pas être modifié après sa création, on crée plutôt de nouveaux objets.",
             en: 'Immutability means an object cannot be modified after creation, instead new objects are created.'
         }
     },
@@ -672,11 +764,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Combiner de petits composants pour créer des composants plus complexes', 'Un type de rendu',
-                'Une méthode de state', 'Un hook'
+                'Combiner de petits composants pour créer des composants plus complexes',
+                'Un type de rendu',
+                'Une méthode de state',
+                'Un hook'
             ],
             en: [
-                'Combining small components to create more complex components', 'A rendering type', 'A state method',
+                'Combining small components to create more complex components',
+                'A rendering type',
+                'A state method',
                 'A hook'
             ]
         },
@@ -708,12 +804,16 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une fonction qui prend un composant et retourne un nouveau composant', 'Un composant de haut niveau',
-                'Un type de hook', 'Une méthode de rendu'
+                'Une fonction qui prend un composant et retourne un nouveau composant',
+                'Un composant de haut niveau',
+                'Un type de hook',
+                'Une méthode de rendu'
             ],
             en: [
-                'A function that takes a component and returns a new component', 'A high-level component',
-                'A hook type', 'A rendering method'
+                'A function that takes a component and returns a new component',
+                'A high-level component',
+                'A hook type',
+                'A rendering method'
             ]
         },
         correctAnswer: 0,
@@ -731,17 +831,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une technique où un composant accepte une fonction comme prop pour le rendu', 'Un type de prop',
-                'Une méthode de state', 'Un hook'
+                'Une technique où un composant accepte une fonction comme prop pour le rendu',
+                'Un type de prop',
+                'Une méthode de state',
+                'Un hook'
             ],
             en: [
-                'A technique where a component accepts a function as a prop for rendering', 'A prop type',
-                'A state method', 'A hook'
+                'A technique where a component accepts a function as a prop for rendering',
+                'A prop type',
+                'A state method',
+                'A hook'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Les render props sont une technique où un composant accepte une fonction comme prop pour déterminer ce qu\'il doit rendre.',
+            fr: "Les render props sont une technique où un composant accepte une fonction comme prop pour déterminer ce qu'il doit rendre.",
             en: 'Render props is a technique where a component accepts a function as a prop to determine what to render.'
         }
     },
@@ -767,11 +871,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Un composant dont la valeur est contrôlée par le state React', 'Un composant non contrôlé',
-                'Un type de hook', 'Une méthode de rendu'
+                'Un composant dont la valeur est contrôlée par le state React',
+                'Un composant non contrôlé',
+                'Un type de hook',
+                'Une méthode de rendu'
             ],
             en: [
-                'A component whose value is controlled by React state', 'An uncontrolled component', 'A hook type',
+                'A component whose value is controlled by React state',
+                'An uncontrolled component',
+                'A hook type',
                 'A rendering method'
             ]
         },
@@ -790,12 +898,16 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Un composant qui stocke son état dans le DOM plutôt que dans React', 'Un composant sans state',
-                'Un type de hook', 'Une erreur'
+                'Un composant qui stocke son état dans le DOM plutôt que dans React',
+                'Un composant sans state',
+                'Un type de hook',
+                'Une erreur'
             ],
             en: [
-                'A component that stores its state in the DOM rather than in React', 'A component without state',
-                'A hook type', 'An error'
+                'A component that stores its state in the DOM rather than in React',
+                'A component without state',
+                'A hook type',
+                'An error'
             ]
         },
         correctAnswer: 0,
@@ -827,10 +939,14 @@ export const mediumQuestions: QuizQuestion[] = [
         options: {
             fr: [
                 'Un identifiant unique pour aider React à identifier les éléments dans une liste',
-                'Une clé de chiffrement', 'Un type de prop', 'Une méthode'
+                'Une clé de chiffrement',
+                'Un type de prop',
+                'Une méthode'
             ],
             en: [
-                'A unique identifier to help React identify elements in a list', 'An encryption key', 'A prop type',
+                'A unique identifier to help React identify elements in a list',
+                'An encryption key',
+                'A prop type',
                 'A method'
             ]
         },
@@ -849,11 +965,16 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Le processus par lequel React met à jour le DOM de manière efficace', 'Un type de rendu',
-                'Une méthode de state', 'Un hook'
+                'Le processus par lequel React met à jour le DOM de manière efficace',
+                'Un type de rendu',
+                'Une méthode de state',
+                'Un hook'
             ],
             en: [
-                'The process by which React updates the DOM efficiently', 'A rendering type', 'A state method', 'A hook'
+                'The process by which React updates the DOM efficiently',
+                'A rendering type',
+                'A state method',
+                'A hook'
             ]
         },
         correctAnswer: 0,
@@ -866,12 +987,12 @@ export const mediumQuestions: QuizQuestion[] = [
         id: 'medium-46',
         type: 'true-false',
         question: {
-            fr: 'Le hook useContext en React permet d\'accéder à un contexte sans utiliser de Consumer.',
+            fr: "Le hook useContext en React permet d'accéder à un contexte sans utiliser de Consumer.",
             en: 'The useContext hook in React allows accessing a context without using a Consumer.'
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, useContext simplifie l\'accès au contexte en évitant d\'utiliser le pattern Consumer.',
+            fr: "Oui, useContext simplifie l'accès au contexte en évitant d'utiliser le pattern Consumer.",
             en: 'Yes, useContext simplifies context access by avoiding the Consumer pattern.'
         }
     },
@@ -884,11 +1005,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Diviser le code en chunks chargés à la demande', 'Diviser le code en fichiers',
-                'Une méthode de compression', 'Un type de rendu'
+                'Diviser le code en chunks chargés à la demande',
+                'Diviser le code en fichiers',
+                'Une méthode de compression',
+                'Un type de rendu'
             ],
             en: [
-                'Splitting code into chunks loaded on demand', 'Splitting code into files', 'A compression method',
+                'Splitting code into chunks loaded on demand',
+                'Splitting code into files',
+                'A compression method',
                 'A rendering type'
             ]
         },
@@ -907,17 +1032,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Charger les images uniquement quand elles sont sur le point d\'être visibles',
-                'Charger toutes les images en une fois', 'Une méthode de compression', 'Un type d\'image'
+                "Charger les images uniquement quand elles sont sur le point d'être visibles",
+                'Charger toutes les images en une fois',
+                'Une méthode de compression',
+                "Un type d'image"
             ],
             en: [
-                'Loading images only when they are about to be visible', 'Loading all images at once',
-                'A compression method', 'An image type'
+                'Loading images only when they are about to be visible',
+                'Loading all images at once',
+                'A compression method',
+                'An image type'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Le lazy loading charge les images uniquement quand elles sont sur le point d\'entrer dans le viewport, améliorant les performances.',
+            fr: "Le lazy loading charge les images uniquement quand elles sont sur le point d'entrer dans le viewport, améliorant les performances.",
             en: 'Lazy loading loads images only when they are about to enter the viewport, improving performance.'
         }
     },
@@ -943,12 +1072,16 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Créer une base fonctionnelle puis ajouter des fonctionnalités avancées', 'Améliorer progressivement',
-                'Une méthode de test', 'Un type de framework'
+                'Créer une base fonctionnelle puis ajouter des fonctionnalités avancées',
+                'Améliorer progressivement',
+                'Une méthode de test',
+                'Un type de framework'
             ],
             en: [
-                'Creating a functional base then adding advanced features', 'Progressively improving',
-                'A testing method', 'A framework type'
+                'Creating a functional base then adding advanced features',
+                'Progressively improving',
+                'A testing method',
+                'A framework type'
             ]
         },
         correctAnswer: 0,
@@ -966,12 +1099,16 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Stocker les résultats de fonctions coûteuses pour éviter de les recalculer', 'Une méthode de tri',
-                'Un type de cache', 'Une erreur'
+                'Stocker les résultats de fonctions coûteuses pour éviter de les recalculer',
+                'Une méthode de tri',
+                'Un type de cache',
+                'Une erreur'
             ],
             en: [
-                'Storing results of expensive functions to avoid recalculating them', 'A sorting method',
-                'A cache type', 'An error'
+                'Storing results of expensive functions to avoid recalculating them',
+                'A sorting method',
+                'A cache type',
+                'An error'
             ]
         },
         correctAnswer: 0,
@@ -989,7 +1126,7 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, useMemo mémorise le résultat d\'un calcul et ne le recalcule que si ses dépendances changent.',
+            fr: "Oui, useMemo mémorise le résultat d'un calcul et ne le recalcule que si ses dépendances changent.",
             en: 'Yes, useMemo memoizes the result of a calculation and only recalculates if its dependencies change.'
         }
     },
@@ -1002,11 +1139,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une fonction qui a accès aux variables de son scope externe', 'Une méthode de fermeture',
-                'Un type de variable', 'Une erreur'
+                'Une fonction qui a accès aux variables de son scope externe',
+                'Une méthode de fermeture',
+                'Un type de variable',
+                'Une erreur'
             ],
             en: [
-                'A function that has access to variables from its outer scope', 'A closing method', 'A variable type',
+                'A function that has access to variables from its outer scope',
+                'A closing method',
+                'A variable type',
                 'An error'
             ]
         },
@@ -1025,17 +1166,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Attacher un gestionnaire d\'événement à un parent plutôt qu\'aux enfants', 'Déléguer des événements',
-                'Un type d\'événement', 'Une méthode'
+                "Attacher un gestionnaire d'événement à un parent plutôt qu'aux enfants",
+                'Déléguer des événements',
+                "Un type d'événement",
+                'Une méthode'
             ],
             en: [
-                'Attaching an event handler to a parent rather than children', 'Delegating events', 'An event type',
+                'Attaching an event handler to a parent rather than children',
+                'Delegating events',
+                'An event type',
                 'A method'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'L\'event delegation consiste à attacher un gestionnaire d\'événement à un élément parent pour gérer les événements de ses enfants.',
+            fr: "L'event delegation consiste à attacher un gestionnaire d'événement à un élément parent pour gérer les événements de ses enfants.",
             en: 'Event delegation involves attaching an event handler to a parent element to handle events from its children.'
         }
     },
@@ -1048,7 +1193,7 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, useCallback retourne une version mémorisée d\'une fonction qui ne change que si ses dépendances changent.',
+            fr: "Oui, useCallback retourne une version mémorisée d'une fonction qui ne change que si ses dépendances changent.",
             en: 'Yes, useCallback returns a memoized version of a function that only changes if its dependencies change.'
         }
     },
@@ -1061,17 +1206,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Limiter l\'exécution d\'une fonction à une fois par période de temps', 'Accélérer une fonction',
-                'Un type de boucle', 'Une méthode'
+                "Limiter l'exécution d'une fonction à une fois par période de temps",
+                'Accélérer une fonction',
+                'Un type de boucle',
+                'Une méthode'
             ],
             en: [
-                'Limiting function execution to once per time period', 'Speeding up a function', 'A loop type',
+                'Limiting function execution to once per time period',
+                'Speeding up a function',
+                'A loop type',
                 'A method'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Le throttling limite l\'exécution d\'une fonction à une fois par période de temps, utile pour les événements fréquents.',
+            fr: "Le throttling limite l'exécution d'une fonction à une fois par période de temps, utile pour les événements fréquents.",
             en: 'Throttling limits function execution to once per time period, useful for frequent events.'
         }
     },
@@ -1084,17 +1233,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'La chaîne de prototypes permettant l\'héritage en JavaScript', 'Une méthode de chaînage',
-                'Un type d\'objet', 'Une erreur'
+                "La chaîne de prototypes permettant l'héritage en JavaScript",
+                'Une méthode de chaînage',
+                "Un type d'objet",
+                'Une erreur'
             ],
             en: [
-                'The chain of prototypes enabling inheritance in JavaScript', 'A chaining method', 'An object type',
+                'The chain of prototypes enabling inheritance in JavaScript',
+                'A chaining method',
+                'An object type',
                 'An error'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'La prototype chain permet à un objet d\'hériter des propriétés et méthodes de son prototype et des prototypes parents.',
+            fr: "La prototype chain permet à un objet d'hériter des propriétés et méthodes de son prototype et des prototypes parents.",
             en: 'The prototype chain allows an object to inherit properties and methods from its prototype and parent prototypes.'
         }
     },
@@ -1120,9 +1273,17 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une représentation JavaScript en mémoire du DOM réel', 'Le DOM réel', 'Un type de DOM', 'Une méthode'
+                'Une représentation JavaScript en mémoire du DOM réel',
+                'Le DOM réel',
+                'Un type de DOM',
+                'Une méthode'
             ],
-            en: ['A JavaScript in-memory representation of the real DOM', 'The real DOM', 'A DOM type', 'A method']
+            en: [
+                'A JavaScript in-memory representation of the real DOM',
+                'The real DOM',
+                'A DOM type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1139,12 +1300,16 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Rendre le HTML sur le serveur avant de l\'envoyer au client', 'Rendre sur le client',
-                'Un type de rendu', 'Une méthode'
+                "Rendre le HTML sur le serveur avant de l'envoyer au client",
+                'Rendre sur le client',
+                'Un type de rendu',
+                'Une méthode'
             ],
             en: [
-                'Rendering HTML on the server before sending it to the client', 'Rendering on the client',
-                'A rendering type', 'A method'
+                'Rendering HTML on the server before sending it to the client',
+                'Rendering on the client',
+                'A rendering type',
+                'A method'
             ]
         },
         correctAnswer: 0,
@@ -1175,14 +1340,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Attacher les gestionnaires d\'événements au HTML pré-rendu', 'Ajouter de l\'eau', 'Un type de rendu',
+                "Attacher les gestionnaires d'événements au HTML pré-rendu",
+                "Ajouter de l'eau",
+                'Un type de rendu',
                 'Une méthode'
             ],
-            en: ['Attaching event handlers to pre-rendered HTML', 'Adding water', 'A rendering type', 'A method']
+            en: [
+                'Attaching event handlers to pre-rendered HTML',
+                'Adding water',
+                'A rendering type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'L\'hydration est le processus d\'attachement des gestionnaires d\'événements React au HTML pré-rendu côté serveur.',
+            fr: "L'hydration est le processus d'attachement des gestionnaires d'événements React au HTML pré-rendu côté serveur.",
             en: 'Hydration is the process of attaching React event handlers to server-side pre-rendered HTML.'
         }
     },
@@ -1195,9 +1367,17 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Éliminer le code mort lors du bundling', 'Secouer un arbre', 'Une méthode de tri', 'Un type de bundle'
+                'Éliminer le code mort lors du bundling',
+                'Secouer un arbre',
+                'Une méthode de tri',
+                'Un type de bundle'
             ],
-            en: ['Eliminating dead code during bundling', 'Shaking a tree', 'A sorting method', 'A bundle type']
+            en: [
+                'Eliminating dead code during bundling',
+                'Shaking a tree',
+                'A sorting method',
+                'A bundle type'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1227,17 +1407,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Convertir du code d\'un langage à un autre de même niveau d\'abstraction', 'Compiler du code',
-                'Traduire du code', 'Une méthode'
+                "Convertir du code d'un langage à un autre de même niveau d'abstraction",
+                'Compiler du code',
+                'Traduire du code',
+                'Une méthode'
             ],
             en: [
-                'Converting code from one language to another at the same abstraction level', 'Compiling code',
-                'Translating code', 'A method'
+                'Converting code from one language to another at the same abstraction level',
+                'Compiling code',
+                'Translating code',
+                'A method'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'La transpilation convertit du code d\'un langage à un autre de même niveau (ex: TypeScript vers JavaScript).',
+            fr: "La transpilation convertit du code d'un langage à un autre de même niveau (ex: TypeScript vers JavaScript).",
             en: 'Transpilation converts code from one language to another at the same level (e.g., TypeScript to JavaScript).'
         }
     },
@@ -1250,14 +1434,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une fonction qui s\'exécute entre la requête et la réponse', 'Un type de route', 'Une méthode',
+                "Une fonction qui s'exécute entre la requête et la réponse",
+                'Un type de route',
+                'Une méthode',
                 'Une erreur'
             ],
-            en: ['A function that executes between request and response', 'A route type', 'A method', 'An error']
+            en: [
+                'A function that executes between request and response',
+                'A route type',
+                'A method',
+                'An error'
+            ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Un middleware est une fonction qui intercepte les requêtes et réponses, permettant d\'ajouter des fonctionnalités.',
+            fr: "Un middleware est une fonction qui intercepte les requêtes et réponses, permettant d'ajouter des fonctionnalités.",
             en: 'Middleware is a function that intercepts requests and responses, allowing adding features.'
         }
     },
@@ -1270,7 +1461,7 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Oui, REST est un style d\'architecture qui utilise les méthodes HTTP standard pour les opérations CRUD.',
+            fr: "Oui, REST est un style d'architecture qui utilise les méthodes HTTP standard pour les opérations CRUD.",
             en: 'Yes, REST is an architectural style that uses standard HTTP methods for CRUD operations.'
         }
     },
@@ -1284,11 +1475,15 @@ export const mediumQuestions: QuizQuestion[] = [
         options: {
             fr: [
                 'Un langage de requête pour les APIs qui permet de demander exactement les données nécessaires',
-                'Un type de base de données', 'Une méthode HTTP', 'Un framework'
+                'Un type de base de données',
+                'Une méthode HTTP',
+                'Un framework'
             ],
             en: [
-                'A query language for APIs that allows requesting exactly the needed data', 'A database type',
-                'An HTTP method', 'A framework'
+                'A query language for APIs that allows requesting exactly the needed data',
+                'A database type',
+                'An HTTP method',
+                'A framework'
             ]
         },
         correctAnswer: 0,
@@ -1306,10 +1501,17 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Un protocole de communication bidirectionnel en temps réel', 'Un type de socket', 'Une méthode HTTP',
+                'Un protocole de communication bidirectionnel en temps réel',
+                'Un type de socket',
+                'Une méthode HTTP',
                 'Un framework'
             ],
-            en: ['A bidirectional real-time communication protocol', 'A socket type', 'An HTTP method', 'A framework']
+            en: [
+                'A bidirectional real-time communication protocol',
+                'A socket type',
+                'An HTTP method',
+                'A framework'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1339,10 +1541,17 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une application web qui fonctionne comme une application native', 'Un type d\'application',
-                'Une méthode', 'Un framework'
+                'Une application web qui fonctionne comme une application native',
+                "Un type d'application",
+                'Une méthode',
+                'Un framework'
             ],
-            en: ['A web application that works like a native app', 'An application type', 'A method', 'A framework']
+            en: [
+                'A web application that works like a native app',
+                'An application type',
+                'A method',
+                'A framework'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1359,17 +1568,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Fournir les dépendances d\'un objet depuis l\'extérieur plutôt que de les créer à l\'intérieur',
-                'Injecter du code', 'Un type de dépendance', 'Une méthode'
+                "Fournir les dépendances d'un objet depuis l'extérieur plutôt que de les créer à l'intérieur",
+                'Injecter du code',
+                'Un type de dépendance',
+                'Une méthode'
             ],
             en: [
-                'Providing an object\'s dependencies from outside rather than creating them inside', 'Injecting code',
-                'A dependency type', 'A method'
+                "Providing an object's dependencies from outside rather than creating them inside",
+                'Injecting code',
+                'A dependency type',
+                'A method'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'La dependency injection permet de rendre le code plus testable et modulaire en fournissant les dépendances depuis l\'extérieur.',
+            fr: "La dependency injection permet de rendre le code plus testable et modulaire en fournissant les dépendances depuis l'extérieur.",
             en: 'Dependency injection makes code more testable and modular by providing dependencies from outside.'
         }
     },
@@ -1395,17 +1608,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Tester l\'interaction entre plusieurs composants ou modules', 'Tester un seul composant',
-                'Un type de test', 'Une méthode'
+                "Tester l'interaction entre plusieurs composants ou modules",
+                'Tester un seul composant',
+                'Un type de test',
+                'Une méthode'
             ],
             en: [
-                'Testing the interaction between multiple components or modules', 'Testing a single component',
-                'A test type', 'A method'
+                'Testing the interaction between multiple components or modules',
+                'Testing a single component',
+                'A test type',
+                'A method'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Les tests d\'intégration vérifient que plusieurs composants fonctionnent correctement ensemble.',
+            fr: "Les tests d'intégration vérifient que plusieurs composants fonctionnent correctement ensemble.",
             en: 'Integration tests verify that multiple components work correctly together.'
         }
     },
@@ -1418,17 +1635,21 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Tester l\'application complète du début à la fin comme un utilisateur réel', 'Tester une fonction',
-                'Un type de test', 'Une méthode'
+                "Tester l'application complète du début à la fin comme un utilisateur réel",
+                'Tester une fonction',
+                'Un type de test',
+                'Une méthode'
             ],
             en: [
-                'Testing the complete application from start to end like a real user', 'Testing a function',
-                'A test type', 'A method'
+                'Testing the complete application from start to end like a real user',
+                'Testing a function',
+                'A test type',
+                'A method'
             ]
         },
         correctAnswer: 0,
         explanation: {
-            fr: 'Les tests E2E simulent un utilisateur réel et testent l\'application complète du début à la fin.',
+            fr: "Les tests E2E simulent un utilisateur réel et testent l'application complète du début à la fin.",
             en: 'E2E tests simulate a real user and test the complete application from start to end.'
         }
     },
@@ -1454,11 +1675,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Automatiser les tests et builds à chaque commit', 'Intégrer continuellement', 'Un type de déploiement',
+                'Automatiser les tests et builds à chaque commit',
+                'Intégrer continuellement',
+                'Un type de déploiement',
                 'Une méthode'
             ],
             en: [
-                'Automating tests and builds on each commit', 'Continuously integrating', 'A deployment type',
+                'Automating tests and builds on each commit',
+                'Continuously integrating',
+                'A deployment type',
                 'A method'
             ]
         },
@@ -1477,11 +1702,15 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Déployer automatiquement le code en production après les tests', 'Déployer continuellement',
-                'Un type de test', 'Une méthode'
+                'Déployer automatiquement le code en production après les tests',
+                'Déployer continuellement',
+                'Un type de test',
+                'Une méthode'
             ],
             en: [
-                'Automatically deploying code to production after tests', 'Continuously deploying', 'A test type',
+                'Automatically deploying code to production after tests',
+                'Continuously deploying',
+                'A test type',
                 'A method'
             ]
         },
@@ -1513,10 +1742,17 @@ export const mediumQuestions: QuizQuestion[] = [
         },
         options: {
             fr: [
-                'Une ligne de développement indépendante dans un dépôt', 'Une branche d\'arbre', 'Un type de commit',
+                'Une ligne de développement indépendante dans un dépôt',
+                "Une branche d'arbre",
+                'Un type de commit',
                 'Une méthode'
             ],
-            en: ['An independent line of development in a repository', 'A tree branch', 'A commit type', 'A method']
+            en: [
+                'An independent line of development in a repository',
+                'A tree branch',
+                'A commit type',
+                'A method'
+            ]
         },
         correctAnswer: 0,
         explanation: {
@@ -1525,4 +1761,3 @@ export const mediumQuestions: QuizQuestion[] = [
         }
     }
 ];
-

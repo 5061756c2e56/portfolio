@@ -10,19 +10,45 @@
  */
 
 import { NextRequest } from 'next/server';
-import { getCodeFrequency, getCommitActivity, getContributors, getLanguages, getRepoInfo } from '@/lib/github/api';
+import {
+    getCodeFrequency,
+    getCommitActivity,
+    getContributors,
+    getLanguages,
+    getRepoInfo
+} from '@/lib/github/api';
 import { transformCommitActivity } from '@/lib/github/utils';
 import { getTTLForRange, withCache } from '@/lib/github/cache';
 import { apiError } from '@/lib/github/errors';
-import { addSecurityHeaders, createJsonResponse, validateRequest } from '@/lib/github/security';
+import {
+    addSecurityHeaders,
+    createJsonResponse,
+    validateRequest
+} from '@/lib/github/security';
 import { parseMultiRepoQueryParams } from '@/lib/github/route-params';
 import {
-    getCodeTotalsFromDB, getCommitStatsFromDB, getContributorCommitCountsFromDB, getTimelineFromDB, isDatabaseConfigured
+    getCodeTotalsFromDB,
+    getCommitStatsFromDB,
+    getContributorCommitCountsFromDB,
+    getTimelineFromDB,
+    isDatabaseConfigured
 } from '@/lib/github/db-queries';
 import {
-    ALLOWED_REPOSITORIES, CACHE_TTL, Contributor, GitHubAPIError, GitHubCodeFrequency, GitHubCommitActivity,
-    LanguageStats, MultiRepoStatsResponse, MultiRepoTimelinePoint, REPO_COLORS, RepoParam, RepoStats, RepoTimeline,
-    TimeRange, VALID_TIME_RANGES
+    ALLOWED_REPOSITORIES,
+    CACHE_TTL,
+    Contributor,
+    GitHubAPIError,
+    GitHubCodeFrequency,
+    GitHubCommitActivity,
+    LanguageStats,
+    MultiRepoStatsResponse,
+    MultiRepoTimelinePoint,
+    REPO_COLORS,
+    RepoParam,
+    RepoStats,
+    RepoTimeline,
+    TimeRange,
+    VALID_TIME_RANGES
 } from '@/lib/github/types';
 
 interface RepoDataResult {
@@ -38,7 +64,11 @@ interface RepoDataResult {
 }
 
 function generateCacheKey(repos: RepoParam[], range: TimeRange): string {
-    const repoKeys = repos.map(r => `${r.owner}:${r.name}`).sort().join(',');
+    const repoKeys = repos
+        .map((r) => `${r.owner}:${r.name}`)
+        .sort()
+        .join(',');
+
     return `github:multi-stats:${repoKeys}:${range}`;
 }
 
@@ -59,8 +89,9 @@ async function fetchRepoDataWithFallback(
     skipHeavyCalls: boolean = false
 ): Promise<RepoDataResult | null> {
     const repoConfig = ALLOWED_REPOSITORIES.find(
-        r => r.owner === repo.owner && r.name === repo.name
+        (r) => r.owner === repo.owner && r.name === repo.name
     );
+
     const displayName = repoConfig?.displayName || repo.name;
     const color = REPO_COLORS[index % REPO_COLORS.length];
 
@@ -88,19 +119,33 @@ async function fetchRepoDataWithFallback(
 
                 if (!skipHeavyCalls) {
                     try {
-                        codeFrequency = await getCodeFrequency(repo.owner, repo.name);
+                        codeFrequency = await getCodeFrequency(
+                            repo.owner,
+                            repo.name
+                        );
                     } catch (e) {
-                        console.warn(`[Multi-stats] Code frequency unavailable for ${repo.name}`, e);
+                        console.warn(
+                            `[Multi-stats] Code frequency unavailable for ${repo.name}`,
+                            e
+                        );
                     }
+
                     try {
-                        commitActivity = await getCommitActivity(repo.owner, repo.name);
+                        commitActivity = await getCommitActivity(
+                            repo.owner,
+                            repo.name
+                        );
                     } catch (e) {
-                        console.warn(`[Multi-stats] Commit activity unavailable for ${repo.name}`, e);
+                        console.warn(
+                            `[Multi-stats] Commit activity unavailable for ${repo.name}`,
+                            e
+                        );
                     }
                 }
 
                 let totalAdditions = 0;
                 let totalDeletions = 0;
+
                 if (Array.isArray(codeFrequency)) {
                     for (const week of codeFrequency) {
                         totalAdditions += week[1] || 0;
@@ -131,9 +176,18 @@ async function fetchRepoDataWithFallback(
 
         if (!cachedRepo) return null;
 
-        const timeline = transformCommitActivity(cachedRepo.commitActivity, range, locale);
+        const timeline = transformCommitActivity(
+            cachedRepo.commitActivity,
+            range,
+            locale
+        );
+
         const timelineCommits = timeline.reduce((sum, p) => sum + p.commits, 0);
-        const totalCommitsFromContributors = contributors.reduce((sum, c) => sum + c.commits, 0);
+
+        const totalCommitsFromContributors = contributors.reduce(
+            (sum, c) => sum + c.commits,
+            0
+        );
 
         return {
             repoName: cachedRepo.repoName,
@@ -157,14 +211,23 @@ async function fetchRepoDataWithFallback(
 
 export async function GET(request: NextRequest) {
     const securityCheck = await validateRequest(request);
+
     if (!securityCheck.allowed) {
         return securityCheck.response;
     }
 
-    const parsed = parseMultiRepoQueryParams(request, { defaultRange: '12m', defaultLocale: 'fr' });
+    const parsed = parseMultiRepoQueryParams(request, {
+        defaultRange: '12m',
+        defaultLocale: 'fr'
+    });
+
     if (!parsed.ok) {
-        return addSecurityHeaders(parsed.response, securityCheck.rateLimitRemaining);
+        return addSecurityHeaders(
+            parsed.response,
+            securityCheck.rateLimitRemaining
+        );
     }
+
     const { repos: validRepos, range, locale } = parsed;
 
     try {
@@ -177,7 +240,9 @@ export async function GET(request: NextRequest) {
                 )
             );
 
-            const allResults = results.filter((r): r is RepoDataResult => r !== null);
+            const allResults = results.filter(
+                (r): r is RepoDataResult => r !== null
+            );
 
             if (allResults.length === 0) {
                 throw new GitHubAPIError('No repository data available', 503);
@@ -189,45 +254,65 @@ export async function GET(request: NextRequest) {
                 issues: allResults.reduce((sum, r) => sum + r.stats.issues, 0),
                 size: allResults.reduce((sum, r) => sum + r.stats.size, 0),
                 lastPush: allResults.reduce(
-                    (newest, r) => (
-                        r.stats.lastPush > newest ? r.stats.lastPush : newest
-                    ),
+                    (newest, r) =>
+                        r.stats.lastPush > newest ? r.stats.lastPush : newest,
                     allResults[0].stats.lastPush
                 ),
                 defaultBranch: allResults[0].stats.defaultBranch,
-                totalCommits: allResults.reduce((sum, r) => sum + r.stats.totalCommits, 0),
-                totalAdditions: allResults.reduce((sum, r) => sum + r.stats.totalAdditions, 0),
-                totalDeletions: allResults.reduce((sum, r) => sum + r.stats.totalDeletions, 0)
+                totalCommits: allResults.reduce(
+                    (sum, r) => sum + r.stats.totalCommits,
+                    0
+                ),
+                totalAdditions: allResults.reduce(
+                    (sum, r) => sum + r.stats.totalAdditions,
+                    0
+                ),
+                totalDeletions: allResults.reduce(
+                    (sum, r) => sum + r.stats.totalDeletions,
+                    0
+                )
             };
 
-            const languageMap = new Map<string, { bytes: number; color: string }>();
+            const languageMap = new Map<
+                string,
+                { bytes: number; color: string }
+            >();
+
             for (const result of allResults) {
                 for (const lang of result.languages) {
                     const existing = languageMap.get(lang.name);
                     if (existing) {
                         existing.bytes += lang.bytes;
                     } else {
-                        languageMap.set(lang.name, { bytes: lang.bytes, color: lang.color });
+                        languageMap.set(lang.name, {
+                            bytes: lang.bytes,
+                            color: lang.color
+                        });
                     }
                 }
             }
-            const totalBytes = Array.from(languageMap.values()).reduce((sum, l) => sum + l.bytes, 0);
-            const aggregatedLanguages: LanguageStats[] = Array.from(languageMap.entries())
-                                                              .map(([name, data]) => (
-                                                                  {
-                                                                      name,
-                                                                      bytes: data.bytes,
-                                                                      percentage: totalBytes > 0 ? Math.round((
-                                                                                                                  data.bytes
-                                                                                                                  / totalBytes
-                                                                                                              ) * 1000)
-                                                                                                   / 10 : 0,
-                                                                      color: data.color
-                                                                  }
-                                                              ))
-                                                              .sort((a, b) => b.bytes - a.bytes);
+
+            const totalBytes = Array.from(languageMap.values()).reduce(
+                (sum, l) => sum + l.bytes,
+                0
+            );
+
+            const aggregatedLanguages: LanguageStats[] = Array.from(
+                languageMap.entries()
+            )
+                .map(([name, data]) => ({
+                    name,
+                    bytes: data.bytes,
+                    percentage:
+                        totalBytes > 0
+                            ? Math.round((data.bytes / totalBytes) * 1000) / 10
+                            : 0,
+                    color: data.color
+                }))
+                .sort((a, b) => b.bytes - a.bytes);
 
             const contributorMap = new Map<string, Contributor>();
+
             for (const result of allResults) {
                 for (const contrib of result.contributors) {
                     const existing = contributorMap.get(contrib.username);
@@ -239,77 +324,96 @@ export async function GET(request: NextRequest) {
                 }
             }
 
-            let aggregatedContributors: Contributor[] = Array.from(contributorMap.values())
-                                                             .sort((a, b) => b.commits - a.commits)
-                                                             .slice(0, 10);
+            let aggregatedContributors: Contributor[] = Array.from(
+                contributorMap.values()
+            )
+                .sort((a, b) => b.commits - a.commits)
+                .slice(0, 10);
 
             let timelines: RepoTimeline[];
             let combinedTimeline: MultiRepoTimelinePoint[];
 
             if (useDB) {
                 try {
-                    const [commitStatsResult, codeTotalsResult, contributorCountsResult, timelinesResult] = await Promise.all([
+                    const [
+                        commitStatsResult,
+                        codeTotalsResult,
+                        contributorCountsResult,
+                        timelinesResult
+                    ] = await Promise.all([
                         getCommitStatsFromDB(validRepos, range),
                         getCodeTotalsFromDB(validRepos, range),
                         getContributorCommitCountsFromDB(validRepos, range),
                         getTimelineFromDB(validRepos, range, locale)
                     ]);
 
-                    aggregatedStats.totalCommits = commitStatsResult.totalCommits;
+                    aggregatedStats.totalCommits =
+                        commitStatsResult.totalCommits;
                     aggregatedStats.totalAdditions = codeTotalsResult.additions;
                     aggregatedStats.totalDeletions = codeTotalsResult.deletions;
 
-                    const apiUsernames = new Set(aggregatedContributors.map((c) => c.username));
-                    const fromApi = aggregatedContributors.map((c) => (
-                        {
-                            ...c,
-                            commits: contributorCountsResult[c.username] ?? 0
-                        }
-                    ));
+                    const apiUsernames = new Set(
+                        aggregatedContributors.map((c) => c.username)
+                    );
+
+                    const fromApi = aggregatedContributors.map((c) => ({
+                        ...c,
+                        commits: contributorCountsResult[c.username] ?? 0
+                    }));
+
                     const fromDbOnly = Object.entries(contributorCountsResult)
-                                             .filter(([login]) => !apiUsernames.has(login))
-                                             .map(([username, commits]) => (
-                                                 {
-                                                     username,
-                                                     avatar: `https://github.com/${username}.png`,
-                                                     profileUrl: `https://github.com/${username}`,
-                                                     commits
-                                                 }
-                                             ));
+                        .filter(([login]) => !apiUsernames.has(login))
+                        .map(([username, commits]) => ({
+                            username,
+                            avatar: `https://github.com/${username}.png`,
+                            profileUrl: `https://github.com/${username}`,
+                            commits
+                        }));
                     aggregatedContributors = [...fromApi, ...fromDbOnly]
                         .filter((c) => c.commits > 0)
                         .sort((a, b) => b.commits - a.commits)
                         .slice(0, 10);
 
-                    timelines = timelinesResult.timelines.map((t, index) => (
-                        {
-                            repoName: t.repoName,
-                            repoDisplayName: t.displayName,
-                            color: REPO_COLORS[index % REPO_COLORS.length],
-                            data: t.timeline,
-                            totalCommits: t.totalCommits
-                        }
-                    ));
+                    timelines = timelinesResult.timelines.map((t, index) => ({
+                        repoName: t.repoName,
+                        repoDisplayName: t.displayName,
+                        color: REPO_COLORS[index % REPO_COLORS.length],
+                        data: t.timeline,
+                        totalCommits: t.totalCommits
+                    }));
 
-                    combinedTimeline = timelinesResult.combinedTimeline as MultiRepoTimelinePoint[];
+                    combinedTimeline =
+                        timelinesResult.combinedTimeline as MultiRepoTimelinePoint[];
                 } catch (dbError) {
-                    console.warn('[Multi-stats] DB operations failed, using API fallback:', dbError);
+                    console.warn(
+                        '[Multi-stats] DB operations failed, using API fallback:',
+                        dbError
+                    );
 
-                    timelines = allResults.map(r => {
-                        const data = transformCommitActivity(r.commitActivity, range, locale);
+                    timelines = allResults.map((r) => {
+                        const data = transformCommitActivity(
+                            r.commitActivity,
+                            range,
+                            locale
+                        );
                         return {
                             repoName: r.repoName,
                             repoDisplayName: r.displayName,
                             color: r.color,
                             data,
-                            totalCommits: data.reduce((sum, p) => sum + p.commits, 0)
+                            totalCommits: data.reduce(
+                                (sum, p) => sum + p.commits,
+                                0
+                            )
                         };
                     });
 
                     const dateMap = new Map<string, MultiRepoTimelinePoint>();
+
                     for (const t of timelines) {
                         for (const point of t.data) {
                             const existing = dateMap.get(point.date);
+
                             if (existing) {
                                 existing[t.repoName] = point.commits;
                             } else {
@@ -317,6 +421,7 @@ export async function GET(request: NextRequest) {
                                     date: point.date,
                                     label: point.label
                                 };
+
                                 newPoint[t.repoName] = point.commits;
                                 dateMap.set(point.date, newPoint);
                             }
@@ -325,30 +430,43 @@ export async function GET(request: NextRequest) {
 
                     for (const t of timelines) {
                         for (const [, point] of dateMap) {
-                            if (point[t.repoName] === undefined) point[t.repoName] = 0;
+                            if (point[t.repoName] === undefined)
+                                point[t.repoName] = 0;
                         }
                     }
 
                     combinedTimeline = Array.from(dateMap.values()).sort(
-                        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+                        (a, b) =>
+                            new Date(a.date).getTime() -
+                            new Date(b.date).getTime()
                     );
                 }
             } else {
-                timelines = allResults.map(r => {
-                    const data = transformCommitActivity(r.commitActivity, range, locale);
+                timelines = allResults.map((r) => {
+                    const data = transformCommitActivity(
+                        r.commitActivity,
+                        range,
+                        locale
+                    );
+
                     return {
                         repoName: r.repoName,
                         repoDisplayName: r.displayName,
                         color: r.color,
                         data,
-                        totalCommits: data.reduce((sum, p) => sum + p.commits, 0)
+                        totalCommits: data.reduce(
+                            (sum, p) => sum + p.commits,
+                            0
+                        )
                     };
                 });
 
                 const dateMap = new Map<string, MultiRepoTimelinePoint>();
+
                 for (const t of timelines) {
                     for (const point of t.data) {
                         const existing = dateMap.get(point.date);
+
                         if (existing) {
                             existing[t.repoName] = point.commits;
                         } else {
@@ -356,6 +474,7 @@ export async function GET(request: NextRequest) {
                                 date: point.date,
                                 label: point.label
                             };
+
                             newPoint[t.repoName] = point.commits;
                             dateMap.set(point.date, newPoint);
                         }
@@ -364,12 +483,14 @@ export async function GET(request: NextRequest) {
 
                 for (const t of timelines) {
                     for (const [, point] of dateMap) {
-                        if (point[t.repoName] === undefined) point[t.repoName] = 0;
+                        if (point[t.repoName] === undefined)
+                            point[t.repoName] = 0;
                     }
                 }
 
                 combinedTimeline = Array.from(dateMap.values()).sort(
-                    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+                    (a, b) =>
+                        new Date(a.date).getTime() - new Date(b.date).getTime()
                 );
             }
 
@@ -390,11 +511,13 @@ export async function GET(request: NextRequest) {
 
         if (useDB) {
             const cacheKey = generateCacheKey(validRepos, range);
+
             const cached = await withCache<MultiRepoStatsResponse>(
                 cacheKey,
                 60,
                 buildResponse
             );
+
             cachedResponse = cached.data;
             fromCache = cached.fromCache;
         } else {
@@ -407,24 +530,28 @@ export async function GET(request: NextRequest) {
             defaultPeriod: '7d' as const
         };
 
-        return createJsonResponse(responseData, {
-            headers: {
-                'Cache-Control': useDB
-                    ? 'public, s-maxage=60, stale-while-revalidate=30'
-                    : `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
-                'X-Cache': fromCache ? 'HIT' : 'MISS',
-                ...(
-                    useDB ? { 'X-Data-Source': 'database' } : {}
-                )
-            }
-        }, securityCheck);
-
+        return createJsonResponse(
+            responseData,
+            {
+                headers: {
+                    'Cache-Control': useDB
+                        ? 'public, s-maxage=60, stale-while-revalidate=30'
+                        : `public, s-maxage=${getTTLForRange(range)}, stale-while-revalidate`,
+                    'X-Cache': fromCache ? 'HIT' : 'MISS',
+                    ...(useDB ? { 'X-Data-Source': 'database' } : {})
+                }
+            },
+            securityCheck
+        );
     } catch (error) {
         console.error('[Multi-stats API] Error:', error);
 
         if (error instanceof GitHubAPIError) {
             if (error.statusCode === 401) {
-                const { payload, status } = apiError('UNAUTHORIZED', { message: 'GitHub configuration error' });
+                const { payload, status } = apiError('UNAUTHORIZED', {
+                    message: 'GitHub configuration error'
+                });
+
                 return createJsonResponse(payload, { status }, securityCheck);
             }
             if (error.statusCode === 403) {
@@ -432,17 +559,22 @@ export async function GET(request: NextRequest) {
                     message: 'GitHub rate limit reached',
                     retryAfter: error.rateLimitReset
                 });
+
                 return createJsonResponse(payload, { status }, securityCheck);
             }
             if (error.statusCode === 503) {
                 const { payload, status } = apiError('SERVICE_UNAVAILABLE', {
                     message: 'GitHub stats temporarily unavailable'
                 });
+
                 return createJsonResponse(payload, { status }, securityCheck);
             }
         }
 
-        const { payload, status } = apiError('SERVER_ERROR', { message: 'Failed to fetch stats' });
+        const { payload, status } = apiError('SERVER_ERROR', {
+            message: 'Failed to fetch stats'
+        });
+
         return createJsonResponse(payload, { status }, securityCheck);
     }
 }
