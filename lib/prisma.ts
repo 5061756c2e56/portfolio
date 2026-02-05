@@ -9,15 +9,15 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
-type PrismaClientType = any;
+import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as {
-    prisma: PrismaClientType | undefined;
+    prisma: PrismaClient | undefined;
 };
 
-let prismaInstance: PrismaClientType | null = null;
+let prismaInstance: PrismaClient | null = null;
 
-function createPrismaClientSync(): PrismaClientType | null {
+function createPrismaClientSync(): PrismaClient | null {
     if (!process.env.DATABASE_URL) {
         return null;
     }
@@ -25,20 +25,29 @@ function createPrismaClientSync(): PrismaClientType | null {
     try {
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const prismaModule = require('@prisma/client');
-        const PrismaClient = prismaModule.PrismaClient;
+        const PrismaClientConstructor = prismaModule.PrismaClient;
 
-        if (!PrismaClient) {
-            console.warn('[Prisma] PrismaClient not found - run `npx prisma generate`');
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const adapterModule = require('@prisma/adapter-pg');
+        const PrismaPgAdapter = adapterModule.PrismaPg;
+
+        if (!PrismaClientConstructor || !PrismaPgAdapter) {
+            console.warn(
+                '[Prisma] PrismaClient not found - run `npx prisma generate`'
+            );
             return null;
         }
 
-        return new PrismaClient({
-            log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
-            datasources: {
-                db: {
-                    url: process.env.DATABASE_URL
-                }
-            }
+        const adapter = new PrismaPgAdapter({
+            connectionString: process.env.DATABASE_URL
+        });
+
+        return new PrismaClientConstructor({
+            adapter,
+            log:
+                process.env.NODE_ENV === 'development'
+                    ? ['error', 'warn']
+                    : ['error']
         });
     } catch (error) {
         console.warn('[Prisma] Failed to create PrismaClient:', error);
@@ -46,7 +55,7 @@ function createPrismaClientSync(): PrismaClientType | null {
     }
 }
 
-export function getPrisma(): PrismaClientType | null {
+export function getPrisma(): PrismaClient | null {
     if (prismaInstance) {
         return prismaInstance;
     }
