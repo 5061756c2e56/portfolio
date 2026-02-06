@@ -18,6 +18,7 @@ import {
 
 import { useEffect, useState } from 'react';
 
+import { FlagEN, FlagFR } from '@/components/icons/flags';
 import { useLocaleContext } from '@/components/LocaleProvider';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/hooks/use-theme';
@@ -123,14 +124,7 @@ export default function Settings() {
                         onClick={() => switchLocale('fr')}
                         className={currentLocale === 'fr' ? 'bg-muted' : ''}
                     >
-                        <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             strokeWidth={2}>
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                            />
-                        </svg>
+                        <FlagFR className="mr-2 h-5 w-5 shrink-0"/>
                         {t('french')}
                         {currentLocale === 'fr' && (
                             <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -144,14 +138,7 @@ export default function Settings() {
                         onClick={() => switchLocale('en')}
                         className={currentLocale === 'en' ? 'bg-muted' : ''}
                     >
-                        <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             strokeWidth={2}>
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                            />
-                        </svg>
+                        <FlagEN className="mr-2 h-5 w-5 shrink-0"/>
                         {t('english')}
                         {currentLocale === 'en' && (
                             <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
