@@ -9,8 +9,11 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
+import { SITE_URL } from '@/lib/site';
+import { locales } from '@/i18n/routing';
+
 export default function StructuredData() {
-    const baseUrl = 'https://paulviandier.com';
+    const baseUrl = SITE_URL;
 
     const graph = {
         '@context': 'https://schema.org',
@@ -22,18 +25,28 @@ export default function StructuredData() {
                 givenName: 'Paul',
                 familyName: 'Viandier',
                 alternateName: ['Viandier Paul', 'P. Viandier', 'Paul V'],
-                jobTitle: ['Développeur Web', 'Web Developer', 'Fullstack Developer'],
+                jobTitle: [
+                    'Développeur Web',
+                    'Web Developer',
+                    'Fullstack Developer'
+                ],
                 url: baseUrl,
                 sameAs: [
                     'https://github.com/5061756c2e56/',
                     'https://www.linkedin.com/in/paul-viandier-648837397/'
                 ],
                 email: 'contact@paulviandier.com',
-                description: 'Développeur web fullstack en formation, passionné de cybersécurité. Spécialisé en TypeScript, React, Next.js.',
+                description:
+                    'Développeur web fullstack en formation, passionné de cybersécurité. Spécialisé en TypeScript, React, Next.js.',
                 image: `${baseUrl}/pfp.png`,
                 knowsAbout: [
-                    'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL',
-                    'Cybersécurité', 'Développement Web'
+                    'TypeScript',
+                    'React',
+                    'Next.js',
+                    'Node.js',
+                    'PostgreSQL',
+                    'Cybersécurité',
+                    'Développement Web'
                 ],
                 address: {
                     '@type': 'PostalAddress',
@@ -45,16 +58,18 @@ export default function StructuredData() {
                 '@id': `${baseUrl}/#website`,
                 name: 'Portfolio de Paul Viandier',
                 url: baseUrl,
-                description: 'Portfolio professionnel de Paul Viandier, développeur web fullstack spécialisé en TypeScript, React, Next.js et cybersécurité.',
+                description:
+                    'Portfolio professionnel de Paul Viandier, développeur web fullstack spécialisé en TypeScript, React, Next.js et cybersécurité.',
                 author: { '@id': `${baseUrl}/#person` },
-                inLanguage: ['fr', 'en']
+                inLanguage: locales
             },
             {
                 '@type': 'WebPage',
                 '@id': `${baseUrl}/#webpage`,
                 url: baseUrl,
                 name: 'Portfolio de Paul Viandier - Développeur Web',
-                description: 'Développeur web fullstack en formation, passionné de cybersécurité. Découvrez mes projets et compétences.',
+                description:
+                    'Développeur web fullstack en formation, passionné de cybersécurité. Découvrez mes projets et compétences.',
                 isPartOf: { '@id': `${baseUrl}/#website` },
                 about: { '@id': `${baseUrl}/#person` }
             },
@@ -93,8 +108,9 @@ export default function StructuredData() {
                         item: {
                             '@type': 'SoftwareApplication',
                             name: 'Portfolio',
-                            description: 'Site portfolio personnel développé avec Next.js et TypeScript.',
-                            url: 'https://github.com/5061756c2e56/site',
+                            description:
+                                'Site portfolio personnel développé avec Next.js et TypeScript.',
+                            url: 'https://github.com/5061756c2e56/portfolio',
                             applicationCategory: 'WebApplication',
                             author: { '@id': `${baseUrl}/#person` }
                         }
@@ -105,7 +121,8 @@ export default function StructuredData() {
                         item: {
                             '@type': 'SoftwareApplication',
                             name: 'Web Security',
-                            description: 'Suite de sécurité web pour la protection et la gestion des systèmes informatiques.',
+                            description:
+                                'Suite de sécurité web pour la protection et la gestion des systèmes informatiques.',
                             url: 'https://security.paulviandier.com',
                             applicationCategory: 'SecurityApplication',
                             author: { '@id': `${baseUrl}/#person` }

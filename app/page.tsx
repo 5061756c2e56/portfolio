@@ -12,18 +12,20 @@
 import { redirect } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/site';
 
-const baseUrl = 'https://paulviandier.com';
+const baseUrl = SITE_URL;
 
 export const metadata: Metadata = {
     title: 'Portfolio de Paul Viandier',
-    description: 'Développeur web fullstack en formation. Découvrez mes projets, compétences en TypeScript, React, Next.js, cybersécurité et développement web moderne.',
+    description:
+        'Développeur web fullstack en formation. Découvrez mes projets, compétences en TypeScript, React, Next.js, cybersécurité et développement web moderne.',
     robots: { index: false, follow: false },
     alternates: {
         canonical: baseUrl,
         languages: {
-            'fr': baseUrl,
-            'en': `${baseUrl}/en`,
+            fr: baseUrl,
+            en: `${baseUrl}/en`,
             'x-default': baseUrl
         }
     },
@@ -34,7 +36,8 @@ export const metadata: Metadata = {
         url: baseUrl,
         siteName: 'Portfolio de Paul Viandier',
         title: 'Développeur Web fullstack',
-        description: 'Développeur web en formation, passionné de cybersécurité et de développement fullstack',
+        description:
+            'Développeur web en formation, passionné de cybersécurité et de développement fullstack',
         images: [
             {
                 url: `${baseUrl}/vPsl6pa.png`,
@@ -48,7 +51,8 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Portfolio de Paul Viandier - Développeur Web fullstack',
-        description: 'Développeur web en formation, passionné de cybersécurité et de développement fullstack',
+        description:
+            'Développeur web en formation, passionné de cybersécurité et de développement fullstack',
         images: [`${baseUrl}/vPsl6pa.png`]
     }
 };

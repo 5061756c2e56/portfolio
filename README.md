@@ -68,8 +68,8 @@ Portfolio moderne développé avec Next.js, TypeScript, React, Tailwind CSS, Pri
 - **Email** : [EmailJS](https://www.emailjs.com/)
 - **ORM** : [Prisma](https://www.prisma.io/)
 - **Base de données** :
-  - [Redis](https://redis.io/) (compteur d'emails en production)
-  - [PostgreSQL](https://www.postgresql.org/) (stats GitHub)
+    - [Redis](https://redis.io/) (compteur d'emails en production)
+    - [PostgreSQL](https://www.postgresql.org/) (stats GitHub)
 - **Package Manager** : [pnpm](https://pnpm.io/)
 
 ---
@@ -93,24 +93,24 @@ cd portfolio
 # Installer les dépendances
 pnpm install
 
-# Lancer en développement 
-pnpm devPortfolio
+# Lancer en développement
+pnpm dev
 ```
 
 ---
 
 ## ⚙️ Configuration
-### Variables d'environnement
-Créez un fichier `.env` à la racine du projet :
-```env 
-NODE_ENV=development
 
+### Variables d'environnement
+
+Créez un fichier `.env` à la racine du projet :
+
+```env
 # Secret pour les webhooks : généré avec openssl rand -hex 32
 GITHUB_WEBHOOK_SECRET=
 # Secret pour effectuer une synchronisation via curl : généré avec openssl rand -hex 32
 # curl -sS -X POST "https://VOTRE_DOMAINE.COM/api/github/sync" -H "authorization: Bearer $ADMIN_SECRET" -H "Content-Type: application/json" -d "{}"
 ADMIN_SECRET=
-
 # Votre token github (scope minimal nécessaire, ex: repo si nécessaire)
 GITHUB_TOKEN=
 
@@ -145,6 +145,7 @@ NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
 ```
 
 ### Configuration Redis (production)
+
 Le compteur d'emails utilise Redis en production. En développement local, si Redis n'est pas disponible, le système
 utilise automatiquement un fichier JSON dans /data.
 
@@ -157,7 +158,8 @@ Les stats GitHub utilisent PostgreSQL via Prisma.
 En développement local, PostgreSQL est obligatoire (car Prisma a besoin d’une base accessible pour les opérations de schéma/migrations).
 
 Commandes utiles :
-```bash 
+
+```bash
 pnpm db:generate   # prisma generate
 pnpm db:push       # prisma db push
 pnpm db:migrate    # prisma migrate dev
@@ -167,7 +169,9 @@ pnpm db:studio     # prisma studio
 ---
 
 ## 🔒 Sécurité
+
 Le projet implémente plusieurs mesures de sécurité :
+
 - ✅ **Rate Limiting** : 3 requêtes par minute par IP
 - ✅ **Validation d'origine** : Vérification stricte de l'origine des requêtes API
 - ✅ **Headers de sécurité** : HSTS, X-Frame-Options, CSP, etc.
@@ -178,34 +182,43 @@ Le projet implémente plusieurs mesures de sécurité :
 ---
 
 ## 🐳 Déploiement avec Docker
+
 ### Prérequis
+
 - Docker et Docker Compose installés
+
 ### Déploiement avec Docker Compose
+
 1. Cloner le repository
-```bash 
+
+```bash
 git clone https://github.com/5061756c2e56/portfolio.git
 cd portfolio
 ```
-2. Créer le fichier `.env`
-Créez un fichier `.env` à la racine avec vos variables d'environnement (voir section précédente).
 
+2. Créer le fichier `.env`
+   Créez un fichier `.env` à la racine avec vos variables d'environnement (voir section précédente).
 
 3. Construire et lancer les containers
+
 ```bash
 docker-compose up -d --build
 ```
 
 4. Vérifier le déploiement
-L'application sera accessible sur http://localhost:3000
-> **Note :** si Redis/PostgreSQL sont inclus dans votre `docker-compose.yml`, adaptez `REDIS_URL` / `DATABASE_URL` en conséquence.
+   L'application sera accessible sur http://localhost:3000
+    > **Note :** si Redis/PostgreSQL sont inclus dans votre `docker-compose.yml`, adaptez `REDIS_URL` / `DATABASE_URL` en conséquence.
 
 ## Déploiement avec Docker uniquement
+
 1. Construire l'image
+
 ```bash
 docker build -t portfolio:latest .
 ```
 
 2. Lance le container
+
 ```bash
 docker run -d \
   --name portfolio \
@@ -229,7 +242,9 @@ docker run -d \
 ```
 
 ### Optimisations Docker
+
 Le Dockerfile utilise un build multi-stage pour optimiser la taille de l'image finale :
+
 - **Stage 1 :** Installation des dépendances avec pnpm
 - **Stage 2 :** Build de l'application Next.js (et `prisma generate` via `pnpm build`)
 - **Stage 3 :** Image finale minimale avec uniquement les fichiers nécessaires
@@ -237,6 +252,7 @@ Le Dockerfile utilise un build multi-stage pour optimiser la taille de l'image f
 ---
 
 ## 📝 Scripts disponibles
+
 ```bash
 # Développement
 pnpm dev     # next dev
@@ -277,7 +293,9 @@ Voir le fichier `LICENSE` pour les conditions complètes.
 ---
 
 ## 👤 Auteur
+
 **Paul Viandier**
+
 - Email: [contact@paulviandier.com](mailto:contact@paulviandier.com)
 - GitHub: [@5061756c2e56](https://github.com/5061756c2e56)
 - LinkedIn: [Paul Viandier](https://www.linkedin.com/in/paul-viandier-648837397/)

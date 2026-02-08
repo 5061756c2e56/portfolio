@@ -17,58 +17,42 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-    --background: oklch(0 0 0);
-    --foreground: oklch(0.93 0 0);
-
-    --card: oklch(0.1 0 0);
-    --card-foreground: oklch(0.93 0 0);
-
-    --muted: oklch(0.18 0 0);
-    --muted-foreground: oklch(0.55 0 0);
-
-    --border: oklch(1 0 0 / 15%);
-
-    --primary: oklch(0.95 0 0);
-    --primary-foreground: oklch(0 0 0);
-
-    --secondary: oklch(0.15 0 0);
-    --secondary-foreground: oklch(0.93 0 0);
-
-    --accent: oklch(0.15 0 0);
-    --accent-foreground: oklch(0.93 0 0);
-
-    --popover: oklch(0.1 0 0);
-    --popover-foreground: oklch(0.93 0 0);
-
-    --input: oklch(1 0 0 / 15%);
-
-    --ring: oklch(0.6 0 0);
-
-    --destructive: oklch(0.6 0.2 25);
-
-    --radius: 0.625rem;
-
-    --chart-1: oklch(0.7 0.15 250);
-    --chart-2: oklch(0.7 0.12 180);
-    --chart-3: oklch(0.7 0.15 320);
-    --chart-4: oklch(0.7 0.15 80);
-    --chart-5: oklch(0.7 0.15 150);
-
-    --sidebar: oklch(0.08 0 0);
-    --sidebar-foreground: oklch(0.93 0 0);
-    --sidebar-primary: oklch(0.95 0 0);
-    --sidebar-primary-foreground: oklch(0 0 0);
-    --sidebar-accent: oklch(0.15 0 0);
-    --sidebar-accent-foreground: oklch(0.93 0 0);
-    --sidebar-border: oklch(1 0 0 / 15%);
-    --sidebar-ring: oklch(0.6 0 0);
-
-    --gradient-start: #a78bfa;
-    --gradient-end: #60a5fa;
-
-    --glow-subtle: oklch(1 0 0 / 5%);
-    --glow-medium: oklch(1 0 0 / 10%);
-    --glow-strong: oklch(1 0 0 / 15%);
+    --background: oklch(0.985 0 0);
+    --foreground: oklch(0.15 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.15 0 0);
+    --muted: oklch(0.96 0 0);
+    --muted-foreground: oklch(0.45 0 0);
+    --border: oklch(0 0 0 / 10%);
+    --primary: oklch(0.15 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.96 0 0);
+    --secondary-foreground: oklch(0.15 0 0);
+    --accent: oklch(0.96 0 0);
+    --accent-foreground: oklch(0.15 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.15 0 0);
+    --input: oklch(0 0 0 / 8%);
+    --ring: oklch(0.5 0 0);
+    --destructive: oklch(0.55 0.22 25);
+    --chart-1: oklch(0.5 0.18 250);
+    --chart-2: oklch(0.5 0.15 180);
+    --chart-3: oklch(0.5 0.18 320);
+    --chart-4: oklch(0.5 0.18 80);
+    --chart-5: oklch(0.5 0.18 150);
+    --sidebar: oklch(0.98 0 0);
+    --sidebar-foreground: oklch(0.15 0 0);
+    --sidebar-primary: oklch(0.15 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.96 0 0);
+    --sidebar-accent-foreground: oklch(0.15 0 0);
+    --sidebar-border: oklch(0 0 0 / 10%);
+    --sidebar-ring: oklch(0.5 0 0);
+    --gradient-start: #8b5cf6;
+    --gradient-end: #3b82f6;
+    --glow-subtle: oklch(0 0 0 / 3%);
+    --glow-medium: oklch(0 0 0 / 5%);
+    --glow-strong: oklch(0 0 0 / 8%);
 }
 
 .dark {
@@ -438,12 +422,12 @@ html {
 @keyframes fade-in-up {
     from {
         opacity: 0;
-        transform: translateY(40px);
-        filter: blur(8px);
+        transform: translate3d(0, 24px, 0) scale(0.98);
+        filter: blur(4px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0) scale(1);
         filter: blur(0);
     }
 }
@@ -451,12 +435,12 @@ html {
 @keyframes fade-in-down {
     from {
         opacity: 0;
-        transform: translateY(-40px);
-        filter: blur(8px);
+        transform: translate3d(0, -24px, 0) scale(0.98);
+        filter: blur(4px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0) scale(1);
         filter: blur(0);
     }
 }
@@ -464,12 +448,12 @@ html {
 @keyframes fade-in-left {
     from {
         opacity: 0;
-        transform: translateX(-40px);
-        filter: blur(8px);
+        transform: translate3d(-24px, 0, 0) scale(0.98);
+        filter: blur(4px);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0) scale(1);
         filter: blur(0);
     }
 }
@@ -477,12 +461,12 @@ html {
 @keyframes fade-in-right {
     from {
         opacity: 0;
-        transform: translateX(40px);
-        filter: blur(8px);
+        transform: translate3d(24px, 0, 0) scale(0.98);
+        filter: blur(4px);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0) scale(1);
         filter: blur(0);
     }
 }
@@ -490,8 +474,8 @@ html {
 @keyframes scale-in {
     from {
         opacity: 0;
-        transform: scale(0.95);
-        filter: blur(4px);
+        transform: scale(0.97);
+        filter: blur(3px);
     }
     to {
         opacity: 1;
@@ -503,12 +487,12 @@ html {
 @keyframes reveal {
     from {
         opacity: 0;
-        transform: translateY(60px) scale(0.98);
-        filter: blur(10px);
+        transform: translate3d(0, 36px, 0) scale(0.985);
+        filter: blur(6px);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
         filter: blur(0);
     }
 }
@@ -564,27 +548,33 @@ html {
 }
 
 .animate-fade-in-up {
-    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fade-in-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity, filter;
 }
 
 .animate-fade-in-down {
-    animation: fade-in-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fade-in-down 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity, filter;
 }
 
 .animate-fade-in-left {
-    animation: fade-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fade-in-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity, filter;
 }
 
 .animate-fade-in-right {
-    animation: fade-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fade-in-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity, filter;
 }
 
 .animate-scale-in {
-    animation: scale-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: scale-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity, filter;
 }
 
 .animate-reveal {
-    animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: reveal 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity, filter;
 }
 
 .animate-subtle-float {

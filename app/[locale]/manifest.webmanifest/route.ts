@@ -11,6 +11,7 @@
 
 import { NextResponse } from 'next/server';
 import { getTranslations } from 'next-intl/server';
+import { defaultLocale } from '@/i18n/routing';
 
 export async function GET(
     _request: Request,
@@ -18,13 +19,15 @@ export async function GET(
 ) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'manifest' });
+    const startUrl = locale === defaultLocale ? '/' : `/${locale}/`;
 
     return NextResponse.json(
         {
             name: t('name'),
             short_name: 'PV',
             description: t('description'),
-            start_url: '/',
+            start_url: startUrl,
+            scope: startUrl,
             display: 'standalone',
             background_color: '#fafafa',
             theme_color: '#fafafa',

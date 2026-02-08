@@ -15,14 +15,21 @@ import { apiError } from '@/lib/github/errors';
 import { getClientIP } from '@/lib/request-utils';
 
 function getAllowedOrigins(): string[] {
-    const envOrigins = process.env.ALLOWED_ORIGINS;
+    const envOrigins = process.env.ALLOWED_ORIGIN ?? process.env.ALLOWED_ORIGINS;
+
     if (envOrigins) {
-        return envOrigins.split(',').map(o => o.trim().toLowerCase()).filter(Boolean);
+        return envOrigins
+            .split(',')
+            .map(o => o.trim().toLowerCase())
+            .filter(Boolean);
     }
+
     if (process.env.NEXT_PUBLIC_SITE_URL) {
         try {
             const url = new URL(process.env.NEXT_PUBLIC_SITE_URL);
-            return [url.origin.toLowerCase(), `https://www.${url.host}`.toLowerCase()];
+            const origin = url.origin.toLowerCase();
+            const host = url.host.toLowerCase();
+            return [origin, host, `www.${host}`];
         } catch {
             //
         }
@@ -36,6 +43,28 @@ function getAllowedOrigins(): string[] {
         'http://localhost:3000',
         'http://localhost:3001'
     ];
+}
+
+function isAllowedUrl(value: string | null, allowed: string[]): boolean {
+    if (!value) return false;
+
+    try {
+        const url = new URL(value);
+        const origin = url.origin.toLowerCase();
+        const host = url.host.toLowerCase();
+
+        return allowed.some((entry) => {
+            const normalized = entry.toLowerCase().replace(/\/+$/, '');
+            return (
+                origin === normalized ||
+                host === normalized ||
+                host.endsWith(`.${normalized}`) ||
+                origin.endsWith(`.${normalized}`)
+            );
+        });
+    } catch {
+        return false;
+    }
 }
 
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
@@ -134,13 +163,8 @@ export async function validateRequest(request: NextRequest): Promise<SecurityChe
     const origin = request.headers.get('origin');
     const referer = request.headers.get('referer');
 
-    const isValidOrigin = origin
-        ? allowedOrigins.some(allowed => origin.toLowerCase().startsWith(allowed))
-        : false;
-
-    const isValidReferer = referer
-        ? allowedOrigins.some(allowed => referer.toLowerCase().startsWith(allowed))
-        : false;
+    const isValidOrigin = isAllowedUrl(origin, allowedOrigins);
+    const isValidReferer = isAllowedUrl(referer, allowedOrigins);
 
     if (process.env.NODE_ENV === 'production') {
         if (!isValidOrigin && !isValidReferer) {

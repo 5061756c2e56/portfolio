@@ -35,7 +35,7 @@ export default function MobileMenu() {
     const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
         setIsOpen(false);
-        setTimeout(() => scrollTo(targetId, 80), 100);
+        setTimeout(() => scrollTo(targetId), 100);
     };
 
     const itemClass = (id: string) =>

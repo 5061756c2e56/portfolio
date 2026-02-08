@@ -9,8 +9,6 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
-import { isChristmasMode } from '@/lib/christmas';
-
 export default function Head() {
     return (
         <>
@@ -18,48 +16,6 @@ export default function Head() {
             <link rel="dns-prefetch" href="https://api.emailjs.com"/>
             <link rel="me" href="https://github.com/5061756c2e56/"/>
             <link rel="me" href="https://www.linkedin.com/in/paul-viandier-648837397/"/>
-
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
-            (function() {
-              try {
-                var d = document.documentElement;
-                var s = d.style;
-                s.backgroundColor = '#fafafa';
-                s.colorScheme = 'light';
-                var storedTheme = localStorage.getItem('theme');
-                var theme = storedTheme || 'light';
-                var effectiveTheme = theme;
-
-                if (theme === 'system') {
-                  effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                }
-
-                d.classList.add(effectiveTheme);
-
-                if (effectiveTheme === 'dark') {
-                  s.backgroundColor = '#000000';
-                  s.color = '#ededed';
-                  s.colorScheme = 'dark';
-                } else {
-                  s.backgroundColor = '#fafafa';
-                  s.color = '#262626';
-                  s.colorScheme = 'light';
-                }
-
-                window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};
-                window.__THEME_READY__ = true;
-              } catch (e) {
-                document.documentElement.classList.add('light');
-                document.documentElement.style.backgroundColor = '#fafafa';
-                document.documentElement.style.color = '#262626';
-                window.__CHRISTMAS_MODE__ = false;
-              }
-            })();
-          `
-                }}
-            />
 
             <style
                 dangerouslySetInnerHTML={{

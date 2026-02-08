@@ -17,22 +17,41 @@ import { Spinner } from '@/components/ui/spinner';
 
 interface LoadingOverlayProps {
     isLoading: boolean;
+    textKey?: 'languageChanging' | 'themeChanging';
+    tone?: 'soft' | 'solid';
+    instant?: boolean;
 }
 
-export function LoadingOverlay({ isLoading }: LoadingOverlayProps) {
+export function LoadingOverlay({
+    isLoading,
+    textKey = 'languageChanging',
+    tone = 'soft',
+    instant = false
+}: LoadingOverlayProps) {
     const t = useTranslations('nav');
+
+    const backgroundClass =
+        tone === 'solid'
+            ? 'bg-background'
+            : 'bg-background/80 backdrop-blur-md';
+
+    const transitionClass = instant
+        ? 'transition-none'
+        : 'transition-opacity duration-300';
 
     return (
         <div
             className={cn(
-                'fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md transition-opacity duration-300',
+                'fixed inset-0 z-50 flex items-center justify-center',
+                backgroundClass,
+                transitionClass,
                 isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
             )}
         >
             <div className="flex items-center gap-3">
                 <Spinner className="h-8 w-8 shrink-0 text-muted-foreground"/>
                 <p className="text-sm sm:text-base text-muted-foreground">
-                    {t('languageChanging')}
+                    {t(textKey)}
                 </p>
             </div>
         </div>

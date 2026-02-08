@@ -10,6 +10,7 @@
  */
 
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 
 import StructuredData from '@/components/StructuredData';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -25,7 +26,16 @@ import Footer from '@/components/home/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
 import { ContactModalProvider } from '@/hooks/useContactModal';
-import { defaultLocale, isLocale, Locale, locales, ogLocaleMap } from '@/i18n/routing';
+import { cookies } from 'next/headers';
+import {
+    defaultLocale,
+    isLocale,
+    Locale,
+    locales,
+    ogLocaleMap
+} from '@/i18n/routing';
+import { SITE_URL } from '@/lib/site';
+import { isChristmasMode } from '@/lib/christmas';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -41,16 +51,20 @@ function localeUrl(baseUrl: string, loc: string): string {
     return loc === defaultLocale ? baseUrl : `${baseUrl}/${loc}`;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
     const { locale } = await params;
     const t = await getTranslations('pagesMetadata.layout');
 
-    const baseUrl = 'https://paulviandier.com';
+    const baseUrl = SITE_URL;
     const url = localeUrl(baseUrl, locale);
     const ogLocale = ogLocaleMap[locale as Locale] ?? 'en_US';
     const alternateOgLocales = locales
-        .filter(l => l !== locale)
-        .map(l => ogLocaleMap[l]);
+        .filter((l) => l !== locale)
+        .map((l) => ogLocaleMap[l]);
 
     const languages: Record<string, string> = {};
     for (const l of locales) {
@@ -99,9 +113,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             canonical: url,
             languages
         },
-        verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ? {
-            google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
-        } : undefined,
+        verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+            ? {
+                  google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+              }
+            : undefined,
         icons: {
             icon: [
                 { url: '/pfp.png', sizes: 'any', type: 'image/png' },
@@ -109,9 +125,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 { url: '/pfp.png', sizes: '512x512', type: 'image/png' },
                 { url: '/icon.png', sizes: 'any' }
             ],
-            apple: [
-                { url: '/pfp.png', sizes: '180x180', type: 'image/png' }
-            ],
+            apple: [{ url: '/pfp.png', sizes: '180x180', type: 'image/png' }],
             shortcut: '/pfp.png'
         },
         manifest: `/${locale}/manifest.webmanifest`,
@@ -139,40 +153,84 @@ export default async function RootLayout({
 
     const locale: Locale = paramLocale;
 
-    const allMessages: Record<string, Record<string, unknown>> = {};
-    for (const loc of locales) {
-        const allMsgs = (
-            await import(`@/i18n/locales/${loc}.json`)
-        ).default;
-        const { _meta, ...msgs } = allMsgs;
-        void _meta;
+    const allMsgs = (await import(`@/i18n/locales/${locale}.json`)).default;
+    const { _meta, ...messages } = allMsgs;
+    void _meta;
 
-        allMessages[loc] = msgs;
+    const cookieStore = await cookies();
+    const themeCookie = cookieStore.get('theme')?.value;
+    const themeClass =
+        themeCookie === 'dark'
+            ? 'dark'
+            : themeCookie === 'light'
+                ? 'light'
+                : undefined;
+
+    const themeInitScript = `
+(function() {
+  try {
+    var d = document.documentElement;
+    var s = d.style;
+    var storedTheme = localStorage.getItem('theme');
+    if (storedTheme !== 'light' && storedTheme !== 'dark' && storedTheme !== 'system') {
+      storedTheme = null;
     }
+    if (!storedTheme) {
+      localStorage.setItem('theme', 'light');
+      storedTheme = 'light';
+    }
+    var theme = storedTheme || 'light';
+    var effectiveTheme = theme;
+    if (theme === 'system') {
+      effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    d.classList.remove('light', 'dark');
+    d.classList.add(effectiveTheme);
+    if (effectiveTheme === 'dark') {
+      s.backgroundColor = '#000000';
+      s.color = '#ededed';
+      s.colorScheme = 'dark';
+    } else {
+      s.backgroundColor = '#fafafa';
+      s.color = '#262626';
+      s.colorScheme = 'light';
+    }
+    window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};
+  } catch (e) {
+    document.documentElement.classList.add('light');
+    document.documentElement.style.backgroundColor = '#fafafa';
+    document.documentElement.style.color = '#262626';
+    window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};
+  }
+})();`;
 
     return (
-        <html lang={locale} suppressHydrationWarning>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
-        <ThemeProvider>
-            <Snowflakes/>
-            <div className="min-h-screen flex flex-col relative z-10">
-                <StructuredData/>
-                <LocaleProvider initialLocale={locale} messages={allMessages}>
-                    <SkipLink/>
-                    <ScrollToTop/>
+        <html lang={locale} className={themeClass} suppressHydrationWarning>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                suppressHydrationWarning
+            >
+                <Script id="theme-init" strategy="beforeInteractive">
+                    {themeInitScript}
+                </Script>
+                <LocaleProvider initialLocale={locale} messages={messages}>
+                    <ThemeProvider>
+                        <Snowflakes />
+                        <div className="min-h-screen flex flex-col relative z-10">
+                            <StructuredData />
+                            <SkipLink />
+                            <ScrollToTop />
 
-                    <ContactModalProvider>
-                        <main id="main-content">
-                            {children}
-                        </main>
-                        <PatchnotesWidget locale={locale}/>
-                        <Footer/>
-                    </ContactModalProvider>
+                            <ContactModalProvider>
+                                <main id="main-content">{children}</main>
+                                <PatchnotesWidget locale={locale} />
+                                <Footer />
+                            </ContactModalProvider>
+                            <Toaster />
+                        </div>
+                    </ThemeProvider>
                 </LocaleProvider>
-                <Toaster/>
-            </div>
-        </ThemeProvider>
-        </body>
+            </body>
         </html>
     );
 }
