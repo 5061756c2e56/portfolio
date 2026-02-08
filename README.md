@@ -1,7 +1,7 @@
 <div align="center">
 
 > ⚠️ **LICENCE PROPRIÉTAIRE**  
-> Ce dépôt est public mais **non open-source**.  
+> Ce dépôt est public mais **n'est pas open-source**.  
 > L’usage commercial est strictement interdit sans autorisation.
 
 </div>
@@ -108,7 +108,7 @@ NODE_ENV=development
 # Secret pour les webhooks : généré avec openssl rand -hex 32
 GITHUB_WEBHOOK_SECRET=
 # Secret pour effectuer une synchronisation via curl : généré avec openssl rand -hex 32
-# curl -X POST "https://VOTRE_SITE/api/github/sync" -H "Authorization: VOTRE_SECRET"
+# curl -sS -X POST "https://VOTRE_DOMAINE.COM/api/github/sync" -H "authorization: Bearer $ADMIN_SECRET" -H "Content-Type: application/json" -d "{}"
 ADMIN_SECRET=
 
 # Votre token github (scope minimal nécessaire, ex: repo si nécessaire)

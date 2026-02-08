@@ -11,16 +11,14 @@
 
 import LegalNoticePageClient from './LegalNoticePageClient';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    const isFrench = locale === 'fr';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('pagesMetadata.legalNotice');
 
     return {
-        title: isFrench ? 'Mentions Légales' : 'Legal Notice',
-        description: isFrench
-            ? 'Les présentes mentions légales décrivent l’éditeur du site, son hébergement et les principales informations relatives à son utilisation'
-            : 'This legal notice identifies the website publisher, its hosting provider, and the main information relating to use of the website',
+        title: t('title'),
+        description: t('description'),
         robots: { index: false, follow: false }
     };
 }

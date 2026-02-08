@@ -11,16 +11,14 @@
 
 import PrivacyPolicyPageClient from './PrivacyPolicyPageClient';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    const isFrench = locale === 'fr';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('pagesMetadata.privacyPolicy');
 
     return {
-        title: isFrench ? 'Politique de Confidentialité' : 'Privacy Policy',
-        description: isFrench
-            ? 'Cette politique explique quelles données peuvent être traitées, pourquoi et comment vous pouvez exercer vos droits'
-            : 'This policy explains what data may be processed, why, and how you can exercise your rights',
+        title: t('title'),
+        description: t('description'),
         robots: { index: false, follow: false }
     };
 }

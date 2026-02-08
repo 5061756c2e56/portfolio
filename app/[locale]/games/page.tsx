@@ -11,16 +11,14 @@
 
 import GamesPageClient from './GamesPageClient';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    const isFrench = locale === 'fr';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('pagesMetadata.games');
 
     return {
-        title: isFrench ? 'Jeux & Défis' : 'Games & Challenges',
-        description: isFrench
-            ? 'Testez vos connaissances en développement web, cybersécurité et technologies modernes à travers nos quiz interactifs et mini-jeux'
-            : 'Test your knowledge in web development, cybersecurity, and modern technologies through our interactive quizzes and mini-games',
+        title: t('title'),
+        description: t('description'),
         robots: { index: false, follow: false }
     };
 }

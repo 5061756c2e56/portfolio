@@ -89,7 +89,7 @@ export default function MobileMenu() {
                         href="/faq"
                         className="w-full cursor-pointer transition-all text-sm hover:bg-accent hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
-                        <span>FAQ</span>
+                        <span>{t('faq')}</span>
                         <HelpCircle className="ml-2 w-4 h-4 opacity-70"/>
                     </Link>
                 </DropdownMenuItem>

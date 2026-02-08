@@ -11,16 +11,14 @@
 
 import StatsPageClient from './StatsPageClient';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    const isFrench = locale === 'fr';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('pagesMetadata.stats');
 
     return {
-        title: isFrench ? 'Statistiques GitHub' : 'GitHub Statistics',
-        description: isFrench
-            ? 'Statistiques de mes projets open source'
-            : 'Statistics from my open source projects',
+        title: t('title'),
+        description: t('description'),
         robots: { index: true, follow: true }
     };
 }

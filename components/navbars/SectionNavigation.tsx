@@ -82,7 +82,7 @@ export function SectionNavigation({ excludeHref, mobileMenu }: SectionNavigation
                             >
                                 <Icon className="w-4 h-4"/>
                                 <span className="hidden sm:inline">
-                                    {labelKey === 'faq' ? 'FAQ' : t(labelKey)}
+                                    {t(labelKey)}
                                 </span>
                             </Link>
                         ))}

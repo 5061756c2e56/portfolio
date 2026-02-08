@@ -226,7 +226,7 @@ export default function Navigation() {
                             href="/faq"
                             className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
-                            FAQ
+                            {t('faq')}
                             <HelpCircle className="w-4 h-4 opacity-70"/>
                         </Link>
 

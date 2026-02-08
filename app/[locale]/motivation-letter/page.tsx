@@ -11,14 +11,14 @@
 
 import type { Metadata } from 'next';
 import MotivationLetterPageClient from './MotivationLetterPageClient';
+import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    const isFrench = locale === 'fr';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('pagesMetadata.motivationLetter');
 
     return {
-        title: isFrench ? 'Lettre de Motivation' : 'Cover Letter',
-        description: isFrench ? 'Lettre de motivation de Paul Viandier' : 'Cover letter from Paul Viandier',
+        title: t('title'),
+        description: t('description'),
         robots: { index: true, follow: true }
     };
 }

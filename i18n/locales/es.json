@@ -3,6 +3,42 @@
     "name": "Español",
     "flag": "es"
   },
+  "pagesMetadata": {
+    "projects": {
+      "portfolio": {
+        "title": "Portafolio de proyectos",
+        "description": "Un portafolio moderno y eficaz, diseñado para demostrar mis habilidades en desarrollo web y ofrecer una experiencia de usuario cuidada"
+      }
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "description": "Aquí encontrarás respuestas a preguntas frecuentes sobre mi trabajo, habilidades y proyectos"
+    },
+    "games": {
+      "title": "Juegos y retos",
+      "description": "Pon a prueba tus conocimientos sobre desarrollo web, ciberseguridad y tecnologías modernas con nuestros cuestionarios interactivos y minijuegos."
+    },
+    "legalNotice": {
+      "title": "Aviso legal",
+      "descritpion": "Este aviso legal identifica al editor del sitio web, su proveedor de alojamiento y la información principal relacionada con el uso del sitio web."
+    },
+    "privacyPolicy": {
+      "title": "Política de privacidad",
+      "description": "Esta política explica qué datos pueden tratarse, por qué y cómo puedes ejercer tus derechos."
+    },
+    "terms": {
+      "title": "Condiciones de uso",
+      "description": "Estas condiciones regulan el acceso y el uso de este sitio web de portafolio. Al navegar por el sitio, aceptas las normas que se indican a continuación."
+    },
+    "motivationLetter": {
+      "title": "Carta de presentación",
+      "description": "Carta de presentación de Paul Viandier."
+    },
+    "stats": {
+      "title": "Estadísticas de GitHub",
+      "description": "Estadísticas de mis proyectos de código abierto."
+    }
+  },
   "locales": {
     "fr": "Francés",
     "en": "Inglés",
@@ -178,7 +214,8 @@
     "dark": "Oscuro",
     "system": "Sistema",
     "themeChanging": "Cambiando el tema...",
-    "languageChanging": "Cambiando el idioma..."
+    "languageChanging": "Cambiando el idioma...",
+    "faq": "Preguntas frecuentes"
   },
   "games": {
     "meta": {

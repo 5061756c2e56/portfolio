@@ -11,16 +11,14 @@
 
 import PortfolioProjectPageClient from './PortfolioProjectPageClient';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    const isFrench = locale === 'fr';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('pagesMetadata.projects.portfolio');
 
     return {
-        title: isFrench ? 'Projet Portfolio' : 'Portfolio Project',
-        description: isFrench
-            ? 'Un portfolio moderne et performant, conçu pour démontrer mes compétences en développement web et offrir une expérience utilisateur soignée'
-            : 'A modern and performant portfolio, designed to showcase my web development skills and deliver a polished user experience',
+        title: t('title'),
+        description: t('description'),
         robots: { index: false, follow: false }
     };
 }

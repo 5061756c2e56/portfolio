@@ -3,6 +3,42 @@
     "name": "English",
     "flag": "gb"
   },
+  "pagesMetadata": {
+    "projects": {
+      "portfolio": {
+        "title": "Portfolio Project",
+        "description": "A modern and high-performance portfolio, designed to showcase my web development skills and offer a polished user experience"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Here you will find answers to frequently asked questions about my work, skills, and projects"
+    },
+    "games": {
+      "title": "Games & Challenges",
+      "description": "Test your knowledge in web development, cybersecurity, and modern technologies through our interactive quizzes and mini-games"
+    },
+    "legalNotice": {
+      "title": "Legal notice",
+      "descritpion": "This legal notice identifies the website publisher, its hosting provider, and the main information relating to use of the website"
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "This policy explains what data may be processed, why, and how you can exercise your rights."
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "description": "These terms govern access to and use of this portfolio website. By browsing the site, you agree to the rules below."
+    },
+    "motivationLetter": {
+      "title": "Cover Letter",
+      "description": "Cover letter by Paul Viandier."
+    },
+    "stats": {
+      "title": "GitHub Statistics",
+      "description": "Statistics for my open-source projects."
+    }
+  },
   "locales": {
     "fr": "French",
     "en": "English",
@@ -178,7 +214,8 @@
     "dark": "Dark",
     "system": "System",
     "themeChanging": "Changing theme...",
-    "languageChanging": "Changing language..."
+    "languageChanging": "Changing language...",
+    "faq": "FAQ"
   },
   "games": {
     "meta": {

@@ -11,16 +11,14 @@
 
 import FAQPageClient from './FAQPageClient';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const { locale } = await params;
-    const isFrench = locale === 'fr';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('pagesMetadata.faq');
 
     return {
-        title: isFrench ? 'FAQ' : 'FAQ',
-        description: isFrench
-            ? 'Vous trouverez ici les réponses aux questions les plus fréquentes concernant mon travail, mes compétences et mes projets'
-            : 'Here you will find answers to frequently asked questions about my work, skills, and projects',
+        title: t('title'),
+        description: t('description'),
         robots: { index: true, follow: true }
     };
 }

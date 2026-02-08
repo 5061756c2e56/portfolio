@@ -30,7 +30,7 @@ export default function Footer() {
 
     const navLinks = [
         { label: tNav('home'), href: '/', icon: Home },
-        { label: 'FAQ', href: '/faq', icon: HelpCircle },
+        { label: tNav('faq'), href: '/faq', icon: HelpCircle },
         { label: tNav('githubStats'), href: '/stats', icon: BarChart3 },
         { label: tNav('games'), href: '/games', icon: Gamepad2 },
         { label: tNav('status'), href: 'https://status.paulviandier.com/fr', icon: ChartLine }
