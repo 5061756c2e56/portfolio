@@ -1,6 +1,10 @@
+<div align="center">
+
 > ⚠️ **LICENCE PROPRIÉTAIRE**  
 > Ce dépôt est public mais **non open-source**.  
 > L’usage commercial est strictement interdit sans autorisation.
+
+</div>
 
 <div align="center">
 
@@ -235,7 +239,7 @@ Le Dockerfile utilise un build multi-stage pour optimiser la taille de l'image f
 ## 📝 Scripts disponibles
 ```bash
 # Développement
-pnpm devPortfolio     # next dev
+pnpm dev     # next dev
 
 # Build
 pnpm build            # prisma generate && next build
@@ -255,6 +259,7 @@ pnpm db:studio        # prisma studio
 
 # Utilitaire
 pnpm sync:commits     # tsx scripts/sync-commits.ts
+pnpm sync:locales     # tsx scripts/sync-locales.ts
 ```
 
 ---
