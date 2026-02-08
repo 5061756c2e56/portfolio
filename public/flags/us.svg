@@ -1,0 +1,18 @@
+<!--
+  - Copyright (c) 2025–2026 Paul Viandier
+  - All rights reserved.
+  -
+  - This source code is proprietary.
+  - Commercial use, redistribution, or modification is strictly prohibited
+  - without prior written permission.
+  -
+  - See the LICENSE file in the project root for full license terms.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+    <path fill="#bd3d44"
+          d="M0 0h640v37H0zm0 73.9h640v37H0zm0 73.8h640v37H0zm0 73.8h640v37H0zm0 73.9h640v37H0zm0 73.8h640v37H0zm0 73.8h640v37H0z"/>
+    <path fill="#fff"
+          d="M0 36.9h640v37H0zm0 73.8h640v37H0zm0 73.9h640v37H0zm0 73.8h640v37H0zm0 73.8h640v37H0zm0 73.9h640v37H0z"/>
+    <path fill="#192f5d" d="M0 0h256v258.5H0z"/>
+</svg>

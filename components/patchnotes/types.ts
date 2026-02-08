@@ -20,4 +20,3 @@ export type PatchnoteMeta = {
 export type Patchnote = PatchnoteMeta & { content: string };
 
 export type SortOrder = 'newest' | 'oldest';
-export type Lang = 'FR' | 'EN';

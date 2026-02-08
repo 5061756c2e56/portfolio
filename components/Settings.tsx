@@ -1,14 +1,3 @@
-/*
- * Copyright (c) 2025–2026 Paul Viandier
- * All rights reserved.
- *
- * This source code is proprietary.
- * Commercial use, redistribution, or modification is strictly prohibited
- * without prior written permission.
- *
- * See the LICENSE file in the project root for full license terms.
- */
-
 'use client';
 
 import {
@@ -18,11 +7,11 @@ import {
 
 import { useEffect, useState } from 'react';
 
-import { FlagEN, FlagFR } from '@/components/icons/flags';
+import { Flag } from '@/components/Flag';
 import { useLocaleContext } from '@/components/LocaleProvider';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/hooks/use-theme';
-import { usePathname } from '@/i18n/routing';
+import { defaultLocale, localeFlags, locales, usePathname } from '@/i18n/routing';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasBarleySugar } from '@/components/christmas/ChristmasBarleySugar';
 import { cn } from '@/lib/utils';
@@ -32,6 +21,7 @@ export default function Settings() {
     const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const t = useTranslations('nav');
+    const tAll = useTranslations();
     const { theme, setTheme } = useTheme();
     const christmasMode = useChristmasMode();
 
@@ -40,16 +30,16 @@ export default function Settings() {
         return () => window.cancelAnimationFrame(id);
     }, []);
 
-    const switchLocale = (newLocale: 'fr' | 'en') => {
+    const switchLocale = (newLocale: string) => {
         if (!mounted || newLocale === locale) return;
 
         showLocaleLoading();
 
-        const newPath = newLocale === 'fr' ? pathname : `/${newLocale}${pathname}`;
+        const newPath = newLocale === defaultLocale ? pathname : `/${newLocale}${pathname}`;
         window.location.href = newPath;
     };
 
-    const currentLocale: 'fr' | 'en' = mounted ? locale : 'fr';
+    const currentLocale = mounted ? locale : defaultLocale;
 
     if (!mounted) {
         return (
@@ -120,33 +110,27 @@ export default function Settings() {
             <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>{t('language')}</DropdownMenuLabel>
                 <DropdownMenuGroup>
-                    <DropdownMenuItem
-                        onClick={() => switchLocale('fr')}
-                        className={currentLocale === 'fr' ? 'bg-muted' : ''}
-                    >
-                        <FlagFR className="mr-2 h-5 w-5 shrink-0"/>
-                        {t('french')}
-                        {currentLocale === 'fr' && (
-                            <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                 strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        )}
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                        onClick={() => switchLocale('en')}
-                        className={currentLocale === 'en' ? 'bg-muted' : ''}
-                    >
-                        <FlagEN className="mr-2 h-5 w-5 shrink-0"/>
-                        {t('english')}
-                        {currentLocale === 'en' && (
-                            <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                 strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        )}
-                    </DropdownMenuItem>
+                    {locales.map(loc => (
+                        <DropdownMenuItem
+                            key={loc}
+                            onClick={() => switchLocale(loc)}
+                            className={currentLocale === loc ? 'bg-muted' : ''}
+                        >
+                            <Flag code={localeFlags[loc]} className="mr-2 h-5 w-5 shrink-0"/>
+                            {tAll(`locales.${loc}` as any)}
+                            {currentLocale === loc && (
+                                <svg
+                                    className="ml-auto h-4 w-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={2}
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            )}
+                        </DropdownMenuItem>
+                    ))}
                 </DropdownMenuGroup>
 
                 <DropdownMenuSeparator/>

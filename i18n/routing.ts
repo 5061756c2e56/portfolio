@@ -11,10 +11,13 @@
 
 import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
+import { defaultLocale, locales } from './generated-locales';
+
+export { type Locale, isLocale, locales, defaultLocale, localeFlags } from './generated-locales';
 
 export const routing = defineRouting({
-    locales: ['fr', 'en'],
-    defaultLocale: 'fr',
+    locales: [...locales],
+    defaultLocale,
     localePrefix: 'as-needed'
 });
 
@@ -24,11 +27,3 @@ export const {
     usePathname,
     useRouter
 } = createNavigation(routing);
-
-export type Locale = ( typeof routing.locales )[number];
-
-export function isLocale(value: string): value is Locale {
-    return (
-        routing.locales as readonly string[]
-    ).includes(value);
-}

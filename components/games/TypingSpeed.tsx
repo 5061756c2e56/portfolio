@@ -96,264 +96,26 @@ function formatColonsByLocale(input: string, locale: 'fr' | 'en') {
     return out.join('').replace(/\s+/g, ' ').trim();
 }
 
-const BANK = {
-    fr: {
-        quotes: [
-            'Ce matin, la ville semblait plus calme que d\'habitude.',
-            'Il suffit parfois d\'une bonne idée pour débloquer une journée.',
-            'La pluie n\'empêche pas d\'avancer ; elle change seulement le rythme.',
-            'Un café chaud, une playlist, et tout devient plus simple.',
-            'Les petits efforts répétés finissent toujours par payer.',
-            'Parfois, le meilleur plan, c\'est de commencer.',
-            'On ne contrôle pas tout, mais on peut choisir la prochaine action.',
-            'Un message inattendu peut remettre le sourire au bon moment.',
-            'La curiosité ouvre des portes que la routine ne voit pas.',
-            'Le silence aide à entendre ce qui compte vraiment.',
-            'Les meilleures décisions sont souvent les plus simples.',
-            'Une bonne nuit peut réparer une mauvaise journée.',
-            'Rater un détail n\'est pas grave ; abandonner l\'effort, oui.',
-            'Une promenade courte vaut mieux qu\'une hésitation longue.',
-            'On apprend plus vite quand on reste patient avec soi-même.',
-            'Ce que tu fais chaque jour te construit en secret.',
-            'Un objectif clair rend les distractions moins fortes.',
-            'Chaque minute gagnée s\'additionne sur une semaine.',
-            'Un bon rythme, c\'est celui qu\'on peut tenir longtemps.',
-            'Le progrès se voit rarement le jour même, mais il arrive.',
-            'On peut être fatigué et avancer quand même.',
-            'Le courage, c\'est souvent une petite action discrète.',
-            'Un bon timing peut transformer une idée ordinaire.',
-            'Respire, recommence, et laisse le temps faire son travail.',
-            'Une erreur est une information, pas une sentence.',
-            'La discipline est une forme de liberté.',
-            'La constance bat la motivation sur le long terme.',
-            'L\'essentiel, c\'est d\'être régulier, pas parfait.',
-            'Les bonnes habitudes rendent les journées plus légères.',
-            'Fais simple, puis améliore.',
-            'Quand c’est flou, note-le.',
-            'Une liste courte vaut mieux qu’un plan immense.',
-            'La meilleure énergie vient d\'un départ net.',
-            'La qualité naît des détails répétés.',
-            'Un petit pas maintenant, c’est énorme demain.',
-            'Une décision claire enlève beaucoup de stress.',
-            'Le calme est un super pouvoir moderne.',
-            'Tu peux changer d\'avis, pas ton effort.',
-            'Ce qui compte, c\'est la direction, pas la vitesse.',
-            'La persévérance n\'a pas besoin d\'être bruyante.',
-            'Quand tu doutes, reviens à l\'essentiel : une action.',
-            'Choisis une priorité, puis protège-la.',
-            'Un bon rangement peut libérer la tête.',
-            'La simplicité rend la vitesse possible.',
-            'On avance mieux quand on sait pourquoi.',
-            'Une pause courte évite une fatigue longue.',
-            'Le mieux est l\'ennemi du fait.',
-            'L\'élan vient après le premier pas.',
-            'Une tâche finie vaut mieux que dix commencées.',
-            'Aujourd\'hui, vise le progrès, pas la perfection.'
-        ],
-        numbers: [
-            'Objectif : 2 tâches importantes, puis 1 pause.',
-            'Rappel : 1 % par jour, c\'est énorme sur une année.',
-            'Plan : 25 minutes focus, 5 minutes off, et on recommence.',
-            'Budget : 120 € pour l’essentiel, 30 € pour le plaisir.',
-            'Trajet : 18 minutes à pied, 4 minutes de marge.',
-            'Routine : eau, lumière, mouvement, puis travail.',
-            'Score : 9 / 10 quand tu restes simple et constant.',
-            'Ce soir : une chose à terminer, puis repos.',
-            'Il est 07:45, et la journée vient juste de commencer.',
-            'Top 3 : dormir, bouger, créer.'
-        ],
-        punctuation: [
-            'D\'accord... mais cette fois, on y va doucement.',
-            'Tu sais quoi ? On fait simple : une chose à la fois.',
-            'Oui, c\'est possible ; non, ce n\'est pas magique.',
-            'Respire : inspire, expire, recommence.',
-            'Tu peux hésiter — mais tu avances quand même.',
-            'Ce n\'est pas parfait, et alors ?',
-            'Un pas, puis un autre ; c’est tout.',
-            'Parfois, "assez bien" est déjà excellent.',
-            'On se concentre ici : maintenant.',
-            'Ça arrive ; on corrige ; on continue.'
-        ],
-        coherent: {
-            starters: [
-                'Ce matin',
-                'Aujourd\'hui',
-                'Cette semaine',
-                'Quand tu veux avancer',
-                'Si tu manques d\'énergie',
-                'Quand tout s\'accélère',
-                'Quand tu veux rester concentré',
-                'Avant de te lancer',
-                'Si tu hésites',
-                'Quand tu veux progresser'
-            ],
-            actions: [
-                'choisis une seule priorité',
-                'écris une liste courte',
-                'commence par la tâche la plus simple',
-                'termine une étape, puis la suivante',
-                'coupe les distractions pendant 15 minutes',
-                'range ton espace pendant 2 minutes',
-                'respire et reprends un rythme stable',
-                'avance sans te juger',
-                'fais une pause puis reviens',
-                'garde une cadence que tu peux tenir'
-            ],
-            outcomes: [
-                'et tu verras la différence.',
-                'et tout devient plus fluide.',
-                'et tu gagnes du temps.',
-                'et tu gardes l\'élan.',
-                'et tu réduis le stress.',
-                'et tu fais mieux, sans forcer.',
-                'et tu restes clair.',
-                'et tu avances vraiment.',
-                'et tu retrouves du calme.',
-                'et tu finis plus souvent.'
-            ],
-            addOns: [
-                'Rappelle-toi que la régularité bat la vitesse.',
-                'Mieux vaut faire peu, mais le faire bien.',
-                'La constance transforme les journées.',
-                'Un petit pas maintenant vaut beaucoup plus qu’une intention.',
-                'L\'important est de continuer, même lentement.'
-            ]
-        }
-    },
-    en: {
-        quotes: [
-            'This morning, the city felt quieter than usual.',
-            'Sometimes one good idea unlocks the whole day.',
-            'Rain doesn\'t stop progress; it only changes the rhythm.',
-            'A warm drink and a playlist can reset everything.',
-            'Small efforts, repeated, always add up.',
-            'Sometimes the best plan is simply to begin.',
-            'You can\'t control everything, but you can choose the next move.',
-            'An unexpected message can bring a smile right on time.',
-            'Curiosity opens doors routine never notices.',
-            'Silence helps you hear what matters.',
-            'The best decisions are often the simplest ones.',
-            'A good night can fix a rough day.',
-            'Missing a detail is fine; quitting isn\'t.',
-            'A short walk beats a long hesitation.',
-            'You learn faster when you stay patient with yourself.',
-            'What you do daily builds you quietly.',
-            'A clear goal makes distractions weaker.',
-            'Every minute saved stacks up over a week.',
-            'A good pace is one you can keep.',
-            'Progress is rarely visible today, but it shows up.',
-            'You can be tired and move forward anyway.',
-            'Courage is often a small, quiet action.',
-            'Good timing can elevate an ordinary idea.',
-            'Breathe, restart, and let time do its work.',
-            'A mistake is information, not a sentence.',
-            'Discipline is a kind of freedom.',
-            'Consistency beats motivation long-term.',
-            'Regular beats perfect.',
-            'Good habits make days lighter.',
-            'Keep it simple, then improve.',
-            'When it\'s fuzzy, write it down.',
-            'A short list beats a huge plan.',
-            'Clean starts create clean energy.',
-            'Quality comes from repeated details.',
-            'A small step now is huge later.',
-            'A clear decision removes most stress.',
-            'Calm is a modern superpower.',
-            'You can change your mind, not your effort.',
-            'Direction matters more than speed.',
-            'Persistence doesn\'t need to be loud.',
-            'When you doubt, return to one next action.',
-            'Pick one priority and protect it.',
-            'A tidy space can clear the mind.',
-            'Simplicity makes speed possible.',
-            'You move better when you know why.',
-            'A short break prevents a long burnout.',
-            'Done beats perfect most days.',
-            'Momentum starts after the first step.',
-            'One finished task beats ten half-started.',
-            'Aim for progress, not perfection.'
-        ],
-        numbers: [
-            'Goal: 2 important tasks, then 1 break.',
-            'Reminder: 1% a day adds up over a year.',
-            'Plan: 25 minutes focus, 5 minutes off, repeat.',
-            'Budget: $120 essentials, $30 fun.',
-            'Commute: 18 minutes walking, 4 minutes buffer.',
-            'Routine: water, light, movement, then work.',
-            'Score: 9/10 when you keep it simple and steady.',
-            'Tonight: finish one thing, then rest.',
-            'It is 07:45, and the day just started.',
-            'Top 3: sleep, move, create.'
-        ],
-        punctuation: [
-            'Alright... but this time, we go gently.',
-            'You know what? Keep it simple: one thing at a time.',
-            'Yes, it\'s possible; no, it\'s not magic.',
-            'Breathe: in, out, repeat.',
-            'You can hesitate — and still move forward.',
-            'It\'s not perfect, so what?',
-            'One step, then another; that\'s it.',
-            'Sometimes "good enough" is already great.',
-            'Focus here: now.',
-            'It happens; we fix it; we continue.'
-        ],
-        coherent: {
-            starters: [
-                'This morning',
-                'Today',
-                'This week',
-                'When you want to move forward',
-                'If you\'re low on energy',
-                'When things speed up',
-                'When you want to stay focused',
-                'Before you start',
-                'If you hesitate',
-                'When you want to improve'
-            ],
-            actions: [
-                'pick one priority',
-                'write a short list',
-                'start with the easiest step',
-                'finish one step, then the next',
-                'cut distractions for 15 minutes',
-                'tidy your space for 2 minutes',
-                'breathe and return to a steady rhythm',
-                'move without judging yourself',
-                'take a short break, then come back',
-                'keep a pace you can maintain'
-            ],
-            outcomes: [
-                'and you\'ll feel the difference.',
-                'and everything gets smoother.',
-                'and you save time.',
-                'and you keep momentum.',
-                'and stress drops.',
-                'and you do better without forcing it.',
-                'and your mind stays clear.',
-                'and you actually move forward.',
-                'and calm comes back.',
-                'and you finish more often.'
-            ],
-            addOns: [
-                'Remember: consistency beats speed.',
-                'Do less, but do it well.',
-                'Steady habits shape the day.',
-                'A small step now beats a big intention later.',
-                'The point is to continue, even slowly.'
-            ]
-        }
-    }
-} as const;
+interface TypingBank {
+    quotes: string[];
+    numbers: string[];
+    punctuation: string[];
+    coherent: {
+        starters: string[];
+        actions: string[];
+        outcomes: string[];
+        addOns: string[];
+    };
+}
 
-function makeCoherentLine(locale: 'fr' | 'en') {
-    const c = BANK[locale].coherent;
+function makeCoherentLine(bank: TypingBank) {
+    const c = bank.coherent;
     let line = `${pick(c.starters)}, ${pick(c.actions)} ${pick(c.outcomes)}`;
     if (maybe(0.35)) line += ` ${pick(c.addOns)}`;
     return normalizeQuotes(line);
 }
 
-function generateChunk(locale: 'fr' | 'en', mode: Mode, difficulty: Difficulty, used: Set<string>) {
-    const bank = BANK[locale];
+function generateChunk(bank: TypingBank, locale: 'fr' | 'en', mode: Mode, difficulty: Difficulty, used: Set<string>) {
 
     const targetSentences =
         difficulty === 'easy' ? 2 + randInt(2) : difficulty === 'medium' ? 3 + randInt(2) : 4 + randInt(3);
@@ -364,14 +126,14 @@ function generateChunk(locale: 'fr' | 'en', mode: Mode, difficulty: Difficulty, 
 
         const roll = randInt(100);
         if (mode === 'quotes') {
-            s = roll < 75 ? pick(bank.quotes) : makeCoherentLine(locale);
+            s = roll < 75 ? pick(bank.quotes) : makeCoherentLine(bank);
         } else if (mode === 'numbers') {
-            s = roll < 65 ? pick(bank.numbers) : makeCoherentLine(locale);
+            s = roll < 65 ? pick(bank.numbers) : makeCoherentLine(bank);
         } else if (mode === 'punctuation') {
-            s = roll < 65 ? pick(bank.punctuation) : makeCoherentLine(locale);
+            s = roll < 65 ? pick(bank.punctuation) : makeCoherentLine(bank);
         } else {
             if (roll < 70) {
-                s = makeCoherentLine(locale);
+                s = makeCoherentLine(bank);
             } else if (roll < 82) {
                 s = pick(bank.quotes);
             } else if (roll < 92) {
@@ -385,7 +147,7 @@ function generateChunk(locale: 'fr' | 'en', mode: Mode, difficulty: Difficulty, 
 
         let tries = 0;
         while (used.has(s) && tries < 6) {
-            s = makeCoherentLine(locale);
+            s = makeCoherentLine(bank);
             s = formatColonsByLocale(s, locale);
             tries++;
         }
@@ -516,6 +278,7 @@ export default function TypingSpeed() {
     const t = useTranslations('games.typing');
     const rawLocale = useLocale();
     const locale: 'fr' | 'en' = rawLocale === 'fr' || rawLocale === 'en' ? rawLocale : 'fr';
+    const bank = t.raw('bank') as TypingBank;
 
     const [gameState, setGameState] = useState<GameState>('idle');
 
@@ -709,11 +472,11 @@ export default function TypingSpeed() {
         if (text.length - typedRef.current.length > need) return;
 
         const used = usedRef.current;
-        const more = generateChunk(locale, mode, difficulty, used);
+        const more = generateChunk(bank, locale, mode, difficulty, used);
         setText((prev) => (
             prev ? `${prev} ${more}` : more
         ));
-    }, [difficulty, locale, mode, text.length]);
+    }, [bank, difficulty, locale, mode, text.length]);
 
     const startGame = useCallback(() => {
         stopTimer();
@@ -737,8 +500,8 @@ export default function TypingSpeed() {
         setMistakeKeystrokes(0);
 
         const used = usedRef.current;
-        const initial = generateChunk(locale, mode, difficulty, used);
-        const second = generateChunk(locale, mode, difficulty, used);
+        const initial = generateChunk(bank, locale, mode, difficulty, used);
+        const second = generateChunk(bank, locale, mode, difficulty, used);
         const initialText = `${initial} ${second}`;
 
         setText(initialText);
@@ -757,7 +520,7 @@ export default function TypingSpeed() {
         }, 1000);
 
         requestAnimationFrame(() => inputRef.current?.focus());
-    }, [bestKey, difficulty, duration, finishRun, locale, mode, stopTimer]);
+    }, [bank, bestKey, difficulty, duration, finishRun, locale, mode, stopTimer]);
 
     const pushChars = useCallback(
         (raw: string) => {

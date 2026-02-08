@@ -12,39 +12,24 @@
 import type { PatchnoteMeta } from './types';
 import { HOME_ID } from './constants';
 
-export function getHomeMeta(locale: 'fr' | 'en'): PatchnoteMeta {
-    if (locale === 'fr') {
-        return {
-            id: HOME_ID,
-            title: 'Accueil',
-            displayDate: 'Guide',
-            fileDate: '',
-            description: ''
-        };
-    }
-    return {
-        id: HOME_ID,
-        title: 'Welcome',
-        displayDate: 'Guide',
-        fileDate: '',
-        description: ''
-    };
-}
+const homeMetaByLocale: Record<string, PatchnoteMeta> = {
+    fr: { id: HOME_ID, title: 'Accueil', displayDate: 'Guide', fileDate: '', description: '' },
+    en: { id: HOME_ID, title: 'Welcome', displayDate: 'Guide', fileDate: '', description: '' },
+    es: { id: HOME_ID, title: 'Inicio', displayDate: 'Guía', fileDate: '', description: '' }
+};
 
-export function getHomeGuide(locale: 'fr' | 'en') {
-    if (locale === 'fr') {
-        return {
-            badge: 'Guide rapide',
-            subtitle: 'Comment lire les patch-notes',
-            items: [
-                'Choisis un patch-note dans la liste à gauche.',
-                'Le point rouge = nouveauté non lue.',
-                'Utilise la recherche pour retrouver une fonctionnalité.',
-                'Change le tri en haut (récent ↔ ancien).'
-            ]
-        };
-    }
-    return {
+const homeGuideByLocale: Record<string, { badge: string; subtitle: string; items: string[] }> = {
+    fr: {
+        badge: 'Guide rapide',
+        subtitle: 'Comment lire les patch-notes',
+        items: [
+            'Choisis un patch-note dans la liste à gauche.',
+            'Le point rouge = nouveauté non lue.',
+            'Utilise la recherche pour retrouver une fonctionnalité.',
+            'Change le tri en haut (récent ↔ ancien).'
+        ]
+    },
+    en: {
         badge: 'Quick guide',
         subtitle: 'How to read the patch notes',
         items: [
@@ -53,5 +38,23 @@ export function getHomeGuide(locale: 'fr' | 'en') {
             'Use search to quickly find a feature.',
             'Change sorting at the top (newest ↔ oldest).'
         ]
-    };
+    },
+    es: {
+        badge: 'Guía rápida',
+        subtitle: 'Cómo leer las notas de parche',
+        items: [
+            'Elige una nota de parche en la lista de la izquierda.',
+            'El punto rojo = novedad no leída.',
+            'Usa la búsqueda para encontrar una funcionalidad.',
+            'Cambia el orden arriba (reciente ↔ antiguo).'
+        ]
+    }
+};
+
+export function getHomeMeta(locale: string): PatchnoteMeta {
+    return homeMetaByLocale[locale] ?? homeMetaByLocale['en']!;
+}
+
+export function getHomeGuide(locale: string) {
+    return homeGuideByLocale[locale] ?? homeGuideByLocale['en']!;
 }

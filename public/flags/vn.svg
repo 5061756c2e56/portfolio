@@ -1,0 +1,16 @@
+<!--
+  - Copyright (c) 2025–2026 Paul Viandier
+  - All rights reserved.
+  -
+  - This source code is proprietary.
+  - Commercial use, redistribution, or modification is strictly prohibited
+  - without prior written permission.
+  -
+  - See the LICENSE file in the project root for full license terms.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+    <rect width="640" height="480" fill="#DA251D"/>
+    <polygon fill="#FF0"
+             points="320,120 348.5,207.5 440,207.5 366,264 394.5,351 320,296 245.5,351 274,264 200,207.5 291.5,207.5"/>
+</svg>

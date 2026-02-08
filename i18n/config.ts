@@ -11,25 +11,22 @@
 
 import { getRequestConfig } from 'next-intl/server';
 import { routing } from './routing';
-
-function isRoutingLocale(value: string): value is ( typeof routing.locales )[number] {
-    return (
-        routing.locales as readonly string[]
-    ).includes(value);
-}
+import { isLocale } from './generated-locales';
 
 export default getRequestConfig(async ({ requestLocale }) => {
     let locale = await requestLocale;
 
-    if (!locale || !isRoutingLocale(locale)) {
+    if (!locale || !isLocale(locale)) {
         locale = routing.defaultLocale;
     }
 
+    const { _meta, ...messages } = (
+        await import(`./locales/${locale}.json`)
+    ).default;
+
     return {
         locale,
-        messages: (
-            await import(`./locales/${locale}.json`)
-        ).default,
+        messages,
         timeZone: 'Europe/Paris',
         now: new Date()
     };

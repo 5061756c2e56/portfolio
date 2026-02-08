@@ -189,7 +189,7 @@ function generateBinaryConversion(difficulty: Difficulty): MathChallenge {
         difficulty === 'easy' ? randInt(1, 16) : difficulty === 'medium' ? randInt(16, 64) : randInt(64, 256);
 
     const binary = decimal.toString(2);
-    const question = `${binary}₂ ${'en base 10'}`;
+    const question = `${binary}₂ {toBase10}`;
     const explanation = `${binary}₂ = ${decimal}₁₀`;
 
     const wrongAnswers = generateWrongAnswers(decimal, 3);
@@ -203,7 +203,7 @@ function generateHexConversion(difficulty: Difficulty): MathChallenge {
         difficulty === 'easy' ? randInt(10, 32) : difficulty === 'medium' ? randInt(32, 128) : randInt(128, 512);
 
     const hex = decimal.toString(16).toUpperCase();
-    const question = `0x${hex} ${'en base 10'}`;
+    const question = `0x${hex} {toBase10}`;
     const explanation = `0x${hex} = ${decimal}₁₀`;
 
     const wrongAnswers = generateWrongAnswers(decimal, 3);
@@ -218,7 +218,7 @@ function generateDecimalToBinary(difficulty: Difficulty): MathChallenge {
 
     const binary = decimal.toString(2);
     const answer = parseInt(binary, 10);
-    const question = `${decimal}₁₀ ${'en binaire'}`;
+    const question = `${decimal}₁₀ {toBinary}`;
     const explanation = `${decimal}₁₀ = ${binary}₂`;
 
     const wrongBinaries: number[] = [];
@@ -659,7 +659,11 @@ export default function SpeedMath() {
 
                 <div className="text-center py-8">
                     <div
-                        className="text-3xl sm:text-4xl font-bold font-mono break-words">{currentChallenge.question}</div>
+                        className="text-3xl sm:text-4xl font-bold font-mono break-words">
+                        {currentChallenge.question
+                            .replace('{toBase10}', t('conversion.toBase10'))
+                            .replace('{toBinary}', t('conversion.toBinary'))}
+                    </div>
                     <div className="text-sm text-muted-foreground mt-2">{t('equals')}</div>
                 </div>
 

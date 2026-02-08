@@ -14,8 +14,7 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { LoadingOverlay } from '@/components/LoadingOverlay';
-
-type Locale = 'fr' | 'en';
+import { type Locale, isLocale, defaultLocale } from '@/i18n/routing';
 
 type Messages = Record<string, unknown>;
 
@@ -38,10 +37,7 @@ export function useLocaleContext() {
 interface LocaleProviderProps {
     children: ReactNode;
     initialLocale: Locale;
-    messages: {
-        fr: Messages;
-        en: Messages;
-    };
+    messages: Record<string, Messages>;
 }
 
 const LOADING_KEY = 'locale-loading';
@@ -88,15 +84,13 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
     }, []);
 
     const setLocale = (newLocale: Locale) => {
-        if (newLocale === 'fr' || newLocale === 'en') {
+        if (isLocale(newLocale)) {
             setLocaleState(newLocale);
         }
     };
 
-    const validLocale = (
-        locale === 'fr' || locale === 'en'
-    ) ? locale : initialLocale;
-    const currentMessages = messages[validLocale] || messages[initialLocale] || messages.fr;
+    const validLocale = isLocale(locale) ? locale : initialLocale;
+    const currentMessages = messages[validLocale] || messages[initialLocale] || messages[defaultLocale];
 
     return (
         <LocaleContext.Provider value={{ locale: validLocale, setLocale, showLocaleLoading }}>

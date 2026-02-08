@@ -1,0 +1,29 @@
+<!--
+  - Copyright (c) 2025–2026 Paul Viandier
+  - All rights reserved.
+  -
+  - This source code is proprietary.
+  - Commercial use, redistribution, or modification is strictly prohibited
+  - without prior written permission.
+  -
+  - See the LICENSE file in the project root for full license terms.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+    <rect width="640" height="480" fill="#EE1C25"/>
+    <g fill="#FF0" transform="translate(107,160) scale(3)">
+        <polygon points="0,-30 6.9,-9.3 28.5,-9.3 11.3,3.5 17.6,24.3 0,11.7 -17.6,24.3 -11.3,3.5 -28.5,-9.3 -6.9,-9.3"/>
+    </g>
+    <g fill="#FF0" transform="translate(213,80) scale(1.2)">
+        <polygon points="0,-12 2.8,-3.7 11.4,-3.7 4.5,1.4 7.1,9.7 0,4.7 -7.1,9.7 -4.5,1.4 -11.4,-3.7 -2.8,-3.7"/>
+    </g>
+    <g fill="#FF0" transform="translate(253,120) scale(1.2)">
+        <polygon points="0,-12 2.8,-3.7 11.4,-3.7 4.5,1.4 7.1,9.7 0,4.7 -7.1,9.7 -4.5,1.4 -11.4,-3.7 -2.8,-3.7"/>
+    </g>
+    <g fill="#FF0" transform="translate(253,187) scale(1.2)">
+        <polygon points="0,-12 2.8,-3.7 11.4,-3.7 4.5,1.4 7.1,9.7 0,4.7 -7.1,9.7 -4.5,1.4 -11.4,-3.7 -2.8,-3.7"/>
+    </g>
+    <g fill="#FF0" transform="translate(213,227) scale(1.2)">
+        <polygon points="0,-12 2.8,-3.7 11.4,-3.7 4.5,1.4 7.1,9.7 0,4.7 -7.1,9.7 -4.5,1.4 -11.4,-3.7 -2.8,-3.7"/>
+    </g>
+</svg>

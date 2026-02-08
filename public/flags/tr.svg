@@ -1,0 +1,20 @@
+<!--
+  - Copyright (c) 2025–2026 Paul Viandier
+  - All rights reserved.
+  -
+  - This source code is proprietary.
+  - Commercial use, redistribution, or modification is strictly prohibited
+  - without prior written permission.
+  -
+  - See the LICENSE file in the project root for full license terms.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+    <rect width="640" height="480" fill="#E30A17"/>
+    <circle cx="240" cy="240" r="120" fill="#fff"/>
+    <circle cx="268" cy="240" r="96" fill="#E30A17"/>
+    <g fill="#fff" transform="translate(360,240)">
+        <polygon
+                points="0,-48 11.3,-14.8 46.4,-14.8 18.5,5.6 29.9,38.8 0,17.6 -29.9,38.8 -18.5,5.6 -46.4,-14.8 -11.3,-14.8"/>
+    </g>
+</svg>

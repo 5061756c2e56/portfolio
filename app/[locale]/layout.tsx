@@ -25,7 +25,7 @@ import Footer from '@/components/home/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
 import { ContactModalProvider } from '@/hooks/useContactModal';
-import { isLocale, Locale } from '@/i18n/routing';
+import { isLocale, Locale, locales } from '@/i18n/routing';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -142,12 +142,11 @@ export default async function RootLayout({
 
     const locale: Locale = paramLocale;
 
-    const messagesFr = (
-        await import('@/i18n/locales/fr.json')
-    ).default;
-    const messagesEn = (
-        await import('@/i18n/locales/en.json')
-    ).default;
+    const allMessages: Record<string, Record<string, unknown>> = {};
+    for (const loc of locales) {
+        const { _meta, ...msgs } = (await import(`@/i18n/locales/${loc}.json`)).default;
+        allMessages[loc] = msgs;
+    }
 
     return (
         <html lang={locale} suppressHydrationWarning>
@@ -237,7 +236,7 @@ export default async function RootLayout({
             <Snowflakes/>
             <div className="min-h-screen flex flex-col relative z-10">
                 <StructuredData/>
-                <LocaleProvider initialLocale={locale} messages={{ fr: messagesFr, en: messagesEn }}>
+                <LocaleProvider initialLocale={locale} messages={allMessages}>
                     <SkipLink/>
                     <ScrollToTop/>
 

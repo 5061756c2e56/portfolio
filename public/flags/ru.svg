@@ -1,0 +1,16 @@
+<!--
+  - Copyright (c) 2025–2026 Paul Viandier
+  - All rights reserved.
+  -
+  - This source code is proprietary.
+  - Commercial use, redistribution, or modification is strictly prohibited
+  - without prior written permission.
+  -
+  - See the LICENSE file in the project root for full license terms.
+  -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+    <rect width="640" height="160" fill="#fff"/>
+    <rect y="160" width="640" height="160" fill="#0039A6"/>
+    <rect y="320" width="640" height="160" fill="#D52B1E"/>
+</svg>

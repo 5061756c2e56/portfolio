@@ -13,12 +13,11 @@ import 'server-only';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-export type PatchnoteLang = 'FR' | 'EN';
 export type SortOrder = 'newest' | 'oldest';
 
 export type PatchnoteMeta = {
     id: string;
-    lang: PatchnoteLang;
+    lang: string;
     slug: string;
     fileDate: string;
     title: string;
@@ -30,16 +29,26 @@ export type Patchnote = PatchnoteMeta & { content: string };
 
 const ROOT = path.join(process.cwd(), 'patchnote');
 
-const VALID_LANGS: PatchnoteLang[] = ['FR', 'EN'];
+let _cachedLangs: string[] | null = null;
 
-const PATCHNOTE_ID_REGEX = /^(FR|EN)\/[a-zA-Z0-9_.-]+$/;
-
-export function isValidPatchnoteId(id: string): id is string {
-    return typeof id === 'string' && id.length <= 200 && PATCHNOTE_ID_REGEX.test(id) && !id.includes('..');
+async function getAvailableLangs(): Promise<string[]> {
+    if (_cachedLangs) return _cachedLangs;
+    const entries = await fs.readdir(ROOT, { withFileTypes: true });
+    _cachedLangs = entries.filter(e => e.isDirectory()).map(e => e.name);
+    return _cachedLangs;
 }
 
-export function isValidPatchnoteLang(lang: string): lang is PatchnoteLang {
-    return VALID_LANGS.includes(lang as PatchnoteLang);
+export async function isValidPatchnoteId(id: string): Promise<boolean> {
+    if (typeof id !== 'string' || id.length > 200 || id.includes('..')) return false;
+    const langs = await getAvailableLangs();
+    const [lang] = id.split('/');
+    if (!langs.includes(lang)) return false;
+    return /^[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.-]+$/.test(id);
+}
+
+export async function isValidPatchnoteLang(lang: string): Promise<boolean> {
+    const langs = await getAvailableLangs();
+    return langs.includes(lang);
 }
 
 export function isValidSortOrder(sort: string): sort is SortOrder {
@@ -72,8 +81,9 @@ function parseFileDateFromSlug(slug: string) {
     return m?.[1] ?? '1970-01-01';
 }
 
-export async function listPatchnotes(lang: PatchnoteLang, sort: SortOrder): Promise<PatchnoteMeta[]> {
-    if (!VALID_LANGS.includes(lang)) {
+export async function listPatchnotes(lang: string, sort: SortOrder): Promise<PatchnoteMeta[]> {
+    const valid = await isValidPatchnoteLang(lang);
+    if (!valid) {
         throw new Error('Invalid patchnote lang');
     }
     const dir = path.join(ROOT, lang);
@@ -119,7 +129,7 @@ export async function getPatchnoteById(id: string): Promise<Patchnote> {
 
     return {
         id,
-        lang: lang as PatchnoteLang,
+        lang,
         slug,
         fileDate: parseFileDateFromSlug(slug),
         title: extractTitle(md),

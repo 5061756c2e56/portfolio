@@ -1,16 +1,27 @@
-import { Loader2Icon } from "lucide-react"
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
 
-import { cn } from "@/lib/utils"
+import { Loader2Icon } from 'lucide-react';
 
-function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
-  return (
-    <Loader2Icon
-      role="status"
-      aria-label="Loading"
-      className={cn("size-4 animate-spin", className)}
-      {...props}
-    />
-  )
+import { cn } from '@/lib/utils';
+
+function Spinner({ className, ...props }: React.ComponentProps<'svg'>) {
+    return (
+        <Loader2Icon
+            role="status"
+            aria-label="Loading"
+            className={cn('size-4 animate-spin', className)}
+            {...props}
+        />
+    );
 }
 
-export { Spinner }
+export { Spinner };

@@ -16,15 +16,14 @@ import { useTranslations } from 'next-intl';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { QuizLevel, QuizQuestion } from '@/lib/quiz-data';
+import { QuizLevel, QuizQuestionMeta } from '@/lib/quiz-data';
 import { ArrowRight, CheckCircle2, Clock, XCircle } from 'lucide-react';
 
 interface QuizModalProps {
     isOpen: boolean;
     onClose: () => void;
     level: QuizLevel;
-    questions: QuizQuestion[];
-    locale: string;
+    questions: QuizQuestionMeta[];
 }
 
 interface AnswerResult {
@@ -37,8 +36,9 @@ interface AnswerResult {
 
 const TIME_PER_QUESTION = 30;
 
-export default function QuizModal({ isOpen, onClose, level, questions, locale }: QuizModalProps) {
+export default function QuizModal({ isOpen, onClose, level, questions }: QuizModalProps) {
     const t = useTranslations('quiz.modal');
+    const tq = useTranslations('quiz.questions');
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -149,21 +149,28 @@ export default function QuizModal({ isOpen, onClose, level, questions, locale }:
         onClose();
     };
 
-    const effectiveLocale: 'fr' | 'en' = locale === 'fr' ? 'fr' : 'en';
-
-    const getQuestionText = (question: QuizQuestion) => {
-        if (!question?.question) return '';
-        return effectiveLocale === 'fr' ? question.question.fr : question.question.en;
+    const getQuestionText = (question: QuizQuestionMeta) => {
+        return tq(`${question.id}.question`);
     };
 
-    const getOptions = (question: QuizQuestion) => {
-        if (!question?.options) return [];
-        return effectiveLocale === 'fr' ? question.options.fr : question.options.en;
+    const getOptions = (question: QuizQuestionMeta): string[] => {
+        if (!question.optionCount) return [];
+        const rawOptions: string[] = [];
+        for (let i = 0; i < question.optionCount; i++) {
+            rawOptions.push(tq(`${question.id}.options.${i}`));
+        }
+        if (question._shuffledIndices) {
+            return question._shuffledIndices.map(i => rawOptions[i]);
+        }
+        return rawOptions;
     };
 
-    const getExplanation = (question: QuizQuestion) => {
-        if (!question?.explanation) return null;
-        return effectiveLocale === 'fr' ? question.explanation.fr : question.explanation.en;
+    const getExplanation = (question: QuizQuestionMeta) => {
+        try {
+            return tq(`${question.id}.explanation`);
+        } catch {
+            return null;
+        }
     };
 
     if (!hasQuestions) return null;

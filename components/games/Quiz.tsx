@@ -12,7 +12,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import QuizModal from './QuizModal';
 import { getQuizQuestions, QuizLevel } from '@/lib/quiz-data';
@@ -69,10 +69,6 @@ function QuizCard({ title, description, questionCount, difficulty, onStart }: Qu
 
 export default function Quiz() {
     const t = useTranslations('quiz');
-    const rawLocale = useLocale();
-    const locale = (
-        rawLocale === 'fr' || rawLocale === 'en'
-    ) ? rawLocale : 'fr';
     const [selectedLevel, setSelectedLevel] = useState<QuizLevel>('easy');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -122,7 +118,6 @@ export default function Quiz() {
                 onClose={() => setIsModalOpen(false)}
                 level={selectedLevel}
                 questions={questions}
-                locale={locale}
             />
         </>
     );

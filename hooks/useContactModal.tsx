@@ -40,7 +40,6 @@ async function computeMailtoMode(): Promise<boolean> {
 
         return Number.isFinite(count) && count >= 200;
     } catch {
-        // si l’API tombe, on garde la modal normale
         return false;
     }
 }

@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
     const id = searchParams.get('id');
 
     if (id) {
-        if (!isValidPatchnoteId(id)) {
+        if (!(await isValidPatchnoteId(id))) {
             const { payload, status } = apiError('INVALID_PARAMS');
             return createJsonResponse(payload, { status }, securityCheck);
         }
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
         }
     }
 
-    if (!isValidPatchnoteLang(langRaw) || !isValidSortOrder(sortRaw)) {
+    if (!(await isValidPatchnoteLang(langRaw)) || !isValidSortOrder(sortRaw)) {
         const { payload, status } = apiError('INVALID_PARAMS');
         return createJsonResponse(payload, { status }, securityCheck);
     }

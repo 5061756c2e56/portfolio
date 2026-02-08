@@ -16,27 +16,17 @@ import { hardQuestions } from './questions/questions-hard';
 export type QuizLevel = 'easy' | 'medium' | 'hard';
 export type QuestionType = 'qcm' | 'true-false';
 
-export interface QuizQuestion {
+export interface QuizQuestionMeta {
     id: string;
     type: QuestionType;
-    question: {
-        fr: string;
-        en: string;
-    };
-    options?: {
-        fr: string[];
-        en: string[];
-    };
     correctAnswer: number;
-    explanation?: {
-        fr: string;
-        en: string;
-    };
+    optionCount?: number;
+    _shuffledIndices?: number[];
 }
 
 export interface QuizData {
     level: QuizLevel;
-    questions: QuizQuestion[];
+    questions: QuizQuestionMeta[];
 }
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -50,7 +40,7 @@ function shuffleArray<T>(array: T[]): T[] {
     return shuffled;
 }
 
-function selectRandomQuestions(questions: QuizQuestion[], count: number): QuizQuestion[] {
+function selectRandomQuestions(questions: QuizQuestionMeta[], count: number): QuizQuestionMeta[] {
     if (questions.length <= count) {
         return [...questions];
     }
@@ -58,27 +48,22 @@ function selectRandomQuestions(questions: QuizQuestion[], count: number): QuizQu
     return shuffled.slice(0, count);
 }
 
-function shuffleAnswers(question: QuizQuestion): QuizQuestion {
-    if (question.type === 'true-false' || !question.options) {
+function shuffleAnswers(question: QuizQuestionMeta): QuizQuestionMeta {
+    if (question.type === 'true-false' || !question.optionCount) {
         return { ...question };
     }
 
-    const optionsCount = question.options.fr.length;
+    const optionsCount = question.optionCount;
     const indices = Array.from({ length: optionsCount }, (_, i) => i);
     const shuffledIndices = shuffleArray(indices);
 
     const originalCorrectIndex = question.correctAnswer;
     const newCorrectIndex = shuffledIndices.indexOf(originalCorrectIndex);
 
-    const shuffledOptions = {
-        fr: shuffledIndices.map(i => question.options!.fr[i]),
-        en: shuffledIndices.map(i => question.options!.en[i])
-    };
-
     return {
         ...question,
-        options: shuffledOptions,
-        correctAnswer: newCorrectIndex
+        correctAnswer: newCorrectIndex,
+        _shuffledIndices: shuffledIndices
     };
 }
 
@@ -88,7 +73,7 @@ const QUESTION_COUNTS: Record<QuizLevel, number> = {
     hard: 50
 };
 
-const allQuestions: Record<QuizLevel, QuizQuestion[]> = {
+const allQuestions: Record<QuizLevel, QuizQuestionMeta[]> = {
     easy: easyQuestions,
     medium: mediumQuestions,
     hard: hardQuestions
@@ -109,7 +94,7 @@ export const quizData: Record<QuizLevel, QuizData> = {
     }
 };
 
-export function getQuizQuestions(level: QuizLevel): QuizQuestion[] {
+export function getQuizQuestions(level: QuizLevel): QuizQuestionMeta[] {
     const pool = allQuestions[level];
     const count = QUESTION_COUNTS[level];
     const selected = selectRandomQuestions(pool, count);
