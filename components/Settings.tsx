@@ -123,27 +123,32 @@ export default function Settings() {
             <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>{t('language')}</DropdownMenuLabel>
                 <DropdownMenuGroup>
-                    {locales.map(loc => (
-                        <DropdownMenuItem
-                            key={loc}
-                            onClick={() => switchLocale(loc)}
-                            className={currentLocale === loc ? 'bg-muted' : ''}
-                        >
-                            <Flag code={localeFlags[loc]} className="mr-2 h-5 w-5 shrink-0"/>
-                            {tAll(`locales.${loc}` as Parameters<typeof tAll>[0])}
-                            {currentLocale === loc && (
-                                <svg
-                                    className="ml-auto h-4 w-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={2}
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                                </svg>
-                            )}
-                        </DropdownMenuItem>
-                    ))}
+                    <div
+                        className="max-h-36 overflow-y-auto overscroll-contain scrollbar-custom"
+                        onWheel={e => e.stopPropagation()}
+                    >
+                        {locales.map(loc => (
+                            <DropdownMenuItem
+                                key={loc}
+                                onClick={() => switchLocale(loc)}
+                                className={currentLocale === loc ? 'bg-muted' : ''}
+                            >
+                                <Flag code={localeFlags[loc]} className="mr-2 h-5 w-5 shrink-0"/>
+                                {tAll(`locales.${loc}` as Parameters<typeof tAll>[0])}
+                                {currentLocale === loc && (
+                                    <svg
+                                        className="ml-auto h-4 w-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={2}
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                )}
+                            </DropdownMenuItem>
+                        ))}
+                    </div>
                 </DropdownMenuGroup>
 
                 <DropdownMenuSeparator/>

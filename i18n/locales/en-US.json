@@ -1,9 +1,20 @@
 {
   "_meta": {
     "name": "English",
-    "flag": "gb"
+    "flag": "us",
+    "ogLocale": "en_US"
+  },
+  "manifest": {
+    "name": "Paul Viandier's Portfolio",
+    "description": "Portfolio of Paul Viandier, web developer in training, passionate about cybersecurity and fullstack development"
   },
   "pagesMetadata": {
+    "layout": {
+      "description": "Web developer passionate about cybersecurity. In this portfolio, I showcase my projects, web development skills, TypeScript, React, Next.js and cybersecurity.",
+      "ogTitle": "Paul Viandier - Web Developer & Cybersecurity Enthusiast",
+      "ogDescription": "Self-taught for several years, I am training in development, cybersecurity, and systems administration, three fields that I link together.",
+      "siteName": "Paul Viandier's Portfolio"
+    },
     "projects": {
       "portfolio": {
         "title": "Portfolio Project",
@@ -41,7 +52,8 @@
   },
   "locales": {
     "fr": "French",
-    "en": "English",
+    "en-US": "English (US)",
+    "en-GB": "English (GB)",
     "es": "Spanish"
   },
   "hero": {
@@ -200,8 +212,6 @@
     "status": "Status",
     "loading": "Loading...",
     "language": "Language",
-    "french": "French",
-    "english": "English",
     "closeMenu": "Close menu",
     "menu": "Menu",
     "settings": "Settings",

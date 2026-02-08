@@ -18,13 +18,14 @@ import { Toaster } from '@/components/ui/sonner';
 import { Snowflakes } from '@/components/christmas/Snowflakes';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import '../globals.css';
 import PatchnotesWidget from '@/components/patchnotes/PatchnotesWidget';
 import Footer from '@/components/home/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
 import { ContactModalProvider } from '@/hooks/useContactModal';
-import { isLocale, Locale, locales } from '@/i18n/routing';
+import { defaultLocale, isLocale, Locale, locales, ogLocaleMap } from '@/i18n/routing';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -36,11 +37,26 @@ const geistMono = Geist_Mono({
     subsets: ['latin']
 });
 
+function localeUrl(baseUrl: string, loc: string): string {
+    return loc === defaultLocale ? baseUrl : `${baseUrl}/${loc}`;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
+    const t = await getTranslations('pagesMetadata.layout');
 
     const baseUrl = 'https://paulviandier.com';
-    const isFrench = locale === 'fr';
+    const url = localeUrl(baseUrl, locale);
+    const ogLocale = ogLocaleMap[locale as Locale] ?? 'en_US';
+    const alternateOgLocales = locales
+        .filter(l => l !== locale)
+        .map(l => ogLocaleMap[l]);
+
+    const languages: Record<string, string> = {};
+    for (const l of locales) {
+        languages[l] = localeUrl(baseUrl, l);
+    }
+    languages['x-default'] = baseUrl;
 
     return {
         metadataBase: new URL(baseUrl),
@@ -48,22 +64,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             default: 'Paul Viandier',
             template: '%s - Paul Viandier'
         },
-        description: isFrench
-            ? 'Développeur web passionné de cybersécurité. Dans ce portfolio, je présente mes projets, compétences en développement web, TypeScript, React, Next.js et cybersécurité. Découvrez le portfolio de Paul Viandier, développeur web fullstack en formation.'
-            : 'Web developer passionate about cybersecurity. In this portofolio, I show my projects, web development skills, TypeScript, React, Next.js and cybersecurity.',
+        description: t('description'),
         authors: [{ name: 'Paul Viandier' }],
         openGraph: {
             type: 'website',
-            locale: isFrench ? 'fr_FR' : 'en_US',
-            alternateLocale: isFrench ? 'en_US' : 'fr_FR',
-            url: `${baseUrl}${isFrench ? '' : '/en'}`,
-            siteName: 'Portfolio de Paul Viandier',
-            title: isFrench
-                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité'
-                : 'Paul Viandier - Web Developer & Cybersecurity Enthusiast',
-            description: isFrench
-                ? 'Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l’administration systèmes, trois domaines que je relie entre eux.'
-                : 'Self-taught for several years, I am training in development, cybersecurity, and systems administration, three fields that I link together.',
+            locale: ogLocale,
+            alternateLocale: alternateOgLocales,
+            url,
+            siteName: t('siteName'),
+            title: t('ogTitle'),
+            description: t('ogDescription'),
             images: [
                 {
                     url: `${baseUrl}/vPsl6pa.png`,
@@ -76,15 +86,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         },
         twitter: {
             card: 'summary_large_image',
-            title: isFrench
-                ? 'Paul Viandier - Développeur Web & Passionné de Cybersécurité'
-                : 'Paul Viandier - Web Developer & Cybersecurity Enthusiast',
-            description: isFrench
-                ? 'Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l’administration systèmes, trois domaines que je relie entre eux.'
-                : 'Self-taught for several years, I am training in development, cybersecurity, and systems administration, three fields that I link together.',
-            images: [
-                `${baseUrl}/vPsl6pa.png`
-            ],
+            title: t('ogTitle'),
+            description: t('ogDescription'),
+            images: [`${baseUrl}/vPsl6pa.png`],
             creator: '@paulviandier'
         },
         robots: {
@@ -92,12 +96,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             follow: true
         },
         alternates: {
-            canonical: `${baseUrl}${isFrench ? '' : '/en'}`,
-            languages: {
-                'fr': `${baseUrl}`,
-                'en': `${baseUrl}/en`,
-                'x-default': `${baseUrl}`
-            }
+            canonical: url,
+            languages
         },
         verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ? {
             google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
@@ -114,12 +114,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             ],
             shortcut: '/pfp.png'
         },
-        manifest: '/manifest.webmanifest',
+        manifest: `/${locale}/manifest.webmanifest`,
         other: {
             'theme-color': '#fafafa',
             'format-detection': 'telephone=no',
             'apple-mobile-web-app-capable': 'yes',
-            'apple-mobile-web-app-title': 'Portfolio de Paul Viandier'
+            'apple-mobile-web-app-title': t('siteName')
         }
     };
 }

@@ -1,0 +1,3988 @@
+{
+  "_meta": {
+    "name": "English",
+    "flag": "gb",
+    "ogLocale": "en_US"
+  },
+  "manifest": {
+    "name": "Paul Viandier's Portfolio",
+    "description": "Portfolio of Paul Viandier, trainee web developer, passionate about cyber security and full-stack development"
+  },
+  "pagesMetadata": {
+    "layout": {
+      "description": "Web developer passionate about cyber security. In this portfolio, I showcase my projects, web development skills, TypeScript, React, Next.js and cyber security.",
+      "ogTitle": "Paul Viandier - Web Developer & Cyber Security Enthusiast",
+      "ogDescription": "Self-taught for several years, I am training in development, cyber security and systems administration — three fields I bring together.",
+      "siteName": "Paul Viandier's Portfolio"
+    },
+    "projects": {
+      "portfolio": {
+        "title": "Portfolio Project",
+        "description": "A modern, high-performance portfolio designed to showcase my web development skills and offer a polished user experience"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Here you will find answers to frequently asked questions about my work, skills and projects"
+    },
+    "games": {
+      "title": "Games & Challenges",
+      "description": "Test your knowledge of web development, cyber security and modern technologies through our interactive quizzes and mini-games"
+    },
+    "legalNotice": {
+      "title": "Legal notice",
+      "descritpion": "This legal notice identifies the website publisher, its hosting provider, and the key information relating to the use of the website"
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "This policy explains what data may be processed, why, and how you can exercise your rights."
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "description": "These terms govern access to and use of this portfolio website. By browsing the site, you agree to the rules below."
+    },
+    "motivationLetter": {
+      "title": "Cover Letter",
+      "description": "Cover letter by Paul Viandier."
+    },
+    "stats": {
+      "title": "GitHub Statistics",
+      "description": "Statistics for my open-source projects."
+    }
+  },
+  "locales": {
+    "fr": "French",
+    "en-US": "English (US)",
+    "en-GB": "English (GB)",
+    "es": "Spanish"
+  },
+  "hero": {
+    "title": "Paul Viandier",
+    "subtitle": "Web Developer & Cyber Security Enthusiast",
+    "description": "Self-taught for several years, I am training in development, cyber security and systems administration — three fields I bring together.",
+    "available": "Available for new opportunities",
+    "location": "France",
+    "role": "Web Integrator",
+    "viewCVButton": "View my CV",
+    "downloadCVButton": "Download my CV",
+    "viewLMButton": "View my cover letter",
+    "downloadLMButton": "Download my cover letter",
+    "viewButtonDropdown": "View the web version",
+    "quickActionsHint": "Right-click or long-press to view quick actions"
+  },
+  "about": {
+    "title": "About me",
+    "content": "I am Paul Viandier, a web developer passionate about cyber security. Currently training as a web integrator through a work-study programme, I am building a solid foundation in development and integration. My goal is to continue training as a full-stack web developer in order to broaden my skills, understand the full production chain of a web project, and be able to handle both the front end and back end. As a web developer, I specialise in creating modern web applications with TypeScript, React and Next.js. My portfolio showcases my projects and web development skills."
+  },
+  "skills": {
+    "title": "Skills",
+    "currentLevel": "Current level",
+    "level": "Level",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "goToSkill": "Go to skill",
+    "categories": {
+      "all": "All",
+      "frontend": "Front end",
+      "backend": "Back end",
+      "tools": "Tools",
+      "other": "Other"
+    },
+    "descriptions": {
+      "HTML5": "Standard markup language for structuring web content",
+      "JavaScript": "Programming language for creating interactive web pages",
+      "TypeScript": "A superset of JavaScript with static typing for more robust development",
+      "CSS": "Styling language for formatting and animating web pages",
+      "React": "JavaScript library for building reactive user interfaces",
+      "Tailwind CSS": "Utility-first CSS framework for fast, modern development",
+      "NextJS": "React framework for high-performance web applications with server-side rendering",
+      "Responsive Design": "Adaptive design for an optimal experience on all devices",
+      "NodeJS": "JavaScript runtime environment for server-side execution",
+      "PostgreSQL": "Open-source relational database management system",
+      "API REST": "Architecture for creating interoperable web services",
+      "Git": "Distributed version control system for managing source code",
+      "GitHub": "Hosting and collaboration platform for development projects",
+      "EmailJS": "Service for sending emails directly from the front end",
+      "Cybersecurity": "Practices and technologies for protecting computer systems",
+      "SEO": "Search engine optimisation to improve visibility"
+    }
+  },
+  "pagination": {
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "projects": {
+    "title": "Projects",
+    "buttonGitHub": "GitHub",
+    "buttonVisitSite": "Visit the website",
+    "buttonDetail": "View project details",
+    "searchPlaceholder": "Search for a project...",
+    "allTechnologies": "All technologies",
+    "noResults": "No projects found",
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Personal portfolio website built with Next.js and TypeScript, showcasing my skills and projects."
+    },
+    "webSecurity": {
+      "title": "Web Security",
+      "description": "Web security suite for protecting and managing IT systems."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "sendMessage": "Send a message",
+    "modal": {
+      "loading": "Loading...",
+      "title": "Contact me",
+      "name": "Name",
+      "namePlaceholder": "Viandier Paul",
+      "email": "Email",
+      "emailPlaceholder": "contact@paulviandier.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Work-study placement - A great company",
+      "message": "Message",
+      "messagePlaceholder": "Type your message here...",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "toastSuccess": "Message sent successfully!",
+      "error": "An error occurred. Please try again.",
+      "errorNetwork": "Connection error. Please check your internet connection and try again.",
+      "errorConfig": "Configuration error. Please contact the site administrator.",
+      "close": "Close",
+      "errorDialog": {
+        "title": "Error sending email",
+        "description": "Would you like to use your email client to send your message?",
+        "confirm": "Open email client",
+        "cancel": "Cancel"
+      },
+      "validation": {
+        "nameMin": "Name must be at least 3 characters long",
+        "nameMax": "Name must not exceed 100 characters",
+        "emailMissingAt": "A valid email address is required",
+        "emailMissingDomain": "Please enter the missing part after the @ symbol",
+        "emailMissingTld": "The email address must include a dot after the @",
+        "emailInvalid": "Please enter a valid email address",
+        "subjectMin": "Subject must be at least 10 characters long",
+        "subjectMax": "Subject must not exceed 200 characters",
+        "messageMin": "Message must be at least 20 characters long",
+        "messageMax": "Message must not exceed 5,000 characters"
+      }
+    },
+    "mailtoDialog": {
+      "title": "Open email client",
+      "description": "You will be redirected to your email client to send an email.",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "error": "No email client is configured on your device."
+    }
+  },
+  "finalCTA": {
+    "title": "Have a question, or want to try the interactive experience live?",
+    "description": "The FAQ covers the essentials: how it works, what it contains, and quick answers. The games section offers mini-challenges such as Memory Match or Typing Speed to experience responsiveness, UX and interactivity in action.",
+    "faqButton": "Go to the FAQ",
+    "gamesButton": "Explore the games"
+  },
+  "footer": {
+    "paulViandier": "Paul Viandier",
+    "copyright": "All rights reserved",
+    "license": "Under a proprietary licence",
+    "navigationTitle": "Navigation",
+    "legalTitle": "Legal",
+    "terms": "Terms of Use",
+    "legalNotice": "Legal Notice",
+    "privacy": "Privacy Policy",
+    "contact": "Contact me",
+    "madeWith": "Made with",
+    "by": "by"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "games": "Games",
+    "quiz": "Quiz",
+    "projects": "Projects",
+    "statsGithub": "GitHub Stats",
+    "github-activities": "GitHub activity",
+    "contact": "Contact",
+    "status": "Status",
+    "loading": "Loading...",
+    "language": "Language",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "settings": "Settings",
+    "email": "Email",
+    "github": "GitHub",
+    "githubStats": "GitHub statistics",
+    "linkedin": "LinkedIn",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "themeChanging": "Changing theme...",
+    "languageChanging": "Changing language...",
+    "faq": "FAQ"
+  },
+  "games": {
+    "meta": {
+      "title": "Games & Challenges",
+      "description": "Test your web development knowledge with our interactive quizzes and mini-games."
+    },
+    "hero": {
+      "title": "Games & Challenges",
+      "description": "Test your knowledge of web development, cyber security and modern technologies through our interactive quizzes and mini-games.",
+      "badge": "Interactive mini-games"
+    },
+    "gameTypes": {
+      "quiz": {
+        "title": "Tech Quiz",
+        "description": "Test your web development and cyber security knowledge"
+      },
+      "memory": {
+        "title": "Memory Match",
+        "description": "Find the hidden tech icon pairs"
+      },
+      "typing": {
+        "title": "Typing Speed",
+        "description": "Test your code typing speed"
+      },
+      "bughunt": {
+        "title": "Bug Hunt",
+        "subtitle": "Find the bug in the code"
+      },
+      "wordle": {
+        "title": "Tech Wordle",
+        "subtitle": "Guess the tech word in 6 tries"
+      },
+      "mentalcpu": {
+        "title": "Mental CPU",
+        "subtitle": "Fast maths under pressure"
+      },
+      "regexrush": {
+        "title": "Regex Rush",
+        "subtitle": "Pick the best regex for real-world cases"
+      },
+      "httpdetective": {
+        "title": "HTTP Detective",
+        "subtitle": "Find the cause and the right fix"
+      },
+      "sqlsleuth": {
+        "title": "SQL Sleuth",
+        "subtitle": "Spot the bug or the correct query"
+      }
+    },
+    "memory": {
+      "title": "Memory Match",
+      "subtitle": "Find all the pairs",
+      "levels": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "restart": "Restart",
+      "playAgain": "Play Again",
+      "complete": {
+        "title": "Congratulations!",
+        "stats": "Completed in {moves} moves and {time}"
+      }
+    },
+    "typing": {
+      "title": "Typing Speed",
+      "subtitle": "Type as fast as you can",
+      "start": "Start",
+      "restart": "Restart",
+      "playAgain": "Play Again",
+      "pressStart": "Press Start to begin...",
+      "typeHere": "Type here...",
+      "results": {
+        "title": "Time's up!",
+        "accuracy": "Accuracy",
+        "snippets": "Snippets",
+        "errors": "Errors",
+        "time": "Time",
+        "best": "Highest score"
+      },
+      "levels": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "modes": {
+        "mixed": "Mixed",
+        "quotes": "Quotes",
+        "numbers": "Numbers",
+        "punctuation": "Punctuation"
+      },
+      "reset": "Reset",
+      "bank": {
+        "quotes": [
+          "This morning, the city felt quieter than usual.",
+          "Sometimes one good idea unlocks the whole day.",
+          "Rain doesn't stop progress; it only changes the rhythm.",
+          "A warm drink and a playlist can reset everything.",
+          "Small efforts, repeated, always add up.",
+          "Sometimes the best plan is simply to begin.",
+          "You can't control everything, but you can choose the next move.",
+          "An unexpected message can bring a smile right on time.",
+          "Curiosity opens doors routine never notices.",
+          "Silence helps you hear what matters.",
+          "The best decisions are often the simplest ones.",
+          "A good night can fix a rough day.",
+          "Missing a detail is fine; quitting isn't.",
+          "A short walk beats a long hesitation.",
+          "You learn faster when you stay patient with yourself.",
+          "What you do daily builds you quietly.",
+          "A clear goal makes distractions weaker.",
+          "Every minute saved stacks up over a week.",
+          "A good pace is one you can keep.",
+          "Progress is rarely visible today, but it shows up.",
+          "You can be tired and move forward anyway.",
+          "Courage is often a small, quiet action.",
+          "Good timing can elevate an ordinary idea.",
+          "Breathe, restart, and let time do its work.",
+          "A mistake is information, not a sentence.",
+          "Discipline is a kind of freedom.",
+          "Consistency beats motivation long-term.",
+          "Regular beats perfect.",
+          "Good habits make days lighter.",
+          "Keep it simple, then improve.",
+          "When it's fuzzy, write it down.",
+          "A short list beats a huge plan.",
+          "Clean starts create clean energy.",
+          "Quality comes from repeated details.",
+          "A small step now is huge later.",
+          "A clear decision removes most stress.",
+          "Calm is a modern superpower.",
+          "You can change your mind, not your effort.",
+          "Direction matters more than speed.",
+          "Persistence doesn't need to be loud.",
+          "When you doubt, return to one next action.",
+          "Pick one priority and protect it.",
+          "A tidy space can clear the mind.",
+          "Simplicity makes speed possible.",
+          "You move better when you know why.",
+          "A short break prevents a long burnout.",
+          "Done beats perfect most days.",
+          "Momentum starts after the first step.",
+          "One finished task beats ten half-started.",
+          "Aim for progress, not perfection."
+        ],
+        "numbers": [
+          "Goal: 2 important tasks, then 1 break.",
+          "Reminder: 1% a day adds up over a year.",
+          "Plan: 25 minutes focus, 5 minutes off, repeat.",
+          "Budget: $120 essentials, $30 fun.",
+          "Commute: 18 minutes walking, 4 minutes buffer.",
+          "Routine: water, light, movement, then work.",
+          "Score: 9/10 when you keep it simple and steady.",
+          "Tonight: finish one thing, then rest.",
+          "It is 07:45, and the day just started.",
+          "Top 3: sleep, move, create."
+        ],
+        "punctuation": [
+          "Alright... but this time, we go gently.",
+          "You know what? Keep it simple: one thing at a time.",
+          "Yes, it's possible; no, it's not magic.",
+          "Breathe: in, out, repeat.",
+          "You can hesitate — and still move forward.",
+          "It's not perfect, so what?",
+          "One step, then another; that's it.",
+          "Sometimes \"good enough\" is already great.",
+          "Focus here: now.",
+          "It happens; we fix it; we continue."
+        ],
+        "coherent": {
+          "starters": [
+            "This morning",
+            "Today",
+            "This week",
+            "When you want to move forward",
+            "If you're low on energy",
+            "When things speed up",
+            "When you want to stay focused",
+            "Before you start",
+            "If you hesitate",
+            "When you want to improve"
+          ],
+          "actions": [
+            "pick one priority",
+            "write a short list",
+            "start with the easiest step",
+            "finish one step, then the next",
+            "cut distractions for 15 minutes",
+            "tidy your space for 2 minutes",
+            "breathe and return to a steady rhythm",
+            "move without judging yourself",
+            "take a short break, then come back",
+            "keep a pace you can maintain"
+          ],
+          "outcomes": [
+            "and you'll feel the difference.",
+            "and everything gets smoother.",
+            "and you save time.",
+            "and you keep momentum.",
+            "and stress drops.",
+            "and you do better without forcing it.",
+            "and your mind stays clear.",
+            "and you actually move forward.",
+            "and calm comes back.",
+            "and you finish more often."
+          ],
+          "addOns": [
+            "Remember: consistency beats speed.",
+            "Do less, but do it well.",
+            "Steady habits shape the day.",
+            "A small step now beats a big intention later.",
+            "The point is to continue, even slowly."
+          ]
+        }
+      }
+    },
+    "bughunt": {
+      "title": "Bug Hunt",
+      "subtitle": "Find the bug in the code",
+      "restart": "Restart",
+      "next": "Next question",
+      "prompt": "What's the bug?",
+      "question": "Question {current}/{total}",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "Incorrect"
+      },
+      "challenges": {
+        "1": {
+          "options": [
+            "The function should validate types",
+            "A semicolon is missing",
+            "The sum variable is badly named",
+            "You must use let instead of function"
+          ],
+          "explanation": "JavaScript concatenates when one operand is a string: 5 + \"10\" becomes \"510\". Convert/validate types to add numbers."
+        },
+        "2": {
+          "options": [
+            "Use forEach instead of for",
+            "The condition should be i < users.length",
+            "users should be a let",
+            "console.log is obsolete"
+          ],
+          "explanation": "i <= users.length accesses users[2], which is undefined. Use i < users.length."
+        },
+        "3": {
+          "options": [
+            "Division by zero if numbers is empty",
+            "Use sum() instead of a loop",
+            "total should be initialized to None",
+            "len() doesn’t work on lists"
+          ],
+          "explanation": "If numbers is empty, len(numbers) = 0 → division by zero."
+        },
+        "4": {
+          "options": [
+            "GROUP BY is missing",
+            "ORDER BY should specify ASC or DESC",
+            "SELECT * is inefficient but syntactically valid",
+            "LIMIT must come before ORDER BY"
+          ],
+          "explanation": "SELECT * works, but it’s inefficient. Prefer selecting only the needed columns."
+        },
+        "5": {
+          "options": [
+            "Use == instead of = in the if",
+            "printf should be cout",
+            "x should be a float",
+            "An else is missing"
+          ],
+          "explanation": "x = 10 is an assignment, not a comparison. Use x == 10."
+        },
+        "6": {
+          "options": [
+            "Missing await before fetch",
+            "async is useless here",
+            "json() should be JSON.parse()",
+            "fetch doesn’t return a promise"
+          ],
+          "explanation": "fetch() returns a promise. You must await fetch() to get the response."
+        },
+        "7": {
+          "options": [
+            "It should be self.name = name",
+            "__init__ should be __new__",
+            "name is a reserved word",
+            "print can’t take arguments"
+          ],
+          "explanation": "name = name creates a local variable. Use self.name = name for an instance attribute."
+        },
+        "8": {
+          "options": [
+            "map does not mutate the original array",
+            "push after map changes doubled",
+            "You must use forEach",
+            "length doesn’t exist on arrays"
+          ],
+          "explanation": "No bug! map() creates a new array. push(6) mutates nums, not doubled."
+        },
+        "9": {
+          "options": [
+            "except should specify ZeroDivisionError",
+            "result isn’t accessible after try",
+            "You need finally",
+            "print should be return"
+          ],
+          "explanation": "A bare except catches ALL exceptions. It’s better to catch ZeroDivisionError specifically."
+        },
+        "10": {
+          "options": [
+            "Use .equals() to compare Strings",
+            "new String() is obsolete",
+            "System.out should be console.log",
+            "A return is missing"
+          ],
+          "explanation": "== compares object references. To compare contents, use s1.equals(s2)."
+        },
+        "11": {
+          "options": [
+            "No way to stop the interval",
+            "count should be const",
+            "increment() must return count",
+            "setInterval doesn’t exist"
+          ],
+          "explanation": "setInterval returns an ID you should store so you can call clearInterval() later."
+        },
+        "12": {
+          "options": [
+            "Mutable default arguments are shared",
+            "append() doesn’t work",
+            "return is useless",
+            "items should be a tuple"
+          ],
+          "explanation": "The default list [] is created once. list1 and list2 share the same list."
+        },
+        "13": {
+          "options": [
+            "this is lost when extracting the method",
+            "getName should be an arrow function",
+            "Use const fn = obj.getName.bind(obj)",
+            "All of the above are true"
+          ],
+          "explanation": "fn() loses the this context. Fix by using bind(obj), an arrow wrapper, or calling obj.getName()."
+        },
+        "14": {
+          "options": [
+            "Array out-of-bounds (arr[3] is invalid)",
+            "Missing return 0",
+            "Use printf instead of for",
+            "int should be float"
+          ],
+          "explanation": "arr has 3 elements (indices 0,1,2). i <= 3 accesses arr[3], which is out of bounds."
+        },
+        "15": {
+          "options": [
+            "Missing GROUP BY user_id",
+            "COUNT(*) should be SUM(*)",
+            "WHERE must come after GROUP BY",
+            "You need DISTINCT"
+          ],
+          "explanation": "With an aggregate (COUNT), you need GROUP BY for non-aggregated columns."
+        },
+        "16": {
+          "options": [
+            "Mixing await and .then() is redundant",
+            "catch doesn’t work with await",
+            "fetch doesn’t return a promise",
+            "You must use async/await everywhere"
+          ],
+          "explanation": "Either use await with try/catch or use .then()/.catch(). Mixing both is confusing."
+        },
+        "17": {
+          "options": [
+            "Missing new before Animal",
+            "constructor should be __init__",
+            "this is invalid",
+            "class should be function"
+          ],
+          "explanation": "To instantiate a class, you must use new: const dog = new Animal(\"Rex\")."
+        },
+        "18": {
+          "options": [
+            "It blocks the server for 5 seconds",
+            "time.sleep() doesn’t exist",
+            "You must return await",
+            "import is invalid"
+          ],
+          "explanation": "time.sleep() blocks the thread. In a web API, use await asyncio.sleep() instead."
+        },
+        "19": {
+          "options": [
+            "cell = cell * 2 does not mutate the array",
+            "forEach can’t be nested",
+            "You must use map",
+            "matrix should be an object"
+          ],
+          "explanation": "cell is just a local variable. To mutate: row[index] = cell * 2 (or use map)."
+        },
+        "20": {
+          "options": [
+            "Missing braces after if",
+            "void can’t be public",
+            "setEmail() doesn’t exist",
+            "User should be an interface"
+          ],
+          "explanation": "Without braces, only the first statement is inside the if. setEmail() always runs."
+        },
+        "21": {
+          "options": [
+            "You can’t add promises",
+            "You need await or .then()",
+            "Result will be \"[object Promise][object Promise]\"",
+            "All of the above"
+          ],
+          "explanation": "Promises don’t add. Use Promise.all([p1, p2]) and then await the values."
+        },
+        "22": {
+          "options": [
+            "It mutates dict1 in place (side effect)",
+            "for doesn’t work on dict",
+            "You must use append",
+            "return d1 is redundant"
+          ],
+          "explanation": "dict1 is mutated. Better: return a new dict with {**d1, **d2}."
+        },
+        "23": {
+          "options": [
+            "XSS vulnerability (script injection)",
+            "document.write is obsolete",
+            "Missing getElementById",
+            "script should be at the bottom"
+          ],
+          "explanation": "If userInput contains <script>, malicious code can run. Escape/sanitize HTML output."
+        },
+        "24": {
+          "options": [
+            "Integer division happens before returning float",
+            "float should be double",
+            "You need (float)a / b",
+            "First two answers"
+          ],
+          "explanation": "5 / 2 = 2 (integer division), then converted to 2.0. Use (float)a / b to get 2.5."
+        },
+        "25": {
+          "options": [
+            "No transaction / unsafe WHERE",
+            "Missing semicolon",
+            "UPDATE should be ALTER",
+            "status isn’t in quotes"
+          ],
+          "explanation": "Without BEGIN/COMMIT it’s harder to roll back. Also, always double-check WHERE before UPDATE."
+        },
+        "26": {
+          "options": [
+            "Missing return in the arrow function",
+            "map() doesn’t mutate the array",
+            "Use forEach instead of map",
+            "n * 2 should be n += 2"
+          ],
+          "explanation": "With braces, you must return explicitly (or remove braces). Otherwise map returns undefined values."
+        },
+        "27": {
+          "options": [
+            "The file is never closed",
+            "You need file.close() or with",
+            "It can cause a resource leak",
+            "All of the above"
+          ],
+          "explanation": "Close the file (file.close()) or use with open() as file."
+        },
+        "28": {
+          "options": [
+            "JavaScript coerces \"5\" to 5 for -",
+            "The result will be NaN",
+            "You must use parseInt(x)",
+            "Subtraction is impossible with strings"
+          ],
+          "explanation": "JS coerces \"5\" to 5 for -, but concatenates for +. Result is 3."
+        },
+        "29": {
+          "options": [
+            "Missing this. before instance",
+            "instance should be Singleton.instance",
+            "new Singleton() creates multiple instances",
+            "static is invalid"
+          ],
+          "explanation": "In a static method, reference static properties via Singleton.instance (or this.instance)."
+        },
+        "30": {
+          "options": [
+            "DISTINCT is redundant with GROUP BY",
+            "Missing COUNT(*)",
+            "user_id should be quoted",
+            "GROUP BY must be before DISTINCT"
+          ],
+          "explanation": "GROUP BY already makes user_id unique. DISTINCT is unnecessary."
+        },
+        "31": {
+          "options": [
+            "It correctly clears the array",
+            "arr.length is read-only",
+            "You must call arr.clear()",
+            "It throws an error"
+          ],
+          "explanation": "No bug! arr.length = 0 is a valid (though less readable) way to clear an array."
+        },
+        "32": {
+          "options": [
+            "JSON requires double quotes",
+            "loads() should be load()",
+            "import is invalid",
+            "data should be a dict"
+          ],
+          "explanation": "Valid JSON uses \"name\", not 'name'. You need double quotes."
+        },
+        "33": {
+          "options": [
+            "It prints 3, 3, 3 instead of 0, 1, 2",
+            "var shares i across closures",
+            "Use let instead of var",
+            "All of the above"
+          ],
+          "explanation": "var is function-scoped. All callbacks share the same i, which is 3 by the time they run."
+        },
+        "34": {
+          "options": [
+            "process.env.DEBUG is a string, not a boolean",
+            "\"false\" is truthy in JS",
+            "Use === \"true\" to get a boolean",
+            "All of the above"
+          ],
+          "explanation": "process.env.DEBUG = \"false\" (string) is truthy. Use: process.env.DEBUG === \"true\"."
+        },
+        "35": {
+          "options": [
+            "Exponential complexity O(2^n)",
+            "It recomputes the same values",
+            "You need memoization/caching",
+            "All of the above"
+          ],
+          "explanation": "fibonacci(50) makes billions of calls. Use @lru_cache or dynamic programming."
+        },
+        "36": {
+          "options": [
+            "No space for the terminating \\0",
+            "It should be char str[6]",
+            "Buffer overflow possible",
+            "All of the above"
+          ],
+          "explanation": "\"Hello\" is 5 chars + \\0 = 6 bytes. char[5] is too small."
+        },
+        "37": {
+          "options": [
+            "SQL injection vulnerability",
+            "Use prepared parameters",
+            "userId is not escaped",
+            "All of the above"
+          ],
+          "explanation": "Concatenating userId directly enables SQL injection. Use parameterised queries."
+        },
+        "38": {
+          "options": [
+            "if not data is wrong for an empty list",
+            "It should be if data is None",
+            "An empty list is falsy",
+            "Answers 1 and 2"
+          ],
+          "explanation": "if not data is true for both None and []. Use if data is None to distinguish them."
+        },
+        "39": {
+          "options": [
+            "obj2 references obj1, not a copy",
+            "It prints 99, not 1",
+            "Use {...obj1} to copy",
+            "All of the above"
+          ],
+          "explanation": "obj2 = obj1 copies the reference. Mutating obj2 mutates obj1. Use {...obj1}."
+        },
+        "40": {
+          "options": [
+            "Base.__init__ is never called",
+            "You need super().__init__()",
+            "Inheritance doesn’t work",
+            "Answers 1 and 2"
+          ],
+          "explanation": "Derived.__init__ overrides Base.__init__. Call super().__init__() to run the base init."
+        },
+        "41": {
+          "options": [
+            "Returns a pointer to local stack memory",
+            "arr is destroyed when the function returns",
+            "Undefined behavior",
+            "All of the above"
+          ],
+          "explanation": "arr lives on the stack and is destroyed after return. The returned pointer is invalid."
+        },
+        "42": {
+          "options": [
+            "setTimeout can’t be awaited",
+            "You must return a Promise",
+            "console.log runs immediately",
+            "All of the above"
+          ],
+          "explanation": "wait() returns nothing. You need: return new Promise(resolve => setTimeout(resolve, ms))."
+        },
+        "43": {
+          "options": [
+            "Aggregate functions can’t be used in WHERE",
+            "You must use HAVING instead of WHERE",
+            "GROUP BY is missing",
+            "All of the above"
+          ],
+          "explanation": "WHERE can’t use MAX(). You need GROUP BY user_id HAVING MAX(created_at) > ..."
+        },
+        "44": {
+          "options": [
+            "Infinite event loop",
+            "Stack overflow",
+            "You must remove the listener",
+            "All of the above"
+          ],
+          "explanation": "The handler re-emits the same event recursively until a stack overflow."
+        },
+        "45": {
+          "options": [
+            "wrapper takes no arguments",
+            "greet(name) won’t work",
+            "You need *args, **kwargs",
+            "All of the above"
+          ],
+          "explanation": "wrapper() takes no args but greet(name) needs one. Use *args, **kwargs."
+        },
+        "46": {
+          "options": [
+            "Race condition in multi-threading",
+            "count++ is not atomic",
+            "Use synchronised or AtomicInteger",
+            "All of the above"
+          ],
+          "explanation": "count++ is read + increment + write. Multiple threads can interleave and lose updates."
+        },
+        "47": {
+          "options": [
+            "Memory leak: cache grows unbounded",
+            "You need an LRU or TTL",
+            "cache[key] can be 0/false (falsy)",
+            "All of the above"
+          ],
+          "explanation": "The cache grows without limit. Also, if (cache[key]) fails for falsy cached values."
+        },
+        "48": {
+          "options": [
+            "Regex is too permissive",
+            "No minimum length",
+            "No special characters required",
+            "All of the above"
+          ],
+          "explanation": "This regex accepts \"a\" or \"1234\". It doesn’t enforce real password complexity rules."
+        },
+        "49": {
+          "options": [
+            "eval() enables code injection",
+            "Critical vulnerability",
+            "Never use eval with user input",
+            "All of the above"
+          ],
+          "explanation": "eval() executes arbitrary code. userId could contain malicious code."
+        },
+        "50": {
+          "options": [
+            "GET exposes the password in the URL",
+            "Visible in history/logs",
+            "Use method=\"POST\"",
+            "All of the above"
+          ],
+          "explanation": "GET puts params in the URL: /login?password=secret. Always use POST for passwords."
+        }
+      }
+    },
+    "wordle": {
+      "title": "Tech Wordle",
+      "subtitle": "Guess the tech word in 6 tries",
+      "newWord": "New word",
+      "stats": {
+        "wl": "{wins}W / {losses}L",
+        "streak": "{current}🔥 (Max: {max})"
+      },
+      "help": {
+        "button": "Help",
+        "title": "How to play",
+        "line1": "Guess the tech word in up to 6 tries.",
+        "line2": "Each guess must be a valid 5-letter word.",
+        "line3": "After each guess, the tile colours change:",
+        "legend": {
+          "correct": "The letter is in the correct spot",
+          "present": "The letter is in the word but in the wrong spot",
+          "absent": "The letter is not in the word"
+        },
+        "examples": "Example words: REACT, CACHE, TOKEN, LINUX, ASYNC..."
+      },
+      "messages": {
+        "lengthError": "The word must be 5 letters",
+        "win": "Nice! The word was {word}",
+        "lose": "You lost! The word was {word}",
+        "remaining": "{count} tries left"
+      }
+    },
+    "mentalcpu": {
+      "title": "Mental CPU",
+      "subtitle": "Fast maths under pressure",
+      "levels": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "levelLabel": "Level:",
+      "difficultyAria": "Difficulty",
+      "timeLabel": "Time: {seconds} seconds",
+      "start": "Start",
+      "playAgain": "Play again",
+      "next": "Next question",
+      "question": "Question {current}",
+      "equals": "= ?",
+      "streak": "{streak}🔥",
+      "types": {
+        "arithmetic": "Arithmetic",
+        "binary": "Binary",
+        "hex": "Hexadecimal"
+      },
+      "conversion": {
+        "toBase10": "to base 10",
+        "toBinary": "to binary"
+      },
+      "ready": {
+        "title": "Ready to calculate?",
+        "subtitle": "Solve as many as you can before time runs out!"
+      },
+      "cards": {
+        "easy": {
+          "title": "Easy",
+          "desc": "Simple calculations",
+          "time": "45 seconds"
+        },
+        "medium": {
+          "title": "Medium",
+          "desc": "Order of ops + conversions",
+          "time": "35 seconds"
+        },
+        "hard": {
+          "title": "Hard",
+          "desc": "Multi-step operations",
+          "time": "25 seconds"
+        }
+      },
+      "over": {
+        "title": "Time's up!",
+        "points": "{score} points",
+        "stats": "{questions} questions • Best streak: {maxStreak}"
+      },
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "Incorrect"
+      }
+    },
+    "regexrush": {
+      "title": "Regex Rush",
+      "subtitle": "Pick the best regex for real-world cases",
+      "prompt": "Which regex is the most reliable?",
+      "question": "Question {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Restart",
+      "next": "Next",
+      "playAgain": "Play again",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Done!",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "goal": "Extract valid emails (simple format).",
+          "input": "Contact: alice@example.com, bob@site.io, not-an-email@, @bad.com",
+          "options": [
+            "\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b/i",
+            "\\S+@\\S+",
+            "@[A-Za-z]+\\.",
+            "[a-z]+@[a-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Option 1 matches common emails and avoids @bad.com / not-an-email@ thanks to domain + TLD.",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "goal": "Find ticket IDs in ABC-1234 format.",
+          "input": "Tickets: OPS-1203, DEV-9, SEC-0042, BAD-12345",
+          "options": [
+            "\\b[A-Z]{3}-\\d{4}\\b",
+            "[A-Z]+-\\d+",
+            "\\b[A-Z]{3}-\\d{1,4}\\b",
+            "\\b[A-Z]{3}-\\d{5}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Exactly 3 letters + 4 digits. DEV-9 too short, BAD-12345 too long.",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "goal": "Detect UUIDs (8-4-4-4-12 hex).",
+          "input": "ids: 550e8400-e29b-41d4-a716-446655440000, 123, zzz-zzz",
+          "options": [
+            "\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b/i",
+            "\\b[0-9a-f-]{36}\\b/i",
+            "[0-9a-f]{8}",
+            "\\b\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Option 1 enforces exact hex group sizes. Others are too permissive.",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "goal": "Extract @mentions (letters/digits/_), not emails.",
+          "input": "@root ok, contact me at a@b.com, @john_doe42 ok, @-bad no",
+          "options": [
+            "(?<!\\w)@[A-Za-z0-9_]{2,}\\b",
+            "@[A-Za-z0-9_]+",
+            "\\b@[A-Za-z]+\\b",
+            "@[\\w-]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Negative lookbehind avoids matching inside a@b.com. Also prevents leading hyphen.",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "goal": "Validate password: 8+ chars, 1 upper, 1 lower, 1 digit.",
+          "input": "Tests: Password1 OK, password1 no, PASSWORD1 no, Pass1 no",
+          "options": [
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",
+            "^.{8,}$",
+            "^(?=.*\\d).{8,}$",
+            "^(?=.*[A-Z]).{8,}$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Lookaheads enforce all constraints plus minimum length.",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "goal": "Find dates in YYYY-MM-DD.",
+          "input": "2026-01-31 ok, 26-01-31 no, 2026-1-31 no",
+          "options": [
+            "\\b\\d{4}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{2}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{4}-\\d{1,2}-\\d{1,2}\\b",
+            "\\d{4}/\\d{2}/\\d{2}"
+          ],
+          "answerIndex": "0",
+          "explanation": "Strict format requires 2 digits for month/day.",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "goal": "Extract hashtags (#dev, #web3), not '# ' (hash then space).",
+          "input": "Tags: #dev # web #web3 #C++",
+          "options": [
+            "(?<!\\w)#[A-Za-z0-9_]{2,}\\b",
+            "#[^ ]+",
+            "#\\w+",
+            "#[A-Za-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Avoids '# web' and restricts to alphanum/_ (so #C++ is rejected).",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "goal": "Detect valid IPv4 (no 999).",
+          "input": "IPs: 192.168.0.1 ok, 999.1.1.1 no, 10.0.0.256 no",
+          "options": [
+            "\\b(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\b",
+            "\\b\\d{1,3}(?:\\.\\d{1,3}){3}\\b",
+            "\\b(\\d+\\.){3}\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\.\\d+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Option 1 bounds each octet to 0–255. Others accept 999/256.",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "goal": "Extract double-quoted strings, handling escapes.",
+          "input": "msg=\"hello\" other=\"a\\\"b\" bad=\"unclosed",
+          "options": [
+            "\"(?:\\\\.|[^\"\\\\])*\"",
+            "\".*\"",
+            "\"[^\"]*\"",
+            "'.*'"
+          ],
+          "answerIndex": "0",
+          "explanation": "Handles escaped quotes and avoids greedy \".*\".",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "goal": "Find TODO lines only at line start (after spaces).",
+          "input": "  TODO: fix\nx TODO: not\n\tTODO: ok",
+          "options": [
+            "^\\s*TODO:\\s*.+$",
+            "TODO:.*",
+            "^TODO:.*",
+            "\\bTODO\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Anchored to line start and allows indentation.",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "goal": "Extract euro prices: 12€ or 12,50€.",
+          "input": "Prices: 12€, 12,50€, 12.50€ no, €12 no",
+          "options": [
+            "\\b\\d+(?:,\\d{2})?€\\b",
+            "\\d+€",
+            "\\b\\d+(?:[.,]\\d{2})?€\\b",
+            "€\\d+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Enforces French comma and 2 decimals when present.",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "goal": "Validate slug: lowercase, digits, hyphens, no double hyphen.",
+          "input": "ok: hello-world, bad: Hello, bad: a--b",
+          "options": [
+            "^(?!.*--)[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "^[a-z0-9-]+$",
+            "^[a-z-]+$",
+            "^[\\w-]+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Blocks -- and forces segments between hyphens.",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "goal": "Extract version tags vX.Y.Z.",
+          "input": "v1.2.3 ok, v1.2 no, 1.2.3 no, v01.2.3 ok",
+          "options": [
+            "\\bv\\d+\\.\\d+\\.\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\b",
+            "\\bv\\d+\\.\\d+\\b",
+            "v.*"
+          ],
+          "answerIndex": "0",
+          "explanation": "Requires leading v and three segments.",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "goal": "Match simple HTML tags <div> <span> but not </div>.",
+          "input": "<div> ok, </div> no, <a href=\"#\"> no",
+          "options": [
+            "<(?!/)(?:div|span|p|ul|li)>",
+            "<\\w+>",
+            "<(div|span|p)>",
+            "<[^>]+>"
+          ],
+          "answerIndex": "0",
+          "explanation": "Whitelist + excludes closing tags and attributes.",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "goal": "Extract French ZIP codes (5 digits) preceded by a space.",
+          "input": "Paris 75001 ok, 075001 no, code:75001 no",
+          "options": [
+            "\\s\\d{5}\\b",
+            "\\b\\d{5}\\b",
+            "\\d{5}",
+            "\\s\\d{4}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Requires a space before to avoid glued tokens.",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "goal": "Match absolute Unix file paths (/var/log/app.log).",
+          "input": "/var/log/app.log ok, var/log no, / ok",
+          "options": [
+            "\\/(?:[A-Za-z0-9._-]+\\/)*[A-Za-z0-9._-]+",
+            "\\/.+",
+            "[A-Za-z0-9/_-]+",
+            "^/.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Structured segments and avoids matching '/' alone.",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "goal": "Extract Node versions: 18.x or 20.x only.",
+          "input": "node 18.x ok, 16.x no, 20.x ok, 21.x no",
+          "options": [
+            "\\b(?:18|20)\\.x\\b",
+            "\\b\\d+\\.x\\b",
+            "\\b(18|20|21)\\.x\\b",
+            "\\b1\\d\\.x\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Whitelist 18 and 20 only.",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "goal": "Match ALL CAPS words (2+ letters) without digits.",
+          "input": "OK YES NO2 NO, CPU, A",
+          "options": [
+            "\\b[A-Z]{2,}\\b",
+            "\\b[A-Z0-9]{2,}\\b",
+            "[A-Z]+",
+            "\\b[A-Z]{1,}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Excludes NO2 and requires 2+ letters.",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "goal": "Extract key=value where key is snake_case.",
+          "input": "user_id=42 ok, userId=1 no, _bad=2 no",
+          "options": [
+            "\\b[a-z]+(?:_[a-z]+)*=\\S+",
+            "\\b\\w+=\\S+",
+            "\\b[a-z_]+=\\S+",
+            "\\b[a-z]+_=\\S+"
+          ],
+          "answerIndex": "0",
+          "explanation": "snake_case segments, no leading underscore.",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "goal": "Match JS imports: import X from 'y'; (simple).",
+          "input": "import a from 'b'; ok\nimport {x} from 'y'; ok\nrequire('z') no",
+          "options": [
+            "^import\\s+.+\\s+from\\s+['\"][^'\"]+['\"];?$",
+            "import.*from.*",
+            "^import\\b.*$",
+            "from\\s+['\"][^'\"]+['\"]"
+          ],
+          "answerIndex": "0",
+          "explanation": "Targets the import ... from '...' pattern.",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "goal": "Extract domains (without protocol) from text.",
+          "input": "Sites: example.com, https://openai.com, test.local, foo.bar",
+          "options": [
+            "\\b[a-z0-9-]+\\.[a-z]{2,}\\b",
+            "\\b\\w+\\.\\w+\\b",
+            "https?://\\S+",
+            "\\b[a-z]+\\.[a-z]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Aiming for domain.tld (2+ TLD letters).",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "goal": "Match only ERROR log lines.",
+          "input": "INFO ok\nERROR disk full\nWARN meh\nERROR timeout",
+          "options": [
+            "^ERROR\\b.*$",
+            "ERROR",
+            "\\bERROR\\b",
+            "^.*ERROR.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Anchored to line start, avoids mid-line matches.",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "goal": "Extract hex numbers like 0xFFEE.",
+          "input": "0x1A ok, 0XFF no, 0xZZ no, 1A no",
+          "options": [
+            "\\b0x[0-9a-fA-F]+\\b",
+            "\\b0x\\w+\\b",
+            "0x.+",
+            "\\b[0-9a-fA-F]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "Requires 0x and hex digits only.",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "goal": "Validate git branch name: feature/xxx or fix/xxx.",
+          "input": "feature/login ok, fix/crash ok, feat/x no, feature/ no",
+          "options": [
+            "^(?:feature|fix)\\/[a-z0-9][a-z0-9-]*$",
+            "^(?:feature|fix)\\/.*$",
+            "^\\w+\\/\\w+$",
+            "^(?:feature|fix)-\\w+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "Forces prefix, slash, and non-empty slug.",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "goal": "Match markdown `inline code` without capturing ``` fences.",
+          "input": "Use `npm i` ok\n```js\nconst x=1\n``` no",
+          "options": [
+            "(?<!`)`([^`\\n]+)`(?!`)",
+            "`.*`",
+            "^`.+`$",
+            "```[\\s\\S]*```"
+          ],
+          "answerIndex": "0",
+          "explanation": "Targets single backticks and avoids triple fences via lookarounds.",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "httpdetective": {
+      "title": "HTTP Detective",
+      "subtitle": "Read the request, then pick the best diagnosis or fix",
+      "prompt": "What's the best fix?",
+      "question": "Question {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Restart",
+      "next": "Next",
+      "playAgain": "Play again",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Cases closed",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      }
+    },
+    "sqlsleuth": {
+      "title": "SQL Sleuth",
+      "subtitle": "Spot the bug or the correct query without falling for traps",
+      "prompt": "What's the best answer?",
+      "question": "Case {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥 (Max: {max})",
+      "restart": "Restart",
+      "next": "Next",
+      "playAgain": "Play again",
+      "feedback": {
+        "correct": "Correct",
+        "incorrect": "Incorrect"
+      },
+      "complete": {
+        "title": "Nice work",
+        "stats": "{score}/{total} • Max streak: {maxStreak}"
+      }
+    },
+    "typingSpeed": {
+      "quotes": [
+        "This morning, the city felt quieter than usual.",
+        "Sometimes one good idea unlocks the whole day.",
+        "Rain doesn't stop progress; it only changes the rhythm.",
+        "A warm drink and a playlist can reset everything.",
+        "Small efforts, repeated, always add up.",
+        "Sometimes the best plan is simply to begin.",
+        "You can't control everything, but you can choose the next move.",
+        "An unexpected message can bring a smile right on time.",
+        "Curiosity opens doors routine never notices.",
+        "Silence helps you hear what matters.",
+        "The best decisions are often the simplest ones.",
+        "A good night can fix a rough day.",
+        "Missing a detail is fine; quitting isn't.",
+        "A short walk beats a long hesitation.",
+        "You learn faster when you stay patient with yourself.",
+        "What you do daily builds you quietly.",
+        "A clear goal makes distractions weaker.",
+        "Every minute saved stacks up over a week.",
+        "A good pace is one you can keep.",
+        "Progress is rarely visible today, but it shows up.",
+        "You can be tired and move forward anyway.",
+        "Courage is often a small, quiet action.",
+        "Good timing can elevate an ordinary idea.",
+        "Breathe, restart, and let time do its work.",
+        "A mistake is information, not a sentence.",
+        "Discipline is a kind of freedom.",
+        "Consistency beats motivation long-term.",
+        "Regular beats perfect.",
+        "Good habits make days lighter.",
+        "Keep it simple, then improve.",
+        "When it's fuzzy, write it down.",
+        "A short list beats a huge plan.",
+        "Clean starts create clean energy.",
+        "Quality comes from repeated details.",
+        "A small step now is huge later.",
+        "A clear decision removes most stress.",
+        "Calm is a modern superpower.",
+        "You can change your mind, not your effort.",
+        "Direction matters more than speed.",
+        "Persistence doesn't need to be loud.",
+        "When you doubt, return to one next action.",
+        "Pick one priority and protect it.",
+        "A tidy space can clear the mind.",
+        "Simplicity makes speed possible.",
+        "You move better when you know why.",
+        "A short break prevents a long burnout.",
+        "Done beats perfect most days.",
+        "Momentum starts after the first step.",
+        "One finished task beats ten half-started.",
+        "Aim for progress, not perfection."
+      ],
+      "numbers": [
+        "Goal: 2 important tasks, then 1 break.",
+        "Reminder: 1% a day adds up over a year.",
+        "Plan: 25 minutes focus, 5 minutes off, repeat.",
+        "Budget: $120 essentials, $30 fun.",
+        "Commute: 18 minutes walking, 4 minutes buffer.",
+        "Routine: water, light, movement, then work.",
+        "Score: 9/10 when you keep it simple and steady.",
+        "Tonight: finish one thing, then rest.",
+        "It is 07:45, and the day just started.",
+        "Top 3: sleep, move, create."
+      ],
+      "punctuation": [
+        "Alright... but this time, we go gently.",
+        "You know what? Keep it simple: one thing at a time.",
+        "Yes, it's possible; no, it's not magic.",
+        "Breathe: in, out, repeat.",
+        "You can hesitate — and still move forward.",
+        "It's not perfect, so what?",
+        "One step, then another; that's it.",
+        "Sometimes \"good enough\" is already great.",
+        "Focus here: now.",
+        "It happens; we fix it; we continue."
+      ],
+      "coherent": {
+        "starters": [
+          "This morning",
+          "Today",
+          "This week",
+          "When you want to move forward",
+          "If you're low on energy",
+          "When things speed up",
+          "When you want to stay focused",
+          "Before you start",
+          "If you hesitate",
+          "When you want to improve"
+        ],
+        "actions": [
+          "pick one priority",
+          "write a short list",
+          "start with the easiest step",
+          "finish one step, then the next",
+          "cut distractions for 15 minutes",
+          "tidy your space for 2 minutes",
+          "breathe and return to a steady rhythm",
+          "move without judging yourself",
+          "take a short break, then come back",
+          "keep a pace you can maintain"
+        ],
+        "outcomes": [
+          "and you'll feel the difference.",
+          "and everything gets smoother.",
+          "and you save time.",
+          "and you keep momentum.",
+          "and stress drops.",
+          "and you do better without forcing it.",
+          "and your mind stays clear.",
+          "and you actually move forward.",
+          "and calm comes back.",
+          "and you finish more often."
+        ],
+        "addOns": [
+          "Remember: consistency beats speed.",
+          "Do less, but do it well.",
+          "Steady habits shape the day.",
+          "A small step now beats a big intention later.",
+          "The point is to continue, even slowly."
+        ]
+      }
+    }
+  },
+  "quiz": {
+    "title": "Tech Quiz",
+    "subtitle": "Test your knowledge",
+    "levels": {
+      "easy": "Easy Level",
+      "medium": "Medium Level",
+      "hard": "Hard Level"
+    },
+    "descriptions": {
+      "easy": "Test your basic knowledge in web development, frontend and backend technologies, and cybersecurity. This quiz is perfect for beginners or reviewing fundamentals.",
+      "medium": "Challenge yourself with deeper questions on advanced concepts, development best practices, and security aspects. Ideal for experienced developers.",
+      "hard": "Put your skills to the test with expert questions on architecture, complex algorithms, advanced cybersecurity, and optimizations. For true experts!"
+    },
+    "info": {
+      "questions": "{count} questions",
+      "timePerQuestion": "{seconds} seconds per question"
+    },
+    "startQuiz": "Start quiz",
+    "modal": {
+      "title": "Quiz",
+      "question": "Question",
+      "progress": "Progress",
+      "timeLeft": "Time left",
+      "true": "True",
+      "false": "False",
+      "next": "Next question",
+      "finish": "Finish",
+      "cancel": "Cancel",
+      "results": {
+        "title": "Quiz Results",
+        "description": "Here are your detailed results",
+        "correct": "correct answers",
+        "excellent": "Excellent work! 🎉",
+        "good": "Good job! 👍",
+        "average": "Keep up the effort! 💪",
+        "needsImprovement": "Don't be discouraged, keep learning! 📚",
+        "details": "Answer Details",
+        "question": "Question",
+        "yourAnswer": "Your answer",
+        "correctAnswer": "Correct answer",
+        "timeout": "Time out",
+        "noAnswer": "No answer",
+        "true": "True",
+        "false": "False",
+        "close": "Close"
+      }
+    },
+    "questions": {
+      "easy-1": {
+        "question": "Which HTML tag is used to create a main heading?",
+        "options": [
+          "<h1>",
+          "<title>",
+          "<header>",
+          "<head>"
+        ],
+        "explanation": "<h1> is the HTML tag used to create a main heading (heading level 1)."
+      },
+      "easy-2": {
+        "question": "CSS stands for \"Cascading Style Sheets\".",
+        "explanation": "Yes, CSS stands for \"Cascading Style Sheets\"."
+      },
+      "easy-3": {
+        "question": "Which JavaScript method adds an element to the end of an array?",
+        "options": [
+          "push()",
+          "pop()",
+          "shift()",
+          "unshift()"
+        ],
+        "explanation": "The push() method adds one or more elements to the end of an array."
+      },
+      "easy-4": {
+        "question": "React is a JavaScript library developed by Facebook.",
+        "explanation": "Yes, React was created by Facebook (now Meta) in 2013."
+      },
+      "easy-5": {
+        "question": "Which CSS property is used to change the text color?",
+        "options": [
+          "color",
+          "text-color",
+          "font-color",
+          "text-style"
+        ],
+        "explanation": "The CSS \"color\" property is used to set the text color."
+      },
+      "easy-6": {
+        "question": "TypeScript is a superset of JavaScript that adds static typing.",
+        "explanation": "Yes, TypeScript extends JavaScript by adding optional static types."
+      },
+      "easy-7": {
+        "question": "Which protocol is used to secure web connections (HTTPS)?",
+        "options": [
+          "TLS/SSL",
+          "FTP",
+          "HTTP",
+          "SMTP"
+        ],
+        "explanation": "TLS (Transport Layer Security) or SSL (Secure Sockets Layer) secures HTTPS connections."
+      },
+      "easy-8": {
+        "question": "Git is a distributed version control system.",
+        "explanation": "Yes, Git is a distributed version control system created by Linus Torvalds."
+      },
+      "easy-9": {
+        "question": "Which HTTP method is used to retrieve data from a server?",
+        "options": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ],
+        "explanation": "The GET method is used to retrieve data from a server."
+      },
+      "easy-10": {
+        "question": "Next.js is a React framework for production.",
+        "explanation": "Yes, Next.js is a React framework that offers server-side rendering and many optimizations."
+      },
+      "easy-11": {
+        "question": "Which HTML tag is used to create a link?",
+        "options": [
+          "<a>",
+          "<link>",
+          "<url>",
+          "<href>"
+        ],
+        "explanation": "The <a> (anchor) tag is used to create hyperlinks in HTML."
+      },
+      "easy-12": {
+        "question": "JavaScript is a client-side only programming language.",
+        "explanation": "No, JavaScript can also be executed on the server side with Node.js."
+      },
+      "easy-13": {
+        "question": "Which CSS property is used to center an element horizontally?",
+        "options": [
+          "margin: auto",
+          "center: true",
+          "align: center",
+          "position: center"
+        ],
+        "explanation": "margin: auto centers an element horizontally when it has a defined width."
+      },
+      "easy-14": {
+        "question": "Which JavaScript method removes the last element from an array?",
+        "options": [
+          "pop()",
+          "push()",
+          "shift()",
+          "unshift()"
+        ],
+        "explanation": "The pop() method removes and returns the last element of an array."
+      },
+      "easy-15": {
+        "question": "HTML stands for \"HyperText Markup Language\".",
+        "explanation": "Yes, HTML stands for \"HyperText Markup Language\"."
+      },
+      "easy-16": {
+        "question": "Which HTML tag is used to create an unordered list?",
+        "options": [
+          "<ul>",
+          "<ol>",
+          "<li>",
+          "<list>"
+        ],
+        "explanation": "<ul> (unordered list) creates an unordered bulleted list."
+      },
+      "easy-17": {
+        "question": "Which CSS property is used to set the font size?",
+        "options": [
+          "font-size",
+          "text-size",
+          "size",
+          "font"
+        ],
+        "explanation": "The font-size property sets the size of the font."
+      },
+      "easy-18": {
+        "question": "Variables in JavaScript are case-sensitive.",
+        "explanation": "Yes, JavaScript is case-sensitive, so \"myVar\" and \"myvar\" are two different variables."
+      },
+      "easy-19": {
+        "question": "Which HTML tag is used to insert an image?",
+        "options": [
+          "<img>",
+          "<image>",
+          "<picture>",
+          "<photo>"
+        ],
+        "explanation": "The <img> tag is used to insert an image into an HTML page."
+      },
+      "easy-20": {
+        "question": "Which JavaScript method converts a string to a number?",
+        "options": [
+          "Number() or parseInt()",
+          "String()",
+          "toString()",
+          "convert()"
+        ],
+        "explanation": "Number() and parseInt() allow converting a string to a number."
+      },
+      "easy-21": {
+        "question": "DOM stands for \"Document Object Model\".",
+        "explanation": "Yes, the DOM (Document Object Model) represents the structure of an HTML document."
+      },
+      "easy-22": {
+        "question": "Which CSS property is used to add space between an element's borders?",
+        "options": [
+          "padding",
+          "margin",
+          "spacing",
+          "gap"
+        ],
+        "explanation": "padding adds space inside the element, between the content and the border."
+      },
+      "easy-23": {
+        "question": "Which HTML tag is used to create a paragraph?",
+        "options": [
+          "<p>",
+          "<para>",
+          "<text>",
+          "<paragraph>"
+        ],
+        "explanation": "The <p> tag is used to create a paragraph in HTML."
+      },
+      "easy-24": {
+        "question": "Arrow functions in JavaScript have their own \"this\" context.",
+        "explanation": "No, arrow functions inherit the \"this\" context from their parent scope."
+      },
+      "easy-25": {
+        "question": "Which JavaScript method finds an element in an array?",
+        "options": [
+          "find()",
+          "search()",
+          "locate()",
+          "get()"
+        ],
+        "explanation": "The find() method returns the first element in an array that satisfies a condition."
+      },
+      "easy-26": {
+        "question": "Which CSS property is used to change the background color?",
+        "options": [
+          "background-color",
+          "bg-color",
+          "background",
+          "color-background"
+        ],
+        "explanation": "The background-color property sets the background color of an element."
+      },
+      "easy-27": {
+        "question": "JSON stands for \"JavaScript Object Notation\".",
+        "explanation": "Yes, JSON is a data format based on JavaScript object notation."
+      },
+      "easy-28": {
+        "question": "Which HTML tag is used to create a form?",
+        "options": [
+          "<form>",
+          "<input>",
+          "<fieldset>",
+          "<formset>"
+        ],
+        "explanation": "The <form> tag is used to create an HTML form."
+      },
+      "easy-29": {
+        "question": "Which JavaScript method creates a new array from another one?",
+        "options": [
+          "map()",
+          "copy()",
+          "duplicate()",
+          "clone()"
+        ],
+        "explanation": "The map() method creates a new array by applying a function to each element."
+      },
+      "easy-30": {
+        "question": "JavaScript comments start with // for a line or /* */ for multiple lines.",
+        "explanation": "Yes, // for single-line comments and /* */ for multi-line comments."
+      },
+      "easy-31": {
+        "question": "Which CSS property is used to make an element invisible?",
+        "options": [
+          "display: none or visibility: hidden",
+          "hide: true",
+          "visible: false",
+          "opacity: 0"
+        ],
+        "explanation": "display: none removes the element from the flow, visibility: hidden hides it but keeps the space."
+      },
+      "easy-32": {
+        "question": "Which HTML tag is used to create a button?",
+        "options": [
+          "<button>",
+          "<btn>",
+          "<click>",
+          "<input type=\"button\">"
+        ],
+        "explanation": "The <button> tag is used to create a clickable button in HTML."
+      },
+      "easy-33": {
+        "question": "Arrays in JavaScript start at index 0.",
+        "explanation": "Yes, JavaScript arrays are indexed starting from 0, not 1."
+      },
+      "easy-34": {
+        "question": "Which CSS property is used to set the width of an element?",
+        "options": [
+          "width",
+          "w",
+          "size",
+          "dimension"
+        ],
+        "explanation": "The width property sets the width of an element."
+      },
+      "easy-35": {
+        "question": "Which JavaScript method checks if an element exists in an array?",
+        "options": [
+          "includes()",
+          "contains()",
+          "has()",
+          "exists()"
+        ],
+        "explanation": "The includes() method checks if an array contains a specific element."
+      },
+      "easy-36": {
+        "question": "localStorage allows storing data in the browser persistently.",
+        "explanation": "Yes, localStorage stores data persistently even after closing the browser."
+      },
+      "easy-37": {
+        "question": "Which HTML tag is used to create a table?",
+        "options": [
+          "<table>",
+          "<tab>",
+          "<grid>",
+          "<data>"
+        ],
+        "explanation": "The <table> tag is used to create a table in HTML."
+      },
+      "easy-38": {
+        "question": "Which JavaScript method joins array elements into a string?",
+        "options": [
+          "join()",
+          "concat()",
+          "merge()",
+          "combine()"
+        ],
+        "explanation": "The join() method joins all elements of an array into a string."
+      },
+      "easy-39": {
+        "question": "Functions in JavaScript are first-class objects.",
+        "explanation": "Yes, JavaScript functions can be assigned to variables, passed as parameters, etc."
+      },
+      "easy-40": {
+        "question": "Which CSS property is used to add space around an element?",
+        "options": [
+          "margin",
+          "padding",
+          "spacing",
+          "gap"
+        ],
+        "explanation": "margin adds space outside the element, between the element and other elements."
+      },
+      "easy-41": {
+        "question": "Which HTML tag is used to create an ordered list?",
+        "options": [
+          "<ol>",
+          "<ul>",
+          "<li>",
+          "<list>"
+        ],
+        "explanation": "<ol> (ordered list) creates a numbered list."
+      },
+      "easy-42": {
+        "question": "The \"const\" keyword in JavaScript declares a constant that cannot be reassigned.",
+        "explanation": "Yes, const declares a constant that cannot be reassigned after its initial declaration."
+      },
+      "easy-43": {
+        "question": "Which JavaScript method filters elements in an array?",
+        "options": [
+          "filter()",
+          "select()",
+          "find()",
+          "search()"
+        ],
+        "explanation": "The filter() method creates a new array with elements that pass a test."
+      },
+      "easy-44": {
+        "question": "Which CSS property is used to align text?",
+        "options": [
+          "text-align",
+          "align",
+          "text-position",
+          "alignment"
+        ],
+        "explanation": "The text-align property sets the horizontal alignment of text."
+      },
+      "easy-45": {
+        "question": "Promises in JavaScript allow handling asynchronous code.",
+        "explanation": "Yes, Promises allow handling asynchronous operations more readably than callbacks."
+      },
+      "easy-46": {
+        "question": "Which HTML tag is used to create a text input field?",
+        "options": [
+          "<input type=\"text\">",
+          "<text>",
+          "<input>",
+          "<field>"
+        ],
+        "explanation": "<input type=\"text\"> creates a text input field in a form."
+      },
+      "easy-47": {
+        "question": "Which JavaScript method removes the first element from an array?",
+        "options": [
+          "shift()",
+          "pop()",
+          "unshift()",
+          "push()"
+        ],
+        "explanation": "The shift() method removes and returns the first element of an array."
+      },
+      "easy-48": {
+        "question": "The \"let\" keyword in JavaScript declares a variable with block scope.",
+        "explanation": "Yes, let declares a variable with block scope, unlike var which has function scope."
+      },
+      "easy-49": {
+        "question": "Which CSS property is used to set the height of an element?",
+        "options": [
+          "height",
+          "h",
+          "size",
+          "dimension"
+        ],
+        "explanation": "The height property sets the height of an element."
+      },
+      "easy-50": {
+        "question": "Which JavaScript method converts an array to a string?",
+        "options": [
+          "toString()",
+          "toText()",
+          "stringify()",
+          "convert()"
+        ],
+        "explanation": "The toString() method converts an array to a string."
+      },
+      "easy-51": {
+        "question": "CSS classes can be applied to multiple HTML elements.",
+        "explanation": "Yes, a CSS class can be used on multiple elements to apply the same style."
+      },
+      "easy-52": {
+        "question": "Which HTML tag is used to create a division or section?",
+        "options": [
+          "<div>",
+          "<section>",
+          "<container>",
+          "<box>"
+        ],
+        "explanation": "The <div> tag is used to create a generic container or section."
+      },
+      "easy-53": {
+        "question": "Which JavaScript method adds an element to the beginning of an array?",
+        "options": [
+          "unshift()",
+          "push()",
+          "shift()",
+          "prepend()"
+        ],
+        "explanation": "The unshift() method adds one or more elements to the beginning of an array."
+      },
+      "easy-54": {
+        "question": "IDs in HTML must be unique on a page.",
+        "explanation": "Yes, each ID must be unique on an HTML page for proper functionality."
+      },
+      "easy-55": {
+        "question": "Which CSS property is used to set the border style?",
+        "options": [
+          "border-style",
+          "border",
+          "border-type",
+          "border-design"
+        ],
+        "explanation": "The border-style property sets the border style (solid, dashed, etc.)."
+      },
+      "easy-56": {
+        "question": "Which JavaScript method checks the type of a variable?",
+        "options": [
+          "typeof",
+          "type()",
+          "getType()",
+          "checkType()"
+        ],
+        "explanation": "The typeof operator returns a string indicating the type of a variable."
+      },
+      "easy-57": {
+        "question": "The CSS selector \"#id\" targets an element by its ID.",
+        "explanation": "Yes, the # selector targets an element by its ID in CSS."
+      },
+      "easy-58": {
+        "question": "Which HTML tag is used to create a line break?",
+        "options": [
+          "<br>",
+          "<break>",
+          "<lb>",
+          "<newline>"
+        ],
+        "explanation": "The <br> tag creates a line break in text."
+      },
+      "easy-59": {
+        "question": "Which JavaScript method sorts the elements of an array?",
+        "options": [
+          "sort()",
+          "order()",
+          "arrange()",
+          "organize()"
+        ],
+        "explanation": "The sort() method sorts the elements of an array in place."
+      },
+      "easy-60": {
+        "question": "The CSS selector \".class\" targets elements by their class.",
+        "explanation": "Yes, the . selector targets elements by their class in CSS."
+      },
+      "easy-61": {
+        "question": "Which HTML tag is used to create a section header?",
+        "options": [
+          "<header>",
+          "<head>",
+          "<title>",
+          "<h1>"
+        ],
+        "explanation": "The <header> tag represents the header of a section or page."
+      },
+      "easy-62": {
+        "question": "Which JavaScript method reduces an array to a single value?",
+        "options": [
+          "reduce()",
+          "sum()",
+          "total()",
+          "aggregate()"
+        ],
+        "explanation": "The reduce() method reduces an array to a single value by applying a function."
+      },
+      "easy-63": {
+        "question": "Media queries in CSS allow applying styles based on screen size.",
+        "explanation": "Yes, media queries allow creating responsive designs adapted to different screen sizes."
+      },
+      "easy-64": {
+        "question": "Which HTML tag is used to create a footer?",
+        "options": [
+          "<footer>",
+          "<foot>",
+          "<bottom>",
+          "<end>"
+        ],
+        "explanation": "The <footer> tag represents the footer of a section or page."
+      },
+      "easy-65": {
+        "question": "Which JavaScript method checks if all array elements pass a test?",
+        "options": [
+          "every()",
+          "all()",
+          "checkAll()",
+          "verifyAll()"
+        ],
+        "explanation": "The every() method tests if all elements in an array pass a test."
+      },
+      "easy-66": {
+        "question": "Flexbox in CSS allows creating flexible and responsive layouts.",
+        "explanation": "Yes, Flexbox is a CSS layout model that makes it easier to create flexible designs."
+      },
+      "easy-67": {
+        "question": "Which HTML tag is used to create a navigation section?",
+        "options": [
+          "<nav>",
+          "<navigation>",
+          "<menu>",
+          "<navbar>"
+        ],
+        "explanation": "The <nav> tag represents a navigation section with links."
+      },
+      "easy-68": {
+        "question": "Which JavaScript method checks if at least one array element passes a test?",
+        "options": [
+          "some()",
+          "any()",
+          "one()",
+          "checkOne()"
+        ],
+        "explanation": "The some() method tests if at least one element in an array passes a test."
+      },
+      "easy-69": {
+        "question": "Variables declared with \"var\" in JavaScript are hoisted to the top of their scope.",
+        "explanation": "Yes, var declarations are hoisted, meaning they are moved to the top of their scope."
+      },
+      "easy-70": {
+        "question": "Which CSS property is used to set the font family?",
+        "options": [
+          "font-family",
+          "font",
+          "font-type",
+          "font-style"
+        ],
+        "explanation": "The font-family property sets the font family to use."
+      },
+      "easy-71": {
+        "question": "Which JavaScript method creates a shallow copy of an array?",
+        "options": [
+          "slice()",
+          "copy()",
+          "clone()",
+          "duplicate()"
+        ],
+        "explanation": "The slice() method creates a shallow copy of an array without modifying the original."
+      },
+      "easy-72": {
+        "question": "The CSS selector \"element\" targets all elements of a specific type.",
+        "explanation": "Yes, the element selector targets all elements of that type on the page."
+      },
+      "easy-73": {
+        "question": "Which HTML tag is used to create a multiline text field?",
+        "options": [
+          "<textarea>",
+          "<text>",
+          "<input type=\"textarea\">",
+          "<multiline>"
+        ],
+        "explanation": "The <textarea> tag creates a multiline text field in a form."
+      },
+      "easy-74": {
+        "question": "Which JavaScript method concatenates two arrays?",
+        "options": [
+          "concat()",
+          "merge()",
+          "join()",
+          "combine()"
+        ],
+        "explanation": "The concat() method combines two or more arrays into a new array."
+      },
+      "easy-75": {
+        "question": "HTML attributes \"class\" and \"id\" are used to identify and style elements.",
+        "explanation": "Yes, class and id allow identifying elements for CSS and JavaScript."
+      },
+      "easy-76": {
+        "question": "Which CSS property is used to set the spacing between letters?",
+        "options": [
+          "letter-spacing",
+          "text-spacing",
+          "char-spacing",
+          "spacing"
+        ],
+        "explanation": "The letter-spacing property sets the spacing between characters."
+      },
+      "easy-77": {
+        "question": "Which JavaScript method splits a string into an array?",
+        "options": [
+          "split()",
+          "divide()",
+          "separate()",
+          "break()"
+        ],
+        "explanation": "The split() method splits a string into an array of substrings."
+      },
+      "easy-78": {
+        "question": "JavaScript events allow interacting with user actions.",
+        "explanation": "Yes, events like click, mouseover, etc. allow reacting to user actions."
+      },
+      "easy-79": {
+        "question": "Which HTML tag is used to create a list item?",
+        "options": [
+          "<li>",
+          "<item>",
+          "<list-item>",
+          "<element>"
+        ],
+        "explanation": "The <li> tag represents a list item in <ul> or <ol>."
+      },
+      "easy-80": {
+        "question": "Which JavaScript method searches for an element in an array and returns its index?",
+        "options": [
+          "indexOf()",
+          "findIndex()",
+          "search()",
+          "locate()"
+        ],
+        "explanation": "The indexOf() method returns the first index at which an element can be found in an array."
+      },
+      "easy-81": {
+        "question": "CSS selectors can be combined to target specific elements.",
+        "explanation": "Yes, selectors can be combined (descendant, child, adjacent, etc.) for precise targeting."
+      },
+      "easy-82": {
+        "question": "Which HTML tag is used to create a checkbox field?",
+        "options": [
+          "<input type=\"checkbox\">",
+          "<checkbox>",
+          "<check>",
+          "<input type=\"check\">"
+        ],
+        "explanation": "<input type=\"checkbox\"> creates a checkbox in a form."
+      },
+      "easy-83": {
+        "question": "Which JavaScript method reverses the order of array elements?",
+        "options": [
+          "reverse()",
+          "invert()",
+          "flip()",
+          "backward()"
+        ],
+        "explanation": "The reverse() method reverses the order of array elements in place."
+      },
+      "easy-84": {
+        "question": "CSS pseudo-classes like :hover allow styling elements in a specific state.",
+        "explanation": "Yes, pseudo-classes like :hover, :focus, :active allow styling element states."
+      },
+      "easy-85": {
+        "question": "Which HTML tag is used to create a dropdown selection field?",
+        "options": [
+          "<select>",
+          "<dropdown>",
+          "<option>",
+          "<choice>"
+        ],
+        "explanation": "The <select> tag creates a dropdown menu in a form."
+      },
+      "easy-86": {
+        "question": "Which JavaScript method checks if a string contains a substring?",
+        "options": [
+          "includes()",
+          "contains()",
+          "has()",
+          "find()"
+        ],
+        "explanation": "The includes() method checks if a string contains a specified substring."
+      },
+      "easy-87": {
+        "question": "Variables in JavaScript can contain different types of data (numbers, strings, objects, etc.).",
+        "explanation": "Yes, JavaScript is a dynamically typed language, variables can change type."
+      },
+      "easy-88": {
+        "question": "Which CSS property is used to set the opacity of an element?",
+        "options": [
+          "opacity",
+          "transparency",
+          "alpha",
+          "visibility"
+        ],
+        "explanation": "The opacity property sets the opacity level of an element (0 = transparent, 1 = opaque)."
+      },
+      "easy-89": {
+        "question": "Which JavaScript method converts a string to uppercase?",
+        "options": [
+          "toUpperCase()",
+          "upper()",
+          "toUpper()",
+          "uppercase()"
+        ],
+        "explanation": "The toUpperCase() method converts all characters in a string to uppercase."
+      },
+      "easy-90": {
+        "question": "HTML attributes \"required\" and \"disabled\" can be used in forms.",
+        "explanation": "Yes, required makes a field mandatory and disabled disables it."
+      },
+      "easy-91": {
+        "question": "Which HTML tag is used to create a quote element?",
+        "options": [
+          "<blockquote>",
+          "<quote>",
+          "<cite>",
+          "<q>"
+        ],
+        "explanation": "The <blockquote> tag is used to create a long quotation."
+      },
+      "easy-92": {
+        "question": "Which JavaScript method converts a string to lowercase?",
+        "options": [
+          "toLowerCase()",
+          "lower()",
+          "toLower()",
+          "lowercase()"
+        ],
+        "explanation": "The toLowerCase() method converts all characters in a string to lowercase."
+      },
+      "easy-93": {
+        "question": "Arrays in JavaScript can contain elements of different types.",
+        "explanation": "Yes, a JavaScript array can contain numbers, strings, objects, etc. mixed together."
+      },
+      "easy-94": {
+        "question": "Which CSS property is used to set the spacing between lines of text?",
+        "options": [
+          "line-height",
+          "text-height",
+          "line-spacing",
+          "spacing"
+        ],
+        "explanation": "The line-height property sets the height of a line of text."
+      },
+      "easy-95": {
+        "question": "Which JavaScript method replaces text in a string?",
+        "options": [
+          "replace()",
+          "substitute()",
+          "change()",
+          "swap()"
+        ],
+        "explanation": "The replace() method replaces a substring with another in a string."
+      },
+      "easy-96": {
+        "question": "HTML \"alt\" attributes in images improve accessibility.",
+        "explanation": "Yes, the alt attribute provides alternative text for screen readers and broken images."
+      },
+      "easy-97": {
+        "question": "Which HTML tag is used to create a code element?",
+        "options": [
+          "<code>",
+          "<programming>",
+          "<script>",
+          "<snippet>"
+        ],
+        "explanation": "The <code> tag is used to display computer code."
+      },
+      "easy-98": {
+        "question": "Which JavaScript method extracts a portion of a string?",
+        "options": [
+          "substring() or slice()",
+          "extract()",
+          "cut()",
+          "part()"
+        ],
+        "explanation": "The substring() and slice() methods extract a portion of a string."
+      },
+      "easy-99": {
+        "question": "CSS selectors can target elements based on their position in the DOM.",
+        "explanation": "Yes, you can use :first-child, :last-child, :nth-child() to target by position."
+      },
+      "easy-100": {
+        "question": "Which HTML tag is used to create a preformatted text element?",
+        "options": [
+          "<pre>",
+          "<format>",
+          "<text>",
+          "<preserve>"
+        ],
+        "explanation": "The <pre> tag preserves spaces and line breaks in text."
+      },
+      "medium-1": {
+        "question": "What is the main difference between let and var in JavaScript?",
+        "options": [
+          "let has block scope, var has function scope",
+          "let is faster than var",
+          "var is deprecated",
+          "No difference"
+        ],
+        "explanation": "let has block scope, meaning it is only accessible within the block where it is declared, while var has function scope."
+      },
+      "medium-2": {
+        "question": "React hooks can only be used in functional components.",
+        "explanation": "Yes, React hooks (useState, useEffect, etc.) can only be used in functional components or custom hooks."
+      },
+      "medium-3": {
+        "question": "What is SQL injection?",
+        "options": [
+          "An attack that injects malicious SQL code",
+          "A SQL optimization method",
+          "A database type",
+          "A SQL function"
+        ],
+        "explanation": "SQL injection is a security vulnerability that allows an attacker to execute malicious SQL commands."
+      },
+      "medium-4": {
+        "question": "What is the recommended method for storing passwords?",
+        "options": [
+          "Hashing with an appropriate algorithm (bcrypt, argon2)",
+          "Symmetric encryption",
+          "Plain text storage",
+          "Compression"
+        ],
+        "explanation": "Passwords should be hashed with appropriate algorithms like bcrypt or argon2, never stored in plain text."
+      },
+      "medium-5": {
+        "question": "CORS (Cross-Origin Resource Sharing) is a browser security mechanism.",
+        "explanation": "Yes, CORS is a security mechanism that controls requests between different origins."
+      },
+      "medium-6": {
+        "question": "What is SSR (Server-Side Rendering)?",
+        "options": [
+          "Rendering pages on the server before sending to client",
+          "Client-side only rendering",
+          "A caching method",
+          "A network protocol"
+        ],
+        "explanation": "SSR involves generating page HTML on the server before sending it to the browser."
+      },
+      "medium-7": {
+        "question": "What is the difference between == and === in JavaScript?",
+        "options": [
+          "=== compares value and type, == compares only value",
+          "== is faster",
+          "=== is deprecated",
+          "No difference"
+        ],
+        "explanation": "=== (strict equality) compares both value and type, while == (loose equality) performs type coercion before comparison."
+      },
+      "medium-8": {
+        "question": "JWT (JSON Web Tokens) can be decoded but not modified without the secret key.",
+        "explanation": "Yes, JWTs can be decoded (they are base64), but the signature prevents modification without the secret key."
+      },
+      "medium-9": {
+        "question": "What is an XSS (Cross-Site Scripting) attack?",
+        "options": [
+          "Injection of malicious JavaScript code into a web page",
+          "An attack on servers",
+          "A type of virus",
+          "A compression method"
+        ],
+        "explanation": "XSS is a vulnerability that allows injecting malicious JavaScript code that executes in the victim's browser."
+      },
+      "medium-10": {
+        "question": "Which React method allows memoizing a computed value?",
+        "options": [
+          "useMemo",
+          "useState",
+          "useEffect",
+          "useCallback"
+        ],
+        "explanation": "useMemo allows memoizing the result of an expensive calculation and only recalculating it if dependencies change."
+      },
+      "medium-11": {
+        "question": "PostgreSQL is a NoSQL database.",
+        "explanation": "No, PostgreSQL is a relational (SQL) database, not NoSQL."
+      },
+      "medium-12": {
+        "question": "What is CSRF (Cross-Site Request Forgery)?",
+        "options": [
+          "An attack that forces a user to execute unwanted actions",
+          "An optimization method",
+          "A cookie type",
+          "A JavaScript function"
+        ],
+        "explanation": "CSRF is an attack that forces an authenticated user to execute unwanted actions on a web application."
+      },
+      "medium-13": {
+        "question": "What is the average time complexity of searching in an unsorted array?",
+        "options": [
+          "O(n)",
+          "O(log n)",
+          "O(1)",
+          "O(n²)"
+        ],
+        "explanation": "In an unsorted array, you need to traverse all elements in the worst case, so O(n)."
+      },
+      "medium-14": {
+        "question": "JavaScript Promises can be chained with .then() and .catch().",
+        "explanation": "Yes, Promises can be chained to handle asynchronous operations sequentially."
+      },
+      "medium-15": {
+        "question": "What is a middleware in Express.js?",
+        "options": [
+          "A function that executes between request and response",
+          "A route type",
+          "An HTTP method",
+          "A protocol"
+        ],
+        "explanation": "A middleware is a function that has access to the request object, response object, and next function in the request-response cycle."
+      },
+      "medium-16": {
+        "question": "HTTPS uses port 80 by default.",
+        "explanation": "No, HTTPS uses port 443 by default. Port 80 is used by HTTP."
+      },
+      "medium-17": {
+        "question": "What is the difference between const and let in JavaScript?",
+        "options": [
+          "const cannot be reassigned, let can be",
+          "const is faster",
+          "let is deprecated",
+          "No difference"
+        ],
+        "explanation": "const declares a constant that cannot be reassigned, while let allows reassignment."
+      },
+      "medium-18": {
+        "question": "What is lazy loading?",
+        "options": [
+          "Loading resources only when they are needed",
+          "Loading everything at once",
+          "A caching method",
+          "A database type"
+        ],
+        "explanation": "Lazy loading involves loading resources (images, components) only when needed, improving performance."
+      },
+      "medium-19": {
+        "question": "HTTP cookies can be secured with the Secure and HttpOnly attributes.",
+        "explanation": "Yes, Secure enforces HTTPS and HttpOnly prevents JavaScript access to cookies, reducing XSS risks."
+      },
+      "medium-20": {
+        "question": "What is a custom hook in React?",
+        "options": [
+          "A function that starts with \"use\" and can use other hooks",
+          "A React component",
+          "A rendering method",
+          "A state type"
+        ],
+        "explanation": "A custom hook is a JavaScript function that starts with \"use\" and can call other React hooks."
+      },
+      "medium-21": {
+        "question": "Content Security Policy (CSP) helps prevent XSS attacks.",
+        "explanation": "Yes, CSP is a security mechanism that controls which resources can be loaded and executed."
+      },
+      "medium-22": {
+        "question": "What is the method to create a shallow copy of an object in JavaScript?",
+        "options": [
+          "Object.assign() or spread operator",
+          "Object.clone()",
+          "Object.copy()",
+          "Object.duplicate()"
+        ],
+        "explanation": "Object.assign({}, obj) or {...obj} create a shallow copy of an object."
+      },
+      "medium-23": {
+        "question": "WebSockets allow bidirectional real-time communication.",
+        "explanation": "Yes, WebSockets establish a persistent TCP connection allowing bidirectional real-time communication."
+      },
+      "medium-24": {
+        "question": "What is debouncing?",
+        "options": [
+          "Delaying function execution until a delay has passed",
+          "Speeding up a function",
+          "A caching method",
+          "An event type"
+        ],
+        "explanation": "Debouncing delays function execution until a certain time passes without new calls, useful for real-time searches."
+      },
+      "medium-25": {
+        "question": "localStorage persists even after closing the browser.",
+        "explanation": "Yes, localStorage stores data persistently in the browser, even after closing it."
+      },
+      "medium-26": {
+        "question": "What is hoisting in JavaScript?",
+        "options": [
+          "Moving declarations to the top of their scope",
+          "A sorting method",
+          "A variable type",
+          "A syntax error"
+        ],
+        "explanation": "Hoisting is JavaScript behavior that moves variable and function declarations to the top of their scope."
+      },
+      "medium-27": {
+        "question": "What is a callback in JavaScript?",
+        "options": [
+          "A function passed as an argument to another function",
+          "A loop type",
+          "An array method",
+          "An operator"
+        ],
+        "explanation": "A callback is a function passed as an argument to another function and executed later."
+      },
+      "medium-28": {
+        "question": "JavaScript arrays are objects.",
+        "explanation": "Yes, JavaScript arrays are a special type of object with specific methods and properties."
+      },
+      "medium-29": {
+        "question": "What is the spread operator (...) in JavaScript?",
+        "options": [
+          "An operator that expands an iterable into individual elements",
+          "A mathematical operator",
+          "An array method",
+          "A function type"
+        ],
+        "explanation": "The spread operator (...) allows expanding an iterable (array, object) into individual elements."
+      },
+      "medium-30": {
+        "question": "What is destructuring in JavaScript?",
+        "options": [
+          "Extracting values from objects or arrays into variables",
+          "Destroying an object",
+          "A deletion method",
+          "A variable type"
+        ],
+        "explanation": "Destructuring allows extracting values from objects or arrays into separate variables."
+      },
+      "medium-31": {
+        "question": "Async/await functions in JavaScript simplify asynchronous code.",
+        "explanation": "Yes, async/await allows writing asynchronous code in a synchronous and more readable way."
+      },
+      "medium-32": {
+        "question": "What is the concept of \"pure function\" in programming?",
+        "options": [
+          "A function that always returns the same result for the same inputs",
+          "A fast function",
+          "A function without parameters",
+          "A global function"
+        ],
+        "explanation": "A pure function always returns the same result for the same inputs and has no side effects."
+      },
+      "medium-33": {
+        "question": "What is the concept of \"currying\" in functional programming?",
+        "options": [
+          "Transforming a multi-argument function into a series of single-argument functions",
+          "A sorting method",
+          "A loop type",
+          "An error"
+        ],
+        "explanation": "Currying transforms a function taking multiple arguments into a series of functions each taking one argument."
+      },
+      "medium-34": {
+        "question": "sessionStorage stores data only for the browser session.",
+        "explanation": "Yes, sessionStorage stores data only for the current session and deletes it when the tab closes."
+      },
+      "medium-35": {
+        "question": "What is the concept of \"immutability\" in programming?",
+        "options": [
+          "State cannot be modified after creation",
+          "A state that changes often",
+          "A mutation method",
+          "A variable type"
+        ],
+        "explanation": "Immutability means an object cannot be modified after creation, instead new objects are created."
+      },
+      "medium-36": {
+        "question": "What is the concept of \"composition\" in React?",
+        "options": [
+          "Combining small components to create more complex components",
+          "A rendering type",
+          "A state method",
+          "A hook"
+        ],
+        "explanation": "Composition involves combining small reusable components to create more complex components."
+      },
+      "medium-37": {
+        "question": "Props in React are read-only.",
+        "explanation": "Yes, props are immutable and should not be modified by the child component."
+      },
+      "medium-38": {
+        "question": "What is the concept of \"higher-order component\" (HOC) in React?",
+        "options": [
+          "A function that takes a component and returns a new component",
+          "A high-level component",
+          "A hook type",
+          "A rendering method"
+        ],
+        "explanation": "An HOC is a function that takes a component and returns a new component with additional features."
+      },
+      "medium-39": {
+        "question": "What is the concept of \"render props\" in React?",
+        "options": [
+          "A technique where a component accepts a function as a prop for rendering",
+          "A prop type",
+          "A state method",
+          "A hook"
+        ],
+        "explanation": "Render props is a technique where a component accepts a function as a prop to determine what to render."
+      },
+      "medium-40": {
+        "question": "The useEffect hook in React can replace componentDidMount, componentDidUpdate, and componentWillUnmount.",
+        "explanation": "Yes, useEffect combines the functionality of these three class component lifecycle methods."
+      },
+      "medium-41": {
+        "question": "What is the concept of \"controlled component\" in React?",
+        "options": [
+          "A component whose value is controlled by React state",
+          "An uncontrolled component",
+          "A hook type",
+          "A rendering method"
+        ],
+        "explanation": "A controlled component is a component whose value is controlled by React state through props."
+      },
+      "medium-42": {
+        "question": "What is the concept of \"uncontrolled component\" in React?",
+        "options": [
+          "A component that stores its state in the DOM rather than in React",
+          "A component without state",
+          "A hook type",
+          "An error"
+        ],
+        "explanation": "An uncontrolled component stores its state in the DOM and uses refs to access values."
+      },
+      "medium-43": {
+        "question": "The useRef hook in React allows creating a mutable reference that persists between renders.",
+        "explanation": "Yes, useRef returns a mutable object whose .current property can be modified without triggering a re-render."
+      },
+      "medium-44": {
+        "question": "What is the concept of \"key prop\" in React?",
+        "options": [
+          "A unique identifier to help React identify elements in a list",
+          "An encryption key",
+          "A prop type",
+          "A method"
+        ],
+        "explanation": "The key prop helps React identify which items have changed, been added, or removed in a list."
+      },
+      "medium-45": {
+        "question": "What is the concept of \"reconciliation\" in React?",
+        "options": [
+          "The process by which React updates the DOM efficiently",
+          "A rendering type",
+          "A state method",
+          "A hook"
+        ],
+        "explanation": "Reconciliation is the process by which React compares the Virtual DOM with the real DOM and applies necessary changes."
+      },
+      "medium-46": {
+        "question": "The useContext hook in React allows accessing a context without using a Consumer.",
+        "explanation": "Yes, useContext simplifies context access by avoiding the Consumer pattern."
+      },
+      "medium-47": {
+        "question": "What is the concept of \"code splitting\" in web applications?",
+        "options": [
+          "Splitting code into chunks loaded on demand",
+          "Splitting code into files",
+          "A compression method",
+          "A rendering type"
+        ],
+        "explanation": "Code splitting allows dividing the bundle into smaller chunks, loaded only when needed."
+      },
+      "medium-48": {
+        "question": "What is the concept of \"lazy loading\" for images?",
+        "options": [
+          "Loading images only when they are about to be visible",
+          "Loading all images at once",
+          "A compression method",
+          "An image type"
+        ],
+        "explanation": "Lazy loading loads images only when they are about to enter the viewport, improving performance."
+      },
+      "medium-49": {
+        "question": "The concept of \"single page application\" (SPA) loads a single HTML page and updates content dynamically.",
+        "explanation": "Yes, a SPA loads a single HTML page and uses JavaScript to update content without reloading the page."
+      },
+      "medium-50": {
+        "question": "What is the concept of \"progressive enhancement\" in web development?",
+        "options": [
+          "Creating a functional base then adding advanced features",
+          "Progressively improving",
+          "A testing method",
+          "A framework type"
+        ],
+        "explanation": "Progressive enhancement involves creating an accessible functional base, then adding advanced features."
+      },
+      "medium-51": {
+        "question": "What is the concept of \"memoization\" in programming?",
+        "options": [
+          "Storing results of expensive functions to avoid recalculating them",
+          "A sorting method",
+          "A cache type",
+          "An error"
+        ],
+        "explanation": "Memoization involves caching results of expensive functions to improve performance."
+      },
+      "medium-52": {
+        "question": "The useMemo hook in React allows memoizing calculated values.",
+        "explanation": "Yes, useMemo memoizes the result of a calculation and only recalculates if its dependencies change."
+      },
+      "medium-53": {
+        "question": "What is the concept of \"closure\" in JavaScript?",
+        "options": [
+          "A function that has access to variables from its outer scope",
+          "A closing method",
+          "A variable type",
+          "An error"
+        ],
+        "explanation": "A closure is a function that has access to variables from its outer scope even after that scope is closed."
+      },
+      "medium-54": {
+        "question": "What is the concept of \"event delegation\" in JavaScript?",
+        "options": [
+          "Attaching an event handler to a parent rather than children",
+          "Delegating events",
+          "An event type",
+          "A method"
+        ],
+        "explanation": "Event delegation involves attaching an event handler to a parent element to handle events from its children."
+      },
+      "medium-55": {
+        "question": "The useCallback hook in React allows memoizing functions.",
+        "explanation": "Yes, useCallback returns a memoized version of a function that only changes if its dependencies change."
+      },
+      "medium-56": {
+        "question": "What is the concept of \"throttling\" in JavaScript?",
+        "options": [
+          "Limiting function execution to once per time period",
+          "Speeding up a function",
+          "A loop type",
+          "A method"
+        ],
+        "explanation": "Throttling limits function execution to once per time period, useful for frequent events."
+      },
+      "medium-57": {
+        "question": "What is the concept of \"prototype chain\" in JavaScript?",
+        "options": [
+          "The chain of prototypes enabling inheritance in JavaScript",
+          "A chaining method",
+          "An object type",
+          "An error"
+        ],
+        "explanation": "The prototype chain allows an object to inherit properties and methods from its prototype and parent prototypes."
+      },
+      "medium-58": {
+        "question": "ES6 classes in JavaScript are syntactic sugar over the prototype system.",
+        "explanation": "Yes, ES6 classes are clearer syntax but still use the prototype system under the hood."
+      },
+      "medium-59": {
+        "question": "What is the concept of \"virtual DOM\" in React?",
+        "options": [
+          "A JavaScript in-memory representation of the real DOM",
+          "The real DOM",
+          "A DOM type",
+          "A method"
+        ],
+        "explanation": "The Virtual DOM is a lightweight JavaScript representation of the real DOM, enabling efficient updates."
+      },
+      "medium-60": {
+        "question": "What is the concept of \"server-side rendering\" (SSR)?",
+        "options": [
+          "Rendering HTML on the server before sending it to the client",
+          "Rendering on the client",
+          "A rendering type",
+          "A method"
+        ],
+        "explanation": "SSR involves generating HTML on the server, improving SEO and initial load time."
+      },
+      "medium-61": {
+        "question": "The concept of \"static site generation\" (SSG) generates HTML at build time.",
+        "explanation": "Yes, SSG generates all HTML pages at build time, creating an ultra-fast static site."
+      },
+      "medium-62": {
+        "question": "What is the concept of \"hydration\" in React?",
+        "options": [
+          "Attaching event handlers to pre-rendered HTML",
+          "Adding water",
+          "A rendering type",
+          "A method"
+        ],
+        "explanation": "Hydration is the process of attaching React event handlers to server-side pre-rendered HTML."
+      },
+      "medium-63": {
+        "question": "What is the concept of \"tree shaking\" in JavaScript?",
+        "options": [
+          "Eliminating dead code during bundling",
+          "Shaking a tree",
+          "A sorting method",
+          "A bundle type"
+        ],
+        "explanation": "Tree shaking eliminates unused code during bundling, reducing the final bundle size."
+      },
+      "medium-64": {
+        "question": "The concept of \"polyfill\" allows adding missing features in older browsers.",
+        "explanation": "Yes, a polyfill is code that implements a missing feature in an older browser."
+      },
+      "medium-65": {
+        "question": "What is the concept of \"transpilation\" in JavaScript?",
+        "options": [
+          "Converting code from one language to another at the same abstraction level",
+          "Compiling code",
+          "Translating code",
+          "A method"
+        ],
+        "explanation": "Transpilation converts code from one language to another at the same level (e.g., TypeScript to JavaScript)."
+      },
+      "medium-66": {
+        "question": "What is the concept of \"middleware\" in web frameworks?",
+        "options": [
+          "A function that executes between request and response",
+          "A route type",
+          "A method",
+          "An error"
+        ],
+        "explanation": "Middleware is a function that intercepts requests and responses, allowing adding features."
+      },
+      "medium-67": {
+        "question": "The concept of \"REST\" (Representational State Transfer) is an architectural style for APIs.",
+        "explanation": "Yes, REST is an architectural style that uses standard HTTP methods for CRUD operations."
+      },
+      "medium-68": {
+        "question": "What is the concept of \"GraphQL\"?",
+        "options": [
+          "A query language for APIs that allows requesting exactly the needed data",
+          "A database type",
+          "An HTTP method",
+          "A framework"
+        ],
+        "explanation": "GraphQL is a query language that allows clients to request exactly the data they need."
+      },
+      "medium-69": {
+        "question": "What is the concept of \"WebSocket\"?",
+        "options": [
+          "A bidirectional real-time communication protocol",
+          "A socket type",
+          "An HTTP method",
+          "A framework"
+        ],
+        "explanation": "WebSocket is a protocol that enables bidirectional real-time communication between client and server."
+      },
+      "medium-70": {
+        "question": "The concept of \"Service Worker\" allows creating offline web applications.",
+        "explanation": "Yes, Service Workers allow caching resources and creating offline web applications."
+      },
+      "medium-71": {
+        "question": "What is the concept of \"Progressive Web App\" (PWA)?",
+        "options": [
+          "A web application that works like a native app",
+          "An application type",
+          "A method",
+          "A framework"
+        ],
+        "explanation": "A PWA combines the best web and mobile features: installation, offline, push notifications."
+      },
+      "medium-72": {
+        "question": "What is the concept of \"dependency injection\" in programming?",
+        "options": [
+          "Providing an object's dependencies from outside rather than creating them inside",
+          "Injecting code",
+          "A dependency type",
+          "A method"
+        ],
+        "explanation": "Dependency injection makes code more testable and modular by providing dependencies from outside."
+      },
+      "medium-73": {
+        "question": "The concept of \"unit testing\" tests individual units of code in isolation.",
+        "explanation": "Yes, unit tests test small units of code (functions, components) in isolation."
+      },
+      "medium-74": {
+        "question": "What is the concept of \"integration testing\"?",
+        "options": [
+          "Testing the interaction between multiple components or modules",
+          "Testing a single component",
+          "A test type",
+          "A method"
+        ],
+        "explanation": "Integration tests verify that multiple components work correctly together."
+      },
+      "medium-75": {
+        "question": "What is the concept of \"end-to-end testing\" (E2E)?",
+        "options": [
+          "Testing the complete application from start to end like a real user",
+          "Testing a function",
+          "A test type",
+          "A method"
+        ],
+        "explanation": "E2E tests simulate a real user and test the complete application from start to end."
+      },
+      "medium-76": {
+        "question": "The concept of \"mocking\" in tests allows simulating external dependencies.",
+        "explanation": "Yes, mocking allows replacing dependencies with simulated versions to isolate tests."
+      },
+      "medium-77": {
+        "question": "What is the concept of \"continuous integration\" (CI)?",
+        "options": [
+          "Automating tests and builds on each commit",
+          "Continuously integrating",
+          "A deployment type",
+          "A method"
+        ],
+        "explanation": "CI automates tests and builds on each commit to detect issues quickly."
+      },
+      "medium-78": {
+        "question": "What is the concept of \"continuous deployment\" (CD)?",
+        "options": [
+          "Automatically deploying code to production after tests",
+          "Continuously deploying",
+          "A test type",
+          "A method"
+        ],
+        "explanation": "CD automatically deploys code to production after all tests pass."
+      },
+      "medium-79": {
+        "question": "The concept of \"version control\" allows tracking code changes over time.",
+        "explanation": "Yes, version control (like Git) allows tracking, managing, and collaborating on code changes."
+      },
+      "medium-80": {
+        "question": "What is the concept of \"branch\" in Git?",
+        "options": [
+          "An independent line of development in a repository",
+          "A tree branch",
+          "A commit type",
+          "A method"
+        ],
+        "explanation": "A Git branch is an independent line of development that allows working on features separately."
+      },
+      "hard-1": {
+        "question": "What is the difference between a deep copy and a shallow copy in JavaScript?",
+        "options": [
+          "Deep copy copies all levels, shallow copy only the first level",
+          "Shallow copy is faster",
+          "No difference",
+          "Deep copy is deprecated"
+        ],
+        "explanation": "A shallow copy copies only the first level, while a deep copy recursively copies all nested levels."
+      },
+      "hard-2": {
+        "question": "OAuth 2.0 protocol uses only access tokens, not refresh tokens.",
+        "explanation": "No, OAuth 2.0 uses both access tokens (short-lived) and refresh tokens (long-lived) to renew access tokens."
+      },
+      "hard-3": {
+        "question": "What is the time complexity of merge sort algorithm?",
+        "options": [
+          "O(n log n)",
+          "O(n²)",
+          "O(n)",
+          "O(log n)"
+        ],
+        "explanation": "Merge sort has a time complexity of O(n log n) in all cases (best, average, and worst)."
+      },
+      "hard-4": {
+        "question": "What is the main vulnerability of ECB (Electronic Codebook) mode in encryption?",
+        "options": [
+          "Identical blocks produce the same ciphertext",
+          "It is too slow",
+          "It requires too much memory",
+          "It is not secure at all"
+        ],
+        "explanation": "ECB produces the same ciphertext for identical blocks, revealing patterns in data, which is a major security flaw."
+      },
+      "hard-5": {
+        "question": "Service Workers can intercept and modify network requests.",
+        "explanation": "Yes, Service Workers act as a proxy between the application and network, allowing interception and modification of requests."
+      },
+      "hard-6": {
+        "question": "What is the principle of least privilege in security?",
+        "options": [
+          "Grant only the minimum permissions necessary",
+          "Give all rights by default",
+          "An encryption method",
+          "A network protocol"
+        ],
+        "explanation": "The principle of least privilege is to grant users and processes only the minimum permissions necessary to accomplish their tasks."
+      },
+      "hard-7": {
+        "question": "What is the difference between useMemo and useCallback in React?",
+        "options": [
+          "useMemo memoizes a value, useCallback memoizes a function",
+          "useCallback is faster",
+          "No difference",
+          "useMemo is deprecated"
+        ],
+        "explanation": "useMemo returns a memoized value, while useCallback returns a memoized function."
+      },
+      "hard-8": {
+        "question": "SHA-256 hash is reversible, you can retrieve the original text from the hash.",
+        "explanation": "No, SHA-256 is a one-way hash function, it is mathematically impossible to retrieve the original text."
+      },
+      "hard-9": {
+        "question": "What is code splitting in React applications?",
+        "options": [
+          "Splitting code into chunks loaded on demand",
+          "Splitting code into files",
+          "A compression method",
+          "A rendering type"
+        ],
+        "explanation": "Code splitting allows dividing the JavaScript bundle into smaller chunks, loaded only when needed, improving performance."
+      },
+      "hard-10": {
+        "question": "What is the difference between authentication and authorization?",
+        "options": [
+          "Authentication verifies identity, authorization verifies permissions",
+          "No difference",
+          "Authorization is more secure",
+          "Authentication is deprecated"
+        ],
+        "explanation": "Authentication verifies who you are (identity), while authorization verifies what you are allowed to do (permissions)."
+      },
+      "hard-11": {
+        "question": "Direct mutations of React state are allowed and recommended.",
+        "explanation": "No, React requires immutable state updates. Direct mutations do not trigger re-renders."
+      },
+      "hard-12": {
+        "question": "What is a race condition in asynchronous programming?",
+        "options": [
+          "Unpredictable behavior when execution order depends on timing",
+          "A syntax error",
+          "A loop type",
+          "A caching method"
+        ],
+        "explanation": "A race condition occurs when the result depends on the execution order of asynchronous processes, creating unpredictable behavior."
+      },
+      "hard-13": {
+        "question": "What is the space complexity of an in-place sorting algorithm?",
+        "options": [
+          "O(1)",
+          "O(n)",
+          "O(n log n)",
+          "O(n²)"
+        ],
+        "explanation": "An in-place sorting algorithm uses constant space O(1), modifying the array directly without creating a copy."
+      },
+      "hard-14": {
+        "question": "Same-Origin Policy prevents scripts from one domain from accessing data from another domain.",
+        "explanation": "Yes, Same-Origin Policy is a security mechanism that restricts access to resources between different origins."
+      },
+      "hard-15": {
+        "question": "What is the Virtual DOM in React?",
+        "options": [
+          "A JavaScript in-memory representation of the real DOM",
+          "The browser's real DOM",
+          "A caching method",
+          "A component type"
+        ],
+        "explanation": "The Virtual DOM is a lightweight JavaScript representation of the real DOM, allowing React to optimize updates."
+      },
+      "hard-16": {
+        "question": "What is the difference between a salt and a pepper in cryptography?",
+        "options": [
+          "Salt is unique per user, pepper is shared and secret",
+          "Pepper is longer",
+          "No difference",
+          "Salt is deprecated"
+        ],
+        "explanation": "A salt is unique per user and stored with the hash, while a pepper is a shared secret stored separately."
+      },
+      "hard-17": {
+        "question": "Closures in JavaScript allow a function to access variables from its outer scope even after that scope is closed.",
+        "explanation": "Yes, closures allow an inner function to access variables from the outer function even after it has executed."
+      },
+      "hard-18": {
+        "question": "What is double spending in the context of blockchain?",
+        "options": [
+          "Spending the same unit of value twice",
+          "An encryption method",
+          "A transaction type",
+          "A calculation error"
+        ],
+        "explanation": "Double spending is the problem of spending the same unit of digital value twice, solved by blockchain through consensus."
+      },
+      "hard-19": {
+        "question": "What is the difference between a WeakMap and a Map in JavaScript?",
+        "options": [
+          "WeakMap has weak keys and cannot be iterated",
+          "Map is faster",
+          "No difference",
+          "WeakMap is deprecated"
+        ],
+        "explanation": "WeakMap uses weak references for keys (allowing garbage collection) and cannot be iterated, unlike Map."
+      },
+      "hard-20": {
+        "question": "HTTP/2 protocol allows multiplexing, enabling multiple requests over a single TCP connection.",
+        "explanation": "Yes, HTTP/2 introduces multiplexing which allows sending multiple requests simultaneously over a single TCP connection."
+      },
+      "hard-21": {
+        "question": "What is the concept of \"lifting state up\" in React?",
+        "options": [
+          "Moving state up to the common parent component",
+          "Lifting state to the DOM",
+          "A caching method",
+          "A hook type"
+        ],
+        "explanation": "Lifting state up involves moving shared state to the closest common parent component."
+      },
+      "hard-22": {
+        "question": "What is the main difference between AES-128 and AES-256?",
+        "options": [
+          "The key length (128 bits vs 256 bits)",
+          "The execution speed",
+          "The encryption type",
+          "No difference"
+        ],
+        "explanation": "AES-128 uses a 128-bit key while AES-256 uses a 256-bit key, offering enhanced security."
+      },
+      "hard-23": {
+        "question": "Server Components in Next.js 13+ run only on the server and are not included in the client bundle.",
+        "explanation": "Yes, Server Components run only on the server, reducing the client JavaScript bundle size."
+      },
+      "hard-24": {
+        "question": "What is the concept of \"event delegation\" in JavaScript?",
+        "options": [
+          "Attaching a listener on a parent to handle children events",
+          "Delegating events to server",
+          "A caching method",
+          "An event type"
+        ],
+        "explanation": "Event delegation involves attaching a listener on a parent element to handle its children's events, improving performance."
+      },
+      "hard-25": {
+        "question": "What is the time complexity of searching in a balanced binary search tree?",
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "O(1)",
+          "O(n log n)"
+        ],
+        "explanation": "In a balanced binary search tree, search has O(log n) complexity because we divide the search space by two at each level."
+      },
+      "hard-26": {
+        "question": "WebSocket protocol uses the same port as HTTP (80) or HTTPS (443).",
+        "explanation": "Yes, WebSocket starts with a normal HTTP/HTTPS connection then upgrades to WebSocket, using the same ports."
+      },
+      "hard-27": {
+        "question": "What is the concept of \"memoization\" in programming?",
+        "options": [
+          "Storing results of expensive calculations to avoid recalculating",
+          "A compression method",
+          "A cache type",
+          "A memory error"
+        ],
+        "explanation": "Memoization involves storing results of expensive calculations in a cache to avoid recalculating with the same inputs."
+      },
+      "hard-28": {
+        "question": "What is the difference between a self-signed SSL certificate and one signed by a certificate authority?",
+        "options": [
+          "A CA-signed certificate is verified and trusted by browsers",
+          "No difference",
+          "Self-signed are more secure",
+          "CAs are deprecated"
+        ],
+        "explanation": "A CA-signed certificate is verified and trusted by browsers, while a self-signed one generates a security warning."
+      },
+      "hard-29": {
+        "question": "Generators in JavaScript allow creating iterable functions with yield.",
+        "explanation": "Yes, Generators are special functions that can be paused and resumed, using yield to produce values."
+      },
+      "hard-30": {
+        "question": "What is the concept of \"defense in depth\" in cybersecurity?",
+        "options": [
+          "Using multiple layers of security to protect a system",
+          "A single maximum security layer",
+          "An encryption method",
+          "A firewall type"
+        ],
+        "explanation": "Defense in depth involves using multiple independent security layers to protect a system, reducing the risk of compromise."
+      },
+      "hard-31": {
+        "question": "What is the difference between a thunk and a middleware in Redux?",
+        "options": [
+          "A thunk is a specific middleware for asynchronous actions",
+          "A middleware is a type of thunk",
+          "No difference",
+          "Thunks are deprecated"
+        ],
+        "explanation": "A thunk is a Redux middleware that allows dispatching functions instead of plain actions, useful for asynchronous operations."
+      },
+      "hard-32": {
+        "question": "QUIC protocol uses UDP instead of TCP to improve performance.",
+        "explanation": "Yes, QUIC (Quick UDP Internet Connections) uses UDP with built-in reliability and security features, improving performance."
+      },
+      "hard-33": {
+        "question": "What is the concept of \"single source of truth\" in state management?",
+        "options": [
+          "Having a single reliable source for application state",
+          "Having multiple state sources",
+          "A caching method",
+          "A database type"
+        ],
+        "explanation": "Single source of truth involves having a single reliable source for application state, avoiding inconsistencies."
+      },
+      "hard-34": {
+        "question": "What is the difference between a hash and an HMAC (Hash-based Message Authentication Code)?",
+        "options": [
+          "HMAC uses a secret key to authenticate the message",
+          "Hash is more secure",
+          "No difference",
+          "HMAC is deprecated"
+        ],
+        "explanation": "HMAC combines a hash with a secret key, allowing verification of both integrity and authenticity of a message."
+      },
+      "hard-35": {
+        "question": "Web Workers allow executing JavaScript in a thread separate from the main thread.",
+        "explanation": "Yes, Web Workers allow executing JavaScript code in a separate thread, avoiding blocking the main thread."
+      },
+      "hard-36": {
+        "question": "What is the concept of \"idempotence\" in REST APIs?",
+        "options": [
+          "Performing the same request multiple times produces the same result",
+          "A caching method",
+          "A request type",
+          "A request error"
+        ],
+        "explanation": "Idempotence means performing the same request multiple times produces the same result, important for PUT and DELETE methods."
+      },
+      "hard-37": {
+        "question": "What is the difference between a JWT (JSON Web Token) and a classic session token?",
+        "options": [
+          "JWT is stateless and contains data, session token requires server storage",
+          "Session token is more secure",
+          "No difference",
+          "JWT is deprecated"
+        ],
+        "explanation": "JWT is stateless and contains data in the token, while a session token requires server-side storage for session data."
+      },
+      "hard-38": {
+        "question": "TLS 1.3 protocol reduces the number of round-trips needed to establish a secure connection.",
+        "explanation": "Yes, TLS 1.3 reduces the handshake from 2 round-trips to 1, improving performance and security."
+      },
+      "hard-39": {
+        "question": "What is the concept of \"dependency injection\" in programming?",
+        "options": [
+          "Providing an object's dependencies from outside rather than creating them inside",
+          "Creating all dependencies inside",
+          "A caching method",
+          "A function type"
+        ],
+        "explanation": "Dependency injection involves providing an object's dependencies from outside, improving testability and flexibility."
+      },
+      "hard-40": {
+        "question": "What is the difference between a CSRF token and a JWT token?",
+        "options": [
+          "CSRF token protects against CSRF, JWT is for authentication",
+          "JWT protects against CSRF",
+          "No difference",
+          "CSRF token is deprecated"
+        ],
+        "explanation": "A CSRF token protects against CSRF attacks by validating request origin, while a JWT is used for authentication and authorization."
+      },
+      "hard-41": {
+        "question": "React Server Components can use hooks like useState and useEffect.",
+        "explanation": "No, Server Components run only on the server and cannot use hooks that require client state."
+      },
+      "hard-42": {
+        "question": "What is the concept of \"event loop\" in JavaScript?",
+        "options": [
+          "A mechanism that manages asynchronous execution in JavaScript",
+          "A code loop",
+          "A caching method",
+          "A function type"
+        ],
+        "explanation": "The event loop is the mechanism that manages asynchronous execution in JavaScript, managing the execution stack and callback queue."
+      },
+      "hard-43": {
+        "question": "What is the difference between a wildcard certificate and a SAN (Subject Alternative Name) certificate?",
+        "options": [
+          "Wildcard covers *.domain.com, SAN lists multiple specific domains",
+          "SAN is more secure",
+          "No difference",
+          "Wildcard is deprecated"
+        ],
+        "explanation": "A wildcard certificate covers all subdomains (*.domain.com), while a SAN lists multiple specific domains."
+      },
+      "hard-44": {
+        "question": "HTTP/3 protocol uses QUIC instead of TCP as the transport protocol.",
+        "explanation": "Yes, HTTP/3 uses QUIC which is based on UDP, offering better performance than HTTP/2 based on TCP."
+      },
+      "hard-45": {
+        "question": "What is the concept of \"tree shaking\" in JavaScript bundling?",
+        "options": [
+          "Eliminating unused dead code from the final bundle",
+          "Adding additional code",
+          "A compression method",
+          "A cache type"
+        ],
+        "explanation": "Tree shaking is an optimization technique that eliminates dead (unused) code from the final bundle, reducing its size."
+      },
+      "hard-46": {
+        "question": "What is the difference between IP-based rate limiting and token-based rate limiting?",
+        "options": [
+          "IP-based limits by address, token-based limits by authenticated user",
+          "Token-based is faster",
+          "No difference",
+          "IP-based is deprecated"
+        ],
+        "explanation": "IP-based rate limiting limits requests by IP address, while token-based limits by authenticated user, more precise."
+      },
+      "hard-47": {
+        "question": "Proxies in JavaScript allow intercepting and customizing operations on objects.",
+        "explanation": "Yes, Proxies allow creating an object that intercepts and customizes fundamental operations (reading, writing, etc.)."
+      },
+      "hard-48": {
+        "question": "What is the concept of \"zero trust\" in cybersecurity?",
+        "options": [
+          "Trust no user or device by default",
+          "Trust all users",
+          "An encryption method",
+          "A firewall type"
+        ],
+        "explanation": "Zero trust is a security model that trusts no user or device by default, verifying every access."
+      },
+      "hard-49": {
+        "question": "What is the difference between a polyfill and a transpiler?",
+        "options": [
+          "Polyfill adds missing features, transpiler converts code",
+          "Transpiler is faster",
+          "No difference",
+          "Polyfill is deprecated"
+        ],
+        "explanation": "A polyfill adds missing features in an environment, while a transpiler converts code from one language to another."
+      },
+      "hard-50": {
+        "question": "gRPC protocol uses Protocol Buffers for data serialization.",
+        "explanation": "Yes, gRPC uses Protocol Buffers (protobuf) as the default serialization format, offering efficient binary serialization."
+      }
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "description": "The page you’re looking for doesn’t exist or has been moved.",
+      "backHome": "Back to the home page"
+    },
+    "500": {
+      "title": "Something went wrong",
+      "description": "Sorry, something went wrong. Please try again.",
+      "retry": "Try again",
+      "backHome": "Back to the home page"
+    }
+  },
+  "portfolioProject": {
+    "title": "Portfolio",
+    "badge": "Personal project",
+    "subtitle": "A modern, high-performance portfolio designed to showcase my web development skills and deliver a polished user experience.",
+    "description": "This project is my professional online showcase. Built with modern web technologies, it highlights my work, technical skills, and ability to deliver clean, high-performance, accessible interfaces.",
+    "links": {
+      "live": "View the site",
+      "code": "View the code"
+    },
+    "meta": {
+      "durationLabel": "Duration",
+      "duration": "2 months",
+      "roleLabel": "Role",
+      "role": "Developer",
+      "teamLabel": "Team",
+      "team": "Solo",
+      "statusLabel": "Status",
+      "status": "Live"
+    },
+    "problem": {
+      "title": "The problem",
+      "description": "A paper CV or a PDF is no longer enough to stand out. Recruiters and clients want to see real work: a functional interface, clean code, and attention to detail. A static document can explain, but it proves nothing."
+    },
+    "solution": {
+      "title": "The solution",
+      "description": "Build an interactive portfolio that demonstrates my skills in action. Every technical choice, every interface detail, every interaction is tangible proof of my expertise — not just a list of technologies I know."
+    },
+    "features": {
+      "title": "Key features",
+      "subtitle": "The essentials that make this project stand out.",
+      "items": {
+        "item1": {
+          "title": "Clear architecture",
+          "description": "A modular, scalable structure. Each component has a single responsibility, keeping the code readable and maintainable as the project grows."
+        },
+        "item2": {
+          "title": "Detailed project pages",
+          "description": "A reusable template for each project: context, technical choices, challenges, and outcomes. Consistent and easy to extend."
+        },
+        "item3": {
+          "title": "Mobile-first & responsive",
+          "description": "An optimal experience on every screen. Adaptive layouts, optimised images, and smooth interactions from mobile to desktop."
+        }
+      }
+    },
+    "techChoices": {
+      "title": "Tech stack",
+      "description": "Modern technologies chosen for their reliability, performance, and ecosystem.",
+      "items": {
+        "item1": "Next.js 16 + strict TypeScript — SSR, optimised routing, and strong typing for robust code.",
+        "item2": "Tailwind CSS 4 — A consistent design system, utility-first styling, and fast iteration without legacy CSS.",
+        "item3": "Radix UI + shadcn/ui — Accessible-by-default components that are customisable and well documented."
+      }
+    },
+    "architecture": {
+      "title": "Architecture",
+      "description": "A product-focused structure with a clear separation between UI and content via i18n, reusable components, and an intuitive file layout. The project stays maintainable and easy to evolve, even after months away from the codebase."
+    },
+    "quality": {
+      "title": "Quality & standards",
+      "subtitle": "The pillars that ensure a professional user experience.",
+      "items": {
+        "performance": {
+          "title": "Performance",
+          "description": "Lightweight pages, lazy loading, optimised images. Lighthouse score above 90 across all categories."
+        },
+        "accessibility": {
+          "title": "Accessibility",
+          "description": "Keyboard navigation, WCAG-compliant contrast, semantic HTML, and ARIA labels. Usable by everyone."
+        },
+        "security": {
+          "title": "Security",
+          "description": "Secure headers, input validation, and no vulnerable dependencies. Aligned with OWASP best practices."
+        },
+        "seo": {
+          "title": "SEO",
+          "description": "Complete metadata, a sitemap, and a semantic structure for optimal indexing by search engines."
+        }
+      }
+    },
+    "challenges": {
+      "title": "Challenges overcome",
+      "items": {
+        "item1": "Avoiding the “cold catalogue” effect — balancing text and visuals to create an engaging reading rhythm.",
+        "item2": "Maintaining quality on mobile — responsive grids, a stable typographic hierarchy, and smooth touch interactions."
+      }
+    },
+    "results": {
+      "title": "Results",
+      "items": {
+        "item1": "A professional online presence that reflects my skill level and working style.",
+        "item2": "A maintainable codebase: adding a new project takes under 30 minutes.",
+        "item3": "A concrete demonstration of my skills — the code is public and speaks for itself."
+      }
+    },
+    "nextSteps": {
+      "title": "Next steps",
+      "items": {
+        "item1": "Expand with new projects and detailed case studies.",
+        "item2": "Add subtle animations and micro-interactions to enhance the UX.",
+        "item3": "Integrate a technical blog to share what I’m learning."
+      }
+    },
+    "ctaBottom": {
+      "title": "Want to see more?",
+      "description": "Explore the live site or dive into the source code to see how it’s built."
+    }
+  },
+  "githubStats": {
+    "title": "GitHub statistics",
+    "homeTitle": "GitHub activity",
+    "homeSubtitle": "Statistics from my open-source projects",
+    "selectRepos": "Select repositories",
+    "minOneRepo": "Select at least one repository",
+    "loading": "Loading...",
+    "chartTitle": "Commit history",
+    "chartSubtitle": "Click to show the chart",
+    "periodForChart": "Chart period",
+    "periodForStats": "Stats period (commits, lines added, lines deleted)",
+    "loadingData": "Loading data...",
+    "takeTime": "This may take a little while",
+    "viewAllStats": "View all statistics",
+    "repoCount": "{count, plural, one {# repository} other {# repositories}}",
+    "periods": {
+      "7d": "7 days",
+      "30d": "30 days",
+      "6m": "6 months",
+      "12m": "12 months",
+      "loading": "Loading...",
+      "notAvailable": "Not enough data for this period"
+    },
+    "charts": {
+      "commits": {
+        "label": "Commits",
+        "total": "{count, plural, =0 {No commits in this period} =1 {1 commit in this period} other {# commits in this period}}"
+      }
+    },
+    "search": {
+      "title": "Search by hash",
+      "placeholder": "Commit hash (e.g. a1b2c3d)",
+      "loading": "Loading...",
+      "noResults": "No commits found",
+      "clearSelection": "Clear selection",
+      "sortNewest": "Newest first",
+      "sortOldest": "Oldest first"
+    },
+    "commitDetail": {
+      "loading": "Loading commit...",
+      "filesChanged": "{count, plural, =1 {1 file changed} other {# files changed}}",
+      "viewOnGithub": "View on GitHub"
+    },
+    "errors": {
+      "loading": "Failed to load statistics",
+      "notConfigured": "GitHub token not configured"
+    },
+    "overview": {
+      "commits": "{count, plural, =0 {Commits} =1 {Commit} other {Commits}}",
+      "contributors": "{count, plural, =0 {Contributors} =1 {Contributor} other {Contributors}}",
+      "additions": "{count, plural, =0 {Lines added} =1 {Line added} other {Lines added}}",
+      "deletions": "{count, plural, =0 {Lines deleted} =1 {Line deleted} other {Lines deleted}}",
+      "stars": "{count, plural, =0 {Stars} =1 {Star} other {Stars}}",
+      "forks": "{count, plural, =0 {Forks} =1 {Fork} other {Forks}}",
+      "size": "Size"
+    },
+    "languages": {
+      "title": "{count, plural, =1 {Language} other {Languages}}",
+      "other": "Other"
+    },
+    "contributors": {
+      "title": "{count, plural, =1 {Contributor} other {Contributors}}",
+      "total": "{count, plural, =1 {1 contributor} other {# contributors}}",
+      "andMore": "+{count, plural, =1 {1 other} other {# others}}"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Here you’ll find answers to common questions about my work, skills, and projects. If your question isn’t listed, feel free to contact me directly.",
+    "faqs": {
+      "question1": {
+        "question": "How can I contact you?",
+        "answer": "You can email me at contact@paulviandier.com or use the contact form in the Contact section."
+      },
+      "question2": {
+        "question": "Which languages and technologies do you work with?",
+        "answer": "HTML, CSS, JavaScript, TypeScript, React, Next.js, and Tailwind CSS. I also use Node.js for APIs and scripts."
+      },
+      "question3": {
+        "question": "Which projects can I check out?",
+        "answer": "All my projects are listed in the Projects section. Each project page explains the goal, the technical choices, and the outcome."
+      },
+      "question4": {
+        "question": "What kinds of projects do you build?",
+        "answer": "Landing pages, dashboards, Next.js web apps, product-focused interfaces, and internal tools."
+      },
+      "question5": {
+        "question": "Do you work mainly as a front-end developer or full-stack?",
+        "answer": "I’m strongly front-end oriented (UI/UX, performance, accessibility), but I can also handle some back-end work (APIs, authentication, integrations). Long term, my goal is to build strong full-stack skills."
+      },
+      "question6": {
+        "question": "Do you use UI component libraries, or do you build components yourself?",
+        "answer": "Both. I use solid foundations (Radix, shadcn/ui) when it makes sense, and I build custom components when a specific result is needed."
+      },
+      "question7": {
+        "question": "How do you handle performance and SEO?",
+        "answer": "Image optimisation, progressive loading, code splitting, clean metadata, sitemaps, and Next.js best practices."
+      },
+      "question8": {
+        "question": "Do you pay attention to accessibility?",
+        "answer": "Yes: keyboard navigation, contrast, labels, semantic HTML, and accessible components (Radix helps a lot with this)."
+      },
+      "question9": {
+        "question": "What’s your development workflow?",
+        "answer": "I start with a clear goal, build a quick UI baseline, then iterate: code quality, manual testing, performance, and polish."
+      },
+      "question10": {
+        "question": "Can you work from an existing design?",
+        "answer": "Yes. I can implement a Figma design faithfully, or propose a simple, consistent UI direction if needed."
+      },
+      "question11": {
+        "question": "How do you handle internationalisation (i18n)?",
+        "answer": "With next-intl: clean locale-based routing, structured translations, and language-appropriate date/time formats and typography."
+      },
+      "question12": {
+        "question": "Do you follow coding standards?",
+        "answer": "Yes: strict TypeScript, reusable components, naming conventions, linting/formatting, and a clear separation between UI and logic."
+      },
+      "question13": {
+        "question": "How do you manage state and data?",
+        "answer": "Depending on the needs: local React state, lightweight stores when necessary, and server/client fetching with proper loading and error handling."
+      },
+      "question14": {
+        "question": "Can you integrate external APIs or services?",
+        "answer": "Yes: authentication, payments, email, analytics, CMS, and anything that provides a reliable API."
+      },
+      "question15": {
+        "question": "What sets you apart?",
+        "answer": "A product-driven approach: clean UI, robust logic, polished details, and real attention to perceived quality."
+      }
+    }
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content"
+  },
+  "legal": {
+    "common": {
+      "badge": "Legal document",
+      "lastUpdatedLabel": "Last updated:",
+      "links": {
+        "readPrivacy": "Read the Privacy Policy",
+        "readLegalNotice": "Read the Legal Notice",
+        "readTerms": "Read the Terms of Use"
+      }
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "description": "These terms govern access to and use of this portfolio website. By browsing the site, you agree to the rules below.",
+      "sections": {
+        "editor": {
+          "title": "1. Legal information — Website publisher",
+          "intro": "This website is a personal portfolio showcasing projects, work samples, and professional information.",
+          "publisherTitle": "Publisher:",
+          "publisherNameLabel": "First and last name:",
+          "publisherNameValue": "Viandier Paul",
+          "publisherEmailLabel": "Email:",
+          "publisherEmailValue": "contact@paulviandier.com",
+          "hostTitle": "Hosting provider:",
+          "hostNameLabel": "Name:",
+          "hostNameValue": "OVH SAS",
+          "hostAddressLabel": "Address:",
+          "hostAddressValue": "2 rue Kellermann, 59100 Roubaix, France",
+          "hostWebsiteLabel": "Website:",
+          "hostWebsiteValue": "ovhcloud.com",
+          "contactLine": "If you have any questions, you can contact the publisher: <contactBtn>open the contact form</contactBtn>."
+        },
+        "purpose": {
+          "title": "2. Purpose of these Terms of Use",
+          "p1": "These Terms of Use (the “Terms”) set out the rules for accessing and using the website, its pages, and its features (e.g. the contact form).",
+          "p2": "By browsing the website, you accept the Terms. If you do not agree, please do not use the website."
+        },
+        "access": {
+          "title": "3. Access to the website and availability",
+          "p1": "The website is generally accessible 24/7, except in the event of scheduled or unscheduled interruptions (maintenance, incidents, updates, technical constraints).",
+          "p2": "The publisher does not guarantee uninterrupted availability or the absence of errors. The website is provided “as is”."
+        },
+        "definitions": {
+          "title": "4. Definitions",
+          "items": [
+            {
+              "label": "Website:",
+              "text": "all pages of the portfolio accessible via the domain name and its subpages."
+            },
+            {
+              "label": "User:",
+              "text": "any person browsing the website."
+            },
+            {
+              "label": "Content:",
+              "text": "text, images, videos, code, mock-ups, documents, logos, graphic elements and, more generally, any element published on the website."
+            },
+            {
+              "label": "Third-party services:",
+              "text": "external services accessible via links (e.g. GitHub, LinkedIn)."
+            }
+          ]
+        },
+        "acceptableUse": {
+          "title": "5. Acceptable use",
+          "p1": "You agree to use the website in good faith and not to interfere with its proper operation.",
+          "listIntro": "In particular, it is prohibited to:",
+          "items": [
+            "disrupt the website (attack, overload, denial of service, injection, etc.);",
+            "access or attempt to access unauthorised areas;",
+            "automatically extract data in an abusive manner (aggressive scraping, spam, harvesting);",
+            "use the website for unlawful purposes or in a manner contrary to public order;",
+            "circumvent security or authentication measures where applicable."
+          ],
+          "example": "Practical example: sending dozens of requests per second to the contact form to make it unusable is prohibited."
+        },
+        "ip": {
+          "title": "6. Intellectual property",
+          "p1": "Unless stated otherwise, all Content on the website is protected by copyright and/or other intellectual property rights. Rights remain the property of the publisher or the relevant rights holders.",
+          "notAllowedIntro": "You are not authorised to:",
+          "notAllowed": [
+            "reproduce, copy, modify, distribute or publish the Content without written permission;",
+            "reuse graphic elements, text, screenshots or code for public or commercial purposes without permission."
+          ],
+          "example": "Practical example: copying a portfolio page (text and visuals) onto your website without attribution or permission is prohibited."
+        },
+        "externalLinks": {
+          "title": "7. External links and third-party services",
+          "p1": "The website may contain links to Third-party services. The publisher has no control over these services and cannot be held responsible for their content, availability or practices (including their privacy policies).",
+          "p2": "Access to these Third-party services is at your own risk, subject to their own terms."
+        },
+        "contact": {
+          "title": "8. Contact form and communications",
+          "p1": "If a contact form is available, you agree to provide accurate information and not to submit any unlawful, abusive, defamatory, harassing or malicious content.",
+          "rightsIntro": "The publisher reserves the right to:",
+          "rights": [
+            "not respond to abusive or irrelevant requests;",
+            "implement anti-spam protections;",
+            "restrict access to the form in the event of abuse."
+          ],
+          "example": "Practical example: sending repeated messages (spam) or suspicious files may result in a block."
+        },
+        "data": {
+          "title": "9. Personal data and cookies",
+          "p1": "The website does not collect personal data for commercial purposes, profiling or advertising tracking.",
+          "p2": "Technical data, including the IP address, may be processed occasionally when necessary for security, abuse prevention and diagnostics.",
+          "p3": "The contact form includes anti-abuse protections via Cloudflare. These services may process technical data required for their operation.",
+          "p4": "For more information, please refer to the <privacyLink>Privacy Policy</privacyLink>."
+        },
+        "liability": {
+          "title": "10. Limitation of liability",
+          "p1": "The publisher makes reasonable efforts to provide up-to-date and accurate information but does not guarantee completeness or the absence of errors.",
+          "p2": "To the extent permitted by law, the publisher cannot be held liable for any direct or indirect damages related to the use of the website (e.g. data loss, interruption, incompatibility, etc.).",
+          "example": "Practical example: a broken external link or a project that has changed since publication does not constitute a fault giving rise to the publisher’s liability."
+        },
+        "security": {
+          "title": "11. Security",
+          "p1": "You agree not to compromise the security of the website. Any attempt at fraud, intrusion or exploitation of a vulnerability may result in protective measures and, where appropriate, further action.",
+          "p2": "If you identify a security issue, please report it to the publisher using the contact information above."
+        },
+        "changes": {
+          "title": "12. Changes to the Terms",
+          "p1": "These Terms may be updated at any time. The applicable version is the one published on this page at the time you consult it.",
+          "p2": "The last updated date is shown at the top of the page."
+        },
+        "law": {
+          "title": "13. Governing law and jurisdiction",
+          "p1": "Unless mandatory provisions provide otherwise, these Terms are governed by French law.",
+          "p2": "In the event of a dispute, an amicable resolution will be sought before any legal action. Failing agreement, the competent courts will be those determined by the applicable rules."
+        }
+      }
+    },
+    "privacy-policy": {
+      "title": "Privacy Policy",
+      "description": "This policy explains what data may be processed, why, and how you can exercise your rights.",
+      "sections": {
+        "intro": {
+          "title": "1. Overview",
+          "p1": "This Privacy Policy explains how personal data may be processed when using this portfolio website.",
+          "p2": "The publisher undertakes to comply with applicable regulations, including the General Data Protection Regulation (GDPR)."
+        },
+        "controller": {
+          "title": "2. Data controller",
+          "p1": "The data controller is the website publisher.",
+          "nameLabel": "First and last name:",
+          "nameValue": "Viandier Paul",
+          "emailLabel": "Email:",
+          "emailValue": "contact@paulviandier.com",
+          "contactLine": "To exercise your rights or ask a question, you can <contactBtn>open the contact form</contactBtn>."
+        },
+        "data": {
+          "title": "3. Data processed",
+          "p1": "The website does not collect personal data for commercial purposes, profiling or advertising tracking.",
+          "ipTitle": "IP address:",
+          "ipText": "the IP address may be processed occasionally only when necessary, in particular for security, abuse prevention and diagnostics.",
+          "cloudflareTitle": "Contact form:",
+          "cloudflareText": "the form includes anti-abuse protections via Cloudflare services (e.g. anti-bot / anti-spam). These services may process technical data required for their operation.",
+          "p2": "If you choose to contact the publisher, the information you provide is used solely to handle your request and respond to you."
+        },
+        "purposes": {
+          "title": "4. Purposes and legal bases",
+          "p1": "Any processing that may be carried out serves the following purposes:",
+          "items": [
+            "ensure the security of the website and prevent abuse;",
+            "respond to requests submitted via the contact form;",
+            "diagnose technical incidents and maintain the proper operation of the website."
+          ],
+          "p2": "The legal bases are, depending on the case, the publisher’s legitimate interest (security, abuse prevention, service maintenance) and your consent when you initiate contact."
+        },
+        "recipients": {
+          "title": "5. Recipients and processors",
+          "p1": "Any data that may be processed is intended for the website publisher. It may be processed by technical service providers strictly necessary for the operation and security of the website, within the scope of their tasks.",
+          "items": [
+            "Hosting: OVH SAS, 2 rue Kellermann, 59100 Roubaix, France.",
+            "Anti-abuse protection for the contact form: Cloudflare (anti-bot / anti-spam services)."
+          ]
+        },
+        "retention": {
+          "title": "6. Retention periods",
+          "items": [
+            "IP address and security-related technical data: retained only for as long as necessary for security and diagnostic purposes.",
+            "Messages sent via the contact form: retained only for as long as necessary to handle the request, then deleted, unless a legal obligation applies or follow-up is required."
+          ]
+        },
+        "rights": {
+          "title": "7. Your rights",
+          "p1": "In accordance with the GDPR, you have the following rights in particular: access, rectification, erasure, restriction and objection, where applicable.",
+          "p2": "To exercise your rights, contact the publisher via the contact form or by email.",
+          "p3": "You may also lodge a complaint with the CNIL if you believe your rights are not being respected."
+        },
+        "cookies": {
+          "title": "8. Cookies and trackers",
+          "p1": "The website is not intended to place advertising or marketing audience-measurement cookies. Strictly necessary cookies may be used if required for operation and security (in particular for the contact form’s anti-abuse protection)."
+        },
+        "security": {
+          "title": "9. Security",
+          "p1": "The publisher implements reasonable measures to protect data against unauthorised access, loss, alteration or disclosure, including protections against abuse on the contact form."
+        },
+        "changes": {
+          "title": "10. Changes",
+          "p1": "This policy may be updated at any time. The applicable version is the one published on this page on the date you consult it."
+        }
+      }
+    },
+    "legal-notice": {
+      "title": "Legal Notice",
+      "description": "This legal notice identifies the website publisher, its hosting provider, and the main information relating to use of the website.",
+      "sections": {
+        "publisher": {
+          "title": "1. Website publisher",
+          "p1": "This website is a personal portfolio showcasing projects, work samples, and professional information.",
+          "publisherTitle": "Publisher:",
+          "publisherNameLabel": "First and last name:",
+          "publisherNameValue": "Viandier Paul",
+          "publisherEmailLabel": "Email:",
+          "publisherEmailValue": "contact@paulviandier.com",
+          "contactLine": "If you have any questions, you can <contactBtn>open the contact form</contactBtn>."
+        },
+        "hosting": {
+          "title": "2. Hosting",
+          "hostTitle": "Hosting provider:",
+          "hostNameLabel": "Name:",
+          "hostNameValue": "OVH SAS",
+          "hostAddressLabel": "Address:",
+          "hostAddressValue": "2 rue Kellermann, 59100 Roubaix, France",
+          "hostWebsiteLabel": "Website:",
+          "hostWebsiteValue": "ovhcloud.com"
+        },
+        "ip": {
+          "title": "3. Intellectual property",
+          "p1": "Unless stated otherwise, all content on the website (text, visuals, code, graphic elements, identity) is protected by copyright and intellectual property rights.",
+          "p2": "Any reproduction, representation, adaptation or distribution, in whole or in part, without the publisher’s prior written permission, is prohibited."
+        },
+        "liability": {
+          "title": "4. Limitation of liability",
+          "p1": "The publisher strives to provide accurate and up-to-date information but does not guarantee the accuracy, completeness or timeliness of the content.",
+          "p2": "Use of the website is at the user’s sole responsibility. The publisher cannot be held liable for any direct or indirect damages that may result from accessing or using the website."
+        },
+        "links": {
+          "title": "5. External links",
+          "p1": "The website may contain links to third-party websites or services. The publisher has no control over these services and cannot be held responsible for their content, availability or practices."
+        },
+        "data": {
+          "title": "6. Personal data",
+          "p1": "For any information relating to personal data, cookies, processing purposes and your rights, please refer to the <privacyLink>Privacy Policy</privacyLink>."
+        },
+        "law": {
+          "title": "7. Governing law",
+          "p1": "Unless mandatory provisions provide otherwise, this legal notice is governed by French law."
+        }
+      }
+    }
+  },
+  "cv": {
+    "role": "Web Integrator Student",
+    "badge": "Curriculum Vitae",
+    "title": "Curriculum Vitae",
+    "description": "Detailed overview — skills, experience and background.",
+    "lastUpdatedLabel": "Last updated:",
+    "actions": {
+      "backHome": "Back to home",
+      "downloadPdf": "Download PDF",
+      "downloadPdfLoading": "Downloading..."
+    },
+    "sections": {
+      "profile": {
+        "title": "Profile",
+        "p1": "I am curious, dedicated and motivated, always ready to take on new challenges. I’m passionate about discovering new technologies, learning continuously, and adapting to different environments. My enthusiasm and commitment drive me to give my best in every project and to invest fully in achieving the goals set.",
+        "github": "GitHub: add the exact URL",
+        "linkedin": "LinkedIn: add the exact URL"
+      },
+      "skills": {
+        "title": "Skills",
+        "frontend": "Front-end",
+        "stateApi": "State & API",
+        "backendData": "Back-end & Data",
+        "tooling": "Tools & methods",
+        "security": "Security"
+      },
+      "experience": {
+        "title": "Experience",
+        "todoTitle": "To be completed",
+        "todoLine": "Role • Company • Dates • 3–5 measurable outcomes"
+      },
+      "education": {
+        "title": "Education",
+        "badge": "Pathway"
+      }
+    },
+    "education": {
+      "openclassroom": {
+        "title": "Web Integrator",
+        "level": "Level 5 Diploma (equivalent to two years of higher education after secondary school)",
+        "note": "Work-study programme",
+        "date": "Present",
+        "bullets": {
+          "1": "Build responsive interfaces with HTML and CSS",
+          "2": "Bring a web page to life with JavaScript and React",
+          "3": "Implement data/state management with Redux",
+          "4": "Use Git for version control and team collaboration",
+          "5": "Debug and optimise an existing website"
+        }
+      },
+      "rascol": {
+        "title": "STI2D Baccalaureate (SIN option)",
+        "org": "Lycée Louis Rascol | 10 Rue de la République | 81000 Albi",
+        "level": "Technological Baccalaureate",
+        "bullets": {
+          "1": "Python programming",
+          "2": "Web programming (HTML, CSS, JavaScript)",
+          "3": "Database design and administration"
+        }
+      }
+    },
+    "experience": {
+      "pinkail": {
+        "title": "PinkAil Seeds SARL",
+        "note": "Warehouse operative — seasonal contract",
+        "date": "01/09/2025 - 08/09/2025",
+        "bullets": {
+          "1": "Sorting and packaging garlic: removing rotten, damaged, soft, stained, sprouted or deformed bulbs",
+          "2": "Carried out thermotherapy treatments"
+        }
+      },
+      "volunteering": {
+        "groupTitle": "Volunteering",
+        "it": {
+          "title": "IT Support",
+          "date": "2022 - Present",
+          "bullets": {
+            "1": "Installed and configured Windows and Linux workstations (software, updates), printers, and accounts (Microsoft 365 / Google Workspace)",
+            "2": "Provided user support: onboarding and guidance, troubleshooting common issues, and writing short procedures/documentation"
+          }
+        }
+      }
+    }
+  },
+  "motivation-letter": {
+    "badge": "Cover letter",
+    "title": "Cover letter",
+    "lastUpdatedLabel": "Last updated:",
+    "topCentered": {
+      "top": "VIANDIER PAUL",
+      "bottom": "contact@paulviandier.com"
+    },
+    "bannerText": "WEB INTEGRATOR APPRENTICESHIP (WORK-STUDY PROGRAMME)",
+    "body": {
+      "p1": "Dear Sir or Madam,",
+      "p2": "I am currently seeking a work-study apprenticeship as a <b>web integrator</b> and would like to join your company to develop my skills in a <b>structured</b> and <b>demanding</b> professional environment. Although I am at the beginning of my career, I am very comfortable with IT in general and have already explored several technical fields.",
+      "p3": "In particular, I have trained in <b>front-end development</b> and built a solid foundation in <b>HTML</b>, <b>CSS</b> and <b>JavaScript</b>, along with initial experience of <b>React</b>, <b>Redux</b>, working with <b>APIs</b>, <b>Git</b> and <b>responsive design</b>. I am used to integrating interfaces from <b>Figma mock-ups</b>, ensuring the visual outcome, code structure and user experience are all respected.",
+      "p4": "Much like a well-organised <b>construction site</b>, I take the time to lay <b>clean foundations</b> before adding features. This approach helps me deliver <b>clear</b>, <b>consistent</b> interfaces that adapt well to <b>different devices</b>.",
+      "p5": "My interest in <b>systems</b>, <b>networks</b> and <b>cybersecurity</b> has made me mindful of robustness, best practice and maintainability. I try to apply these principles from the integration phase onwards, in order to deliver code that is <b>reliable</b> and <b>easy to understand</b> for other developers.",
+      "p6": "<b>Serious</b>, <b>motivated</b> and <b>team-oriented</b>, I am ready to fully commit to your projects while continuing to learn from experienced professionals. This apprenticeship represents an essential step for me to progress technically and contribute concretely to your work.",
+      "p7": "I would be delighted to meet with you to discuss my application in more detail.",
+      "p8": "Yours faithfully,"
+    },
+    "actions": {
+      "downloadPdf": "Download PDF",
+      "downloadPdfLoading": "Downloading..."
+    }
+  }
+}

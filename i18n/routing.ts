@@ -13,7 +13,7 @@ import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
 import { defaultLocale, locales } from './generated-locales';
 
-export { type Locale, isLocale, locales, defaultLocale, localeFlags } from './generated-locales';
+export { type Locale, isLocale, locales, defaultLocale, localeFlags, ogLocaleMap } from './generated-locales';
 
 export const routing = defineRouting({
     locales: [...locales],

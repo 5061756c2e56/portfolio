@@ -1,9 +1,20 @@
 {
   "_meta": {
     "name": "Español",
-    "flag": "es"
+    "flag": "es",
+    "ogLocale": "es_ES"
+  },
+  "manifest": {
+    "name": "Portafolio de Paul Viandier",
+    "description": "Portafolio de Paul Viandier, desarrollador web en formación, apasionado por la ciberseguridad y el desarrollo fullstack"
   },
   "pagesMetadata": {
+    "layout": {
+      "description": "Desarrollador web apasionado por la ciberseguridad. En este portafolio, presento mis proyectos, habilidades en desarrollo web, TypeScript, React, Next.js y ciberseguridad.",
+      "ogTitle": "Paul Viandier - Desarrollador Web y Apasionado de la Ciberseguridad",
+      "ogDescription": "Autodidacta desde hace varios años, me estoy formando en desarrollo, ciberseguridad y administración de sistemas, tres áreas que conecto entre sí.",
+      "siteName": "Portafolio de Paul Viandier"
+    },
     "projects": {
       "portfolio": {
         "title": "Portafolio de proyectos",
@@ -41,7 +52,8 @@
   },
   "locales": {
     "fr": "Francés",
-    "en": "Inglés",
+    "en-US": "Inglés (US)",
+    "en-GB": "Inglés (GB)",
     "es": "Español"
   },
   "hero": {
@@ -200,8 +212,6 @@
     "status": "Estado",
     "loading": "Cargando...",
     "language": "Idioma",
-    "french": "Francés",
-    "english": "Inglés",
     "closeMenu": "Cerrar el menú",
     "menu": "Menú",
     "settings": "Ajustes",

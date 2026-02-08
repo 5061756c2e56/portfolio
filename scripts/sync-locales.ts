@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import { basename, join } from 'path';
 
@@ -7,6 +18,7 @@ const DEFAULT_LOCALE = 'fr';
 
 interface LocaleMeta {
     flag: string;
+    ogLocale: string;
 }
 
 function main() {
@@ -23,8 +35,16 @@ function main() {
             continue;
         }
 
+        if (!content._meta?.ogLocale) {
+            console.warn(`⚠ ${file}: missing _meta.ogLocale — skipping`);
+            continue;
+        }
+
         locales.push(locale);
-        meta[locale] = { flag: content._meta.flag };
+        meta[locale] = {
+            flag: content._meta.flag,
+            ogLocale: content._meta.ogLocale
+        };
     }
 
     locales.sort((a, b) => (
@@ -32,6 +52,7 @@ function main() {
     ));
 
     const flagsCode = locales.map((l) => `    '${l}': '${meta[l].flag}'`).join(',\n');
+    const ogLocaleCode = locales.map((l) => `    '${l}': '${meta[l].ogLocale}'`).join(',\n');
 
     const output = `export const locales = [${locales.map((l) => `'${l}'`).join(', ')}] as const;
 
@@ -41,6 +62,10 @@ export const defaultLocale: Locale = '${DEFAULT_LOCALE}';
 
 export const localeFlags: Record<Locale, string> = {
 ${flagsCode}
+};
+
+export const ogLocaleMap: Record<Locale, string> = {
+${ogLocaleCode}
 };
 
 export function isLocale(value: string): value is Locale {
