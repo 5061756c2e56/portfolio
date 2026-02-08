@@ -152,14 +152,16 @@ function SortDropdown({
                                 {sort === value && <span className="h-2 w-2 rounded-full bg-primary"/>}
                             </span>
                             <span>
-                                {(() => {
-                                    const labels: Record<string, [string, string]> = {
-                                        fr: ['Plus récent au plus ancien', 'Plus ancien au plus récent'],
-                                        es: ['Más reciente al más antiguo', 'Más antiguo al más reciente']
-                                    };
-                                    const [n, o] = labels[locale] ?? ['Newest to oldest', 'Oldest to newest'];
-                                    return value === 'newest' ? n : o;
-                                })()}
+                                {(
+                                    () => {
+                                        const labels: Record<string, [string, string]> = {
+                                            fr: ['Plus récent au plus ancien', 'Plus ancien au plus récent'],
+                                            es: ['Más reciente al más antiguo', 'Más antiguo al más reciente']
+                                        };
+                                        const [n, o] = labels[locale] ?? ['Newest to oldest', 'Oldest to newest'];
+                                        return value === 'newest' ? n : o;
+                                    }
+                                )()}
                             </span>
                         </button>
                     ))}
@@ -438,6 +440,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
     const urlOpen = searchParams.has('changelog');
     const [visible, setVisible] = useState(false);
     const [closing, setClosing] = useState(false);
+    const closingRef = useRef(false);
 
     const [sort, setSort] = useState<SortOrder>('newest');
     const [sortOpen, setSortOpen] = useState(false);
@@ -454,9 +457,17 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
     });
 
     useEffect(() => {
+        if (closingRef.current) {
+            if (!urlOpen) {
+                closingRef.current = false;
+            }
+            return;
+        }
+
         if (urlOpen && !visible && !closing) {
             setVisible(true);
         }
+
         if (!urlOpen && visible && !closing) {
             setVisible(false);
         }
@@ -464,6 +475,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
 
     const [readSet, setReadSet] = useState<Set<string>>(() => {
         if (typeof window === 'undefined') return new Set<string>();
+        
         try {
             return loadReadSet();
         } catch {
@@ -604,7 +616,8 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
     };
 
     const closeModal = useCallback(() => {
-        if (closing) return;
+        if (closingRef.current) return;
+        closingRef.current = true;
         setClosing(true);
         setTimeout(() => {
             setVisible(false);
@@ -614,7 +627,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
             setActive(null);
             setActiveParsed({ title: '', description: '', displayDate: '', body: '' });
         }, 200);
-    }, [closing, setChangelogOpen]);
+    }, [setChangelogOpen]);
 
     useEffect(() => {
         if (!visible) return;
@@ -830,7 +843,8 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                                     locale={locale}
                                                     sortRef={sortRef}
                                                 />
-                                                <SearchInput value={query} onChange={setQuery} placeholder={searchPlaceholder}/>
+                                                <SearchInput value={query} onChange={setQuery}
+                                                             placeholder={searchPlaceholder}/>
                                             </div>
 
                                             <div className="flex-1 overflow-auto">
@@ -885,7 +899,8 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                         ))}
 
                                         {filteredList.length === 0 && (
-                                            <div className="p-6 text-center text-sm text-muted-foreground">{noResultsText}</div>
+                                            <div
+                                                className="p-6 text-center text-sm text-muted-foreground">{noResultsText}</div>
                                         )}
                                     </div>
                                 </aside>
