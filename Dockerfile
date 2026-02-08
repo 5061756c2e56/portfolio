@@ -2,7 +2,7 @@ FROM node:20-slim AS base
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates openssl \
   && rm -rf /var/lib/apt/lists/*
-RUN corepack enable && corepack prepare pnpm@9.15.1 --activate
+RUN corepack enable && corepack prepare pnpm@10.29.1 --activate
 
 FROM base AS deps
 WORKDIR /app
