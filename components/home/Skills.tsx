@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -90,11 +90,10 @@ export default function Skills() {
 
     const pageCount = pages.length;
 
-    useEffect(() => {
-        if (page >= pageCount && pageCount > 0) {
-            setPage(Math.max(0, pageCount - 1));
-        }
-    }, [pageCount, page]);
+    const clampedPage = page >= pageCount && pageCount > 0 ? Math.max(0, pageCount - 1) : page;
+    if (clampedPage !== page) {
+        setPage(clampedPage);
+    }
 
     const categories: { key: Category; label: string }[] = [
         { key: 'all', label: t('categories.all') },
@@ -154,7 +153,7 @@ export default function Skills() {
                                     return (
                                         <div key={pageIndex} className="w-full shrink-0">
                                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                                                {skillsPage.map((skill, index) => {
+                                                {skillsPage.map((skill) => {
                                                     let description: string | undefined;
 
                                                     try {

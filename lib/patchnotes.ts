@@ -38,8 +38,9 @@ async function getAvailableLangs(): Promise<string[]> {
     return _cachedLangs;
 }
 
-export async function isValidPatchnoteId(id: string): Promise<boolean> {
+export async function isValidPatchnoteId(id: unknown): Promise<boolean> {
     if (typeof id !== 'string' || id.length > 200 || id.includes('..')) return false;
+
     const langs = await getAvailableLangs();
     const [lang] = id.split('/');
     if (!langs.includes(lang)) return false;
@@ -116,15 +117,18 @@ export async function listPatchnotes(lang: string, sort: SortOrder): Promise<Pat
 }
 
 export async function getPatchnoteById(id: string): Promise<Patchnote> {
-    if (!isValidPatchnoteId(id)) {
+
+    if (!await isValidPatchnoteId(id)) {
         throw new Error('Invalid patchnote id');
     }
+
     const [lang, slug] = id.split('/');
     const file = path.join(ROOT, lang, `${slug}.md`);
     const resolved = path.resolve(file);
     if (!resolved.startsWith(path.resolve(ROOT))) {
         throw new Error('Invalid patchnote path');
     }
+
     const md = await fs.readFile(file, 'utf8');
 
     return {

@@ -64,8 +64,8 @@ export default function Hero() {
 
         return () => {
             window.removeEventListener('scroll', close, true);
-            window.removeEventListener('wheel', close as any);
-            window.removeEventListener('touchmove', close as any);
+            window.removeEventListener('wheel', close as EventListener);
+            window.removeEventListener('touchmove', close as EventListener);
         };
     }, [cvOpen, lmOpen]);
 

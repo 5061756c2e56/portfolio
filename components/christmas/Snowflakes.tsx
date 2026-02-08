@@ -13,7 +13,7 @@
 
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { useTheme } from '@/hooks/use-theme';
-import { useRef } from 'react';
+import { useEffect, useMemo, useReducer, useSyncExternalStore } from 'react';
 
 interface Snowflake {
     id: number;
@@ -106,52 +106,73 @@ function updateOpacities(
     ));
 }
 
+const subscribeNoop = () => () => {};
+const getTrue = () => true;
+const getFalse = () => false;
+
+function useDarkMediaQuery(): boolean {
+    return useSyncExternalStore(
+        (cb) => {
+            const mql = window.matchMedia('(prefers-color-scheme: dark)');
+            mql.addEventListener('change', cb);
+            return () => mql.removeEventListener('change', cb);
+        },
+        () => window.matchMedia('(prefers-color-scheme: dark)').matches,
+        () => false
+    );
+}
+
 export function Snowflakes() {
     const isChristmasMode = useChristmasMode();
     const { theme } = useTheme();
 
-    const snowflakesRef = useRef<Snowflake[]>([]);
-    const lastModeRef = useRef<boolean>(false);
-    const lastOpacityKeyRef = useRef<string>('');
+    const isClient = useSyncExternalStore(subscribeNoop, getTrue, getFalse);
+    const prefersDark = useDarkMediaQuery();
 
-    if (typeof window === 'undefined') {
-        return null;
-    }
-
-    if (!isChristmasMode) {
-        if (lastModeRef.current) {
-            lastModeRef.current = false;
-            snowflakesRef.current = [];
-            lastOpacityKeyRef.current = '';
-        }
-        return null;
-    }
-
-    const isDark =
-        theme === 'dark' ||
-        (
-            theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches
-        );
+    const isDark = useMemo(() => {
+        if (!isClient) return false;
+        if (theme === 'dark') return true;
+        if (theme === 'light') return false;
+        return prefersDark;
+    }, [isClient, theme, prefersDark]);
 
     const minOpacity = isDark ? 0.1 : 0.2;
     const maxOpacity = isDark ? 0.25 : 0.45;
-
     const opacityKey = `${isDark}:${minOpacity}:${maxOpacity}`;
 
-    if (!lastModeRef.current || snowflakesRef.current.length === 0) {
-        snowflakesRef.current = createSnowflakes(minOpacity, maxOpacity);
-        lastModeRef.current = true;
-        lastOpacityKeyRef.current = opacityKey;
-    } else if (lastOpacityKeyRef.current !== opacityKey) {
-        snowflakesRef.current = updateOpacities(snowflakesRef.current, minOpacity, maxOpacity);
-        lastOpacityKeyRef.current = opacityKey;
-    }
+    type SnowflakeAction =
+        | { type: 'create'; minOpacity: number; maxOpacity: number }
+        | { type: 'update'; minOpacity: number; maxOpacity: number }
+        | { type: 'clear' };
 
-    const snowflakes = snowflakesRef.current;
+    const [snowflakes, dispatch] = useReducer(
+        (state: Snowflake[], action: SnowflakeAction): Snowflake[] => {
+            switch (action.type) {
+                case 'clear':
+                    return [];
+                case 'create':
+                    return createSnowflakes(action.minOpacity, action.maxOpacity);
+                case 'update':
+                    return state.length === 0
+                        ? createSnowflakes(action.minOpacity, action.maxOpacity)
+                        : updateOpacities(state, action.minOpacity, action.maxOpacity);
+            }
+        },
+        []
+    );
 
-    if (snowflakes.length === 0) {
-        return null;
-    }
+    useEffect(() => {
+        if (!isClient) return;
+
+        if (!isChristmasMode) {
+            dispatch({ type: 'clear' });
+            return;
+        }
+
+        dispatch({ type: 'update', minOpacity, maxOpacity });
+    }, [isClient, isChristmasMode, opacityKey, minOpacity, maxOpacity]);
+
+    if (!isClient || !isChristmasMode || snowflakes.length === 0) return null;
 
     return (
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">

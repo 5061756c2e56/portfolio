@@ -84,8 +84,8 @@ export async function getCommitsFromDB(
         return { commitsByRepo: {}, allCommits: [], total: 0 };
     }
 
-    const whereClause: any = {
-        repositoryId: { in: dbRepos.map((r: any) => r.id) },
+    const whereClause: Prisma.CommitWhereInput = {
+        repositoryId: { in: dbRepos.map((r: { id: string }) => r.id) },
         committedAt: { gte: startDate }
     };
 
@@ -131,7 +131,7 @@ export async function getCommitsFromDB(
     }
 
     for (const commit of commits) {
-        const repo = dbRepos.find((r: any) => r.id === commit.repositoryId)!;
+        const repo = dbRepos.find((r: { id: string }) => r.id === commit.repositoryId)!;
         const repoConfig = ALLOWED_REPOSITORIES.find(
             r => r.owner === repo.owner && r.name === repo.name
         );
@@ -255,7 +255,7 @@ export async function getCommitStatsFromDB(
         return { totalCommits: 0, commitsByDate: [] };
     }
 
-    const repoIds = dbRepos.map((r: any) => r.id);
+    const repoIds = dbRepos.map((r: { id: string }) => r.id);
     const granularity = PERIOD_CONFIGS[range].granularity;
 
     type GroupedRow = { date: string; count: number };
@@ -363,7 +363,7 @@ export async function getTimelineFromDB(
     }
 
     const allDates = generateAllDatesInRange(startDate, endDate, config.granularity);
-    const repoIds = dbRepos.map((r: any) => r.id);
+    const repoIds = dbRepos.map((r: { id: string }) => r.id);
 
     type TimelineRow = { repositoryId: string; date: string; count: number };
     const grouped: TimelineRow[] = config.granularity === 'daily'
@@ -420,9 +420,9 @@ export async function getTimelineFromDB(
         });
     }
 
-    const combinedTimeline: Array<any> = allDates.map(date => {
+    const combinedTimeline: Array<{ date: string; label: string; [repoName: string]: number | string }> = allDates.map(date => {
         const key = date.toISOString().split('T')[0];
-        const point: any = {
+        const point: { date: string; label: string; [repoName: string]: number | string } = {
             date: key,
             label: formatDateLabel(date, config.granularity, locale)
         };

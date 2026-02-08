@@ -11,7 +11,7 @@
 
 'use client';
 
-import { type RefObject, useEffect, useRef, useState } from 'react';
+import { type RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -460,7 +460,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
         if (!urlOpen && visible && !closing) {
             setVisible(false);
         }
-    }, [urlOpen]);
+    }, [urlOpen, visible, closing]);
 
     const [readSet, setReadSet] = useState<Set<string>>(() => {
         if (typeof window === 'undefined') return new Set<string>();
@@ -486,7 +486,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
 
     useLockBodyScroll(visible);
 
-    const setChangelogOpen = (nextOpen: boolean) => {
+    const setChangelogOpen = useCallback((nextOpen: boolean) => {
         const params = new URLSearchParams(searchParams.toString());
         const hasChangelog = params.has('changelog');
 
@@ -504,7 +504,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                 : pathname;
 
         router.replace(newURL, { scroll: false });
-    };
+    }, [searchParams, pathname, router]);
 
     useEffect(() => {
         let cancelled = false;
@@ -603,7 +603,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
         setChangelogOpen(true);
     };
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         if (closing) return;
         setClosing(true);
         setTimeout(() => {
@@ -614,7 +614,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
             setActive(null);
             setActiveParsed({ title: '', description: '', displayDate: '', body: '' });
         }, 200);
-    };
+    }, [closing, setChangelogOpen]);
 
     useEffect(() => {
         if (!visible) return;
@@ -638,7 +638,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
             document.removeEventListener('mousedown', onDown);
             document.removeEventListener('touchstart', onDown);
         };
-    }, [visible, pathname, router, searchParams]);
+    }, [visible, pathname, router, searchParams, closeModal]);
 
     const onSelect = (id: string) => {
         setActiveId(id);

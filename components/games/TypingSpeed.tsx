@@ -319,7 +319,10 @@ export default function TypingSpeed() {
         return `${BEST_WPM_PREFIX}:${locale}:${difficulty}:${mode}:${duration}`;
     }, [difficulty, duration, locale, mode]);
 
-    const bestWpm = useMemo(() => readBest(bestKey), [bestKey, bestVersion]);
+    const bestWpm = useMemo(() => {
+        void bestVersion;
+        return readBest(bestKey);
+    }, [bestKey, bestVersion]);
 
     useEffect(() => {
         textRef.current = text;

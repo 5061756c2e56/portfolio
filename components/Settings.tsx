@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2025–2026 Paul Viandier
+ * All rights reserved.
+ *
+ * This source code is proprietary.
+ * Commercial use, redistribution, or modification is strictly prohibited
+ * without prior written permission.
+ *
+ * See the LICENSE file in the project root for full license terms.
+ */
+
 'use client';
 
 import {
@@ -15,6 +26,7 @@ import { defaultLocale, localeFlags, locales, usePathname } from '@/i18n/routing
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasBarleySugar } from '@/components/christmas/ChristmasBarleySugar';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 
 export default function Settings() {
     const { locale, showLocaleLoading } = useLocaleContext();
@@ -24,6 +36,7 @@ export default function Settings() {
     const tAll = useTranslations();
     const { theme, setTheme } = useTheme();
     const christmasMode = useChristmasMode();
+    const router = useRouter();
 
     useEffect(() => {
         const id = window.requestAnimationFrame(() => setMounted(true));
@@ -36,7 +49,7 @@ export default function Settings() {
         showLocaleLoading();
 
         const newPath = newLocale === defaultLocale ? pathname : `/${newLocale}${pathname}`;
-        window.location.href = newPath;
+        router.push(newPath);
     };
 
     const currentLocale = mounted ? locale : defaultLocale;
@@ -117,7 +130,7 @@ export default function Settings() {
                             className={currentLocale === loc ? 'bg-muted' : ''}
                         >
                             <Flag code={localeFlags[loc]} className="mr-2 h-5 w-5 shrink-0"/>
-                            {tAll(`locales.${loc}` as any)}
+                            {tAll(`locales.${loc}` as Parameters<typeof tAll>[0])}
                             {currentLocale === loc && (
                                 <svg
                                     className="ml-auto h-4 w-4"

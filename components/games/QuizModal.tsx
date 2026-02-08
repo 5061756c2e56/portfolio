@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useReducer, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -40,43 +40,87 @@ export default function QuizModal({ isOpen, onClose, level, questions }: QuizMod
     const t = useTranslations('quiz.modal');
     const tq = useTranslations('quiz.questions');
 
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-    const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
-    const [answers, setAnswers] = useState<AnswerResult[]>([]);
-    const [showResults, setShowResults] = useState(false);
+    interface QuizState {
+        currentQuestionIndex: number;
+        selectedAnswer: number | null;
+        timeLeft: number;
+        answers: AnswerResult[];
+        showResults: boolean;
+    }
+
+    type QuizAction =
+        | { type: 'reset' }
+        | { type: 'selectAnswer'; index: number }
+        | { type: 'tick' }
+        | { type: 'nextQuestion'; answer: AnswerResult; isLast: boolean }
+        | { type: 'showResults' }
+        | { type: 'startQuestion' };
+
+    const [quizState, quizDispatch] = useReducer(
+        (state: QuizState, action: QuizAction): QuizState => {
+            switch (action.type) {
+                case 'reset':
+                    return {
+                        currentQuestionIndex: 0,
+                        selectedAnswer: null,
+                        timeLeft: TIME_PER_QUESTION,
+                        answers: [],
+                        showResults: false
+                    };
+                case 'selectAnswer':
+                    return { ...state, selectedAnswer: action.index };
+                case 'tick':
+                    return { ...state, timeLeft: Math.max(0, state.timeLeft - 1) };
+                case 'nextQuestion':
+                    if (action.isLast) {
+                        return {
+                            ...state,
+                            answers: [...state.answers, action.answer],
+                            showResults: true
+                        };
+                    }
+                    return {
+                        ...state,
+                        answers: [...state.answers, action.answer],
+                        currentQuestionIndex: state.currentQuestionIndex + 1,
+                        selectedAnswer: null,
+                        timeLeft: TIME_PER_QUESTION
+                    };
+                case 'showResults':
+                    return { ...state, showResults: true };
+                case 'startQuestion':
+                    return { ...state, timeLeft: TIME_PER_QUESTION, selectedAnswer: null };
+            }
+        },
+        {
+            currentQuestionIndex: 0,
+            selectedAnswer: null,
+            timeLeft: TIME_PER_QUESTION,
+            answers: [],
+            showResults: false
+        }
+    );
+
+    const { currentQuestionIndex, selectedAnswer, timeLeft, answers, showResults } = quizState;
 
     const selectedAnswerRef = useRef<number | null>(null);
-    const questionStartTimeRef = useRef<number>(Date.now());
-    const answersRef = useRef<AnswerResult[]>([]);
+    const questionStartTimeRef = useRef<number>(0);
 
     const hasQuestions = Array.isArray(questions) && questions.length > 0;
     const currentQuestion = hasQuestions ? questions[currentQuestionIndex] : null;
     const isLastQuestion = hasQuestions ? currentQuestionIndex === questions.length - 1 : false;
     const isTrueFalse = currentQuestion?.type === 'true-false';
 
-    const resetQuiz = useCallback(() => {
-        setCurrentQuestionIndex(0);
-        setSelectedAnswer(null);
-        selectedAnswerRef.current = null;
-
-        setTimeLeft(TIME_PER_QUESTION);
-
-        setAnswers([]);
-        answersRef.current = [];
-
-        setShowResults(false);
-
-        const now = Date.now();
-        questionStartTimeRef.current = now;
-    }, []);
-
     useEffect(() => {
-        if (!isOpen) resetQuiz();
-    }, [isOpen, resetQuiz]);
+        if (!isOpen) {
+            quizDispatch({ type: 'reset' });
+            selectedAnswerRef.current = null;
+            questionStartTimeRef.current = 0;
+        }
+    }, [isOpen]);
 
     const handleAnswerSelect = (answerIndex: number) => {
-        setSelectedAnswer(answerIndex);
+        quizDispatch({ type: 'selectAnswer', index: answerIndex });
         selectedAnswerRef.current = answerIndex;
     };
 
@@ -86,7 +130,7 @@ export default function QuizModal({ isOpen, onClose, level, questions }: QuizMod
 
             const currentQ = questions[currentQuestionIndex];
             if (!currentQ) {
-                if (answersRef.current.length < questions.length) setShowResults(true);
+                quizDispatch({ type: 'showResults' });
                 return;
             }
 
@@ -109,14 +153,14 @@ export default function QuizModal({ isOpen, onClose, level, questions }: QuizMod
                 timeSpent
             };
 
-            answersRef.current = [...answersRef.current, answerResult];
-            setAnswers(answersRef.current);
+            selectedAnswerRef.current = null;
+            questionStartTimeRef.current = Date.now();
 
-            if (currentQuestionIndex === questions.length - 1) {
-                setShowResults(true);
-            } else {
-                setCurrentQuestionIndex((prev) => prev + 1);
-            }
+            quizDispatch({
+                type: 'nextQuestion',
+                answer: answerResult,
+                isLast: currentQuestionIndex === questions.length - 1
+            });
         },
         [currentQuestionIndex, hasQuestions, questions]
     );
@@ -124,28 +168,27 @@ export default function QuizModal({ isOpen, onClose, level, questions }: QuizMod
     useEffect(() => {
         if (!isOpen || showResults || !currentQuestion) return;
 
-        setTimeLeft(TIME_PER_QUESTION);
-        setSelectedAnswer(null);
         selectedAnswerRef.current = null;
-
         questionStartTimeRef.current = Date.now();
+        quizDispatch({ type: 'startQuestion' });
 
         const timer = window.setInterval(() => {
-            setTimeLeft((prev) => {
-                if (prev <= 1) {
-                    window.clearInterval(timer);
-                    handleNextQuestion(true);
-                    return 0;
-                }
-                return prev - 1;
-            });
+            quizDispatch({ type: 'tick' });
         }, 1000);
 
         return () => window.clearInterval(timer);
-    }, [currentQuestionIndex, isOpen, showResults, currentQuestion, handleNextQuestion]);
+    }, [currentQuestionIndex, isOpen, showResults, currentQuestion]);
+
+    useEffect(() => {
+        if (timeLeft <= 0 && !showResults && isOpen && currentQuestion) {
+            handleNextQuestion(true);
+        }
+    }, [timeLeft, showResults, isOpen, currentQuestion, handleNextQuestion]);
 
     const handleClose = () => {
-        resetQuiz();
+        quizDispatch({ type: 'reset' });
+        selectedAnswerRef.current = null;
+        questionStartTimeRef.current = 0;
         onClose();
     };
 
