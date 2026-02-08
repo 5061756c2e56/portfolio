@@ -206,7 +206,7 @@ export default function Navigation() {
                                         labelRefs.current.extras = el;
                                     }}
                                 >
-                                    Extras
+                                    {t('extras')}
                                 </span>
                             </a>
 

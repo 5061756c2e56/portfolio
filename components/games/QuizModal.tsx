@@ -193,24 +193,29 @@ export default function QuizModal({ isOpen, onClose, level, questions }: QuizMod
     };
 
     const getQuestionText = (question: QuizQuestionMeta) => {
-        return tq(`${question.id}.question`);
+        return tq.raw(`${question.id}.question`) as string;
     };
 
     const getOptions = (question: QuizQuestionMeta): string[] => {
         if (!question.optionCount) return [];
-        const rawOptions: string[] = [];
-        for (let i = 0; i < question.optionCount; i++) {
-            rawOptions.push(tq(`${question.id}.options.${i}`));
-        }
+        const rawOptions = tq.raw(`${question.id}.options`) as string[];
         if (question._shuffledIndices) {
             return question._shuffledIndices.map(i => rawOptions[i]);
         }
         return rawOptions;
     };
 
+    const getTrueFalseLabels = (question: QuizQuestionMeta): string[] => {
+        const labels = [t('true'), t('false')];
+        if (question._shuffledIndices) {
+            return question._shuffledIndices.map(i => labels[i]);
+        }
+        return labels;
+    };
+
     const getExplanation = (question: QuizQuestionMeta) => {
         try {
-            return tq(`${question.id}.explanation`);
+            return tq.raw(`${question.id}.explanation`) as string;
         } catch {
             return null;
         }
@@ -286,59 +291,47 @@ export default function QuizModal({ isOpen, onClose, level, questions }: QuizMod
                                                         {t('results.question')} {index + 1}: {getQuestionText(question)}
                                                     </div>
 
-                                                    {isCorrect ? (
-                                                        <div className="text-sm">
-                                                            <span
-                                                                className="font-medium">{t('results.yourAnswer')} : </span>
-                                                            <span className="text-green-500">
-                                                                {isQuestionTrueFalse
-                                                                    ? (
-                                                                        answer?.userAnswer === 0
-                                                                            ? t('results.true')
-                                                                            : t('results.false')
-                                                                    )
-                                                                    : (
-                                                                        options[answer?.userAnswer ?? -1] ??
-                                                                        t('results.noAnswer')
-                                                                    )}
-                                                            </span>
-                                                        </div>
-                                                    ) : (
-                                                        <div className="text-sm space-y-1">
-                                                            <div>
-                                                                <span
-                                                                    className="font-medium">{t('results.yourAnswer')} : </span>
-                                                                <span className="text-red-500">
-                                                                    {answer?.userAnswer === -1
-                                                                        ? t('results.timeout')
-                                                                        : isQuestionTrueFalse
-                                                                            ? (
-                                                                                answer?.userAnswer === 0
-                                                                                    ? t('results.true')
-                                                                                    : t('results.false')
-                                                                            )
-                                                                            : (
-                                                                                options[answer?.userAnswer ?? -1] ??
-                                                                                t('results.noAnswer')
-                                                                            )}
-                                                                </span>
+                                                    {(() => {
+                                                        const tfLabels = isQuestionTrueFalse
+                                                            ? getTrueFalseLabels(question)
+                                                            : [];
+
+                                                        if (isCorrect) {
+                                                            return (
+                                                                <div className="text-sm">
+                                                                    <span className="font-medium">{t('results.yourAnswer')} : </span>
+                                                                    <span className="text-green-500">
+                                                                        {isQuestionTrueFalse
+                                                                            ? tfLabels[answer?.userAnswer ?? 0]
+                                                                            : (options[answer?.userAnswer ?? -1] ?? t('results.noAnswer'))}
+                                                                    </span>
+                                                                </div>
+                                                            );
+                                                        }
+
+                                                        return (
+                                                            <div className="text-sm space-y-1">
+                                                                <div>
+                                                                    <span className="font-medium">{t('results.yourAnswer')} : </span>
+                                                                    <span className="text-red-500">
+                                                                        {answer?.userAnswer === -1
+                                                                            ? t('results.timeout')
+                                                                            : isQuestionTrueFalse
+                                                                                ? tfLabels[answer?.userAnswer ?? 0]
+                                                                                : (options[answer?.userAnswer ?? -1] ?? t('results.noAnswer'))}
+                                                                    </span>
+                                                                </div>
+                                                                <div>
+                                                                    <span className="font-medium">{t('results.correctAnswer')} :{' '}</span>
+                                                                    <span className="text-green-500">
+                                                                        {isQuestionTrueFalse
+                                                                            ? tfLabels[question.correctAnswer]
+                                                                            : options[question.correctAnswer]}
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                <span className="font-medium">
-                                                                    {t('results.correctAnswer')} :{' '}
-                                                                </span>
-                                                                <span className="text-green-500">
-                                                                    {isQuestionTrueFalse
-                                                                        ? (
-                                                                            question.correctAnswer === 0
-                                                                                ? t('results.true')
-                                                                                : t('results.false')
-                                                                        )
-                                                                        : options[question.correctAnswer]}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    )}
+                                                        );
+                                                    })()}
 
                                                     {explanation && (
                                                         <div className="mt-2 text-sm text-muted-foreground italic">
@@ -429,28 +422,20 @@ export default function QuizModal({ isOpen, onClose, level, questions }: QuizMod
                         <div className="space-y-3">
                             {isTrueFalse ? (
                                 <>
-                                    <button
-                                        onClick={() => handleAnswerSelect(0)}
-                                        className={cn(
-                                            'w-full p-4 rounded-lg border text-left transition-all duration-200',
-                                            selectedAnswer === 0
-                                                ? 'border-foreground bg-foreground/10'
-                                                : 'border-border hover:border-foreground/30 hover:bg-accent'
-                                        )}
-                                    >
-                                        <div className="font-medium">{t('true')}</div>
-                                    </button>
-                                    <button
-                                        onClick={() => handleAnswerSelect(1)}
-                                        className={cn(
-                                            'w-full p-4 rounded-lg border text-left transition-all duration-200',
-                                            selectedAnswer === 1
-                                                ? 'border-foreground bg-foreground/10'
-                                                : 'border-border hover:border-foreground/30 hover:bg-accent'
-                                        )}
-                                    >
-                                        <div className="font-medium">{t('false')}</div>
-                                    </button>
+                                    {currentQuestion && getTrueFalseLabels(currentQuestion).map((label, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => handleAnswerSelect(index)}
+                                            className={cn(
+                                                'w-full p-4 rounded-lg border text-left transition-all duration-200',
+                                                selectedAnswer === index
+                                                    ? 'border-foreground bg-foreground/10'
+                                                    : 'border-border hover:border-foreground/30 hover:bg-accent'
+                                            )}
+                                        >
+                                            <div className="font-medium">{label}</div>
+                                        </button>
+                                    ))}
                                 </>
                             ) : (
                                 (

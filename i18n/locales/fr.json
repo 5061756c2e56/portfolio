@@ -31,7 +31,7 @@
     },
     "legalNotice": {
       "title": "Mentions légales",
-      "descritpion": "Les présentes mentions légales décrivent l’éditeur du site, son hébergement et les principales informations relatives à son utilisation"
+      "description": "Les présentes mentions légales décrivent l'éditeur du site, son hébergement et les principales informations relatives à son utilisation"
     },
     "privacyPolicy": {
       "title": "Politique de confidentialité",
@@ -109,7 +109,10 @@
   },
   "pagination": {
     "next": "Suivant",
-    "previous": "Précédent"
+    "previous": "Précédent",
+    "previousLabel": "Aller à la page précédente",
+    "nextLabel": "Aller à la page suivante",
+    "morePages": "Plus de pages"
   },
   "projects": {
     "title": "Projets",
@@ -225,7 +228,8 @@
     "system": "Système",
     "themeChanging": "Modification du thème en cours...",
     "languageChanging": "Changement de langue...",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "extras": "Extras"
   },
   "games": {
     "meta": {
@@ -288,6 +292,9 @@
       "complete": {
         "title": "Félicitations !",
         "stats": "Terminé en {moves} coups et {time}"
+      },
+      "labels": {
+        "difficulty": "Difficulté"
       }
     },
     "typing": {
@@ -304,7 +311,8 @@
         "snippets": "Extraits",
         "errors": "Erreurs",
         "time": "Temps",
-        "best": "Meilleur score"
+        "best": "Meilleur score",
+        "newBest": "Nouveau record !"
       },
       "levels": {
         "easy": "Facile",
@@ -350,11 +358,11 @@
           "L'essentiel, c'est d'être régulier, pas parfait.",
           "Les bonnes habitudes rendent les journées plus légères.",
           "Fais simple, puis améliore.",
-          "Quand c\u2019est flou, note-le.",
-          "Une liste courte vaut mieux qu\u2019un plan immense.",
+          "Quand c’est flou, note-le.",
+          "Une liste courte vaut mieux qu’un plan immense.",
           "La meilleure énergie vient d'un départ net.",
           "La qualité naît des détails répétés.",
-          "Un petit pas maintenant, c\u2019est énorme demain.",
+          "Un petit pas maintenant, c’est énorme demain.",
           "Une décision claire enlève beaucoup de stress.",
           "Le calme est un super pouvoir moderne.",
           "Tu peux changer d'avis, pas ton effort.",
@@ -375,7 +383,7 @@
           "Objectif : 2 tâches importantes, puis 1 pause.",
           "Rappel : 1 % par jour, c'est énorme sur une année.",
           "Plan : 25 minutes focus, 5 minutes off, et on recommence.",
-          "Budget : 120 \u20ac pour l\u2019essentiel, 30 \u20ac pour le plaisir.",
+          "Budget : 120 € pour l’essentiel, 30 € pour le plaisir.",
           "Trajet : 18 minutes à pied, 4 minutes de marge.",
           "Routine : eau, lumière, mouvement, puis travail.",
           "Score : 9 / 10 quand tu restes simple et constant.",
@@ -390,7 +398,7 @@
           "Respire : inspire, expire, recommence.",
           "Tu peux hésiter — mais tu avances quand même.",
           "Ce n'est pas parfait, et alors ?",
-          "Un pas, puis un autre ; c\u2019est tout.",
+          "Un pas, puis un autre ; c’est tout.",
           "Parfois, \"assez bien\" est déjà excellent.",
           "On se concentre ici : maintenant.",
           "Ça arrive ; on corrige ; on continue."
@@ -436,10 +444,19 @@
             "Rappelle-toi que la régularité bat la vitesse.",
             "Mieux vaut faire peu, mais le faire bien.",
             "La constance transforme les journées.",
-            "Un petit pas maintenant vaut beaucoup plus qu\u2019une intention.",
+            "Un petit pas maintenant vaut beaucoup plus qu’une intention.",
             "L'important est de continuer, même lentement."
           ]
         }
+      },
+      "cancel": {
+        "tooltip": "Annule la partie en cours",
+        "label": "Annuler"
+      },
+      "labels": {
+        "difficulty": "Difficulté",
+        "mode": "Mode",
+        "duration": "Durée"
       }
     },
     "bughunt": {
@@ -2209,11 +2226,13 @@
           "<header>",
           "<head>"
         ],
-        "explanation": "<h1> est la balise HTML utilisée pour créer un titre principal (heading level 1)."
+        "explanation": "<h1> est la balise HTML utilisée pour créer un titre principal (heading level 1).",
+        "correctAnswer": 0
       },
       "easy-2": {
         "question": "CSS signifie \"Cascading Style Sheets\".",
-        "explanation": "Oui, CSS signifie bien \"Cascading Style Sheets\" (Feuilles de style en cascade)."
+        "explanation": "Oui, CSS signifie bien \"Cascading Style Sheets\" (Feuilles de style en cascade).",
+        "correctAnswer": 0
       },
       "easy-3": {
         "question": "Quelle méthode JavaScript permet d'ajouter un élément à la fin d'un tableau ?",
@@ -2223,11 +2242,13 @@
           "shift()",
           "unshift()"
         ],
-        "explanation": "La méthode push() ajoute un ou plusieurs éléments à la fin d'un tableau."
+        "explanation": "La méthode push() ajoute un ou plusieurs éléments à la fin d'un tableau.",
+        "correctAnswer": 0
       },
       "easy-4": {
         "question": "React est une bibliothèque JavaScript développée par Facebook.",
-        "explanation": "Oui, React a été créé par Facebook (maintenant Meta) en 2013."
+        "explanation": "Oui, React a été créé par Facebook (maintenant Meta) en 2013.",
+        "correctAnswer": 0
       },
       "easy-5": {
         "question": "Quelle propriété CSS est utilisée pour changer la couleur du texte ?",
@@ -2237,11 +2258,13 @@
           "font-color",
           "text-style"
         ],
-        "explanation": "La propriété CSS \"color\" est utilisée pour définir la couleur du texte."
+        "explanation": "La propriété CSS \"color\" est utilisée pour définir la couleur du texte.",
+        "correctAnswer": 0
       },
       "easy-6": {
         "question": "TypeScript est un sur-ensemble de JavaScript qui ajoute le typage statique.",
-        "explanation": "Oui, TypeScript étend JavaScript en ajoutant des types statiques optionnels."
+        "explanation": "Oui, TypeScript étend JavaScript en ajoutant des types statiques optionnels.",
+        "correctAnswer": 0
       },
       "easy-7": {
         "question": "Quel protocole est utilisé pour sécuriser les connexions web (HTTPS) ?",
@@ -2251,11 +2274,13 @@
           "HTTP",
           "SMTP"
         ],
-        "explanation": "TLS (Transport Layer Security) ou SSL (Secure Sockets Layer) sécurise les connexions HTTPS."
+        "explanation": "TLS (Transport Layer Security) ou SSL (Secure Sockets Layer) sécurise les connexions HTTPS.",
+        "correctAnswer": 0
       },
       "easy-8": {
         "question": "Git est un système de contrôle de version distribué.",
-        "explanation": "Oui, Git est un système de contrôle de version distribué créé par Linus Torvalds."
+        "explanation": "Oui, Git est un système de contrôle de version distribué créé par Linus Torvalds.",
+        "correctAnswer": 0
       },
       "easy-9": {
         "question": "Quelle méthode HTTP est utilisée pour récupérer des données depuis un serveur ?",
@@ -2265,11 +2290,13 @@
           "PUT",
           "DELETE"
         ],
-        "explanation": "La méthode GET est utilisée pour récupérer des données depuis un serveur."
+        "explanation": "La méthode GET est utilisée pour récupérer des données depuis un serveur.",
+        "correctAnswer": 0
       },
       "easy-10": {
         "question": "Next.js est un framework React pour la production.",
-        "explanation": "Oui, Next.js est un framework React qui offre le rendu côté serveur et de nombreuses optimisations."
+        "explanation": "Oui, Next.js est un framework React qui offre le rendu côté serveur et de nombreuses optimisations.",
+        "correctAnswer": 0
       },
       "easy-11": {
         "question": "Quelle balise HTML est utilisée pour créer un lien ?",
@@ -2279,11 +2306,13 @@
           "<url>",
           "<href>"
         ],
-        "explanation": "La balise <a> (anchor) est utilisée pour créer des liens hypertextes en HTML."
+        "explanation": "La balise <a> (anchor) est utilisée pour créer des liens hypertextes en HTML.",
+        "correctAnswer": 0
       },
       "easy-12": {
         "question": "JavaScript est un langage de programmation côté client uniquement.",
-        "explanation": "Non, JavaScript peut également être exécuté côté serveur avec Node.js."
+        "explanation": "Non, JavaScript peut également être exécuté côté serveur avec Node.js.",
+        "correctAnswer": 1
       },
       "easy-13": {
         "question": "Quelle propriété CSS est utilisée pour centrer un élément horizontalement ?",
@@ -2293,7 +2322,8 @@
           "align: center",
           "position: center"
         ],
-        "explanation": "margin: auto centre un élément horizontalement lorsqu'il a une largeur définie."
+        "explanation": "margin: auto centre un élément horizontalement lorsqu'il a une largeur définie.",
+        "correctAnswer": 0
       },
       "easy-14": {
         "question": "Quelle méthode JavaScript permet de retirer le dernier élément d'un tableau ?",
@@ -2303,11 +2333,13 @@
           "shift()",
           "unshift()"
         ],
-        "explanation": "La méthode pop() retire et retourne le dernier élément d'un tableau."
+        "explanation": "La méthode pop() retire et retourne le dernier élément d'un tableau.",
+        "correctAnswer": 0
       },
       "easy-15": {
         "question": "HTML signifie \"HyperText Markup Language\".",
-        "explanation": "Oui, HTML signifie \"HyperText Markup Language\" (Langage de balisage hypertexte)."
+        "explanation": "Oui, HTML signifie \"HyperText Markup Language\" (Langage de balisage hypertexte).",
+        "correctAnswer": 0
       },
       "easy-16": {
         "question": "Quelle balise HTML est utilisée pour créer une liste non ordonnée ?",
@@ -2317,7 +2349,8 @@
           "<li>",
           "<list>"
         ],
-        "explanation": "<ul> (unordered list) crée une liste à puces non ordonnée."
+        "explanation": "<ul> (unordered list) crée une liste à puces non ordonnée.",
+        "correctAnswer": 0
       },
       "easy-17": {
         "question": "Quelle propriété CSS est utilisée pour définir la taille de la police ?",
@@ -2327,11 +2360,13 @@
           "size",
           "font"
         ],
-        "explanation": "La propriété font-size définit la taille de la police de caractères."
+        "explanation": "La propriété font-size définit la taille de la police de caractères.",
+        "correctAnswer": 0
       },
       "easy-18": {
         "question": "Les variables en JavaScript sont sensibles à la casse.",
-        "explanation": "Oui, JavaScript est sensible à la casse, donc \"myVar\" et \"myvar\" sont deux variables différentes."
+        "explanation": "Oui, JavaScript est sensible à la casse, donc \"myVar\" et \"myvar\" sont deux variables différentes.",
+        "correctAnswer": 0
       },
       "easy-19": {
         "question": "Quelle balise HTML est utilisée pour insérer une image ?",
@@ -2341,7 +2376,8 @@
           "<picture>",
           "<photo>"
         ],
-        "explanation": "La balise <img> est utilisée pour insérer une image dans une page HTML."
+        "explanation": "La balise <img> est utilisée pour insérer une image dans une page HTML.",
+        "correctAnswer": 0
       },
       "easy-20": {
         "question": "Quelle méthode JavaScript permet de convertir une chaîne en nombre ?",
@@ -2351,11 +2387,13 @@
           "toString()",
           "convert()"
         ],
-        "explanation": "Number() et parseInt() permettent de convertir une chaîne en nombre."
+        "explanation": "Number() et parseInt() permettent de convertir une chaîne en nombre.",
+        "correctAnswer": 0
       },
       "easy-21": {
         "question": "Le DOM signifie \"Document Object Model\".",
-        "explanation": "Oui, le DOM (Document Object Model) représente la structure d'un document HTML."
+        "explanation": "Oui, le DOM (Document Object Model) représente la structure d'un document HTML.",
+        "correctAnswer": 0
       },
       "easy-22": {
         "question": "Quelle propriété CSS est utilisée pour ajouter de l'espace entre les bordures d'un élément ?",
@@ -2365,7 +2403,8 @@
           "spacing",
           "gap"
         ],
-        "explanation": "padding ajoute de l'espace à l'intérieur de l'élément, entre le contenu et la bordure."
+        "explanation": "padding ajoute de l'espace à l'intérieur de l'élément, entre le contenu et la bordure.",
+        "correctAnswer": 0
       },
       "easy-23": {
         "question": "Quelle balise HTML est utilisée pour créer un paragraphe ?",
@@ -2375,11 +2414,13 @@
           "<text>",
           "<paragraph>"
         ],
-        "explanation": "La balise <p> est utilisée pour créer un paragraphe en HTML."
+        "explanation": "La balise <p> est utilisée pour créer un paragraphe en HTML.",
+        "correctAnswer": 0
       },
       "easy-24": {
         "question": "Les fonctions fléchées (arrow functions) en JavaScript ont leur propre contexte \"this\".",
-        "explanation": "Non, les fonctions fléchées héritent du contexte \"this\" de leur portée parente."
+        "explanation": "Non, les fonctions fléchées héritent du contexte \"this\" de leur portée parente.",
+        "correctAnswer": 1
       },
       "easy-25": {
         "question": "Quelle méthode JavaScript permet de trouver un élément dans un tableau ?",
@@ -2389,7 +2430,8 @@
           "locate()",
           "get()"
         ],
-        "explanation": "La méthode find() retourne le premier élément d'un tableau qui satisfait une condition."
+        "explanation": "La méthode find() retourne le premier élément d'un tableau qui satisfait une condition.",
+        "correctAnswer": 0
       },
       "easy-26": {
         "question": "Quelle propriété CSS est utilisée pour changer la couleur de fond ?",
@@ -2399,11 +2441,13 @@
           "background",
           "color-background"
         ],
-        "explanation": "La propriété background-color définit la couleur de fond d'un élément."
+        "explanation": "La propriété background-color définit la couleur de fond d'un élément.",
+        "correctAnswer": 0
       },
       "easy-27": {
         "question": "JSON signifie \"JavaScript Object Notation\".",
-        "explanation": "Oui, JSON est un format de données basé sur la notation d'objets JavaScript."
+        "explanation": "Oui, JSON est un format de données basé sur la notation d'objets JavaScript.",
+        "correctAnswer": 0
       },
       "easy-28": {
         "question": "Quelle balise HTML est utilisée pour créer un formulaire ?",
@@ -2413,7 +2457,8 @@
           "<fieldset>",
           "<formset>"
         ],
-        "explanation": "La balise <form> est utilisée pour créer un formulaire HTML."
+        "explanation": "La balise <form> est utilisée pour créer un formulaire HTML.",
+        "correctAnswer": 0
       },
       "easy-29": {
         "question": "Quelle méthode JavaScript permet de créer un nouveau tableau à partir d'un autre ?",
@@ -2423,11 +2468,13 @@
           "duplicate()",
           "clone()"
         ],
-        "explanation": "La méthode map() crée un nouveau tableau en appliquant une fonction à chaque élément."
+        "explanation": "La méthode map() crée un nouveau tableau en appliquant une fonction à chaque élément.",
+        "correctAnswer": 0
       },
       "easy-30": {
         "question": "Les commentaires en JavaScript commencent par // pour une ligne ou /* */ pour plusieurs lignes.",
-        "explanation": "Oui, // pour les commentaires d'une ligne et /* */ pour les commentaires multi-lignes."
+        "explanation": "Oui, // pour les commentaires d'une ligne et /* */ pour les commentaires multi-lignes.",
+        "correctAnswer": 0
       },
       "easy-31": {
         "question": "Quelle propriété CSS est utilisée pour rendre un élément invisible ?",
@@ -2437,7 +2484,8 @@
           "visible: false",
           "opacity: 0"
         ],
-        "explanation": "display: none retire l'élément du flux, visibility: hidden le cache mais garde l'espace."
+        "explanation": "display: none retire l'élément du flux, visibility: hidden le cache mais garde l'espace.",
+        "correctAnswer": 0
       },
       "easy-32": {
         "question": "Quelle balise HTML est utilisée pour créer un bouton ?",
@@ -2447,11 +2495,13 @@
           "<click>",
           "<input type=\"button\">"
         ],
-        "explanation": "La balise <button> est utilisée pour créer un bouton cliquable en HTML."
+        "explanation": "La balise <button> est utilisée pour créer un bouton cliquable en HTML.",
+        "correctAnswer": 0
       },
       "easy-33": {
         "question": "Les tableaux en JavaScript commencent à l'index 0.",
-        "explanation": "Oui, les tableaux JavaScript sont indexés à partir de 0, pas de 1."
+        "explanation": "Oui, les tableaux JavaScript sont indexés à partir de 0, pas de 1.",
+        "correctAnswer": 0
       },
       "easy-34": {
         "question": "Quelle propriété CSS est utilisée pour définir la largeur d'un élément ?",
@@ -2461,7 +2511,8 @@
           "size",
           "dimension"
         ],
-        "explanation": "La propriété width définit la largeur d'un élément."
+        "explanation": "La propriété width définit la largeur d'un élément.",
+        "correctAnswer": 0
       },
       "easy-35": {
         "question": "Quelle méthode JavaScript permet de vérifier si un élément existe dans un tableau ?",
@@ -2471,11 +2522,13 @@
           "has()",
           "exists()"
         ],
-        "explanation": "La méthode includes() vérifie si un tableau contient un élément spécifique."
+        "explanation": "La méthode includes() vérifie si un tableau contient un élément spécifique.",
+        "correctAnswer": 0
       },
       "easy-36": {
         "question": "Le localStorage permet de stocker des données dans le navigateur de manière persistante.",
-        "explanation": "Oui, localStorage stocke les données de manière persistante même après la fermeture du navigateur."
+        "explanation": "Oui, localStorage stocke les données de manière persistante même après la fermeture du navigateur.",
+        "correctAnswer": 0
       },
       "easy-37": {
         "question": "Quelle balise HTML est utilisée pour créer un tableau ?",
@@ -2485,7 +2538,8 @@
           "<grid>",
           "<data>"
         ],
-        "explanation": "La balise <table> est utilisée pour créer un tableau en HTML."
+        "explanation": "La balise <table> est utilisée pour créer un tableau en HTML.",
+        "correctAnswer": 0
       },
       "easy-38": {
         "question": "Quelle méthode JavaScript permet de joindre les éléments d'un tableau en une chaîne ?",
@@ -2495,11 +2549,13 @@
           "merge()",
           "combine()"
         ],
-        "explanation": "La méthode join() joint tous les éléments d'un tableau en une chaîne de caractères."
+        "explanation": "La méthode join() joint tous les éléments d'un tableau en une chaîne de caractères.",
+        "correctAnswer": 0
       },
       "easy-39": {
         "question": "Les fonctions en JavaScript sont des objets de première classe.",
-        "explanation": "Oui, les fonctions JavaScript peuvent être assignées à des variables, passées en paramètres, etc."
+        "explanation": "Oui, les fonctions JavaScript peuvent être assignées à des variables, passées en paramètres, etc.",
+        "correctAnswer": 0
       },
       "easy-40": {
         "question": "Quelle propriété CSS est utilisée pour ajouter de l'espace autour d'un élément ?",
@@ -2509,7 +2565,8 @@
           "spacing",
           "gap"
         ],
-        "explanation": "margin ajoute de l'espace à l'extérieur de l'élément, entre l'élément et les autres éléments."
+        "explanation": "margin ajoute de l'espace à l'extérieur de l'élément, entre l'élément et les autres éléments.",
+        "correctAnswer": 0
       },
       "easy-41": {
         "question": "Quelle balise HTML est utilisée pour créer une liste ordonnée ?",
@@ -2519,11 +2576,13 @@
           "<li>",
           "<list>"
         ],
-        "explanation": "<ol> (ordered list) crée une liste numérotée."
+        "explanation": "<ol> (ordered list) crée une liste numérotée.",
+        "correctAnswer": 0
       },
       "easy-42": {
         "question": "Le mot-clé \"const\" en JavaScript permet de déclarer une constante qui ne peut pas être réassignée.",
-        "explanation": "Oui, const déclare une constante qui ne peut pas être réassignée après sa déclaration initiale."
+        "explanation": "Oui, const déclare une constante qui ne peut pas être réassignée après sa déclaration initiale.",
+        "correctAnswer": 0
       },
       "easy-43": {
         "question": "Quelle méthode JavaScript permet de filtrer les éléments d'un tableau ?",
@@ -2533,7 +2592,8 @@
           "find()",
           "search()"
         ],
-        "explanation": "La méthode filter() crée un nouveau tableau avec les éléments qui passent un test."
+        "explanation": "La méthode filter() crée un nouveau tableau avec les éléments qui passent un test.",
+        "correctAnswer": 0
       },
       "easy-44": {
         "question": "Quelle propriété CSS est utilisée pour aligner le texte ?",
@@ -2543,11 +2603,13 @@
           "text-position",
           "alignment"
         ],
-        "explanation": "La propriété text-align définit l'alignement horizontal du texte."
+        "explanation": "La propriété text-align définit l'alignement horizontal du texte.",
+        "correctAnswer": 0
       },
       "easy-45": {
         "question": "Les promesses (Promises) en JavaScript permettent de gérer le code asynchrone.",
-        "explanation": "Oui, les Promises permettent de gérer les opérations asynchrones de manière plus lisible que les callbacks."
+        "explanation": "Oui, les Promises permettent de gérer les opérations asynchrones de manière plus lisible que les callbacks.",
+        "correctAnswer": 0
       },
       "easy-46": {
         "question": "Quelle balise HTML est utilisée pour créer un champ de saisie texte ?",
@@ -2557,7 +2619,8 @@
           "<input>",
           "<field>"
         ],
-        "explanation": "<input type=\"text\"> crée un champ de saisie texte dans un formulaire."
+        "explanation": "<input type=\"text\"> crée un champ de saisie texte dans un formulaire.",
+        "correctAnswer": 0
       },
       "easy-47": {
         "question": "Quelle méthode JavaScript permet de retirer le premier élément d'un tableau ?",
@@ -2567,11 +2630,13 @@
           "unshift()",
           "remove()"
         ],
-        "explanation": "La méthode shift() retire et retourne le premier élément d'un tableau."
+        "explanation": "La méthode shift() retire et retourne le premier élément d'un tableau.",
+        "correctAnswer": 0
       },
       "easy-48": {
         "question": "Le mot-clé \"let\" en JavaScript permet de déclarer une variable avec un scope de bloc.",
-        "explanation": "Oui, let déclare une variable avec un scope de bloc, contrairement à var qui a un scope de fonction."
+        "explanation": "Oui, let déclare une variable avec un scope de bloc, contrairement à var qui a un scope de fonction.",
+        "correctAnswer": 0
       },
       "easy-49": {
         "question": "Quelle propriété CSS est utilisée pour définir la hauteur d'un élément ?",
@@ -2581,7 +2646,8 @@
           "size",
           "dimension"
         ],
-        "explanation": "La propriété height définit la hauteur d'un élément."
+        "explanation": "La propriété height définit la hauteur d'un élément.",
+        "correctAnswer": 0
       },
       "easy-50": {
         "question": "Quelle méthode JavaScript permet de convertir un tableau en chaîne de caractères ?",
@@ -2591,11 +2657,13 @@
           "stringify()",
           "convert()"
         ],
-        "explanation": "La méthode toString() convertit un tableau en une chaîne de caractères."
+        "explanation": "La méthode toString() convertit un tableau en une chaîne de caractères.",
+        "correctAnswer": 0
       },
       "easy-51": {
         "question": "Les classes CSS peuvent être appliquées à plusieurs éléments HTML.",
-        "explanation": "Oui, une classe CSS peut être utilisée sur plusieurs éléments pour appliquer le même style."
+        "explanation": "Oui, une classe CSS peut être utilisée sur plusieurs éléments pour appliquer le même style.",
+        "correctAnswer": 0
       },
       "easy-52": {
         "question": "Quelle balise HTML est utilisée pour créer une division ou section ?",
@@ -2605,7 +2673,8 @@
           "<container>",
           "<box>"
         ],
-        "explanation": "La balise <div> est utilisée pour créer un conteneur générique ou une section."
+        "explanation": "La balise <div> est utilisée pour créer un conteneur générique ou une section.",
+        "correctAnswer": 0
       },
       "easy-53": {
         "question": "Quelle méthode JavaScript permet d'ajouter un élément au début d'un tableau ?",
@@ -2615,11 +2684,13 @@
           "shift()",
           "prepend()"
         ],
-        "explanation": "La méthode unshift() ajoute un ou plusieurs éléments au début d'un tableau."
+        "explanation": "La méthode unshift() ajoute un ou plusieurs éléments au début d'un tableau.",
+        "correctAnswer": 0
       },
       "easy-54": {
         "question": "Les IDs en HTML doivent être uniques sur une page.",
-        "explanation": "Oui, chaque ID doit être unique sur une page HTML pour un fonctionnement correct."
+        "explanation": "Oui, chaque ID doit être unique sur une page HTML pour un fonctionnement correct.",
+        "correctAnswer": 0
       },
       "easy-55": {
         "question": "Quelle propriété CSS est utilisée pour définir le style de la bordure ?",
@@ -2629,7 +2700,8 @@
           "border-type",
           "border-design"
         ],
-        "explanation": "La propriété border-style définit le style de la bordure (solid, dashed, etc.)."
+        "explanation": "La propriété border-style définit le style de la bordure (solid, dashed, etc.).",
+        "correctAnswer": 0
       },
       "easy-56": {
         "question": "Quelle méthode JavaScript permet de vérifier le type d'une variable ?",
@@ -2639,11 +2711,13 @@
           "getType()",
           "checkType()"
         ],
-        "explanation": "L'opérateur typeof retourne une chaîne indiquant le type d'une variable."
+        "explanation": "L'opérateur typeof retourne une chaîne indiquant le type d'une variable.",
+        "correctAnswer": 0
       },
       "easy-57": {
         "question": "Le sélecteur CSS \"#id\" cible un élément par son ID.",
-        "explanation": "Oui, le sélecteur # cible un élément par son ID en CSS."
+        "explanation": "Oui, le sélecteur # cible un élément par son ID en CSS.",
+        "correctAnswer": 0
       },
       "easy-58": {
         "question": "Quelle balise HTML est utilisée pour créer un saut de ligne ?",
@@ -2653,7 +2727,8 @@
           "<lb>",
           "<newline>"
         ],
-        "explanation": "La balise <br> crée un saut de ligne dans le texte."
+        "explanation": "La balise <br> crée un saut de ligne dans le texte.",
+        "correctAnswer": 0
       },
       "easy-59": {
         "question": "Quelle méthode JavaScript permet de trier les éléments d'un tableau ?",
@@ -2663,11 +2738,13 @@
           "arrange()",
           "organize()"
         ],
-        "explanation": "La méthode sort() trie les éléments d'un tableau en place."
+        "explanation": "La méthode sort() trie les éléments d'un tableau en place.",
+        "correctAnswer": 0
       },
       "easy-60": {
         "question": "Le sélecteur CSS \".class\" cible les éléments par leur classe.",
-        "explanation": "Oui, le sélecteur . cible les éléments par leur classe en CSS."
+        "explanation": "Oui, le sélecteur . cible les éléments par leur classe en CSS.",
+        "correctAnswer": 0
       },
       "easy-61": {
         "question": "Quelle balise HTML est utilisée pour créer un en-tête de section ?",
@@ -2677,7 +2754,8 @@
           "<title>",
           "<h1>"
         ],
-        "explanation": "La balise <header> représente l'en-tête d'une section ou d'une page."
+        "explanation": "La balise <header> représente l'en-tête d'une section ou d'une page.",
+        "correctAnswer": 0
       },
       "easy-62": {
         "question": "Quelle méthode JavaScript permet de réduire un tableau à une seule valeur ?",
@@ -2687,11 +2765,13 @@
           "total()",
           "aggregate()"
         ],
-        "explanation": "La méthode reduce() réduit un tableau à une seule valeur en appliquant une fonction."
+        "explanation": "La méthode reduce() réduit un tableau à une seule valeur en appliquant une fonction.",
+        "correctAnswer": 0
       },
       "easy-63": {
         "question": "Les media queries en CSS permettent d'appliquer des styles selon la taille de l'écran.",
-        "explanation": "Oui, les media queries permettent de créer des designs responsives adaptés à différentes tailles d'écran."
+        "explanation": "Oui, les media queries permettent de créer des designs responsives adaptés à différentes tailles d'écran.",
+        "correctAnswer": 0
       },
       "easy-64": {
         "question": "Quelle balise HTML est utilisée pour créer un pied de page ?",
@@ -2701,7 +2781,8 @@
           "<bottom>",
           "<end>"
         ],
-        "explanation": "La balise <footer> représente le pied de page d'une section ou d'une page."
+        "explanation": "La balise <footer> représente le pied de page d'une section ou d'une page.",
+        "correctAnswer": 0
       },
       "easy-65": {
         "question": "Quelle méthode JavaScript permet de vérifier si tous les éléments d'un tableau passent un test ?",
@@ -2711,11 +2792,13 @@
           "checkAll()",
           "verifyAll()"
         ],
-        "explanation": "La méthode every() teste si tous les éléments d'un tableau passent un test."
+        "explanation": "La méthode every() teste si tous les éléments d'un tableau passent un test.",
+        "correctAnswer": 0
       },
       "easy-66": {
         "question": "Flexbox en CSS permet de créer des layouts flexibles et responsives.",
-        "explanation": "Oui, Flexbox est un modèle de layout CSS qui facilite la création de designs flexibles."
+        "explanation": "Oui, Flexbox est un modèle de layout CSS qui facilite la création de designs flexibles.",
+        "correctAnswer": 0
       },
       "easy-67": {
         "question": "Quelle balise HTML est utilisée pour créer une section de navigation ?",
@@ -2725,7 +2808,8 @@
           "<menu>",
           "<navbar>"
         ],
-        "explanation": "La balise <nav> représente une section de navigation avec des liens."
+        "explanation": "La balise <nav> représente une section de navigation avec des liens.",
+        "correctAnswer": 0
       },
       "easy-68": {
         "question": "Quelle méthode JavaScript permet de vérifier si au moins un élément d'un tableau passe un test ?",
@@ -2735,11 +2819,13 @@
           "one()",
           "checkOne()"
         ],
-        "explanation": "La méthode some() teste si au moins un élément d'un tableau passe un test."
+        "explanation": "La méthode some() teste si au moins un élément d'un tableau passe un test.",
+        "correctAnswer": 0
       },
       "easy-69": {
         "question": "Les variables déclarées avec \"var\" en JavaScript sont hoisted (remontées) en haut de leur scope.",
-        "explanation": "Oui, les déclarations var sont hoisted, ce qui signifie qu'elles sont déplacées en haut de leur scope."
+        "explanation": "Oui, les déclarations var sont hoisted, ce qui signifie qu'elles sont déplacées en haut de leur scope.",
+        "correctAnswer": 0
       },
       "easy-70": {
         "question": "Quelle propriété CSS est utilisée pour définir la famille de police ?",
@@ -2749,7 +2835,8 @@
           "font-type",
           "font-style"
         ],
-        "explanation": "La propriété font-family définit la famille de police à utiliser."
+        "explanation": "La propriété font-family définit la famille de police à utiliser.",
+        "correctAnswer": 0
       },
       "easy-71": {
         "question": "Quelle méthode JavaScript permet de créer une copie superficielle d'un tableau ?",
@@ -2759,11 +2846,13 @@
           "clone()",
           "duplicate()"
         ],
-        "explanation": "La méthode slice() crée une copie superficielle d'un tableau sans modifier l'original."
+        "explanation": "La méthode slice() crée une copie superficielle d'un tableau sans modifier l'original.",
+        "correctAnswer": 0
       },
       "easy-72": {
         "question": "Le sélecteur CSS \"element\" cible tous les éléments d'un type spécifique.",
-        "explanation": "Oui, le sélecteur d'élément cible tous les éléments de ce type sur la page."
+        "explanation": "Oui, le sélecteur d'élément cible tous les éléments de ce type sur la page.",
+        "correctAnswer": 0
       },
       "easy-73": {
         "question": "Quelle balise HTML est utilisée pour créer un champ de texte multiligne ?",
@@ -2773,7 +2862,8 @@
           "<input type=\"textarea\">",
           "<multiline>"
         ],
-        "explanation": "La balise <textarea> crée un champ de texte multiligne dans un formulaire."
+        "explanation": "La balise <textarea> crée un champ de texte multiligne dans un formulaire.",
+        "correctAnswer": 0
       },
       "easy-74": {
         "question": "Quelle méthode JavaScript permet de concaténer deux tableaux ?",
@@ -2783,11 +2873,13 @@
           "join()",
           "combine()"
         ],
-        "explanation": "La méthode concat() combine deux ou plusieurs tableaux en un nouveau tableau."
+        "explanation": "La méthode concat() combine deux ou plusieurs tableaux en un nouveau tableau.",
+        "correctAnswer": 0
       },
       "easy-75": {
         "question": "Les attributs HTML \"class\" et \"id\" servent à identifier et styliser des éléments.",
-        "explanation": "Oui, class et id permettent d'identifier des éléments pour le CSS et JavaScript."
+        "explanation": "Oui, class et id permettent d'identifier des éléments pour le CSS et JavaScript.",
+        "correctAnswer": 0
       },
       "easy-76": {
         "question": "Quelle propriété CSS est utilisée pour définir l'espacement entre les lettres ?",
@@ -2797,7 +2889,8 @@
           "char-spacing",
           "spacing"
         ],
-        "explanation": "La propriété letter-spacing définit l'espacement entre les caractères."
+        "explanation": "La propriété letter-spacing définit l'espacement entre les caractères.",
+        "correctAnswer": 0
       },
       "easy-77": {
         "question": "Quelle méthode JavaScript permet de diviser une chaîne en tableau ?",
@@ -2807,11 +2900,13 @@
           "separate()",
           "break()"
         ],
-        "explanation": "La méthode split() divise une chaîne en un tableau de sous-chaînes."
+        "explanation": "La méthode split() divise une chaîne en un tableau de sous-chaînes.",
+        "correctAnswer": 0
       },
       "easy-78": {
         "question": "Les événements JavaScript permettent d'interagir avec les actions de l'utilisateur.",
-        "explanation": "Oui, les événements comme click, mouseover, etc. permettent de réagir aux actions utilisateur."
+        "explanation": "Oui, les événements comme click, mouseover, etc. permettent de réagir aux actions utilisateur.",
+        "correctAnswer": 0
       },
       "easy-79": {
         "question": "Quelle balise HTML est utilisée pour créer un élément de liste ?",
@@ -2821,7 +2916,8 @@
           "<list-item>",
           "<element>"
         ],
-        "explanation": "La balise <li> représente un élément de liste dans <ul> ou <ol>."
+        "explanation": "La balise <li> représente un élément de liste dans <ul> ou <ol>.",
+        "correctAnswer": 0
       },
       "easy-80": {
         "question": "Quelle méthode JavaScript permet de rechercher un élément dans un tableau et retourner son index ?",
@@ -2831,11 +2927,13 @@
           "search()",
           "locate()"
         ],
-        "explanation": "La méthode indexOf() retourne le premier index auquel un élément peut être trouvé dans un tableau."
+        "explanation": "La méthode indexOf() retourne le premier index auquel un élément peut être trouvé dans un tableau.",
+        "correctAnswer": 0
       },
       "easy-81": {
         "question": "Les sélecteurs CSS peuvent être combinés pour cibler des éléments spécifiques.",
-        "explanation": "Oui, on peut combiner des sélecteurs (descendant, enfant, adjacent, etc.) pour un ciblage précis."
+        "explanation": "Oui, on peut combiner des sélecteurs (descendant, enfant, adjacent, etc.) pour un ciblage précis.",
+        "correctAnswer": 0
       },
       "easy-82": {
         "question": "Quelle balise HTML est utilisée pour créer un champ de case à cocher ?",
@@ -2845,7 +2943,8 @@
           "<check>",
           "<input type=\"check\">"
         ],
-        "explanation": "<input type=\"checkbox\"> crée une case à cocher dans un formulaire."
+        "explanation": "<input type=\"checkbox\"> crée une case à cocher dans un formulaire.",
+        "correctAnswer": 0
       },
       "easy-83": {
         "question": "Quelle méthode JavaScript permet d'inverser l'ordre des éléments d'un tableau ?",
@@ -2855,11 +2954,13 @@
           "flip()",
           "backward()"
         ],
-        "explanation": "La méthode reverse() inverse l'ordre des éléments d'un tableau en place."
+        "explanation": "La méthode reverse() inverse l'ordre des éléments d'un tableau en place.",
+        "correctAnswer": 0
       },
       "easy-84": {
         "question": "Les pseudo-classes CSS comme :hover permettent de styliser des éléments dans un état spécifique.",
-        "explanation": "Oui, les pseudo-classes comme :hover, :focus, :active permettent de styliser des états d'éléments."
+        "explanation": "Oui, les pseudo-classes comme :hover, :focus, :active permettent de styliser des états d'éléments.",
+        "correctAnswer": 0
       },
       "easy-85": {
         "question": "Quelle balise HTML est utilisée pour créer un champ de sélection (dropdown) ?",
@@ -2869,7 +2970,8 @@
           "<option>",
           "<choice>"
         ],
-        "explanation": "La balise <select> crée un menu déroulant dans un formulaire."
+        "explanation": "La balise <select> crée un menu déroulant dans un formulaire.",
+        "correctAnswer": 0
       },
       "easy-86": {
         "question": "Quelle méthode JavaScript permet de vérifier si une chaîne contient un sous-texte ?",
@@ -2879,11 +2981,13 @@
           "has()",
           "find()"
         ],
-        "explanation": "La méthode includes() vérifie si une chaîne contient une sous-chaîne spécifiée."
+        "explanation": "La méthode includes() vérifie si une chaîne contient une sous-chaîne spécifiée.",
+        "correctAnswer": 0
       },
       "easy-87": {
         "question": "Les variables en JavaScript peuvent contenir différents types de données (nombres, chaînes, objets, etc.).",
-        "explanation": "Oui, JavaScript est un langage à typage dynamique, les variables peuvent changer de type."
+        "explanation": "Oui, JavaScript est un langage à typage dynamique, les variables peuvent changer de type.",
+        "correctAnswer": 0
       },
       "easy-88": {
         "question": "Quelle propriété CSS est utilisée pour définir l'opacité d'un élément ?",
@@ -2893,7 +2997,8 @@
           "alpha",
           "visibility"
         ],
-        "explanation": "La propriété opacity définit le niveau d'opacité d'un élément (0 = transparent, 1 = opaque)."
+        "explanation": "La propriété opacity définit le niveau d'opacité d'un élément (0 = transparent, 1 = opaque).",
+        "correctAnswer": 0
       },
       "easy-89": {
         "question": "Quelle méthode JavaScript permet de convertir une chaîne en majuscules ?",
@@ -2903,11 +3008,13 @@
           "toUpper()",
           "uppercase()"
         ],
-        "explanation": "La méthode toUpperCase() convertit tous les caractères d'une chaîne en majuscules."
+        "explanation": "La méthode toUpperCase() convertit tous les caractères d'une chaîne en majuscules.",
+        "correctAnswer": 0
       },
       "easy-90": {
         "question": "Les attributs HTML \"required\" et \"disabled\" peuvent être utilisés dans les formulaires.",
-        "explanation": "Oui, required rend un champ obligatoire et disabled le désactive."
+        "explanation": "Oui, required rend un champ obligatoire et disabled le désactive.",
+        "correctAnswer": 0
       },
       "easy-91": {
         "question": "Quelle balise HTML est utilisée pour créer un élément de citation ?",
@@ -2917,7 +3024,8 @@
           "<cite>",
           "<q>"
         ],
-        "explanation": "La balise <blockquote> est utilisée pour créer une citation longue."
+        "explanation": "La balise <blockquote> est utilisée pour créer une citation longue.",
+        "correctAnswer": 0
       },
       "easy-92": {
         "question": "Quelle méthode JavaScript permet de convertir une chaîne en minuscules ?",
@@ -2927,11 +3035,13 @@
           "toLower()",
           "lowercase()"
         ],
-        "explanation": "La méthode toLowerCase() convertit tous les caractères d'une chaîne en minuscules."
+        "explanation": "La méthode toLowerCase() convertit tous les caractères d'une chaîne en minuscules.",
+        "correctAnswer": 0
       },
       "easy-93": {
         "question": "Les tableaux en JavaScript peuvent contenir des éléments de types différents.",
-        "explanation": "Oui, un tableau JavaScript peut contenir des nombres, chaînes, objets, etc. mélangés."
+        "explanation": "Oui, un tableau JavaScript peut contenir des nombres, chaînes, objets, etc. mélangés.",
+        "correctAnswer": 0
       },
       "easy-94": {
         "question": "Quelle propriété CSS est utilisée pour définir l'espacement entre les lignes de texte ?",
@@ -2941,7 +3051,8 @@
           "line-spacing",
           "spacing"
         ],
-        "explanation": "La propriété line-height définit la hauteur d'une ligne de texte."
+        "explanation": "La propriété line-height définit la hauteur d'une ligne de texte.",
+        "correctAnswer": 0
       },
       "easy-95": {
         "question": "Quelle méthode JavaScript permet de remplacer du texte dans une chaîne ?",
@@ -2951,11 +3062,13 @@
           "change()",
           "swap()"
         ],
-        "explanation": "La méthode replace() remplace une sous-chaîne par une autre dans une chaîne."
+        "explanation": "La méthode replace() remplace une sous-chaîne par une autre dans une chaîne.",
+        "correctAnswer": 0
       },
       "easy-96": {
         "question": "Les attributs HTML \"alt\" dans les images améliorent l'accessibilité.",
-        "explanation": "Oui, l'attribut alt fournit un texte alternatif pour les lecteurs d'écran et les images cassées."
+        "explanation": "Oui, l'attribut alt fournit un texte alternatif pour les lecteurs d'écran et les images cassées.",
+        "correctAnswer": 0
       },
       "easy-97": {
         "question": "Quelle balise HTML est utilisée pour créer un élément de code ?",
@@ -2965,7 +3078,8 @@
           "<script>",
           "<snippet>"
         ],
-        "explanation": "La balise <code> est utilisée pour afficher du code informatique."
+        "explanation": "La balise <code> est utilisée pour afficher du code informatique.",
+        "correctAnswer": 0
       },
       "easy-98": {
         "question": "Quelle méthode JavaScript permet d'extraire une partie d'une chaîne ?",
@@ -2975,11 +3089,13 @@
           "cut()",
           "part()"
         ],
-        "explanation": "Les méthodes substring() et slice() extraient une partie d'une chaîne."
+        "explanation": "Les méthodes substring() et slice() extraient une partie d'une chaîne.",
+        "correctAnswer": 0
       },
       "easy-99": {
         "question": "Les sélecteurs CSS peuvent cibler des éléments selon leur position dans le DOM.",
-        "explanation": "Oui, on peut utiliser :first-child, :last-child, :nth-child() pour cibler par position."
+        "explanation": "Oui, on peut utiliser :first-child, :last-child, :nth-child() pour cibler par position.",
+        "correctAnswer": 0
       },
       "easy-100": {
         "question": "Quelle balise HTML est utilisée pour créer un élément de texte préformaté ?",
@@ -2989,7 +3105,8 @@
           "<text>",
           "<preserve>"
         ],
-        "explanation": "La balise <pre> préserve les espaces et les sauts de ligne dans le texte."
+        "explanation": "La balise <pre> préserve les espaces et les sauts de ligne dans le texte.",
+        "correctAnswer": 0
       },
       "medium-1": {
         "question": "Quelle est la différence principale entre let et var en JavaScript ?",
@@ -2999,11 +3116,13 @@
           "var est obsolète",
           "Aucune différence"
         ],
-        "explanation": "let a un scope de bloc, ce qui signifie qu'il est accessible uniquement dans le bloc où il est déclaré, tandis que var a un scope de fonction."
+        "explanation": "let a un scope de bloc, ce qui signifie qu'il est accessible uniquement dans le bloc où il est déclaré, tandis que var a un scope de fonction.",
+        "correctAnswer": 0
       },
       "medium-2": {
         "question": "Les hooks React ne peuvent être utilisés que dans des composants fonctionnels.",
-        "explanation": "Oui, les hooks React (useState, useEffect, etc.) ne peuvent être utilisés que dans des composants fonctionnels ou des hooks personnalisés."
+        "explanation": "Oui, les hooks React (useState, useEffect, etc.) ne peuvent être utilisés que dans des composants fonctionnels ou des hooks personnalisés.",
+        "correctAnswer": 0
       },
       "medium-3": {
         "question": "Qu'est-ce qu'une injection SQL ?",
@@ -3013,7 +3132,8 @@
           "Un type de base de données",
           "Une fonction SQL"
         ],
-        "explanation": "L'injection SQL est une vulnérabilité de sécurité qui permet à un attaquant d'exécuter des commandes SQL malveillantes."
+        "explanation": "L'injection SQL est une vulnérabilité de sécurité qui permet à un attaquant d'exécuter des commandes SQL malveillantes.",
+        "correctAnswer": 0
       },
       "medium-4": {
         "question": "Quelle est la méthode recommandée pour stocker des mots de passe ?",
@@ -3023,11 +3143,13 @@
           "Stockage en clair",
           "Compression"
         ],
-        "explanation": "Les mots de passe doivent être hachés avec des algorithmes adaptés comme bcrypt ou argon2, jamais stockés en clair."
+        "explanation": "Les mots de passe doivent être hachés avec des algorithmes adaptés comme bcrypt ou argon2, jamais stockés en clair.",
+        "correctAnswer": 0
       },
       "medium-5": {
         "question": "Le CORS (Cross-Origin Resource Sharing) est un mécanisme de sécurité du navigateur.",
-        "explanation": "Oui, CORS est un mécanisme de sécurité qui contrôle les requêtes entre différentes origines."
+        "explanation": "Oui, CORS est un mécanisme de sécurité qui contrôle les requêtes entre différentes origines.",
+        "correctAnswer": 0
       },
       "medium-6": {
         "question": "Qu'est-ce que le SSR (Server-Side Rendering) ?",
@@ -3037,7 +3159,8 @@
           "Une méthode de cache",
           "Un protocole réseau"
         ],
-        "explanation": "Le SSR consiste à générer le HTML des pages côté serveur avant de les envoyer au navigateur."
+        "explanation": "Le SSR consiste à générer le HTML des pages côté serveur avant de les envoyer au navigateur.",
+        "correctAnswer": 0
       },
       "medium-7": {
         "question": "Quelle est la différence entre == et === en JavaScript ?",
@@ -3047,11 +3170,13 @@
           "=== est obsolète",
           "Aucune différence"
         ],
-        "explanation": "=== (strict equality) compare à la fois la valeur et le type, tandis que == (loose equality) effectue une conversion de type avant la comparaison."
+        "explanation": "=== (strict equality) compare à la fois la valeur et le type, tandis que == (loose equality) effectue une conversion de type avant la comparaison.",
+        "correctAnswer": 0
       },
       "medium-8": {
         "question": "Les tokens JWT (JSON Web Tokens) peuvent être décodés mais pas modifiés sans la clé secrète.",
-        "explanation": "Oui, les JWT peuvent être décodés (ils sont en base64), mais la signature empêche la modification sans la clé secrète."
+        "explanation": "Oui, les JWT peuvent être décodés (ils sont en base64), mais la signature empêche la modification sans la clé secrète.",
+        "correctAnswer": 0
       },
       "medium-9": {
         "question": "Qu'est-ce qu'une attaque XSS (Cross-Site Scripting) ?",
@@ -3061,7 +3186,8 @@
           "Un type de virus",
           "Une méthode de compression"
         ],
-        "explanation": "XSS est une vulnérabilité qui permet d'injecter du code JavaScript malveillant qui s'exécute dans le navigateur de la victime."
+        "explanation": "XSS est une vulnérabilité qui permet d'injecter du code JavaScript malveillant qui s'exécute dans le navigateur de la victime.",
+        "correctAnswer": 0
       },
       "medium-10": {
         "question": "Quelle méthode React permet de mémoriser une valeur calculée ?",
@@ -3071,11 +3197,13 @@
           "useEffect",
           "useCallback"
         ],
-        "explanation": "useMemo permet de mémoriser le résultat d'un calcul coûteux et de ne le recalculer que si les dépendances changent."
+        "explanation": "useMemo permet de mémoriser le résultat d'un calcul coûteux et de ne le recalculer que si les dépendances changent.",
+        "correctAnswer": 0
       },
       "medium-11": {
         "question": "PostgreSQL est une base de données NoSQL.",
-        "explanation": "Non, PostgreSQL est une base de données relationnelle (SQL), pas NoSQL."
+        "explanation": "Non, PostgreSQL est une base de données relationnelle (SQL), pas NoSQL.",
+        "correctAnswer": 1
       },
       "medium-12": {
         "question": "Qu'est-ce que le CSRF (Cross-Site Request Forgery) ?",
@@ -3085,7 +3213,8 @@
           "Un type de cookie",
           "Une fonction JavaScript"
         ],
-        "explanation": "CSRF est une attaque qui force un utilisateur authentifié à exécuter des actions non désirées sur une application web."
+        "explanation": "CSRF est une attaque qui force un utilisateur authentifié à exécuter des actions non désirées sur une application web.",
+        "correctAnswer": 0
       },
       "medium-13": {
         "question": "Quelle est la complexité temporelle moyenne d'une recherche dans un tableau non trié ?",
@@ -3095,11 +3224,13 @@
           "O(1)",
           "O(n²)"
         ],
-        "explanation": "Dans un tableau non trié, il faut parcourir tous les éléments dans le pire des cas, donc O(n)."
+        "explanation": "Dans un tableau non trié, il faut parcourir tous les éléments dans le pire des cas, donc O(n).",
+        "correctAnswer": 0
       },
       "medium-14": {
         "question": "Les Promises en JavaScript peuvent être chaînées avec .then() et .catch().",
-        "explanation": "Oui, les Promises peuvent être chaînées pour gérer des opérations asynchrones de manière séquentielle."
+        "explanation": "Oui, les Promises peuvent être chaînées pour gérer des opérations asynchrones de manière séquentielle.",
+        "correctAnswer": 0
       },
       "medium-15": {
         "question": "Qu'est-ce qu'un middleware dans Express.js ?",
@@ -3109,11 +3240,13 @@
           "Une méthode HTTP",
           "Un protocole"
         ],
-        "explanation": "Un middleware est une fonction qui a accès à l'objet requête, l'objet réponse et la fonction next dans le cycle requête-réponse."
+        "explanation": "Un middleware est une fonction qui a accès à l'objet requête, l'objet réponse et la fonction next dans le cycle requête-réponse.",
+        "correctAnswer": 0
       },
       "medium-16": {
         "question": "Le HTTPS utilise le port 80 par défaut.",
-        "explanation": "Non, HTTPS utilise le port 443 par défaut. Le port 80 est utilisé par HTTP."
+        "explanation": "Non, HTTPS utilise le port 443 par défaut. Le port 80 est utilisé par HTTP.",
+        "correctAnswer": 1
       },
       "medium-17": {
         "question": "Quelle est la différence entre const et let en JavaScript ?",
@@ -3123,7 +3256,8 @@
           "let est obsolète",
           "Aucune différence"
         ],
-        "explanation": "const déclare une constante qui ne peut pas être réassignée, tandis que let permet la réassignation."
+        "explanation": "const déclare une constante qui ne peut pas être réassignée, tandis que let permet la réassignation.",
+        "correctAnswer": 0
       },
       "medium-18": {
         "question": "Qu'est-ce que le lazy loading ?",
@@ -3133,11 +3267,13 @@
           "Une méthode de cache",
           "Un type de base de données"
         ],
-        "explanation": "Le lazy loading consiste à charger des ressources (images, composants) uniquement lorsqu'elles sont nécessaires, améliorant les performances."
+        "explanation": "Le lazy loading consiste à charger des ressources (images, composants) uniquement lorsqu'elles sont nécessaires, améliorant les performances.",
+        "correctAnswer": 0
       },
       "medium-19": {
         "question": "Les cookies HTTP peuvent être sécurisés avec l'attribut Secure et HttpOnly.",
-        "explanation": "Oui, Secure force HTTPS et HttpOnly empêche l'accès JavaScript aux cookies, réduisant les risques XSS."
+        "explanation": "Oui, Secure force HTTPS et HttpOnly empêche l'accès JavaScript aux cookies, réduisant les risques XSS.",
+        "correctAnswer": 0
       },
       "medium-20": {
         "question": "Qu'est-ce qu'un hook personnalisé en React ?",
@@ -3147,11 +3283,13 @@
           "Une méthode de rendu",
           "Un type de state"
         ],
-        "explanation": "Un hook personnalisé est une fonction JavaScript qui commence par \"use\" et peut appeler d'autres hooks React."
+        "explanation": "Un hook personnalisé est une fonction JavaScript qui commence par \"use\" et peut appeler d'autres hooks React.",
+        "correctAnswer": 0
       },
       "medium-21": {
         "question": "Le Content Security Policy (CSP) permet de prévenir les attaques XSS.",
-        "explanation": "Oui, CSP est un mécanisme de sécurité qui permet de contrôler quelles ressources peuvent être chargées et exécutées."
+        "explanation": "Oui, CSP est un mécanisme de sécurité qui permet de contrôler quelles ressources peuvent être chargées et exécutées.",
+        "correctAnswer": 0
       },
       "medium-22": {
         "question": "Quelle est la méthode pour créer une copie superficielle (shallow copy) d'un objet en JavaScript ?",
@@ -3161,11 +3299,13 @@
           "Object.copy()",
           "Object.duplicate()"
         ],
-        "explanation": "Object.assign({}, obj) ou {...obj} créent une copie superficielle d'un objet."
+        "explanation": "Object.assign({}, obj) ou {...obj} créent une copie superficielle d'un objet.",
+        "correctAnswer": 0
       },
       "medium-23": {
         "question": "Les WebSockets permettent une communication bidirectionnelle en temps réel.",
-        "explanation": "Oui, les WebSockets établissent une connexion TCP persistante permettant la communication bidirectionnelle en temps réel."
+        "explanation": "Oui, les WebSockets établissent une connexion TCP persistante permettant la communication bidirectionnelle en temps réel.",
+        "correctAnswer": 0
       },
       "medium-24": {
         "question": "Qu'est-ce que le debouncing ?",
@@ -3175,11 +3315,13 @@
           "Une méthode de cache",
           "Un type d'événement"
         ],
-        "explanation": "Le debouncing retarde l'exécution d'une fonction jusqu'à ce qu'un certain temps s'écoule sans nouveaux appels, utile pour les recherches en temps réel."
+        "explanation": "Le debouncing retarde l'exécution d'une fonction jusqu'à ce qu'un certain temps s'écoule sans nouveaux appels, utile pour les recherches en temps réel.",
+        "correctAnswer": 0
       },
       "medium-25": {
         "question": "Le localStorage persiste même après la fermeture du navigateur.",
-        "explanation": "Oui, localStorage stocke les données de manière persistante dans le navigateur, même après sa fermeture."
+        "explanation": "Oui, localStorage stocke les données de manière persistante dans le navigateur, même après sa fermeture.",
+        "correctAnswer": 0
       },
       "medium-26": {
         "question": "Qu'est-ce que le hoisting en JavaScript ?",
@@ -3189,7 +3331,8 @@
           "Un type de variable",
           "Une erreur de syntaxe"
         ],
-        "explanation": "Le hoisting est le comportement JavaScript qui déplace les déclarations de variables et fonctions en haut de leur scope."
+        "explanation": "Le hoisting est le comportement JavaScript qui déplace les déclarations de variables et fonctions en haut de leur scope.",
+        "correctAnswer": 0
       },
       "medium-27": {
         "question": "Qu'est-ce qu'un callback en JavaScript ?",
@@ -3199,11 +3342,13 @@
           "Une méthode de tableau",
           "Un opérateur"
         ],
-        "explanation": "Un callback est une fonction passée en argument à une autre fonction et exécutée plus tard."
+        "explanation": "Un callback est une fonction passée en argument à une autre fonction et exécutée plus tard.",
+        "correctAnswer": 0
       },
       "medium-28": {
         "question": "Les tableaux JavaScript sont des objets.",
-        "explanation": "Oui, les tableaux JavaScript sont un type spécial d'objet avec des méthodes et propriétés spécifiques."
+        "explanation": "Oui, les tableaux JavaScript sont un type spécial d'objet avec des méthodes et propriétés spécifiques.",
+        "correctAnswer": 0
       },
       "medium-29": {
         "question": "Qu'est-ce que le spread operator (...) en JavaScript ?",
@@ -3213,7 +3358,8 @@
           "Une méthode de tableau",
           "Un type de fonction"
         ],
-        "explanation": "Le spread operator (...) permet d'étendre un itérable (tableau, objet) en éléments individuels."
+        "explanation": "Le spread operator (...) permet d'étendre un itérable (tableau, objet) en éléments individuels.",
+        "correctAnswer": 0
       },
       "medium-30": {
         "question": "Qu'est-ce que le destructuring en JavaScript ?",
@@ -3223,11 +3369,13 @@
           "Une méthode de suppression",
           "Un type de variable"
         ],
-        "explanation": "Le destructuring permet d'extraire des valeurs d'objets ou tableaux dans des variables distinctes."
+        "explanation": "Le destructuring permet d'extraire des valeurs d'objets ou tableaux dans des variables distinctes.",
+        "correctAnswer": 0
       },
       "medium-31": {
         "question": "Les fonctions async/await en JavaScript simplifient le code asynchrone.",
-        "explanation": "Oui, async/await permet d'écrire du code asynchrone de manière synchrone et plus lisible."
+        "explanation": "Oui, async/await permet d'écrire du code asynchrone de manière synchrone et plus lisible.",
+        "correctAnswer": 0
       },
       "medium-32": {
         "question": "Qu'est-ce que le concept de \"pure function\" en programmation ?",
@@ -3237,7 +3385,8 @@
           "Une fonction sans paramètres",
           "Une fonction globale"
         ],
-        "explanation": "Une pure function retourne toujours le même résultat pour les mêmes entrées et n'a pas d'effets de bord."
+        "explanation": "Une pure function retourne toujours le même résultat pour les mêmes entrées et n'a pas d'effets de bord.",
+        "correctAnswer": 0
       },
       "medium-33": {
         "question": "Qu'est-ce que le concept de \"currying\" en programmation fonctionnelle ?",
@@ -3247,11 +3396,13 @@
           "Un type de boucle",
           "Une erreur"
         ],
-        "explanation": "Le currying transforme une fonction prenant plusieurs arguments en une série de fonctions prenant un argument chacune."
+        "explanation": "Le currying transforme une fonction prenant plusieurs arguments en une série de fonctions prenant un argument chacune.",
+        "correctAnswer": 0
       },
       "medium-34": {
         "question": "Le sessionStorage stocke les données uniquement pour la session du navigateur.",
-        "explanation": "Oui, sessionStorage stocke les données uniquement pour la session actuelle et les supprime à la fermeture de l'onglet."
+        "explanation": "Oui, sessionStorage stocke les données uniquement pour la session actuelle et les supprime à la fermeture de l'onglet.",
+        "correctAnswer": 0
       },
       "medium-35": {
         "question": "Qu'est-ce que le concept de \"immutability\" en programmation ?",
@@ -3261,7 +3412,8 @@
           "Une méthode de mutation",
           "Un type de variable"
         ],
-        "explanation": "L'immutabilité signifie qu'un objet ne peut pas être modifié après sa création, on crée plutôt de nouveaux objets."
+        "explanation": "L'immutabilité signifie qu'un objet ne peut pas être modifié après sa création, on crée plutôt de nouveaux objets.",
+        "correctAnswer": 0
       },
       "medium-36": {
         "question": "Qu'est-ce que le concept de \"composition\" en React ?",
@@ -3271,11 +3423,13 @@
           "Une méthode de state",
           "Un hook"
         ],
-        "explanation": "La composition consiste à combiner de petits composants réutilisables pour créer des composants plus complexes."
+        "explanation": "La composition consiste à combiner de petits composants réutilisables pour créer des composants plus complexes.",
+        "correctAnswer": 0
       },
       "medium-37": {
         "question": "Les props en React sont en lecture seule (read-only).",
-        "explanation": "Oui, les props sont immutables et ne doivent pas être modifiées par le composant enfant."
+        "explanation": "Oui, les props sont immutables et ne doivent pas être modifiées par le composant enfant.",
+        "correctAnswer": 0
       },
       "medium-38": {
         "question": "Qu'est-ce que le concept de \"higher-order component\" (HOC) en React ?",
@@ -3285,7 +3439,8 @@
           "Un type de hook",
           "Une méthode de rendu"
         ],
-        "explanation": "Un HOC est une fonction qui prend un composant et retourne un nouveau composant avec des fonctionnalités supplémentaires."
+        "explanation": "Un HOC est une fonction qui prend un composant et retourne un nouveau composant avec des fonctionnalités supplémentaires.",
+        "correctAnswer": 0
       },
       "medium-39": {
         "question": "Qu'est-ce que le concept de \"render props\" en React ?",
@@ -3295,11 +3450,13 @@
           "Une méthode de state",
           "Un hook"
         ],
-        "explanation": "Les render props sont une technique où un composant accepte une fonction comme prop pour déterminer ce qu'il doit rendre."
+        "explanation": "Les render props sont une technique où un composant accepte une fonction comme prop pour déterminer ce qu'il doit rendre.",
+        "correctAnswer": 0
       },
       "medium-40": {
         "question": "Le hook useEffect en React peut remplacer componentDidMount, componentDidUpdate et componentWillUnmount.",
-        "explanation": "Oui, useEffect combine les fonctionnalités de ces trois méthodes de cycle de vie des composants de classe."
+        "explanation": "Oui, useEffect combine les fonctionnalités de ces trois méthodes de cycle de vie des composants de classe.",
+        "correctAnswer": 0
       },
       "medium-41": {
         "question": "Qu'est-ce que le concept de \"controlled component\" en React ?",
@@ -3309,7 +3466,8 @@
           "Un type de hook",
           "Une méthode de rendu"
         ],
-        "explanation": "Un controlled component est un composant dont la valeur est contrôlée par le state React via des props."
+        "explanation": "Un controlled component est un composant dont la valeur est contrôlée par le state React via des props.",
+        "correctAnswer": 0
       },
       "medium-42": {
         "question": "Qu'est-ce que le concept de \"uncontrolled component\" en React ?",
@@ -3319,11 +3477,13 @@
           "Un type de hook",
           "Une erreur"
         ],
-        "explanation": "Un uncontrolled component stocke son état dans le DOM et utilise des refs pour accéder aux valeurs."
+        "explanation": "Un uncontrolled component stocke son état dans le DOM et utilise des refs pour accéder aux valeurs.",
+        "correctAnswer": 0
       },
       "medium-43": {
         "question": "Le hook useRef en React permet de créer une référence mutable qui persiste entre les renders.",
-        "explanation": "Oui, useRef retourne un objet mutable dont la propriété .current peut être modifiée sans déclencher de re-render."
+        "explanation": "Oui, useRef retourne un objet mutable dont la propriété .current peut être modifiée sans déclencher de re-render.",
+        "correctAnswer": 0
       },
       "medium-44": {
         "question": "Qu'est-ce que le concept de \"key prop\" en React ?",
@@ -3333,7 +3493,8 @@
           "Un type de prop",
           "Une méthode"
         ],
-        "explanation": "La key prop aide React à identifier quels éléments ont changé, été ajoutés ou supprimés dans une liste."
+        "explanation": "La key prop aide React à identifier quels éléments ont changé, été ajoutés ou supprimés dans une liste.",
+        "correctAnswer": 0
       },
       "medium-45": {
         "question": "Qu'est-ce que le concept de \"reconciliation\" en React ?",
@@ -3343,11 +3504,13 @@
           "Une méthode de state",
           "Un hook"
         ],
-        "explanation": "La reconciliation est le processus par lequel React compare le Virtual DOM avec le DOM réel et applique les changements nécessaires."
+        "explanation": "La reconciliation est le processus par lequel React compare le Virtual DOM avec le DOM réel et applique les changements nécessaires.",
+        "correctAnswer": 0
       },
       "medium-46": {
         "question": "Le hook useContext en React permet d'accéder à un contexte sans utiliser de Consumer.",
-        "explanation": "Oui, useContext simplifie l'accès au contexte en évitant d'utiliser le pattern Consumer."
+        "explanation": "Oui, useContext simplifie l'accès au contexte en évitant d'utiliser le pattern Consumer.",
+        "correctAnswer": 0
       },
       "medium-47": {
         "question": "Qu'est-ce que le concept de \"code splitting\" dans les applications web ?",
@@ -3357,7 +3520,8 @@
           "Une méthode de compression",
           "Un type de rendu"
         ],
-        "explanation": "Le code splitting permet de diviser le bundle en chunks plus petits, chargés uniquement quand nécessaire."
+        "explanation": "Le code splitting permet de diviser le bundle en chunks plus petits, chargés uniquement quand nécessaire.",
+        "correctAnswer": 0
       },
       "medium-48": {
         "question": "Qu'est-ce que le concept de \"lazy loading\" pour les images ?",
@@ -3367,11 +3531,13 @@
           "Une méthode de compression",
           "Un type d'image"
         ],
-        "explanation": "Le lazy loading charge les images uniquement quand elles sont sur le point d'entrer dans le viewport, améliorant les performances."
+        "explanation": "Le lazy loading charge les images uniquement quand elles sont sur le point d'entrer dans le viewport, améliorant les performances.",
+        "correctAnswer": 0
       },
       "medium-49": {
         "question": "Le concept de \"single page application\" (SPA) charge une seule page HTML et met à jour le contenu dynamiquement.",
-        "explanation": "Oui, une SPA charge une seule page HTML et utilise JavaScript pour mettre à jour le contenu sans recharger la page."
+        "explanation": "Oui, une SPA charge une seule page HTML et utilise JavaScript pour mettre à jour le contenu sans recharger la page.",
+        "correctAnswer": 0
       },
       "medium-50": {
         "question": "Qu'est-ce que le concept de \"progressive enhancement\" en développement web ?",
@@ -3381,7 +3547,8 @@
           "Une méthode de test",
           "Un type de framework"
         ],
-        "explanation": "Le progressive enhancement consiste à créer une base fonctionnelle accessible, puis ajouter des fonctionnalités avancées."
+        "explanation": "Le progressive enhancement consiste à créer une base fonctionnelle accessible, puis ajouter des fonctionnalités avancées.",
+        "correctAnswer": 0
       },
       "medium-51": {
         "question": "Qu'est-ce que le concept de \"memoization\" en programmation ?",
@@ -3391,11 +3558,13 @@
           "Un type de cache",
           "Une erreur"
         ],
-        "explanation": "La memoization consiste à mettre en cache les résultats de fonctions coûteuses pour améliorer les performances."
+        "explanation": "La memoization consiste à mettre en cache les résultats de fonctions coûteuses pour améliorer les performances.",
+        "correctAnswer": 0
       },
       "medium-52": {
         "question": "Le hook useMemo en React permet de mémoriser des valeurs calculées.",
-        "explanation": "Oui, useMemo mémorise le résultat d'un calcul et ne le recalcule que si ses dépendances changent."
+        "explanation": "Oui, useMemo mémorise le résultat d'un calcul et ne le recalcule que si ses dépendances changent.",
+        "correctAnswer": 0
       },
       "medium-53": {
         "question": "Qu'est-ce que le concept de \"closure\" en JavaScript ?",
@@ -3405,7 +3574,8 @@
           "Un type de variable",
           "Une erreur"
         ],
-        "explanation": "Une closure est une fonction qui a accès aux variables de son scope externe même après que ce scope soit fermé."
+        "explanation": "Une closure est une fonction qui a accès aux variables de son scope externe même après que ce scope soit fermé.",
+        "correctAnswer": 0
       },
       "medium-54": {
         "question": "Qu'est-ce que le concept de \"event delegation\" en JavaScript ?",
@@ -3415,11 +3585,13 @@
           "Un type d'événement",
           "Une méthode"
         ],
-        "explanation": "L'event delegation consiste à attacher un gestionnaire d'événement à un élément parent pour gérer les événements de ses enfants."
+        "explanation": "L'event delegation consiste à attacher un gestionnaire d'événement à un élément parent pour gérer les événements de ses enfants.",
+        "correctAnswer": 0
       },
       "medium-55": {
         "question": "Le hook useCallback en React permet de mémoriser des fonctions.",
-        "explanation": "Oui, useCallback retourne une version mémorisée d'une fonction qui ne change que si ses dépendances changent."
+        "explanation": "Oui, useCallback retourne une version mémorisée d'une fonction qui ne change que si ses dépendances changent.",
+        "correctAnswer": 0
       },
       "medium-56": {
         "question": "Qu'est-ce que le concept de \"throttling\" en JavaScript ?",
@@ -3429,7 +3601,8 @@
           "Un type de boucle",
           "Une méthode"
         ],
-        "explanation": "Le throttling limite l'exécution d'une fonction à une fois par période de temps, utile pour les événements fréquents."
+        "explanation": "Le throttling limite l'exécution d'une fonction à une fois par période de temps, utile pour les événements fréquents.",
+        "correctAnswer": 0
       },
       "medium-57": {
         "question": "Qu'est-ce que le concept de \"prototype chain\" en JavaScript ?",
@@ -3439,11 +3612,13 @@
           "Un type d'objet",
           "Une erreur"
         ],
-        "explanation": "La prototype chain permet à un objet d'hériter des propriétés et méthodes de son prototype et des prototypes parents."
+        "explanation": "La prototype chain permet à un objet d'hériter des propriétés et méthodes de son prototype et des prototypes parents.",
+        "correctAnswer": 0
       },
       "medium-58": {
         "question": "Les classes ES6 en JavaScript sont du sucre syntaxique sur le système de prototypes.",
-        "explanation": "Oui, les classes ES6 sont une syntaxe plus claire mais utilisent toujours le système de prototypes sous le capot."
+        "explanation": "Oui, les classes ES6 sont une syntaxe plus claire mais utilisent toujours le système de prototypes sous le capot.",
+        "correctAnswer": 0
       },
       "medium-59": {
         "question": "Qu'est-ce que le concept de \"virtual DOM\" en React ?",
@@ -3453,7 +3628,8 @@
           "Un type de DOM",
           "Une méthode"
         ],
-        "explanation": "Le Virtual DOM est une représentation JavaScript légère du DOM réel, permettant des mises à jour efficaces."
+        "explanation": "Le Virtual DOM est une représentation JavaScript légère du DOM réel, permettant des mises à jour efficaces.",
+        "correctAnswer": 0
       },
       "medium-60": {
         "question": "Qu'est-ce que le concept de \"server-side rendering\" (SSR) ?",
@@ -3463,11 +3639,13 @@
           "Un type de rendu",
           "Une méthode"
         ],
-        "explanation": "Le SSR consiste à générer le HTML sur le serveur, améliorant le SEO et le temps de chargement initial."
+        "explanation": "Le SSR consiste à générer le HTML sur le serveur, améliorant le SEO et le temps de chargement initial.",
+        "correctAnswer": 0
       },
       "medium-61": {
         "question": "Le concept de \"static site generation\" (SSG) génère le HTML au moment du build.",
-        "explanation": "Oui, le SSG génère toutes les pages HTML au moment du build, créant un site statique ultra-rapide."
+        "explanation": "Oui, le SSG génère toutes les pages HTML au moment du build, créant un site statique ultra-rapide.",
+        "correctAnswer": 0
       },
       "medium-62": {
         "question": "Qu'est-ce que le concept de \"hydration\" en React ?",
@@ -3477,7 +3655,8 @@
           "Un type de rendu",
           "Une méthode"
         ],
-        "explanation": "L'hydration est le processus d'attachement des gestionnaires d'événements React au HTML pré-rendu côté serveur."
+        "explanation": "L'hydration est le processus d'attachement des gestionnaires d'événements React au HTML pré-rendu côté serveur.",
+        "correctAnswer": 0
       },
       "medium-63": {
         "question": "Qu'est-ce que le concept de \"tree shaking\" en JavaScript ?",
@@ -3487,11 +3666,13 @@
           "Une méthode de tri",
           "Un type de bundle"
         ],
-        "explanation": "Le tree shaking élimine le code non utilisé lors du bundling, réduisant la taille du bundle final."
+        "explanation": "Le tree shaking élimine le code non utilisé lors du bundling, réduisant la taille du bundle final.",
+        "correctAnswer": 0
       },
       "medium-64": {
         "question": "Le concept de \"polyfill\" permet d'ajouter des fonctionnalités manquantes dans les anciens navigateurs.",
-        "explanation": "Oui, un polyfill est un code qui implémente une fonctionnalité manquante dans un navigateur plus ancien."
+        "explanation": "Oui, un polyfill est un code qui implémente une fonctionnalité manquante dans un navigateur plus ancien.",
+        "correctAnswer": 0
       },
       "medium-65": {
         "question": "Qu'est-ce que le concept de \"transpilation\" en JavaScript ?",
@@ -3501,7 +3682,8 @@
           "Traduire du code",
           "Une méthode"
         ],
-        "explanation": "La transpilation convertit du code d'un langage à un autre de même niveau (ex: TypeScript vers JavaScript)."
+        "explanation": "La transpilation convertit du code d'un langage à un autre de même niveau (ex: TypeScript vers JavaScript).",
+        "correctAnswer": 0
       },
       "medium-66": {
         "question": "Qu'est-ce que le concept de \"middleware\" dans les frameworks web ?",
@@ -3511,11 +3693,13 @@
           "Une méthode",
           "Une erreur"
         ],
-        "explanation": "Un middleware est une fonction qui intercepte les requêtes et réponses, permettant d'ajouter des fonctionnalités."
+        "explanation": "Un middleware est une fonction qui intercepte les requêtes et réponses, permettant d'ajouter des fonctionnalités.",
+        "correctAnswer": 0
       },
       "medium-67": {
         "question": "Le concept de \"REST\" (Representational State Transfer) est un style d'architecture pour les APIs.",
-        "explanation": "Oui, REST est un style d'architecture qui utilise les méthodes HTTP standard pour les opérations CRUD."
+        "explanation": "Oui, REST est un style d'architecture qui utilise les méthodes HTTP standard pour les opérations CRUD.",
+        "correctAnswer": 0
       },
       "medium-68": {
         "question": "Qu'est-ce que le concept de \"GraphQL\" ?",
@@ -3525,7 +3709,8 @@
           "Une méthode HTTP",
           "Un framework"
         ],
-        "explanation": "GraphQL est un langage de requête qui permet aux clients de demander exactement les données dont ils ont besoin."
+        "explanation": "GraphQL est un langage de requête qui permet aux clients de demander exactement les données dont ils ont besoin.",
+        "correctAnswer": 0
       },
       "medium-69": {
         "question": "Qu'est-ce que le concept de \"WebSocket\" ?",
@@ -3535,11 +3720,13 @@
           "Une méthode HTTP",
           "Un framework"
         ],
-        "explanation": "WebSocket est un protocole qui permet une communication bidirectionnelle en temps réel entre client et serveur."
+        "explanation": "WebSocket est un protocole qui permet une communication bidirectionnelle en temps réel entre client et serveur.",
+        "correctAnswer": 0
       },
       "medium-70": {
         "question": "Le concept de \"Service Worker\" permet de créer des applications web hors ligne.",
-        "explanation": "Oui, les Service Workers permettent de mettre en cache des ressources et de créer des applications web hors ligne."
+        "explanation": "Oui, les Service Workers permettent de mettre en cache des ressources et de créer des applications web hors ligne.",
+        "correctAnswer": 0
       },
       "medium-71": {
         "question": "Qu'est-ce que le concept de \"Progressive Web App\" (PWA) ?",
@@ -3549,7 +3736,8 @@
           "Une méthode",
           "Un framework"
         ],
-        "explanation": "Une PWA combine les meilleures fonctionnalités web et mobiles : installation, hors ligne, notifications push."
+        "explanation": "Une PWA combine les meilleures fonctionnalités web et mobiles : installation, hors ligne, notifications push.",
+        "correctAnswer": 0
       },
       "medium-72": {
         "question": "Qu'est-ce que le concept de \"dependency injection\" en programmation ?",
@@ -3559,11 +3747,13 @@
           "Un type de dépendance",
           "Une méthode"
         ],
-        "explanation": "La dependency injection permet de rendre le code plus testable et modulaire en fournissant les dépendances depuis l'extérieur."
+        "explanation": "La dependency injection permet de rendre le code plus testable et modulaire en fournissant les dépendances depuis l'extérieur.",
+        "correctAnswer": 0
       },
       "medium-73": {
         "question": "Le concept de \"unit testing\" teste des unités individuelles de code en isolation.",
-        "explanation": "Oui, les tests unitaires testent de petites unités de code (fonctions, composants) de manière isolée."
+        "explanation": "Oui, les tests unitaires testent de petites unités de code (fonctions, composants) de manière isolée.",
+        "correctAnswer": 0
       },
       "medium-74": {
         "question": "Qu'est-ce que le concept de \"integration testing\" ?",
@@ -3573,7 +3763,8 @@
           "Un type de test",
           "Une méthode"
         ],
-        "explanation": "Les tests d'intégration vérifient que plusieurs composants fonctionnent correctement ensemble."
+        "explanation": "Les tests d'intégration vérifient que plusieurs composants fonctionnent correctement ensemble.",
+        "correctAnswer": 0
       },
       "medium-75": {
         "question": "Qu'est-ce que le concept de \"end-to-end testing\" (E2E) ?",
@@ -3583,11 +3774,13 @@
           "Un type de test",
           "Une méthode"
         ],
-        "explanation": "Les tests E2E simulent un utilisateur réel et testent l'application complète du début à la fin."
+        "explanation": "Les tests E2E simulent un utilisateur réel et testent l'application complète du début à la fin.",
+        "correctAnswer": 0
       },
       "medium-76": {
         "question": "Le concept de \"mocking\" en tests permet de simuler des dépendances externes.",
-        "explanation": "Oui, le mocking permet de remplacer des dépendances par des versions simulées pour isoler les tests."
+        "explanation": "Oui, le mocking permet de remplacer des dépendances par des versions simulées pour isoler les tests.",
+        "correctAnswer": 0
       },
       "medium-77": {
         "question": "Qu'est-ce que le concept de \"continuous integration\" (CI) ?",
@@ -3597,7 +3790,8 @@
           "Un type de déploiement",
           "Une méthode"
         ],
-        "explanation": "La CI automatise les tests et builds à chaque commit pour détecter les problèmes rapidement."
+        "explanation": "La CI automatise les tests et builds à chaque commit pour détecter les problèmes rapidement.",
+        "correctAnswer": 0
       },
       "medium-78": {
         "question": "Qu'est-ce que le concept de \"continuous deployment\" (CD) ?",
@@ -3607,11 +3801,13 @@
           "Un type de test",
           "Une méthode"
         ],
-        "explanation": "La CD déploie automatiquement le code en production après que tous les tests soient passés."
+        "explanation": "La CD déploie automatiquement le code en production après que tous les tests soient passés.",
+        "correctAnswer": 0
       },
       "medium-79": {
         "question": "Le concept de \"version control\" permet de suivre les changements dans le code au fil du temps.",
-        "explanation": "Oui, le contrôle de version (comme Git) permet de suivre, gérer et collaborer sur les changements de code."
+        "explanation": "Oui, le contrôle de version (comme Git) permet de suivre, gérer et collaborer sur les changements de code.",
+        "correctAnswer": 0
       },
       "medium-80": {
         "question": "Qu'est-ce que le concept de \"branch\" en Git ?",
@@ -3621,7 +3817,8 @@
           "Un type de commit",
           "Une méthode"
         ],
-        "explanation": "Une branche Git est une ligne de développement indépendante qui permet de travailler sur des fonctionnalités séparément."
+        "explanation": "Une branche Git est une ligne de développement indépendante qui permet de travailler sur des fonctionnalités séparément.",
+        "correctAnswer": 0
       },
       "hard-1": {
         "question": "Quelle est la différence entre une deep copy et une shallow copy en JavaScript ?",
@@ -3631,11 +3828,13 @@
           "Aucune différence",
           "Deep copy est obsolète"
         ],
-        "explanation": "Une shallow copy copie seulement le premier niveau, tandis qu'une deep copy copie récursivement tous les niveaux imbriqués."
+        "explanation": "Une shallow copy copie seulement le premier niveau, tandis qu'une deep copy copie récursivement tous les niveaux imbriqués.",
+        "correctAnswer": 0
       },
       "hard-2": {
         "question": "Le protocole OAuth 2.0 utilise uniquement des tokens d'accès, pas de tokens de rafraîchissement.",
-        "explanation": "Non, OAuth 2.0 utilise à la fois des access tokens (courte durée) et des refresh tokens (longue durée) pour renouveler les access tokens."
+        "explanation": "Non, OAuth 2.0 utilise à la fois des access tokens (courte durée) et des refresh tokens (longue durée) pour renouveler les access tokens.",
+        "correctAnswer": 1
       },
       "hard-3": {
         "question": "Qu'est-ce que le time complexity d'un algorithme de tri par fusion (merge sort) ?",
@@ -3645,7 +3844,8 @@
           "O(n)",
           "O(log n)"
         ],
-        "explanation": "Le tri par fusion a une complexité temporelle de O(n log n) dans tous les cas (meilleur, moyen et pire)."
+        "explanation": "Le tri par fusion a une complexité temporelle de O(n log n) dans tous les cas (meilleur, moyen et pire).",
+        "correctAnswer": 0
       },
       "hard-4": {
         "question": "Quelle est la principale vulnérabilité du mode ECB (Electronic Codebook) en chiffrement ?",
@@ -3655,11 +3855,13 @@
           "Il nécessite trop de mémoire",
           "Il n'est pas sécurisé du tout"
         ],
-        "explanation": "ECB produit le même chiffrement pour des blocs identiques, révélant des patterns dans les données, ce qui est une faille de sécurité majeure."
+        "explanation": "ECB produit le même chiffrement pour des blocs identiques, révélant des patterns dans les données, ce qui est une faille de sécurité majeure.",
+        "correctAnswer": 0
       },
       "hard-5": {
         "question": "Les Service Workers peuvent intercepter et modifier les requêtes réseau.",
-        "explanation": "Oui, les Service Workers agissent comme un proxy entre l'application et le réseau, permettant d'intercepter et modifier les requêtes."
+        "explanation": "Oui, les Service Workers agissent comme un proxy entre l'application et le réseau, permettant d'intercepter et modifier les requêtes.",
+        "correctAnswer": 0
       },
       "hard-6": {
         "question": "Qu'est-ce que le principe de moindre privilège (principle of least privilege) en sécurité ?",
@@ -3669,7 +3871,8 @@
           "Une méthode de chiffrement",
           "Un protocole réseau"
         ],
-        "explanation": "Le principe de moindre privilège consiste à accorder aux utilisateurs et processus uniquement les permissions minimales nécessaires pour accomplir leurs tâches."
+        "explanation": "Le principe de moindre privilège consiste à accorder aux utilisateurs et processus uniquement les permissions minimales nécessaires pour accomplir leurs tâches.",
+        "correctAnswer": 0
       },
       "hard-7": {
         "question": "Quelle est la différence entre useMemo et useCallback en React ?",
@@ -3679,11 +3882,13 @@
           "Aucune différence",
           "useMemo est obsolète"
         ],
-        "explanation": "useMemo retourne une valeur mémorisée, tandis que useCallback retourne une fonction mémorisée."
+        "explanation": "useMemo retourne une valeur mémorisée, tandis que useCallback retourne une fonction mémorisée.",
+        "correctAnswer": 0
       },
       "hard-8": {
         "question": "Le hash SHA-256 est réversible, on peut retrouver le texte original à partir du hash.",
-        "explanation": "Non, SHA-256 est une fonction de hachage à sens unique (one-way), il est mathématiquement impossible de retrouver le texte original."
+        "explanation": "Non, SHA-256 est une fonction de hachage à sens unique (one-way), il est mathématiquement impossible de retrouver le texte original.",
+        "correctAnswer": 1
       },
       "hard-9": {
         "question": "Qu'est-ce que le code splitting dans les applications React ?",
@@ -3693,7 +3898,8 @@
           "Une méthode de compression",
           "Un type de rendu"
         ],
-        "explanation": "Le code splitting permet de diviser le bundle JavaScript en chunks plus petits, chargés uniquement quand nécessaire, améliorant les performances."
+        "explanation": "Le code splitting permet de diviser le bundle JavaScript en chunks plus petits, chargés uniquement quand nécessaire, améliorant les performances.",
+        "correctAnswer": 0
       },
       "hard-10": {
         "question": "Quelle est la différence entre authentication et authorization ?",
@@ -3703,11 +3909,13 @@
           "Authorization est plus sécurisé",
           "Authentication est obsolète"
         ],
-        "explanation": "Authentication vérifie qui vous êtes (identité), tandis qu'authorization vérifie ce que vous êtes autorisé à faire (permissions)."
+        "explanation": "Authentication vérifie qui vous êtes (identité), tandis qu'authorization vérifie ce que vous êtes autorisé à faire (permissions).",
+        "correctAnswer": 0
       },
       "hard-11": {
         "question": "Les mutations directes du state React sont autorisées et recommandées.",
-        "explanation": "Non, React nécessite des mises à jour immutables du state. Les mutations directes ne déclenchent pas de re-render."
+        "explanation": "Non, React nécessite des mises à jour immutables du state. Les mutations directes ne déclenchent pas de re-render.",
+        "correctAnswer": 1
       },
       "hard-12": {
         "question": "Qu'est-ce qu'une race condition dans la programmation asynchrone ?",
@@ -3717,7 +3925,8 @@
           "Un type de boucle",
           "Une méthode de cache"
         ],
-        "explanation": "Une race condition survient lorsque le résultat dépend de l'ordre d'exécution de processus asynchrones, créant un comportement imprévisible."
+        "explanation": "Une race condition survient lorsque le résultat dépend de l'ordre d'exécution de processus asynchrones, créant un comportement imprévisible.",
+        "correctAnswer": 0
       },
       "hard-13": {
         "question": "Quelle est la complexité spatiale d'un algorithme de tri en place (in-place) ?",
@@ -3727,11 +3936,13 @@
           "O(n log n)",
           "O(n²)"
         ],
-        "explanation": "Un algorithme de tri en place utilise un espace mémoire constant O(1), modifiant le tableau directement sans créer de copie."
+        "explanation": "Un algorithme de tri en place utilise un espace mémoire constant O(1), modifiant le tableau directement sans créer de copie.",
+        "correctAnswer": 0
       },
       "hard-14": {
         "question": "Le Same-Origin Policy empêche les scripts d'un domaine d'accéder aux données d'un autre domaine.",
-        "explanation": "Oui, la Same-Origin Policy est un mécanisme de sécurité qui restreint l'accès aux ressources entre différentes origines."
+        "explanation": "Oui, la Same-Origin Policy est un mécanisme de sécurité qui restreint l'accès aux ressources entre différentes origines.",
+        "correctAnswer": 0
       },
       "hard-15": {
         "question": "Qu'est-ce que le Virtual DOM en React ?",
@@ -3741,7 +3952,8 @@
           "Une méthode de cache",
           "Un type de composant"
         ],
-        "explanation": "Le Virtual DOM est une représentation JavaScript légère du DOM réel, permettant à React d'optimiser les mises à jour."
+        "explanation": "Le Virtual DOM est une représentation JavaScript légère du DOM réel, permettant à React d'optimiser les mises à jour.",
+        "correctAnswer": 0
       },
       "hard-16": {
         "question": "Quelle est la différence entre un salt et un pepper en cryptographie ?",
@@ -3751,11 +3963,13 @@
           "Aucune différence",
           "Salt est obsolète"
         ],
-        "explanation": "Un salt est unique par utilisateur et stocké avec le hash, tandis qu'un pepper est un secret partagé stocké séparément."
+        "explanation": "Un salt est unique par utilisateur et stocké avec le hash, tandis qu'un pepper est un secret partagé stocké séparément.",
+        "correctAnswer": 0
       },
       "hard-17": {
         "question": "Les closures en JavaScript permettent à une fonction d'accéder aux variables de sa portée externe même après que cette portée soit fermée.",
-        "explanation": "Oui, les closures permettent à une fonction interne d'accéder aux variables de la fonction externe même après son exécution."
+        "explanation": "Oui, les closures permettent à une fonction interne d'accéder aux variables de la fonction externe même après son exécution.",
+        "correctAnswer": 0
       },
       "hard-18": {
         "question": "Qu'est-ce que le double spending dans le contexte de la blockchain ?",
@@ -3765,7 +3979,8 @@
           "Un type de transaction",
           "Une erreur de calcul"
         ],
-        "explanation": "Le double spending est le problème de dépenser la même unité de valeur numérique deux fois, résolu par la blockchain via le consensus."
+        "explanation": "Le double spending est le problème de dépenser la même unité de valeur numérique deux fois, résolu par la blockchain via le consensus.",
+        "correctAnswer": 0
       },
       "hard-19": {
         "question": "Quelle est la différence entre un WeakMap et un Map en JavaScript ?",
@@ -3775,11 +3990,13 @@
           "Aucune différence",
           "WeakMap est obsolète"
         ],
-        "explanation": "WeakMap utilise des références faibles pour les clés (permettant le garbage collection) et ne peut pas être itéré, contrairement à Map."
+        "explanation": "WeakMap utilise des références faibles pour les clés (permettant le garbage collection) et ne peut pas être itéré, contrairement à Map.",
+        "correctAnswer": 0
       },
       "hard-20": {
         "question": "Le protocole HTTP/2 permet le multiplexing, permettant plusieurs requêtes sur une seule connexion TCP.",
-        "explanation": "Oui, HTTP/2 introduit le multiplexing qui permet d'envoyer plusieurs requêtes simultanément sur une seule connexion TCP."
+        "explanation": "Oui, HTTP/2 introduit le multiplexing qui permet d'envoyer plusieurs requêtes simultanément sur une seule connexion TCP.",
+        "correctAnswer": 0
       },
       "hard-21": {
         "question": "Qu'est-ce que le concept de \"lifting state up\" en React ?",
@@ -3789,7 +4006,8 @@
           "Une méthode de cache",
           "Un type de hook"
         ],
-        "explanation": "Lifting state up consiste à déplacer le state partagé vers le composant parent commun le plus proche."
+        "explanation": "Lifting state up consiste à déplacer le state partagé vers le composant parent commun le plus proche.",
+        "correctAnswer": 0
       },
       "hard-22": {
         "question": "Quelle est la principale différence entre AES-128 et AES-256 ?",
@@ -3799,11 +4017,13 @@
           "Le type de chiffrement",
           "Aucune différence"
         ],
-        "explanation": "AES-128 utilise une clé de 128 bits tandis qu'AES-256 utilise une clé de 256 bits, offrant une sécurité renforcée."
+        "explanation": "AES-128 utilise une clé de 128 bits tandis qu'AES-256 utilise une clé de 256 bits, offrant une sécurité renforcée.",
+        "correctAnswer": 0
       },
       "hard-23": {
         "question": "Les Server Components dans Next.js 13+ s'exécutent uniquement côté serveur et ne sont pas inclus dans le bundle client.",
-        "explanation": "Oui, les Server Components s'exécutent uniquement côté serveur, réduisant la taille du bundle JavaScript client."
+        "explanation": "Oui, les Server Components s'exécutent uniquement côté serveur, réduisant la taille du bundle JavaScript client.",
+        "correctAnswer": 0
       },
       "hard-24": {
         "question": "Qu'est-ce que le concept de \"event delegation\" en JavaScript ?",
@@ -3813,7 +4033,8 @@
           "Une méthode de cache",
           "Un type d'événement"
         ],
-        "explanation": "L'event delegation consiste à attacher un listener sur un élément parent pour gérer les événements de ses enfants, améliorant les performances."
+        "explanation": "L'event delegation consiste à attacher un listener sur un élément parent pour gérer les événements de ses enfants, améliorant les performances.",
+        "correctAnswer": 0
       },
       "hard-25": {
         "question": "Quelle est la complexité temporelle de la recherche dans un arbre binaire de recherche équilibré ?",
@@ -3823,11 +4044,13 @@
           "O(1)",
           "O(n log n)"
         ],
-        "explanation": "Dans un arbre binaire de recherche équilibré, la recherche a une complexité de O(log n) car on divise l'espace de recherche par deux à chaque niveau."
+        "explanation": "Dans un arbre binaire de recherche équilibré, la recherche a une complexité de O(log n) car on divise l'espace de recherche par deux à chaque niveau.",
+        "correctAnswer": 0
       },
       "hard-26": {
         "question": "Le protocole WebSocket utilise le même port que HTTP (80) ou HTTPS (443).",
-        "explanation": "Oui, WebSocket commence par une connexion HTTP/HTTPS normale puis upgrade vers WebSocket, utilisant les mêmes ports."
+        "explanation": "Oui, WebSocket commence par une connexion HTTP/HTTPS normale puis upgrade vers WebSocket, utilisant les mêmes ports.",
+        "correctAnswer": 0
       },
       "hard-27": {
         "question": "Qu'est-ce que le concept de \"memoization\" en programmation ?",
@@ -3837,7 +4060,8 @@
           "Un type de cache",
           "Une erreur de mémoire"
         ],
-        "explanation": "La mémorisation consiste à stocker les résultats de calculs coûteux dans un cache pour éviter de les recalculer avec les mêmes entrées."
+        "explanation": "La mémorisation consiste à stocker les résultats de calculs coûteux dans un cache pour éviter de les recalculer avec les mêmes entrées.",
+        "correctAnswer": 0
       },
       "hard-28": {
         "question": "Quelle est la différence entre un certificat SSL auto-signé et un certificat signé par une autorité de certification ?",
@@ -3847,11 +4071,13 @@
           "Les auto-signés sont plus sécurisés",
           "Les CA sont obsolètes"
         ],
-        "explanation": "Un certificat signé par une CA est vérifié et approuvé par les navigateurs, tandis qu'un auto-signé génère un avertissement de sécurité."
+        "explanation": "Un certificat signé par une CA est vérifié et approuvé par les navigateurs, tandis qu'un auto-signé génère un avertissement de sécurité.",
+        "correctAnswer": 0
       },
       "hard-29": {
         "question": "Les Generators en JavaScript permettent de créer des fonctions itérables avec yield.",
-        "explanation": "Oui, les Generators sont des fonctions spéciales qui peuvent être mises en pause et reprises, utilisant yield pour produire des valeurs."
+        "explanation": "Oui, les Generators sont des fonctions spéciales qui peuvent être mises en pause et reprises, utilisant yield pour produire des valeurs.",
+        "correctAnswer": 0
       },
       "hard-30": {
         "question": "Qu'est-ce que le concept de \"defense in depth\" en cybersécurité ?",
@@ -3861,7 +4087,8 @@
           "Une méthode de chiffrement",
           "Un type de firewall"
         ],
-        "explanation": "La défense en profondeur consiste à utiliser plusieurs couches de sécurité indépendantes pour protéger un système, réduisant le risque de compromission."
+        "explanation": "La défense en profondeur consiste à utiliser plusieurs couches de sécurité indépendantes pour protéger un système, réduisant le risque de compromission.",
+        "correctAnswer": 0
       },
       "hard-31": {
         "question": "Quelle est la différence entre un thunk et un middleware dans Redux ?",
@@ -3871,11 +4098,13 @@
           "Aucune différence",
           "Les thunks sont obsolètes"
         ],
-        "explanation": "Un thunk est un middleware Redux qui permet de dispatcher des fonctions au lieu d'actions simples, utile pour les opérations asynchrones."
+        "explanation": "Un thunk est un middleware Redux qui permet de dispatcher des fonctions au lieu d'actions simples, utile pour les opérations asynchrones.",
+        "correctAnswer": 0
       },
       "hard-32": {
         "question": "Le protocole QUIC utilise UDP au lieu de TCP pour améliorer les performances.",
-        "explanation": "Oui, QUIC (Quick UDP Internet Connections) utilise UDP avec des fonctionnalités de fiabilité et sécurité intégrées, améliorant les performances."
+        "explanation": "Oui, QUIC (Quick UDP Internet Connections) utilise UDP avec des fonctionnalités de fiabilité et sécurité intégrées, améliorant les performances.",
+        "correctAnswer": 0
       },
       "hard-33": {
         "question": "Qu'est-ce que le concept de \"single source of truth\" dans la gestion d'état ?",
@@ -3885,7 +4114,8 @@
           "Une méthode de cache",
           "Un type de base de données"
         ],
-        "explanation": "Le single source of truth consiste à avoir une seule source fiable pour l'état de l'application, évitant les incohérences."
+        "explanation": "Le single source of truth consiste à avoir une seule source fiable pour l'état de l'application, évitant les incohérences.",
+        "correctAnswer": 0
       },
       "hard-34": {
         "question": "Quelle est la différence entre un hash et un HMAC (Hash-based Message Authentication Code) ?",
@@ -3895,11 +4125,13 @@
           "Aucune différence",
           "HMAC est obsolète"
         ],
-        "explanation": "HMAC combine un hash avec une clé secrète, permettant de vérifier à la fois l'intégrité et l'authenticité d'un message."
+        "explanation": "HMAC combine un hash avec une clé secrète, permettant de vérifier à la fois l'intégrité et l'authenticité d'un message.",
+        "correctAnswer": 0
       },
       "hard-35": {
         "question": "Les Web Workers permettent d'exécuter du JavaScript dans un thread séparé du thread principal.",
-        "explanation": "Oui, les Web Workers permettent d'exécuter du code JavaScript dans un thread séparé, évitant de bloquer le thread principal."
+        "explanation": "Oui, les Web Workers permettent d'exécuter du code JavaScript dans un thread séparé, évitant de bloquer le thread principal.",
+        "correctAnswer": 0
       },
       "hard-36": {
         "question": "Qu'est-ce que le concept de \"idempotence\" dans les API REST ?",
@@ -3909,7 +4141,8 @@
           "Un type de requête",
           "Une erreur de requête"
         ],
-        "explanation": "L'idempotence signifie qu'effectuer la même requête plusieurs fois produit le même résultat, importante pour les méthodes PUT et DELETE."
+        "explanation": "L'idempotence signifie qu'effectuer la même requête plusieurs fois produit le même résultat, importante pour les méthodes PUT et DELETE.",
+        "correctAnswer": 0
       },
       "hard-37": {
         "question": "Quelle est la différence entre un JWT (JSON Web Token) et un session token classique ?",
@@ -3919,11 +4152,13 @@
           "Aucune différence",
           "JWT est obsolète"
         ],
-        "explanation": "JWT est stateless et contient les données dans le token, tandis qu'un session token nécessite un stockage côté serveur pour les données de session."
+        "explanation": "JWT est stateless et contient les données dans le token, tandis qu'un session token nécessite un stockage côté serveur pour les données de session.",
+        "correctAnswer": 0
       },
       "hard-38": {
         "question": "Le protocole TLS 1.3 réduit le nombre de round-trips nécessaires pour établir une connexion sécurisée.",
-        "explanation": "Oui, TLS 1.3 réduit le handshake de 2 round-trips à 1, améliorant les performances et la sécurité."
+        "explanation": "Oui, TLS 1.3 réduit le handshake de 2 round-trips à 1, améliorant les performances et la sécurité.",
+        "correctAnswer": 0
       },
       "hard-39": {
         "question": "Qu'est-ce que le concept de \"dependency injection\" en programmation ?",
@@ -3933,7 +4168,8 @@
           "Une méthode de cache",
           "Un type de fonction"
         ],
-        "explanation": "L'injection de dépendances consiste à fournir les dépendances d'un objet de l'extérieur, améliorant la testabilité et la flexibilité."
+        "explanation": "L'injection de dépendances consiste à fournir les dépendances d'un objet de l'extérieur, améliorant la testabilité et la flexibilité.",
+        "correctAnswer": 0
       },
       "hard-40": {
         "question": "Quelle est la différence entre un CSRF token et un JWT token ?",
@@ -3943,11 +4179,13 @@
           "Aucune différence",
           "CSRF token est obsolète"
         ],
-        "explanation": "Un CSRF token protège contre les attaques CSRF en validant l'origine des requêtes, tandis qu'un JWT est utilisé pour l'authentification et l'authorization."
+        "explanation": "Un CSRF token protège contre les attaques CSRF en validant l'origine des requêtes, tandis qu'un JWT est utilisé pour l'authentification et l'authorization.",
+        "correctAnswer": 0
       },
       "hard-41": {
         "question": "Les React Server Components peuvent utiliser des hooks comme useState et useEffect.",
-        "explanation": "Non, les Server Components s'exécutent uniquement côté serveur et ne peuvent pas utiliser de hooks qui nécessitent un état client."
+        "explanation": "Non, les Server Components s'exécutent uniquement côté serveur et ne peuvent pas utiliser de hooks qui nécessitent un état client.",
+        "correctAnswer": 1
       },
       "hard-42": {
         "question": "Qu'est-ce que le concept de \"event loop\" en JavaScript ?",
@@ -3957,7 +4195,8 @@
           "Une méthode de cache",
           "Un type de fonction"
         ],
-        "explanation": "L'event loop est le mécanisme qui gère l'exécution asynchrone en JavaScript, gérant la pile d'exécution et la file d'attente des callbacks."
+        "explanation": "L'event loop est le mécanisme qui gère l'exécution asynchrone en JavaScript, gérant la pile d'exécution et la file d'attente des callbacks.",
+        "correctAnswer": 0
       },
       "hard-43": {
         "question": "Quelle est la différence entre un certificat wildcard et un certificat SAN (Subject Alternative Name) ?",
@@ -3967,11 +4206,13 @@
           "Aucune différence",
           "Wildcard est obsolète"
         ],
-        "explanation": "Un certificat wildcard couvre tous les sous-domaines (*.domain.com), tandis qu'un SAN liste plusieurs domaines spécifiques."
+        "explanation": "Un certificat wildcard couvre tous les sous-domaines (*.domain.com), tandis qu'un SAN liste plusieurs domaines spécifiques.",
+        "correctAnswer": 0
       },
       "hard-44": {
         "question": "Le protocole HTTP/3 utilise QUIC au lieu de TCP comme protocole de transport.",
-        "explanation": "Oui, HTTP/3 utilise QUIC qui est basé sur UDP, offrant de meilleures performances que HTTP/2 basé sur TCP."
+        "explanation": "Oui, HTTP/3 utilise QUIC qui est basé sur UDP, offrant de meilleures performances que HTTP/2 basé sur TCP.",
+        "correctAnswer": 0
       },
       "hard-45": {
         "question": "Qu'est-ce que le concept de \"tree shaking\" dans le bundling JavaScript ?",
@@ -3981,7 +4222,8 @@
           "Une méthode de compression",
           "Un type de cache"
         ],
-        "explanation": "Le tree shaking est une technique d'optimisation qui élimine le code mort (non utilisé) du bundle final, réduisant sa taille."
+        "explanation": "Le tree shaking est une technique d'optimisation qui élimine le code mort (non utilisé) du bundle final, réduisant sa taille.",
+        "correctAnswer": 0
       },
       "hard-46": {
         "question": "Quelle est la différence entre un rate limiting basé sur IP et un rate limiting basé sur token ?",
@@ -3991,11 +4233,13 @@
           "Aucune différence",
           "IP-based est obsolète"
         ],
-        "explanation": "Le rate limiting basé sur IP limite les requêtes par adresse IP, tandis que le token-based limite par utilisateur authentifié, plus précis."
+        "explanation": "Le rate limiting basé sur IP limite les requêtes par adresse IP, tandis que le token-based limite par utilisateur authentifié, plus précis.",
+        "correctAnswer": 0
       },
       "hard-47": {
         "question": "Les Proxies en JavaScript permettent d'intercepter et personnaliser les opérations sur les objets.",
-        "explanation": "Oui, les Proxies permettent de créer un objet qui intercepte et personnalise les opérations fondamentales (lecture, écriture, etc.)."
+        "explanation": "Oui, les Proxies permettent de créer un objet qui intercepte et personnalise les opérations fondamentales (lecture, écriture, etc.).",
+        "correctAnswer": 0
       },
       "hard-48": {
         "question": "Qu'est-ce que le concept de \"zero trust\" en cybersécurité ?",
@@ -4005,7 +4249,8 @@
           "Une méthode de chiffrement",
           "Un type de firewall"
         ],
-        "explanation": "Le zero trust est un modèle de sécurité qui ne fait confiance à aucun utilisateur ou appareil par défaut, vérifiant chaque accès."
+        "explanation": "Le zero trust est un modèle de sécurité qui ne fait confiance à aucun utilisateur ou appareil par défaut, vérifiant chaque accès.",
+        "correctAnswer": 0
       },
       "hard-49": {
         "question": "Quelle est la différence entre un polyfill et un transpiler ?",
@@ -4015,11 +4260,13 @@
           "Aucune différence",
           "Polyfill est obsolète"
         ],
-        "explanation": "Un polyfill ajoute des fonctionnalités manquantes dans un environnement, tandis qu'un transpiler convertit le code d'un langage à un autre."
+        "explanation": "Un polyfill ajoute des fonctionnalités manquantes dans un environnement, tandis qu'un transpiler convertit le code d'un langage à un autre.",
+        "correctAnswer": 0
       },
       "hard-50": {
         "question": "Le protocole gRPC utilise Protocol Buffers pour la sérialisation des données.",
-        "explanation": "Oui, gRPC utilise Protocol Buffers (protobuf) comme format de sérialisation par défaut, offrant une sérialisation binaire efficace."
+        "explanation": "Oui, gRPC utilise Protocol Buffers (protobuf) comme format de sérialisation par défaut, offrant une sérialisation binaire efficace.",
+        "correctAnswer": 0
       }
     }
   },
@@ -4277,7 +4524,9 @@
     }
   },
   "accessibility": {
-    "skipToContent": "Aller au contenu principal"
+    "skipToContent": "Aller au contenu principal",
+    "loading": "Chargement",
+    "close": "Fermer"
   },
   "legal": {
     "common": {
@@ -4637,6 +4886,32 @@
     "actions": {
       "downloadPdf": "Télécharger le PDF",
       "downloadPdfLoading": "Téléchargement en cours..."
+    }
+  },
+  "patchnotes": {
+    "sort": {
+      "newestFirst": "Plus récent",
+      "oldestFirst": "Plus ancien",
+      "newestToOldest": "Plus récent au plus ancien",
+      "oldestToNewest": "Plus ancien au plus récent"
+    },
+    "ui": {
+      "search": "Rechercher...",
+      "noResults": "Aucun résultat",
+      "close": "Fermer",
+      "menu": "Menu"
+    },
+    "home": {
+      "title": "Accueil",
+      "displayDate": "Guide",
+      "badge": "Guide rapide",
+      "subtitle": "Comment lire les patch-notes",
+      "items": {
+        "0": "Choisis un patch-note dans la liste à gauche.",
+        "1": "Le point rouge = nouveauté non lue.",
+        "2": "Utilise la recherche pour retrouver une fonctionnalité.",
+        "3": "Change le tri en haut (récent ↔ ancien)."
+      }
     }
   }
 }

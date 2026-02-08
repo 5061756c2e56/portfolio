@@ -753,7 +753,7 @@ export default function TypingSpeed() {
                             <div className="text-2xl font-bold">{bestWpm ?? netWpm}</div>
                             <div className="text-sm text-muted-foreground">
                                 {isNewBest ? (
-                                    locale === 'fr' ? 'Nouveau record !' : 'New best!'
+                                    t('results.newBest')
                                 ) : t('results.best')}
                             </div>
                         </div>
@@ -822,10 +822,10 @@ export default function TypingSpeed() {
                             onClick={cancelGame}
                             className="gap-2"
                             disabled={!canCancel}
-                            title={locale === 'fr' ? 'Annule la partie en cours' : 'Cancel current run'}
+                            title={t('cancel.tooltip')}
                         >
                             <X className="w-4 h-4"/>
-                            <span className="hidden sm:inline">{locale === 'fr' ? 'Annuler' : 'Cancel'}</span>
+                            <span className="hidden sm:inline">{t('cancel.label')}</span>
                         </Button>
                     </div>
                 </div>
@@ -841,7 +841,7 @@ export default function TypingSpeed() {
                             value={difficulty}
                             onChange={setDifficulty}
                             options={difficultyOptions}
-                            label="Difficulty"
+                            label={t('labels.difficulty')}
                             disabled={controlsDisabled}
                         />
                         <CustomSelect
@@ -849,7 +849,7 @@ export default function TypingSpeed() {
                             value={mode}
                             onChange={setMode}
                             options={modeOptions}
-                            label="Mode"
+                            label={t('labels.mode')}
                             disabled={controlsDisabled}
                         />
                         <CustomSelect<DurationString>
@@ -857,7 +857,7 @@ export default function TypingSpeed() {
                             value={String(duration) as DurationString}
                             onChange={(v) => setDuration(Number(v) as DurationValue)}
                             options={durationOptions}
-                            label="Duration"
+                            label={t('labels.duration')}
                             disabled={controlsDisabled}
                             dropdownAlign="right"
                         />

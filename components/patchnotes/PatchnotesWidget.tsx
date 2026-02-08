@@ -20,6 +20,7 @@ import Image, { type ImageLoaderProps } from 'next/image';
 import { Bell, CalendarDays, ChevronDown, Home, Menu, Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Spinner } from '@/components/ui/spinner';
+import { useTranslations } from 'next-intl';
 
 import type { Patchnote, PatchnoteMeta, SortOrder } from './types';
 import { HOME_ID } from './constants';
@@ -28,7 +29,6 @@ import { useLockBodyScroll } from './hooks/useLockBodyScroll';
 import { useClickOutside } from './hooks/useClickOutside';
 import { splitPatchnote } from './markdown/splitPatchnote';
 import { sanitizeSchema } from './markdown/sanitizeSchema';
-import { getHomeGuide, getHomeMeta } from './home';
 
 function FloatingButton({ onClick, unreadCount }: { onClick: () => void; unreadCount: number }) {
     return (
@@ -72,22 +72,16 @@ function SortDropdown({
     sortOpen,
     setSortOpen,
     setSort,
-    locale,
     sortRef
 }: {
     sort: SortOrder;
     sortOpen: boolean;
     setSortOpen: (v: boolean | ( (prev: boolean) => boolean )) => void;
     setSort: (v: SortOrder) => void;
-    locale: string;
     sortRef: RefObject<HTMLDivElement | null>;
 }) {
-    const sortLabels: Record<string, [string, string]> = {
-        fr: ['Plus récent', 'Plus ancien'],
-        es: ['Más reciente', 'Más antiguo']
-    };
-    const [newestLabel, oldestLabel] = sortLabels[locale] ?? ['Newest first', 'Oldest first'];
-    const sortLabel = sort === 'newest' ? newestLabel : oldestLabel;
+    const t = useTranslations('patchnotes');
+    const sortLabel = sort === 'newest' ? t('sort.newestFirst') : t('sort.oldestFirst');
 
     return (
         <div className="relative" ref={sortRef}>
@@ -152,16 +146,7 @@ function SortDropdown({
                                 {sort === value && <span className="h-2 w-2 rounded-full bg-primary"/>}
                             </span>
                             <span>
-                                {(
-                                    () => {
-                                        const labels: Record<string, [string, string]> = {
-                                            fr: ['Plus récent au plus ancien', 'Plus ancien au plus récent'],
-                                            es: ['Más reciente al más antiguo', 'Más antiguo al más reciente']
-                                        };
-                                        const [n, o] = labels[locale] ?? ['Newest to oldest', 'Oldest to newest'];
-                                        return value === 'newest' ? n : o;
-                                    }
-                                )()}
+                                {value === 'newest' ? t('sort.newestToOldest') : t('sort.oldestToNewest')}
                             </span>
                         </button>
                     ))}
@@ -433,6 +418,7 @@ function PatchnoteContent({
 type ParsedPatchnote = { title: string; description: string; displayDate: string; body: string };
 
 export default function PatchnotesWidget({ locale }: { locale: string }) {
+    const t = useTranslations('patchnotes');
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -483,8 +469,23 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
         }
     });
 
-    const homeMeta = getHomeMeta(locale);
-    const homeGuide = getHomeGuide(locale);
+    const homeMeta: PatchnoteMeta = {
+        id: HOME_ID,
+        title: t('home.title'),
+        displayDate: t('home.displayDate'),
+        fileDate: '',
+        description: ''
+    };
+    const homeGuide = {
+        badge: t('home.badge'),
+        subtitle: t('home.subtitle'),
+        items: [
+            t('home.items.0'),
+            t('home.items.1'),
+            t('home.items.2'),
+            t('home.items.3')
+        ]
+    };
 
     const lang = locale.toUpperCase();
 
@@ -679,15 +680,10 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
         });
     };
 
-    const uiStrings: Record<string, { search: string; noResults: string; close: string; menu: string }> = {
-        fr: { search: 'Rechercher...', noResults: 'Aucun résultat', close: 'Fermer', menu: 'Menu' },
-        es: { search: 'Buscar...', noResults: 'Sin resultados', close: 'Cerrar', menu: 'Menú' }
-    };
-    const ui = uiStrings[locale] ?? { search: 'Search...', noResults: 'No results', close: 'Close', menu: 'Menu' };
-    const searchPlaceholder = ui.search;
-    const noResultsText = ui.noResults;
-    const closeLabel = ui.close;
-    const menuLabel = ui.menu;
+    const searchPlaceholder = t('ui.search');
+    const noResultsText = t('ui.noResults');
+    const closeLabel = t('ui.close');
+    const menuLabel = t('ui.menu');
 
     const isHomeActive = effectiveActiveId === HOME_ID;
 
@@ -840,7 +836,6 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                                     sortOpen={visibleSortOpen}
                                                     setSortOpen={setSortOpen}
                                                     setSort={setSort}
-                                                    locale={locale}
                                                     sortRef={sortRef}
                                                 />
                                                 <SearchInput value={query} onChange={setQuery}
@@ -881,7 +876,6 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                             sortOpen={visibleSortOpen}
                                             setSortOpen={setSortOpen}
                                             setSort={setSort}
-                                            locale={locale}
                                             sortRef={sortRef}
                                         />
                                         <SearchInput value={query} onChange={setQuery} placeholder={searchPlaceholder}/>

@@ -31,7 +31,7 @@
     },
     "legalNotice": {
       "title": "Aviso legal",
-      "descritpion": "Este aviso legal identifica al editor del sitio web, su proveedor de alojamiento y la información principal relacionada con el uso del sitio web."
+      "description": "Este aviso legal identifica al editor del sitio web, su proveedor de alojamiento y la información principal relacionada con el uso del sitio web."
     },
     "privacyPolicy": {
       "title": "Política de privacidad",
@@ -109,7 +109,10 @@
   },
   "pagination": {
     "next": "Siguiente",
-    "previous": "Anterior"
+    "previous": "Anterior",
+    "previousLabel": "Ir a la página anterior",
+    "nextLabel": "Ir a la página siguiente",
+    "morePages": "Más páginas"
   },
   "projects": {
     "title": "Proyectos",
@@ -182,7 +185,7 @@
   },
   "finalCTA": {
     "title": "¿Una pregunta o ganas de probar lo interactivo en directo?",
-    "description": "La FAQ reúne lo esencial: funcionamiento, contenido y respuestas rápidas. El espacio de juegos ofrece mini desafíos como Memory Match o Typing Speed para ver la reactividad, la UX y la interactividad en acción.",
+    "description": "La FAQ reúne lo esencial: funcionamiento, contenido y respuestas rápidas. El espacio de juegos ofrece mini desafíos como Juego de memoria o Velocidad de escritura para ver la reactividad, la UX y la interactividad en acción.",
     "faqButton": "Acceder a la FAQ",
     "gamesButton": "Descubrir los juegos"
   },
@@ -225,7 +228,8 @@
     "system": "Sistema",
     "themeChanging": "Cambiando el tema...",
     "languageChanging": "Cambiando el idioma...",
-    "faq": "Preguntas frecuentes"
+    "faq": "Preguntas frecuentes",
+    "extras": "Extras"
   },
   "games": {
     "meta": {
@@ -239,23 +243,23 @@
     },
     "gameTypes": {
       "quiz": {
-        "title": "Quiz Tech",
+        "title": "Técnica de cuestionarios",
         "description": "Pon a prueba tus conocimientos de desarrollo web y ciberseguridad"
       },
       "memory": {
-        "title": "Memory Match",
+        "title": "Juego de memoria",
         "description": "Encuentra las parejas de iconos tech ocultas"
       },
       "typing": {
-        "title": "Typing Speed",
+        "title": "Velocidad de escritura",
         "description": "Pon a prueba tu velocidad de escritura"
       },
       "bughunt": {
-        "title": "Bug Hunt",
+        "title": "Caza de errores",
         "subtitle": "Encuentra el error en el código"
       },
       "wordle": {
-        "title": "Tech Wordle",
+        "title": "Palabra técnica",
         "subtitle": "Adivina la palabra tech en 6 intentos"
       },
       "mentalcpu": {
@@ -276,7 +280,7 @@
       }
     },
     "memory": {
-      "title": "Memory Match",
+      "title": "Juego de memoria",
       "subtitle": "Encuentra todas las parejas",
       "levels": {
         "easy": "Fácil",
@@ -288,10 +292,13 @@
       "complete": {
         "title": "¡Felicidades!",
         "stats": "Terminado en {moves} movimientos y {time}"
+      },
+      "labels": {
+        "difficulty": "Dificultad"
       }
     },
     "typing": {
-      "title": "Typing Speed",
+      "title": "Velocidad de escritura",
       "subtitle": "Escribe el código lo más rápido posible",
       "start": "Empezar",
       "restart": "Reiniciar",
@@ -304,7 +311,8 @@
         "snippets": "Fragmentos",
         "errors": "Errores",
         "time": "Tiempo",
-        "best": "Mejor puntuación"
+        "best": "Mejor puntuación",
+        "newBest": "¡Nuevo récord!"
       },
       "levels": {
         "easy": "Fácil",
@@ -440,10 +448,19 @@
             "Lo importante es seguir, aunque sea lento."
           ]
         }
+      },
+      "cancel": {
+        "tooltip": "Cancela la partida en curso",
+        "label": "Cancelar"
+      },
+      "labels": {
+        "difficulty": "Dificultad",
+        "mode": "Modo",
+        "duration": "Duración"
       }
     },
     "bughunt": {
-      "title": "Bug Hunt",
+      "title": "Caza de errores",
       "subtitle": "Encuentra el error en el código",
       "restart": "Reiniciar",
       "next": "Siguiente pregunta",
@@ -907,7 +924,7 @@
       }
     },
     "wordle": {
-      "title": "Tech Wordle",
+      "title": "Palabra técnica",
       "subtitle": "Adivina la palabra tech en 6 intentos",
       "newWord": "Nueva palabra",
       "stats": {
@@ -2154,7 +2171,7 @@
     }
   },
   "quiz": {
-    "title": "Quiz de Tecnología",
+    "title": "Cuestionario sobre tecnología",
     "subtitle": "Pon a prueba tus conocimientos",
     "levels": {
       "easy": "Nivel fácil",
@@ -2162,7 +2179,7 @@
       "hard": "Nivel difícil"
     },
     "descriptions": {
-      "easy": "Pon a prueba tus conocimientos básicos en desarrollo web, tecnologías frontend y backend, y ciberseguridad. Este quiz es perfecto para empezar o repasar los fundamentos.",
+      "easy": "Pon a prueba tus conocimientos básicos sobre desarrollo web, tecnologías frontend y backend, y ciberseguridad. Este cuestionario es perfecto para iniciarse o repasar los fundamentos.",
       "medium": "Desafíate con preguntas más profundas sobre conceptos avanzados, buenas prácticas de desarrollo y aspectos de seguridad. Ideal para desarrolladores con experiencia.",
       "hard": "Pon tus habilidades a prueba con preguntas expertas sobre arquitectura, algoritmos complejos, ciberseguridad avanzada y optimizaciones. ¡Para verdaderos expertos!"
     },
@@ -2170,9 +2187,9 @@
       "questions": "{count} preguntas",
       "timePerQuestion": "{seconds} segundos por pregunta"
     },
-    "startQuiz": "Empezar el quiz",
+    "startQuiz": "Comienza el cuestionario",
     "modal": {
-      "title": "Quiz",
+      "title": "Cuestionario",
       "question": "Pregunta",
       "progress": "Progreso",
       "timeLeft": "Tiempo restante",
@@ -2182,7 +2199,7 @@
       "finish": "Terminar",
       "cancel": "Cancelar",
       "results": {
-        "title": "Resultados del quiz",
+        "title": "Resultados del cuestionario",
         "description": "Aquí tienes tus resultados detallados",
         "correct": "respuestas correctas",
         "excellent": "¡Excelente trabajo! 🎉",
@@ -2209,11 +2226,13 @@
           "<header>",
           "<head>"
         ],
-        "explanation": "<h1> es la etiqueta HTML utilizada para crear un título principal (encabezado de nivel 1)."
+        "explanation": "<h1> es la etiqueta HTML utilizada para crear un título principal (encabezado de nivel 1).",
+        "correctAnswer": 0
       },
       "easy-2": {
         "question": "CSS significa \"Cascading Style Sheets\".",
-        "explanation": "Sí, CSS significa \"Cascading Style Sheets\" (Hojas de estilo en cascada)."
+        "explanation": "Sí, CSS significa \"Cascading Style Sheets\" (Hojas de estilo en cascada).",
+        "correctAnswer": 0
       },
       "easy-3": {
         "question": "¿Qué método de JavaScript permite añadir un elemento al final de un array?",
@@ -2223,11 +2242,13 @@
           "shift()",
           "unshift()"
         ],
-        "explanation": "El método push() añade uno o varios elementos al final de un array."
+        "explanation": "El método push() añade uno o varios elementos al final de un array.",
+        "correctAnswer": 0
       },
       "easy-4": {
         "question": "React es una biblioteca de JavaScript desarrollada por Facebook.",
-        "explanation": "Sí, React fue creado por Facebook (ahora Meta) en 2013."
+        "explanation": "Sí, React fue creado por Facebook (ahora Meta) en 2013.",
+        "correctAnswer": 0
       },
       "easy-5": {
         "question": "¿Qué propiedad CSS se utiliza para cambiar el color del texto?",
@@ -2237,11 +2258,13 @@
           "font-color",
           "text-style"
         ],
-        "explanation": "La propiedad CSS \"color\" se utiliza para definir el color del texto."
+        "explanation": "La propiedad CSS \"color\" se utiliza para definir el color del texto.",
+        "correctAnswer": 0
       },
       "easy-6": {
         "question": "TypeScript es un superconjunto de JavaScript que añade tipado estático.",
-        "explanation": "Sí, TypeScript amplía JavaScript añadiendo tipos estáticos opcionales."
+        "explanation": "Sí, TypeScript amplía JavaScript añadiendo tipos estáticos opcionales.",
+        "correctAnswer": 0
       },
       "easy-7": {
         "question": "¿Qué protocolo se utiliza para asegurar las conexiones web (HTTPS)?",
@@ -2251,11 +2274,13 @@
           "HTTP",
           "SMTP"
         ],
-        "explanation": "TLS (Transport Layer Security) o SSL (Secure Sockets Layer) aseguran las conexiones HTTPS."
+        "explanation": "TLS (Transport Layer Security) o SSL (Secure Sockets Layer) aseguran las conexiones HTTPS.",
+        "correctAnswer": 0
       },
       "easy-8": {
         "question": "Git es un sistema de control de versiones distribuido.",
-        "explanation": "Sí, Git es un sistema de control de versiones distribuido creado por Linus Torvalds."
+        "explanation": "Sí, Git es un sistema de control de versiones distribuido creado por Linus Torvalds.",
+        "correctAnswer": 0
       },
       "easy-9": {
         "question": "¿Qué método HTTP se utiliza para recuperar datos desde un servidor?",
@@ -2265,11 +2290,13 @@
           "PUT",
           "DELETE"
         ],
-        "explanation": "El método GET se utiliza para recuperar datos desde un servidor."
+        "explanation": "El método GET se utiliza para recuperar datos desde un servidor.",
+        "correctAnswer": 0
       },
       "easy-10": {
         "question": "Next.js es un framework de React para producción.",
-        "explanation": "Sí, Next.js es un framework de React que ofrece renderizado del lado del servidor y muchas optimizaciones."
+        "explanation": "Sí, Next.js es un framework de React que ofrece renderizado del lado del servidor y muchas optimizaciones.",
+        "correctAnswer": 0
       },
       "easy-11": {
         "question": "¿Qué etiqueta HTML se utiliza para crear un enlace?",
@@ -2279,11 +2306,13 @@
           "<url>",
           "<href>"
         ],
-        "explanation": "La etiqueta <a> (anchor) se utiliza para crear enlaces hipertexto en HTML."
+        "explanation": "La etiqueta <a> (anchor) se utiliza para crear enlaces hipertexto en HTML.",
+        "correctAnswer": 0
       },
       "easy-12": {
         "question": "JavaScript es un lenguaje de programación solo del lado del cliente.",
-        "explanation": "No, JavaScript también puede ejecutarse del lado del servidor con Node.js."
+        "explanation": "No, JavaScript también puede ejecutarse del lado del servidor con Node.js.",
+        "correctAnswer": 1
       },
       "easy-13": {
         "question": "¿Qué propiedad CSS se utiliza para centrar un elemento horizontalmente?",
@@ -2293,7 +2322,8 @@
           "align: center",
           "position: center"
         ],
-        "explanation": "margin: auto centra un elemento horizontalmente cuando tiene un ancho definido."
+        "explanation": "margin: auto centra un elemento horizontalmente cuando tiene un ancho definido.",
+        "correctAnswer": 0
       },
       "easy-14": {
         "question": "¿Qué método de JavaScript permite quitar el último elemento de un array?",
@@ -2303,11 +2333,13 @@
           "shift()",
           "unshift()"
         ],
-        "explanation": "El método pop() elimina y devuelve el último elemento de un array."
+        "explanation": "El método pop() elimina y devuelve el último elemento de un array.",
+        "correctAnswer": 0
       },
       "easy-15": {
         "question": "HTML significa \"HyperText Markup Language\".",
-        "explanation": "Sí, HTML significa \"HyperText Markup Language\" (lenguaje de marcado de hipertexto)."
+        "explanation": "Sí, HTML significa \"HyperText Markup Language\" (lenguaje de marcado de hipertexto).",
+        "correctAnswer": 0
       },
       "easy-16": {
         "question": "¿Qué etiqueta HTML se utiliza para crear una lista no ordenada?",
@@ -2317,7 +2349,8 @@
           "<li>",
           "<list>"
         ],
-        "explanation": "<ul> (unordered list) crea una lista con viñetas no ordenada."
+        "explanation": "<ul> (unordered list) crea una lista con viñetas no ordenada.",
+        "correctAnswer": 0
       },
       "easy-17": {
         "question": "¿Qué propiedad CSS se utiliza para definir el tamaño de la fuente?",
@@ -2327,11 +2360,13 @@
           "size",
           "font"
         ],
-        "explanation": "La propiedad font-size define el tamaño de la fuente."
+        "explanation": "La propiedad font-size define el tamaño de la fuente.",
+        "correctAnswer": 0
       },
       "easy-18": {
         "question": "Las variables en JavaScript distinguen entre mayúsculas y minúsculas.",
-        "explanation": "Sí, JavaScript es sensible a mayúsculas y minúsculas, por lo que \"myVar\" y \"myvar\" son dos variables diferentes."
+        "explanation": "Sí, JavaScript es sensible a mayúsculas y minúsculas, por lo que \"myVar\" y \"myvar\" son dos variables diferentes.",
+        "correctAnswer": 0
       },
       "easy-19": {
         "question": "¿Qué etiqueta HTML se utiliza para insertar una imagen?",
@@ -2341,7 +2376,8 @@
           "<picture>",
           "<photo>"
         ],
-        "explanation": "La etiqueta <img> se utiliza para insertar una imagen en una página HTML."
+        "explanation": "La etiqueta <img> se utiliza para insertar una imagen en una página HTML.",
+        "correctAnswer": 0
       },
       "easy-20": {
         "question": "¿Qué método de JavaScript permite convertir una cadena en número?",
@@ -2351,1676 +2387,1887 @@
           "toString()",
           "convert()"
         ],
-        "explanation": "Number() y parseInt() permiten convertir una cadena en número."
+        "explanation": "Number() y parseInt() permiten convertir una cadena en número.",
+        "correctAnswer": 0
+      },
+      "easy-21": {
+        "question": "HTML significa \"HyperText Markup Language\".",
+        "explanation": "Sí, HTML significa \"HyperText Markup Language\" (Lenguaje de marcado de hipertexto).",
+        "correctAnswer": 0
+      },
+      "easy-22": {
+        "question": "¿Qué propiedad CSS se utiliza para añadir espacio entre los bordes de un elemento?",
+        "options": [
+          "padding",
+          "margin",
+          "spacing",
+          "gap"
+        ],
+        "explanation": "padding añade espacio dentro del elemento, entre el contenido y el borde.",
+        "correctAnswer": 0
+      },
+      "easy-23": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un párrafo?",
+        "options": [
+          "<p>",
+          "<para>",
+          "<text>",
+          "<paragraph>"
+        ],
+        "explanation": "La etiqueta <p> se utiliza para crear un párrafo en HTML.",
+        "correctAnswer": 0
+      },
+      "easy-24": {
+        "question": "Las funciones flecha (arrow functions) en JavaScript tienen su propio contexto \"this\".",
+        "explanation": "No, las funciones flecha heredan el contexto \"this\" de su ámbito padre.",
+        "correctAnswer": 1
+      },
+      "easy-25": {
+        "question": "¿Qué método de JavaScript permite encontrar un elemento en un array?",
+        "options": [
+          "find()",
+          "search()",
+          "locate()",
+          "get()"
+        ],
+        "explanation": "El método find() devuelve el primer elemento de un array que cumple una condición.",
+        "correctAnswer": 0
+      },
+      "easy-26": {
+        "question": "¿Qué propiedad CSS se utiliza para cambiar el color de fondo?",
+        "options": [
+          "background-color",
+          "bg-color",
+          "background",
+          "color-background"
+        ],
+        "explanation": "La propiedad background-color define el color de fondo de un elemento.",
+        "correctAnswer": 0
+      },
+      "easy-27": {
+        "question": "JSON significa \"JavaScript Object Notation\".",
+        "explanation": "Sí, JSON es un formato de datos basado en la notación de objetos de JavaScript.",
+        "correctAnswer": 0
+      },
+      "easy-28": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un formulario?",
+        "options": [
+          "<form>",
+          "<input>",
+          "<fieldset>",
+          "<formset>"
+        ],
+        "explanation": "La etiqueta <form> se utiliza para crear un formulario HTML.",
+        "correctAnswer": 0
+      },
+      "easy-29": {
+        "question": "¿Qué método de JavaScript permite crear un nuevo array a partir de otro?",
+        "options": [
+          "map()",
+          "copy()",
+          "duplicate()",
+          "clone()"
+        ],
+        "explanation": "El método map() crea un nuevo array aplicando una función a cada elemento.",
+        "correctAnswer": 0
+      },
+      "easy-30": {
+        "question": "Los comentarios en JavaScript comienzan con // para una línea o /* */ para varias líneas.",
+        "explanation": "Sí, // para comentarios de una línea y /* */ para comentarios multilínea.",
+        "correctAnswer": 0
+      },
+      "easy-31": {
+        "question": "¿Qué propiedad CSS se utiliza para hacer un elemento invisible?",
+        "options": [
+          "display: none o visibility: hidden",
+          "hide: true",
+          "visible: false",
+          "opacity: 0"
+        ],
+        "explanation": "display: none elimina el elemento del flujo, visibility: hidden lo oculta pero mantiene el espacio.",
+        "correctAnswer": 0
+      },
+      "easy-32": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un botón?",
+        "options": [
+          "<button>",
+          "<btn>",
+          "<click>",
+          "<input type=\"button\">"
+        ],
+        "explanation": "La etiqueta <button> se utiliza para crear un botón clicable en HTML.",
+        "correctAnswer": 0
+      },
+      "easy-33": {
+        "question": "Los arrays en JavaScript comienzan en el índice 0.",
+        "explanation": "Sí, los arrays en JavaScript están indexados a partir de 0, no de 1.",
+        "correctAnswer": 0
+      },
+      "easy-34": {
+        "question": "¿Qué propiedad CSS se utiliza para definir el ancho de un elemento?",
+        "options": [
+          "width",
+          "w",
+          "size",
+          "dimension"
+        ],
+        "explanation": "La propiedad width define el ancho de un elemento.",
+        "correctAnswer": 0
+      },
+      "easy-35": {
+        "question": "¿Qué método de JavaScript permite verificar si un elemento existe en un array?",
+        "options": [
+          "includes()",
+          "contains()",
+          "has()",
+          "exists()"
+        ],
+        "explanation": "El método includes() verifica si un array contiene un elemento específico.",
+        "correctAnswer": 0
+      },
+      "easy-36": {
+        "question": "El localStorage permite almacenar datos en el navegador de forma persistente.",
+        "explanation": "Sí, localStorage almacena datos de forma persistente incluso después de cerrar el navegador.",
+        "correctAnswer": 0
+      },
+      "easy-37": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear una tabla?",
+        "options": [
+          "<table>",
+          "<tab>",
+          "<grid>",
+          "<data>"
+        ],
+        "explanation": "La etiqueta <table> se utiliza para crear una tabla en HTML.",
+        "correctAnswer": 0
+      },
+      "easy-38": {
+        "question": "¿Qué método de JavaScript permite unir los elementos de un array en una cadena?",
+        "options": [
+          "join()",
+          "concat()",
+          "merge()",
+          "combine()"
+        ],
+        "explanation": "El método join() une todos los elementos de un array en una cadena de caracteres.",
+        "correctAnswer": 0
+      },
+      "easy-39": {
+        "question": "Las funciones en JavaScript son objetos de primera clase.",
+        "explanation": "Sí, las funciones en JavaScript pueden ser asignadas a variables, pasadas como parámetros, etc.",
+        "correctAnswer": 0
+      },
+      "easy-40": {
+        "question": "¿Qué propiedad CSS se utiliza para añadir espacio alrededor de un elemento?",
+        "options": [
+          "margin",
+          "padding",
+          "spacing",
+          "gap"
+        ],
+        "explanation": "margin añade espacio fuera del elemento, entre el elemento y los demás elementos.",
+        "correctAnswer": 0
+      },
+      "easy-41": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear una lista ordenada?",
+        "options": [
+          "<ol>",
+          "<ul>",
+          "<li>",
+          "<list>"
+        ],
+        "explanation": "<ol> (ordered list) crea una lista numerada.",
+        "correctAnswer": 0
+      },
+      "easy-42": {
+        "question": "La palabra clave \"const\" en JavaScript permite declarar una constante que no puede ser reasignada.",
+        "explanation": "Sí, const declara una constante que no puede ser reasignada después de su declaración inicial.",
+        "correctAnswer": 0
+      },
+      "easy-43": {
+        "question": "¿Qué método de JavaScript permite filtrar los elementos de un array?",
+        "options": [
+          "filter()",
+          "select()",
+          "find()",
+          "search()"
+        ],
+        "explanation": "El método filter() crea un nuevo array con los elementos que pasan una prueba.",
+        "correctAnswer": 0
+      },
+      "easy-44": {
+        "question": "¿Qué propiedad CSS se utiliza para alinear el texto?",
+        "options": [
+          "text-align",
+          "align",
+          "text-position",
+          "alignment"
+        ],
+        "explanation": "La propiedad text-align define la alineación horizontal del texto.",
+        "correctAnswer": 0
+      },
+      "easy-45": {
+        "question": "Las promesas (Promises) en JavaScript permiten gestionar el código asíncrono.",
+        "explanation": "Sí, las Promises permiten gestionar operaciones asíncronas de forma más legible que los callbacks.",
+        "correctAnswer": 0
+      },
+      "easy-46": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un campo de entrada de texto?",
+        "options": [
+          "<input type=\"text\">",
+          "<text>",
+          "<input>",
+          "<field>"
+        ],
+        "explanation": "<input type=\"text\"> crea un campo de entrada de texto en un formulario.",
+        "correctAnswer": 0
+      },
+      "easy-47": {
+        "question": "¿Qué método de JavaScript permite eliminar el primer elemento de un array?",
+        "options": [
+          "shift()",
+          "pop()",
+          "unshift()",
+          "remove()"
+        ],
+        "explanation": "El método shift() elimina y devuelve el primer elemento de un array.",
+        "correctAnswer": 0
+      },
+      "easy-48": {
+        "question": "La palabra clave \"let\" en JavaScript permite declarar una variable con ámbito de bloque.",
+        "explanation": "Sí, let declara una variable con ámbito de bloque, a diferencia de var que tiene ámbito de función.",
+        "correctAnswer": 0
+      },
+      "easy-49": {
+        "question": "¿Qué propiedad CSS se utiliza para definir la altura de un elemento?",
+        "options": [
+          "height",
+          "h",
+          "size",
+          "dimension"
+        ],
+        "explanation": "La propiedad height define la altura de un elemento.",
+        "correctAnswer": 0
+      },
+      "easy-50": {
+        "question": "¿Qué método de JavaScript permite convertir un array en una cadena de caracteres?",
+        "options": [
+          "toString()",
+          "toText()",
+          "stringify()",
+          "convert()"
+        ],
+        "explanation": "El método toString() convierte un array en una cadena de caracteres.",
+        "correctAnswer": 0
+      },
+      "easy-51": {
+        "question": "Las clases CSS pueden aplicarse a varios elementos HTML.",
+        "explanation": "Sí, una clase CSS puede usarse en varios elementos para aplicar el mismo estilo.",
+        "correctAnswer": 0
+      },
+      "easy-52": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear una división o sección?",
+        "options": [
+          "<div>",
+          "<section>",
+          "<container>",
+          "<box>"
+        ],
+        "explanation": "La etiqueta <div> se utiliza para crear un contenedor genérico o una sección.",
+        "correctAnswer": 0
+      },
+      "easy-53": {
+        "question": "¿Qué método de JavaScript permite añadir un elemento al inicio de un array?",
+        "options": [
+          "unshift()",
+          "push()",
+          "shift()",
+          "prepend()"
+        ],
+        "explanation": "El método unshift() añade uno o varios elementos al inicio de un array.",
+        "correctAnswer": 0
+      },
+      "easy-54": {
+        "question": "Los IDs en HTML deben ser únicos en una página.",
+        "explanation": "Sí, cada ID debe ser único en una página HTML para un funcionamiento correcto.",
+        "correctAnswer": 0
+      },
+      "easy-55": {
+        "question": "¿Qué propiedad CSS se utiliza para definir el estilo del borde?",
+        "options": [
+          "border-style",
+          "border",
+          "border-type",
+          "border-design"
+        ],
+        "explanation": "La propiedad border-style define el estilo del borde (solid, dashed, etc.).",
+        "correctAnswer": 0
+      },
+      "easy-56": {
+        "question": "¿Qué método de JavaScript permite verificar el tipo de una variable?",
+        "options": [
+          "typeof",
+          "type()",
+          "getType()",
+          "checkType()"
+        ],
+        "explanation": "El operador typeof devuelve una cadena indicando el tipo de una variable.",
+        "correctAnswer": 0
+      },
+      "easy-57": {
+        "question": "El selector CSS \"#id\" apunta a un elemento por su ID.",
+        "explanation": "Sí, el selector # apunta a un elemento por su ID en CSS.",
+        "correctAnswer": 0
+      },
+      "easy-58": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un salto de línea?",
+        "options": [
+          "<br>",
+          "<break>",
+          "<lb>",
+          "<newline>"
+        ],
+        "explanation": "La etiqueta <br> crea un salto de línea en el texto.",
+        "correctAnswer": 0
+      },
+      "easy-59": {
+        "question": "¿Qué método de JavaScript permite ordenar los elementos de un array?",
+        "options": [
+          "sort()",
+          "order()",
+          "arrange()",
+          "organize()"
+        ],
+        "explanation": "El método sort() ordena los elementos de un array en su lugar.",
+        "correctAnswer": 0
+      },
+      "easy-60": {
+        "question": "El selector CSS \".class\" apunta a los elementos por su clase.",
+        "explanation": "Sí, el selector . apunta a los elementos por su clase en CSS.",
+        "correctAnswer": 0
+      },
+      "easy-61": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un encabezado de sección?",
+        "options": [
+          "<header>",
+          "<head>",
+          "<title>",
+          "<h1>"
+        ],
+        "explanation": "La etiqueta <header> representa el encabezado de una sección o de una página.",
+        "correctAnswer": 0
+      },
+      "easy-62": {
+        "question": "¿Qué método de JavaScript permite reducir un array a un solo valor?",
+        "options": [
+          "reduce()",
+          "sum()",
+          "total()",
+          "aggregate()"
+        ],
+        "explanation": "El método reduce() reduce un array a un solo valor aplicando una función.",
+        "correctAnswer": 0
+      },
+      "easy-63": {
+        "question": "Las media queries en CSS permiten aplicar estilos según el tamaño de la pantalla.",
+        "explanation": "Sí, las media queries permiten crear diseños responsivos adaptados a diferentes tamaños de pantalla.",
+        "correctAnswer": 0
+      },
+      "easy-64": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un pie de página?",
+        "options": [
+          "<footer>",
+          "<foot>",
+          "<bottom>",
+          "<end>"
+        ],
+        "explanation": "La etiqueta <footer> representa el pie de página de una sección o de una página.",
+        "correctAnswer": 0
+      },
+      "easy-65": {
+        "question": "¿Qué método de JavaScript permite verificar si todos los elementos de un array pasan una prueba?",
+        "options": [
+          "every()",
+          "all()",
+          "checkAll()",
+          "verifyAll()"
+        ],
+        "explanation": "El método every() prueba si todos los elementos de un array pasan una prueba.",
+        "correctAnswer": 0
+      },
+      "easy-66": {
+        "question": "Flexbox en CSS permite crear layouts flexibles y responsivos.",
+        "explanation": "Sí, Flexbox es un modelo de layout CSS que facilita la creación de diseños flexibles.",
+        "correctAnswer": 0
+      },
+      "easy-67": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear una sección de navegación?",
+        "options": [
+          "<nav>",
+          "<navigation>",
+          "<menu>",
+          "<navbar>"
+        ],
+        "explanation": "La etiqueta <nav> representa una sección de navegación con enlaces.",
+        "correctAnswer": 0
+      },
+      "easy-68": {
+        "question": "¿Qué método de JavaScript permite verificar si al menos un elemento de un array pasa una prueba?",
+        "options": [
+          "some()",
+          "any()",
+          "one()",
+          "checkOne()"
+        ],
+        "explanation": "El método some() prueba si al menos un elemento de un array pasa una prueba.",
+        "correctAnswer": 0
+      },
+      "easy-69": {
+        "question": "Las variables declaradas con \"var\" en JavaScript son elevadas (hoisted) al inicio de su ámbito.",
+        "explanation": "Sí, las declaraciones var son elevadas, lo que significa que se mueven al inicio de su ámbito.",
+        "correctAnswer": 0
+      },
+      "easy-70": {
+        "question": "¿Qué propiedad CSS se utiliza para definir la familia de fuentes?",
+        "options": [
+          "font-family",
+          "font",
+          "font-type",
+          "font-style"
+        ],
+        "explanation": "La propiedad font-family define la familia de fuentes a utilizar.",
+        "correctAnswer": 0
+      },
+      "easy-71": {
+        "question": "¿Qué método de JavaScript permite crear una copia superficial de un array?",
+        "options": [
+          "slice()",
+          "copy()",
+          "clone()",
+          "duplicate()"
+        ],
+        "explanation": "El método slice() crea una copia superficial de un array sin modificar el original.",
+        "correctAnswer": 0
+      },
+      "easy-72": {
+        "question": "El selector CSS \"element\" apunta a todos los elementos de un tipo específico.",
+        "explanation": "Sí, el selector de elemento apunta a todos los elementos de ese tipo en la página.",
+        "correctAnswer": 0
+      },
+      "easy-73": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un campo de texto multilínea?",
+        "options": [
+          "<textarea>",
+          "<text>",
+          "<input type=\"textarea\">",
+          "<multiline>"
+        ],
+        "explanation": "La etiqueta <textarea> crea un campo de texto multilínea en un formulario.",
+        "correctAnswer": 0
+      },
+      "easy-74": {
+        "question": "¿Qué método de JavaScript permite concatenar dos arrays?",
+        "options": [
+          "concat()",
+          "merge()",
+          "join()",
+          "combine()"
+        ],
+        "explanation": "El método concat() combina dos o más arrays en un nuevo array.",
+        "correctAnswer": 0
+      },
+      "easy-75": {
+        "question": "Los atributos HTML \"class\" e \"id\" sirven para identificar y estilizar elementos.",
+        "explanation": "Sí, class e id permiten identificar elementos para CSS y JavaScript.",
+        "correctAnswer": 0
+      },
+      "easy-76": {
+        "question": "¿Qué propiedad CSS se utiliza para definir el espaciado entre letras?",
+        "options": [
+          "letter-spacing",
+          "text-spacing",
+          "char-spacing",
+          "spacing"
+        ],
+        "explanation": "La propiedad letter-spacing define el espaciado entre los caracteres.",
+        "correctAnswer": 0
+      },
+      "easy-77": {
+        "question": "¿Qué método de JavaScript permite dividir una cadena en un array?",
+        "options": [
+          "split()",
+          "divide()",
+          "separate()",
+          "break()"
+        ],
+        "explanation": "El método split() divide una cadena en un array de subcadenas.",
+        "correctAnswer": 0
+      },
+      "easy-78": {
+        "question": "Los eventos en JavaScript permiten interactuar con las acciones del usuario.",
+        "explanation": "Sí, los eventos como click, mouseover, etc. permiten reaccionar a las acciones del usuario.",
+        "correctAnswer": 0
+      },
+      "easy-79": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de lista?",
+        "options": [
+          "<li>",
+          "<item>",
+          "<list-item>",
+          "<element>"
+        ],
+        "explanation": "La etiqueta <li> representa un elemento de lista en <ul> o <ol>.",
+        "correctAnswer": 0
+      },
+      "easy-80": {
+        "question": "¿Qué método de JavaScript permite buscar un elemento en un array y devolver su índice?",
+        "options": [
+          "indexOf()",
+          "findIndex()",
+          "search()",
+          "locate()"
+        ],
+        "explanation": "El método indexOf() devuelve el primer índice en el que un elemento puede encontrarse en un array.",
+        "correctAnswer": 0
+      },
+      "easy-81": {
+        "question": "Los selectores CSS pueden combinarse para apuntar a elementos específicos.",
+        "explanation": "Sí, se pueden combinar selectores (descendiente, hijo, adyacente, etc.) para una selección precisa.",
+        "correctAnswer": 0
+      },
+      "easy-82": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear una casilla de verificación?",
+        "options": [
+          "<input type=\"checkbox\">",
+          "<checkbox>",
+          "<check>",
+          "<input type=\"check\">"
+        ],
+        "explanation": "<input type=\"checkbox\"> crea una casilla de verificación en un formulario.",
+        "correctAnswer": 0
+      },
+      "easy-83": {
+        "question": "¿Qué método de JavaScript permite invertir el orden de los elementos de un array?",
+        "options": [
+          "reverse()",
+          "invert()",
+          "flip()",
+          "backward()"
+        ],
+        "explanation": "El método reverse() invierte el orden de los elementos de un array en su lugar.",
+        "correctAnswer": 0
+      },
+      "easy-84": {
+        "question": "Las pseudo-clases CSS como :hover permiten estilizar elementos en un estado específico.",
+        "explanation": "Sí, las pseudo-clases como :hover, :focus, :active permiten estilizar estados de elementos.",
+        "correctAnswer": 0
+      },
+      "easy-85": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un campo de selección (dropdown)?",
+        "options": [
+          "<select>",
+          "<dropdown>",
+          "<option>",
+          "<choice>"
+        ],
+        "explanation": "La etiqueta <select> crea un menú desplegable en un formulario.",
+        "correctAnswer": 0
+      },
+      "easy-86": {
+        "question": "¿Qué método de JavaScript permite verificar si una cadena contiene un subtexto?",
+        "options": [
+          "includes()",
+          "contains()",
+          "has()",
+          "find()"
+        ],
+        "explanation": "El método includes() verifica si una cadena contiene una subcadena especificada.",
+        "correctAnswer": 0
+      },
+      "easy-87": {
+        "question": "Las variables en JavaScript pueden contener diferentes tipos de datos (números, cadenas, objetos, etc.).",
+        "explanation": "Sí, JavaScript es un lenguaje con tipado dinámico, las variables pueden cambiar de tipo.",
+        "correctAnswer": 0
+      },
+      "easy-88": {
+        "question": "¿Qué propiedad CSS se utiliza para definir la opacidad de un elemento?",
+        "options": [
+          "opacity",
+          "transparency",
+          "alpha",
+          "visibility"
+        ],
+        "explanation": "La propiedad opacity define el nivel de opacidad de un elemento (0 = transparente, 1 = opaco).",
+        "correctAnswer": 0
+      },
+      "easy-89": {
+        "question": "¿Qué método de JavaScript permite convertir una cadena a mayúsculas?",
+        "options": [
+          "toUpperCase()",
+          "upper()",
+          "toUpper()",
+          "uppercase()"
+        ],
+        "explanation": "El método toUpperCase() convierte todos los caracteres de una cadena a mayúsculas.",
+        "correctAnswer": 0
+      },
+      "easy-90": {
+        "question": "Los atributos HTML \"required\" y \"disabled\" pueden usarse en formularios.",
+        "explanation": "Sí, required hace un campo obligatorio y disabled lo desactiva.",
+        "correctAnswer": 0
+      },
+      "easy-91": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de cita?",
+        "options": [
+          "<blockquote>",
+          "<quote>",
+          "<cite>",
+          "<q>"
+        ],
+        "explanation": "La etiqueta <blockquote> se utiliza para crear una cita larga.",
+        "correctAnswer": 0
+      },
+      "easy-92": {
+        "question": "¿Qué método de JavaScript permite convertir una cadena a minúsculas?",
+        "options": [
+          "toLowerCase()",
+          "lower()",
+          "toLower()",
+          "lowercase()"
+        ],
+        "explanation": "El método toLowerCase() convierte todos los caracteres de una cadena a minúsculas.",
+        "correctAnswer": 0
+      },
+      "easy-93": {
+        "question": "Los arrays en JavaScript pueden contener elementos de tipos diferentes.",
+        "explanation": "Sí, un array en JavaScript puede contener números, cadenas, objetos, etc. mezclados.",
+        "correctAnswer": 0
+      },
+      "easy-94": {
+        "question": "¿Qué propiedad CSS se utiliza para definir el espaciado entre líneas de texto?",
+        "options": [
+          "line-height",
+          "text-height",
+          "line-spacing",
+          "spacing"
+        ],
+        "explanation": "La propiedad line-height define la altura de una línea de texto.",
+        "correctAnswer": 0
+      },
+      "easy-95": {
+        "question": "¿Qué método de JavaScript permite reemplazar texto en una cadena?",
+        "options": [
+          "replace()",
+          "substitute()",
+          "change()",
+          "swap()"
+        ],
+        "explanation": "El método replace() reemplaza una subcadena por otra en una cadena.",
+        "correctAnswer": 0
+      },
+      "easy-96": {
+        "question": "Los atributos HTML \"alt\" en las imágenes mejoran la accesibilidad.",
+        "explanation": "Sí, el atributo alt proporciona un texto alternativo para los lectores de pantalla y las imágenes rotas.",
+        "correctAnswer": 0
+      },
+      "easy-97": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de código?",
+        "options": [
+          "<code>",
+          "<programming>",
+          "<script>",
+          "<snippet>"
+        ],
+        "explanation": "La etiqueta <code> se utiliza para mostrar código informático.",
+        "correctAnswer": 0
+      },
+      "easy-98": {
+        "question": "¿Qué método de JavaScript permite extraer una parte de una cadena?",
+        "options": [
+          "substring() o slice()",
+          "extract()",
+          "cut()",
+          "part()"
+        ],
+        "explanation": "Los métodos substring() y slice() extraen una parte de una cadena.",
+        "correctAnswer": 0
+      },
+      "easy-99": {
+        "question": "Los selectores CSS pueden apuntar a elementos según su posición en el DOM.",
+        "explanation": "Sí, se puede usar :first-child, :last-child, :nth-child() para apuntar por posición.",
+        "correctAnswer": 0
+      },
+      "easy-100": {
+        "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de texto preformateado?",
+        "options": [
+          "<pre>",
+          "<format>",
+          "<text>",
+          "<preserve>"
+        ],
+        "explanation": "La etiqueta <pre> preserva los espacios y los saltos de línea en el texto.",
+        "correctAnswer": 0
+      },
+      "medium-1": {
+        "question": "¿Cuál es la diferencia principal entre let y var en JavaScript?",
+        "options": [
+          "let tiene ámbito de bloque, var tiene ámbito de función",
+          "let es más rápido que var",
+          "var está obsoleto",
+          "Ninguna diferencia"
+        ],
+        "explanation": "let tiene ámbito de bloque, lo que significa que solo es accesible dentro del bloque donde se declara, mientras que var tiene ámbito de función.",
+        "correctAnswer": 0
+      },
+      "medium-2": {
+        "question": "Los hooks de React solo pueden usarse en componentes funcionales.",
+        "explanation": "Sí, los hooks de React (useState, useEffect, etc.) solo pueden usarse en componentes funcionales o hooks personalizados.",
+        "correctAnswer": 0
+      },
+      "medium-3": {
+        "question": "¿Qué es una inyección SQL?",
+        "options": [
+          "Un ataque que inyecta código SQL malicioso",
+          "Un método de optimización SQL",
+          "Un tipo de base de datos",
+          "Una función SQL"
+        ],
+        "explanation": "La inyección SQL es una vulnerabilidad de seguridad que permite a un atacante ejecutar comandos SQL maliciosos.",
+        "correctAnswer": 0
+      },
+      "medium-4": {
+        "question": "¿Cuál es el método recomendado para almacenar contraseñas?",
+        "options": [
+          "Hashing con un algoritmo adecuado (bcrypt, argon2)",
+          "Cifrado simétrico",
+          "Almacenamiento en texto plano",
+          "Compresión"
+        ],
+        "explanation": "Las contraseñas deben ser hasheadas con algoritmos adecuados como bcrypt o argon2, nunca almacenadas en texto plano.",
+        "correctAnswer": 0
+      },
+      "medium-5": {
+        "question": "El CORS (Cross-Origin Resource Sharing) es un mecanismo de seguridad del navegador.",
+        "explanation": "Sí, CORS es un mecanismo de seguridad que controla las solicitudes entre diferentes orígenes.",
+        "correctAnswer": 0
+      },
+      "medium-6": {
+        "question": "¿Qué es el SSR (Server-Side Rendering)?",
+        "options": [
+          "El renderizado de páginas en el servidor antes de enviarlas al cliente",
+          "El renderizado solo en el cliente",
+          "Un método de caché",
+          "Un protocolo de red"
+        ],
+        "explanation": "El SSR consiste en generar el HTML de las páginas en el servidor antes de enviarlas al navegador.",
+        "correctAnswer": 0
+      },
+      "medium-7": {
+        "question": "¿Cuál es la diferencia entre == y === en JavaScript?",
+        "options": [
+          "=== compara valor y tipo, == compara solo el valor",
+          "== es más rápido",
+          "=== está obsoleto",
+          "Ninguna diferencia"
+        ],
+        "explanation": "=== (igualdad estricta) compara tanto el valor como el tipo, mientras que == (igualdad flexible) realiza una conversión de tipo antes de comparar.",
+        "correctAnswer": 0
+      },
+      "medium-8": {
+        "question": "Los tokens JWT (JSON Web Tokens) pueden decodificarse pero no modificarse sin la clave secreta.",
+        "explanation": "Sí, los JWT pueden decodificarse (están en base64), pero la firma impide la modificación sin la clave secreta.",
+        "correctAnswer": 0
+      },
+      "medium-9": {
+        "question": "¿Qué es un ataque XSS (Cross-Site Scripting)?",
+        "options": [
+          "La inyección de código JavaScript malicioso en una página web",
+          "Un ataque a los servidores",
+          "Un tipo de virus",
+          "Un método de compresión"
+        ],
+        "explanation": "XSS es una vulnerabilidad que permite inyectar código JavaScript malicioso que se ejecuta en el navegador de la víctima.",
+        "correctAnswer": 0
+      },
+      "medium-10": {
+        "question": "¿Qué método de React permite memorizar un valor calculado?",
+        "options": [
+          "useMemo",
+          "useState",
+          "useEffect",
+          "useCallback"
+        ],
+        "explanation": "useMemo permite memorizar el resultado de un cálculo costoso y solo recalcularlo si las dependencias cambian.",
+        "correctAnswer": 0
+      },
+      "medium-11": {
+        "question": "PostgreSQL es una base de datos NoSQL.",
+        "explanation": "No, PostgreSQL es una base de datos relacional (SQL), no NoSQL.",
+        "correctAnswer": 1
+      },
+      "medium-12": {
+        "question": "¿Qué es el CSRF (Cross-Site Request Forgery)?",
+        "options": [
+          "Un ataque que fuerza a un usuario a ejecutar acciones no deseadas",
+          "Un método de optimización",
+          "Un tipo de cookie",
+          "Una función de JavaScript"
+        ],
+        "explanation": "CSRF es un ataque que fuerza a un usuario autenticado a ejecutar acciones no deseadas en una aplicación web.",
+        "correctAnswer": 0
+      },
+      "medium-13": {
+        "question": "¿Cuál es la complejidad temporal promedio de una búsqueda en un array no ordenado?",
+        "options": [
+          "O(n)",
+          "O(log n)",
+          "O(1)",
+          "O(n²)"
+        ],
+        "explanation": "En un array no ordenado, hay que recorrer todos los elementos en el peor caso, por lo tanto O(n).",
+        "correctAnswer": 0
+      },
+      "medium-14": {
+        "question": "Las Promises en JavaScript pueden encadenarse con .then() y .catch().",
+        "explanation": "Sí, las Promises pueden encadenarse para gestionar operaciones asíncronas de forma secuencial.",
+        "correctAnswer": 0
+      },
+      "medium-15": {
+        "question": "¿Qué es un middleware en Express.js?",
+        "options": [
+          "Una función que se ejecuta entre la solicitud y la respuesta",
+          "Un tipo de ruta",
+          "Un método HTTP",
+          "Un protocolo"
+        ],
+        "explanation": "Un middleware es una función que tiene acceso al objeto de solicitud, al objeto de respuesta y a la función next en el ciclo solicitud-respuesta.",
+        "correctAnswer": 0
+      },
+      "medium-16": {
+        "question": "HTTPS usa el puerto 80 por defecto.",
+        "explanation": "No, HTTPS usa el puerto 443 por defecto. El puerto 80 lo usa HTTP.",
+        "correctAnswer": 1
+      },
+      "medium-17": {
+        "question": "¿Cuál es la diferencia entre const y let en JavaScript?",
+        "options": [
+          "const no puede ser reasignado, let sí",
+          "const es más rápido",
+          "let está obsoleto",
+          "Ninguna diferencia"
+        ],
+        "explanation": "const declara una constante que no puede ser reasignada, mientras que let permite la reasignación.",
+        "correctAnswer": 0
+      },
+      "medium-18": {
+        "question": "¿Qué es el lazy loading?",
+        "options": [
+          "Cargar recursos solo cuando son necesarios",
+          "Cargar todo de una vez",
+          "Un método de caché",
+          "Un tipo de base de datos"
+        ],
+        "explanation": "El lazy loading consiste en cargar recursos (imágenes, componentes) solo cuando son necesarios, mejorando el rendimiento.",
+        "correctAnswer": 0
+      },
+      "medium-19": {
+        "question": "Las cookies HTTP pueden protegerse con los atributos Secure y HttpOnly.",
+        "explanation": "Sí, Secure fuerza HTTPS y HttpOnly impide el acceso JavaScript a las cookies, reduciendo los riesgos XSS.",
+        "correctAnswer": 0
+      },
+      "medium-20": {
+        "question": "¿Qué es un hook personalizado en React?",
+        "options": [
+          "Una función que comienza por \"use\" y puede usar otros hooks",
+          "Un componente de React",
+          "Un método de renderizado",
+          "Un tipo de state"
+        ],
+        "explanation": "Un hook personalizado es una función JavaScript que comienza por \"use\" y puede llamar a otros hooks de React.",
+        "correctAnswer": 0
+      },
+      "medium-21": {
+        "question": "El Content Security Policy (CSP) permite prevenir ataques XSS.",
+        "explanation": "Sí, CSP es un mecanismo de seguridad que permite controlar qué recursos pueden cargarse y ejecutarse.",
+        "correctAnswer": 0
+      },
+      "medium-22": {
+        "question": "¿Cuál es el método para crear una copia superficial (shallow copy) de un objeto en JavaScript?",
+        "options": [
+          "Object.assign() o spread operator",
+          "Object.clone()",
+          "Object.copy()",
+          "Object.duplicate()"
+        ],
+        "explanation": "Object.assign({}, obj) o {...obj} crean una copia superficial de un objeto.",
+        "correctAnswer": 0
+      },
+      "medium-23": {
+        "question": "Los WebSockets permiten una comunicación bidireccional en tiempo real.",
+        "explanation": "Sí, los WebSockets establecen una conexión TCP persistente que permite la comunicación bidireccional en tiempo real.",
+        "correctAnswer": 0
+      },
+      "medium-24": {
+        "question": "¿Qué es el debouncing?",
+        "options": [
+          "Retrasar la ejecución de una función hasta que haya pasado un intervalo",
+          "Acelerar una función",
+          "Un método de caché",
+          "Un tipo de evento"
+        ],
+        "explanation": "El debouncing retrasa la ejecución de una función hasta que pase un cierto tiempo sin nuevas llamadas, útil para búsquedas en tiempo real.",
+        "correctAnswer": 0
+      },
+      "medium-25": {
+        "question": "El localStorage persiste incluso después de cerrar el navegador.",
+        "explanation": "Sí, localStorage almacena datos de forma persistente en el navegador, incluso después de cerrarlo.",
+        "correctAnswer": 0
+      },
+      "medium-26": {
+        "question": "¿Qué es el hoisting en JavaScript?",
+        "options": [
+          "El movimiento de las declaraciones al inicio de su ámbito",
+          "Un método de ordenación",
+          "Un tipo de variable",
+          "Un error de sintaxis"
+        ],
+        "explanation": "El hoisting es el comportamiento de JavaScript que mueve las declaraciones de variables y funciones al inicio de su ámbito.",
+        "correctAnswer": 0
+      },
+      "medium-27": {
+        "question": "¿Qué es un callback en JavaScript?",
+        "options": [
+          "Una función pasada como argumento a otra función",
+          "Un tipo de bucle",
+          "Un método de array",
+          "Un operador"
+        ],
+        "explanation": "Un callback es una función pasada como argumento a otra función y ejecutada más tarde.",
+        "correctAnswer": 0
+      },
+      "medium-28": {
+        "question": "Los arrays en JavaScript son objetos.",
+        "explanation": "Sí, los arrays en JavaScript son un tipo especial de objeto con métodos y propiedades específicas.",
+        "correctAnswer": 0
+      },
+      "medium-29": {
+        "question": "¿Qué es el spread operator (...) en JavaScript?",
+        "options": [
+          "Un operador que expande un iterable en elementos individuales",
+          "Un operador matemático",
+          "Un método de array",
+          "Un tipo de función"
+        ],
+        "explanation": "El spread operator (...) permite expandir un iterable (array, objeto) en elementos individuales.",
+        "correctAnswer": 0
+      },
+      "medium-30": {
+        "question": "¿Qué es el destructuring en JavaScript?",
+        "options": [
+          "Extraer valores de objetos o arrays en variables",
+          "Destruir un objeto",
+          "Un método de eliminación",
+          "Un tipo de variable"
+        ],
+        "explanation": "El destructuring permite extraer valores de objetos o arrays en variables distintas.",
+        "correctAnswer": 0
+      },
+      "medium-31": {
+        "question": "Las funciones async/await en JavaScript simplifican el código asíncrono.",
+        "explanation": "Sí, async/await permite escribir código asíncrono de forma síncrona y más legible.",
+        "correctAnswer": 0
+      },
+      "medium-32": {
+        "question": "¿Qué es el concepto de \"pure function\" en programación?",
+        "options": [
+          "Una función que siempre devuelve el mismo resultado para las mismas entradas",
+          "Una función rápida",
+          "Una función sin parámetros",
+          "Una función global"
+        ],
+        "explanation": "Una pure function siempre devuelve el mismo resultado para las mismas entradas y no tiene efectos secundarios.",
+        "correctAnswer": 0
+      },
+      "medium-33": {
+        "question": "¿Qué es el concepto de \"currying\" en programación funcional?",
+        "options": [
+          "Transformar una función con varios argumentos en una serie de funciones con un argumento",
+          "Un método de ordenación",
+          "Un tipo de bucle",
+          "Un error"
+        ],
+        "explanation": "El currying transforma una función que toma varios argumentos en una serie de funciones que toman un argumento cada una.",
+        "correctAnswer": 0
+      },
+      "medium-34": {
+        "question": "El sessionStorage almacena datos únicamente para la sesión del navegador.",
+        "explanation": "Sí, sessionStorage almacena datos únicamente para la sesión actual y los elimina al cerrar la pestaña.",
+        "correctAnswer": 0
+      },
+      "medium-35": {
+        "question": "¿Qué es el concepto de \"immutability\" en programación?",
+        "options": [
+          "El estado no puede modificarse después de su creación",
+          "Un estado que cambia a menudo",
+          "Un método de mutación",
+          "Un tipo de variable"
+        ],
+        "explanation": "La inmutabilidad significa que un objeto no puede modificarse después de su creación, se crean nuevos objetos en su lugar.",
+        "correctAnswer": 0
+      },
+      "medium-36": {
+        "question": "¿Qué es el concepto de \"composition\" en React?",
+        "options": [
+          "Combinar componentes pequeños para crear componentes más complejos",
+          "Un tipo de renderizado",
+          "Un método de state",
+          "Un hook"
+        ],
+        "explanation": "La composición consiste en combinar componentes pequeños reutilizables para crear componentes más complejos.",
+        "correctAnswer": 0
+      },
+      "medium-37": {
+        "question": "Las props en React son de solo lectura (read-only).",
+        "explanation": "Sí, las props son inmutables y no deben ser modificadas por el componente hijo.",
+        "correctAnswer": 0
+      },
+      "medium-38": {
+        "question": "¿Qué es el concepto de \"higher-order component\" (HOC) en React?",
+        "options": [
+          "Una función que toma un componente y devuelve un nuevo componente",
+          "Un componente de alto nivel",
+          "Un tipo de hook",
+          "Un método de renderizado"
+        ],
+        "explanation": "Un HOC es una función que toma un componente y devuelve un nuevo componente con funcionalidades adicionales.",
+        "correctAnswer": 0
+      },
+      "medium-39": {
+        "question": "¿Qué es el concepto de \"render props\" en React?",
+        "options": [
+          "Una técnica donde un componente acepta una función como prop para el renderizado",
+          "Un tipo de prop",
+          "Un método de state",
+          "Un hook"
+        ],
+        "explanation": "Los render props son una técnica donde un componente acepta una función como prop para determinar lo que debe renderizar.",
+        "correctAnswer": 0
+      },
+      "medium-40": {
+        "question": "El hook useEffect en React puede reemplazar componentDidMount, componentDidUpdate y componentWillUnmount.",
+        "explanation": "Sí, useEffect combina las funcionalidades de estos tres métodos de ciclo de vida de los componentes de clase.",
+        "correctAnswer": 0
+      },
+      "medium-41": {
+        "question": "¿Qué es el concepto de \"controlled component\" en React?",
+        "options": [
+          "Un componente cuyo valor es controlado por el state de React",
+          "Un componente no controlado",
+          "Un tipo de hook",
+          "Un método de renderizado"
+        ],
+        "explanation": "Un controlled component es un componente cuyo valor es controlado por el state de React a través de props.",
+        "correctAnswer": 0
+      },
+      "medium-42": {
+        "question": "¿Qué es el concepto de \"uncontrolled component\" en React?",
+        "options": [
+          "Un componente que almacena su estado en el DOM en lugar de en React",
+          "Un componente sin state",
+          "Un tipo de hook",
+          "Un error"
+        ],
+        "explanation": "Un uncontrolled component almacena su estado en el DOM y utiliza refs para acceder a los valores.",
+        "correctAnswer": 0
+      },
+      "medium-43": {
+        "question": "El hook useRef en React permite crear una referencia mutable que persiste entre renderizados.",
+        "explanation": "Sí, useRef devuelve un objeto mutable cuya propiedad .current puede modificarse sin provocar un re-renderizado.",
+        "correctAnswer": 0
+      },
+      "medium-44": {
+        "question": "¿Qué es el concepto de \"key prop\" en React?",
+        "options": [
+          "Un identificador único para ayudar a React a identificar elementos en una lista",
+          "Una clave de cifrado",
+          "Un tipo de prop",
+          "Un método"
+        ],
+        "explanation": "La key prop ayuda a React a identificar qué elementos han cambiado, se han añadido o eliminado en una lista.",
+        "correctAnswer": 0
+      },
+      "medium-45": {
+        "question": "¿Qué es el concepto de \"reconciliation\" en React?",
+        "options": [
+          "El proceso por el cual React actualiza el DOM de forma eficiente",
+          "Un tipo de renderizado",
+          "Un método de state",
+          "Un hook"
+        ],
+        "explanation": "La reconciliación es el proceso por el cual React compara el Virtual DOM con el DOM real y aplica los cambios necesarios.",
+        "correctAnswer": 0
+      },
+      "medium-46": {
+        "question": "El hook useContext en React permite acceder a un contexto sin usar Consumer.",
+        "explanation": "Sí, useContext simplifica el acceso al contexto evitando el patrón Consumer.",
+        "correctAnswer": 0
+      },
+      "medium-47": {
+        "question": "¿Qué es el concepto de \"code splitting\" en las aplicaciones web?",
+        "options": [
+          "Dividir el código en chunks cargados bajo demanda",
+          "Dividir el código en archivos",
+          "Un método de compresión",
+          "Un tipo de renderizado"
+        ],
+        "explanation": "El code splitting permite dividir el bundle en chunks más pequeños, cargados solo cuando es necesario.",
+        "correctAnswer": 0
+      },
+      "medium-48": {
+        "question": "¿Qué es el concepto de \"lazy loading\" para las imágenes?",
+        "options": [
+          "Cargar las imágenes solo cuando están a punto de ser visibles",
+          "Cargar todas las imágenes de una vez",
+          "Un método de compresión",
+          "Un tipo de imagen"
+        ],
+        "explanation": "El lazy loading carga las imágenes solo cuando están a punto de entrar en el viewport, mejorando el rendimiento.",
+        "correctAnswer": 0
+      },
+      "medium-49": {
+        "question": "El concepto de \"single page application\" (SPA) carga una sola página HTML y actualiza el contenido dinámicamente.",
+        "explanation": "Sí, una SPA carga una sola página HTML y usa JavaScript para actualizar el contenido sin recargar la página.",
+        "correctAnswer": 0
+      },
+      "medium-50": {
+        "question": "¿Qué es el concepto de \"progressive enhancement\" en desarrollo web?",
+        "options": [
+          "Crear una base funcional y luego añadir funcionalidades avanzadas",
+          "Mejorar progresivamente",
+          "Un método de pruebas",
+          "Un tipo de framework"
+        ],
+        "explanation": "El progressive enhancement consiste en crear una base funcional accesible y luego añadir funcionalidades avanzadas.",
+        "correctAnswer": 0
+      },
+      "medium-51": {
+        "question": "¿Qué es el concepto de \"memoization\" en programación?",
+        "options": [
+          "Almacenar resultados de funciones costosas para evitar recalcularlos",
+          "Un método de ordenación",
+          "Un tipo de caché",
+          "Un error"
+        ],
+        "explanation": "La memoización consiste en almacenar en caché los resultados de funciones costosas para mejorar el rendimiento.",
+        "correctAnswer": 0
+      },
+      "medium-52": {
+        "question": "El hook useMemo en React permite memorizar valores calculados.",
+        "explanation": "Sí, useMemo memoriza el resultado de un cálculo y solo lo recalcula si sus dependencias cambian.",
+        "correctAnswer": 0
+      },
+      "medium-53": {
+        "question": "¿Qué es el concepto de \"closure\" en JavaScript?",
+        "options": [
+          "Una función que tiene acceso a las variables de su ámbito externo",
+          "Un método de cierre",
+          "Un tipo de variable",
+          "Un error"
+        ],
+        "explanation": "Un closure es una función que tiene acceso a las variables de su ámbito externo incluso después de que ese ámbito se haya cerrado.",
+        "correctAnswer": 0
+      },
+      "medium-54": {
+        "question": "¿Qué es el concepto de \"event delegation\" en JavaScript?",
+        "options": [
+          "Adjuntar un gestor de eventos a un padre en lugar de a los hijos",
+          "Delegar eventos",
+          "Un tipo de evento",
+          "Un método"
+        ],
+        "explanation": "La delegación de eventos consiste en adjuntar un gestor de eventos a un elemento padre para gestionar los eventos de sus hijos.",
+        "correctAnswer": 0
+      },
+      "medium-55": {
+        "question": "El hook useCallback en React permite memorizar funciones.",
+        "explanation": "Sí, useCallback devuelve una versión memorizada de una función que solo cambia si sus dependencias cambian.",
+        "correctAnswer": 0
+      },
+      "medium-56": {
+        "question": "¿Qué es el concepto de \"throttling\" en JavaScript?",
+        "options": [
+          "Limitar la ejecución de una función a una vez por período de tiempo",
+          "Acelerar una función",
+          "Un tipo de bucle",
+          "Un método"
+        ],
+        "explanation": "El throttling limita la ejecución de una función a una vez por período de tiempo, útil para eventos frecuentes.",
+        "correctAnswer": 0
+      },
+      "medium-57": {
+        "question": "¿Qué es el concepto de \"prototype chain\" en JavaScript?",
+        "options": [
+          "La cadena de prototipos que permite la herencia en JavaScript",
+          "Un método de encadenamiento",
+          "Un tipo de objeto",
+          "Un error"
+        ],
+        "explanation": "La cadena de prototipos permite a un objeto heredar propiedades y métodos de su prototipo y de los prototipos padres.",
+        "correctAnswer": 0
+      },
+      "medium-58": {
+        "question": "Las clases ES6 en JavaScript son azúcar sintáctico sobre el sistema de prototipos.",
+        "explanation": "Sí, las clases ES6 son una sintaxis más clara pero siguen usando el sistema de prototipos internamente.",
+        "correctAnswer": 0
+      },
+      "medium-59": {
+        "question": "¿Qué es el concepto de \"virtual DOM\" en React?",
+        "options": [
+          "Una representación JavaScript en memoria del DOM real",
+          "El DOM real",
+          "Un tipo de DOM",
+          "Un método"
+        ],
+        "explanation": "El Virtual DOM es una representación JavaScript ligera del DOM real, permitiendo actualizaciones eficientes.",
+        "correctAnswer": 0
+      },
+      "medium-60": {
+        "question": "¿Qué es el concepto de \"server-side rendering\" (SSR)?",
+        "options": [
+          "Renderizar el HTML en el servidor antes de enviarlo al cliente",
+          "Renderizar en el cliente",
+          "Un tipo de renderizado",
+          "Un método"
+        ],
+        "explanation": "El SSR consiste en generar el HTML en el servidor, mejorando el SEO y el tiempo de carga inicial.",
+        "correctAnswer": 0
+      },
+      "medium-61": {
+        "question": "El concepto de \"static site generation\" (SSG) genera el HTML en el momento del build.",
+        "explanation": "Sí, el SSG genera todas las páginas HTML en el momento del build, creando un sitio estático ultrarrápido.",
+        "correctAnswer": 0
+      },
+      "medium-62": {
+        "question": "¿Qué es el concepto de \"hydration\" en React?",
+        "options": [
+          "Adjuntar los gestores de eventos al HTML pre-renderizado",
+          "Añadir agua",
+          "Un tipo de renderizado",
+          "Un método"
+        ],
+        "explanation": "La hidratación es el proceso de adjuntar los gestores de eventos de React al HTML pre-renderizado del servidor.",
+        "correctAnswer": 0
+      },
+      "medium-63": {
+        "question": "¿Qué es el concepto de \"tree shaking\" en JavaScript?",
+        "options": [
+          "Eliminar el código muerto durante el bundling",
+          "Sacudir un árbol",
+          "Un método de ordenación",
+          "Un tipo de bundle"
+        ],
+        "explanation": "El tree shaking elimina el código no utilizado durante el bundling, reduciendo el tamaño del bundle final.",
+        "correctAnswer": 0
+      },
+      "medium-64": {
+        "question": "El concepto de \"polyfill\" permite añadir funcionalidades que faltan en navegadores antiguos.",
+        "explanation": "Sí, un polyfill es un código que implementa una funcionalidad que falta en un navegador más antiguo.",
+        "correctAnswer": 0
+      },
+      "medium-65": {
+        "question": "¿Qué es el concepto de \"transpilation\" en JavaScript?",
+        "options": [
+          "Convertir código de un lenguaje a otro del mismo nivel de abstracción",
+          "Compilar código",
+          "Traducir código",
+          "Un método"
+        ],
+        "explanation": "La transpilación convierte código de un lenguaje a otro del mismo nivel (ej: TypeScript a JavaScript).",
+        "correctAnswer": 0
+      },
+      "medium-66": {
+        "question": "¿Qué es el concepto de \"middleware\" en los frameworks web?",
+        "options": [
+          "Una función que se ejecuta entre la solicitud y la respuesta",
+          "Un tipo de ruta",
+          "Un método",
+          "Un error"
+        ],
+        "explanation": "Un middleware es una función que intercepta las solicitudes y respuestas, permitiendo añadir funcionalidades.",
+        "correctAnswer": 0
+      },
+      "medium-67": {
+        "question": "El concepto de \"REST\" (Representational State Transfer) es un estilo de arquitectura para APIs.",
+        "explanation": "Sí, REST es un estilo de arquitectura que utiliza los métodos HTTP estándar para operaciones CRUD.",
+        "correctAnswer": 0
+      },
+      "medium-68": {
+        "question": "¿Qué es el concepto de \"GraphQL\"?",
+        "options": [
+          "Un lenguaje de consulta para APIs que permite solicitar exactamente los datos necesarios",
+          "Un tipo de base de datos",
+          "Un método HTTP",
+          "Un framework"
+        ],
+        "explanation": "GraphQL es un lenguaje de consulta que permite a los clientes solicitar exactamente los datos que necesitan.",
+        "correctAnswer": 0
+      },
+      "medium-69": {
+        "question": "¿Qué es el concepto de \"WebSocket\"?",
+        "options": [
+          "Un protocolo de comunicación bidireccional en tiempo real",
+          "Un tipo de socket",
+          "Un método HTTP",
+          "Un framework"
+        ],
+        "explanation": "WebSocket es un protocolo que permite una comunicación bidireccional en tiempo real entre cliente y servidor.",
+        "correctAnswer": 0
+      },
+      "medium-70": {
+        "question": "El concepto de \"Service Worker\" permite crear aplicaciones web sin conexión.",
+        "explanation": "Sí, los Service Workers permiten almacenar recursos en caché y crear aplicaciones web sin conexión.",
+        "correctAnswer": 0
+      },
+      "medium-71": {
+        "question": "¿Qué es el concepto de \"Progressive Web App\" (PWA)?",
+        "options": [
+          "Una aplicación web que funciona como una aplicación nativa",
+          "Un tipo de aplicación",
+          "Un método",
+          "Un framework"
+        ],
+        "explanation": "Una PWA combina las mejores funcionalidades web y móviles: instalación, modo sin conexión, notificaciones push.",
+        "correctAnswer": 0
+      },
+      "medium-72": {
+        "question": "¿Qué es el concepto de \"dependency injection\" en programación?",
+        "options": [
+          "Proporcionar las dependencias de un objeto desde el exterior en lugar de crearlas internamente",
+          "Inyectar código",
+          "Un tipo de dependencia",
+          "Un método"
+        ],
+        "explanation": "La inyección de dependencias permite hacer el código más testeable y modular proporcionando las dependencias desde el exterior.",
+        "correctAnswer": 0
+      },
+      "medium-73": {
+        "question": "El concepto de \"unit testing\" prueba unidades individuales de código de forma aislada.",
+        "explanation": "Sí, las pruebas unitarias prueban pequeñas unidades de código (funciones, componentes) de forma aislada.",
+        "correctAnswer": 0
+      },
+      "medium-74": {
+        "question": "¿Qué es el concepto de \"integration testing\"?",
+        "options": [
+          "Probar la interacción entre varios componentes o módulos",
+          "Probar un solo componente",
+          "Un tipo de prueba",
+          "Un método"
+        ],
+        "explanation": "Las pruebas de integración verifican que varios componentes funcionan correctamente juntos.",
+        "correctAnswer": 0
+      },
+      "medium-75": {
+        "question": "¿Qué es el concepto de \"end-to-end testing\" (E2E)?",
+        "options": [
+          "Probar la aplicación completa de principio a fin como un usuario real",
+          "Probar una función",
+          "Un tipo de prueba",
+          "Un método"
+        ],
+        "explanation": "Las pruebas E2E simulan un usuario real y prueban la aplicación completa de principio a fin.",
+        "correctAnswer": 0
+      },
+      "medium-76": {
+        "question": "El concepto de \"mocking\" en pruebas permite simular dependencias externas.",
+        "explanation": "Sí, el mocking permite reemplazar dependencias por versiones simuladas para aislar las pruebas.",
+        "correctAnswer": 0
+      },
+      "medium-77": {
+        "question": "¿Qué es el concepto de \"continuous integration\" (CI)?",
+        "options": [
+          "Automatizar pruebas y builds en cada commit",
+          "Integrar continuamente",
+          "Un tipo de despliegue",
+          "Un método"
+        ],
+        "explanation": "La CI automatiza las pruebas y builds en cada commit para detectar problemas rápidamente.",
+        "correctAnswer": 0
+      },
+      "medium-78": {
+        "question": "¿Qué es el concepto de \"continuous deployment\" (CD)?",
+        "options": [
+          "Desplegar automáticamente el código en producción después de las pruebas",
+          "Desplegar continuamente",
+          "Un tipo de prueba",
+          "Un método"
+        ],
+        "explanation": "La CD despliega automáticamente el código en producción después de que todas las pruebas hayan pasado.",
+        "correctAnswer": 0
+      },
+      "medium-79": {
+        "question": "El concepto de \"version control\" permite seguir los cambios en el código a lo largo del tiempo.",
+        "explanation": "Sí, el control de versiones (como Git) permite seguir, gestionar y colaborar en los cambios de código.",
+        "correctAnswer": 0
+      },
+      "medium-80": {
+        "question": "¿Qué es el concepto de \"branch\" en Git?",
+        "options": [
+          "Una línea de desarrollo independiente en un repositorio",
+          "Una rama de árbol",
+          "Un tipo de commit",
+          "Un método"
+        ],
+        "explanation": "Una rama de Git es una línea de desarrollo independiente que permite trabajar en funcionalidades por separado.",
+        "correctAnswer": 0
+      },
+      "hard-1": {
+        "question": "¿Cuál es la diferencia entre una deep copy y una shallow copy en JavaScript?",
+        "options": [
+          "Deep copy copia todos los niveles, shallow copy solo el primer nivel",
+          "Shallow copy es más rápida",
+          "Ninguna diferencia",
+          "Deep copy está obsoleta"
+        ],
+        "explanation": "Una shallow copy copia solo el primer nivel, mientras que una deep copy copia recursivamente todos los niveles anidados.",
+        "correctAnswer": 0
+      },
+      "hard-2": {
+        "question": "El protocolo OAuth 2.0 utiliza únicamente tokens de acceso, no tokens de refresco.",
+        "explanation": "No, OAuth 2.0 utiliza tanto access tokens (corta duración) como refresh tokens (larga duración) para renovar los access tokens.",
+        "correctAnswer": 1
+      },
+      "hard-3": {
+        "question": "¿Cuál es la complejidad temporal de un algoritmo de ordenación por fusión (merge sort)?",
+        "options": [
+          "O(n log n)",
+          "O(n²)",
+          "O(n)",
+          "O(log n)"
+        ],
+        "explanation": "El merge sort tiene una complejidad temporal de O(n log n) en todos los casos (mejor, promedio y peor).",
+        "correctAnswer": 0
+      },
+      "hard-4": {
+        "question": "¿Cuál es la principal vulnerabilidad del modo ECB (Electronic Codebook) en cifrado?",
+        "options": [
+          "Los bloques idénticos producen el mismo cifrado",
+          "Es demasiado lento",
+          "Requiere demasiada memoria",
+          "No es seguro en absoluto"
+        ],
+        "explanation": "ECB produce el mismo cifrado para bloques idénticos, revelando patrones en los datos, lo cual es una falla de seguridad importante.",
+        "correctAnswer": 0
+      },
+      "hard-5": {
+        "question": "Los Service Workers pueden interceptar y modificar las solicitudes de red.",
+        "explanation": "Sí, los Service Workers actúan como un proxy entre la aplicación y la red, permitiendo interceptar y modificar las solicitudes.",
+        "correctAnswer": 0
+      },
+      "hard-6": {
+        "question": "¿Qué es el principio de menor privilegio (principle of least privilege) en seguridad?",
+        "options": [
+          "Otorgar únicamente los permisos mínimos necesarios",
+          "Dar todos los derechos por defecto",
+          "Un método de cifrado",
+          "Un protocolo de red"
+        ],
+        "explanation": "El principio de menor privilegio consiste en otorgar a usuarios y procesos únicamente los permisos mínimos necesarios para realizar sus tareas.",
+        "correctAnswer": 0
+      },
+      "hard-7": {
+        "question": "¿Cuál es la diferencia entre useMemo y useCallback en React?",
+        "options": [
+          "useMemo memoriza un valor, useCallback memoriza una función",
+          "useCallback es más rápido",
+          "Ninguna diferencia",
+          "useMemo está obsoleto"
+        ],
+        "explanation": "useMemo devuelve un valor memorizado, mientras que useCallback devuelve una función memorizada.",
+        "correctAnswer": 0
+      },
+      "hard-8": {
+        "question": "El hash SHA-256 es reversible, se puede recuperar el texto original a partir del hash.",
+        "explanation": "No, SHA-256 es una función de hash unidireccional (one-way), es matemáticamente imposible recuperar el texto original.",
+        "correctAnswer": 1
+      },
+      "hard-9": {
+        "question": "¿Qué es el code splitting en las aplicaciones React?",
+        "options": [
+          "Dividir el código en chunks cargados bajo demanda",
+          "Dividir el código en archivos",
+          "Un método de compresión",
+          "Un tipo de renderizado"
+        ],
+        "explanation": "El code splitting permite dividir el bundle JavaScript en chunks más pequeños, cargados solo cuando es necesario, mejorando el rendimiento.",
+        "correctAnswer": 0
+      },
+      "hard-10": {
+        "question": "¿Cuál es la diferencia entre authentication y authorization?",
+        "options": [
+          "Authentication verifica la identidad, authorization verifica los permisos",
+          "Ninguna diferencia",
+          "Authorization es más seguro",
+          "Authentication está obsoleto"
+        ],
+        "explanation": "Authentication verifica quién eres (identidad), mientras que authorization verifica lo que estás autorizado a hacer (permisos).",
+        "correctAnswer": 0
+      },
+      "hard-11": {
+        "question": "Las mutaciones directas del state de React están autorizadas y recomendadas.",
+        "explanation": "No, React requiere actualizaciones inmutables del state. Las mutaciones directas no provocan re-renderizados.",
+        "correctAnswer": 1
+      },
+      "hard-12": {
+        "question": "¿Qué es una race condition en la programación asíncrona?",
+        "options": [
+          "Un comportamiento impredecible cuando el orden de ejecución depende del timing",
+          "Un error de sintaxis",
+          "Un tipo de bucle",
+          "Un método de caché"
+        ],
+        "explanation": "Una race condition ocurre cuando el resultado depende del orden de ejecución de procesos asíncronos, creando un comportamiento impredecible.",
+        "correctAnswer": 0
+      },
+      "hard-13": {
+        "question": "¿Cuál es la complejidad espacial de un algoritmo de ordenación in-place?",
+        "options": [
+          "O(1)",
+          "O(n)",
+          "O(n log n)",
+          "O(n²)"
+        ],
+        "explanation": "Un algoritmo de ordenación in-place usa un espacio de memoria constante O(1), modificando el array directamente sin crear una copia.",
+        "correctAnswer": 0
+      },
+      "hard-14": {
+        "question": "La Same-Origin Policy impide que los scripts de un dominio accedan a los datos de otro dominio.",
+        "explanation": "Sí, la Same-Origin Policy es un mecanismo de seguridad que restringe el acceso a recursos entre diferentes orígenes.",
+        "correctAnswer": 0
+      },
+      "hard-15": {
+        "question": "¿Qué es el Virtual DOM en React?",
+        "options": [
+          "Una representación JavaScript en memoria del DOM real",
+          "El DOM real del navegador",
+          "Un método de caché",
+          "Un tipo de componente"
+        ],
+        "explanation": "El Virtual DOM es una representación JavaScript ligera del DOM real, permitiendo a React optimizar las actualizaciones.",
+        "correctAnswer": 0
+      },
+      "hard-16": {
+        "question": "¿Cuál es la diferencia entre un salt y un pepper en criptografía?",
+        "options": [
+          "Salt es único por usuario, pepper es compartido y secreto",
+          "Pepper es más largo",
+          "Ninguna diferencia",
+          "Salt está obsoleto"
+        ],
+        "explanation": "Un salt es único por usuario y se almacena con el hash, mientras que un pepper es un secreto compartido almacenado por separado.",
+        "correctAnswer": 0
+      },
+      "hard-17": {
+        "question": "Los closures en JavaScript permiten a una función acceder a las variables de su ámbito externo incluso después de que ese ámbito se haya cerrado.",
+        "explanation": "Sí, los closures permiten a una función interna acceder a las variables de la función externa incluso después de su ejecución.",
+        "correctAnswer": 0
+      },
+      "hard-18": {
+        "question": "¿Qué es el double spending en el contexto de blockchain?",
+        "options": [
+          "Gastar la misma unidad de valor dos veces",
+          "Un método de cifrado",
+          "Un tipo de transacción",
+          "Un error de cálculo"
+        ],
+        "explanation": "El double spending es el problema de gastar la misma unidad de valor digital dos veces, resuelto por la blockchain mediante el consenso.",
+        "correctAnswer": 0
+      },
+      "hard-19": {
+        "question": "¿Cuál es la diferencia entre un WeakMap y un Map en JavaScript?",
+        "options": [
+          "WeakMap tiene claves débiles y no puede ser iterado",
+          "Map es más rápido",
+          "Ninguna diferencia",
+          "WeakMap está obsoleto"
+        ],
+        "explanation": "WeakMap usa referencias débiles para las claves (permitiendo la recolección de basura) y no puede ser iterado, a diferencia de Map.",
+        "correctAnswer": 0
+      },
+      "hard-20": {
+        "question": "El protocolo HTTP/2 permite el multiplexing, permitiendo varias solicitudes en una sola conexión TCP.",
+        "explanation": "Sí, HTTP/2 introduce el multiplexing que permite enviar varias solicitudes simultáneamente en una sola conexión TCP.",
+        "correctAnswer": 0
+      },
+      "hard-21": {
+        "question": "¿Qué es el concepto de \"lifting state up\" en React?",
+        "options": [
+          "Mover el state al componente padre común",
+          "Elevar el state al DOM",
+          "Un método de caché",
+          "Un tipo de hook"
+        ],
+        "explanation": "Lifting state up consiste en mover el state compartido al componente padre común más cercano.",
+        "correctAnswer": 0
+      },
+      "hard-22": {
+        "question": "¿Cuál es la principal diferencia entre AES-128 y AES-256?",
+        "options": [
+          "La longitud de la clave (128 bits vs 256 bits)",
+          "La velocidad de ejecución",
+          "El tipo de cifrado",
+          "Ninguna diferencia"
+        ],
+        "explanation": "AES-128 usa una clave de 128 bits mientras que AES-256 usa una clave de 256 bits, ofreciendo mayor seguridad.",
+        "correctAnswer": 0
+      },
+      "hard-23": {
+        "question": "Los Server Components en Next.js 13+ se ejecutan únicamente en el servidor y no se incluyen en el bundle del cliente.",
+        "explanation": "Sí, los Server Components se ejecutan únicamente en el servidor, reduciendo el tamaño del bundle JavaScript del cliente.",
+        "correctAnswer": 0
+      },
+      "hard-24": {
+        "question": "¿Qué es el concepto de \"event delegation\" en JavaScript?",
+        "options": [
+          "Adjuntar un listener a un padre para gestionar los eventos de los hijos",
+          "Delegar eventos al servidor",
+          "Un método de caché",
+          "Un tipo de evento"
+        ],
+        "explanation": "La delegación de eventos consiste en adjuntar un listener a un elemento padre para gestionar los eventos de sus hijos, mejorando el rendimiento.",
+        "correctAnswer": 0
+      },
+      "hard-25": {
+        "question": "¿Cuál es la complejidad temporal de la búsqueda en un árbol binario de búsqueda equilibrado?",
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "O(1)",
+          "O(n log n)"
+        ],
+        "explanation": "En un árbol binario de búsqueda equilibrado, la búsqueda tiene una complejidad de O(log n) porque se divide el espacio de búsqueda por la mitad en cada nivel.",
+        "correctAnswer": 0
+      },
+      "hard-26": {
+        "question": "El protocolo WebSocket utiliza el mismo puerto que HTTP (80) o HTTPS (443).",
+        "explanation": "Sí, WebSocket comienza con una conexión HTTP/HTTPS normal y luego hace upgrade a WebSocket, usando los mismos puertos.",
+        "correctAnswer": 0
+      },
+      "hard-27": {
+        "question": "¿Qué es el concepto de \"memoization\" en programación?",
+        "options": [
+          "Almacenar resultados de cálculos costosos para evitar recalcularlos",
+          "Un método de compresión",
+          "Un tipo de caché",
+          "Un error de memoria"
+        ],
+        "explanation": "La memoización consiste en almacenar resultados de cálculos costosos en una caché para evitar recalcularlos con las mismas entradas.",
+        "correctAnswer": 0
+      },
+      "hard-28": {
+        "question": "¿Cuál es la diferencia entre un certificado SSL autofirmado y un certificado firmado por una autoridad de certificación?",
+        "options": [
+          "Un certificado firmado por una CA es verificado y aprobado por los navegadores",
+          "Ninguna diferencia",
+          "Los autofirmados son más seguros",
+          "Las CA están obsoletas"
+        ],
+        "explanation": "Un certificado firmado por una CA es verificado y aprobado por los navegadores, mientras que uno autofirmado genera una advertencia de seguridad.",
+        "correctAnswer": 0
+      },
+      "hard-29": {
+        "question": "Los Generators en JavaScript permiten crear funciones iterables con yield.",
+        "explanation": "Sí, los Generators son funciones especiales que pueden pausarse y reanudarse, usando yield para producir valores.",
+        "correctAnswer": 0
+      },
+      "hard-30": {
+        "question": "¿Qué es el concepto de \"defense in depth\" en ciberseguridad?",
+        "options": [
+          "Utilizar varias capas de seguridad para proteger un sistema",
+          "Una sola capa de seguridad máxima",
+          "Un método de cifrado",
+          "Un tipo de firewall"
+        ],
+        "explanation": "La defensa en profundidad consiste en utilizar varias capas de seguridad independientes para proteger un sistema, reduciendo el riesgo de compromiso.",
+        "correctAnswer": 0
+      },
+      "hard-31": {
+        "question": "¿Cuál es la diferencia entre un thunk y un middleware en Redux?",
+        "options": [
+          "Un thunk es un middleware específico para acciones asíncronas",
+          "Un middleware es un tipo de thunk",
+          "Ninguna diferencia",
+          "Los thunks están obsoletos"
+        ],
+        "explanation": "Un thunk es un middleware de Redux que permite despachar funciones en lugar de acciones simples, útil para operaciones asíncronas.",
+        "correctAnswer": 0
+      },
+      "hard-32": {
+        "question": "El protocolo QUIC utiliza UDP en lugar de TCP para mejorar el rendimiento.",
+        "explanation": "Sí, QUIC (Quick UDP Internet Connections) usa UDP con funcionalidades de fiabilidad y seguridad integradas, mejorando el rendimiento.",
+        "correctAnswer": 0
+      },
+      "hard-33": {
+        "question": "¿Qué es el concepto de \"single source of truth\" en la gestión de estado?",
+        "options": [
+          "Tener una sola fuente fiable para el estado de la aplicación",
+          "Tener varias fuentes de estado",
+          "Un método de caché",
+          "Un tipo de base de datos"
+        ],
+        "explanation": "El single source of truth consiste en tener una sola fuente fiable para el estado de la aplicación, evitando inconsistencias.",
+        "correctAnswer": 0
+      },
+      "hard-34": {
+        "question": "¿Cuál es la diferencia entre un hash y un HMAC (Hash-based Message Authentication Code)?",
+        "options": [
+          "HMAC utiliza una clave secreta para autenticar el mensaje",
+          "Hash es más seguro",
+          "Ninguna diferencia",
+          "HMAC está obsoleto"
+        ],
+        "explanation": "HMAC combina un hash con una clave secreta, permitiendo verificar tanto la integridad como la autenticidad de un mensaje.",
+        "correctAnswer": 0
+      },
+      "hard-35": {
+        "question": "Los Web Workers permiten ejecutar JavaScript en un hilo separado del hilo principal.",
+        "explanation": "Sí, los Web Workers permiten ejecutar código JavaScript en un hilo separado, evitando bloquear el hilo principal.",
+        "correctAnswer": 0
+      },
+      "hard-36": {
+        "question": "¿Qué es el concepto de \"idempotence\" en las APIs REST?",
+        "options": [
+          "Realizar la misma solicitud varias veces produce el mismo resultado",
+          "Un método de caché",
+          "Un tipo de solicitud",
+          "Un error de solicitud"
+        ],
+        "explanation": "La idempotencia significa que realizar la misma solicitud varias veces produce el mismo resultado, importante para los métodos PUT y DELETE.",
+        "correctAnswer": 0
+      },
+      "hard-37": {
+        "question": "¿Cuál es la diferencia entre un JWT (JSON Web Token) y un token de sesión clásico?",
+        "options": [
+          "JWT es stateless y contiene los datos, session token necesita almacenamiento en servidor",
+          "Session token es más seguro",
+          "Ninguna diferencia",
+          "JWT está obsoleto"
+        ],
+        "explanation": "JWT es stateless y contiene los datos en el token, mientras que un session token necesita almacenamiento del lado del servidor para los datos de sesión.",
+        "correctAnswer": 0
+      },
+      "hard-38": {
+        "question": "El protocolo TLS 1.3 reduce el número de round-trips necesarios para establecer una conexión segura.",
+        "explanation": "Sí, TLS 1.3 reduce el handshake de 2 round-trips a 1, mejorando el rendimiento y la seguridad.",
+        "correctAnswer": 0
+      },
+      "hard-39": {
+        "question": "¿Qué es el concepto de \"dependency injection\" en programación?",
+        "options": [
+          "Proporcionar las dependencias de un objeto desde el exterior en lugar de crearlas internamente",
+          "Crear todas las dependencias internamente",
+          "Un método de caché",
+          "Un tipo de función"
+        ],
+        "explanation": "La inyección de dependencias consiste en proporcionar las dependencias de un objeto desde el exterior, mejorando la testabilidad y la flexibilidad.",
+        "correctAnswer": 0
+      },
+      "hard-40": {
+        "question": "¿Cuál es la diferencia entre un CSRF token y un JWT token?",
+        "options": [
+          "CSRF token protege contra CSRF, JWT es para autenticación",
+          "JWT protege contra CSRF",
+          "Ninguna diferencia",
+          "CSRF token está obsoleto"
+        ],
+        "explanation": "Un CSRF token protege contra ataques CSRF validando el origen de las solicitudes, mientras que un JWT se usa para autenticación y autorización.",
+        "correctAnswer": 0
+      },
+      "hard-41": {
+        "question": "Los React Server Components pueden usar hooks como useState y useEffect.",
+        "explanation": "No, los Server Components se ejecutan únicamente en el servidor y no pueden usar hooks que requieren estado del cliente.",
+        "correctAnswer": 1
+      },
+      "hard-42": {
+        "question": "¿Qué es el concepto de \"event loop\" en JavaScript?",
+        "options": [
+          "Un mecanismo que gestiona la ejecución asíncrona en JavaScript",
+          "Un bucle de código",
+          "Un método de caché",
+          "Un tipo de función"
+        ],
+        "explanation": "El event loop es el mecanismo que gestiona la ejecución asíncrona en JavaScript, gestionando la pila de ejecución y la cola de callbacks.",
+        "correctAnswer": 0
+      },
+      "hard-43": {
+        "question": "¿Cuál es la diferencia entre un certificado wildcard y un certificado SAN (Subject Alternative Name)?",
+        "options": [
+          "Wildcard cubre *.domain.com, SAN lista varios dominios específicos",
+          "SAN es más seguro",
+          "Ninguna diferencia",
+          "Wildcard está obsoleto"
+        ],
+        "explanation": "Un certificado wildcard cubre todos los subdominios (*.domain.com), mientras que un SAN lista varios dominios específicos.",
+        "correctAnswer": 0
+      },
+      "hard-44": {
+        "question": "El protocolo HTTP/3 utiliza QUIC en lugar de TCP como protocolo de transporte.",
+        "explanation": "Sí, HTTP/3 usa QUIC que está basado en UDP, ofreciendo mejor rendimiento que HTTP/2 basado en TCP.",
+        "correctAnswer": 0
+      },
+      "hard-45": {
+        "question": "¿Qué es el concepto de \"tree shaking\" en el bundling de JavaScript?",
+        "options": [
+          "Eliminar el código muerto no utilizado del bundle final",
+          "Añadir código adicional",
+          "Un método de compresión",
+          "Un tipo de caché"
+        ],
+        "explanation": "El tree shaking es una técnica de optimización que elimina el código muerto (no utilizado) del bundle final, reduciendo su tamaño.",
+        "correctAnswer": 0
+      },
+      "hard-46": {
+        "question": "¿Cuál es la diferencia entre un rate limiting basado en IP y un rate limiting basado en token?",
+        "options": [
+          "IP-based limita por dirección, token-based limita por usuario autenticado",
+          "Token-based es más rápido",
+          "Ninguna diferencia",
+          "IP-based está obsoleto"
+        ],
+        "explanation": "El rate limiting basado en IP limita las solicitudes por dirección IP, mientras que el basado en token limita por usuario autenticado, siendo más preciso.",
+        "correctAnswer": 0
+      },
+      "hard-47": {
+        "question": "Los Proxies en JavaScript permiten interceptar y personalizar las operaciones sobre los objetos.",
+        "explanation": "Sí, los Proxies permiten crear un objeto que intercepta y personaliza las operaciones fundamentales (lectura, escritura, etc.).",
+        "correctAnswer": 0
+      },
+      "hard-48": {
+        "question": "¿Qué es el concepto de \"zero trust\" en ciberseguridad?",
+        "options": [
+          "No confiar en ningún usuario o dispositivo por defecto",
+          "Confiar en todos los usuarios",
+          "Un método de cifrado",
+          "Un tipo de firewall"
+        ],
+        "explanation": "El zero trust es un modelo de seguridad que no confía en ningún usuario o dispositivo por defecto, verificando cada acceso.",
+        "correctAnswer": 0
+      },
+      "hard-49": {
+        "question": "¿Cuál es la diferencia entre un polyfill y un transpiler?",
+        "options": [
+          "Polyfill añade funcionalidades que faltan, transpiler convierte el código",
+          "Transpiler es más rápido",
+          "Ninguna diferencia",
+          "Polyfill está obsoleto"
+        ],
+        "explanation": "Un polyfill añade funcionalidades que faltan en un entorno, mientras que un transpiler convierte código de un lenguaje a otro.",
+        "correctAnswer": 0
+      },
+      "hard-50": {
+        "question": "El protocolo gRPC utiliza Protocol Buffers para la serialización de datos.",
+        "explanation": "Sí, gRPC usa Protocol Buffers (protobuf) como formato de serialización por defecto, ofreciendo una serialización binaria eficiente.",
+        "correctAnswer": 0
       }
-    },
-    "easy-21": {
-      "question": "El DOM significa \"Document Object Model\".",
-      "explanation": "Sí, el DOM (Document Object Model) representa la estructura de un documento HTML."
-    },
-    "easy-22": {
-      "question": "¿Qué propiedad CSS se utiliza para añadir espacio entre el contenido y el borde de un elemento?",
-      "options": [
-        "padding",
-        "margin",
-        "spacing",
-        "gap"
-      ],
-      "explanation": "padding añade espacio dentro del elemento, entre el contenido y el borde."
-    },
-    "easy-23": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un párrafo?",
-      "options": [
-        "<p>",
-        "<para>",
-        "<text>",
-        "<paragraph>"
-      ],
-      "explanation": "La etiqueta <p> se utiliza para crear un párrafo en HTML."
-    },
-    "easy-24": {
-      "question": "Las funciones flecha (arrow functions) en JavaScript tienen su propio contexto \"this\".",
-      "explanation": "No, las funciones flecha heredan el contexto \"this\" de su ámbito padre."
-    },
-    "easy-25": {
-      "question": "¿Qué método de JavaScript permite encontrar un elemento en un array?",
-      "options": [
-        "find()",
-        "search()",
-        "locate()",
-        "get()"
-      ],
-      "explanation": "El método find() devuelve el primer elemento de un array que cumple una condición."
-    },
-    "easy-26": {
-      "question": "¿Qué propiedad CSS se utiliza para cambiar el color de fondo?",
-      "options": [
-        "background-color",
-        "bg-color",
-        "background",
-        "color-background"
-      ],
-      "explanation": "La propiedad background-color define el color de fondo de un elemento."
-    },
-    "easy-27": {
-      "question": "JSON significa \"JavaScript Object Notation\".",
-      "explanation": "Sí, JSON es un formato de datos basado en la notación de objetos de JavaScript."
-    },
-    "easy-28": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un formulario?",
-      "options": [
-        "<form>",
-        "<input>",
-        "<fieldset>",
-        "<formset>"
-      ],
-      "explanation": "La etiqueta <form> se utiliza para crear un formulario HTML."
-    },
-    "easy-29": {
-      "question": "¿Qué método de JavaScript permite crear un nuevo array a partir de otro?",
-      "options": [
-        "map()",
-        "copy()",
-        "duplicate()",
-        "clone()"
-      ],
-      "explanation": "El método map() crea un nuevo array aplicando una función a cada elemento."
-    },
-    "easy-30": {
-      "question": "Los comentarios en JavaScript empiezan con // para una línea o /* */ para varias líneas.",
-      "explanation": "Sí, // se usa para comentarios de una sola línea y /* */ para comentarios de varias líneas."
-    },
-    "easy-31": {
-      "question": "¿Qué propiedad CSS se utiliza para hacer invisible un elemento?",
-      "options": [
-        "display: none o visibility: hidden",
-        "hide: true",
-        "visible: false",
-        "opacity: 0"
-      ],
-      "explanation": "display: none elimina el elemento del flujo, visibility: hidden lo oculta pero conserva el espacio."
-    },
-    "easy-32": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un botón?",
-      "options": [
-        "<button>",
-        "<btn>",
-        "<click>",
-        "<input type=\"button\">"
-      ],
-      "explanation": "La etiqueta <button> se utiliza para crear un botón clicable en HTML."
-    },
-    "easy-33": {
-      "question": "Los arrays en JavaScript empiezan en el índice 0.",
-      "explanation": "Sí, los arrays de JavaScript están indexados desde 0, no desde 1."
-    },
-    "easy-34": {
-      "question": "¿Qué propiedad CSS se utiliza para definir la anchura de un elemento?",
-      "options": [
-        "width",
-        "w",
-        "size",
-        "dimension"
-      ],
-      "explanation": "La propiedad width define la anchura de un elemento."
-    },
-    "easy-35": {
-      "question": "¿Qué método de JavaScript permite comprobar si un elemento existe en un array?",
-      "options": [
-        "includes()",
-        "contains()",
-        "has()",
-        "exists()"
-      ],
-      "explanation": "El método includes() comprueba si un array contiene un elemento específico."
-    },
-    "easy-36": {
-      "question": "localStorage permite almacenar datos en el navegador de forma persistente.",
-      "explanation": "Sí, localStorage almacena los datos de forma persistente incluso después de cerrar el navegador."
-    },
-    "easy-37": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear una tabla?",
-      "options": [
-        "<table>",
-        "<tab>",
-        "<grid>",
-        "<data>"
-      ],
-      "explanation": "La etiqueta <table> se utiliza para crear una tabla en HTML."
-    },
-    "easy-38": {
-      "question": "¿Qué método de JavaScript permite unir los elementos de un array en una cadena?",
-      "options": [
-        "join()",
-        "concat()",
-        "merge()",
-        "combine()"
-      ],
-      "explanation": "El método join() une todos los elementos de un array en una cadena de caracteres."
-    },
-    "easy-39": {
-      "question": "Las funciones en JavaScript son objetos de primera clase.",
-      "explanation": "Sí, las funciones de JavaScript pueden asignarse a variables, pasarse como parámetros, etc."
-    },
-    "easy-40": {
-      "question": "¿Qué propiedad CSS se utiliza para añadir espacio alrededor de un elemento?",
-      "options": [
-        "margin",
-        "padding",
-        "spacing",
-        "gap"
-      ],
-      "explanation": "margin añade espacio fuera del elemento, entre el elemento y los demás elementos."
-    },
-    "easy-41": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear una lista ordenada?",
-      "options": [
-        "<ol>",
-        "<ul>",
-        "<li>",
-        "<list>"
-      ],
-      "explanation": "<ol> (ordered list) crea una lista numerada."
-    },
-    "easy-42": {
-      "question": "La palabra clave \"const\" en JavaScript permite declarar una constante que no puede reasignarse.",
-      "explanation": "Sí, const declara una constante que no puede reasignarse después de su declaración inicial."
-    },
-    "easy-43": {
-      "question": "¿Qué método de JavaScript permite filtrar los elementos de un array?",
-      "options": [
-        "filter()",
-        "select()",
-        "find()",
-        "search()"
-      ],
-      "explanation": "El método filter() crea un nuevo array con los elementos que pasan una prueba."
-    },
-    "easy-44": {
-      "question": "¿Qué propiedad CSS se utiliza para alinear el texto?",
-      "options": [
-        "text-align",
-        "align",
-        "text-position",
-        "alignment"
-      ],
-      "explanation": "La propiedad text-align define la alineación horizontal del texto."
-    },
-    "easy-45": {
-      "question": "Las promesas (Promises) en JavaScript permiten gestionar el código asíncrono.",
-      "explanation": "Sí, las Promises permiten gestionar operaciones asíncronas de forma más legible que los callbacks."
-    },
-    "easy-46": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un campo de entrada de texto?",
-      "options": [
-        "<input type=\"text\">",
-        "<text>",
-        "<input>",
-        "<field>"
-      ],
-      "explanation": "<input type=\"text\"> crea un campo de entrada de texto en un formulario."
-    },
-    "easy-47": {
-      "question": "¿Qué método de JavaScript permite eliminar el primer elemento de un array?",
-      "options": [
-        "shift()",
-        "pop()",
-        "unshift()",
-        "remove()"
-      ],
-      "explanation": "El método shift() elimina y devuelve el primer elemento de un array."
-    },
-    "easy-48": {
-      "question": "La palabra clave \"let\" en JavaScript permite declarar una variable con alcance de bloque.",
-      "explanation": "Sí, let declara una variable con alcance de bloque, a diferencia de var que tiene alcance de función."
-    },
-    "easy-49": {
-      "question": "¿Qué propiedad CSS se utiliza para definir la altura de un elemento?",
-      "options": [
-        "height",
-        "h",
-        "size",
-        "dimension"
-      ],
-      "explanation": "La propiedad height define la altura de un elemento."
-    },
-    "easy-50": {
-      "question": "¿Qué método de JavaScript permite convertir un array en una cadena de caracteres?",
-      "options": [
-        "toString()",
-        "toText()",
-        "stringify()",
-        "convert()"
-      ],
-      "explanation": "El método toString() convierte un array en una cadena de caracteres."
-    },
-    "easy-51": {
-      "question": "Las clases CSS pueden aplicarse a varios elementos HTML.",
-      "explanation": "Sí, una clase CSS puede usarse en varios elementos para aplicar el mismo estilo."
-    },
-    "easy-52": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear una división o sección?",
-      "options": [
-        "<div>",
-        "<section>",
-        "<container>",
-        "<box>"
-      ],
-      "explanation": "La etiqueta <div> se utiliza para crear un contenedor genérico o una sección."
-    },
-    "easy-53": {
-      "question": "¿Qué método de JavaScript permite añadir un elemento al principio de un array?",
-      "options": [
-        "unshift()",
-        "push()",
-        "shift()",
-        "prepend()"
-      ],
-      "explanation": "El método unshift() añade uno o varios elementos al principio de un array."
-    },
-    "easy-54": {
-      "question": "Los IDs en HTML deben ser únicos en una página.",
-      "explanation": "Sí, cada ID debe ser único en una página HTML para un funcionamiento correcto."
-    },
-    "easy-55": {
-      "question": "¿Qué propiedad CSS se utiliza para definir el estilo del borde?",
-      "options": [
-        "border-style",
-        "border",
-        "border-type",
-        "border-design"
-      ],
-      "explanation": "La propiedad border-style define el estilo del borde (solid, dashed, etc.)."
-    },
-    "easy-56": {
-      "question": "¿Qué método de JavaScript permite comprobar el tipo de una variable?",
-      "options": [
-        "typeof",
-        "type()",
-        "getType()",
-        "checkType()"
-      ],
-      "explanation": "El operador typeof devuelve una cadena que indica el tipo de una variable."
-    },
-    "easy-57": {
-      "question": "El selector CSS \"#id\" apunta a un elemento por su ID.",
-      "explanation": "Sí, el selector # apunta a un elemento por su ID en CSS."
-    },
-    "easy-58": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un salto de línea?",
-      "options": [
-        "<br>",
-        "<break>",
-        "<lb>",
-        "<newline>"
-      ],
-      "explanation": "La etiqueta <br> crea un salto de línea en el texto."
-    },
-    "easy-59": {
-      "question": "¿Qué método de JavaScript permite ordenar los elementos de un array?",
-      "options": [
-        "sort()",
-        "order()",
-        "arrange()",
-        "organize()"
-      ],
-      "explanation": "El método sort() ordena los elementos de un array in place."
-    },
-    "easy-60": {
-      "question": "El selector CSS \".class\" apunta a los elementos por su clase.",
-      "explanation": "Sí, el selector . apunta a los elementos por su clase en CSS."
-    },
-    "easy-61": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un encabezado de sección?",
-      "options": [
-        "<header>",
-        "<head>",
-        "<title>",
-        "<h1>"
-      ],
-      "explanation": "La etiqueta <header> representa el encabezado de una sección o de una página."
-    },
-    "easy-62": {
-      "question": "¿Qué método de JavaScript permite reducir un array a un único valor?",
-      "options": [
-        "reduce()",
-        "sum()",
-        "total()",
-        "aggregate()"
-      ],
-      "explanation": "El método reduce() reduce un array a un único valor aplicando una función."
-    },
-    "easy-63": {
-      "question": "Las media queries en CSS permiten aplicar estilos según el tamaño de la pantalla.",
-      "explanation": "Sí, las media queries permiten crear diseños responsive adaptados a diferentes tamaños de pantalla."
-    },
-    "easy-64": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un pie de página?",
-      "options": [
-        "<footer>",
-        "<foot>",
-        "<bottom>",
-        "<end>"
-      ],
-      "explanation": "La etiqueta <footer> representa el pie de página de una sección o de una página."
-    },
-    "easy-65": {
-      "question": "¿Qué método de JavaScript permite comprobar si todos los elementos de un array pasan una prueba?",
-      "options": [
-        "every()",
-        "all()",
-        "checkAll()",
-        "verifyAll()"
-      ],
-      "explanation": "El método every() comprueba si todos los elementos de un array pasan una prueba."
-    },
-    "easy-66": {
-      "question": "Flexbox en CSS permite crear layouts flexibles y responsive.",
-      "explanation": "Sí, Flexbox es un modelo de layout CSS que facilita la creación de diseños flexibles."
-    },
-    "easy-67": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear una sección de navegación?",
-      "options": [
-        "<nav>",
-        "<navigation>",
-        "<menu>",
-        "<navbar>"
-      ],
-      "explanation": "La etiqueta <nav> representa una sección de navegación con enlaces."
-    },
-    "easy-68": {
-      "question": "¿Qué método de JavaScript permite comprobar si al menos un elemento de un array pasa una prueba?",
-      "options": [
-        "some()",
-        "any()",
-        "one()",
-        "checkOne()"
-      ],
-      "explanation": "El método some() comprueba si al menos un elemento de un array pasa una prueba."
-    },
-    "easy-69": {
-      "question": "Las variables declaradas con \"var\" en JavaScript se elevan (hoisting) al inicio de su scope.",
-      "explanation": "Sí, las declaraciones con var se elevan (hoisting), es decir, se mueven al inicio de su scope."
-    },
-    "easy-70": {
-      "question": "¿Qué propiedad CSS se utiliza para definir la familia tipográfica?",
-      "options": [
-        "font-family",
-        "font",
-        "font-type",
-        "font-style"
-      ],
-      "explanation": "La propiedad font-family define la familia tipográfica que se va a usar."
-    },
-    "easy-71": {
-      "question": "¿Qué método de JavaScript permite crear una copia superficial de un array?",
-      "options": [
-        "slice()",
-        "copy()",
-        "clone()",
-        "duplicate()"
-      ],
-      "explanation": "El método slice() crea una copia superficial de un array sin modificar el original."
-    },
-    "easy-72": {
-      "question": "El selector CSS \"element\" selecciona todos los elementos de un tipo específico.",
-      "explanation": "Sí, el selector de elemento selecciona todos los elementos de ese tipo en la página."
-    },
-    "easy-73": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un campo de texto multilínea?",
-      "options": [
-        "<textarea>",
-        "<text>",
-        "<input type=\"textarea\">",
-        "<multiline>"
-      ],
-      "explanation": "La etiqueta <textarea> crea un campo de texto multilínea en un formulario."
-    },
-    "easy-74": {
-      "question": "¿Qué método de JavaScript permite concatenar dos arrays?",
-      "options": [
-        "concat()",
-        "merge()",
-        "join()",
-        "combine()"
-      ],
-      "explanation": "El método concat() combina dos o más arrays en un nuevo array."
-    },
-    "easy-75": {
-      "question": "Los atributos HTML \"class\" e \"id\" sirven para identificar y dar estilo a los elementos.",
-      "explanation": "Sí, class e id permiten identificar elementos para CSS y JavaScript."
-    },
-    "easy-76": {
-      "question": "¿Qué propiedad CSS se utiliza para definir el espaciado entre letras?",
-      "options": [
-        "letter-spacing",
-        "text-spacing",
-        "char-spacing",
-        "spacing"
-      ],
-      "explanation": "La propiedad letter-spacing define el espaciado entre los caracteres."
-    },
-    "easy-77": {
-      "question": "¿Qué método de JavaScript permite dividir una cadena en un array?",
-      "options": [
-        "split()",
-        "divide()",
-        "separate()",
-        "break()"
-      ],
-      "explanation": "El método split() divide una cadena en un array de subcadenas."
-    },
-    "easy-78": {
-      "question": "Los eventos de JavaScript permiten interactuar con las acciones del usuario.",
-      "explanation": "Sí, eventos como click, mouseover, etc. permiten reaccionar a las acciones del usuario."
-    },
-    "easy-79": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de lista?",
-      "options": [
-        "<li>",
-        "<item>",
-        "<list-item>",
-        "<element>"
-      ],
-      "explanation": "La etiqueta <li> representa un elemento de lista dentro de <ul> o <ol>."
-    },
-    "easy-80": {
-      "question": "¿Qué método de JavaScript permite buscar un elemento en un array y devolver su índice?",
-      "options": [
-        "indexOf()",
-        "findIndex()",
-        "search()",
-        "locate()"
-      ],
-      "explanation": "El método indexOf() devuelve el primer índice en el que se puede encontrar un elemento dentro de un array."
-    },
-    "easy-81": {
-      "question": "Los selectores CSS se pueden combinar para apuntar a elementos específicos.",
-      "explanation": "Sí, se pueden combinar selectores (descendiente, hijo, adyacente, etc.) para un apuntado preciso."
-    },
-    "easy-82": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un campo de casilla de verificación?",
-      "options": [
-        "<input type=\"checkbox\">",
-        "<checkbox>",
-        "<check>",
-        "<input type=\"check\">"
-      ],
-      "explanation": "<input type=\"checkbox\"> crea una casilla de verificación en un formulario."
-    },
-    "easy-83": {
-      "question": "¿Qué método de JavaScript permite invertir el orden de los elementos de un array?",
-      "options": [
-        "reverse()",
-        "invert()",
-        "flip()",
-        "backward()"
-      ],
-      "explanation": "El método reverse() invierte el orden de los elementos de un array in situ."
-    },
-    "easy-84": {
-      "question": "Las pseudoclases CSS como :hover permiten dar estilo a elementos en un estado específico.",
-      "explanation": "Sí, pseudoclases como :hover, :focus, :active permiten dar estilo a estados de los elementos."
-    },
-    "easy-85": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un campo de selección (desplegable)?",
-      "options": [
-        "<select>",
-        "<dropdown>",
-        "<option>",
-        "<choice>"
-      ],
-      "explanation": "La etiqueta <select> crea un menú desplegable en un formulario."
-    },
-    "easy-86": {
-      "question": "¿Qué método de JavaScript permite comprobar si una cadena contiene un subtexto?",
-      "options": [
-        "includes()",
-        "contains()",
-        "has()",
-        "find()"
-      ],
-      "explanation": "El método includes() comprueba si una cadena contiene una subcadena especificada."
-    },
-    "easy-87": {
-      "question": "Las variables en JavaScript pueden contener distintos tipos de datos (números, cadenas, objetos, etc.).",
-      "explanation": "Sí, JavaScript es un lenguaje de tipado dinámico; las variables pueden cambiar de tipo."
-    },
-    "easy-88": {
-      "question": "¿Qué propiedad CSS se utiliza para definir la opacidad de un elemento?",
-      "options": [
-        "opacity",
-        "transparency",
-        "alpha",
-        "visibility"
-      ],
-      "explanation": "La propiedad opacity define el nivel de opacidad de un elemento (0 = transparente, 1 = opaco)."
-    },
-    "easy-89": {
-      "question": "¿Qué método de JavaScript permite convertir una cadena a mayúsculas?",
-      "options": [
-        "toUpperCase()",
-        "upper()",
-        "toUpper()",
-        "uppercase()"
-      ],
-      "explanation": "El método toUpperCase() convierte todos los caracteres de una cadena a mayúsculas."
-    },
-    "easy-90": {
-      "question": "Los atributos HTML \"required\" y \"disabled\" se pueden usar en formularios.",
-      "explanation": "Sí, required hace que un campo sea obligatorio y disabled lo deshabilita."
-    },
-    "easy-91": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de cita?",
-      "options": [
-        "<blockquote>",
-        "<quote>",
-        "<cite>",
-        "<q>"
-      ],
-      "explanation": "La etiqueta <blockquote> se utiliza para crear una cita larga."
-    },
-    "easy-92": {
-      "question": "¿Qué método de JavaScript permite convertir una cadena a minúsculas?",
-      "options": [
-        "toLowerCase()",
-        "lower()",
-        "toLower()",
-        "lowercase()"
-      ],
-      "explanation": "El método toLowerCase() convierte todos los caracteres de una cadena a minúsculas."
-    },
-    "easy-93": {
-      "question": "Los arrays en JavaScript pueden contener elementos de distintos tipos.",
-      "explanation": "Sí, un array de JavaScript puede contener números, cadenas, objetos, etc. mezclados."
-    },
-    "easy-94": {
-      "question": "¿Qué propiedad CSS se utiliza para definir el espaciado entre líneas de texto?",
-      "options": [
-        "line-height",
-        "text-height",
-        "line-spacing",
-        "spacing"
-      ],
-      "explanation": "La propiedad line-height define la altura de una línea de texto."
-    },
-    "easy-95": {
-      "question": "¿Qué método de JavaScript permite reemplazar texto en una cadena?",
-      "options": [
-        "replace()",
-        "substitute()",
-        "change()",
-        "swap()"
-      ],
-      "explanation": "El método replace() sustituye una subcadena por otra dentro de una cadena."
-    },
-    "easy-96": {
-      "question": "Los atributos HTML \"alt\" en las imágenes mejoran la accesibilidad.",
-      "explanation": "Sí, el atributo alt proporciona un texto alternativo para los lectores de pantalla y para cuando las imágenes no cargan."
-    },
-    "easy-97": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de código?",
-      "options": [
-        "<code>",
-        "<programming>",
-        "<script>",
-        "<snippet>"
-      ],
-      "explanation": "La etiqueta <code> se utiliza para mostrar código informático."
-    },
-    "easy-98": {
-      "question": "¿Qué método de JavaScript permite extraer una parte de una cadena?",
-      "options": [
-        "substring() o slice()",
-        "extract()",
-        "cut()",
-        "part()"
-      ],
-      "explanation": "Los métodos substring() y slice() extraen una parte de una cadena."
-    },
-    "easy-99": {
-      "question": "Los selectores CSS pueden apuntar a elementos según su posición en el DOM.",
-      "explanation": "Sí, se puede usar :first-child, :last-child y :nth-child() para apuntar por posición."
-    },
-    "easy-100": {
-      "question": "¿Qué etiqueta HTML se utiliza para crear un elemento de texto preformateado?",
-      "options": [
-        "<pre>",
-        "<format>",
-        "<text>",
-        "<preserve>"
-      ],
-      "explanation": "La etiqueta <pre> preserva los espacios y los saltos de línea en el texto."
-    },
-    "medium-1": {
-      "question": "¿Cuál es la principal diferencia entre let y var en JavaScript?",
-      "options": [
-        "let tiene ámbito de bloque, var tiene ámbito de función",
-        "let es más rápido que var",
-        "var está obsoleto",
-        "No hay diferencia"
-      ],
-      "explanation": "let tiene ámbito de bloque, lo que significa que solo es accesible dentro del bloque donde se declara, mientras que var tiene ámbito de función."
-    },
-    "medium-2": {
-      "question": "Los hooks de React solo pueden usarse en componentes funcionales.",
-      "explanation": "Sí, los hooks de React (useState, useEffect, etc.) solo pueden usarse en componentes funcionales o en hooks personalizados."
-    },
-    "medium-3": {
-      "question": "¿Qué es una inyección SQL?",
-      "options": [
-        "Un ataque que inyecta código SQL malicioso",
-        "Un método de optimización de SQL",
-        "Un tipo de base de datos",
-        "Una función SQL"
-      ],
-      "explanation": "La inyección SQL es una vulnerabilidad de seguridad que permite a un atacante ejecutar comandos SQL maliciosos."
-    },
-    "medium-4": {
-      "question": "¿Cuál es el método recomendado para almacenar contraseñas?",
-      "options": [
-        "Hashing con un algoritmo adecuado (bcrypt, argon2)",
-        "Cifrado simétrico",
-        "Almacenamiento en texto plano",
-        "Compresión"
-      ],
-      "explanation": "Las contraseñas deben almacenarse aplicando hashing con algoritmos adecuados como bcrypt o argon2, nunca en texto plano."
-    },
-    "medium-5": {
-      "question": "CORS (Cross-Origin Resource Sharing) es un mecanismo de seguridad del navegador.",
-      "explanation": "Sí, CORS es un mecanismo de seguridad que controla las solicitudes entre diferentes orígenes."
-    },
-    "medium-6": {
-      "question": "¿Qué es el SSR (Server-Side Rendering)?",
-      "options": [
-        "Renderizar las páginas en el servidor antes de enviarlas al cliente",
-        "Renderizar únicamente en el cliente",
-        "Un método de caché",
-        "Un protocolo de red"
-      ],
-      "explanation": "El SSR consiste en generar el HTML de las páginas en el servidor antes de enviarlo al navegador."
-    },
-    "medium-7": {
-      "question": "¿Cuál es la diferencia entre == y === en JavaScript?",
-      "options": [
-        "=== compara valor y tipo, == compara solo el valor",
-        "== es más rápido",
-        "=== está obsoleto",
-        "No hay diferencia"
-      ],
-      "explanation": "=== (igualdad estricta) compara tanto el valor como el tipo, mientras que == (igualdad laxa) realiza una conversión de tipo antes de comparar."
-    },
-    "medium-8": {
-      "question": "Los tokens JWT (JSON Web Tokens) pueden decodificarse pero no modificarse sin la clave secreta.",
-      "explanation": "Sí, los JWT pueden decodificarse (están en base64), pero la firma impide su modificación sin la clave secreta."
-    },
-    "medium-9": {
-      "question": "¿Qué es un ataque XSS (Cross-Site Scripting)?",
-      "options": [
-        "La inyección de código JavaScript malicioso en una página web",
-        "Un ataque a los servidores",
-        "Un tipo de virus",
-        "Un método de compresión"
-      ],
-      "explanation": "XSS es una vulnerabilidad que permite inyectar código JavaScript malicioso que se ejecuta en el navegador de la víctima."
-    },
-    "medium-10": {
-      "question": "¿Qué método de React permite memorizar un valor calculado?",
-      "options": [
-        "useMemo",
-        "useState",
-        "useEffect",
-        "useCallback"
-      ],
-      "explanation": "useMemo permite memorizar el resultado de un cálculo costoso y no recalcularlo salvo que cambien las dependencias."
-    },
-    "medium-11": {
-      "question": "PostgreSQL es una base de datos NoSQL.",
-      "explanation": "No, PostgreSQL es una base de datos relacional (SQL), no NoSQL."
-    },
-    "medium-12": {
-      "question": "¿Qué es el CSRF (Cross-Site Request Forgery)?",
-      "options": [
-        "Un ataque que obliga a un usuario a ejecutar acciones no deseadas",
-        "Un método de optimización",
-        "Un tipo de cookie",
-        "Una función de JavaScript"
-      ],
-      "explanation": "CSRF es un ataque que obliga a un usuario autenticado a ejecutar acciones no deseadas en una aplicación web."
-    },
-    "medium-13": {
-      "question": "¿Cuál es la complejidad temporal media de una búsqueda en un arreglo no ordenado?",
-      "options": [
-        "O(n)",
-        "O(log n)",
-        "O(1)",
-        "O(n²)"
-      ],
-      "explanation": "En un arreglo no ordenado, en el peor de los casos hay que recorrer todos los elementos, por lo que es O(n)."
-    },
-    "medium-14": {
-      "question": "Las Promises en JavaScript se pueden encadenar con .then() y .catch().",
-      "explanation": "Sí, las Promises se pueden encadenar para gestionar operaciones asíncronas de forma secuencial."
-    },
-    "medium-15": {
-      "question": "¿Qué es un middleware en Express.js?",
-      "options": [
-        "Una función que se ejecuta entre la solicitud y la respuesta",
-        "Un tipo de ruta",
-        "Un método HTTP",
-        "Un protocolo"
-      ],
-      "explanation": "Un middleware es una función que tiene acceso al objeto request, al objeto response y a la función next en el ciclo solicitud-respuesta."
-    },
-    "medium-16": {
-      "question": "HTTPS usa el puerto 80 de forma predeterminada.",
-      "explanation": "No, HTTPS usa el puerto 443 de forma predeterminada. El puerto 80 lo usa HTTP."
-    },
-    "medium-17": {
-      "question": "¿Cuál es la diferencia entre const y let en JavaScript?",
-      "options": [
-        "const no se puede reasignar, let sí puede",
-        "const es más rápido",
-        "let está obsoleto",
-        "No hay diferencia"
-      ],
-      "explanation": "const declara una constante que no se puede reasignar, mientras que let permite la reasignación."
-    },
-    "medium-18": {
-      "question": "¿Qué es el lazy loading?",
-      "options": [
-        "Cargar recursos solo cuando son necesarios",
-        "Cargar todo de una vez",
-        "Un método de caché",
-        "Un tipo de base de datos"
-      ],
-      "explanation": "El lazy loading consiste en cargar recursos (imágenes, componentes) solo cuando son necesarios, mejorando el rendimiento."
-    },
-    "medium-19": {
-      "question": "Las cookies HTTP pueden protegerse con los atributos Secure y HttpOnly.",
-      "explanation": "Sí, Secure fuerza HTTPS y HttpOnly impide el acceso de JavaScript a las cookies, reduciendo los riesgos de XSS."
-    },
-    "medium-20": {
-      "question": "¿Qué es un hook personalizado en React?",
-      "options": [
-        "Una función que empieza por \"use\" y puede usar otros hooks",
-        "Un componente de React",
-        "Un método de renderizado",
-        "Un tipo de state"
-      ],
-      "explanation": "Un hook personalizado es una función de JavaScript que empieza por \"use\" y puede llamar a otros hooks de React."
-    },
-    "medium-21": {
-      "question": "La Content Security Policy (CSP) permite prevenir ataques XSS.",
-      "explanation": "Sí, CSP es un mecanismo de seguridad que permite controlar qué recursos pueden cargarse y ejecutarse."
-    },
-    "medium-22": {
-      "question": "¿Cuál es el método para crear una copia superficial (shallow copy) de un objeto en JavaScript?",
-      "options": [
-        "Object.assign() o spread operator",
-        "Object.clone()",
-        "Object.copy()",
-        "Object.duplicate()"
-      ],
-      "explanation": "Object.assign({}, obj) o {...obj} crean una copia superficial de un objeto."
-    },
-    "medium-23": {
-      "question": "Los WebSockets permiten una comunicación bidireccional en tiempo real.",
-      "explanation": "Sí, los WebSockets establecen una conexión TCP persistente que permite la comunicación bidireccional en tiempo real."
-    },
-    "medium-24": {
-      "question": "¿Qué es el debouncing?",
-      "options": [
-        "Retrasar la ejecución de una función hasta que haya transcurrido un intervalo",
-        "Acelerar una función",
-        "Un método de caché",
-        "Un tipo de evento"
-      ],
-      "explanation": "El debouncing retrasa la ejecución de una función hasta que pasa un cierto tiempo sin nuevas llamadas, útil para búsquedas en tiempo real."
-    },
-    "medium-25": {
-      "question": "El localStorage persiste incluso después de cerrar el navegador.",
-      "explanation": "Sí, localStorage almacena datos de forma persistente en el navegador, incluso después de cerrarlo."
-    },
-    "medium-26": {
-      "question": "¿Qué es el hoisting en JavaScript?",
-      "options": [
-        "El desplazamiento de las declaraciones a la parte superior de su ámbito",
-        "Un método de ordenación",
-        "Un tipo de variable",
-        "Un error de sintaxis"
-      ],
-      "explanation": "El hoisting es el comportamiento de JavaScript que mueve las declaraciones de variables y funciones a la parte superior de su ámbito."
-    },
-    "medium-27": {
-      "question": "¿Qué es un callback en JavaScript?",
-      "options": [
-        "Una función pasada como argumento a otra función",
-        "Un tipo de bucle",
-        "Un método de arreglo",
-        "Un operador"
-      ],
-      "explanation": "Un callback es una función pasada como argumento a otra función y ejecutada más tarde."
-    },
-    "medium-28": {
-      "question": "Los arreglos de JavaScript son objetos.",
-      "explanation": "Sí, los arreglos de JavaScript son un tipo especial de objeto con métodos y propiedades específicas."
-    },
-    "medium-29": {
-      "question": "¿Qué es el spread operator (...) en JavaScript?",
-      "options": [
-        "Un operador que expande un iterable en elementos individuales",
-        "Un operador matemático",
-        "Un método de arreglo",
-        "Un tipo de función"
-      ],
-      "explanation": "El spread operator (...) permite expandir un iterable (arreglo, objeto) en elementos individuales."
-    },
-    "medium-30": {
-      "question": "¿Qué es el destructuring en JavaScript?",
-      "options": [
-        "Extraer valores de objetos o arreglos en variables",
-        "Destruir un objeto",
-        "Un método de eliminación",
-        "Un tipo de variable"
-      ],
-      "explanation": "El destructuring permite extraer valores de objetos o arreglos en variables distintas."
-    },
-    "medium-31": {
-      "question": "Las funciones async/await en JavaScript simplifican el código asíncrono.",
-      "explanation": "Sí, async/await permite escribir código asíncrono de forma más similar al código síncrono y más legible."
-    },
-    "medium-32": {
-      "question": "¿Qué es el concepto de \"pure function\" en programación?",
-      "options": [
-        "Una función que siempre devuelve el mismo resultado para las mismas entradas",
-        "Una función rápida",
-        "Una función sin parámetros",
-        "Una función global"
-      ],
-      "explanation": "Una pure function siempre devuelve el mismo resultado para las mismas entradas y no tiene efectos secundarios."
-    },
-    "medium-33": {
-      "question": "¿Qué es el concepto de \"currying\" en programación funcional?",
-      "options": [
-        "Transformar una función con varios argumentos en una serie de funciones de un solo argumento",
-        "Un método de ordenación",
-        "Un tipo de bucle",
-        "Un error"
-      ],
-      "explanation": "El currying transforma una función que toma varios argumentos en una serie de funciones que toman un argumento cada una."
-    },
-    "medium-34": {
-      "question": "sessionStorage almacena los datos solo durante la sesión del navegador.",
-      "explanation": "Sí, sessionStorage almacena los datos solo para la sesión actual y los elimina al cerrar la pestaña."
-    },
-    "medium-35": {
-      "question": "¿Qué es el concepto de \"immutability\" en programación?",
-      "options": [
-        "El estado no puede modificarse después de su creación",
-        "Un estado que cambia a menudo",
-        "Un método de mutación",
-        "Un tipo de variable"
-      ],
-      "explanation": "La inmutabilidad significa que un objeto no puede modificarse después de su creación; en su lugar, se crean nuevos objetos."
-    },
-    "medium-36": {
-      "question": "¿Qué es el concepto de \"composition\" en React?",
-      "options": [
-        "Combinar componentes pequeños para crear componentes más complejos",
-        "Un tipo de renderizado",
-        "Un método de state",
-        "Un hook"
-      ],
-      "explanation": "La composición consiste en combinar componentes pequeños y reutilizables para crear componentes más complejos."
-    },
-    "medium-37": {
-      "question": "Las props en React son de solo lectura (read-only).",
-      "explanation": "Sí, las props son inmutables y no deben ser modificadas por el componente hijo."
-    },
-    "medium-38": {
-      "question": "¿Qué es el concepto de \"higher-order component\" (HOC) en React?",
-      "options": [
-        "Una función que recibe un componente y devuelve un nuevo componente",
-        "Un componente de alto nivel",
-        "Un tipo de hook",
-        "Un método de renderizado"
-      ],
-      "explanation": "Un HOC es una función que recibe un componente y devuelve un nuevo componente con funcionalidades adicionales."
-    },
-    "medium-39": {
-      "question": "¿Qué es el concepto de \"render props\" en React?",
-      "options": [
-        "Una técnica en la que un componente acepta una función como prop para el renderizado",
-        "Un tipo de prop",
-        "Un método de state",
-        "Un hook"
-      ],
-      "explanation": "Las render props son una técnica en la que un componente acepta una función como prop para decidir qué debe renderizar."
-    },
-    "medium-40": {
-      "question": "El hook useEffect en React puede reemplazar componentDidMount, componentDidUpdate y componentWillUnmount.",
-      "explanation": "Sí, useEffect combina las funcionalidades de esos tres métodos del ciclo de vida de los componentes de clase."
-    },
-    "medium-41": {
-      "question": "¿Qué es el concepto de \"controlled component\" en React?",
-      "options": [
-        "Un componente cuyo valor está controlado por el state de React",
-        "Un componente no controlado",
-        "Un tipo de hook",
-        "Un método de renderizado"
-      ],
-      "explanation": "Un controlled component es un componente cuyo valor está controlado por el state de React mediante props."
-    },
-    "medium-42": {
-      "question": "¿Qué es el concepto de \"uncontrolled component\" en React?",
-      "options": [
-        "Un componente que almacena su estado en el DOM en lugar de en React",
-        "Un componente sin state",
-        "Un tipo de hook",
-        "Un error"
-      ],
-      "explanation": "Un uncontrolled component almacena su estado en el DOM y usa refs para acceder a los valores."
-    },
-    "medium-43": {
-      "question": "El hook useRef en React permite crear una referencia mutable que persiste entre renders.",
-      "explanation": "Sí, useRef devuelve un objeto mutable cuya propiedad .current se puede modificar sin desencadenar un re-render."
-    },
-    "medium-44": {
-      "question": "¿Qué es el concepto de \"key prop\" en React?",
-      "options": [
-        "Un identificador único para ayudar a React a identificar elementos en una lista",
-        "Una clave de cifrado",
-        "Un tipo de prop",
-        "Un método"
-      ],
-      "explanation": "La key prop ayuda a React a identificar qué elementos han cambiado, se han añadido o se han eliminado en una lista."
-    },
-    "medium-45": {
-      "question": "¿Qué es el concepto de \"reconciliation\" en React?",
-      "options": [
-        "El proceso por el cual React actualiza el DOM de forma eficiente",
-        "Un tipo de renderizado",
-        "Un método de state",
-        "Un hook"
-      ],
-      "explanation": "La reconciliation es el proceso por el cual React compara el Virtual DOM con el DOM real y aplica los cambios necesarios."
-    },
-    "medium-46": {
-      "question": "El hook useContext en React permite acceder a un contexto sin usar un Consumer.",
-      "explanation": "Sí, useContext simplifica el acceso al contexto evitando usar el patrón Consumer."
-    },
-    "medium-47": {
-      "question": "¿Qué es el concepto de \"code splitting\" en las aplicaciones web?",
-      "options": [
-        "Dividir el código en chunks cargados bajo demanda",
-        "Dividir el código en archivos",
-        "Un método de compresión",
-        "Un tipo de renderizado"
-      ],
-      "explanation": "El code splitting permite dividir el bundle en chunks más pequeños, cargados solo cuando es necesario."
-    },
-    "medium-48": {
-      "question": "¿Qué es el concepto de \"lazy loading\" para las imágenes?",
-      "options": [
-        "Cargar las imágenes solo cuando están a punto de ser visibles",
-        "Cargar todas las imágenes de una vez",
-        "Un método de compresión",
-        "Un tipo de imagen"
-      ],
-      "explanation": "El lazy loading carga las imágenes solo cuando están a punto de entrar en el viewport, mejorando el rendimiento."
-    },
-    "medium-49": {
-      "question": "El concepto de \"single page application\" (SPA) carga una sola página HTML y actualiza el contenido dinámicamente.",
-      "explanation": "Sí, una SPA carga una sola página HTML y usa JavaScript para actualizar el contenido sin recargar la página."
-    },
-    "medium-50": {
-      "question": "¿Qué es el concepto de \"progressive enhancement\" en desarrollo web?",
-      "options": [
-        "Crear una base funcional y luego añadir funcionalidades avanzadas",
-        "Mejorar progresivamente",
-        "Un método de pruebas",
-        "Un tipo de framework"
-      ],
-      "explanation": "El progressive enhancement consiste en crear una base funcional y accesible, y luego añadir funcionalidades avanzadas."
-    },
-    "medium-51": {
-      "question": "¿Qué es el concepto de \"memoization\" en programación?",
-      "options": [
-        "Almacenar los resultados de funciones costosas para evitar recalcularlos",
-        "Un método de ordenación",
-        "Un tipo de caché",
-        "Un error"
-      ],
-      "explanation": "La memoization consiste en poner en caché los resultados de funciones costosas para mejorar el rendimiento."
-    },
-    "medium-52": {
-      "question": "El hook useMemo en React permite memorizar valores calculados.",
-      "explanation": "Sí, useMemo memoriza el resultado de un cálculo y solo lo recalcula si cambian sus dependencias."
-    },
-    "medium-53": {
-      "question": "¿Qué es el concepto de \"closure\" en JavaScript?",
-      "options": [
-        "Una función que tiene acceso a las variables de su scope externo",
-        "Un método de cierre",
-        "Un tipo de variable",
-        "Un error"
-      ],
-      "explanation": "Una closure es una función que tiene acceso a las variables de su scope externo incluso después de que ese scope se haya cerrado."
-    },
-    "medium-54": {
-      "question": "¿Qué es el concepto de \"event delegation\" en JavaScript?",
-      "options": [
-        "Adjuntar un manejador de eventos a un elemento padre en lugar de a los hijos",
-        "Delegar eventos",
-        "Un tipo de evento",
-        "Un método"
-      ],
-      "explanation": "La event delegation consiste en adjuntar un manejador de eventos a un elemento padre para gestionar los eventos de sus hijos."
-    },
-    "medium-55": {
-      "question": "El hook useCallback en React permite memorizar funciones.",
-      "explanation": "Sí, useCallback devuelve una versión memorizada de una función que solo cambia si cambian sus dependencias."
-    },
-    "medium-56": {
-      "question": "¿Qué es el concepto de \"throttling\" en JavaScript?",
-      "options": [
-        "Limitar la ejecución de una función a una vez por intervalo de tiempo",
-        "Acelerar una función",
-        "Un tipo de bucle",
-        "Un método"
-      ],
-      "explanation": "El throttling limita la ejecución de una función a una vez por intervalo de tiempo, útil para eventos frecuentes."
-    },
-    "medium-57": {
-      "question": "¿Qué es el concepto de \"prototype chain\" en JavaScript?",
-      "options": [
-        "La cadena de prototipos que permite la herencia en JavaScript",
-        "Un método de encadenamiento",
-        "Un tipo de objeto",
-        "Un error"
-      ],
-      "explanation": "La prototype chain permite que un objeto herede propiedades y métodos de su prototipo y de los prototipos padre."
-    },
-    "medium-58": {
-      "question": "Las clases ES6 en JavaScript son azúcar sintáctico sobre el sistema de prototipos.",
-      "explanation": "Sí, las clases ES6 son una sintaxis más clara, pero siguen usando el sistema de prototipos por debajo."
-    },
-    "medium-59": {
-      "question": "¿Qué es el concepto de \"virtual DOM\" en React?",
-      "options": [
-        "Una representación en memoria (JavaScript) del DOM real",
-        "El DOM real",
-        "Un tipo de DOM",
-        "Un método"
-      ],
-      "explanation": "El Virtual DOM es una representación ligera en JavaScript del DOM real, que permite actualizaciones eficientes."
-    },
-    "medium-60": {
-      "question": "¿Qué es el concepto de \"server-side rendering\" (SSR)?",
-      "options": [
-        "Renderizar el HTML en el servidor antes de enviarlo al cliente",
-        "Renderizar en el cliente",
-        "Un tipo de renderizado",
-        "Un método"
-      ],
-      "explanation": "El SSR consiste en generar el HTML en el servidor, mejorando el SEO y el tiempo de carga inicial."
-    },
-    "medium-61": {
-      "question": "El concepto de \"static site generation\" (SSG) genera el HTML en el momento del build.",
-      "explanation": "Sí, el SSG genera todas las páginas HTML en el momento del build, creando un sitio estático ultra rápido."
-    },
-    "medium-62": {
-      "question": "¿Qué es el concepto de \"hydration\" en React?",
-      "options": [
-        "Adjuntar los manejadores de eventos al HTML prerenderizado",
-        "Añadir agua",
-        "Un tipo de renderizado",
-        "Un método"
-      ],
-      "explanation": "La hydration es el proceso de adjuntar los manejadores de eventos de React al HTML prerenderizado del lado del servidor."
-    },
-    "medium-63": {
-      "question": "¿Qué es el concepto de \"tree shaking\" en JavaScript?",
-      "options": [
-        "Eliminar el código muerto durante el bundling",
-        "Sacudir un árbol",
-        "Un método de ordenación",
-        "Un tipo de bundle"
-      ],
-      "explanation": "El tree shaking elimina el código no utilizado durante el bundling, reduciendo el tamaño del bundle final."
-    },
-    "medium-64": {
-      "question": "El concepto de \"polyfill\" permite añadir funcionalidades faltantes en navegadores antiguos.",
-      "explanation": "Sí, un polyfill es un código que implementa una funcionalidad faltante en un navegador más antiguo."
-    },
-    "medium-65": {
-      "question": "¿Qué es el concepto de \"transpilation\" en JavaScript?",
-      "options": [
-        "Convertir código de un lenguaje a otro del mismo nivel de abstracción",
-        "Compilar código",
-        "Traducir código",
-        "Un método"
-      ],
-      "explanation": "La transpilation convierte código de un lenguaje a otro del mismo nivel (por ejemplo, TypeScript a JavaScript)."
-    },
-    "medium-66": {
-      "question": "¿Qué es el concepto de \"middleware\" en los frameworks web?",
-      "options": [
-        "Una función que se ejecuta entre la solicitud y la respuesta",
-        "Un tipo de ruta",
-        "Un método",
-        "Un error"
-      ],
-      "explanation": "Un middleware es una función que intercepta solicitudes y respuestas, permitiendo añadir funcionalidades."
-    },
-    "medium-67": {
-      "question": "El concepto de \"REST\" (Representational State Transfer) es un estilo de arquitectura para APIs.",
-      "explanation": "Sí, REST es un estilo de arquitectura que usa los métodos HTTP estándar para las operaciones CRUD."
-    },
-    "medium-68": {
-      "question": "¿Qué es el concepto de \"GraphQL\"?",
-      "options": [
-        "Un lenguaje de consulta para APIs que permite pedir exactamente los datos necesarios",
-        "Un tipo de base de datos",
-        "Un método HTTP",
-        "Un framework"
-      ],
-      "explanation": "GraphQL es un lenguaje de consulta que permite a los clientes pedir exactamente los datos que necesitan."
-    },
-    "medium-69": {
-      "question": "¿Qué es el concepto de \"WebSocket\"?",
-      "options": [
-        "Un protocolo de comunicación bidireccional en tiempo real",
-        "Un tipo de socket",
-        "Un método HTTP",
-        "Un framework"
-      ],
-      "explanation": "WebSocket es un protocolo que permite una comunicación bidireccional en tiempo real entre cliente y servidor."
-    },
-    "medium-70": {
-      "question": "El concepto de \"Service Worker\" permite crear aplicaciones web sin conexión.",
-      "explanation": "Sí, los Service Workers permiten almacenar recursos en caché y crear aplicaciones web sin conexión."
-    },
-    "medium-71": {
-      "question": "¿Qué es el concepto de \"Progressive Web App\" (PWA)?",
-      "options": [
-        "Una aplicación web que funciona como una aplicación nativa",
-        "Un tipo de aplicación",
-        "Un método",
-        "Un framework"
-      ],
-      "explanation": "Una PWA combina las mejores funcionalidades web y móviles: instalación, modo sin conexión, notificaciones push."
-    },
-    "medium-72": {
-      "question": "¿Qué es el concepto de \"dependency injection\" en programación?",
-      "options": [
-        "Proporcionar las dependencias de un objeto desde fuera en lugar de crearlas dentro",
-        "Inyectar código",
-        "Un tipo de dependencia",
-        "Un método"
-      ],
-      "explanation": "La dependency injection permite que el código sea más testeable y modular al proporcionar dependencias desde fuera."
-    },
-    "medium-73": {
-      "question": "El concepto de \"unit testing\" prueba unidades individuales de código en aislamiento.",
-      "explanation": "Sí, los tests unitarios prueban pequeñas unidades de código (funciones, componentes) de forma aislada."
-    },
-    "medium-74": {
-      "question": "¿Qué es el concepto de \"integration testing\"?",
-      "options": [
-        "Probar la interacción entre varios componentes o módulos",
-        "Probar un solo componente",
-        "Un tipo de test",
-        "Un método"
-      ],
-      "explanation": "Los tests de integración verifican que varios componentes funcionen correctamente juntos."
-    },
-    "medium-75": {
-      "question": "¿Qué es el concepto de \"end-to-end testing\" (E2E)?",
-      "options": [
-        "Probar la aplicación completa de principio a fin como un usuario real",
-        "Probar una función",
-        "Un tipo de test",
-        "Un método"
-      ],
-      "explanation": "Los tests E2E simulan a un usuario real y prueban la aplicación completa de principio a fin."
-    },
-    "medium-76": {
-      "question": "El concepto de \"mocking\" en testing permite simular dependencias externas.",
-      "explanation": "Sí, el mocking permite reemplazar dependencias por versiones simuladas para aislar los tests."
-    },
-    "medium-77": {
-      "question": "¿Qué es el concepto de \"continuous integration\" (CI)?",
-      "options": [
-        "Automatizar tests y builds en cada commit",
-        "Integrar continuamente",
-        "Un tipo de despliegue",
-        "Un método"
-      ],
-      "explanation": "La CI automatiza los tests y builds en cada commit para detectar problemas rápidamente."
-    },
-    "medium-78": {
-      "question": "¿Qué es el concepto de \"continuous deployment\" (CD)?",
-      "options": [
-        "Desplegar automáticamente el código en producción después de los tests",
-        "Desplegar continuamente",
-        "Un tipo de test",
-        "Un método"
-      ],
-      "explanation": "La CD despliega automáticamente el código en producción después de que todos los tests hayan pasado."
-    },
-    "medium-79": {
-      "question": "El concepto de \"version control\" permite seguir los cambios en el código a lo largo del tiempo.",
-      "explanation": "Sí, el control de versiones (como Git) permite seguir, gestionar y colaborar sobre cambios de código."
-    },
-    "medium-80": {
-      "question": "¿Qué es el concepto de \"branch\" en Git?",
-      "options": [
-        "Una línea de desarrollo independiente en un repositorio",
-        "Una rama de árbol",
-        "Un tipo de commit",
-        "Un método"
-      ],
-      "explanation": "Una rama de Git es una línea de desarrollo independiente que permite trabajar en funcionalidades por separado."
-    },
-    "hard-1": {
-      "question": "¿Cuál es la diferencia entre una deep copy y una shallow copy en JavaScript?",
-      "options": [
-        "Deep copy copia todos los niveles, shallow copy solo el primer nivel",
-        "Shallow copy es más rápida",
-        "No hay diferencia",
-        "Deep copy está obsoleta"
-      ],
-      "explanation": "Una shallow copy copia solo el primer nivel, mientras que una deep copy copia recursivamente todos los niveles anidados."
-    },
-    "hard-2": {
-      "question": "El protocolo OAuth 2.0 utiliza solo access tokens, no refresh tokens.",
-      "explanation": "No, OAuth 2.0 utiliza tanto access tokens (de corta duración) como refresh tokens (de larga duración) para renovar los access tokens."
-    },
-    "hard-3": {
-      "question": "¿Cuál es la complejidad temporal (time complexity) de un algoritmo de ordenación por mezcla (merge sort)?",
-      "options": [
-        "O(n log n)",
-        "O(n²)",
-        "O(n)",
-        "O(log n)"
-      ],
-      "explanation": "El merge sort tiene una complejidad temporal de O(n log n) en todos los casos (mejor, promedio y peor)."
-    },
-    "hard-4": {
-      "question": "¿Cuál es la principal vulnerabilidad del modo ECB (Electronic Codebook) en cifrado?",
-      "options": [
-        "Los bloques idénticos producen el mismo cifrado",
-        "Es demasiado lento",
-        "Requiere demasiada memoria",
-        "No es seguro en absoluto"
-      ],
-      "explanation": "ECB produce el mismo cifrado para bloques idénticos, revelando patrones en los datos, lo que supone una vulnerabilidad de seguridad importante."
-    },
-    "hard-5": {
-      "question": "Los Service Workers pueden interceptar y modificar las solicitudes de red.",
-      "explanation": "Sí, los Service Workers actúan como un proxy entre la aplicación y la red, permitiendo interceptar y modificar las solicitudes."
-    },
-    "hard-6": {
-      "question": "¿Qué es el principio de menor privilegio (principle of least privilege) en seguridad?",
-      "options": [
-        "Conceder únicamente los permisos mínimos necesarios",
-        "Dar todos los derechos por defecto",
-        "Un método de cifrado",
-        "Un protocolo de red"
-      ],
-      "explanation": "El principio de menor privilegio consiste en conceder a usuarios y procesos únicamente los permisos mínimos necesarios para realizar sus tareas."
-    },
-    "hard-7": {
-      "question": "¿Cuál es la diferencia entre useMemo y useCallback en React?",
-      "options": [
-        "useMemo memoriza un valor, useCallback memoriza una función",
-        "useCallback es más rápido",
-        "No hay diferencia",
-        "useMemo está obsoleto"
-      ],
-      "explanation": "useMemo devuelve un valor memorizado, mientras que useCallback devuelve una función memorizada."
-    },
-    "hard-8": {
-      "question": "El hash SHA-256 es reversible; se puede recuperar el texto original a partir del hash.",
-      "explanation": "No, SHA-256 es una función de hash de una sola vía (one-way); es matemáticamente imposible recuperar el texto original."
-    },
-    "hard-9": {
-      "question": "¿Qué es el code splitting en las aplicaciones React?",
-      "options": [
-        "Dividir el código en chunks cargados bajo demanda",
-        "Dividir el código en archivos",
-        "Un método de compresión",
-        "Un tipo de renderizado"
-      ],
-      "explanation": "El code splitting permite dividir el bundle de JavaScript en chunks más pequeños, cargados solo cuando es necesario, mejorando el rendimiento."
-    },
-    "hard-10": {
-      "question": "¿Cuál es la diferencia entre authentication y authorization?",
-      "options": [
-        "Authentication verifica la identidad, authorization verifica los permisos",
-        "No hay diferencia",
-        "Authorization es más seguro",
-        "Authentication está obsoleto"
-      ],
-      "explanation": "Authentication verifica quién eres (identidad), mientras que authorization verifica qué estás autorizado a hacer (permisos)."
-    },
-    "hard-11": {
-      "question": "Las mutaciones directas del state de React están permitidas y recomendadas.",
-      "explanation": "No, React requiere actualizaciones inmutables del state. Las mutaciones directas no desencadenan un re-render."
-    },
-    "hard-12": {
-      "question": "¿Qué es una race condition en programación asíncrona?",
-      "options": [
-        "Un comportamiento impredecible cuando el orden de ejecución depende del timing",
-        "Un error de sintaxis",
-        "Un tipo de bucle",
-        "Un método de caché"
-      ],
-      "explanation": "Una race condition ocurre cuando el resultado depende del orden de ejecución de procesos asíncronos, creando un comportamiento impredecible."
-    },
-    "hard-13": {
-      "question": "¿Cuál es la complejidad espacial de un algoritmo de ordenación en el lugar (in-place)?",
-      "options": [
-        "O(1)",
-        "O(n)",
-        "O(n log n)",
-        "O(n²)"
-      ],
-      "explanation": "Un algoritmo de ordenación in-place utiliza un espacio de memoria constante O(1), modificando el array directamente sin crear una copia."
-    },
-    "hard-14": {
-      "question": "La Same-Origin Policy impide que los scripts de un dominio accedan a los datos de otro dominio.",
-      "explanation": "Sí, la Same-Origin Policy es un mecanismo de seguridad que restringe el acceso a recursos entre diferentes orígenes."
-    },
-    "hard-15": {
-      "question": "¿Qué es el Virtual DOM en React?",
-      "options": [
-        "Una representación en memoria (JavaScript) del DOM real",
-        "El DOM real del navegador",
-        "Un método de caché",
-        "Un tipo de componente"
-      ],
-      "explanation": "El Virtual DOM es una representación ligera en JavaScript del DOM real, que permite a React optimizar las actualizaciones."
-    },
-    "hard-16": {
-      "question": "¿Cuál es la diferencia entre un salt y un pepper en criptografía?",
-      "options": [
-        "El salt es único por usuario, el pepper es compartido y secreto",
-        "El pepper es más largo",
-        "No hay diferencia",
-        "El salt está obsoleto"
-      ],
-      "explanation": "Un salt es único por usuario y se almacena junto con el hash, mientras que un pepper es un secreto compartido almacenado por separado."
-    },
-    "hard-17": {
-      "question": "Las closures en JavaScript permiten que una función acceda a las variables de su alcance externo incluso después de que ese alcance se haya cerrado.",
-      "explanation": "Sí, las closures permiten que una función interna acceda a las variables de la función externa incluso después de su ejecución."
-    },
-    "hard-18": {
-      "question": "¿Qué es el double spending en el contexto de la blockchain?",
-      "options": [
-        "Gastar la misma unidad de valor dos veces",
-        "Un método de cifrado",
-        "Un tipo de transacción",
-        "Un error de cálculo"
-      ],
-      "explanation": "El double spending es el problema de gastar la misma unidad de valor digital dos veces, resuelto por la blockchain mediante consenso."
-    },
-    "hard-19": {
-      "question": "¿Cuál es la diferencia entre un WeakMap y un Map en JavaScript?",
-      "options": [
-        "WeakMap tiene claves débiles y no se puede iterar",
-        "Map es más rápido",
-        "No hay diferencia",
-        "WeakMap está obsoleto"
-      ],
-      "explanation": "WeakMap usa referencias débiles para las claves (permitiendo el garbage collection) y no se puede iterar, a diferencia de Map."
-    },
-    "hard-20": {
-      "question": "El protocolo HTTP/2 permite el multiplexing, permitiendo varias solicitudes en una sola conexión TCP.",
-      "explanation": "Sí, HTTP/2 introduce el multiplexing, que permite enviar varias solicitudes simultáneamente en una sola conexión TCP."
-    },
-    "hard-21": {
-      "question": "¿Qué es el concepto de \"lifting state up\" en React?",
-      "options": [
-        "Mover el state al componente padre común",
-        "Elevar el state al DOM",
-        "Un método de caché",
-        "Un tipo de hook"
-      ],
-      "explanation": "Lifting state up consiste en mover el state compartido al componente padre común más cercano."
-    },
-    "hard-22": {
-      "question": "¿Cuál es la principal diferencia entre AES-128 y AES-256?",
-      "options": [
-        "La longitud de la clave (128 bits vs 256 bits)",
-        "La velocidad de ejecución",
-        "El tipo de cifrado",
-        "No hay diferencia"
-      ],
-      "explanation": "AES-128 usa una clave de 128 bits, mientras que AES-256 usa una clave de 256 bits, ofreciendo una seguridad reforzada."
-    },
-    "hard-23": {
-      "question": "Los Server Components en Next.js 13+ se ejecutan solo del lado del servidor y no se incluyen en el bundle del cliente.",
-      "explanation": "Sí, los Server Components se ejecutan únicamente del lado del servidor, reduciendo el tamaño del bundle de JavaScript del cliente."
-    },
-    "hard-24": {
-      "question": "¿Qué es el concepto de \"event delegation\" en JavaScript?",
-      "options": [
-        "Adjuntar un listener a un elemento padre para gestionar los eventos de los hijos",
-        "Delegar los eventos al servidor",
-        "Un método de caché",
-        "Un tipo de evento"
-      ],
-      "explanation": "La event delegation consiste en adjuntar un listener a un elemento padre para gestionar los eventos de sus hijos, mejorando el rendimiento."
-    },
-    "hard-25": {
-      "question": "¿Cuál es la complejidad temporal de la búsqueda en un árbol binario de búsqueda equilibrado?",
-      "options": [
-        "O(log n)",
-        "O(n)",
-        "O(1)",
-        "O(n log n)"
-      ],
-      "explanation": "En un árbol binario de búsqueda equilibrado, la búsqueda tiene una complejidad de O(log n) porque se divide el espacio de búsqueda por dos en cada nivel."
-    },
-    "hard-26": {
-      "question": "El protocolo WebSocket utiliza el mismo puerto que HTTP (80) o HTTPS (443).",
-      "explanation": "Sí, WebSocket comienza con una conexión HTTP/HTTPS normal y luego hace upgrade a WebSocket, usando los mismos puertos."
-    },
-    "hard-27": {
-      "question": "¿Qué es el concepto de \"memoization\" en programación?",
-      "options": [
-        "Almacenar los resultados de cálculos costosos para evitar recalcularlos",
-        "Un método de compresión",
-        "Un tipo de caché",
-        "Un error de memoria"
-      ],
-      "explanation": "La memoization consiste en almacenar en caché los resultados de cálculos costosos para evitar recalcularlos con las mismas entradas."
-    },
-    "hard-28": {
-      "question": "¿Cuál es la diferencia entre un certificado SSL autofirmado y un certificado firmado por una autoridad de certificación?",
-      "options": [
-        "Un certificado firmado por una CA está verificado y es confiable para los navegadores",
-        "No hay diferencia",
-        "Los autofirmados son más seguros",
-        "Las CA están obsoletas"
-      ],
-      "explanation": "Un certificado firmado por una CA está verificado y es confiable para los navegadores, mientras que uno autofirmado genera una advertencia de seguridad."
-    },
-    "hard-29": {
-      "question": "Los Generators en JavaScript permiten crear funciones iterables con yield.",
-      "explanation": "Sí, los Generators son funciones especiales que pueden pausarse y reanudarse, usando yield para producir valores."
-    },
-    "hard-30": {
-      "question": "¿Qué es el concepto de \"defense in depth\" en ciberseguridad?",
-      "options": [
-        "Usar varias capas de seguridad para proteger un sistema",
-        "Una sola capa de seguridad máxima",
-        "Un método de cifrado",
-        "Un tipo de firewall"
-      ],
-      "explanation": "La defensa en profundidad consiste en usar varias capas de seguridad independientes para proteger un sistema, reduciendo el riesgo de compromiso."
-    },
-    "hard-31": {
-      "question": "¿Cuál es la diferencia entre un thunk y un middleware en Redux?",
-      "options": [
-        "Un thunk es un middleware específico para acciones asíncronas",
-        "Un middleware es un tipo de thunk",
-        "No hay diferencia",
-        "Los thunks están obsoletos"
-      ],
-      "explanation": "Un thunk es un middleware de Redux que permite hacer dispatch de funciones en lugar de acciones simples, útil para operaciones asíncronas."
-    },
-    "hard-32": {
-      "question": "El protocolo QUIC utiliza UDP en lugar de TCP para mejorar el rendimiento.",
-      "explanation": "Sí, QUIC (Quick UDP Internet Connections) usa UDP con funcionalidades integradas de fiabilidad y seguridad, mejorando el rendimiento."
-    },
-    "hard-33": {
-      "question": "¿Qué es el concepto de \"single source of truth\" en la gestión de estado?",
-      "options": [
-        "Tener una única fuente fiable para el estado de la aplicación",
-        "Tener múltiples fuentes de estado",
-        "Un método de caché",
-        "Un tipo de base de datos"
-      ],
-      "explanation": "El single source of truth consiste en tener una única fuente fiable para el estado de la aplicación, evitando incoherencias."
-    },
-    "hard-34": {
-      "question": "¿Cuál es la diferencia entre un hash y un HMAC (Hash-based Message Authentication Code)?",
-      "options": [
-        "HMAC usa una clave secreta para autenticar el mensaje",
-        "Hash es más seguro",
-        "No hay diferencia",
-        "HMAC está obsoleto"
-      ],
-      "explanation": "HMAC combina un hash con una clave secreta, permitiendo verificar tanto la integridad como la autenticidad de un mensaje."
-    },
-    "hard-35": {
-      "question": "Los Web Workers permiten ejecutar JavaScript en un thread separado del thread principal.",
-      "explanation": "Sí, los Web Workers permiten ejecutar código JavaScript en un thread separado, evitando bloquear el thread principal."
-    },
-    "hard-36": {
-      "question": "¿Qué es el concepto de \"idempotence\" en las APIs REST?",
-      "options": [
-        "Realizar la misma solicitud varias veces produce el mismo resultado",
-        "Un método de caché",
-        "Un tipo de solicitud",
-        "Un error de solicitud"
-      ],
-      "explanation": "La idempotencia significa que realizar la misma solicitud varias veces produce el mismo resultado, importante para los métodos PUT y DELETE."
-    },
-    "hard-37": {
-      "question": "¿Cuál es la diferencia entre un JWT (JSON Web Token) y un session token clásico?",
-      "options": [
-        "JWT es stateless y contiene los datos; un session token requiere almacenamiento en el servidor",
-        "Un session token es más seguro",
-        "No hay diferencia",
-        "JWT está obsoleto"
-      ],
-      "explanation": "JWT es stateless y contiene datos en el token, mientras que un session token requiere almacenamiento del lado del servidor para los datos de sesión."
-    },
-    "hard-38": {
-      "question": "El protocolo TLS 1.3 reduce el número de round-trips necesarios para establecer una conexión segura.",
-      "explanation": "Sí, TLS 1.3 reduce el handshake de 2 round-trips a 1, mejorando el rendimiento y la seguridad."
-    },
-    "hard-39": {
-      "question": "¿Qué es el concepto de \"dependency injection\" en programación?",
-      "options": [
-        "Proporcionar las dependencias de un objeto desde fuera en lugar de crearlas dentro",
-        "Crear todas las dependencias dentro",
-        "Un método de caché",
-        "Un tipo de función"
-      ],
-      "explanation": "La inyección de dependencias consiste en proporcionar las dependencias de un objeto desde fuera, mejorando la testabilidad y la flexibilidad."
-    },
-    "hard-40": {
-      "question": "¿Cuál es la diferencia entre un CSRF token y un JWT token?",
-      "options": [
-        "El CSRF token protege contra CSRF, el JWT es para la autenticación",
-        "JWT protege contra CSRF",
-        "No hay diferencia",
-        "El CSRF token está obsoleto"
-      ],
-      "explanation": "Un CSRF token protege contra ataques CSRF validando el origen de las solicitudes, mientras que un JWT se usa para la authentication y la authorization."
-    },
-    "hard-41": {
-      "question": "Los React Server Components pueden usar hooks como useState y useEffect.",
-      "explanation": "No, los Server Components se ejecutan únicamente del lado del servidor y no pueden usar hooks que requieran un estado del cliente."
-    },
-    "hard-42": {
-      "question": "¿Qué es el concepto de \"event loop\" en JavaScript?",
-      "options": [
-        "Un mecanismo que gestiona la ejecución asíncrona en JavaScript",
-        "Un bucle de código",
-        "Un método de caché",
-        "Un tipo de función"
-      ],
-      "explanation": "El event loop es el mecanismo que gestiona la ejecución asíncrona en JavaScript, administrando la pila de ejecución y la cola de callbacks."
-    },
-    "hard-43": {
-      "question": "¿Cuál es la diferencia entre un certificado wildcard y un certificado SAN (Subject Alternative Name)?",
-      "options": [
-        "Wildcard cubre *.domain.com, SAN enumera varios dominios específicos",
-        "SAN es más seguro",
-        "No hay diferencia",
-        "Wildcard está obsoleto"
-      ],
-      "explanation": "Un certificado wildcard cubre todos los subdominios (*.domain.com), mientras que un SAN enumera varios dominios específicos."
-    },
-    "hard-44": {
-      "question": "El protocolo HTTP/3 usa QUIC en lugar de TCP como protocolo de transporte.",
-      "explanation": "Sí, HTTP/3 usa QUIC, que se basa en UDP, ofreciendo mejor rendimiento que HTTP/2 basado en TCP."
-    },
-    "hard-45": {
-      "question": "¿Qué es el concepto de \"tree shaking\" en el bundling de JavaScript?",
-      "options": [
-        "Eliminar el código muerto no utilizado del bundle final",
-        "Añadir código adicional",
-        "Un método de compresión",
-        "Un tipo de caché"
-      ],
-      "explanation": "El tree shaking es una técnica de optimización que elimina el código muerto (no utilizado) del bundle final, reduciendo su tamaño."
-    },
-    "hard-46": {
-      "question": "¿Cuál es la diferencia entre un rate limiting basado en IP y un rate limiting basado en token?",
-      "options": [
-        "IP-based limita por dirección, token-based limita por usuario autenticado",
-        "Token-based es más rápido",
-        "No hay diferencia",
-        "IP-based está obsoleto"
-      ],
-      "explanation": "El rate limiting basado en IP limita las solicitudes por dirección IP, mientras que el token-based limita por usuario autenticado, siendo más preciso."
-    },
-    "hard-47": {
-      "question": "Los Proxies en JavaScript permiten interceptar y personalizar las operaciones sobre los objetos.",
-      "explanation": "Sí, los Proxies permiten crear un objeto que intercepta y personaliza las operaciones fundamentales (lectura, escritura, etc.)."
-    },
-    "hard-48": {
-      "question": "¿Qué es el concepto de \"zero trust\" en ciberseguridad?",
-      "options": [
-        "No confiar en ningún usuario o dispositivo por defecto",
-        "Confiar en todos los usuarios",
-        "Un método de cifrado",
-        "Un tipo de firewall"
-      ],
-      "explanation": "Zero trust es un modelo de seguridad que no confía en ningún usuario o dispositivo por defecto, verificando cada acceso."
-    },
-    "hard-49": {
-      "question": "¿Cuál es la diferencia entre un polyfill y un transpiler?",
-      "options": [
-        "Un polyfill añade funcionalidades faltantes, un transpiler convierte el código",
-        "Un transpiler es más rápido",
-        "No hay diferencia",
-        "Un polyfill está obsoleto"
-      ],
-      "explanation": "Un polyfill añade funcionalidades faltantes en un entorno, mientras que un transpiler convierte el código de un lenguaje a otro."
-    },
-    "hard-50": {
-      "question": "El protocolo gRPC usa Protocol Buffers para la serialización de datos.",
-      "explanation": "Sí, gRPC usa Protocol Buffers (protobuf) como formato de serialización por defecto, ofreciendo una serialización binaria eficiente."
     }
   },
   "errors": {
@@ -4277,7 +4524,9 @@
     }
   },
   "accessibility": {
-    "skipToContent": "Saltar al contenido principal"
+    "skipToContent": "Saltar al contenido principal",
+    "loading": "Cargando",
+    "close": "Cerrar"
   },
   "legal": {
     "common": {
@@ -4637,6 +4886,32 @@
     "actions": {
       "downloadPdf": "Descargar el PDF",
       "downloadPdfLoading": "Descargando..."
+    }
+  },
+  "patchnotes": {
+    "sort": {
+      "newestFirst": "Más reciente",
+      "oldestFirst": "Más antiguo",
+      "newestToOldest": "Más reciente al más antiguo",
+      "oldestToNewest": "Más antiguo al más reciente"
+    },
+    "ui": {
+      "search": "Buscar...",
+      "noResults": "Sin resultados",
+      "close": "Cerrar",
+      "menu": "Menú"
+    },
+    "home": {
+      "title": "Inicio",
+      "displayDate": "Guía",
+      "badge": "Guía rápida",
+      "subtitle": "Cómo leer las notas de parche",
+      "items": {
+        "0": "Elige una nota de parche en la lista de la izquierda.",
+        "1": "El punto rojo = novedad no leída.",
+        "2": "Usa la búsqueda para encontrar una funcionalidad.",
+        "3": "Cambia el orden arriba (reciente ↔ antiguo)."
+      }
     }
   }
 }

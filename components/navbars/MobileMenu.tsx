@@ -122,7 +122,7 @@ export default function MobileMenu() {
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <a href="#extras" onClick={(e) => handleLinkClick(e, '#extras')} className={itemClass('extras')}>
-                        Extras
+                        {t('extras')}
                     </a>
                 </DropdownMenuItem>
 

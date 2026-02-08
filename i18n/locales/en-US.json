@@ -31,7 +31,7 @@
     },
     "legalNotice": {
       "title": "Legal notice",
-      "descritpion": "This legal notice identifies the website publisher, its hosting provider, and the main information relating to use of the website"
+      "description": "This legal notice identifies the website publisher, its hosting provider, and the main information relating to use of the website"
     },
     "privacyPolicy": {
       "title": "Privacy Policy",
@@ -109,7 +109,10 @@
   },
   "pagination": {
     "next": "Next",
-    "previous": "Previous"
+    "previous": "Previous",
+    "previousLabel": "Go to previous page",
+    "nextLabel": "Go to next page",
+    "morePages": "More pages"
   },
   "projects": {
     "title": "Projects",
@@ -225,7 +228,8 @@
     "system": "System",
     "themeChanging": "Changing theme...",
     "languageChanging": "Changing language...",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "extras": "Extras"
   },
   "games": {
     "meta": {
@@ -288,6 +292,9 @@
       "complete": {
         "title": "Congratulations!",
         "stats": "Completed in {moves} moves and {time}"
+      },
+      "labels": {
+        "difficulty": "Difficulty"
       }
     },
     "typing": {
@@ -304,7 +311,8 @@
         "snippets": "Snippets",
         "errors": "Errors",
         "time": "Time",
-        "best": "Highest score"
+        "best": "Highest score",
+        "newBest": "New best!"
       },
       "levels": {
         "easy": "Easy",
@@ -440,6 +448,15 @@
             "The point is to continue, even slowly."
           ]
         }
+      },
+      "cancel": {
+        "tooltip": "Cancel current run",
+        "label": "Cancel"
+      },
+      "labels": {
+        "difficulty": "Difficulty",
+        "mode": "Mode",
+        "duration": "Duration"
       }
     },
     "bughunt": {
@@ -2209,11 +2226,13 @@
           "<header>",
           "<head>"
         ],
-        "explanation": "<h1> is the HTML tag used to create a main heading (heading level 1)."
+        "explanation": "<h1> is the HTML tag used to create a main heading (heading level 1).",
+        "correctAnswer": 0
       },
       "easy-2": {
         "question": "CSS stands for \"Cascading Style Sheets\".",
-        "explanation": "Yes, CSS stands for \"Cascading Style Sheets\"."
+        "explanation": "Yes, CSS stands for \"Cascading Style Sheets\".",
+        "correctAnswer": 0
       },
       "easy-3": {
         "question": "Which JavaScript method adds an element to the end of an array?",
@@ -2223,11 +2242,13 @@
           "shift()",
           "unshift()"
         ],
-        "explanation": "The push() method adds one or more elements to the end of an array."
+        "explanation": "The push() method adds one or more elements to the end of an array.",
+        "correctAnswer": 0
       },
       "easy-4": {
         "question": "React is a JavaScript library developed by Facebook.",
-        "explanation": "Yes, React was created by Facebook (now Meta) in 2013."
+        "explanation": "Yes, React was created by Facebook (now Meta) in 2013.",
+        "correctAnswer": 0
       },
       "easy-5": {
         "question": "Which CSS property is used to change the text color?",
@@ -2237,11 +2258,13 @@
           "font-color",
           "text-style"
         ],
-        "explanation": "The CSS \"color\" property is used to set the text color."
+        "explanation": "The CSS \"color\" property is used to set the text color.",
+        "correctAnswer": 0
       },
       "easy-6": {
         "question": "TypeScript is a superset of JavaScript that adds static typing.",
-        "explanation": "Yes, TypeScript extends JavaScript by adding optional static types."
+        "explanation": "Yes, TypeScript extends JavaScript by adding optional static types.",
+        "correctAnswer": 0
       },
       "easy-7": {
         "question": "Which protocol is used to secure web connections (HTTPS)?",
@@ -2251,11 +2274,13 @@
           "HTTP",
           "SMTP"
         ],
-        "explanation": "TLS (Transport Layer Security) or SSL (Secure Sockets Layer) secures HTTPS connections."
+        "explanation": "TLS (Transport Layer Security) or SSL (Secure Sockets Layer) secures HTTPS connections.",
+        "correctAnswer": 0
       },
       "easy-8": {
         "question": "Git is a distributed version control system.",
-        "explanation": "Yes, Git is a distributed version control system created by Linus Torvalds."
+        "explanation": "Yes, Git is a distributed version control system created by Linus Torvalds.",
+        "correctAnswer": 0
       },
       "easy-9": {
         "question": "Which HTTP method is used to retrieve data from a server?",
@@ -2265,11 +2290,13 @@
           "PUT",
           "DELETE"
         ],
-        "explanation": "The GET method is used to retrieve data from a server."
+        "explanation": "The GET method is used to retrieve data from a server.",
+        "correctAnswer": 0
       },
       "easy-10": {
         "question": "Next.js is a React framework for production.",
-        "explanation": "Yes, Next.js is a React framework that offers server-side rendering and many optimizations."
+        "explanation": "Yes, Next.js is a React framework that offers server-side rendering and many optimizations.",
+        "correctAnswer": 0
       },
       "easy-11": {
         "question": "Which HTML tag is used to create a link?",
@@ -2279,11 +2306,13 @@
           "<url>",
           "<href>"
         ],
-        "explanation": "The <a> (anchor) tag is used to create hyperlinks in HTML."
+        "explanation": "The <a> (anchor) tag is used to create hyperlinks in HTML.",
+        "correctAnswer": 0
       },
       "easy-12": {
         "question": "JavaScript is a client-side only programming language.",
-        "explanation": "No, JavaScript can also be executed on the server side with Node.js."
+        "explanation": "No, JavaScript can also be executed on the server side with Node.js.",
+        "correctAnswer": 1
       },
       "easy-13": {
         "question": "Which CSS property is used to center an element horizontally?",
@@ -2293,7 +2322,8 @@
           "align: center",
           "position: center"
         ],
-        "explanation": "margin: auto centers an element horizontally when it has a defined width."
+        "explanation": "margin: auto centers an element horizontally when it has a defined width.",
+        "correctAnswer": 0
       },
       "easy-14": {
         "question": "Which JavaScript method removes the last element from an array?",
@@ -2303,11 +2333,13 @@
           "shift()",
           "unshift()"
         ],
-        "explanation": "The pop() method removes and returns the last element of an array."
+        "explanation": "The pop() method removes and returns the last element of an array.",
+        "correctAnswer": 0
       },
       "easy-15": {
         "question": "HTML stands for \"HyperText Markup Language\".",
-        "explanation": "Yes, HTML stands for \"HyperText Markup Language\"."
+        "explanation": "Yes, HTML stands for \"HyperText Markup Language\".",
+        "correctAnswer": 0
       },
       "easy-16": {
         "question": "Which HTML tag is used to create an unordered list?",
@@ -2317,7 +2349,8 @@
           "<li>",
           "<list>"
         ],
-        "explanation": "<ul> (unordered list) creates an unordered bulleted list."
+        "explanation": "<ul> (unordered list) creates an unordered bulleted list.",
+        "correctAnswer": 0
       },
       "easy-17": {
         "question": "Which CSS property is used to set the font size?",
@@ -2327,11 +2360,13 @@
           "size",
           "font"
         ],
-        "explanation": "The font-size property sets the size of the font."
+        "explanation": "The font-size property sets the size of the font.",
+        "correctAnswer": 0
       },
       "easy-18": {
         "question": "Variables in JavaScript are case-sensitive.",
-        "explanation": "Yes, JavaScript is case-sensitive, so \"myVar\" and \"myvar\" are two different variables."
+        "explanation": "Yes, JavaScript is case-sensitive, so \"myVar\" and \"myvar\" are two different variables.",
+        "correctAnswer": 0
       },
       "easy-19": {
         "question": "Which HTML tag is used to insert an image?",
@@ -2341,7 +2376,8 @@
           "<picture>",
           "<photo>"
         ],
-        "explanation": "The <img> tag is used to insert an image into an HTML page."
+        "explanation": "The <img> tag is used to insert an image into an HTML page.",
+        "correctAnswer": 0
       },
       "easy-20": {
         "question": "Which JavaScript method converts a string to a number?",
@@ -2351,11 +2387,13 @@
           "toString()",
           "convert()"
         ],
-        "explanation": "Number() and parseInt() allow converting a string to a number."
+        "explanation": "Number() and parseInt() allow converting a string to a number.",
+        "correctAnswer": 0
       },
       "easy-21": {
         "question": "DOM stands for \"Document Object Model\".",
-        "explanation": "Yes, the DOM (Document Object Model) represents the structure of an HTML document."
+        "explanation": "Yes, the DOM (Document Object Model) represents the structure of an HTML document.",
+        "correctAnswer": 0
       },
       "easy-22": {
         "question": "Which CSS property is used to add space between an element's borders?",
@@ -2365,7 +2403,8 @@
           "spacing",
           "gap"
         ],
-        "explanation": "padding adds space inside the element, between the content and the border."
+        "explanation": "padding adds space inside the element, between the content and the border.",
+        "correctAnswer": 0
       },
       "easy-23": {
         "question": "Which HTML tag is used to create a paragraph?",
@@ -2375,11 +2414,13 @@
           "<text>",
           "<paragraph>"
         ],
-        "explanation": "The <p> tag is used to create a paragraph in HTML."
+        "explanation": "The <p> tag is used to create a paragraph in HTML.",
+        "correctAnswer": 0
       },
       "easy-24": {
         "question": "Arrow functions in JavaScript have their own \"this\" context.",
-        "explanation": "No, arrow functions inherit the \"this\" context from their parent scope."
+        "explanation": "No, arrow functions inherit the \"this\" context from their parent scope.",
+        "correctAnswer": 1
       },
       "easy-25": {
         "question": "Which JavaScript method finds an element in an array?",
@@ -2389,7 +2430,8 @@
           "locate()",
           "get()"
         ],
-        "explanation": "The find() method returns the first element in an array that satisfies a condition."
+        "explanation": "The find() method returns the first element in an array that satisfies a condition.",
+        "correctAnswer": 0
       },
       "easy-26": {
         "question": "Which CSS property is used to change the background color?",
@@ -2399,11 +2441,13 @@
           "background",
           "color-background"
         ],
-        "explanation": "The background-color property sets the background color of an element."
+        "explanation": "The background-color property sets the background color of an element.",
+        "correctAnswer": 0
       },
       "easy-27": {
         "question": "JSON stands for \"JavaScript Object Notation\".",
-        "explanation": "Yes, JSON is a data format based on JavaScript object notation."
+        "explanation": "Yes, JSON is a data format based on JavaScript object notation.",
+        "correctAnswer": 0
       },
       "easy-28": {
         "question": "Which HTML tag is used to create a form?",
@@ -2413,7 +2457,8 @@
           "<fieldset>",
           "<formset>"
         ],
-        "explanation": "The <form> tag is used to create an HTML form."
+        "explanation": "The <form> tag is used to create an HTML form.",
+        "correctAnswer": 0
       },
       "easy-29": {
         "question": "Which JavaScript method creates a new array from another one?",
@@ -2423,11 +2468,13 @@
           "duplicate()",
           "clone()"
         ],
-        "explanation": "The map() method creates a new array by applying a function to each element."
+        "explanation": "The map() method creates a new array by applying a function to each element.",
+        "correctAnswer": 0
       },
       "easy-30": {
         "question": "JavaScript comments start with // for a line or /* */ for multiple lines.",
-        "explanation": "Yes, // for single-line comments and /* */ for multi-line comments."
+        "explanation": "Yes, // for single-line comments and /* */ for multi-line comments.",
+        "correctAnswer": 0
       },
       "easy-31": {
         "question": "Which CSS property is used to make an element invisible?",
@@ -2437,7 +2484,8 @@
           "visible: false",
           "opacity: 0"
         ],
-        "explanation": "display: none removes the element from the flow, visibility: hidden hides it but keeps the space."
+        "explanation": "display: none removes the element from the flow, visibility: hidden hides it but keeps the space.",
+        "correctAnswer": 0
       },
       "easy-32": {
         "question": "Which HTML tag is used to create a button?",
@@ -2447,11 +2495,13 @@
           "<click>",
           "<input type=\"button\">"
         ],
-        "explanation": "The <button> tag is used to create a clickable button in HTML."
+        "explanation": "The <button> tag is used to create a clickable button in HTML.",
+        "correctAnswer": 0
       },
       "easy-33": {
         "question": "Arrays in JavaScript start at index 0.",
-        "explanation": "Yes, JavaScript arrays are indexed starting from 0, not 1."
+        "explanation": "Yes, JavaScript arrays are indexed starting from 0, not 1.",
+        "correctAnswer": 0
       },
       "easy-34": {
         "question": "Which CSS property is used to set the width of an element?",
@@ -2461,7 +2511,8 @@
           "size",
           "dimension"
         ],
-        "explanation": "The width property sets the width of an element."
+        "explanation": "The width property sets the width of an element.",
+        "correctAnswer": 0
       },
       "easy-35": {
         "question": "Which JavaScript method checks if an element exists in an array?",
@@ -2471,11 +2522,13 @@
           "has()",
           "exists()"
         ],
-        "explanation": "The includes() method checks if an array contains a specific element."
+        "explanation": "The includes() method checks if an array contains a specific element.",
+        "correctAnswer": 0
       },
       "easy-36": {
         "question": "localStorage allows storing data in the browser persistently.",
-        "explanation": "Yes, localStorage stores data persistently even after closing the browser."
+        "explanation": "Yes, localStorage stores data persistently even after closing the browser.",
+        "correctAnswer": 0
       },
       "easy-37": {
         "question": "Which HTML tag is used to create a table?",
@@ -2485,7 +2538,8 @@
           "<grid>",
           "<data>"
         ],
-        "explanation": "The <table> tag is used to create a table in HTML."
+        "explanation": "The <table> tag is used to create a table in HTML.",
+        "correctAnswer": 0
       },
       "easy-38": {
         "question": "Which JavaScript method joins array elements into a string?",
@@ -2495,11 +2549,13 @@
           "merge()",
           "combine()"
         ],
-        "explanation": "The join() method joins all elements of an array into a string."
+        "explanation": "The join() method joins all elements of an array into a string.",
+        "correctAnswer": 0
       },
       "easy-39": {
         "question": "Functions in JavaScript are first-class objects.",
-        "explanation": "Yes, JavaScript functions can be assigned to variables, passed as parameters, etc."
+        "explanation": "Yes, JavaScript functions can be assigned to variables, passed as parameters, etc.",
+        "correctAnswer": 0
       },
       "easy-40": {
         "question": "Which CSS property is used to add space around an element?",
@@ -2509,7 +2565,8 @@
           "spacing",
           "gap"
         ],
-        "explanation": "margin adds space outside the element, between the element and other elements."
+        "explanation": "margin adds space outside the element, between the element and other elements.",
+        "correctAnswer": 0
       },
       "easy-41": {
         "question": "Which HTML tag is used to create an ordered list?",
@@ -2519,11 +2576,13 @@
           "<li>",
           "<list>"
         ],
-        "explanation": "<ol> (ordered list) creates a numbered list."
+        "explanation": "<ol> (ordered list) creates a numbered list.",
+        "correctAnswer": 0
       },
       "easy-42": {
         "question": "The \"const\" keyword in JavaScript declares a constant that cannot be reassigned.",
-        "explanation": "Yes, const declares a constant that cannot be reassigned after its initial declaration."
+        "explanation": "Yes, const declares a constant that cannot be reassigned after its initial declaration.",
+        "correctAnswer": 0
       },
       "easy-43": {
         "question": "Which JavaScript method filters elements in an array?",
@@ -2533,7 +2592,8 @@
           "find()",
           "search()"
         ],
-        "explanation": "The filter() method creates a new array with elements that pass a test."
+        "explanation": "The filter() method creates a new array with elements that pass a test.",
+        "correctAnswer": 0
       },
       "easy-44": {
         "question": "Which CSS property is used to align text?",
@@ -2543,11 +2603,13 @@
           "text-position",
           "alignment"
         ],
-        "explanation": "The text-align property sets the horizontal alignment of text."
+        "explanation": "The text-align property sets the horizontal alignment of text.",
+        "correctAnswer": 0
       },
       "easy-45": {
         "question": "Promises in JavaScript allow handling asynchronous code.",
-        "explanation": "Yes, Promises allow handling asynchronous operations more readably than callbacks."
+        "explanation": "Yes, Promises allow handling asynchronous operations more readably than callbacks.",
+        "correctAnswer": 0
       },
       "easy-46": {
         "question": "Which HTML tag is used to create a text input field?",
@@ -2557,7 +2619,8 @@
           "<input>",
           "<field>"
         ],
-        "explanation": "<input type=\"text\"> creates a text input field in a form."
+        "explanation": "<input type=\"text\"> creates a text input field in a form.",
+        "correctAnswer": 0
       },
       "easy-47": {
         "question": "Which JavaScript method removes the first element from an array?",
@@ -2567,11 +2630,13 @@
           "unshift()",
           "push()"
         ],
-        "explanation": "The shift() method removes and returns the first element of an array."
+        "explanation": "The shift() method removes and returns the first element of an array.",
+        "correctAnswer": 0
       },
       "easy-48": {
         "question": "The \"let\" keyword in JavaScript declares a variable with block scope.",
-        "explanation": "Yes, let declares a variable with block scope, unlike var which has function scope."
+        "explanation": "Yes, let declares a variable with block scope, unlike var which has function scope.",
+        "correctAnswer": 0
       },
       "easy-49": {
         "question": "Which CSS property is used to set the height of an element?",
@@ -2581,7 +2646,8 @@
           "size",
           "dimension"
         ],
-        "explanation": "The height property sets the height of an element."
+        "explanation": "The height property sets the height of an element.",
+        "correctAnswer": 0
       },
       "easy-50": {
         "question": "Which JavaScript method converts an array to a string?",
@@ -2591,11 +2657,13 @@
           "stringify()",
           "convert()"
         ],
-        "explanation": "The toString() method converts an array to a string."
+        "explanation": "The toString() method converts an array to a string.",
+        "correctAnswer": 0
       },
       "easy-51": {
         "question": "CSS classes can be applied to multiple HTML elements.",
-        "explanation": "Yes, a CSS class can be used on multiple elements to apply the same style."
+        "explanation": "Yes, a CSS class can be used on multiple elements to apply the same style.",
+        "correctAnswer": 0
       },
       "easy-52": {
         "question": "Which HTML tag is used to create a division or section?",
@@ -2605,7 +2673,8 @@
           "<container>",
           "<box>"
         ],
-        "explanation": "The <div> tag is used to create a generic container or section."
+        "explanation": "The <div> tag is used to create a generic container or section.",
+        "correctAnswer": 0
       },
       "easy-53": {
         "question": "Which JavaScript method adds an element to the beginning of an array?",
@@ -2615,11 +2684,13 @@
           "shift()",
           "prepend()"
         ],
-        "explanation": "The unshift() method adds one or more elements to the beginning of an array."
+        "explanation": "The unshift() method adds one or more elements to the beginning of an array.",
+        "correctAnswer": 0
       },
       "easy-54": {
         "question": "IDs in HTML must be unique on a page.",
-        "explanation": "Yes, each ID must be unique on an HTML page for proper functionality."
+        "explanation": "Yes, each ID must be unique on an HTML page for proper functionality.",
+        "correctAnswer": 0
       },
       "easy-55": {
         "question": "Which CSS property is used to set the border style?",
@@ -2629,7 +2700,8 @@
           "border-type",
           "border-design"
         ],
-        "explanation": "The border-style property sets the border style (solid, dashed, etc.)."
+        "explanation": "The border-style property sets the border style (solid, dashed, etc.).",
+        "correctAnswer": 0
       },
       "easy-56": {
         "question": "Which JavaScript method checks the type of a variable?",
@@ -2639,11 +2711,13 @@
           "getType()",
           "checkType()"
         ],
-        "explanation": "The typeof operator returns a string indicating the type of a variable."
+        "explanation": "The typeof operator returns a string indicating the type of a variable.",
+        "correctAnswer": 0
       },
       "easy-57": {
         "question": "The CSS selector \"#id\" targets an element by its ID.",
-        "explanation": "Yes, the # selector targets an element by its ID in CSS."
+        "explanation": "Yes, the # selector targets an element by its ID in CSS.",
+        "correctAnswer": 0
       },
       "easy-58": {
         "question": "Which HTML tag is used to create a line break?",
@@ -2653,7 +2727,8 @@
           "<lb>",
           "<newline>"
         ],
-        "explanation": "The <br> tag creates a line break in text."
+        "explanation": "The <br> tag creates a line break in text.",
+        "correctAnswer": 0
       },
       "easy-59": {
         "question": "Which JavaScript method sorts the elements of an array?",
@@ -2663,11 +2738,13 @@
           "arrange()",
           "organize()"
         ],
-        "explanation": "The sort() method sorts the elements of an array in place."
+        "explanation": "The sort() method sorts the elements of an array in place.",
+        "correctAnswer": 0
       },
       "easy-60": {
         "question": "The CSS selector \".class\" targets elements by their class.",
-        "explanation": "Yes, the . selector targets elements by their class in CSS."
+        "explanation": "Yes, the . selector targets elements by their class in CSS.",
+        "correctAnswer": 0
       },
       "easy-61": {
         "question": "Which HTML tag is used to create a section header?",
@@ -2677,7 +2754,8 @@
           "<title>",
           "<h1>"
         ],
-        "explanation": "The <header> tag represents the header of a section or page."
+        "explanation": "The <header> tag represents the header of a section or page.",
+        "correctAnswer": 0
       },
       "easy-62": {
         "question": "Which JavaScript method reduces an array to a single value?",
@@ -2687,11 +2765,13 @@
           "total()",
           "aggregate()"
         ],
-        "explanation": "The reduce() method reduces an array to a single value by applying a function."
+        "explanation": "The reduce() method reduces an array to a single value by applying a function.",
+        "correctAnswer": 0
       },
       "easy-63": {
         "question": "Media queries in CSS allow applying styles based on screen size.",
-        "explanation": "Yes, media queries allow creating responsive designs adapted to different screen sizes."
+        "explanation": "Yes, media queries allow creating responsive designs adapted to different screen sizes.",
+        "correctAnswer": 0
       },
       "easy-64": {
         "question": "Which HTML tag is used to create a footer?",
@@ -2701,7 +2781,8 @@
           "<bottom>",
           "<end>"
         ],
-        "explanation": "The <footer> tag represents the footer of a section or page."
+        "explanation": "The <footer> tag represents the footer of a section or page.",
+        "correctAnswer": 0
       },
       "easy-65": {
         "question": "Which JavaScript method checks if all array elements pass a test?",
@@ -2711,11 +2792,13 @@
           "checkAll()",
           "verifyAll()"
         ],
-        "explanation": "The every() method tests if all elements in an array pass a test."
+        "explanation": "The every() method tests if all elements in an array pass a test.",
+        "correctAnswer": 0
       },
       "easy-66": {
         "question": "Flexbox in CSS allows creating flexible and responsive layouts.",
-        "explanation": "Yes, Flexbox is a CSS layout model that makes it easier to create flexible designs."
+        "explanation": "Yes, Flexbox is a CSS layout model that makes it easier to create flexible designs.",
+        "correctAnswer": 0
       },
       "easy-67": {
         "question": "Which HTML tag is used to create a navigation section?",
@@ -2725,7 +2808,8 @@
           "<menu>",
           "<navbar>"
         ],
-        "explanation": "The <nav> tag represents a navigation section with links."
+        "explanation": "The <nav> tag represents a navigation section with links.",
+        "correctAnswer": 0
       },
       "easy-68": {
         "question": "Which JavaScript method checks if at least one array element passes a test?",
@@ -2735,11 +2819,13 @@
           "one()",
           "checkOne()"
         ],
-        "explanation": "The some() method tests if at least one element in an array passes a test."
+        "explanation": "The some() method tests if at least one element in an array passes a test.",
+        "correctAnswer": 0
       },
       "easy-69": {
         "question": "Variables declared with \"var\" in JavaScript are hoisted to the top of their scope.",
-        "explanation": "Yes, var declarations are hoisted, meaning they are moved to the top of their scope."
+        "explanation": "Yes, var declarations are hoisted, meaning they are moved to the top of their scope.",
+        "correctAnswer": 0
       },
       "easy-70": {
         "question": "Which CSS property is used to set the font family?",
@@ -2749,7 +2835,8 @@
           "font-type",
           "font-style"
         ],
-        "explanation": "The font-family property sets the font family to use."
+        "explanation": "The font-family property sets the font family to use.",
+        "correctAnswer": 0
       },
       "easy-71": {
         "question": "Which JavaScript method creates a shallow copy of an array?",
@@ -2759,11 +2846,13 @@
           "clone()",
           "duplicate()"
         ],
-        "explanation": "The slice() method creates a shallow copy of an array without modifying the original."
+        "explanation": "The slice() method creates a shallow copy of an array without modifying the original.",
+        "correctAnswer": 0
       },
       "easy-72": {
         "question": "The CSS selector \"element\" targets all elements of a specific type.",
-        "explanation": "Yes, the element selector targets all elements of that type on the page."
+        "explanation": "Yes, the element selector targets all elements of that type on the page.",
+        "correctAnswer": 0
       },
       "easy-73": {
         "question": "Which HTML tag is used to create a multiline text field?",
@@ -2773,7 +2862,8 @@
           "<input type=\"textarea\">",
           "<multiline>"
         ],
-        "explanation": "The <textarea> tag creates a multiline text field in a form."
+        "explanation": "The <textarea> tag creates a multiline text field in a form.",
+        "correctAnswer": 0
       },
       "easy-74": {
         "question": "Which JavaScript method concatenates two arrays?",
@@ -2783,11 +2873,13 @@
           "join()",
           "combine()"
         ],
-        "explanation": "The concat() method combines two or more arrays into a new array."
+        "explanation": "The concat() method combines two or more arrays into a new array.",
+        "correctAnswer": 0
       },
       "easy-75": {
         "question": "HTML attributes \"class\" and \"id\" are used to identify and style elements.",
-        "explanation": "Yes, class and id allow identifying elements for CSS and JavaScript."
+        "explanation": "Yes, class and id allow identifying elements for CSS and JavaScript.",
+        "correctAnswer": 0
       },
       "easy-76": {
         "question": "Which CSS property is used to set the spacing between letters?",
@@ -2797,7 +2889,8 @@
           "char-spacing",
           "spacing"
         ],
-        "explanation": "The letter-spacing property sets the spacing between characters."
+        "explanation": "The letter-spacing property sets the spacing between characters.",
+        "correctAnswer": 0
       },
       "easy-77": {
         "question": "Which JavaScript method splits a string into an array?",
@@ -2807,11 +2900,13 @@
           "separate()",
           "break()"
         ],
-        "explanation": "The split() method splits a string into an array of substrings."
+        "explanation": "The split() method splits a string into an array of substrings.",
+        "correctAnswer": 0
       },
       "easy-78": {
         "question": "JavaScript events allow interacting with user actions.",
-        "explanation": "Yes, events like click, mouseover, etc. allow reacting to user actions."
+        "explanation": "Yes, events like click, mouseover, etc. allow reacting to user actions.",
+        "correctAnswer": 0
       },
       "easy-79": {
         "question": "Which HTML tag is used to create a list item?",
@@ -2821,7 +2916,8 @@
           "<list-item>",
           "<element>"
         ],
-        "explanation": "The <li> tag represents a list item in <ul> or <ol>."
+        "explanation": "The <li> tag represents a list item in <ul> or <ol>.",
+        "correctAnswer": 0
       },
       "easy-80": {
         "question": "Which JavaScript method searches for an element in an array and returns its index?",
@@ -2831,11 +2927,13 @@
           "search()",
           "locate()"
         ],
-        "explanation": "The indexOf() method returns the first index at which an element can be found in an array."
+        "explanation": "The indexOf() method returns the first index at which an element can be found in an array.",
+        "correctAnswer": 0
       },
       "easy-81": {
         "question": "CSS selectors can be combined to target specific elements.",
-        "explanation": "Yes, selectors can be combined (descendant, child, adjacent, etc.) for precise targeting."
+        "explanation": "Yes, selectors can be combined (descendant, child, adjacent, etc.) for precise targeting.",
+        "correctAnswer": 0
       },
       "easy-82": {
         "question": "Which HTML tag is used to create a checkbox field?",
@@ -2845,7 +2943,8 @@
           "<check>",
           "<input type=\"check\">"
         ],
-        "explanation": "<input type=\"checkbox\"> creates a checkbox in a form."
+        "explanation": "<input type=\"checkbox\"> creates a checkbox in a form.",
+        "correctAnswer": 0
       },
       "easy-83": {
         "question": "Which JavaScript method reverses the order of array elements?",
@@ -2855,11 +2954,13 @@
           "flip()",
           "backward()"
         ],
-        "explanation": "The reverse() method reverses the order of array elements in place."
+        "explanation": "The reverse() method reverses the order of array elements in place.",
+        "correctAnswer": 0
       },
       "easy-84": {
         "question": "CSS pseudo-classes like :hover allow styling elements in a specific state.",
-        "explanation": "Yes, pseudo-classes like :hover, :focus, :active allow styling element states."
+        "explanation": "Yes, pseudo-classes like :hover, :focus, :active allow styling element states.",
+        "correctAnswer": 0
       },
       "easy-85": {
         "question": "Which HTML tag is used to create a dropdown selection field?",
@@ -2869,7 +2970,8 @@
           "<option>",
           "<choice>"
         ],
-        "explanation": "The <select> tag creates a dropdown menu in a form."
+        "explanation": "The <select> tag creates a dropdown menu in a form.",
+        "correctAnswer": 0
       },
       "easy-86": {
         "question": "Which JavaScript method checks if a string contains a substring?",
@@ -2879,11 +2981,13 @@
           "has()",
           "find()"
         ],
-        "explanation": "The includes() method checks if a string contains a specified substring."
+        "explanation": "The includes() method checks if a string contains a specified substring.",
+        "correctAnswer": 0
       },
       "easy-87": {
         "question": "Variables in JavaScript can contain different types of data (numbers, strings, objects, etc.).",
-        "explanation": "Yes, JavaScript is a dynamically typed language, variables can change type."
+        "explanation": "Yes, JavaScript is a dynamically typed language, variables can change type.",
+        "correctAnswer": 0
       },
       "easy-88": {
         "question": "Which CSS property is used to set the opacity of an element?",
@@ -2893,7 +2997,8 @@
           "alpha",
           "visibility"
         ],
-        "explanation": "The opacity property sets the opacity level of an element (0 = transparent, 1 = opaque)."
+        "explanation": "The opacity property sets the opacity level of an element (0 = transparent, 1 = opaque).",
+        "correctAnswer": 0
       },
       "easy-89": {
         "question": "Which JavaScript method converts a string to uppercase?",
@@ -2903,11 +3008,13 @@
           "toUpper()",
           "uppercase()"
         ],
-        "explanation": "The toUpperCase() method converts all characters in a string to uppercase."
+        "explanation": "The toUpperCase() method converts all characters in a string to uppercase.",
+        "correctAnswer": 0
       },
       "easy-90": {
         "question": "HTML attributes \"required\" and \"disabled\" can be used in forms.",
-        "explanation": "Yes, required makes a field mandatory and disabled disables it."
+        "explanation": "Yes, required makes a field mandatory and disabled disables it.",
+        "correctAnswer": 0
       },
       "easy-91": {
         "question": "Which HTML tag is used to create a quote element?",
@@ -2917,7 +3024,8 @@
           "<cite>",
           "<q>"
         ],
-        "explanation": "The <blockquote> tag is used to create a long quotation."
+        "explanation": "The <blockquote> tag is used to create a long quotation.",
+        "correctAnswer": 0
       },
       "easy-92": {
         "question": "Which JavaScript method converts a string to lowercase?",
@@ -2927,11 +3035,13 @@
           "toLower()",
           "lowercase()"
         ],
-        "explanation": "The toLowerCase() method converts all characters in a string to lowercase."
+        "explanation": "The toLowerCase() method converts all characters in a string to lowercase.",
+        "correctAnswer": 0
       },
       "easy-93": {
         "question": "Arrays in JavaScript can contain elements of different types.",
-        "explanation": "Yes, a JavaScript array can contain numbers, strings, objects, etc. mixed together."
+        "explanation": "Yes, a JavaScript array can contain numbers, strings, objects, etc. mixed together.",
+        "correctAnswer": 0
       },
       "easy-94": {
         "question": "Which CSS property is used to set the spacing between lines of text?",
@@ -2941,7 +3051,8 @@
           "line-spacing",
           "spacing"
         ],
-        "explanation": "The line-height property sets the height of a line of text."
+        "explanation": "The line-height property sets the height of a line of text.",
+        "correctAnswer": 0
       },
       "easy-95": {
         "question": "Which JavaScript method replaces text in a string?",
@@ -2951,11 +3062,13 @@
           "change()",
           "swap()"
         ],
-        "explanation": "The replace() method replaces a substring with another in a string."
+        "explanation": "The replace() method replaces a substring with another in a string.",
+        "correctAnswer": 0
       },
       "easy-96": {
         "question": "HTML \"alt\" attributes in images improve accessibility.",
-        "explanation": "Yes, the alt attribute provides alternative text for screen readers and broken images."
+        "explanation": "Yes, the alt attribute provides alternative text for screen readers and broken images.",
+        "correctAnswer": 0
       },
       "easy-97": {
         "question": "Which HTML tag is used to create a code element?",
@@ -2965,7 +3078,8 @@
           "<script>",
           "<snippet>"
         ],
-        "explanation": "The <code> tag is used to display computer code."
+        "explanation": "The <code> tag is used to display computer code.",
+        "correctAnswer": 0
       },
       "easy-98": {
         "question": "Which JavaScript method extracts a portion of a string?",
@@ -2975,11 +3089,13 @@
           "cut()",
           "part()"
         ],
-        "explanation": "The substring() and slice() methods extract a portion of a string."
+        "explanation": "The substring() and slice() methods extract a portion of a string.",
+        "correctAnswer": 0
       },
       "easy-99": {
         "question": "CSS selectors can target elements based on their position in the DOM.",
-        "explanation": "Yes, you can use :first-child, :last-child, :nth-child() to target by position."
+        "explanation": "Yes, you can use :first-child, :last-child, :nth-child() to target by position.",
+        "correctAnswer": 0
       },
       "easy-100": {
         "question": "Which HTML tag is used to create a preformatted text element?",
@@ -2989,7 +3105,8 @@
           "<text>",
           "<preserve>"
         ],
-        "explanation": "The <pre> tag preserves spaces and line breaks in text."
+        "explanation": "The <pre> tag preserves spaces and line breaks in text.",
+        "correctAnswer": 0
       },
       "medium-1": {
         "question": "What is the main difference between let and var in JavaScript?",
@@ -2999,11 +3116,13 @@
           "var is deprecated",
           "No difference"
         ],
-        "explanation": "let has block scope, meaning it is only accessible within the block where it is declared, while var has function scope."
+        "explanation": "let has block scope, meaning it is only accessible within the block where it is declared, while var has function scope.",
+        "correctAnswer": 0
       },
       "medium-2": {
         "question": "React hooks can only be used in functional components.",
-        "explanation": "Yes, React hooks (useState, useEffect, etc.) can only be used in functional components or custom hooks."
+        "explanation": "Yes, React hooks (useState, useEffect, etc.) can only be used in functional components or custom hooks.",
+        "correctAnswer": 0
       },
       "medium-3": {
         "question": "What is SQL injection?",
@@ -3013,7 +3132,8 @@
           "A database type",
           "A SQL function"
         ],
-        "explanation": "SQL injection is a security vulnerability that allows an attacker to execute malicious SQL commands."
+        "explanation": "SQL injection is a security vulnerability that allows an attacker to execute malicious SQL commands.",
+        "correctAnswer": 0
       },
       "medium-4": {
         "question": "What is the recommended method for storing passwords?",
@@ -3023,11 +3143,13 @@
           "Plain text storage",
           "Compression"
         ],
-        "explanation": "Passwords should be hashed with appropriate algorithms like bcrypt or argon2, never stored in plain text."
+        "explanation": "Passwords should be hashed with appropriate algorithms like bcrypt or argon2, never stored in plain text.",
+        "correctAnswer": 0
       },
       "medium-5": {
         "question": "CORS (Cross-Origin Resource Sharing) is a browser security mechanism.",
-        "explanation": "Yes, CORS is a security mechanism that controls requests between different origins."
+        "explanation": "Yes, CORS is a security mechanism that controls requests between different origins.",
+        "correctAnswer": 0
       },
       "medium-6": {
         "question": "What is SSR (Server-Side Rendering)?",
@@ -3037,7 +3159,8 @@
           "A caching method",
           "A network protocol"
         ],
-        "explanation": "SSR involves generating page HTML on the server before sending it to the browser."
+        "explanation": "SSR involves generating page HTML on the server before sending it to the browser.",
+        "correctAnswer": 0
       },
       "medium-7": {
         "question": "What is the difference between == and === in JavaScript?",
@@ -3047,11 +3170,13 @@
           "=== is deprecated",
           "No difference"
         ],
-        "explanation": "=== (strict equality) compares both value and type, while == (loose equality) performs type coercion before comparison."
+        "explanation": "=== (strict equality) compares both value and type, while == (loose equality) performs type coercion before comparison.",
+        "correctAnswer": 0
       },
       "medium-8": {
         "question": "JWT (JSON Web Tokens) can be decoded but not modified without the secret key.",
-        "explanation": "Yes, JWTs can be decoded (they are base64), but the signature prevents modification without the secret key."
+        "explanation": "Yes, JWTs can be decoded (they are base64), but the signature prevents modification without the secret key.",
+        "correctAnswer": 0
       },
       "medium-9": {
         "question": "What is an XSS (Cross-Site Scripting) attack?",
@@ -3061,7 +3186,8 @@
           "A type of virus",
           "A compression method"
         ],
-        "explanation": "XSS is a vulnerability that allows injecting malicious JavaScript code that executes in the victim's browser."
+        "explanation": "XSS is a vulnerability that allows injecting malicious JavaScript code that executes in the victim's browser.",
+        "correctAnswer": 0
       },
       "medium-10": {
         "question": "Which React method allows memoizing a computed value?",
@@ -3071,11 +3197,13 @@
           "useEffect",
           "useCallback"
         ],
-        "explanation": "useMemo allows memoizing the result of an expensive calculation and only recalculating it if dependencies change."
+        "explanation": "useMemo allows memoizing the result of an expensive calculation and only recalculating it if dependencies change.",
+        "correctAnswer": 0
       },
       "medium-11": {
         "question": "PostgreSQL is a NoSQL database.",
-        "explanation": "No, PostgreSQL is a relational (SQL) database, not NoSQL."
+        "explanation": "No, PostgreSQL is a relational (SQL) database, not NoSQL.",
+        "correctAnswer": 1
       },
       "medium-12": {
         "question": "What is CSRF (Cross-Site Request Forgery)?",
@@ -3085,7 +3213,8 @@
           "A cookie type",
           "A JavaScript function"
         ],
-        "explanation": "CSRF is an attack that forces an authenticated user to execute unwanted actions on a web application."
+        "explanation": "CSRF is an attack that forces an authenticated user to execute unwanted actions on a web application.",
+        "correctAnswer": 0
       },
       "medium-13": {
         "question": "What is the average time complexity of searching in an unsorted array?",
@@ -3095,11 +3224,13 @@
           "O(1)",
           "O(n²)"
         ],
-        "explanation": "In an unsorted array, you need to traverse all elements in the worst case, so O(n)."
+        "explanation": "In an unsorted array, you need to traverse all elements in the worst case, so O(n).",
+        "correctAnswer": 0
       },
       "medium-14": {
         "question": "JavaScript Promises can be chained with .then() and .catch().",
-        "explanation": "Yes, Promises can be chained to handle asynchronous operations sequentially."
+        "explanation": "Yes, Promises can be chained to handle asynchronous operations sequentially.",
+        "correctAnswer": 0
       },
       "medium-15": {
         "question": "What is a middleware in Express.js?",
@@ -3109,11 +3240,13 @@
           "An HTTP method",
           "A protocol"
         ],
-        "explanation": "A middleware is a function that has access to the request object, response object, and next function in the request-response cycle."
+        "explanation": "A middleware is a function that has access to the request object, response object, and next function in the request-response cycle.",
+        "correctAnswer": 0
       },
       "medium-16": {
         "question": "HTTPS uses port 80 by default.",
-        "explanation": "No, HTTPS uses port 443 by default. Port 80 is used by HTTP."
+        "explanation": "No, HTTPS uses port 443 by default. Port 80 is used by HTTP.",
+        "correctAnswer": 1
       },
       "medium-17": {
         "question": "What is the difference between const and let in JavaScript?",
@@ -3123,7 +3256,8 @@
           "let is deprecated",
           "No difference"
         ],
-        "explanation": "const declares a constant that cannot be reassigned, while let allows reassignment."
+        "explanation": "const declares a constant that cannot be reassigned, while let allows reassignment.",
+        "correctAnswer": 0
       },
       "medium-18": {
         "question": "What is lazy loading?",
@@ -3133,11 +3267,13 @@
           "A caching method",
           "A database type"
         ],
-        "explanation": "Lazy loading involves loading resources (images, components) only when needed, improving performance."
+        "explanation": "Lazy loading involves loading resources (images, components) only when needed, improving performance.",
+        "correctAnswer": 0
       },
       "medium-19": {
         "question": "HTTP cookies can be secured with the Secure and HttpOnly attributes.",
-        "explanation": "Yes, Secure enforces HTTPS and HttpOnly prevents JavaScript access to cookies, reducing XSS risks."
+        "explanation": "Yes, Secure enforces HTTPS and HttpOnly prevents JavaScript access to cookies, reducing XSS risks.",
+        "correctAnswer": 0
       },
       "medium-20": {
         "question": "What is a custom hook in React?",
@@ -3147,11 +3283,13 @@
           "A rendering method",
           "A state type"
         ],
-        "explanation": "A custom hook is a JavaScript function that starts with \"use\" and can call other React hooks."
+        "explanation": "A custom hook is a JavaScript function that starts with \"use\" and can call other React hooks.",
+        "correctAnswer": 0
       },
       "medium-21": {
         "question": "Content Security Policy (CSP) helps prevent XSS attacks.",
-        "explanation": "Yes, CSP is a security mechanism that controls which resources can be loaded and executed."
+        "explanation": "Yes, CSP is a security mechanism that controls which resources can be loaded and executed.",
+        "correctAnswer": 0
       },
       "medium-22": {
         "question": "What is the method to create a shallow copy of an object in JavaScript?",
@@ -3161,11 +3299,13 @@
           "Object.copy()",
           "Object.duplicate()"
         ],
-        "explanation": "Object.assign({}, obj) or {...obj} create a shallow copy of an object."
+        "explanation": "Object.assign({}, obj) or {...obj} create a shallow copy of an object.",
+        "correctAnswer": 0
       },
       "medium-23": {
         "question": "WebSockets allow bidirectional real-time communication.",
-        "explanation": "Yes, WebSockets establish a persistent TCP connection allowing bidirectional real-time communication."
+        "explanation": "Yes, WebSockets establish a persistent TCP connection allowing bidirectional real-time communication.",
+        "correctAnswer": 0
       },
       "medium-24": {
         "question": "What is debouncing?",
@@ -3175,11 +3315,13 @@
           "A caching method",
           "An event type"
         ],
-        "explanation": "Debouncing delays function execution until a certain time passes without new calls, useful for real-time searches."
+        "explanation": "Debouncing delays function execution until a certain time passes without new calls, useful for real-time searches.",
+        "correctAnswer": 0
       },
       "medium-25": {
         "question": "localStorage persists even after closing the browser.",
-        "explanation": "Yes, localStorage stores data persistently in the browser, even after closing it."
+        "explanation": "Yes, localStorage stores data persistently in the browser, even after closing it.",
+        "correctAnswer": 0
       },
       "medium-26": {
         "question": "What is hoisting in JavaScript?",
@@ -3189,7 +3331,8 @@
           "A variable type",
           "A syntax error"
         ],
-        "explanation": "Hoisting is JavaScript behavior that moves variable and function declarations to the top of their scope."
+        "explanation": "Hoisting is JavaScript behavior that moves variable and function declarations to the top of their scope.",
+        "correctAnswer": 0
       },
       "medium-27": {
         "question": "What is a callback in JavaScript?",
@@ -3199,11 +3342,13 @@
           "An array method",
           "An operator"
         ],
-        "explanation": "A callback is a function passed as an argument to another function and executed later."
+        "explanation": "A callback is a function passed as an argument to another function and executed later.",
+        "correctAnswer": 0
       },
       "medium-28": {
         "question": "JavaScript arrays are objects.",
-        "explanation": "Yes, JavaScript arrays are a special type of object with specific methods and properties."
+        "explanation": "Yes, JavaScript arrays are a special type of object with specific methods and properties.",
+        "correctAnswer": 0
       },
       "medium-29": {
         "question": "What is the spread operator (...) in JavaScript?",
@@ -3213,7 +3358,8 @@
           "An array method",
           "A function type"
         ],
-        "explanation": "The spread operator (...) allows expanding an iterable (array, object) into individual elements."
+        "explanation": "The spread operator (...) allows expanding an iterable (array, object) into individual elements.",
+        "correctAnswer": 0
       },
       "medium-30": {
         "question": "What is destructuring in JavaScript?",
@@ -3223,11 +3369,13 @@
           "A deletion method",
           "A variable type"
         ],
-        "explanation": "Destructuring allows extracting values from objects or arrays into separate variables."
+        "explanation": "Destructuring allows extracting values from objects or arrays into separate variables.",
+        "correctAnswer": 0
       },
       "medium-31": {
         "question": "Async/await functions in JavaScript simplify asynchronous code.",
-        "explanation": "Yes, async/await allows writing asynchronous code in a synchronous and more readable way."
+        "explanation": "Yes, async/await allows writing asynchronous code in a synchronous and more readable way.",
+        "correctAnswer": 0
       },
       "medium-32": {
         "question": "What is the concept of \"pure function\" in programming?",
@@ -3237,7 +3385,8 @@
           "A function without parameters",
           "A global function"
         ],
-        "explanation": "A pure function always returns the same result for the same inputs and has no side effects."
+        "explanation": "A pure function always returns the same result for the same inputs and has no side effects.",
+        "correctAnswer": 0
       },
       "medium-33": {
         "question": "What is the concept of \"currying\" in functional programming?",
@@ -3247,11 +3396,13 @@
           "A loop type",
           "An error"
         ],
-        "explanation": "Currying transforms a function taking multiple arguments into a series of functions each taking one argument."
+        "explanation": "Currying transforms a function taking multiple arguments into a series of functions each taking one argument.",
+        "correctAnswer": 0
       },
       "medium-34": {
         "question": "sessionStorage stores data only for the browser session.",
-        "explanation": "Yes, sessionStorage stores data only for the current session and deletes it when the tab closes."
+        "explanation": "Yes, sessionStorage stores data only for the current session and deletes it when the tab closes.",
+        "correctAnswer": 0
       },
       "medium-35": {
         "question": "What is the concept of \"immutability\" in programming?",
@@ -3261,7 +3412,8 @@
           "A mutation method",
           "A variable type"
         ],
-        "explanation": "Immutability means an object cannot be modified after creation, instead new objects are created."
+        "explanation": "Immutability means an object cannot be modified after creation, instead new objects are created.",
+        "correctAnswer": 0
       },
       "medium-36": {
         "question": "What is the concept of \"composition\" in React?",
@@ -3271,11 +3423,13 @@
           "A state method",
           "A hook"
         ],
-        "explanation": "Composition involves combining small reusable components to create more complex components."
+        "explanation": "Composition involves combining small reusable components to create more complex components.",
+        "correctAnswer": 0
       },
       "medium-37": {
         "question": "Props in React are read-only.",
-        "explanation": "Yes, props are immutable and should not be modified by the child component."
+        "explanation": "Yes, props are immutable and should not be modified by the child component.",
+        "correctAnswer": 0
       },
       "medium-38": {
         "question": "What is the concept of \"higher-order component\" (HOC) in React?",
@@ -3285,7 +3439,8 @@
           "A hook type",
           "A rendering method"
         ],
-        "explanation": "An HOC is a function that takes a component and returns a new component with additional features."
+        "explanation": "An HOC is a function that takes a component and returns a new component with additional features.",
+        "correctAnswer": 0
       },
       "medium-39": {
         "question": "What is the concept of \"render props\" in React?",
@@ -3295,11 +3450,13 @@
           "A state method",
           "A hook"
         ],
-        "explanation": "Render props is a technique where a component accepts a function as a prop to determine what to render."
+        "explanation": "Render props is a technique where a component accepts a function as a prop to determine what to render.",
+        "correctAnswer": 0
       },
       "medium-40": {
         "question": "The useEffect hook in React can replace componentDidMount, componentDidUpdate, and componentWillUnmount.",
-        "explanation": "Yes, useEffect combines the functionality of these three class component lifecycle methods."
+        "explanation": "Yes, useEffect combines the functionality of these three class component lifecycle methods.",
+        "correctAnswer": 0
       },
       "medium-41": {
         "question": "What is the concept of \"controlled component\" in React?",
@@ -3309,7 +3466,8 @@
           "A hook type",
           "A rendering method"
         ],
-        "explanation": "A controlled component is a component whose value is controlled by React state through props."
+        "explanation": "A controlled component is a component whose value is controlled by React state through props.",
+        "correctAnswer": 0
       },
       "medium-42": {
         "question": "What is the concept of \"uncontrolled component\" in React?",
@@ -3319,11 +3477,13 @@
           "A hook type",
           "An error"
         ],
-        "explanation": "An uncontrolled component stores its state in the DOM and uses refs to access values."
+        "explanation": "An uncontrolled component stores its state in the DOM and uses refs to access values.",
+        "correctAnswer": 0
       },
       "medium-43": {
         "question": "The useRef hook in React allows creating a mutable reference that persists between renders.",
-        "explanation": "Yes, useRef returns a mutable object whose .current property can be modified without triggering a re-render."
+        "explanation": "Yes, useRef returns a mutable object whose .current property can be modified without triggering a re-render.",
+        "correctAnswer": 0
       },
       "medium-44": {
         "question": "What is the concept of \"key prop\" in React?",
@@ -3333,7 +3493,8 @@
           "A prop type",
           "A method"
         ],
-        "explanation": "The key prop helps React identify which items have changed, been added, or removed in a list."
+        "explanation": "The key prop helps React identify which items have changed, been added, or removed in a list.",
+        "correctAnswer": 0
       },
       "medium-45": {
         "question": "What is the concept of \"reconciliation\" in React?",
@@ -3343,11 +3504,13 @@
           "A state method",
           "A hook"
         ],
-        "explanation": "Reconciliation is the process by which React compares the Virtual DOM with the real DOM and applies necessary changes."
+        "explanation": "Reconciliation is the process by which React compares the Virtual DOM with the real DOM and applies necessary changes.",
+        "correctAnswer": 0
       },
       "medium-46": {
         "question": "The useContext hook in React allows accessing a context without using a Consumer.",
-        "explanation": "Yes, useContext simplifies context access by avoiding the Consumer pattern."
+        "explanation": "Yes, useContext simplifies context access by avoiding the Consumer pattern.",
+        "correctAnswer": 0
       },
       "medium-47": {
         "question": "What is the concept of \"code splitting\" in web applications?",
@@ -3357,7 +3520,8 @@
           "A compression method",
           "A rendering type"
         ],
-        "explanation": "Code splitting allows dividing the bundle into smaller chunks, loaded only when needed."
+        "explanation": "Code splitting allows dividing the bundle into smaller chunks, loaded only when needed.",
+        "correctAnswer": 0
       },
       "medium-48": {
         "question": "What is the concept of \"lazy loading\" for images?",
@@ -3367,11 +3531,13 @@
           "A compression method",
           "An image type"
         ],
-        "explanation": "Lazy loading loads images only when they are about to enter the viewport, improving performance."
+        "explanation": "Lazy loading loads images only when they are about to enter the viewport, improving performance.",
+        "correctAnswer": 0
       },
       "medium-49": {
         "question": "The concept of \"single page application\" (SPA) loads a single HTML page and updates content dynamically.",
-        "explanation": "Yes, a SPA loads a single HTML page and uses JavaScript to update content without reloading the page."
+        "explanation": "Yes, a SPA loads a single HTML page and uses JavaScript to update content without reloading the page.",
+        "correctAnswer": 0
       },
       "medium-50": {
         "question": "What is the concept of \"progressive enhancement\" in web development?",
@@ -3381,7 +3547,8 @@
           "A testing method",
           "A framework type"
         ],
-        "explanation": "Progressive enhancement involves creating an accessible functional base, then adding advanced features."
+        "explanation": "Progressive enhancement involves creating an accessible functional base, then adding advanced features.",
+        "correctAnswer": 0
       },
       "medium-51": {
         "question": "What is the concept of \"memoization\" in programming?",
@@ -3391,11 +3558,13 @@
           "A cache type",
           "An error"
         ],
-        "explanation": "Memoization involves caching results of expensive functions to improve performance."
+        "explanation": "Memoization involves caching results of expensive functions to improve performance.",
+        "correctAnswer": 0
       },
       "medium-52": {
         "question": "The useMemo hook in React allows memoizing calculated values.",
-        "explanation": "Yes, useMemo memoizes the result of a calculation and only recalculates if its dependencies change."
+        "explanation": "Yes, useMemo memoizes the result of a calculation and only recalculates if its dependencies change.",
+        "correctAnswer": 0
       },
       "medium-53": {
         "question": "What is the concept of \"closure\" in JavaScript?",
@@ -3405,7 +3574,8 @@
           "A variable type",
           "An error"
         ],
-        "explanation": "A closure is a function that has access to variables from its outer scope even after that scope is closed."
+        "explanation": "A closure is a function that has access to variables from its outer scope even after that scope is closed.",
+        "correctAnswer": 0
       },
       "medium-54": {
         "question": "What is the concept of \"event delegation\" in JavaScript?",
@@ -3415,11 +3585,13 @@
           "An event type",
           "A method"
         ],
-        "explanation": "Event delegation involves attaching an event handler to a parent element to handle events from its children."
+        "explanation": "Event delegation involves attaching an event handler to a parent element to handle events from its children.",
+        "correctAnswer": 0
       },
       "medium-55": {
         "question": "The useCallback hook in React allows memoizing functions.",
-        "explanation": "Yes, useCallback returns a memoized version of a function that only changes if its dependencies change."
+        "explanation": "Yes, useCallback returns a memoized version of a function that only changes if its dependencies change.",
+        "correctAnswer": 0
       },
       "medium-56": {
         "question": "What is the concept of \"throttling\" in JavaScript?",
@@ -3429,7 +3601,8 @@
           "A loop type",
           "A method"
         ],
-        "explanation": "Throttling limits function execution to once per time period, useful for frequent events."
+        "explanation": "Throttling limits function execution to once per time period, useful for frequent events.",
+        "correctAnswer": 0
       },
       "medium-57": {
         "question": "What is the concept of \"prototype chain\" in JavaScript?",
@@ -3439,11 +3612,13 @@
           "An object type",
           "An error"
         ],
-        "explanation": "The prototype chain allows an object to inherit properties and methods from its prototype and parent prototypes."
+        "explanation": "The prototype chain allows an object to inherit properties and methods from its prototype and parent prototypes.",
+        "correctAnswer": 0
       },
       "medium-58": {
         "question": "ES6 classes in JavaScript are syntactic sugar over the prototype system.",
-        "explanation": "Yes, ES6 classes are clearer syntax but still use the prototype system under the hood."
+        "explanation": "Yes, ES6 classes are clearer syntax but still use the prototype system under the hood.",
+        "correctAnswer": 0
       },
       "medium-59": {
         "question": "What is the concept of \"virtual DOM\" in React?",
@@ -3453,7 +3628,8 @@
           "A DOM type",
           "A method"
         ],
-        "explanation": "The Virtual DOM is a lightweight JavaScript representation of the real DOM, enabling efficient updates."
+        "explanation": "The Virtual DOM is a lightweight JavaScript representation of the real DOM, enabling efficient updates.",
+        "correctAnswer": 0
       },
       "medium-60": {
         "question": "What is the concept of \"server-side rendering\" (SSR)?",
@@ -3463,11 +3639,13 @@
           "A rendering type",
           "A method"
         ],
-        "explanation": "SSR involves generating HTML on the server, improving SEO and initial load time."
+        "explanation": "SSR involves generating HTML on the server, improving SEO and initial load time.",
+        "correctAnswer": 0
       },
       "medium-61": {
         "question": "The concept of \"static site generation\" (SSG) generates HTML at build time.",
-        "explanation": "Yes, SSG generates all HTML pages at build time, creating an ultra-fast static site."
+        "explanation": "Yes, SSG generates all HTML pages at build time, creating an ultra-fast static site.",
+        "correctAnswer": 0
       },
       "medium-62": {
         "question": "What is the concept of \"hydration\" in React?",
@@ -3477,7 +3655,8 @@
           "A rendering type",
           "A method"
         ],
-        "explanation": "Hydration is the process of attaching React event handlers to server-side pre-rendered HTML."
+        "explanation": "Hydration is the process of attaching React event handlers to server-side pre-rendered HTML.",
+        "correctAnswer": 0
       },
       "medium-63": {
         "question": "What is the concept of \"tree shaking\" in JavaScript?",
@@ -3487,11 +3666,13 @@
           "A sorting method",
           "A bundle type"
         ],
-        "explanation": "Tree shaking eliminates unused code during bundling, reducing the final bundle size."
+        "explanation": "Tree shaking eliminates unused code during bundling, reducing the final bundle size.",
+        "correctAnswer": 0
       },
       "medium-64": {
         "question": "The concept of \"polyfill\" allows adding missing features in older browsers.",
-        "explanation": "Yes, a polyfill is code that implements a missing feature in an older browser."
+        "explanation": "Yes, a polyfill is code that implements a missing feature in an older browser.",
+        "correctAnswer": 0
       },
       "medium-65": {
         "question": "What is the concept of \"transpilation\" in JavaScript?",
@@ -3501,7 +3682,8 @@
           "Translating code",
           "A method"
         ],
-        "explanation": "Transpilation converts code from one language to another at the same level (e.g., TypeScript to JavaScript)."
+        "explanation": "Transpilation converts code from one language to another at the same level (e.g., TypeScript to JavaScript).",
+        "correctAnswer": 0
       },
       "medium-66": {
         "question": "What is the concept of \"middleware\" in web frameworks?",
@@ -3511,11 +3693,13 @@
           "A method",
           "An error"
         ],
-        "explanation": "Middleware is a function that intercepts requests and responses, allowing adding features."
+        "explanation": "Middleware is a function that intercepts requests and responses, allowing adding features.",
+        "correctAnswer": 0
       },
       "medium-67": {
         "question": "The concept of \"REST\" (Representational State Transfer) is an architectural style for APIs.",
-        "explanation": "Yes, REST is an architectural style that uses standard HTTP methods for CRUD operations."
+        "explanation": "Yes, REST is an architectural style that uses standard HTTP methods for CRUD operations.",
+        "correctAnswer": 0
       },
       "medium-68": {
         "question": "What is the concept of \"GraphQL\"?",
@@ -3525,7 +3709,8 @@
           "An HTTP method",
           "A framework"
         ],
-        "explanation": "GraphQL is a query language that allows clients to request exactly the data they need."
+        "explanation": "GraphQL is a query language that allows clients to request exactly the data they need.",
+        "correctAnswer": 0
       },
       "medium-69": {
         "question": "What is the concept of \"WebSocket\"?",
@@ -3535,11 +3720,13 @@
           "An HTTP method",
           "A framework"
         ],
-        "explanation": "WebSocket is a protocol that enables bidirectional real-time communication between client and server."
+        "explanation": "WebSocket is a protocol that enables bidirectional real-time communication between client and server.",
+        "correctAnswer": 0
       },
       "medium-70": {
         "question": "The concept of \"Service Worker\" allows creating offline web applications.",
-        "explanation": "Yes, Service Workers allow caching resources and creating offline web applications."
+        "explanation": "Yes, Service Workers allow caching resources and creating offline web applications.",
+        "correctAnswer": 0
       },
       "medium-71": {
         "question": "What is the concept of \"Progressive Web App\" (PWA)?",
@@ -3549,7 +3736,8 @@
           "A method",
           "A framework"
         ],
-        "explanation": "A PWA combines the best web and mobile features: installation, offline, push notifications."
+        "explanation": "A PWA combines the best web and mobile features: installation, offline, push notifications.",
+        "correctAnswer": 0
       },
       "medium-72": {
         "question": "What is the concept of \"dependency injection\" in programming?",
@@ -3559,11 +3747,13 @@
           "A dependency type",
           "A method"
         ],
-        "explanation": "Dependency injection makes code more testable and modular by providing dependencies from outside."
+        "explanation": "Dependency injection makes code more testable and modular by providing dependencies from outside.",
+        "correctAnswer": 0
       },
       "medium-73": {
         "question": "The concept of \"unit testing\" tests individual units of code in isolation.",
-        "explanation": "Yes, unit tests test small units of code (functions, components) in isolation."
+        "explanation": "Yes, unit tests test small units of code (functions, components) in isolation.",
+        "correctAnswer": 0
       },
       "medium-74": {
         "question": "What is the concept of \"integration testing\"?",
@@ -3573,7 +3763,8 @@
           "A test type",
           "A method"
         ],
-        "explanation": "Integration tests verify that multiple components work correctly together."
+        "explanation": "Integration tests verify that multiple components work correctly together.",
+        "correctAnswer": 0
       },
       "medium-75": {
         "question": "What is the concept of \"end-to-end testing\" (E2E)?",
@@ -3583,11 +3774,13 @@
           "A test type",
           "A method"
         ],
-        "explanation": "E2E tests simulate a real user and test the complete application from start to end."
+        "explanation": "E2E tests simulate a real user and test the complete application from start to end.",
+        "correctAnswer": 0
       },
       "medium-76": {
         "question": "The concept of \"mocking\" in tests allows simulating external dependencies.",
-        "explanation": "Yes, mocking allows replacing dependencies with simulated versions to isolate tests."
+        "explanation": "Yes, mocking allows replacing dependencies with simulated versions to isolate tests.",
+        "correctAnswer": 0
       },
       "medium-77": {
         "question": "What is the concept of \"continuous integration\" (CI)?",
@@ -3597,7 +3790,8 @@
           "A deployment type",
           "A method"
         ],
-        "explanation": "CI automates tests and builds on each commit to detect issues quickly."
+        "explanation": "CI automates tests and builds on each commit to detect issues quickly.",
+        "correctAnswer": 0
       },
       "medium-78": {
         "question": "What is the concept of \"continuous deployment\" (CD)?",
@@ -3607,11 +3801,13 @@
           "A test type",
           "A method"
         ],
-        "explanation": "CD automatically deploys code to production after all tests pass."
+        "explanation": "CD automatically deploys code to production after all tests pass.",
+        "correctAnswer": 0
       },
       "medium-79": {
         "question": "The concept of \"version control\" allows tracking code changes over time.",
-        "explanation": "Yes, version control (like Git) allows tracking, managing, and collaborating on code changes."
+        "explanation": "Yes, version control (like Git) allows tracking, managing, and collaborating on code changes.",
+        "correctAnswer": 0
       },
       "medium-80": {
         "question": "What is the concept of \"branch\" in Git?",
@@ -3621,7 +3817,8 @@
           "A commit type",
           "A method"
         ],
-        "explanation": "A Git branch is an independent line of development that allows working on features separately."
+        "explanation": "A Git branch is an independent line of development that allows working on features separately.",
+        "correctAnswer": 0
       },
       "hard-1": {
         "question": "What is the difference between a deep copy and a shallow copy in JavaScript?",
@@ -3631,11 +3828,13 @@
           "No difference",
           "Deep copy is deprecated"
         ],
-        "explanation": "A shallow copy copies only the first level, while a deep copy recursively copies all nested levels."
+        "explanation": "A shallow copy copies only the first level, while a deep copy recursively copies all nested levels.",
+        "correctAnswer": 0
       },
       "hard-2": {
         "question": "OAuth 2.0 protocol uses only access tokens, not refresh tokens.",
-        "explanation": "No, OAuth 2.0 uses both access tokens (short-lived) and refresh tokens (long-lived) to renew access tokens."
+        "explanation": "No, OAuth 2.0 uses both access tokens (short-lived) and refresh tokens (long-lived) to renew access tokens.",
+        "correctAnswer": 1
       },
       "hard-3": {
         "question": "What is the time complexity of merge sort algorithm?",
@@ -3645,7 +3844,8 @@
           "O(n)",
           "O(log n)"
         ],
-        "explanation": "Merge sort has a time complexity of O(n log n) in all cases (best, average, and worst)."
+        "explanation": "Merge sort has a time complexity of O(n log n) in all cases (best, average, and worst).",
+        "correctAnswer": 0
       },
       "hard-4": {
         "question": "What is the main vulnerability of ECB (Electronic Codebook) mode in encryption?",
@@ -3655,11 +3855,13 @@
           "It requires too much memory",
           "It is not secure at all"
         ],
-        "explanation": "ECB produces the same ciphertext for identical blocks, revealing patterns in data, which is a major security flaw."
+        "explanation": "ECB produces the same ciphertext for identical blocks, revealing patterns in data, which is a major security flaw.",
+        "correctAnswer": 0
       },
       "hard-5": {
         "question": "Service Workers can intercept and modify network requests.",
-        "explanation": "Yes, Service Workers act as a proxy between the application and network, allowing interception and modification of requests."
+        "explanation": "Yes, Service Workers act as a proxy between the application and network, allowing interception and modification of requests.",
+        "correctAnswer": 0
       },
       "hard-6": {
         "question": "What is the principle of least privilege in security?",
@@ -3669,7 +3871,8 @@
           "An encryption method",
           "A network protocol"
         ],
-        "explanation": "The principle of least privilege is to grant users and processes only the minimum permissions necessary to accomplish their tasks."
+        "explanation": "The principle of least privilege is to grant users and processes only the minimum permissions necessary to accomplish their tasks.",
+        "correctAnswer": 0
       },
       "hard-7": {
         "question": "What is the difference between useMemo and useCallback in React?",
@@ -3679,11 +3882,13 @@
           "No difference",
           "useMemo is deprecated"
         ],
-        "explanation": "useMemo returns a memoized value, while useCallback returns a memoized function."
+        "explanation": "useMemo returns a memoized value, while useCallback returns a memoized function.",
+        "correctAnswer": 0
       },
       "hard-8": {
         "question": "SHA-256 hash is reversible, you can retrieve the original text from the hash.",
-        "explanation": "No, SHA-256 is a one-way hash function, it is mathematically impossible to retrieve the original text."
+        "explanation": "No, SHA-256 is a one-way hash function, it is mathematically impossible to retrieve the original text.",
+        "correctAnswer": 1
       },
       "hard-9": {
         "question": "What is code splitting in React applications?",
@@ -3693,7 +3898,8 @@
           "A compression method",
           "A rendering type"
         ],
-        "explanation": "Code splitting allows dividing the JavaScript bundle into smaller chunks, loaded only when needed, improving performance."
+        "explanation": "Code splitting allows dividing the JavaScript bundle into smaller chunks, loaded only when needed, improving performance.",
+        "correctAnswer": 0
       },
       "hard-10": {
         "question": "What is the difference between authentication and authorization?",
@@ -3703,11 +3909,13 @@
           "Authorization is more secure",
           "Authentication is deprecated"
         ],
-        "explanation": "Authentication verifies who you are (identity), while authorization verifies what you are allowed to do (permissions)."
+        "explanation": "Authentication verifies who you are (identity), while authorization verifies what you are allowed to do (permissions).",
+        "correctAnswer": 0
       },
       "hard-11": {
         "question": "Direct mutations of React state are allowed and recommended.",
-        "explanation": "No, React requires immutable state updates. Direct mutations do not trigger re-renders."
+        "explanation": "No, React requires immutable state updates. Direct mutations do not trigger re-renders.",
+        "correctAnswer": 1
       },
       "hard-12": {
         "question": "What is a race condition in asynchronous programming?",
@@ -3717,7 +3925,8 @@
           "A loop type",
           "A caching method"
         ],
-        "explanation": "A race condition occurs when the result depends on the execution order of asynchronous processes, creating unpredictable behavior."
+        "explanation": "A race condition occurs when the result depends on the execution order of asynchronous processes, creating unpredictable behavior.",
+        "correctAnswer": 0
       },
       "hard-13": {
         "question": "What is the space complexity of an in-place sorting algorithm?",
@@ -3727,11 +3936,13 @@
           "O(n log n)",
           "O(n²)"
         ],
-        "explanation": "An in-place sorting algorithm uses constant space O(1), modifying the array directly without creating a copy."
+        "explanation": "An in-place sorting algorithm uses constant space O(1), modifying the array directly without creating a copy.",
+        "correctAnswer": 0
       },
       "hard-14": {
         "question": "Same-Origin Policy prevents scripts from one domain from accessing data from another domain.",
-        "explanation": "Yes, Same-Origin Policy is a security mechanism that restricts access to resources between different origins."
+        "explanation": "Yes, Same-Origin Policy is a security mechanism that restricts access to resources between different origins.",
+        "correctAnswer": 0
       },
       "hard-15": {
         "question": "What is the Virtual DOM in React?",
@@ -3741,7 +3952,8 @@
           "A caching method",
           "A component type"
         ],
-        "explanation": "The Virtual DOM is a lightweight JavaScript representation of the real DOM, allowing React to optimize updates."
+        "explanation": "The Virtual DOM is a lightweight JavaScript representation of the real DOM, allowing React to optimize updates.",
+        "correctAnswer": 0
       },
       "hard-16": {
         "question": "What is the difference between a salt and a pepper in cryptography?",
@@ -3751,11 +3963,13 @@
           "No difference",
           "Salt is deprecated"
         ],
-        "explanation": "A salt is unique per user and stored with the hash, while a pepper is a shared secret stored separately."
+        "explanation": "A salt is unique per user and stored with the hash, while a pepper is a shared secret stored separately.",
+        "correctAnswer": 0
       },
       "hard-17": {
         "question": "Closures in JavaScript allow a function to access variables from its outer scope even after that scope is closed.",
-        "explanation": "Yes, closures allow an inner function to access variables from the outer function even after it has executed."
+        "explanation": "Yes, closures allow an inner function to access variables from the outer function even after it has executed.",
+        "correctAnswer": 0
       },
       "hard-18": {
         "question": "What is double spending in the context of blockchain?",
@@ -3765,7 +3979,8 @@
           "A transaction type",
           "A calculation error"
         ],
-        "explanation": "Double spending is the problem of spending the same unit of digital value twice, solved by blockchain through consensus."
+        "explanation": "Double spending is the problem of spending the same unit of digital value twice, solved by blockchain through consensus.",
+        "correctAnswer": 0
       },
       "hard-19": {
         "question": "What is the difference between a WeakMap and a Map in JavaScript?",
@@ -3775,11 +3990,13 @@
           "No difference",
           "WeakMap is deprecated"
         ],
-        "explanation": "WeakMap uses weak references for keys (allowing garbage collection) and cannot be iterated, unlike Map."
+        "explanation": "WeakMap uses weak references for keys (allowing garbage collection) and cannot be iterated, unlike Map.",
+        "correctAnswer": 0
       },
       "hard-20": {
         "question": "HTTP/2 protocol allows multiplexing, enabling multiple requests over a single TCP connection.",
-        "explanation": "Yes, HTTP/2 introduces multiplexing which allows sending multiple requests simultaneously over a single TCP connection."
+        "explanation": "Yes, HTTP/2 introduces multiplexing which allows sending multiple requests simultaneously over a single TCP connection.",
+        "correctAnswer": 0
       },
       "hard-21": {
         "question": "What is the concept of \"lifting state up\" in React?",
@@ -3789,7 +4006,8 @@
           "A caching method",
           "A hook type"
         ],
-        "explanation": "Lifting state up involves moving shared state to the closest common parent component."
+        "explanation": "Lifting state up involves moving shared state to the closest common parent component.",
+        "correctAnswer": 0
       },
       "hard-22": {
         "question": "What is the main difference between AES-128 and AES-256?",
@@ -3799,11 +4017,13 @@
           "The encryption type",
           "No difference"
         ],
-        "explanation": "AES-128 uses a 128-bit key while AES-256 uses a 256-bit key, offering enhanced security."
+        "explanation": "AES-128 uses a 128-bit key while AES-256 uses a 256-bit key, offering enhanced security.",
+        "correctAnswer": 0
       },
       "hard-23": {
         "question": "Server Components in Next.js 13+ run only on the server and are not included in the client bundle.",
-        "explanation": "Yes, Server Components run only on the server, reducing the client JavaScript bundle size."
+        "explanation": "Yes, Server Components run only on the server, reducing the client JavaScript bundle size.",
+        "correctAnswer": 0
       },
       "hard-24": {
         "question": "What is the concept of \"event delegation\" in JavaScript?",
@@ -3813,7 +4033,8 @@
           "A caching method",
           "An event type"
         ],
-        "explanation": "Event delegation involves attaching a listener on a parent element to handle its children's events, improving performance."
+        "explanation": "Event delegation involves attaching a listener on a parent element to handle its children's events, improving performance.",
+        "correctAnswer": 0
       },
       "hard-25": {
         "question": "What is the time complexity of searching in a balanced binary search tree?",
@@ -3823,11 +4044,13 @@
           "O(1)",
           "O(n log n)"
         ],
-        "explanation": "In a balanced binary search tree, search has O(log n) complexity because we divide the search space by two at each level."
+        "explanation": "In a balanced binary search tree, search has O(log n) complexity because we divide the search space by two at each level.",
+        "correctAnswer": 0
       },
       "hard-26": {
         "question": "WebSocket protocol uses the same port as HTTP (80) or HTTPS (443).",
-        "explanation": "Yes, WebSocket starts with a normal HTTP/HTTPS connection then upgrades to WebSocket, using the same ports."
+        "explanation": "Yes, WebSocket starts with a normal HTTP/HTTPS connection then upgrades to WebSocket, using the same ports.",
+        "correctAnswer": 0
       },
       "hard-27": {
         "question": "What is the concept of \"memoization\" in programming?",
@@ -3837,7 +4060,8 @@
           "A cache type",
           "A memory error"
         ],
-        "explanation": "Memoization involves storing results of expensive calculations in a cache to avoid recalculating with the same inputs."
+        "explanation": "Memoization involves storing results of expensive calculations in a cache to avoid recalculating with the same inputs.",
+        "correctAnswer": 0
       },
       "hard-28": {
         "question": "What is the difference between a self-signed SSL certificate and one signed by a certificate authority?",
@@ -3847,11 +4071,13 @@
           "Self-signed are more secure",
           "CAs are deprecated"
         ],
-        "explanation": "A CA-signed certificate is verified and trusted by browsers, while a self-signed one generates a security warning."
+        "explanation": "A CA-signed certificate is verified and trusted by browsers, while a self-signed one generates a security warning.",
+        "correctAnswer": 0
       },
       "hard-29": {
         "question": "Generators in JavaScript allow creating iterable functions with yield.",
-        "explanation": "Yes, Generators are special functions that can be paused and resumed, using yield to produce values."
+        "explanation": "Yes, Generators are special functions that can be paused and resumed, using yield to produce values.",
+        "correctAnswer": 0
       },
       "hard-30": {
         "question": "What is the concept of \"defense in depth\" in cybersecurity?",
@@ -3861,7 +4087,8 @@
           "An encryption method",
           "A firewall type"
         ],
-        "explanation": "Defense in depth involves using multiple independent security layers to protect a system, reducing the risk of compromise."
+        "explanation": "Defense in depth involves using multiple independent security layers to protect a system, reducing the risk of compromise.",
+        "correctAnswer": 0
       },
       "hard-31": {
         "question": "What is the difference between a thunk and a middleware in Redux?",
@@ -3871,11 +4098,13 @@
           "No difference",
           "Thunks are deprecated"
         ],
-        "explanation": "A thunk is a Redux middleware that allows dispatching functions instead of plain actions, useful for asynchronous operations."
+        "explanation": "A thunk is a Redux middleware that allows dispatching functions instead of plain actions, useful for asynchronous operations.",
+        "correctAnswer": 0
       },
       "hard-32": {
         "question": "QUIC protocol uses UDP instead of TCP to improve performance.",
-        "explanation": "Yes, QUIC (Quick UDP Internet Connections) uses UDP with built-in reliability and security features, improving performance."
+        "explanation": "Yes, QUIC (Quick UDP Internet Connections) uses UDP with built-in reliability and security features, improving performance.",
+        "correctAnswer": 0
       },
       "hard-33": {
         "question": "What is the concept of \"single source of truth\" in state management?",
@@ -3885,7 +4114,8 @@
           "A caching method",
           "A database type"
         ],
-        "explanation": "Single source of truth involves having a single reliable source for application state, avoiding inconsistencies."
+        "explanation": "Single source of truth involves having a single reliable source for application state, avoiding inconsistencies.",
+        "correctAnswer": 0
       },
       "hard-34": {
         "question": "What is the difference between a hash and an HMAC (Hash-based Message Authentication Code)?",
@@ -3895,11 +4125,13 @@
           "No difference",
           "HMAC is deprecated"
         ],
-        "explanation": "HMAC combines a hash with a secret key, allowing verification of both integrity and authenticity of a message."
+        "explanation": "HMAC combines a hash with a secret key, allowing verification of both integrity and authenticity of a message.",
+        "correctAnswer": 0
       },
       "hard-35": {
         "question": "Web Workers allow executing JavaScript in a thread separate from the main thread.",
-        "explanation": "Yes, Web Workers allow executing JavaScript code in a separate thread, avoiding blocking the main thread."
+        "explanation": "Yes, Web Workers allow executing JavaScript code in a separate thread, avoiding blocking the main thread.",
+        "correctAnswer": 0
       },
       "hard-36": {
         "question": "What is the concept of \"idempotence\" in REST APIs?",
@@ -3909,7 +4141,8 @@
           "A request type",
           "A request error"
         ],
-        "explanation": "Idempotence means performing the same request multiple times produces the same result, important for PUT and DELETE methods."
+        "explanation": "Idempotence means performing the same request multiple times produces the same result, important for PUT and DELETE methods.",
+        "correctAnswer": 0
       },
       "hard-37": {
         "question": "What is the difference between a JWT (JSON Web Token) and a classic session token?",
@@ -3919,11 +4152,13 @@
           "No difference",
           "JWT is deprecated"
         ],
-        "explanation": "JWT is stateless and contains data in the token, while a session token requires server-side storage for session data."
+        "explanation": "JWT is stateless and contains data in the token, while a session token requires server-side storage for session data.",
+        "correctAnswer": 0
       },
       "hard-38": {
         "question": "TLS 1.3 protocol reduces the number of round-trips needed to establish a secure connection.",
-        "explanation": "Yes, TLS 1.3 reduces the handshake from 2 round-trips to 1, improving performance and security."
+        "explanation": "Yes, TLS 1.3 reduces the handshake from 2 round-trips to 1, improving performance and security.",
+        "correctAnswer": 0
       },
       "hard-39": {
         "question": "What is the concept of \"dependency injection\" in programming?",
@@ -3933,7 +4168,8 @@
           "A caching method",
           "A function type"
         ],
-        "explanation": "Dependency injection involves providing an object's dependencies from outside, improving testability and flexibility."
+        "explanation": "Dependency injection involves providing an object's dependencies from outside, improving testability and flexibility.",
+        "correctAnswer": 0
       },
       "hard-40": {
         "question": "What is the difference between a CSRF token and a JWT token?",
@@ -3943,11 +4179,13 @@
           "No difference",
           "CSRF token is deprecated"
         ],
-        "explanation": "A CSRF token protects against CSRF attacks by validating request origin, while a JWT is used for authentication and authorization."
+        "explanation": "A CSRF token protects against CSRF attacks by validating request origin, while a JWT is used for authentication and authorization.",
+        "correctAnswer": 0
       },
       "hard-41": {
         "question": "React Server Components can use hooks like useState and useEffect.",
-        "explanation": "No, Server Components run only on the server and cannot use hooks that require client state."
+        "explanation": "No, Server Components run only on the server and cannot use hooks that require client state.",
+        "correctAnswer": 1
       },
       "hard-42": {
         "question": "What is the concept of \"event loop\" in JavaScript?",
@@ -3957,7 +4195,8 @@
           "A caching method",
           "A function type"
         ],
-        "explanation": "The event loop is the mechanism that manages asynchronous execution in JavaScript, managing the execution stack and callback queue."
+        "explanation": "The event loop is the mechanism that manages asynchronous execution in JavaScript, managing the execution stack and callback queue.",
+        "correctAnswer": 0
       },
       "hard-43": {
         "question": "What is the difference between a wildcard certificate and a SAN (Subject Alternative Name) certificate?",
@@ -3967,11 +4206,13 @@
           "No difference",
           "Wildcard is deprecated"
         ],
-        "explanation": "A wildcard certificate covers all subdomains (*.domain.com), while a SAN lists multiple specific domains."
+        "explanation": "A wildcard certificate covers all subdomains (*.domain.com), while a SAN lists multiple specific domains.",
+        "correctAnswer": 0
       },
       "hard-44": {
         "question": "HTTP/3 protocol uses QUIC instead of TCP as the transport protocol.",
-        "explanation": "Yes, HTTP/3 uses QUIC which is based on UDP, offering better performance than HTTP/2 based on TCP."
+        "explanation": "Yes, HTTP/3 uses QUIC which is based on UDP, offering better performance than HTTP/2 based on TCP.",
+        "correctAnswer": 0
       },
       "hard-45": {
         "question": "What is the concept of \"tree shaking\" in JavaScript bundling?",
@@ -3981,7 +4222,8 @@
           "A compression method",
           "A cache type"
         ],
-        "explanation": "Tree shaking is an optimization technique that eliminates dead (unused) code from the final bundle, reducing its size."
+        "explanation": "Tree shaking is an optimization technique that eliminates dead (unused) code from the final bundle, reducing its size.",
+        "correctAnswer": 0
       },
       "hard-46": {
         "question": "What is the difference between IP-based rate limiting and token-based rate limiting?",
@@ -3991,11 +4233,13 @@
           "No difference",
           "IP-based is deprecated"
         ],
-        "explanation": "IP-based rate limiting limits requests by IP address, while token-based limits by authenticated user, more precise."
+        "explanation": "IP-based rate limiting limits requests by IP address, while token-based limits by authenticated user, more precise.",
+        "correctAnswer": 0
       },
       "hard-47": {
         "question": "Proxies in JavaScript allow intercepting and customizing operations on objects.",
-        "explanation": "Yes, Proxies allow creating an object that intercepts and customizes fundamental operations (reading, writing, etc.)."
+        "explanation": "Yes, Proxies allow creating an object that intercepts and customizes fundamental operations (reading, writing, etc.).",
+        "correctAnswer": 0
       },
       "hard-48": {
         "question": "What is the concept of \"zero trust\" in cybersecurity?",
@@ -4005,7 +4249,8 @@
           "An encryption method",
           "A firewall type"
         ],
-        "explanation": "Zero trust is a security model that trusts no user or device by default, verifying every access."
+        "explanation": "Zero trust is a security model that trusts no user or device by default, verifying every access.",
+        "correctAnswer": 0
       },
       "hard-49": {
         "question": "What is the difference between a polyfill and a transpiler?",
@@ -4015,11 +4260,13 @@
           "No difference",
           "Polyfill is deprecated"
         ],
-        "explanation": "A polyfill adds missing features in an environment, while a transpiler converts code from one language to another."
+        "explanation": "A polyfill adds missing features in an environment, while a transpiler converts code from one language to another.",
+        "correctAnswer": 0
       },
       "hard-50": {
         "question": "gRPC protocol uses Protocol Buffers for data serialization.",
-        "explanation": "Yes, gRPC uses Protocol Buffers (protobuf) as the default serialization format, offering efficient binary serialization."
+        "explanation": "Yes, gRPC uses Protocol Buffers (protobuf) as the default serialization format, offering efficient binary serialization.",
+        "correctAnswer": 0
       }
     }
   },
@@ -4277,7 +4524,9 @@
     }
   },
   "accessibility": {
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "loading": "Loading",
+    "close": "Close"
   },
   "legal": {
     "common": {
@@ -4637,6 +4886,32 @@
     "actions": {
       "downloadPdf": "Download PDF",
       "downloadPdfLoading": "Downloading..."
+    }
+  },
+  "patchnotes": {
+    "sort": {
+      "newestFirst": "Newest first",
+      "oldestFirst": "Oldest first",
+      "newestToOldest": "Newest to oldest",
+      "oldestToNewest": "Oldest to newest"
+    },
+    "ui": {
+      "search": "Search...",
+      "noResults": "No results",
+      "close": "Close",
+      "menu": "Menu"
+    },
+    "home": {
+      "title": "Welcome",
+      "displayDate": "Guide",
+      "badge": "Quick guide",
+      "subtitle": "How to read the patch notes",
+      "items": {
+        "0": "Pick a patch note from the list on the left.",
+        "1": "Red dot = unread update.",
+        "2": "Use search to quickly find a feature.",
+        "3": "Change sorting at the top (newest ↔ oldest)."
+      }
     }
   }
 }

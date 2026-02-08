@@ -52,11 +52,11 @@ function QuizCard({ title, description, questionCount, difficulty, onStart }: Qu
             <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1.5">
                     <HelpCircle className="w-4 h-4"/>
-                    <span>{questionCount} questions</span>
+                    <span>{t('info.questions', { count: questionCount })}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                     <Clock className="w-4 h-4"/>
-                    <span>30s / question</span>
+                    <span>{t('info.timePerQuestion', { seconds: 30 })}</span>
                 </div>
             </div>
             <Button onClick={onStart} className="w-full gap-2">

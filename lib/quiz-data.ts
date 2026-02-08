@@ -49,11 +49,10 @@ function selectRandomQuestions(questions: QuizQuestionMeta[], count: number): Qu
 }
 
 function shuffleAnswers(question: QuizQuestionMeta): QuizQuestionMeta {
-    if (question.type === 'true-false' || !question.optionCount) {
+    const optionsCount = question.type === 'true-false' ? 2 : question.optionCount;
+    if (!optionsCount) {
         return { ...question };
     }
-
-    const optionsCount = question.optionCount;
     const indices = Array.from({ length: optionsCount }, (_, i) => i);
     const shuffledIndices = shuffleArray(indices);
 

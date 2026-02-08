@@ -24,7 +24,7 @@ import MentalCpu from '@/components/games/MentalCpu';
 import RegexRush from '@/components/games/RegexRush';
 import HttpDetective from '@/components/games/HttpDetective';
 import SqlSleuth from '@/components/games/SqlSleuth';
-import { Brain, Bug, Code2, Database, Globe, Keyboard, Regex, Sparkles, SquareFunction } from 'lucide-react';
+import { Brain, Bug, Code2, Database, Globe, Keyboard, Regex, Sparkles, SquareFunction, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
@@ -143,12 +143,12 @@ export default function GamesPageClient() {
 
     const games = useMemo(
         () => [
-            // {
-            //     id: 'quiz' as GameType,
-            //     title: t('gameTypes.quiz.title'),
-            //     description: t('gameTypes.quiz.description'),
-            //     icon: <Trophy className="w-5 h-5"/>
-            // },
+            {
+                id: 'quiz' as GameType,
+                title: t('gameTypes.quiz.title'),
+                description: t('gameTypes.quiz.description'),
+                icon: <Trophy className="w-5 h-5"/>
+            },
             {
                 id: 'memory' as GameType,
                 title: t('gameTypes.memory.title'),

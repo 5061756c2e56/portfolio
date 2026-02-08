@@ -16,6 +16,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { useTranslations } from 'next-intl';
 
 const Dialog = DialogPrimitive.Root;
 
@@ -75,25 +76,28 @@ const DialogContent = React.forwardRef<
     showCloseButton = true,
     children,
     ...props
-}, ref) => (
-    <DialogPortal>
-        <DialogOverlay/>
-        <DialogPrimitive.Content
-            ref={ref}
-            className={cn(dialogContentVariants({ from }), className)}
-            {...props}
-        >
-            {children}
-            {showCloseButton && (
-                <DialogPrimitive.Close
-                    className="absolute right-4 top-4 p-1.5 rounded-xl opacity-60 transition-all duration-200 hover:opacity-100 hover:bg-blue-500/10 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:pointer-events-none disabled:cursor-not-allowed cursor-pointer">
-                    <X className="h-4 w-4"/>
-                    <span className="sr-only">Close</span>
-                </DialogPrimitive.Close>
-            )}
-        </DialogPrimitive.Content>
-    </DialogPortal>
-));
+}, ref) => {
+    const t = useTranslations('accessibility');
+    return (
+        <DialogPortal>
+            <DialogOverlay/>
+            <DialogPrimitive.Content
+                ref={ref}
+                className={cn(dialogContentVariants({ from }), className)}
+                {...props}
+            >
+                {children}
+                {showCloseButton && (
+                    <DialogPrimitive.Close
+                        className="absolute right-4 top-4 p-1.5 rounded-xl opacity-60 transition-all duration-200 hover:opacity-100 hover:bg-blue-500/10 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:pointer-events-none disabled:cursor-not-allowed cursor-pointer">
+                        <X className="h-4 w-4"/>
+                        <span className="sr-only">{t('close')}</span>
+                    </DialogPrimitive.Close>
+                )}
+            </DialogPrimitive.Content>
+        </DialogPortal>
+    );
+});
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({

@@ -360,7 +360,7 @@ export default function MemoryGame() {
                         value={difficulty}
                         onChange={handleDifficultyChange}
                         labels={labels}
-                        ariaLabel="Difficulty"
+                        ariaLabel={t('labels.difficulty')}
                         disabled={isSwitching}
                     />
                     <Button
