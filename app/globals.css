@@ -35,6 +35,7 @@
     --input: oklch(0 0 0 / 8%);
     --ring: oklch(0.5 0 0);
     --destructive: oklch(0.55 0.22 25);
+    --radius: 0.625rem;
     --chart-1: oklch(0.5 0.18 250);
     --chart-2: oklch(0.5 0.15 180);
     --chart-3: oklch(0.5 0.18 320);

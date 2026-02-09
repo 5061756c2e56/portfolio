@@ -53,7 +53,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             <LoadingOverlay
                 isLoading={isChanging || bootOverlay}
                 textKey="themeChanging"
-                tone="solid"
+                tone="solid-dark"
                 instant
             />
         </>

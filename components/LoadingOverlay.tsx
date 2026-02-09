@@ -18,7 +18,7 @@ import { Spinner } from '@/components/ui/spinner';
 interface LoadingOverlayProps {
     isLoading: boolean;
     textKey?: 'languageChanging' | 'themeChanging';
-    tone?: 'soft' | 'solid';
+    tone?: 'soft' | 'solid' | 'solid-dark';
     instant?: boolean;
 }
 
@@ -31,9 +31,16 @@ export function LoadingOverlay({
     const t = useTranslations('nav');
 
     const backgroundClass =
-        tone === 'solid'
-            ? 'bg-background'
-            : 'bg-background/80 backdrop-blur-md';
+        tone === 'solid-dark'
+            ? 'bg-black'
+            : tone === 'solid'
+                ? 'bg-background'
+                : 'bg-background/80 backdrop-blur-md';
+
+    const foregroundClass =
+        tone === 'solid-dark'
+            ? 'text-white/80'
+            : 'text-muted-foreground';
 
     const transitionClass = instant
         ? 'transition-none'
@@ -49,8 +56,8 @@ export function LoadingOverlay({
             )}
         >
             <div className="flex items-center gap-3">
-                <Spinner className="h-8 w-8 shrink-0 text-muted-foreground"/>
-                <p className="text-sm sm:text-base text-muted-foreground">
+                <Spinner className={cn('h-8 w-8 shrink-0', foregroundClass)}/>
+                <p className={cn('text-sm sm:text-base', foregroundClass)}>
                     {t(textKey)}
                 </p>
             </div>

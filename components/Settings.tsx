@@ -60,8 +60,8 @@ export default function Settings() {
         return (
             <button
                 className={cn(
-                    'group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer shrink-0 overflow-visible',
-                    christmasMode ? 'p-0.5' : 'p-2'
+                    'group inline-flex items-center justify-center rounded-xl border border-border/50 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer shrink-0 overflow-visible',
+                    christmasMode ? 'p-0.5' : 'p-2 w-9 h-9'
                 )}
                 aria-label={t('settings')}
                 disabled
@@ -93,8 +93,8 @@ export default function Settings() {
             <DropdownMenuTrigger asChild>
                 <button
                     className={cn(
-                        'group inline-flex items-center justify-center rounded-lg border border-border/50 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer shrink-0 overflow-visible',
-                        christmasMode ? 'p-0.5' : 'p-2'
+                        'group inline-flex items-center justify-center rounded-xl border border-border/50 bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 cursor-pointer shrink-0 overflow-visible',
+                        christmasMode ? 'p-0.5' : 'p-2 w-9 h-9'
                     )}
                     aria-label={t('settings')}
                 >
@@ -157,11 +157,13 @@ export default function Settings() {
 
                 <DropdownMenuLabel>{t('theme')}</DropdownMenuLabel>
                 <DropdownMenuGroup>
-                    {([
-                        { value: 'light', label: t('light') },
-                        { value: 'dark', label: t('dark') },
-                        { value: 'system', label: t('system') }
-                    ] as const).map(({ value, label }) => (
+                    {(
+                        [
+                            { value: 'light', label: t('light') },
+                            { value: 'dark', label: t('dark') },
+                            { value: 'system', label: t('system') }
+                        ] as const
+                    ).map(({ value, label }) => (
                         <DropdownMenuItem
                             key={value}
                             onSelect={(e) => {
