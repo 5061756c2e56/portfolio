@@ -178,7 +178,7 @@ function SkillCard({
             <div className="mt-4 flex flex-wrap gap-2">
                 {items.map((s) => {
                     const b = toBadge(s);
-                    return <ShieldsBadge key={s} label={b.label} logo={b.logo} color={b.color}/>;
+                    return <ShieldsBadge key={s} label={b.label} logo={b.logo} color={b.color} />;
                 })}
             </div>
         </div>
@@ -208,19 +208,26 @@ function LogoCloud() {
                 'overflow-hidden'
             ].join(' ')}
         >
-            {items.map((it, idx) => (
-                <svg
-                    key={idx}
-                    className="absolute h-7 sm:h-8 w-auto"
-                    style={{
-                        left: `${it.x}%`,
-                        top: `${it.y}%`,
-                        transform: `translate(-50%, -50%) rotate(${it.r}deg) scale(${it.s})`
-                    }}
-                >
-                    <use href={`/icons.svg#icon-${it.iconId}`}/>
-                </svg>
-            ))}
+            {items.map((it, idx) => {
+                const toneClass =
+                    it.iconId === 'nextjs' || it.iconId === 'github'
+                        ? 'text-black dark:invert'
+                        : 'text-muted-foreground';
+
+                return (
+                    <svg
+                        key={idx}
+                        className={`absolute h-7 sm:h-8 w-auto ${toneClass}`}
+                        style={{
+                            left: `${it.x}%`,
+                            top: `${it.y}%`,
+                            transform: `translate(-50%, -50%) rotate(${it.r}deg) scale(${it.s})`
+                        }}
+                    >
+                        <use href={`/icons.svg#icon-${it.iconId}`} />
+                    </svg>
+                );
+            })}
         </div>
     );
 }
@@ -302,7 +309,7 @@ export default async function CurriculumVitaePage() {
         {
             id: 'profil',
             title: t('sections.profile.title'),
-            icon: <User className="h-4 w-4"/>,
+            icon: <User className="h-4 w-4" />,
             content: (
                 <div className="space-y-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
@@ -320,7 +327,7 @@ export default async function CurriculumVitaePage() {
                                     <Pill index={4}>PostgreSQL</Pill>
                                 </div>
 
-                                <LogoCloud/>
+                                <LogoCloud />
                             </div>
                         </div>
 
@@ -343,32 +350,32 @@ export default async function CurriculumVitaePage() {
         {
             id: 'competences',
             title: t('sections.skills.title'),
-            icon: <Code2 className="h-4 w-4"/>,
+            icon: <Code2 className="h-4 w-4" />,
             content: (
                 <div className="grid gap-4 md:grid-cols-2">
                     <SkillCard
-                        icon={<Code2 className="h-4 w-4"/>}
+                        icon={<Code2 className="h-4 w-4" />}
                         title={t('sections.skills.frontend')}
                         items={CV.skills.frontend}
                     />
                     <SkillCard
-                        icon={<Layers className="h-4 w-4"/>}
+                        icon={<Layers className="h-4 w-4" />}
                         title={t('sections.skills.stateApi')}
                         items={CV.skills.stateApi}
                     />
                     <SkillCard
-                        icon={<Database className="h-4 w-4"/>}
+                        icon={<Database className="h-4 w-4" />}
                         title={t('sections.skills.backendData')}
                         items={CV.skills.backendData}
                     />
                     <SkillCard
-                        icon={<Wrench className="h-4 w-4"/>}
+                        icon={<Wrench className="h-4 w-4" />}
                         title={t('sections.skills.tooling')}
                         items={CV.skills.tooling}
                     />
                     <div className="md:col-span-2">
                         <SkillCard
-                            icon={<Shield className="h-4 w-4"/>}
+                            icon={<Shield className="h-4 w-4" />}
                             title={t('sections.skills.security')}
                             items={CV.skills.security}
                         />
@@ -379,7 +386,7 @@ export default async function CurriculumVitaePage() {
         {
             id: 'formation',
             title: t('sections.education.title'),
-            icon: <GraduationCap className="h-4 w-4"/>,
+            icon: <GraduationCap className="h-4 w-4" />,
             content: (
                 <div className="space-y-4">
                     {CV.education.map((ed) => (
@@ -441,7 +448,7 @@ export default async function CurriculumVitaePage() {
 
                                 <div
                                     className="inline-flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs font-medium text-muted-foreground">
-                                    <Calendar className="h-4 w-4"/>
+                                    <Calendar className="h-4 w-4" />
                                     {ed.date}
                                 </div>
                             </div>
@@ -465,7 +472,7 @@ export default async function CurriculumVitaePage() {
         {
             id: 'experience',
             title: t('sections.experience.title'),
-            icon: <Briefcase className="h-4 w-4"/>,
+            icon: <Briefcase className="h-4 w-4" />,
             content: (
                 () => {
                     const pinnedGroupKey = 'pinkail';
@@ -494,7 +501,7 @@ export default async function CurriculumVitaePage() {
 
                                 <div
                                     className="inline-flex items-center gap-2 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs font-medium text-muted-foreground">
-                                    <Calendar className="h-4 w-4"/>
+                                    <Calendar className="h-4 w-4" />
                                     {xp.date}
                                 </div>
                             </div>
@@ -560,20 +567,20 @@ export default async function CurriculumVitaePage() {
 
     return (
         <>
-            <LegalNavigation/>
+            <LegalNavigation />
             <div className="min-h-screen w-full bg-background">
                 <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12 relative">
                     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
                         <div
-                            className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-foreground/5 blur-3xl"/>
+                            className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-foreground/5 blur-3xl" />
                         <div
-                            className="absolute right-[-120px] top-[220px] h-[360px] w-[360px] rounded-full bg-blue-500/5 blur-3xl"/>
+                            className="absolute right-[-120px] top-[220px] h-[360px] w-[360px] rounded-full bg-blue-500/5 blur-3xl" />
                     </div>
 
                     <header className="text-center mb-12">
                         <div
                             className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground">
-                            <FileText className="h-4 w-4"/>
+                            <FileText className="h-4 w-4" />
                             {t('badge')}
                         </div>
 
