@@ -4417,7 +4417,7 @@
     "charts": {
       "commits": {
         "label": "Commits",
-        "total": "{count, plural, =0 {No commits in this period} =1 {1 commit in this period} other {# commits in this period}}"
+        "total": "{count, plural, =0 {Commit in this period} =1 {Commit in this period} other {Commits in this period}}"
       }
     },
     "search": {
