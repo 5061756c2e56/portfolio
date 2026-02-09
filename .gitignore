@@ -47,4 +47,4 @@ yarn-error.log*
 next-env.d.ts
 
 /lib/generated/prisma
-!/i18n/generated-locales.ts
+/i18n/generated-locales.ts
