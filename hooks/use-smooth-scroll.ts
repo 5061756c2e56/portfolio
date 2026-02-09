@@ -12,7 +12,7 @@
 import { useCallback } from 'react';
 
 const NAV_SELECTOR = '[data-site-nav]';
-const DEFAULT_GAP = 8;
+const DEFAULT_GAP = 64;
 
 function getNavOffset(extraOffset: number) {
     if (typeof document === 'undefined') return extraOffset;

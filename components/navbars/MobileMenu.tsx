@@ -55,7 +55,7 @@ export default function MobileMenu() {
                     aria-label={t('menu')}
                 >
                     {christmasMode ? (
-                        <ChristmasOrnament size={40}/>
+                        <ChristmasOrnament size={40} />
                     ) : (
                         <>
                             <svg
@@ -67,7 +67,7 @@ export default function MobileMenu() {
                                 viewBox="0 0 24 24"
                                 strokeWidth={2}
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                             <svg
                                 className={`h-5 w-5 absolute transition-all duration-500 ease-in-out ${
@@ -78,8 +78,8 @@ export default function MobileMenu() {
                                 viewBox="0 0 24 24"
                                 strokeWidth={2}
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6"/>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12"/>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12" />
                             </svg>
                         </>
                     )}
@@ -108,15 +108,15 @@ export default function MobileMenu() {
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
+                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className={itemClass('contact')}>
+                        {t('contact')}
+                    </a>
+                </DropdownMenuItem>
+                
+                <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <a href="#github-activities" onClick={(e) => handleLinkClick(e, '#github-activities')}
                        className={itemClass('github-activities')}>
                         {t('github-activities')}
-                    </a>
-                </DropdownMenuItem>
-
-                <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
-                    <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className={itemClass('contact')}>
-                        {t('contact')}
                     </a>
                 </DropdownMenuItem>
 
@@ -126,7 +126,7 @@ export default function MobileMenu() {
                     </a>
                 </DropdownMenuItem>
 
-                <DropdownMenuSeparator/>
+                <DropdownMenuSeparator />
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <Link
@@ -134,7 +134,7 @@ export default function MobileMenu() {
                         className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>{t('faq')}</span>
-                        <HelpCircle className="ml-2 w-4 h-4 opacity-70"/>
+                        <HelpCircle className="ml-2 w-4 h-4 opacity-70" />
                     </Link>
                 </DropdownMenuItem>
 
@@ -144,7 +144,7 @@ export default function MobileMenu() {
                         className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>{t('statsGithub')}</span>
-                        <BarChart3 className="ml-2 w-4 h-4 opacity-70"/>
+                        <BarChart3 className="ml-2 w-4 h-4 opacity-70" />
                     </Link>
                 </DropdownMenuItem>
 
@@ -154,7 +154,7 @@ export default function MobileMenu() {
                         className="w-full cursor-pointer transition-all text-sm rounded-lg px-2 py-1.5 hover:bg-blue-500/10 hover:text-blue-500 flex items-center text-muted-foreground"
                     >
                         <span>{t('games')}</span>
-                        <Gamepad2 className="ml-2 w-4 h-4 opacity-70"/>
+                        <Gamepad2 className="ml-2 w-4 h-4 opacity-70" />
                     </Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>

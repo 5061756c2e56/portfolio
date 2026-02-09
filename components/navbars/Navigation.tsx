@@ -115,11 +115,11 @@ export default function Navigation() {
                         suppressHydrationWarning
                     >
                         {christmasMode ? (
-                            <ChristmasHat size={24} className="w-6 h-6 text-primary"/>
+                            <ChristmasHat size={24} className="w-6 h-6 text-primary" />
                         ) : (
                             <div
                                 className="relative w-7 h-7 rounded-full overflow-hidden border border-blue-500/30 hover:border-blue-500/50 hover:shadow-[0_0_10px_rgba(59,130,246,0.2)] transition-all duration-300 shrink-0">
-                                <Image src="/pfp.png" alt="Paul Viandier" fill className="object-cover" sizes="28px"/>
+                                <Image src="/pfp.png" alt="Paul Viandier" fill className="object-cover" sizes="28px" />
                             </div>
                         )}
                         <span
@@ -170,20 +170,6 @@ export default function Navigation() {
                             </a>
 
                             <a
-                                href="#github-activities"
-                                onClick={(e) => handleNavClick(e, '#github-activities')}
-                                className={linkClass('github-activities')}
-                            >
-                                <span
-                                    ref={(el) => {
-                                        labelRefs.current['github-activities'] = el;
-                                    }}
-                                >
-                                    {t('github-activities')}
-                                </span>
-                            </a>
-
-                            <a
                                 href="#contact"
                                 onClick={(e) => handleNavClick(e, '#contact')}
                                 className={linkClass('contact')}
@@ -197,6 +183,20 @@ export default function Navigation() {
                                 </span>
                             </a>
 
+                            <a
+                                href="#github-activities"
+                                onClick={(e) => handleNavClick(e, '#github-activities')}
+                                className={linkClass('github-activities')}
+                            >
+                                <span
+                                    ref={(el) => {
+                                        labelRefs.current['github-activities'] = el;
+                                    }}
+                                >
+                                    {t('github-activities')}
+                                </span>
+                            </a>
+                            
                             <a
                                 href="#extras"
                                 onClick={(e) => handleNavClick(e, '#extras')}
@@ -228,7 +228,7 @@ export default function Navigation() {
                             className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             {t('faq')}
-                            <HelpCircle className="w-4 h-4 opacity-70"/>
+                            <HelpCircle className="w-4 h-4 opacity-70" />
                         </Link>
 
                         <Link
@@ -236,7 +236,7 @@ export default function Navigation() {
                             className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             {t('statsGithub')}
-                            <BarChart3 className="w-4 h-4 opacity-70"/>
+                            <BarChart3 className="w-4 h-4 opacity-70" />
                         </Link>
 
                         <Link
@@ -244,17 +244,17 @@ export default function Navigation() {
                             className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                         >
                             {t('games')}
-                            <Gamepad2 className="w-4 h-4 opacity-70"/>
+                            <Gamepad2 className="w-4 h-4 opacity-70" />
                         </Link>
 
                         <div className="ml-2">
-                            <Settings/>
+                            <Settings />
                         </div>
                     </div>
 
                     <div className="flex lg:hidden items-center gap-2">
-                        <MobileMenu/>
-                        <Settings/>
+                        <MobileMenu />
+                        <Settings />
                     </div>
                 </div>
             </div>

@@ -27,15 +27,15 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <>
-            <Navigation/>
+            <Navigation />
             <div className="min-h-screen text-foreground transition-colors duration-300">
-                <Hero/>
-                <About/>
-                <Skills/>
-                <Projects/>
-                <GitHubActivities/>
-                <Contact/>
-                <FinalCTA/>
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Contact />
+                <GitHubActivities />
+                <FinalCTA />
             </div>
         </>
     );
