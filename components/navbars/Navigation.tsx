@@ -184,20 +184,6 @@ export default function Navigation() {
                             </a>
 
                             <a
-                                href="#github-activities"
-                                onClick={(e) => handleNavClick(e, '#github-activities')}
-                                className={linkClass('github-activities')}
-                            >
-                                <span
-                                    ref={(el) => {
-                                        labelRefs.current['github-activities'] = el;
-                                    }}
-                                >
-                                    {t('github-activities')}
-                                </span>
-                            </a>
-                            
-                            <a
                                 href="#extras"
                                 onClick={(e) => handleNavClick(e, '#extras')}
                                 className={linkClass('extras')}

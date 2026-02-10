@@ -18,10 +18,35 @@ import { Download, Eye, FileTypeCorner, Folder } from 'lucide-react';
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export default function Hero() {
     const t = useTranslations('hero');
     const router = useRouter();
+    const shouldReduceMotion = useReducedMotion();
+
+    const fadeUp = {
+        hidden: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 18,
+            filter: shouldReduceMotion ? 'blur(0px)' : 'blur(8px)'
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)'
+        }
+    };
+
+    const container = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.12,
+                delayChildren: shouldReduceMotion ? 0 : 0.1
+            }
+        }
+    };
 
     const [isDownloadingCV, setIsDownloadingCV] = useState(false);
     const [isDownloadingLM, setIsDownloadingLM] = useState(false);
@@ -138,8 +163,16 @@ export default function Hero() {
             id="home"
             className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 pb-24 relative"
         >
-            <div className="max-w-4xl mx-auto text-center w-full relative z-10 animate-fade-in-up">
-                <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground mb-8">
+            <motion.div
+                className="max-w-4xl mx-auto text-center w-full relative z-10"
+                variants={container}
+                initial="hidden"
+                animate="visible"
+            >
+                <motion.div
+                    className="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground mb-8"
+                    variants={fadeUp}
+                >
                     <div
                         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
                         <svg
@@ -178,21 +211,28 @@ export default function Hero() {
                         </svg>
                         <span>{t('role')}</span>
                     </div>
-                </div>
+                </motion.div>
 
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.05] tracking-tight gradient-text">
+                <motion.h1
+                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.05] tracking-tight gradient-text"
+                    variants={fadeUp}
+                >
                     {t('title')}
-                </h1>
+                </motion.h1>
 
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-normal mb-6 text-foreground/70">
+                <motion.h2 className="text-xl sm:text-2xl md:text-3xl font-normal mb-6 text-foreground/70"
+                           variants={fadeUp}>
                     {t('subtitle')}
-                </h2>
+                </motion.h2>
 
-                <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed">
+                <motion.p
+                    className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed"
+                    variants={fadeUp}
+                >
                     {t('description')}
-                </p>
+                </motion.p>
 
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <motion.div className="flex flex-col sm:flex-row justify-center gap-4" variants={fadeUp}>
                     <DropdownMenu modal={false} open={cvOpen} onOpenChange={onCvOpenChange}>
                         <DropdownMenuTrigger asChild>
                             <button
@@ -374,12 +414,15 @@ export default function Hero() {
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
-                </div>
+                </motion.div>
 
-                <p className="mt-6 text-xs sm:text-sm text-muted-foreground/70 max-w-md mx-auto">
+                <motion.p
+                    className="mt-6 text-xs sm:text-sm text-muted-foreground/70 max-w-md mx-auto"
+                    variants={fadeUp}
+                >
                     {t('quickActionsHint')}
-                </p>
-            </div>
+                </motion.p>
+            </motion.div>
         </section>
     );
 }

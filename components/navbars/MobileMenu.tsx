@@ -112,13 +112,6 @@ export default function MobileMenu() {
                         {t('contact')}
                     </a>
                 </DropdownMenuItem>
-                
-                <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
-                    <a href="#github-activities" onClick={(e) => handleLinkClick(e, '#github-activities')}
-                       className={itemClass('github-activities')}>
-                        {t('github-activities')}
-                    </a>
-                </DropdownMenuItem>
 
                 <DropdownMenuItem asChild onSelect={() => setIsOpen(false)}>
                     <a href="#extras" onClick={(e) => handleLinkClick(e, '#extras')} className={itemClass('extras')}>

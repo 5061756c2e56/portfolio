@@ -184,10 +184,16 @@
     }
   },
   "finalCTA": {
-    "title": "Have a question, or want to try the interactive experience live?",
-    "description": "The FAQ covers the essentials: how it works, what's inside, and quick answers. The games area offers mini-challenges like Memory Match or Typing Speed to experience responsiveness, UX, and interactivity in action.",
-    "faqButton": "Go to the FAQ",
-    "gamesButton": "Explore the games"
+    "title": "What else is on this site?",
+    "lead": "Three pages to go further, without the fluff:",
+    "list": {
+      "faq": "FAQ: quick answers about my profile, my approach, and the site.",
+      "games": "Games: short challenges to see UX and interactivity in action.",
+      "stats": "GitHub stats: a clear snapshot of activity, languages, and contributions."
+    },
+    "faqButton": "Open the FAQ",
+    "gamesButton": "Explore the games",
+    "statsButton": "View GitHub stats"
   },
   "footer": {
     "paulViandier": "Paul Viandier",
@@ -210,7 +216,6 @@
     "quiz": "Quiz",
     "projects": "Projects",
     "statsGithub": "GitHub Stats",
-    "github-activities": "GitHub Activity",
     "contact": "Contact",
     "status": "Status",
     "loading": "Loading...",

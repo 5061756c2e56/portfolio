@@ -184,10 +184,16 @@
     }
   },
   "finalCTA": {
-    "title": "Une question, ou envie de tester l'interactif en direct ?",
-    "description": "La FAQ regroupe l'essentiel : fonctionnement, contenu et réponses rapides. L'espace jeux propose des mini-défis comme Memory Match ou Typing Speed pour voir la réactivité, l'UX et l'interactivité en action.",
+    "title": "Quoi de plus sur ce site ?",
+    "lead": "Trois pages pour aller plus loin, sans perdre de temps :",
+    "list": {
+      "faq": "FAQ : réponses rapides sur mon profil, ma méthode et le contenu du site.",
+      "games": "Jeux : mini-défis pour voir l'UX et l'interactivité en action.",
+      "stats": "Statistiques GitHub : aperçu clair de l'activité, des langages et des contributions."
+    },
     "faqButton": "Accéder à la FAQ",
-    "gamesButton": "Découvrir les jeux"
+    "gamesButton": "Découvrir les jeux",
+    "statsButton": "Voir les stats GitHub"
   },
   "footer": {
     "paulViandier": "Paul Viandier",
@@ -210,7 +216,6 @@
     "quiz": "Quiz",
     "projects": "Projets",
     "statsGithub": "Stats GitHub",
-    "github-activities": "Activité GitHub",
     "contact": "Contact",
     "status": "Statut",
     "loading": "Chargement...",

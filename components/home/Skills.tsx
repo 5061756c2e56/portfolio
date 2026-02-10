@@ -20,6 +20,7 @@ import {
     Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext,
     PaginationPrevious
 } from '@/components/ui/pagination';
+import { motion, useReducedMotion } from 'framer-motion';
 
 type Category = 'all' | 'frontend' | 'backend' | 'tools' | 'other';
 
@@ -68,6 +69,30 @@ export default function Skills() {
     const t = useTranslations('skills');
     const tDescriptions = useTranslations('skills.descriptions');
     const isMobile = useIsMobile();
+    const shouldReduceMotion = useReducedMotion();
+
+    const fadeUp = {
+        hidden: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 16,
+            filter: shouldReduceMotion ? 'blur(0px)' : 'blur(8px)'
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)'
+        }
+    };
+
+    const container = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.12,
+                delayChildren: shouldReduceMotion ? 0 : 0.08
+            }
+        }
+    };
 
     const [selectedCategory, setSelectedCategory] = useState<Category>('all');
     const [page, setPage] = useState(0);
@@ -122,12 +147,21 @@ export default function Skills() {
 
     return (
         <section id="skills" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative">
-            <div className="max-w-4xl mx-auto relative z-10">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 tracking-tight gradient-text">
+            <motion.div
+                className="max-w-4xl mx-auto relative z-10"
+                variants={container}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+            >
+                <motion.h2
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 tracking-tight gradient-text"
+                    variants={fadeUp}
+                >
                     {t('title')}
-                </h2>
+                </motion.h2>
 
-                <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+                <motion.div className="flex flex-wrap gap-2 mb-6 sm:mb-8" variants={fadeUp}>
                     {categories.map((category) => (
                         <Button
                             key={category.key}
@@ -138,137 +172,139 @@ export default function Skills() {
                             {category.label}
                         </Button>
                     ))}
-                </div>
+                </motion.div>
 
-                <TooltipProvider delayDuration={300}>
-                    <div className="relative">
-                        <div className="overflow-hidden">
-                            <div
-                                className="flex transition-transform duration-500 ease-out"
-                                style={{ transform: `translateX(-${safePage * 100}%)` }}
-                            >
-                                {pages.map((skillsPage, pageIndex) => {
-                                    const fillers = Math.max(0, pageSize - skillsPage.length);
+                <motion.div variants={fadeUp}>
+                    <TooltipProvider delayDuration={300}>
+                        <div className="relative">
+                            <div className="overflow-hidden">
+                                <div
+                                    className="flex transition-transform duration-500 ease-out"
+                                    style={{ transform: `translateX(-${safePage * 100}%)` }}
+                                >
+                                    {pages.map((skillsPage, pageIndex) => {
+                                        const fillers = Math.max(0, pageSize - skillsPage.length);
 
-                                    return (
-                                        <div key={pageIndex} className="w-full shrink-0">
-                                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                                                {skillsPage.map((skill) => {
-                                                    let description: string | undefined;
+                                        return (
+                                            <div key={pageIndex} className="w-full shrink-0">
+                                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                                                    {skillsPage.map((skill) => {
+                                                        let description: string | undefined;
 
-                                                    try {
-                                                        description = tDescriptions(skill.name as unknown as DescKey);
+                                                        try {
+                                                            description = tDescriptions(skill.name as unknown as DescKey);
 
-                                                        if (
-                                                            !description ||
-                                                            description === skill.name ||
-                                                            description.startsWith('skills.descriptions.')
-                                                        ) {
+                                                            if (
+                                                                !description ||
+                                                                description === skill.name ||
+                                                                description.startsWith('skills.descriptions.')
+                                                            ) {
+                                                                description = undefined;
+                                                            }
+                                                        } catch {
                                                             description = undefined;
                                                         }
-                                                    } catch {
-                                                        description = undefined;
-                                                    }
 
-                                                    return (
-                                                        <Tooltip key={skill.name}>
-                                                            <TooltipTrigger asChild>
-                                                                <div
-                                                                    className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer"
-                                                                >
+                                                        return (
+                                                            <Tooltip key={skill.name}>
+                                                                <TooltipTrigger asChild>
                                                                     <div
-                                                                        className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300"
+                                                                        className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer"
                                                                     >
-                                                                        <svg
-                                                                            className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300">
-                                                                            <use
-                                                                                href={`/icons.svg#icon-${skill.iconId}`}/>
-                                                                        </svg>
+                                                                        <div
+                                                                            className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300"
+                                                                        >
+                                                                            <svg
+                                                                                className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                                                                                <use
+                                                                                    href={`/icons.svg#icon-${skill.iconId}`}/>
+                                                                            </svg>
+                                                                        </div>
+                                                                        <h3 className="text-sm font-medium text-foreground/80 text-center group-hover:text-foreground transition-colors duration-300">
+                                                                            {skill.name}
+                                                                        </h3>
                                                                     </div>
-                                                                    <h3 className="text-sm font-medium text-foreground/80 text-center group-hover:text-foreground transition-colors duration-300">
-                                                                        {skill.name}
-                                                                    </h3>
-                                                                </div>
-                                                            </TooltipTrigger>
+                                                                </TooltipTrigger>
 
-                                                            {description && (
-                                                                <TooltipContent side="bottom" sideOffset={8}>
-                                                                    <p className="leading-relaxed">{description}</p>
-                                                                </TooltipContent>
-                                                            )}
-                                                        </Tooltip>
-                                                    );
-                                                })}
+                                                                {description && (
+                                                                    <TooltipContent side="bottom" sideOffset={8}>
+                                                                        <p className="leading-relaxed">{description}</p>
+                                                                    </TooltipContent>
+                                                                )}
+                                                            </Tooltip>
+                                                        );
+                                                    })}
 
-                                                {Array.from({ length: fillers }).map((_, i) => (
-                                                    <div
-                                                        key={`f-${pageIndex}-${i}`}
-                                                        className="invisible pointer-events-none rounded-lg border border-border bg-card p-4 flex flex-col items-center justify-center gap-3"
-                                                    >
-                                                        <div className="p-2 rounded-lg bg-muted">
-                                                            <div className="w-6 h-6"/>
+                                                    {Array.from({ length: fillers }).map((_, i) => (
+                                                        <div
+                                                            key={`f-${pageIndex}-${i}`}
+                                                            className="invisible pointer-events-none rounded-lg border border-border bg-card p-4 flex flex-col items-center justify-center gap-3"
+                                                        >
+                                                            <div className="p-2 rounded-lg bg-muted">
+                                                                <div className="w-6 h-6"/>
+                                                            </div>
+                                                            <div className="text-sm">.</div>
                                                         </div>
-                                                        <div className="text-sm">.</div>
-                                                    </div>
-                                                ))}
+                                                    ))}
+                                                </div>
                                             </div>
-                                        </div>
-                                    );
-                                })}
+                                        );
+                                    })}
+                                </div>
                             </div>
+
+                            {pageCount > 1 && (
+                                <Pagination className="mt-6">
+                                    <PaginationContent>
+                                        <PaginationItem>
+                                            <PaginationPrevious
+                                                href="#"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    if (canPrev) goPrev();
+                                                }}
+                                                className={!canPrev ? 'pointer-events-none opacity-50' : ''}
+                                            />
+                                        </PaginationItem>
+
+                                        {pageItems.map((it, idx) =>
+                                            it === 'ellipsis' ? (
+                                                <PaginationItem key={`e-${idx}`}>
+                                                    <PaginationEllipsis/>
+                                                </PaginationItem>
+                                            ) : (
+                                                <PaginationItem key={it}>
+                                                    <PaginationLink
+                                                        href="#"
+                                                        isActive={it === safePage}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setPage(it);
+                                                        }}
+                                                    >
+                                                        {it + 1}
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                            )
+                                        )}
+
+                                        <PaginationItem>
+                                            <PaginationNext
+                                                href="#"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    if (canNext) goNext();
+                                                }}
+                                                className={!canNext ? 'pointer-events-none opacity-50' : ''}
+                                            />
+                                        </PaginationItem>
+                                    </PaginationContent>
+                                </Pagination>
+                            )}
                         </div>
-
-                        {pageCount > 1 && (
-                            <Pagination className="mt-6">
-                                <PaginationContent>
-                                    <PaginationItem>
-                                        <PaginationPrevious
-                                            href="#"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                if (canPrev) goPrev();
-                                            }}
-                                            className={!canPrev ? 'pointer-events-none opacity-50' : ''}
-                                        />
-                                    </PaginationItem>
-
-                                    {pageItems.map((it, idx) =>
-                                        it === 'ellipsis' ? (
-                                            <PaginationItem key={`e-${idx}`}>
-                                                <PaginationEllipsis/>
-                                            </PaginationItem>
-                                        ) : (
-                                            <PaginationItem key={it}>
-                                                <PaginationLink
-                                                    href="#"
-                                                    isActive={it === safePage}
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        setPage(it);
-                                                    }}
-                                                >
-                                                    {it + 1}
-                                                </PaginationLink>
-                                            </PaginationItem>
-                                        )
-                                    )}
-
-                                    <PaginationItem>
-                                        <PaginationNext
-                                            href="#"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                if (canNext) goNext();
-                                            }}
-                                            className={!canNext ? 'pointer-events-none opacity-50' : ''}
-                                        />
-                                    </PaginationItem>
-                                </PaginationContent>
-                            </Pagination>
-                        )}
-                    </div>
-                </TooltipProvider>
-            </div>
+                    </TooltipProvider>
+                </motion.div>
+            </motion.div>
         </section>
     );
 }

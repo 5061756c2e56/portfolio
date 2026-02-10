@@ -15,12 +15,12 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useInView } from '@/hooks/use-in-view';
 import { cn } from '@/lib/utils';
 import { Earth, FileText } from 'lucide-react';
 import { useRouter } from '@/i18n/routing';
 import Image from 'next/image';
 import { SiGithub } from 'react-icons/si';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 const techBadges: Record<string, string> = {
     TypeScript: 'https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white',
@@ -35,7 +35,7 @@ const techBadges: Record<string, string> = {
 
 export default function Projects() {
     const t = useTranslations('projects');
-    const { ref, isInView } = useInView({ threshold: 0.1 });
+    const shouldReduceMotion = useReducedMotion();
 
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTech, setSelectedTech] = useState<string>('all');
@@ -106,29 +106,79 @@ export default function Projects() {
         });
     }, [projects, normalizedQuery, selectedTech]);
 
+    const fadeUp = {
+        hidden: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 16,
+            filter: shouldReduceMotion ? 'blur(0px)' : 'blur(8px)'
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)'
+        }
+    };
+
+    const container = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.12,
+                delayChildren: shouldReduceMotion ? 0 : 0.08
+            }
+        }
+    };
+
+    const list = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.08
+            }
+        }
+    };
+
+    const card = {
+        hidden: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 18,
+            scale: shouldReduceMotion ? 1 : 0.98,
+            filter: shouldReduceMotion ? 'blur(0px)' : 'blur(10px)'
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)'
+        },
+        exit: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 10,
+            scale: shouldReduceMotion ? 1 : 0.98,
+            transition: { duration: 0.2 }
+        }
+    };
+
     return (
         <section
-            ref={ref as React.RefObject<HTMLElement>}
             id="projects"
             className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative"
         >
-            <div className="max-w-4xl mx-auto relative z-10">
-                <h2
-                    className={cn(
-                        'text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 tracking-tight transition-all duration-500 gradient-text',
-                        isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
-                    )}
+            <motion.div
+                className="max-w-4xl mx-auto relative z-10"
+                variants={container}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+            >
+                <motion.h2
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 tracking-tight gradient-text"
+                    variants={fadeUp}
                 >
                     {t('title')}
-                </h2>
+                </motion.h2>
 
-                <div
-                    className={cn(
-                        'mb-6 space-y-4 transition-all duration-500',
-                        isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
-                    )}
-                    style={{ animationDelay: '100ms' }}
-                >
+                <motion.div className="mb-6 space-y-4" variants={fadeUp}>
                     <div className="relative">
                         <Input
                             type="text"
@@ -171,28 +221,26 @@ export default function Projects() {
                             </Button>
                         ))}
                     </div>
-                </div>
+                </motion.div>
 
                 {filteredProjects.length === 0 ? (
-                    <div
-                        className={cn(
-                            'text-center py-12 text-muted-foreground transition-all duration-500',
-                            isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
-                        )}
+                    <motion.div
+                        className="text-center py-12 text-muted-foreground"
+                        variants={fadeUp}
                     >
                         <p className="text-lg">{t('noResults')}</p>
-                    </div>
+                    </motion.div>
                 ) : (
-                    <div className="grid grid-cols-1 gap-6 auto-rows-fr">
-                        {filteredProjects.map((project, index) => (
-                            <div
-                                key={project.id}
-                                className={cn(
-                                    'group h-full flex flex-col rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300',
-                                    isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
-                                )}
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
+                    <motion.div className="grid grid-cols-1 gap-6 auto-rows-fr" variants={list}>
+                        <AnimatePresence mode="popLayout">
+                            {filteredProjects.map((project) => (
+                                <motion.div
+                                    key={project.id}
+                                    className="group h-full flex flex-col rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300"
+                                    variants={card}
+                                    exit="exit"
+                                    layout
+                                >
                                 <h3 className="text-lg font-semibold mb-2 text-foreground">{project.title}</h3>
                                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
                                     {project.description}
@@ -251,11 +299,12 @@ export default function Projects() {
                                          </Button>
                                      )}
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
                 )}
-            </div>
+            </motion.div>
         </section>
     );
 }

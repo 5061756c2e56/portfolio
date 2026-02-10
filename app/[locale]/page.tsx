@@ -16,7 +16,6 @@ import Projects from '@/components/home/Projects';
 import Contact from '@/components/home/Contact';
 import Navigation from '@/components/navbars/Navigation';
 import FinalCTA from '@/components/home/FinalCTA';
-import { GitHubActivities } from '@/components/home/GitHubActivities';
 
 import type { Metadata } from 'next';
 
@@ -34,7 +33,6 @@ export default function Home() {
                 <Skills />
                 <Projects />
                 <Contact />
-                <GitHubActivities />
                 <FinalCTA />
             </div>
         </>
