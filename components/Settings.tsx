@@ -21,13 +21,14 @@ import { useEffect, useState } from 'react';
 import { Flag } from '@/components/Flag';
 import { useLocaleContext } from '@/components/LocaleProvider';
 import { useTranslations } from 'next-intl';
-import { useTheme } from '@/hooks/use-theme';
+import { useTheme } from 'next-themes';
 import { defaultLocale, localeFlags, locales, usePathname } from '@/i18n/routing';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasBarleySugar } from '@/components/christmas/ChristmasBarleySugar';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import { Switch } from '@/components/ui/switch';
+import { Moon, Sun } from 'lucide-react';
 
 export default function Settings() {
     const { locale, showLocaleLoading } = useLocaleContext();
@@ -67,7 +68,7 @@ export default function Settings() {
                 disabled
             >
                 {christmasMode ? (
-                    <ChristmasBarleySugar size={45} className="transition-transform duration-300"/>
+                    <ChristmasBarleySugar size={45} className="transition-transform duration-300" />
                 ) : (
                     <svg
                         className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-90"
@@ -81,7 +82,7 @@ export default function Settings() {
                             strokeLinejoin="round"
                             d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
                         />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                 )}
             </button>
@@ -116,7 +117,7 @@ export default function Settings() {
                                 strokeLinejoin="round"
                                 d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
                             />
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                     )}
                 </button>
@@ -135,7 +136,7 @@ export default function Settings() {
                                 onClick={() => switchLocale(loc)}
                                 className={currentLocale === loc ? 'bg-muted' : ''}
                             >
-                                <Flag code={localeFlags[loc]} className="mr-2 h-5 w-5 shrink-0"/>
+                                <Flag code={localeFlags[loc]} className="mr-2 h-5 w-5 shrink-0" />
                                 {tAll(`locales.${loc}` as Parameters<typeof tAll>[0])}
                                 {currentLocale === loc && (
                                     <svg
@@ -145,7 +146,7 @@ export default function Settings() {
                                         viewBox="0 0 24 24"
                                         strokeWidth={2}
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
                                 )}
                             </DropdownMenuItem>
@@ -153,40 +154,27 @@ export default function Settings() {
                     </div>
                 </DropdownMenuGroup>
 
-                <DropdownMenuSeparator/>
+                <DropdownMenuSeparator />
 
-                <DropdownMenuLabel>{t('theme')}</DropdownMenuLabel>
-                <DropdownMenuGroup>
-                    {(
-                        [
-                            { value: 'light', label: t('light') },
-                            { value: 'dark', label: t('dark') },
-                            { value: 'system', label: t('system') }
-                        ] as const
-                    ).map(({ value, label }) => (
-                        <DropdownMenuItem
-                            key={value}
-                            onSelect={(e) => {
-                                e.preventDefault();
-                                setSettingsOpen(false);
-                                setTheme(value);
-                            }}
-                            className="flex items-center justify-between gap-3"
-                        >
-                            <span>{label}</span>
-                            <Switch
-                                size="sm"
-                                checked={theme === value}
-                                onCheckedChange={(checked) => {
-                                    if (checked) {
-                                        setSettingsOpen(false);
-                                        setTheme(value);
-                                    }
-                                }}
-                            />
-                        </DropdownMenuItem>
-                    ))}
-                </DropdownMenuGroup>
+                <DropdownMenuItem
+                    onSelect={(e) => e.preventDefault()}
+                    className="flex items-center justify-between cursor-default"
+                >
+                    <span>{t('theme')}</span>
+                    <Switch
+                        className="h-6 w-11 cursor-pointer data-[state=unchecked]:bg-blue-100 data-[state=unchecked]:border-blue-300 data-[state=checked]:bg-indigo-950 data-[state=checked]:border-indigo-700 border"
+                        thumbClassName="size-5 data-[state=unchecked]:bg-white data-[state=unchecked]:shadow-md data-[state=checked]:bg-indigo-900 data-[state=checked]:shadow-md"
+                        checked={theme === 'dark'}
+                        onCheckedChange={(checked) => {
+                            setTheme(checked ? 'dark' : 'light');
+                        }}
+                    >
+                        {theme === 'dark'
+                            ? <Moon className="w-3 h-3 text-white" />
+                            : <Sun className="w-3 h-3 text-black" />
+                        }
+                    </Switch>
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

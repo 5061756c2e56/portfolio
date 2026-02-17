@@ -177,7 +177,7 @@ export default function Skills() {
                 <motion.div variants={fadeUp}>
                     <TooltipProvider delayDuration={300}>
                         <div className="relative">
-                            <div className="overflow-hidden">
+                            <div className="overflow-hidden pt-1 -mt-1">
                                 <div
                                     className="flex transition-transform duration-500 ease-out"
                                     style={{ transform: `translateX(-${safePage * 100}%)` }}

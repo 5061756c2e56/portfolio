@@ -26,7 +26,7 @@ import Footer from '@/components/home/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
 import { ContactModalProvider } from '@/hooks/useContactModal';
-import { cookies } from 'next/headers';
+
 import {
     defaultLocale,
     isLocale,
@@ -157,61 +157,16 @@ export default async function RootLayout({
     const { _meta, ...messages } = allMsgs;
     void _meta;
 
-    const cookieStore = await cookies();
-    const themeCookie = cookieStore.get('theme')?.value;
-    const themeClass =
-        themeCookie === 'dark'
-            ? 'dark'
-            : themeCookie === 'light'
-                ? 'light'
-                : undefined;
-
-    const themeInitScript = `
-(function() {
-  try {
-    var d = document.documentElement;
-    var s = d.style;
-    var storedTheme = localStorage.getItem('theme');
-    if (storedTheme !== 'light' && storedTheme !== 'dark' && storedTheme !== 'system') {
-      storedTheme = null;
-    }
-    if (!storedTheme) {
-      localStorage.setItem('theme', 'light');
-      storedTheme = 'light';
-    }
-    var theme = storedTheme || 'light';
-    var effectiveTheme = theme;
-    if (theme === 'system') {
-      effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    d.classList.remove('light', 'dark');
-    d.classList.add(effectiveTheme);
-    if (effectiveTheme === 'dark') {
-      s.backgroundColor = '#000000';
-      s.color = '#ededed';
-      s.colorScheme = 'dark';
-    } else {
-      s.backgroundColor = '#fafafa';
-      s.color = '#262626';
-      s.colorScheme = 'light';
-    }
-    window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};
-  } catch (e) {
-    document.documentElement.classList.add('light');
-    document.documentElement.style.backgroundColor = '#fafafa';
-    document.documentElement.style.color = '#262626';
-    window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};
-  }
-})();`;
+    const christmasInitScript = `window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};`;
 
     return (
-        <html lang={locale} className={themeClass} suppressHydrationWarning>
+        <html lang={locale} suppressHydrationWarning>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
                 suppressHydrationWarning
             >
-                <Script id="theme-init" strategy="beforeInteractive">
-                    {themeInitScript}
+                <Script id="christmas-init" strategy="beforeInteractive">
+                    {christmasInitScript}
                 </Script>
                 <LocaleProvider initialLocale={locale} messages={messages}>
                     <ThemeProvider>

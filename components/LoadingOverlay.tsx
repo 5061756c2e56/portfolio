@@ -17,7 +17,7 @@ import { Spinner } from '@/components/ui/spinner';
 
 interface LoadingOverlayProps {
     isLoading: boolean;
-    textKey?: 'languageChanging' | 'themeChanging';
+    textKey?: 'languageChanging';
     tone?: 'soft' | 'solid' | 'solid-dark';
     instant?: boolean;
 }

@@ -11,51 +11,17 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useTheme } from '@/hooks/use-theme';
-import { LoadingOverlay } from '@/components/LoadingOverlay';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const { mounted, theme, isChanging } = useTheme();
-    const [bootOverlay, setBootOverlay] = useState(true);
-
-    useEffect(() => {
-        if (!mounted) return;
-
-        const root = document.documentElement;
-        const hasThemeClass =
-            root.classList.contains('light') || root.classList.contains('dark');
-
-        if (!hasThemeClass) {
-            const effectiveTheme =
-                theme === 'system'
-                    ? (
-                        window.matchMedia('(prefers-color-scheme: dark)').matches
-                            ? 'dark'
-                            : 'light'
-                    )
-                    : theme;
-
-            root.classList.add(effectiveTheme);
-            root.style.colorScheme = effectiveTheme;
-        }
-    }, [mounted, theme]);
-
-    useEffect(() => {
-        if (!mounted) return;
-        const raf = window.requestAnimationFrame(() => setBootOverlay(false));
-        return () => window.cancelAnimationFrame(raf);
-    }, [mounted]);
-
     return (
-        <>
+        <NextThemesProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+        >
             {children}
-            <LoadingOverlay
-                isLoading={isChanging || bootOverlay}
-                textKey="themeChanging"
-                tone="solid-dark"
-                instant
-            />
-        </>
+        </NextThemesProvider>
     );
 }

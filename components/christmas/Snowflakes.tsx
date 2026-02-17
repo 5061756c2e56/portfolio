@@ -12,7 +12,7 @@
 'use client';
 
 import { useChristmasMode } from '@/hooks/use-christmas';
-import { useTheme } from '@/hooks/use-theme';
+import { useTheme } from 'next-themes';
 import { useEffect, useMemo, useReducer, useSyncExternalStore } from 'react';
 
 interface Snowflake {
@@ -110,31 +110,15 @@ const subscribeNoop = () => () => {};
 const getTrue = () => true;
 const getFalse = () => false;
 
-function useDarkMediaQuery(): boolean {
-    return useSyncExternalStore(
-        (cb) => {
-            const mql = window.matchMedia('(prefers-color-scheme: dark)');
-            mql.addEventListener('change', cb);
-            return () => mql.removeEventListener('change', cb);
-        },
-        () => window.matchMedia('(prefers-color-scheme: dark)').matches,
-        () => false
-    );
-}
+
 
 export function Snowflakes() {
     const isChristmasMode = useChristmasMode();
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
 
     const isClient = useSyncExternalStore(subscribeNoop, getTrue, getFalse);
-    const prefersDark = useDarkMediaQuery();
 
-    const isDark = useMemo(() => {
-        if (!isClient) return false;
-        if (theme === 'dark') return true;
-        if (theme === 'light') return false;
-        return prefersDark;
-    }, [isClient, theme, prefersDark]);
+    const isDark = isClient && resolvedTheme === 'dark';
 
     const minOpacity = isDark ? 0.1 : 0.2;
     const maxOpacity = isDark ? 0.25 : 0.45;
