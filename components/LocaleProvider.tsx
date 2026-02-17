@@ -21,7 +21,7 @@ type Messages = Record<string, unknown>;
 interface LocaleContextType {
     locale: Locale;
     setLocale: (locale: Locale) => void;
-    showLocaleLoading: () => void;
+    showLocaleLoading: (text?: string) => void;
 }
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
@@ -41,12 +41,14 @@ interface LocaleProviderProps {
 }
 
 const LOADING_KEY = 'locale-loading';
+const LOADING_TEXT_KEY = 'locale-loading-text';
 
 export function LocaleProvider({ children, initialLocale, messages }: LocaleProviderProps) {
     const [locale, setLocaleState] = useState<Locale>(initialLocale);
     const [mounted, setMounted] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingText, setLoadingText] = useState<string | null>(null);
 
     useEffect(() => {
         setMounted(true);
@@ -54,12 +56,18 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
         const wasLoading = sessionStorage.getItem(LOADING_KEY);
         if (wasLoading) {
             sessionStorage.removeItem(LOADING_KEY);
+            const savedText = sessionStorage.getItem(LOADING_TEXT_KEY);
+            sessionStorage.removeItem(LOADING_TEXT_KEY);
+            if (savedText) setLoadingText(savedText);
             setIsVisible(true);
             setIsLoading(true);
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     setIsLoading(false);
-                    setTimeout(() => setIsVisible(false), 300);
+                    setTimeout(() => {
+                        setIsVisible(false);
+                        setLoadingText(null);
+                    }, 300);
                 });
             });
         }
@@ -76,8 +84,12 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
         }
     }, [locale, mounted]);
 
-    const showLocaleLoading = useCallback(() => {
+    const showLocaleLoading = useCallback((text?: string) => {
         sessionStorage.setItem(LOADING_KEY, 'true');
+        if (text) {
+            sessionStorage.setItem(LOADING_TEXT_KEY, text);
+            setLoadingText(text);
+        }
         setIsVisible(true);
         setIsLoading(true);
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -100,7 +112,7 @@ export function LocaleProvider({ children, initialLocale, messages }: LocaleProv
                 now={new Date()}
             >
                 {children}
-                {isVisible && <LoadingOverlay isLoading={isLoading}/>}
+                {isVisible && <LoadingOverlay isLoading={isLoading} overrideText={loadingText}/>}
             </NextIntlClientProvider>
         </LocaleContext.Provider>
     );

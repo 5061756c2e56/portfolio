@@ -20,13 +20,15 @@ interface LoadingOverlayProps {
     textKey?: 'languageChanging';
     tone?: 'soft' | 'solid' | 'solid-dark';
     instant?: boolean;
+    overrideText?: string | null;
 }
 
 export function LoadingOverlay({
     isLoading,
     textKey = 'languageChanging',
     tone = 'soft',
-    instant = false
+    instant = false,
+    overrideText
 }: LoadingOverlayProps) {
     const t = useTranslations('nav');
 
@@ -58,7 +60,7 @@ export function LoadingOverlay({
             <div className="flex items-center gap-3">
                 <Spinner className={cn('h-8 w-8 shrink-0', foregroundClass)}/>
                 <p className={cn('text-sm sm:text-base', foregroundClass)}>
-                    {t(textKey)}
+                    {overrideText ?? t(textKey)}
                 </p>
             </div>
         </div>

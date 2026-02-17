@@ -54,7 +54,8 @@
     "fr": "Francés",
     "en-US": "Inglés (US)",
     "en-GB": "Inglés (GB)",
-    "es": "Español"
+    "es": "Español",
+    "ru": "Ruso"
   },
   "hero": {
     "title": "Paul Viandier",
@@ -230,7 +231,8 @@
     "theme": "Tema",
     "languageChanging": "Cambiando el idioma...",
     "faq": "Preguntas frecuentes",
-    "extras": "Extras"
+    "extras": "Extras",
+    "helpTranslate": "Ayudar a traducir"
   },
   "games": {
     "meta": {
