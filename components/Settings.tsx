@@ -28,7 +28,7 @@ import { ChristmasBarleySugar } from '@/components/christmas/ChristmasBarleySuga
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import { Switch } from '@/components/ui/switch';
-import { Moon, Sun } from 'lucide-react';
+import { GitPullRequest, Moon, Sun } from 'lucide-react';
 
 export default function Settings() {
     const { locale, showLocaleLoading } = useLocaleContext();
@@ -49,7 +49,7 @@ export default function Settings() {
     const switchLocale = (newLocale: string) => {
         if (!mounted || newLocale === locale) return;
 
-        showLocaleLoading();
+        showLocaleLoading(t('languageChanging'));
 
         const newPath = newLocale === defaultLocale ? pathname : `/${newLocale}${pathname}`;
         router.push(newPath);
@@ -153,6 +153,16 @@ export default function Settings() {
                         ))}
                     </div>
                 </DropdownMenuGroup>
+
+                <a
+                    href="https://github.com/5061756c2e56/portfolio/pulls"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-1.5 text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
+                >
+                    <GitPullRequest className="h-3.5 w-3.5" />
+                    {t('helpTranslate')}
+                </a>
 
                 <DropdownMenuSeparator />
 
