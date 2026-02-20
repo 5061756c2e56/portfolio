@@ -37,7 +37,7 @@ export default function StructuredData() {
                 ],
                 email: 'contact@paulviandier.com',
                 description:
-                    'Développeur web fullstack en formation, passionné de cybersécurité. Spécialisé en TypeScript, React, Next.js.',
+                    'Full-stack web developer in training, passionate about cybersecurity. Specialized in TypeScript, React, Next.js.',
                 image: `${baseUrl}/pfp.png`,
                 knowsAbout: [
                     'TypeScript',
@@ -56,10 +56,10 @@ export default function StructuredData() {
             {
                 '@type': 'WebSite',
                 '@id': `${baseUrl}/#website`,
-                name: 'Portfolio de Paul Viandier',
+                name: 'Paul Viandier\'s portfolio',
                 url: baseUrl,
                 description:
-                    'Portfolio professionnel de Paul Viandier, développeur web fullstack spécialisé en TypeScript, React, Next.js et cybersécurité.',
+                    'Professional portfolio of Paul Viandier, full-stack web developer specializing in TypeScript, React, Next.js, and cybersecurity.',
                 author: { '@id': `${baseUrl}/#person` },
                 inLanguage: locales
             },
@@ -67,9 +67,9 @@ export default function StructuredData() {
                 '@type': 'WebPage',
                 '@id': `${baseUrl}/#webpage`,
                 url: baseUrl,
-                name: 'Portfolio de Paul Viandier - Développeur Web',
+                name: 'Portfolio of Paul Viandier - Web Developer',
                 description:
-                    'Développeur web fullstack en formation, passionné de cybersécurité. Découvrez mes projets et compétences.',
+                    'Full-stack web developer in training, passionate about cybersecurity. Discover my projects and skills.',
                 isPartOf: { '@id': `${baseUrl}/#website` },
                 about: { '@id': `${baseUrl}/#person` }
             },
@@ -82,7 +82,7 @@ export default function StructuredData() {
             {
                 '@type': 'SiteNavigationElement',
                 '@id': `${baseUrl}/#motivation-nav`,
-                name: 'Lettre de motivation',
+                name: 'Cover letter',
                 url: `${baseUrl}/motivation-letter`
             },
             {
@@ -94,13 +94,19 @@ export default function StructuredData() {
             {
                 '@type': 'SiteNavigationElement',
                 '@id': `${baseUrl}/#stats-nav`,
-                name: 'Statistiques GitHub',
+                name: 'GitHub Statistics',
                 url: `${baseUrl}/stats`
+            },
+            {
+                '@type': 'SiteNavigationElement',
+                '@id': `${baseUrl}/#games-nav`,
+                name: 'Games & Challenges',
+                url: `${baseUrl}/games`
             },
             {
                 '@type': 'ItemList',
                 '@id': `${baseUrl}/#projects`,
-                name: 'Projets',
+                name: 'Projects',
                 itemListElement: [
                     {
                         '@type': 'ListItem',
@@ -109,22 +115,9 @@ export default function StructuredData() {
                             '@type': 'SoftwareApplication',
                             name: 'Portfolio',
                             description:
-                                'Site portfolio personnel développé avec Next.js et TypeScript.',
+                                'Personal portfolio website developed with Next.js and TypeScript.',
                             url: 'https://github.com/5061756c2e56/portfolio',
                             applicationCategory: 'WebApplication',
-                            author: { '@id': `${baseUrl}/#person` }
-                        }
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 2,
-                        item: {
-                            '@type': 'SoftwareApplication',
-                            name: 'Web Security',
-                            description:
-                                'Suite de sécurité web pour la protection et la gestion des systèmes informatiques.',
-                            url: 'https://security.paulviandier.com',
-                            applicationCategory: 'SecurityApplication',
                             author: { '@id': `${baseUrl}/#person` }
                         }
                     }

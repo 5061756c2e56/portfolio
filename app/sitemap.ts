@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${baseUrl}/curriculum-vitae`, lastModified },
         { url: `${baseUrl}/motivation-letter`, lastModified },
         { url: `${baseUrl}/faq`, lastModified },
-        { url: `${baseUrl}/stats`, lastModified }
+        { url: `${baseUrl}/stats`, lastModified },
+        { url: `${baseUrl}/games`, lastModified }
     ];
 }
