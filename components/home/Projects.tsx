@@ -70,12 +70,12 @@ export default function Projects() {
                         label: t('buttonGitHub'),
                         href: 'https://github.com/5061756c2e56/Web-Security',
                         variant: 'white'
-                    },
-                    {
-                        label: t('buttonVisitSite'),
-                        href: 'https://security.paulviandier.com',
-                        variant: 'gray'
                     }
+                    // {
+                    //     label: t('buttonVisitSite'),
+                    //     href: 'https://security.paulviandier.com',
+                    //     variant: 'gray'
+                    // }
                 ]
             }
         ],
@@ -241,64 +241,66 @@ export default function Projects() {
                                     exit="exit"
                                     layout
                                 >
-                                <h3 className="text-lg font-semibold mb-2 text-foreground">{project.title}</h3>
-                                <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
-                                    {project.description}
-                                </p>
+                                    <h3 className="text-lg font-semibold mb-2 text-foreground">{project.title}</h3>
+                                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed flex-1">
+                                        {project.description}
+                                    </p>
 
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.technologies.map((tech) => (
-                                        <Image
-                                            key={tech}
-                                            src={techBadges[tech]}
-                                            alt={tech}
-                                            width={140}
-                                            height={28}
-                                            unoptimized
-                                            className="h-7 w-auto"
-                                        />
-                                    ))}
-                                </div>
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {project.technologies.map((tech) => (
+                                            <Image
+                                                key={tech}
+                                                src={techBadges[tech]}
+                                                alt={tech}
+                                                width={140}
+                                                height={28}
+                                                unoptimized
+                                                className="h-7 w-auto"
+                                            />
+                                        ))}
+                                    </div>
 
-                                <div
-                                    className="mt-auto flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-start gap-2">
-                                    {project.buttons?.map((btn, i) => (
-                                        <a
-                                            key={i}
-                                            href={btn.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full sm:w-auto"
-                                        >
-                                            <Button
-                                                className={cn(
-                                                    'w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
-                                                    btn.variant === 'white'
-                                                        ? 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-100 hover:shadow'
-                                                        : 'btn-fill-secondary'
-                                                )}
+                                    <div
+                                        className="mt-auto flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-start gap-2">
+                                        {project.buttons?.map((btn, i) => (
+                                            <a
+                                                key={i}
+                                                href={btn.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-full sm:w-auto"
                                             >
-                                                {btn.label === t('buttonGitHub') && <SiGithub className="w-4 h-4"/>}
-                                                {btn.label === t('buttonVisitSite') && <Earth className="w-4 h-4"/>}
-                                                {btn.label}
-                                            </Button>
-                                        </a>
-                                    ))}
+                                                <Button
+                                                    className={cn(
+                                                        'w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
+                                                        btn.variant === 'white'
+                                                            ? 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-100 hover:shadow'
+                                                            : 'btn-fill-secondary'
+                                                    )}
+                                                >
+                                                    {btn.label === t('buttonGitHub') && <SiGithub
+                                                        className="w-4 h-4" />}
+                                                    {btn.label === t('buttonVisitSite') && <Earth
+                                                        className="w-4 h-4" />}
+                                                    {btn.label}
+                                                </Button>
+                                            </a>
+                                        ))}
 
-                                    {'slug' in project && (
-                                        project as { slug?: string }
-                                    ).slug && (
-                                         <Button
-                                             onClick={() => router.push(`/projects/${(
-                                                 project as { slug: string }
-                                             ).slug}`)}
-                                             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm btn-fill-secondary"
-                                         >
-                                             <FileText className="w-4 h-4"/>
-                                             {t('buttonDetail')}
-                                         </Button>
-                                     )}
-                                </div>
+                                        {'slug' in project && (
+                                            project as { slug?: string }
+                                        ).slug && (
+                                             <Button
+                                                 onClick={() => router.push(`/projects/${(
+                                                     project as { slug: string }
+                                                 ).slug}`)}
+                                                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm btn-fill-secondary"
+                                             >
+                                                 <FileText className="w-4 h-4" />
+                                                 {t('buttonDetail')}
+                                             </Button>
+                                         )}
+                                    </div>
                                 </motion.div>
                             ))}
                         </AnimatePresence>
