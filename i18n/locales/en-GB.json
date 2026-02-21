@@ -71,9 +71,179 @@
     "viewButtonDropdown": "View the web version",
     "quickActionsHint": "Right-click or long-press to view quick actions"
   },
+  "parcours": {
+    "title": "My Journey",
+    "filterAll": "All",
+    "filterFormation": "Training",
+    "filterExperience": "Experience",
+    "typeFormation": "Training",
+    "typeExperience": "Experience",
+    "seeDetails": "View details",
+    "timelineData": {
+      "1": {
+        "title": "STI2D Technology Baccalaureate with SIN option",
+        "description": "Studied programming in Python as well as web development (HTML, CSS, JavaScript). This course also enabled me to build a solid foundation in database creation and administration.",
+        "period": "2023 - 2024"
+      },
+      "2": {
+        "title": "Cybersecurity",
+        "description": [
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "Pre-Security"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Fundamental networking principles",
+              "How the Web works",
+              "Linux fundamentals",
+              "Windows fundamentals"
+            ]
+          },
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "Cybersecurity 101"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Start your cybersecurity journey",
+              "Linux fundamentals",
+              "Windows and Active Directory fundamentals",
+              "Command line",
+              "Networking",
+              "Cryptography",
+              "Exploitation fundamentals",
+              "Web hacking",
+              "Offensive security tools",
+              "Defensive security",
+              "Security solutions",
+              "Defensive security tools",
+              "Build your cybersecurity career"
+            ]
+          }
+        ],
+        "period": "2021 - 2024"
+      },
+      "3": {
+        "title": "IT Technician",
+        "description": [
+          {
+            "type": "bullets",
+            "items": [
+              "Automated deployment of an IT estate",
+              "Installation, hardening and maintenance of a wired and Wi-Fi local network",
+              "Administration of an Active Directory domain",
+              "Monitoring and preventive/corrective maintenance of an IT estate",
+              "Handling user requests and providing 1st and 2nd line support in line with ITIL best practice",
+              "Writing, structuring and updating technical documentation",
+              "Working in on-premises, cloud or hybrid environments"
+            ]
+          }
+        ],
+        "period": "2025"
+      },
+      "4": {
+        "title": "Programming",
+        "description": [
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "OpenClassrooms"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Introduction to the C language (understanding programming fundamentals: variables, control structures, functions)",
+              "Learning the basics of web development: HTML, CSS and JavaScript"
+            ]
+          },
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "Coursera"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Further development of HTML, CSS and JavaScript skills (advanced structuring, best practice, application logic)",
+              "Meta Full-Stack Developer pathway currently in progress",
+              "Next step: PostgreSQL specialisation and the IBM Full-Stack Developer pathway"
+            ]
+          }
+        ],
+        "period": "Present"
+      },
+      "5": {
+        "title": "Qualification in Web Integration",
+        "description": [
+          {
+            "type": "bullets",
+            "items": [
+              "Design and development of complete, responsive web applications, adapted to all types of devices to enable online sales of products and services",
+              "Enhancing web pages to better showcase products and services",
+              "Development of interfaces connected to the back end, enabling dynamic applications and user authentication management",
+              "Performance optimisation and ongoing/corrective maintenance of existing sites, with the aim of stability, speed and improved natural search ranking (SEO)",
+              "End-to-end web project management: needs analysis, cost estimation, task breakdown, writing technical specifications, development and presentation of the final solution"
+            ]
+          }
+        ],
+        "period": "Present"
+      }
+    }
+  },
   "about": {
     "title": "About me",
-    "content": "I am Paul Viandier, a web developer passionate about cyber security. Currently training as a web integrator through a work-study programme, I am building a solid foundation in development and integration. My goal is to continue training as a full-stack web developer in order to broaden my skills, understand the full production chain of a web project, and be able to handle both the front end and back end. As a web developer, I specialise in creating modern web applications with TypeScript, React and Next.js. My portfolio showcases my projects and web development skills."
+    "content": "I am Paul Viandier, a web developer passionate about cyber security. Currently training as a web integrator through a work-study programme, I am building a solid foundation in development and integration. My goal is to continue training as a full-stack web developer in order to broaden my skills, understand the full production chain of a web project, and be able to handle both the front end and back end. As a web developer, I specialise in creating modern web applications with TypeScript, React and Next.js. My portfolio showcases my projects and web development skills.",
+    "statusItem": {
+      "1": {
+        "label": "Apprenticeship",
+        "sub": "Web Integrator"
+      },
+      "2": {
+        "label": "Cyber security",
+        "sub": "Main passion"
+      },
+      "3": {
+        "label": "Full-stack developer",
+        "sub": "Short-term goal"
+      }
+    }
   },
   "skills": {
     "title": "Skills",
@@ -187,14 +357,21 @@
   "finalCTA": {
     "title": "What else is on this site?",
     "lead": "Three pages to go further, without the fluff:",
-    "list": {
-      "faq": "FAQ: quick answers about my profile, my approach, and the site.",
-      "games": "Games: short challenges to see UX and interactivity in action.",
-      "stats": "GitHub stats: a clear snapshot of activity, languages, and contributions."
+    "faq": {
+      "title": "FAQ",
+      "description": "Find answers to the most frequently asked questions about my background and skills.",
+      "button": "Explore the FAQ"
     },
-    "faqButton": "Open the FAQ",
-    "gamesButton": "Explore the games",
-    "statsButton": "View GitHub stats"
+    "statsGithub": {
+      "title": "GitHub Statistics",
+      "description": "View the statistics for my open-source projects: commits, languages, and contributions.",
+      "button": "View GitHub Statistics"
+    },
+    "games": {
+      "title": "Games & Challenges",
+      "description": "Test your knowledge of web development and cyber security with quizzes and interactive games.",
+      "button": "Explore Games & Challenges"
+    }
   },
   "footer": {
     "paulViandier": "Paul Viandier",
@@ -213,6 +390,7 @@
     "home": "Home",
     "about": "About",
     "skills": "Skills",
+    "parcours": "Journey",
     "games": "Games",
     "quiz": "Quiz",
     "projects": "Projects",
@@ -4820,7 +4998,7 @@
       }
     },
     "education": {
-      "openclassroom": {
+      "webIntegrator": {
         "title": "Web Integrator",
         "level": "Level 5 Diploma (equivalent to two years of higher education after secondary school)",
         "note": "Work-study programme",
@@ -4831,6 +5009,21 @@
           "3": "Implement data/state management with Redux",
           "4": "Use Git for version control and team collaboration",
           "5": "Debug and optimise an existing website"
+        }
+      },
+      "ti": {
+        "title": "IT Technician",
+        "level": "Level 5 Diploma (Bac +2 equivalent)",
+        "note": "Full-time programme",
+        "date": "2025",
+        "bullets": {
+          "1": "Deploy an automated IT estate (end-user workstations, servers, configuration)",
+          "2": "Install, secure and maintain a local network (wired and Wi-Fi)",
+          "3": "Manage an Active Directory domain (accounts, permissions, GPOs, network services)",
+          "4": "Ensure monitoring and maintenance of the IT estate",
+          "5": "Handle user requests and provide 1st/2nd line support in line with ITIL best practice",
+          "6": "Write and keep technical documentation up to date",
+          "7": "Work in on-premises, cloud or hybrid environments"
         }
       },
       "rascol": {

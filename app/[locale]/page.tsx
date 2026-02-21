@@ -12,6 +12,7 @@
 import Hero from '@/components/home/Hero';
 import About from '@/components/home/About';
 import Skills from '@/components/home/Skills';
+import Timeline from '@/components/home/Timeline';
 import Projects from '@/components/home/Projects';
 import Contact from '@/components/home/Contact';
 import Navigation from '@/components/navbars/Navigation';
@@ -31,6 +32,7 @@ export default function Home() {
                 <Hero />
                 <About />
                 <Skills />
+                <Timeline />
                 <Projects />
                 <Contact />
                 <FinalCTA />

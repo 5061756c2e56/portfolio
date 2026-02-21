@@ -156,6 +156,20 @@ export default function Navigation() {
                             </a>
 
                             <a
+                                href="#parcours"
+                                onClick={(e) => handleNavClick(e, '#parcours')}
+                                className={linkClass('parcours')}
+                            >
+                                <span
+                                    ref={(el) => {
+                                        labelRefs.current.parcours = el;
+                                    }}
+                                >
+                                    {t('parcours')}
+                                </span>
+                            </a>
+
+                            <a
                                 href="#projects"
                                 onClick={(e) => handleNavClick(e, '#projects')}
                                 className={linkClass('projects')}

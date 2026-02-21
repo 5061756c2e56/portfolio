@@ -71,9 +71,179 @@
     "viewButtonDropdown": "Ver la versión web",
     "quickActionsHint": "Haz clic con el botón derecho o mantén pulsado para ver las acciones rápidas"
   },
+  "parcours": {
+    "title": "Mi Trayectoria",
+    "filterAll": "Todo",
+    "filterFormation": "Formaciones",
+    "filterExperience": "Experiencias",
+    "typeFormation": "Formación",
+    "typeExperience": "Experiencia",
+    "seeDetails": "Ver detalles",
+    "timelineData": {
+      "1": {
+        "title": "Bachillerato tecnológico STI2D con opción SIN",
+        "description": "Estudio de la programación en Python, así como del desarrollo web (HTML, CSS, JavaScript). Esta formación también me permitió adquirir bases sólidas en creación y administración de bases de datos.",
+        "period": "2023 - 2024"
+      },
+      "2": {
+        "title": "Ciberseguridad",
+        "description": [
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "Preseguridad"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Principios fundamentales de redes",
+              "Cómo funciona la Web",
+              "Fundamentos de Linux",
+              "Fundamentos de Windows"
+            ]
+          },
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "Ciberseguridad 101"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Comienza tu recorrido en ciberseguridad",
+              "Fundamentos de Linux",
+              "Fundamentos de Windows y Active Directory",
+              "Línea de comandos",
+              "Redes",
+              "Criptografía",
+              "Conceptos básicos de explotación",
+              "Hacking web",
+              "Herramientas de seguridad ofensiva",
+              "Seguridad defensiva",
+              "Soluciones de seguridad",
+              "Herramientas de seguridad defensiva",
+              "Construye tu carrera en ciberseguridad"
+            ]
+          }
+        ],
+        "period": "2021 - 2024"
+      },
+      "3": {
+        "title": "Técnico Informático",
+        "description": [
+          {
+            "type": "bullets",
+            "items": [
+              "Despliegue automatizado de un parque informático",
+              "Instalación, securización y mantenimiento de una red local cableada y Wi-Fi",
+              "Administración de un dominio de Active Directory",
+              "Supervisión y mantenimiento preventivo/correctivo de un parque informático",
+              "Gestión de solicitudes de usuarios y soporte de nivel 1 y 2, respetando las buenas prácticas ITIL",
+              "Redacción, estructuración y actualización de la documentación técnica",
+              "Trabajo en entornos on-premise, en la nube o híbridos"
+            ]
+          }
+        ],
+        "period": "2025"
+      },
+      "4": {
+        "title": "Programación",
+        "description": [
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "OpenClassrooms"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Iniciación al lenguaje C (comprensión de los fundamentos de la programación: variables, estructuras de control, funciones)",
+              "Adquisición de las bases del desarrollo web: HTML, CSS y JavaScript"
+            ]
+          },
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "Coursera"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "Profundización de competencias en HTML, CSS y JavaScript (estructuración avanzada, buenas prácticas, lógica de la aplicación)",
+              "Ruta Meta Full-Stack Developer en curso",
+              "Siguiente etapa: especialización en PostgreSQL y ruta Full-Stack Developer propuesta por IBM"
+            ]
+          }
+        ],
+        "period": "Actualidad"
+      },
+      "5": {
+        "title": "Formación certificada de integrador web",
+        "description": [
+          {
+            "type": "bullets",
+            "items": [
+              "Diseño y desarrollo de aplicaciones web completas y responsivas, adaptadas a todo tipo de dispositivos para permitir la venta de productos y servicios en línea",
+              "Dinamización de páginas web para mejorar la valorización de productos y servicios",
+              "Desarrollo de interfaces conectadas al back-end, permitiendo crear aplicaciones dinámicas y gestionar la autenticación de usuarios",
+              "Optimización del rendimiento y mantenimiento evolutivo/correctivo de sitios existentes, con el objetivo de estabilidad, rapidez y mejora del posicionamiento orgánico (SEO)",
+              "Gestión integral de proyectos web: análisis de necesidades, estimación de costes, desglose de tareas, redacción de especificaciones técnicas, desarrollo y presentación de la solución final"
+            ]
+          }
+        ],
+        "period": "Actualidad"
+      }
+    }
+  },
   "about": {
     "title": "Sobre mí",
-    "content": "Soy Paul Viandier, desarrollador web apasionado por la ciberseguridad. Actualmente estoy realizando una formación de integrador web en modalidad de alternancia, donde adquiero bases sólidas de desarrollo e integración. Mi objetivo es continuar con una formación de desarrollador web full-stack para ampliar mis competencias, comprender toda la cadena de producción de un proyecto web y ser capaz de gestionar tanto el frontend como el backend. Como desarrollador web, me especializo en la creación de aplicaciones web modernas con TypeScript, React y Next.js. Mi portafolio presenta mis proyectos y competencias en desarrollo web."
+    "content": "Soy Paul Viandier, desarrollador web apasionado por la ciberseguridad. Actualmente estoy realizando una formación de integrador web en modalidad de alternancia, donde adquiero bases sólidas de desarrollo e integración. Mi objetivo es continuar con una formación de desarrollador web full-stack para ampliar mis competencias, comprender toda la cadena de producción de un proyecto web y ser capaz de gestionar tanto el frontend como el backend. Como desarrollador web, me especializo en la creación de aplicaciones web modernas con TypeScript, React y Next.js. Mi portafolio presenta mis proyectos y competencias en desarrollo web.",
+    "statusItem": {
+      "1": {
+        "label": "En alternancia",
+        "sub": "Integrador web"
+      },
+      "2": {
+        "label": "Ciberseguridad",
+        "sub": "Pasión principal"
+      },
+      "3": {
+        "label": "Desarrollador full-stack",
+        "sub": "Objetivo a corto plazo"
+      }
+    }
   },
   "skills": {
     "title": "Competencias",
@@ -187,14 +357,21 @@
   "finalCTA": {
     "title": "¿Qué más hay en este sitio?",
     "lead": "Tres páginas para ir más allá, sin rodeos:",
-    "list": {
-      "faq": "FAQ: respuestas rápidas sobre mi perfil, mi método y el sitio.",
-      "games": "Juegos: mini retos para ver la UX y la interactividad en acción.",
-      "stats": "Estadísticas de GitHub: panorama claro de actividad, lenguajes y contribuciones."
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "description": "Encuentra respuestas a las preguntas más frecuentes sobre mi trayectoria y mis competencias.",
+      "button": "Descubrir las preguntas frecuentes"
     },
-    "faqButton": "Ir a la FAQ",
-    "gamesButton": "Explorar los juegos",
-    "statsButton": "Ver estadísticas de GitHub"
+    "statsGithub": {
+      "title": "Estadísticas de GitHub",
+      "description": "Consulta las estadísticas de mis proyectos de código abierto: commits, lenguajes y contribuciones.",
+      "button": "Descubrir las estadísticas de GitHub"
+    },
+    "games": {
+      "title": "Juegos y desafíos",
+      "description": "Pon a prueba tus conocimientos en desarrollo web y ciberseguridad con cuestionarios y juegos interactivos.",
+      "button": "Descubrir los juegos y desafíos"
+    }
   },
   "footer": {
     "paulViandier": "Paul Viandier",
@@ -213,6 +390,7 @@
     "home": "Inicio",
     "about": "Sobre mí",
     "skills": "Competencias",
+    "parcours": "Trayectoria",
     "games": "Juegos",
     "quiz": "Quiz",
     "projects": "Proyectos",
@@ -4820,7 +4998,7 @@
       }
     },
     "education": {
-      "openclassroom": {
+      "webIntegrator": {
         "title": "Integrador Web",
         "level": "Diploma de Nivel 5 (bac +2)",
         "note": "Formación en alternancia",
@@ -4831,6 +5009,21 @@
           "3": "Implementar la gestión de datos con Redux",
           "4": "Versionar y colaborar en un proyecto con Git",
           "5": "Depurar y optimizar un sitio web existente"
+        }
+      },
+      "ti": {
+        "title": "Técnico Informático",
+        "level": "Diploma de Nivel 5 (Bac +2)",
+        "note": "Formación a tiempo completo",
+        "date": "2025",
+        "bullets": {
+          "1": "Desplegar un parque informático automatizado (puestos de trabajo, servidores, configuración)",
+          "2": "Instalar, asegurar y mantener una red local (cableada y Wi-Fi)",
+          "3": "Administrar un dominio de Active Directory (cuentas, permisos, GPO, servicios de red)",
+          "4": "Garantizar la supervisión y el mantenimiento de un parque informático",
+          "5": "Gestionar las solicitudes de usuarios y proporcionar soporte N1/N2 según las buenas prácticas de ITIL",
+          "6": "Redactar y mantener actualizada la documentación técnica",
+          "7": "Trabajar en entornos locales, en la nube o híbridos"
         }
       },
       "rascol": {

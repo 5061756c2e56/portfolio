@@ -117,14 +117,14 @@ export default function Contact() {
                             <motion.button
                                 key={index}
                                 onClick={contact.action}
-                                className="group rounded-xl border border-blue-500/20 bg-card p-5 hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.1)] hover:-translate-y-0.5 cursor-pointer transition-all duration-300 text-left"
+                                className="card-accent group rounded-xl border border-blue-500/20 bg-card/80 backdrop-blur-sm p-6 hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-0.5 cursor-pointer transition-all duration-300 text-left"
                                 variants={fadeUp}
                             >
                                 <div className="mb-4">
                                     <div
-                                        className="inline-flex items-center justify-center w-10 h-10 rounded-xl
+                                        className="inline-flex items-center justify-center w-12 h-12 rounded-xl
                                         bg-muted/60 border border-border
-                                        group-hover:bg-muted/80 group-hover:border-border/80
+                                        group-hover:bg-linear-to-br group-hover:from-purple-500/10 group-hover:to-blue-500/10 group-hover:border-border/80
                                         transition-all duration-300">
                                         <div
                                             className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">

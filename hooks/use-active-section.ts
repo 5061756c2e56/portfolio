@@ -17,7 +17,7 @@ export function useActiveSection() {
     const [activeSection, setActiveSection] = useState<string>('home');
 
     useEffect(() => {
-        const sections = ['about', 'skills', 'quiz', 'projects', 'contact', 'extras'];
+        const sections = ['about', 'skills', 'parcours', 'projects', 'contact', 'extras'];
         const offset = 180;
 
         const handleScroll = () => {

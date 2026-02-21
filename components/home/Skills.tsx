@@ -209,10 +209,10 @@ export default function Skills() {
                                                             <Tooltip key={skill.name}>
                                                                 <TooltipTrigger asChild>
                                                                     <div
-                                                                        className="group rounded-lg border border-border bg-card p-4 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer"
+                                                                        className="card-accent group rounded-lg border border-border bg-card/80 backdrop-blur-sm p-4 hover:border-foreground/20 hover:border-t-blue-500/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-3 cursor-pointer"
                                                                     >
                                                                         <div
-                                                                            className="p-2 rounded-lg bg-muted group-hover:bg-foreground/10 transition-all duration-300"
+                                                                            className="p-2 rounded-lg bg-muted group-hover:bg-linear-to-br group-hover:from-purple-500/10 group-hover:to-blue-500/10 transition-all duration-300"
                                                                         >
                                                                             <svg
                                                                                 className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300">

@@ -12,7 +12,7 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
-import { BarChart3, FileText, Gamepad2 } from 'lucide-react';
+import { ArrowRight, BarChart3, Gamepad2, HelpCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { motion, useReducedMotion } from 'framer-motion';
 
@@ -43,6 +43,39 @@ export default function FinalCTA() {
         }
     };
 
+    const list = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.08
+            }
+        }
+    };
+
+    const cards = [
+        {
+            href: '/faq' as const,
+            icon: HelpCircle,
+            title: t('faq.title'),
+            description: t('faq.description'),
+            button: t('faq.button')
+        },
+        {
+            href: '/stats' as const,
+            icon: BarChart3,
+            title: t('statsGithub.title'),
+            description: t('statsGithub.description'),
+            button: t('statsGithub.button')
+        },
+        {
+            href: '/games' as const,
+            icon: Gamepad2,
+            title: t('games.title'),
+            description: t('games.description'),
+            button: t('games.button')
+        }
+    ];
+
     return (
         <section id="extras" className="scroll-mt-24 py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 relative">
             <motion.div
@@ -53,60 +86,48 @@ export default function FinalCTA() {
                 viewport={{ once: true, amount: 0.3 }}
             >
                 <motion.h2
-                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 tracking-tight gradient-text"
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight gradient-text"
                     variants={fadeUp}
                 >
                     {t('title')}
                 </motion.h2>
 
-                <motion.div
-                    className="text-base sm:text-lg text-foreground/80 leading-relaxed bg-card rounded-xl p-6 sm:p-8 border border-border hover:border-foreground/20 transition-all duration-300"
+                <motion.p
+                    className="text-base sm:text-lg text-muted-foreground mb-10 max-w-2xl"
                     variants={fadeUp}
                 >
-                    <p className="mb-5">
-                        {t('lead')}
-                    </p>
+                    {t('lead')}
+                </motion.p>
 
-                    <ul className="mb-8 list-disc pl-5 space-y-2">
-                        <li>{t('list.faq')}</li>
-                        <li>{t('list.stats')}</li>
-                        <li>{t('list.games')}</li>
-                    </ul>
+                <motion.div className="grid grid-cols-1 sm:grid-cols-3 gap-4" variants={list}>
+                    {cards.map((item) => (
+                        <motion.div key={item.href} variants={fadeUp}>
+                            <Link
+                                href={item.href}
+                                className="card-accent group flex flex-col h-full rounded-xl border border-border bg-card/80 backdrop-blur-sm p-6 hover:border-foreground/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300"
+                            >
+                                <div
+                                    className="p-2.5 rounded-lg bg-muted w-fit mb-4 group-hover:bg-linear-to-br group-hover:from-purple-500/10 group-hover:to-blue-500/10 transition-all duration-300">
+                                    <item.icon
+                                        className="w-5 h-5 text-foreground/70 group-hover:text-foreground transition-colors duration-300" />
+                                </div>
 
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <Link
-                            href="/faq"
-                            className="btn-fill-primary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300"
-                        >
-                            <FileText
-                                className="h-5 w-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 md:group-hover:rotate-3"
-                                aria-hidden="true"
-                            />
-                            <span>{t('faqButton')}</span>
-                        </Link>
+                                <h3 className="text-base font-semibold text-foreground mb-2">
+                                    {item.title}
+                                </h3>
+                                <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
+                                    {item.description}
+                                </p>
 
-                        <Link
-                            href="/stats"
-                            className="btn-fill-secondary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300"
-                        >
-                            <BarChart3
-                                className="h-5 w-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 md:group-hover:rotate-3"
-                                aria-hidden="true"
-                            />
-                            <span>{t('statsButton')}</span>
-                        </Link>
-                        
-                        <Link
-                            href="/games"
-                            className="btn-fill-secondary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300"
-                        >
-                            <Gamepad2
-                                className="h-5 w-5 transition-transform duration-300 md:group-hover:scale-110 md:group-hover:-translate-y-0.5 md:group-hover:rotate-6"
-                                aria-hidden="true"
-                            />
-                            <span>{t('gamesButton')}</span>
-                        </Link>
-                    </div>
+                                <div
+                                    className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                                    <span>{item.button}</span>
+                                    <ArrowRight
+                                        className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                                </div>
+                            </Link>
+                        </motion.div>
+                    ))}
                 </motion.div>
             </motion.div>
         </section>

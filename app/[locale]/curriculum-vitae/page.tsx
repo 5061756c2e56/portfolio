@@ -244,17 +244,34 @@ export default async function CurriculumVitaePage() {
         education: [
             {
                 key: 'openclassrooms',
-                title: t('education.openclassroom.title'),
+                title: t('education.webIntegrator.title'),
                 org: 'OpenClassrooms',
-                level: t('education.openclassroom.level'),
-                note: t('education.openclassroom.note'),
-                date: t('education.openclassroom.date'),
+                level: t('education.webIntegrator.level'),
+                note: t('education.webIntegrator.note'),
+                date: t('education.webIntegrator.date'),
                 bullets: [
-                    t('education.openclassroom.bullets.1'),
-                    t('education.openclassroom.bullets.2'),
-                    t('education.openclassroom.bullets.3'),
-                    t('education.openclassroom.bullets.4'),
-                    t('education.openclassroom.bullets.5')
+                    t('education.webIntegrator.bullets.1'),
+                    t('education.webIntegrator.bullets.2'),
+                    t('education.webIntegrator.bullets.3'),
+                    t('education.webIntegrator.bullets.4'),
+                    t('education.webIntegrator.bullets.5')
+                ]
+            },
+            {
+                key: 'openclassrooms',
+                title: t('education.ti.title'),
+                org: 'OpenClassrooms',
+                level: t('education.ti.level'),
+                note: t('education.ti.note'),
+                date: t('education.ti.date'),
+                bullets: [
+                    t('education.ti.bullets.1'),
+                    t('education.ti.bullets.2'),
+                    t('education.ti.bullets.3'),
+                    t('education.ti.bullets.4'),
+                    t('education.ti.bullets.5'),
+                    t('education.ti.bullets.6'),
+                    t('education.ti.bullets.7')
                 ]
             },
             {
@@ -453,7 +470,7 @@ export default async function CurriculumVitaePage() {
                                 </div>
                             </div>
 
-                            <ul className="mt-4 grid gap-2 sm:grid-cols-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                            <ul className="mt-4 grid gap-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
                                 {ed.bullets.map((b) => (
                                     <li key={b} className="relative pl-4">
                                         <span
@@ -506,7 +523,7 @@ export default async function CurriculumVitaePage() {
                                 </div>
                             </div>
 
-                            <ul className="mt-4 grid gap-2 sm:grid-cols-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                            <ul className="mt-4 grid gap-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
                                 {xp.bullets.map((b) => (
                                     <li key={b} className="relative min-w-0 pl-4">
                                         <span
@@ -517,7 +534,6 @@ export default async function CurriculumVitaePage() {
                                     </li>
                                 ))}
                             </ul>
-
 
                         </div>
                     );

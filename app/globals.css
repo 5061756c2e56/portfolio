@@ -778,6 +778,24 @@ html {
         box-shadow: 0 0 30px var(--glow-subtle), 0 0 60px var(--glow-subtle);
     }
 
+    .card-accent {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-accent::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--gradient-end), transparent);
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 1;
+    }
+
     .noise-overlay::before {
         content: '';
         position: absolute;

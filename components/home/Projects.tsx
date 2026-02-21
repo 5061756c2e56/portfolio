@@ -236,7 +236,7 @@ export default function Projects() {
                             {filteredProjects.map((project) => (
                                 <motion.div
                                     key={project.id}
-                                    className="group h-full flex flex-col rounded-xl border border-border bg-card p-5 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300"
+                                    className="card-accent group h-full flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur-sm p-5 hover:border-foreground/20 hover:-translate-y-0.5 transition-all duration-300"
                                     variants={card}
                                     exit="exit"
                                     layout
@@ -246,7 +246,7 @@ export default function Projects() {
                                         {project.description}
                                     </p>
 
-                                    <div className="flex flex-wrap gap-2 mb-4">
+                                    <div className="flex flex-wrap gap-2 mb-4 border-t border-border/50 pt-4 mt-4">
                                         {project.technologies.map((tech) => (
                                             <Image
                                                 key={tech}
@@ -274,7 +274,7 @@ export default function Projects() {
                                                     className={cn(
                                                         'w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
                                                         btn.variant === 'white'
-                                                            ? 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-100 hover:shadow'
+                                                            ? 'bg-foreground text-background border border-foreground/20 hover:opacity-90 hover:shadow'
                                                             : 'btn-fill-secondary'
                                                     )}
                                                 >

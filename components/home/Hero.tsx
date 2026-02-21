@@ -14,7 +14,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
-import { Download, Eye, FileTypeCorner, Folder } from 'lucide-react';
+import { Briefcase, Download, Eye, FileTypeCorner, Folder, MapPin } from 'lucide-react';
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
@@ -161,10 +161,15 @@ export default function Hero() {
     return (
         <section
             id="home"
-            className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 pb-24 relative"
+            className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 pb-24 relative overflow-hidden"
         >
+            <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+                <div
+                    className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 sm:w-175 sm:h-175 rounded-full bg-linear-to-br from-purple-500/8 to-blue-500/8 blur-[120px]" />
+            </div>
+
             <motion.div
-                className="max-w-4xl mx-auto text-center w-full relative z-10"
+                className="max-w-5xl mx-auto text-center w-full relative z-10"
                 variants={container}
                 initial="hidden"
                 animate="visible"
@@ -174,59 +179,32 @@ export default function Hero() {
                     variants={fadeUp}
                 >
                     <div
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
-                        <svg
-                            className="w-4 h-4 text-blue-500"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            aria-hidden="true"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                            />
-                        </svg>
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card/80 backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                        <MapPin className="w-4 h-4 text-blue-500" />
                         <span>{t('location')}</span>
                     </div>
 
                     <div
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
-                        <svg
-                            className="w-4 h-4 text-blue-500"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            aria-hidden="true"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M20.25 14.15v4.25c0 .414-.336.75-.75.75h-4.5a.75.75 0 01-.75-.75v-4.25m0 0h4.5m-4.5 0l-3 3m3-3l3 3M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776"
-                            />
-                        </svg>
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-card/80 backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                        <Briefcase className="w-4 h-4 text-blue-500" />
                         <span>{t('role')}</span>
                     </div>
                 </motion.div>
 
                 <motion.h1
-                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.05] tracking-tight gradient-text"
+                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 leading-[1.05] tracking-tight gradient-text"
                     variants={fadeUp}
                 >
                     {t('title')}
                 </motion.h1>
 
-                <motion.h2 className="text-xl sm:text-2xl md:text-3xl font-normal mb-6 text-foreground/70"
+                <motion.h2 className="text-xl sm:text-2xl md:text-3xl font-normal mb-6 text-muted-foreground"
                            variants={fadeUp}>
                     {t('subtitle')}
                 </motion.h2>
 
                 <motion.p
-                    className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed"
+                    className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
                     variants={fadeUp}
                 >
                     {t('description')}
@@ -284,7 +262,7 @@ export default function Hero() {
                                 style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
                             >
                                 <Folder
-                                    className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"/>
+                                    className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10" />
                                 <span className="relative z-10">{t('viewCVButton')}</span>
                             </button>
                         </DropdownMenuTrigger>
@@ -304,7 +282,7 @@ export default function Hero() {
                                 className="cursor-pointer gap-3"
                             >
                                 <span className="inline-flex w-6 items-center justify-center">
-                                    <Download className="size-4 shrink-0"/>
+                                    <Download className="size-4 shrink-0" />
                                 </span>
                                 <span className="leading-none">{t('downloadCVButton')}</span>
                             </DropdownMenuItem>
@@ -317,7 +295,7 @@ export default function Hero() {
                                 className="cursor-pointer gap-3"
                             >
                                 <span className="inline-flex w-6 items-center justify-center">
-                                    <Eye className="size-4 shrink-0"/>
+                                    <Eye className="size-4 shrink-0" />
                                 </span>
                                 <span className="leading-none">{t('viewButtonDropdown')}</span>
                             </DropdownMenuItem>
@@ -375,7 +353,7 @@ export default function Hero() {
                                 style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
                             >
                                 <FileTypeCorner
-                                    className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10"/>
+                                    className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10" />
                                 <span className="relative z-10">{t('viewLMButton')}</span>
                             </button>
                         </DropdownMenuTrigger>
@@ -395,7 +373,7 @@ export default function Hero() {
                                 className="cursor-pointer gap-3"
                             >
                                 <span className="inline-flex w-6 items-center justify-center">
-                                    <Download className="size-4 shrink-0"/>
+                                    <Download className="size-4 shrink-0" />
                                 </span>
                                 <span className="leading-none">{t('downloadLMButton')}</span>
                             </DropdownMenuItem>
@@ -408,7 +386,7 @@ export default function Hero() {
                                 className="cursor-pointer gap-3"
                             >
                                 <span className="inline-flex w-6 items-center justify-center">
-                                    <Eye className="size-4 shrink-0"/>
+                                    <Eye className="size-4 shrink-0" />
                                 </span>
                                 <span className="leading-none">{t('viewButtonDropdown')}</span>
                             </DropdownMenuItem>
