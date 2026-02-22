@@ -9,15 +9,13 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
-'use client';
+import AllNavigation from '@/components/navbars/All/AllNavigation';
 
-import { SectionNavigation } from '@/components/navbars/SectionNavigation';
-import MobileMenuLegal from './MobileMenuLegal';
-
-export default function LegalNavigation() {
+export default function ParcoursLayout({ children }: { children: React.ReactNode }) {
     return (
-        <SectionNavigation
-            mobileMenu={<MobileMenuLegal/>}
-        />
+        <>
+            <AllNavigation />
+            {children}
+        </>
     );
 }

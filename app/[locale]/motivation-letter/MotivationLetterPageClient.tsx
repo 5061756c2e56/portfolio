@@ -14,7 +14,7 @@
 import { useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { Great_Vibes } from 'next/font/google';
-import LegalNavigation from '@/components/navbars/Legal/LegalNavigation';
+import AllNavigation from '@/components/navbars/All/AllNavigation';
 import { cn } from '@/lib/utils';
 import { FileText } from 'lucide-react';
 import { useContactModal } from '@/hooks/useContactModal';
@@ -47,21 +47,21 @@ export default function MotivationLetterPageClient() {
 
     return (
         <>
-            <LegalNavigation/>
+            <AllNavigation />
             <div className="min-h-screen w-full bg-background">
                 <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12 relative">
                     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
                         <div
-                            className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-foreground/5 blur-3xl"/>
+                            className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-foreground/5 blur-3xl" />
                         <div
-                            className="absolute right-[-120px] top-[220px] h-[360px] w-[360px] rounded-full bg-blue-500/5 blur-3xl"/>
+                            className="absolute right-[-120px] top-[220px] h-[360px] w-[360px] rounded-full bg-blue-500/5 blur-3xl" />
                     </div>
 
                     <header className="mb-12">
                         <div className="text-center mt-6">
                             <div
                                 className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground">
-                                <FileText className="h-4 w-4"/>
+                                <FileText className="h-4 w-4" />
                                 {t('badge')}
                             </div>
 

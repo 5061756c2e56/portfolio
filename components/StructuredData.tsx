@@ -38,7 +38,7 @@ export default function StructuredData() {
                 email: 'contact@paulviandier.com',
                 description:
                     'Full-stack web developer in training, passionate about cybersecurity. Specialized in TypeScript, React, Next.js.',
-                image: `${baseUrl}/pfp.png`,
+                image: `${baseUrl}/favicon.ico`,
                 knowsAbout: [
                     'TypeScript',
                     'React',

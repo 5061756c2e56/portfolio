@@ -16,7 +16,7 @@ import {
     Briefcase, Calendar, Code2, Database, FileText, GraduationCap, Layers, Shield, User, Wrench
 } from 'lucide-react';
 import Image from 'next/image';
-import LegalNavigation from '@/components/navbars/Legal/LegalNavigation';
+import AllNavigation from '@/components/navbars/All/AllNavigation';
 import ProfileBlock, { CvDownloadButton } from '@/components/cv/ProfileBlock';
 
 type CvSection = {
@@ -26,7 +26,7 @@ type CvSection = {
     content: ReactNode;
 };
 
-const LAST_UPDATED_ISO = '2026-02-03';
+const LAST_UPDATED_ISO = '2026-02-21';
 const CV_PDF_PATH = '/Curriculum Vitae - Viandier Paul.pdf';
 const CV_PDF_FILENAME = 'Curriculum Vitae - Viandier Paul.pdf';
 
@@ -583,7 +583,7 @@ export default async function CurriculumVitaePage() {
 
     return (
         <>
-            <LegalNavigation />
+            <AllNavigation />
             <div className="min-h-screen w-full bg-background">
                 <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12 relative">
                     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">

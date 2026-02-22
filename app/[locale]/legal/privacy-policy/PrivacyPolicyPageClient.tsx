@@ -12,7 +12,6 @@
 'use client';
 
 import { FileText } from 'lucide-react';
-import LegalNavigation from '@/components/navbars/Legal/LegalNavigation';
 import { useContactModal } from '@/hooks/useContactModal';
 import { Link } from '@/i18n/routing';
 import { useFormatter, useTranslations } from 'next-intl';
@@ -66,7 +65,7 @@ export default function PrivacyPolicyPageClient() {
                         <p className="text-sm text-muted-foreground">
                             {t('sections.controller.nameLabel')}{' '}
                             <span className="text-foreground/90">{t('sections.controller.nameValue')}</span>
-                            <br/>
+                            <br />
                             {t('sections.controller.emailLabel')}{' '}
                             <span className="text-foreground/90">{t('sections.controller.emailValue')}</span>
                         </p>
@@ -181,13 +180,11 @@ export default function PrivacyPolicyPageClient() {
 
     return (
         <>
-            <LegalNavigation/>
-
             <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12">
                 <header className="text-center mb-10">
                     <div
                         className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-muted-foreground">
-                        <FileText className="w-4 h-4"/>
+                        <FileText className="w-4 h-4" />
                         {tCommon('badge')}
                     </div>
 

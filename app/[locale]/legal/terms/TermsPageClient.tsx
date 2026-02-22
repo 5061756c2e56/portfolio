@@ -12,7 +12,6 @@
 'use client';
 
 import { FileText } from 'lucide-react';
-import LegalNavigation from '@/components/navbars/Legal/LegalNavigation';
 import { useContactModal } from '@/hooks/useContactModal';
 import { Link } from '@/i18n/routing';
 import { useFormatter, useTranslations } from 'next-intl';
@@ -57,23 +56,23 @@ export default function TermsPageClient() {
                     <div className="mt-4 rounded-lg border border-border bg-background/50 p-4">
                         <p className="text-sm text-muted-foreground">
                             <span className="font-medium text-foreground">{t('sections.editor.publisherTitle')}</span>
-                            <br/>
+                            <br />
                             {t('sections.editor.publisherNameLabel')}{' '}
                             <span className="text-foreground/90">{t('sections.editor.publisherNameValue')}</span>
-                            <br/>
+                            <br />
                             {t('sections.editor.publisherEmailLabel')}{' '}
                             <span className="text-foreground/90">{t('sections.editor.publisherEmailValue')}</span>
                         </p>
 
                         <p className="mt-3 text-sm text-muted-foreground">
                             <span className="font-medium text-foreground">{t('sections.editor.hostTitle')}</span>
-                            <br/>
+                            <br />
                             {t('sections.editor.hostNameLabel')}{' '}
                             <span className="text-foreground/90">{t('sections.editor.hostNameValue')}</span>
-                            <br/>
+                            <br />
                             {t('sections.editor.hostAddressLabel')}{' '}
                             <span className="text-foreground/90">{t('sections.editor.hostAddressValue')}</span>
-                            <br/>
+                            <br />
                             {t('sections.editor.hostWebsiteLabel')}{' '}
                             <span className="text-foreground/90">{t('sections.editor.hostWebsiteValue')}</span>
                         </p>
@@ -266,13 +265,11 @@ export default function TermsPageClient() {
 
     return (
         <>
-            <LegalNavigation/>
-
             <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12">
                 <header className="text-center mb-10">
                     <div
                         className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-muted-foreground">
-                        <FileText className="w-4 h-4"/>
+                        <FileText className="w-4 h-4" />
                         {tCommon('badge')}
                     </div>
 

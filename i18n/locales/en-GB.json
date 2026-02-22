@@ -48,6 +48,17 @@
     "stats": {
       "title": "GitHub Statistics",
       "description": "Statistics for my open-source projects."
+    },
+    "tryhackme": {
+      "description": "Explore the details of my cybersecurity learning journey on TryHackMe"
+    },
+    "webIntegrator": {
+      "title": "Web Integrator",
+      "description": "Explore the details of OpenClassrooms' Web Integrator course"
+    },
+    "technicien": {
+      "title": "IT Technician",
+      "description": "Explore the details of OpenClassrooms' IT Technician course"
     }
   },
   "locales": {
@@ -104,10 +115,13 @@
           {
             "type": "bullets",
             "items": [
-              "Fundamental networking principles",
-              "How the Web works",
-              "Linux fundamentals",
-              "Windows fundamentals"
+              "Introduction to Cyber Security",
+              "Networking Fundamentals",
+              "How the Web Works",
+              "Computer Science Fundamentals",
+              "Operating System Basics",
+              "Software Basics",
+              "Attacks and Defences"
             ]
           },
           {
@@ -142,7 +156,7 @@
             ]
           }
         ],
-        "period": "2021 - 2024"
+        "period": "2025"
       },
       "3": {
         "title": "IT Technician",
@@ -4455,7 +4469,8 @@
     "404": {
       "title": "Page not found",
       "description": "The page you’re looking for doesn’t exist or has been moved.",
-      "backHome": "Back to the home page"
+      "backHome": "Back to the home page",
+      "badge": "Error 404"
     },
     "500": {
       "title": "Something went wrong",
@@ -5107,6 +5122,248 @@
         "1": "Red dot = unread update.",
         "2": "Use search to quickly find a feature.",
         "3": "Change sorting at the top (newest ↔ oldest)."
+      }
+    }
+  },
+  "parcoursDetails": {
+    "backHome": "Back to home",
+    "parcoursLinksLabel": {
+      "thm": "TryHackMe",
+      "technicien": "IT Technician",
+      "webIntegrator": "Web Integrator"
+    },
+    "details": "Programme details",
+    "tryhackme": {
+      "title": "TryHackMe - Pre Security",
+      "description": "To attack or defend a technology, we first need to understand what powers it. In this programme, I explored the fundamentals of computer science, wrote my first lines of code, and discovered how networking, the web and real-world cyber-attacks connect.",
+      "certificat": {
+        "title": "Certificate",
+        "buttonOpenPDF": "Open the PDF",
+        "buttonDownload": "Download the PDF",
+        "buttonDownloading": "Downloading..."
+      },
+      "badges": {
+        "1": "Platform: TryHackMe",
+        "2": "Certified"
+      },
+      "article": {
+        "module1": {
+          "title": "Module 1: Introduction to Cyber Security",
+          "puce1": "Introduction to Offensive Security",
+          "puce1-1": "What is Offensive Security?",
+          "puce1-2": "Hack your first machine",
+          "puce1-3": "Careers in Cyber Security",
+          "puce2": "Introduction to Defensive Security",
+          "puce2-1": "What is Defensive Security?",
+          "puce2-2": "Defensive Security Areas",
+          "puce2-3": "Hands-on example of Defensive Security",
+          "puce3": "Cyber Security Career",
+          "puce3-1": "Introduction",
+          "puce3-2": "Security Analyst",
+          "puce3-3": "Security Engineer",
+          "puce3-4": "Incident Responder",
+          "puce3-5": "Digital Forensics Specialist",
+          "puce3-6": "Malware Analyst",
+          "puce3-7": "Penetration Tester",
+          "puce3-8": "Red Team"
+        },
+        "module2": {
+          "title": "Module 2: Networking Fundamentals",
+          "puce1": "What is Networking",
+          "puce1-1": "What is Networking?",
+          "puce1-2": "What is the Internet?",
+          "puce1-3": "Identifying devices on a network",
+          "puce1-4": "Ping (ICMP)",
+          "puce2": "Introduction to Local Area Networks",
+          "puce2-1": "Overview of LAN topologies",
+          "puce2-2": "Introduction to subnetting",
+          "puce2-3": "ARP",
+          "puce2-4": "DHCP",
+          "puce3": "OSI Model",
+          "puce3-1": "What is the OSI model?",
+          "puce3-2": "Layer 1 - Physical",
+          "puce3-3": "Layer 2 - Data Link",
+          "puce3-4": "Layer 3 - Network",
+          "puce3-5": "Layer 4 - Transport",
+          "puce3-6": "Layer 5 - Session",
+          "puce3-7": "Layer 6 - Presentation",
+          "puce3-8": "Layer 7 - Application",
+          "puce4": "Packets and frames",
+          "puce4-1": "What are packets and frames?",
+          "puce4-2": "TCP/IP (the three-way handshake)",
+          "puce4-3": "UDP/IP",
+          "puce4-4": "Ports 101",
+          "puce5": "Expanding your network",
+          "puce5-1": "Introduction to port forwarding",
+          "puce5-2": "Firewalls 101",
+          "puce5-3": "VPN basics",
+          "puce5-4": "LAN networking devices",
+          "puce5-5": "Hands-on network simulator"
+        },
+        "module3": {
+          "title": "Module 3: How the Web Works",
+          "puce1": "DNS in depth",
+          "puce1-1": "What is DNS?",
+          "puce1-2": "Domain hierarchy",
+          "puce1-3": "Record types",
+          "puce1-4": "Making a request",
+          "puce2": "HTTP in depth",
+          "puce2-1": "What is HTTP(S)?",
+          "puce2-2": "Requests and responses",
+          "puce2-3": "HTTP methods",
+          "puce2-4": "HTTP status codes",
+          "puce2-5": "Headers",
+          "puce2-6": "Cookies",
+          "puce2-7": "Making requests",
+          "puce3": "How websites work",
+          "puce3-1": "How does a website work?",
+          "puce3-2": "HTML",
+          "puce3-3": "JavaScript",
+          "puce3-4": "Sensitive data exposure",
+          "puce3-5": "HTML injection",
+          "puce4": "Putting it all together",
+          "puce4-1": "Wrap-up",
+          "puce4-2": "Other components",
+          "puce4-3": "How web servers work"
+        },
+        "module4": {
+          "title": "Module 4: Computer Science Fundamentals",
+          "puce1": "Inside a computer system",
+          "puce1-1": "Introduction",
+          "puce1-2": "Inside a computer system",
+          "puce1-3": "What happens when you press the Power button?",
+          "puce2": "Types of computers",
+          "puce2-1": "Introduction",
+          "puce2-2": "Sophia's Hidden Computers Summer - Month 1",
+          "puce2-3": "Sophia's Hidden Computers Summer - Month 2",
+          "puce2-4": "Why computers come in different versions",
+          "puce3": "Client-server basics",
+          "puce3-1": "Introduction",
+          "puce3-2": "Pizza delivery",
+          "puce3-3": "Hands-on web communication",
+          "puce4": "Virtualisation basics",
+          "puce4-1": "Introduction",
+          "puce4-2": "Virtualisation overview",
+          "puce4-3": "Virtualisation components",
+          "puce4-4": "Managing virtual machines",
+          "puce5": "Cloud computing fundamentals",
+          "puce5-1": "Introduction",
+          "puce5-2": "Cloud computing overview",
+          "puce5-3": "Deploying a cloud instance"
+        },
+        "module5": {
+          "title": "Module 5: Operating System Basics",
+          "puce1": "Introduction",
+          "puce1-1": "Introduction",
+          "puce1-2": "The invisible manager",
+          "puce1-3": "Interacting with the operating system and its environment",
+          "puce2": "Windows basics",
+          "puce2-1": "Introduction",
+          "puce2-2": "Exploring the Windows workspace",
+          "puce2-3": "Configuring and securing Windows",
+          "puce3": "Linux CLI basics",
+          "puce3-1": "Introduction",
+          "puce3-2": "Navigation mission: find the missing notes",
+          "puce3-3": "System investigation",
+          "puce4": "Windows CLI basics",
+          "puce4-1": "Introduction",
+          "puce4-2": "Windows command line: file navigation and finding your first file",
+          "puce4-3": "Collecting system information on Windows",
+          "puce5": "Operating system security",
+          "puce5-1": "Introduction to operating system security",
+          "puce5-2": "Common examples of operating system security",
+          "puce5-3": "Hands-on example of operating system security"
+        },
+        "module6": {
+          "title": "Module 6: Software Basics",
+          "puce1": "Data representation",
+          "puce1-1": "Introduction",
+          "puce1-2": "Representing colours",
+          "puce1-3": "Numbers: from decimal to hexadecimal",
+          "puce2": "Data encoding",
+          "puce2-1": "Introduction",
+          "puce2-2": "ASCII",
+          "puce2-3": "Unicode",
+          "puce3": "Python: simple demo",
+          "puce3-1": "Introduction",
+          "puce3-2": "Variables",
+          "puce3-3": "Conditional statements",
+          "puce3-4": "Iterations",
+          "puce4": "JavaScript: simple demo",
+          "puce4-1": "Introduction",
+          "puce4-2": "Variables",
+          "puce4-3": "Prompting the user for input",
+          "puce4-4": "Conditional statements",
+          "puce4-5": "Iterations",
+          "puce5": "SQL databases",
+          "puce5-1": "Introduction",
+          "puce5-2": "Understanding tables, rows, and columns",
+          "puce5-3": "Write your first SQL query"
+        },
+        "module7": {
+          "title": "Module 7: Attacks and Defences",
+          "puce1": "The CIA triad",
+          "puce1-1": "Introduction",
+          "puce1-2": "Understanding the CIA triad",
+          "puce1-3": "The security mindset",
+          "puce2": "Cryptography concepts",
+          "puce2-1": "Introduction",
+          "puce2-2": "Hiding information - symmetric encryption",
+          "puce2-3": "Secure key exchange - asymmetric encryption",
+          "puce3": "Become a hacker",
+          "puce3-1": "What is Offensive Security?",
+          "puce3-2": "Finding weaknesses",
+          "puce3-3": "Exploiting weaknesses",
+          "puce3-4": "Where to go from here",
+          "puce4": "Become a defender",
+          "puce4-1": "What is Defensive Security?",
+          "puce4-2": "Understanding your environment",
+          "puce4-3": "Defending your environment",
+          "puce4-4": "Where to go from here"
+        }
+      }
+    },
+    "technicien": {
+      "title": "OpenClassrooms - IT Technician",
+      "description": "As an IT technician, we are expected to install and deploy the components of an IT estate, keep it running in operational and secure conditions, support users, and automate tasks.",
+      "badges": {
+        "1": "Level 5 diploma (equivalent to a 2-year degree after secondary school)",
+        "2": "9 months full-time",
+        "3": "843 supervised hours"
+      },
+      "missions": {
+        "title": "As an IT Technician, what are your responsibilities?",
+        "description": "You are a key player in keeping the company’s digital environment running smoothly.\nYou install equipment, configure networks, automate recurring tasks and provide effective user support. Your role is both <strong>technical, responsive and service-oriented</strong>.\nYou will also need to:",
+        "puce1": "Understand users’ priorities and propose pragmatic solutions;",
+        "puce2": "Demonstrate rigour, teaching skills, curiosity and adaptability;",
+        "puce3": "Incorporate cybersecurity, sustainability and digital accessibility considerations into your practices."
+      },
+      "nextMissions": {
+        "title": "Typical responsibilities you may undertake:",
+        "puce1": "Deploy an automated IT estate (end-user devices, servers, configurations)",
+        "puce2": "Install, secure and maintain a local network (wired and Wi-Fi)",
+        "puce3": "Manage an Active Directory domain (accounts, permissions, GPOs, network services)",
+        "puce4": "Ensure monitoring and maintenance of an IT estate",
+        "puce5": "Handle user requests and provide first-line/second-line support in line with ITIL best practice",
+        "puce6": "Write and keep technical documentation up to date",
+        "puce7": "Work in on-premises, cloud or hybrid environments"
+      }
+    },
+    "webIntegrator": {
+      "title": "OpenClassrooms - Web Integrator",
+      "description": "The Web Integrator is responsible for integrating visual elements into the pages of a website to create a harmonious, readable and easy-to-navigate interface. They have strong knowledge of programming languages to reproduce the visual design as faithfully as possible across all types of browsers and screen sizes.",
+      "badges": {
+        "1": "Level 5 diploma (equivalent to a 2-year degree after secondary school)",
+        "2": "18-month apprenticeship programme",
+        "3": "603 supervised hours"
+      },
+      "missions": {
+        "title": "As a Web Integrator, what are your responsibilities?",
+        "puce1": "<strong>Create a complete, responsive web application</strong> so the company or client can sell products and services online, across all types of devices.",
+        "puce2": "<strong>Bring web pages to life</strong> to better showcase the company’s or client’s products and services.",
+        "puce3": "<strong>Create interfaces that communicate with the site’s back-end</strong> to build dynamic applications and allow customers to log in to the site.",
+        "puce4": "<strong>Optimise performance and maintain existing websites</strong> to ensure optimal operation and strong visibility in search engines.",
+        "puce5": "<strong>Manage a web project end to end</strong>: from estimating and breaking down project tasks to presenting the solution, including writing technical specifications."
       }
     }
   }

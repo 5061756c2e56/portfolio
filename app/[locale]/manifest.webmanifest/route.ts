@@ -33,25 +33,25 @@ export async function GET(
             theme_color: '#fafafa',
             icons: [
                 {
-                    src: '/icon.png',
+                    src: '/favicon.png',
                     sizes: 'any',
                     type: 'image/png',
                     purpose: 'any'
                 },
                 {
-                    src: '/pfp.png',
+                    src: '/favicon.png',
                     sizes: '192x192',
                     type: 'image/png',
                     purpose: 'any'
                 },
                 {
-                    src: '/pfp.png',
+                    src: '/favicon.png',
                     sizes: '512x512',
                     type: 'image/png',
                     purpose: 'any'
                 },
                 {
-                    src: '/pfp.png',
+                    src: '/favicon.png',
                     sizes: '512x512',
                     type: 'image/png',
                     purpose: 'maskable'

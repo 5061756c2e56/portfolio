@@ -54,12 +54,12 @@ export function SectionNavigation({ excludeHref, mobileMenu }: SectionNavigation
                         suppressHydrationWarning
                     >
                         {christmasMode ? (
-                            <ChristmasHat size={24} className="w-6 h-6 text-primary"/>
+                            <ChristmasHat size={24} className="w-6 h-6 text-primary" />
                         ) : (
                             <div
                                 className="relative w-7 h-7 rounded-full overflow-hidden border border-border hover:border-foreground/30 transition-all duration-300 shrink-0">
                                 <Image
-                                    src="/pfp.png"
+                                    src="/favicon.ico"
                                     alt="Paul Viandier"
                                     fill
                                     className="object-cover"
@@ -80,18 +80,18 @@ export function SectionNavigation({ excludeHref, mobileMenu }: SectionNavigation
                                 href={href}
                                 className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 inline-flex items-center gap-2"
                             >
-                                <Icon className="w-4 h-4"/>
+                                <Icon className="w-4 h-4" />
                                 <span className="hidden sm:inline">
                                     {t(labelKey)}
                                 </span>
                             </Link>
                         ))}
-                        <Settings/>
+                        <Settings />
                     </div>
 
                     <div className="flex lg:hidden items-center gap-2">
                         {mobileMenu}
-                        <Settings/>
+                        <Settings />
                     </div>
                 </div>
             </div>

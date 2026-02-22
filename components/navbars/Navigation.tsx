@@ -119,7 +119,8 @@ export default function Navigation() {
                         ) : (
                             <div
                                 className="relative w-7 h-7 rounded-full overflow-hidden border border-blue-500/30 hover:border-blue-500/50 hover:shadow-[0_0_10px_rgba(59,130,246,0.2)] transition-all duration-300 shrink-0">
-                                <Image src="/pfp.png" alt="Paul Viandier" fill className="object-cover" sizes="28px" />
+                                <Image src="/favicon.ico" alt="Paul Viandier" fill className="object-cover"
+                                       sizes="28px" />
                             </div>
                         )}
                         <span

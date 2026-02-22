@@ -19,6 +19,6 @@ export default createMiddleware({
 
 export const config = {
     matcher: [
-        '/((?!api|_next|_vercel|.*\\..*|sitemap|robots|manifest|icon.png|pfp.png|vPsl6pa.png|.*\\.pdf|.*\\.svg).*)'
+        '/((?!api|_next|_vercel|.*\\..*|sitemap|robots|manifest|icon.png|favicon.ico|vPsl6pa.png|.*\\.pdf|.*\\.svg).*)'
     ]
 };

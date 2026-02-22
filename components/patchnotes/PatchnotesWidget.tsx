@@ -48,7 +48,7 @@ function FloatingButton({ onClick, unreadCount }: { onClick: () => void; unreadC
             aria-label="Patchnotes"
         >
             <Bell
-                className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground transition-transform duration-300 group-hover:rotate-12"/>
+                className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground transition-transform duration-300 group-hover:rotate-12" />
             {unreadCount > 0 && (
                 <span
                     className={cn(
@@ -143,7 +143,7 @@ function SortDropdown({
                                     sort === value ? 'border-primary' : 'border-muted-foreground/30'
                                 )}
                             >
-                                {sort === value && <span className="h-2 w-2 rounded-full bg-primary"/>}
+                                {sort === value && <span className="h-2 w-2 rounded-full bg-primary" />}
                             </span>
                             <span>
                                 {value === 'newest' ? t('sort.newestToOldest') : t('sort.oldestToNewest')}
@@ -167,7 +167,7 @@ function SearchInput({
 }) {
     return (
         <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/>
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
@@ -228,7 +228,7 @@ function PatchnoteListItem({
                             'flex items-center justify-center'
                         )}
                     >
-                        <Home className="h-4 w-4 text-primary"/>
+                        <Home className="h-4 w-4 text-primary" />
                     </div>
                 )}
 
@@ -241,7 +241,7 @@ function PatchnoteListItem({
                          item.displayDate || item.fileDate
                      ) && (
                          <div className="flex items-center gap-1.5 mt-1.5">
-                             <CalendarDays className="h-3 w-3 text-muted-foreground/60"/>
+                             <CalendarDays className="h-3 w-3 text-muted-foreground/60" />
                              <span className="text-xs text-muted-foreground">
                                 {item.displayDate || item.fileDate}
                             </span>
@@ -275,7 +275,7 @@ function HomeContent({
         <div className="h-full flex items-center justify-center p-6 pt-24 md:pt-6">
             <div className="max-w-lg w-full text-center">
                 <div className="mx-auto mb-4 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Home className="h-7 w-7 text-primary"/>
+                    <Home className="h-7 w-7 text-primary" />
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{homeMeta.title}</h2>
@@ -294,7 +294,7 @@ function HomeContent({
 
                 <p className="mt-4 text-muted-foreground leading-relaxed">{homeGuide.subtitle}</p>
 
-                <div className="mt-8 space-y-3">
+                <div className="mt-8 space-y-3 pb-4 md:pb-0">
                     {homeGuide.items.map((item, idx) => (
                         <div
                             key={idx}
@@ -343,7 +343,7 @@ function PatchnoteContent({
                 {description && <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>}
                 {date && (
                     <div className="flex items-center gap-2 mt-4">
-                        <CalendarDays className="h-4 w-4 text-muted-foreground/60"/>
+                        <CalendarDays className="h-4 w-4 text-muted-foreground/60" />
                         <span className="text-sm text-muted-foreground">{date}</span>
                     </div>
                 )}
@@ -385,7 +385,7 @@ function PatchnoteContent({
                                 </code>
                             );
                         },
-                        a: (props) => <a {...props} target="_blank" rel="noreferrer noopener"/>,
+                        a: (props) => <a {...props} target="_blank" rel="noreferrer noopener" />,
                         img: ({ src, alt }) => {
                             const s = typeof src === 'string' ? src : '';
                             if (!s) return null;
@@ -461,7 +461,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
 
     const [readSet, setReadSet] = useState<Set<string>>(() => {
         if (typeof window === 'undefined') return new Set<string>();
-        
+
         try {
             return loadReadSet();
         } catch {
@@ -707,7 +707,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
 
     return (
         <>
-            <FloatingButton onClick={openModal} unreadCount={unreadCount}/>
+            <FloatingButton onClick={openModal} unreadCount={unreadCount} />
 
             {visible && (
                 <div className="fixed inset-0 z-50 overscroll-contain">
@@ -718,7 +718,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                             closing
                                 ? 'animate-out fade-out duration-200'
                                 : 'animate-in fade-in duration-200'
-                        )}/>
+                        )} />
 
                     <div
                         ref={modalRef}
@@ -761,13 +761,13 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
                                 )}
                             >
-                                {visibleMobileSidebarOpen ? <X className="block h-5 w-5"/> :
-                                    <Menu className="block h-5 w-5"/>}
+                                {visibleMobileSidebarOpen ? <X className="block h-5 w-5" /> :
+                                    <Menu className="block h-5 w-5" />}
                             </button>
 
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-center gap-2 min-w-0 leading-none">
-                                    <Bell className="block h-4 w-4 shrink-0 text-muted-foreground"/>
+                                    <Bell className="block h-4 w-4 shrink-0 text-muted-foreground" />
                                     <span className="truncate text-sm font-medium leading-none">
                                         {headerTitle || 'Patchnotes'}
                                     </span>
@@ -787,7 +787,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
                                 )}
                             >
-                                <X className="block h-5 w-5"/>
+                                <X className="block h-5 w-5" />
                             </button>
                         </header>
 
@@ -805,12 +805,12 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
                             )}
                         >
-                            <X className="h-5 w-5"/>
+                            <X className="h-5 w-5" />
                         </button>
 
                         {listLoading ? (
                             <div className="flex-1 flex items-center justify-center">
-                                <Spinner className="size-8 text-primary"/>
+                                <Spinner className="size-8 text-primary" />
                             </div>
                         ) : (
                             <>
@@ -839,7 +839,7 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                                     sortRef={sortRef}
                                                 />
                                                 <SearchInput value={query} onChange={setQuery}
-                                                             placeholder={searchPlaceholder}/>
+                                                             placeholder={searchPlaceholder} />
                                             </div>
 
                                             <div className="flex-1 overflow-auto">
@@ -878,7 +878,8 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                             setSort={setSort}
                                             sortRef={sortRef}
                                         />
-                                        <SearchInput value={query} onChange={setQuery} placeholder={searchPlaceholder}/>
+                                        <SearchInput value={query} onChange={setQuery}
+                                                     placeholder={searchPlaceholder} />
                                     </div>
 
                                     <div className="flex-1 overflow-auto">
@@ -902,10 +903,10 @@ export default function PatchnotesWidget({ locale }: { locale: string }) {
                                 <main className="flex-1 min-h-0 overflow-auto overscroll-contain">
                                     {contentLoading ? (
                                         <div className="h-full flex items-center justify-center">
-                                            <Spinner className="size-8 text-primary"/>
+                                            <Spinner className="size-8 text-primary" />
                                         </div>
                                     ) : effectiveActiveId === HOME_ID ? (
-                                        <HomeContent homeMeta={homeMeta} homeGuide={homeGuide}/>
+                                        <HomeContent homeMeta={homeMeta} homeGuide={homeGuide} />
                                     ) : (
                                         <PatchnoteContent
                                             title={headerTitle}

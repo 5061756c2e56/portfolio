@@ -48,6 +48,17 @@
     "stats": {
       "title": "Statistiques GitHub",
       "description": "Statistiques de mes projets open source"
+    },
+    "tryhackme": {
+      "description": "Explorer les détails de mon parcours d'apprentissage en cybersécurité sur TryHackMe"
+    },
+    "webIntegrator": {
+      "title": "Intégrateur Web",
+      "description": "Explorer les détails de la formation d'Intégrateur Web d'OpenClassrooms"
+    },
+    "technicien": {
+      "title": "Technicien Informatique",
+      "description": "Explorer les détails de la formation Technicien Informatique d'OpenClassrooms"
     }
   },
   "locales": {
@@ -104,10 +115,13 @@
           {
             "type": "bullets",
             "items": [
+              "Introduction à la cybersécurité",
               "Principes fondamentaux du réseau",
               "Comment fonctionne le Web",
-              "Fondamentaux de Linux",
-              "Fondamentaux de Windows"
+              "Principes fondamentaux de l'informatique",
+              "Notions de base sur les systèmes d'exploitation",
+              "Notions de base sur les logiciels",
+              "Attaques et défenses"
             ]
           },
           {
@@ -142,7 +156,7 @@
             ]
           }
         ],
-        "period": "2021 - 2024"
+        "period": "2025"
       },
       "3": {
         "title": "Technicien Informatique",
@@ -4455,7 +4469,8 @@
     "404": {
       "title": "Page introuvable",
       "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
-      "backHome": "Retour à l'accueil"
+      "backHome": "Retour à l'accueil",
+      "badge": "Erreur 404"
     },
     "500": {
       "title": "Une erreur est survenue",
@@ -5107,6 +5122,248 @@
         "1": "Le point rouge = nouveauté non lue.",
         "2": "Utilise la recherche pour retrouver une fonctionnalité.",
         "3": "Change le tri en haut (récent ↔ ancien)."
+      }
+    }
+  },
+  "parcoursDetails": {
+    "backHome": "Retour à l'accueil",
+    "details": "Détails du parcours",
+    "parcoursLinksLabel": {
+      "thm": "TryHackMe",
+      "technicien": "Technicien Informatique",
+      "webIntegrator": "Intégrateur Web"
+    },
+    "tryhackme": {
+      "title": "TryHackMe - Pré Sécurité",
+      "description": "Pour attaquer ou défendre une technologie, nous devons d’abord comprendre ce qui l’alimente. Dans ce parcours, j'ai exploré les bases de l’informatique, écrit mes premières lignes de code et découvert comment les réseaux, le Web et les cyberattaques du monde réel se connectent.",
+      "certificat": {
+        "title": "Certificat",
+        "buttonOpenPDF": "Ouvrir le PDF",
+        "buttonDownload": "Télécharger le PDF",
+        "buttonDownloading": "Téléchargement..."
+      },
+      "badges": {
+        "1": "Plateforme : TryHackMe",
+        "2": "Certifié"
+      },
+      "article": {
+        "module1": {
+          "title": "Module 1 : Introduction à la cybersécurité",
+          "puce1": "Introduction à la sécurité offensive",
+          "puce1-1": "Qu'est-ce que la sécurité offensive",
+          "puce1-2": "Piratage de votre première machine",
+          "puce1-3": "Carrières en cybersécurité",
+          "puce2": "Introduction à la sécurité défensive",
+          "puce2-1": "Qu'est-ce que la sécurité défensive",
+          "puce2-2": "Zones de sécurité défensive",
+          "puce2-3": "Exemple pratique de sécurité défensive",
+          "puce3": "Carrière dans le cyberespace",
+          "puce3-1": "Introduction",
+          "puce3-2": "Analyste de sécurité",
+          "puce3-3": "Ingénieur en sécurité",
+          "puce3-4": "Intervenant en cas d'incident",
+          "puce3-5": "Expert en criminalistique numérique",
+          "puce3-6": "Analyste de logiciels malveillants",
+          "puce3-7": "Testeur de pénétration",
+          "puce3-8": "Équipe rouge"
+        },
+        "module2": {
+          "title": "Module 2 : Principes fondamentaux du réseau",
+          "puce1": "Qu'est-ce que le réseautage",
+          "puce1-1": "C'est quoi le réseautage ?",
+          "puce1-2": "Qu'est-ce qu'Internet ?",
+          "puce1-3": "Identification des périphériques sur un réseau",
+          "puce1-4": "Ping (ICMP)",
+          "puce2": "Introduction aux réseaux locaux",
+          "puce2-1": "Présentation des topologies LAN",
+          "puce2-2": "Introduction au sous-réseautage",
+          "puce2-3": "ARP",
+          "puce2-4": "DHCP",
+          "puce3": "Modèle OSI",
+          "puce3-1": "Qu'est-ce que le modèle OSI ?",
+          "puce3-2": "Couche 1 - Physique",
+          "puce3-3": "Couche 2 - Liaison de données",
+          "puce3-4": "Couche 3 - Réseau",
+          "puce3-5": "Couche 4 - Transport",
+          "puce3-6": "Couche 5 - Session",
+          "puce3-7": "Couche 6 - Présentation",
+          "puce3-8": "Couche 7 - Application",
+          "puce4": "Paquets et trames",
+          "puce4-1": "Que sont les paquets et trames ?",
+          "puce4-2": "TCP/IP (la poignée de main en trois temps)",
+          "puce4-3": "UDP/IP",
+          "puce4-4": "Ports 101",
+          "puce5": "Étendre votre réseau",
+          "puce5-1": "Introduction au transfert de port",
+          "puce5-2": "Pare-feu 101",
+          "puce5-3": "Principes de base des VPN",
+          "puce5-4": "Dispositifs de réseau LAN",
+          "puce5-5": "Simulateur de réseau pratique"
+        },
+        "module3": {
+          "title": "Module 3 : Comment fonctionne le Web",
+          "puce1": "DNS en détails",
+          "puce1-1": "Qu'est-ce que le DNS ?",
+          "puce1-2": "Hiérarchie du domaine",
+          "puce1-3": "Types d'enregistrements",
+          "puce1-4": "Faire une demande",
+          "puce2": "HTTP en détail",
+          "puce2-1": "Qu'est-ce que HTTP(S) ?",
+          "puce2-2": "Demandes et réponses",
+          "puce2-3": "Méthodes HTTP",
+          "puce2-4": "Codes d'état HTTP",
+          "puce2-5": "En-têtes",
+          "puce2-6": "Cookies",
+          "puce2-7": "Faire des demandes",
+          "puce3": "Comment fonctionnent les sites Web",
+          "puce3-1": "Comment ça fonctionne un site Web ?",
+          "puce3-2": "HTML",
+          "puce3-3": "JavaScript",
+          "puce3-4": "Exposition de données sensibles",
+          "puce3-5": "Injection HTML",
+          "puce4": "Mettre tout cela ensemble",
+          "puce4-1": "Synthèse de tout",
+          "puce4-2": "Autres composants",
+          "puce4-3": "Comment fonctionnent les serveurs Web"
+        },
+        "module4": {
+          "title": "Module 4 : Principes fondamentaux de l'informatique",
+          "puce1": "À l'intérieur d'un système informatique",
+          "puce1-1": "Introduction",
+          "puce1-2": "À l'intérieur d'un système informatique",
+          "puce1-3": "Que se passe-t-il lorsque vous appuyez sur le bouton Démarrer ?",
+          "puce2": "Types d'ordinateurs",
+          "puce2-1": "Introduction",
+          "puce2-2": "L'été des ordinateurs cachés de Sophia - Mois 1",
+          "puce2-3": "L'été des ordinateurs cachés de Sophia - Mois 2",
+          "puce2-4": "Pourquoi les ordinateurs existent en différentes versions",
+          "puce3": "Notions de base sur le client et le serveur",
+          "puce3-1": "Introduction",
+          "puce3-2": "Livraison de pizzas",
+          "puce3-3": "Communication Web en pratique",
+          "puce4": "Notions de base sur la virtualisation",
+          "puce4-1": "Introduction",
+          "puce4-2": "Aperçu de la virtualisation",
+          "puce4-3": "Composants de virtualisation",
+          "puce4-4": "Gestion des machines virtuelles",
+          "puce5": "Principes fondamentaux du cloud computing",
+          "puce5-1": "Introduction",
+          "puce5-2": "Aperçu du cloud computing",
+          "puce5-3": "Déploiement d'une instance cloud"
+        },
+        "module5": {
+          "title": "Module 5 : Notions de base sur les systèmes d'exploitation",
+          "puce1": "Introduction",
+          "puce1-1": "Introduction",
+          "puce1-2": "Le manager invisible",
+          "puce1-3": "Interaction avec le système d'exploitation et le paysage",
+          "puce2": "Les bases de Windows",
+          "puce2-1": "Introduction",
+          "puce2-2": "Exploration de l'espace de travail Windows",
+          "puce2-3": "Configuration et sécurisation de Windows",
+          "puce3": "Notions de base sur Linux CLI",
+          "puce3-1": "Introduction",
+          "puce3-2": "Mission de navigation : retrouver les notes manquantes",
+          "puce3-3": "Enquête sur le système",
+          "puce4": "Notions de base sur Windows CLI",
+          "puce4-1": "Introduction",
+          "puce4-2": "Interface de ligne de commande Windows : navigation dans les fichiers et recherche de votre premier fichier",
+          "puce4-3": "Collecte d'informations système sous Windows",
+          "puce5": "Sécurité du système d'exploitation",
+          "puce5-1": "Introduction à la sécurité des systèmes d'exploitation",
+          "puce5-2": "Exemples courants de sécurité des systèmes d'exploitation",
+          "puce5-3": "Exemple pratique de sécurité des systèmes d'exploitation"
+        },
+        "module6": {
+          "title": "Module 6 : Notions de base sur les logiciels",
+          "puce1": "Représentation des données",
+          "puce1-1": "Introduction",
+          "puce1-2": "Représenter les couleurs",
+          "puce1-3": "Nombres : du décimal à l'hexadécimal",
+          "puce2": "Codage des données",
+          "puce2-1": "Introduction",
+          "puce2-2": "ASCII",
+          "puce2-3": "Unicode",
+          "puce3": "Python : démo simple",
+          "puce3-1": "Introduction",
+          "puce3-2": "Variables",
+          "puce3-3": "Énoncés conditionnels",
+          "puce3-4": "Itérations",
+          "puce4": "JavaScript : démo simple",
+          "puce4-1": "Introduction",
+          "puce4-2": "Variables",
+          "puce4-3": "Demander une saisie à l'utilisateur",
+          "puce4-4": "Énoncés conditionnels",
+          "puce4-5": "Itérations",
+          "puce5": "Bases de données SQL",
+          "puce5-1": "Introduction",
+          "puce5-2": "Comprendre les tableaux, les lignes et les colonnes",
+          "puce5-3": "Écrire votre première requête SQL"
+        },
+        "module7": {
+          "title": "Module 7 : Attaques et défenses",
+          "puce1": "La triade de la CIA",
+          "puce1-1": "Introduction",
+          "puce1-2": "Comprendre la triade de la CIA",
+          "puce1-3": "L'état d'esprit sécuritaire",
+          "puce2": "Concepts de cryptographie",
+          "puce2-1": "Introduction",
+          "puce2-2": "Dissimulation d'informations - chiffrement symétrique",
+          "puce2-3": "Partage sécurisé des clés - chiffrement asymétrique",
+          "puce3": "Devenez un hacker",
+          "puce3-1": "Qu'est-ce que la sécurité offensive ?",
+          "puce3-2": "Détecter les faiblesses",
+          "puce3-3": "Exploiter les faiblesses",
+          "puce3-4": "Où aller à partir d'ici",
+          "puce4": "Devenez un défenseur",
+          "puce4-1": "Qu'est-ce que la sécurité défensive ?",
+          "puce4-2": "Comprendre votre environnement",
+          "puce4-3": "Défendre son environnement",
+          "puce4-4": "Où aller à partir d'ici"
+        }
+      }
+    },
+    "technicien": {
+      "title": "OpenClassrooms - Technicien Informatique",
+      "description": "En tant que technicien informatique, nous sommes amenés à installer et déployer les composants d'un parc informatique, le maintenir en conditions opérationnelles et de sécurité, assister les utilisateurs et automatiser les tâches.",
+      "badges": {
+        "1": "Diplôme de niveau 5 (bac +2)",
+        "2": "9 mois à temps plein",
+        "3": "843 heures supervisées"
+      },
+      "missions": {
+        "title": "En tant que Technicien Informatique, quelles sont vos missions ?",
+        "description": "Vous êtes l’acteur clé du bon fonctionnement de l’environnement numérique de l’entreprise.\nVous installez les équipements, configurez les réseaux, automatisez les tâches récurrentes et assurez un support efficace aux utilisateurs. Votre rôle est à la fois <strong>technique, réactif et orienté service</strong>.\nVous devrez également :",
+        "puce1": "Comprendre les priorités des utilisateurs et proposer des solutions pragmatiques ;",
+        "puce2": "Faire preuve de rigueur, de pédagogie, de curiosité et d’adaptabilité ;",
+        "puce3": "Intégrer les enjeux de cybersécurité, de développement durable et d’accessibilité numérique dans vos pratiques."
+      },
+      "nextMissions": {
+        "title": "Les missions types que vous pourrez mener :",
+        "puce1": "Déployer un parc informatique automatisé (postes clients, serveurs, configurations)",
+        "puce2": "Installer, sécuriser et maintenir un réseau local (filaire et Wi-Fi)",
+        "puce3": "Gérer un domaine Active Directory (comptes, droits, GPO, services réseau)",
+        "puce4": "Assurer la supervision et la maintenance d’un parc informatique",
+        "puce5": "Traiter les demandes utilisateurs et fournir un support N1/N2 selon les bonnes pratiques ITIL",
+        "puce6": "Rédiger et maintenir à jour la documentation technique",
+        "puce7": "Travailler en environnement local, cloud ou hybride"
+      }
+    },
+    "webIntegrator": {
+      "title": "OpenClassrooms - Intégrateur Web",
+      "description": "L’intégrateur Web est chargé d’intégrer les éléments visuels dans les pages d’un site web pour créer une interface harmonieuse, lisible et facilement navigable. Il a de solides connaissances des langages de programmation pour pouvoir afficher le plus fidèlement possible le design graphique sur tous types de navigateurs et tailles d’écrans.",
+      "badges": {
+        "1": "Diplôme de niveau 5 (bac +2)",
+        "2": "18 mois en alternance",
+        "3": "603 heures supervisées"
+      },
+      "missions": {
+        "title": "En tant qu'Intégrateur Web, quelles sont vos missions ?",
+        "puce1": "<strong>Créer une application web complète et responsive</strong> pour permettre à l’entreprise ou au client de vendre ses produits et services en ligne, sur tous types d’appareils.",
+        "puce2": "<strong>Dynamiser des pages web</strong> pour mieux mettre en valeur les produits et service de l’entreprise ou du client.",
+        "puce3": "<strong>Créer des interfaces communiquant avec le back-end</strong> du site pour élaborer des applications dynamiques et permettre aux clients de s’identifier sur le site.",
+        "puce4": "<strong>Optimiser les performances et réaliser la maintenance de sites web déjà existants</strong> pour permettre leur fonctionnement optimal et une bonne visibilité sur les moteurs de recherche.",
+        "puce5": "<strong>Gérer un projet web de A à Z</strong> : du chiffrage et découpage des tâches du projet à la présentation de la solution, en passant par la rédaction des spécifications techniques."
       }
     }
   }

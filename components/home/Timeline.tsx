@@ -64,9 +64,9 @@ const timelineData: TimelineItem[] = [
         descriptionKey: 'timelineData.2.description',
         organization: 'TryHackMe',
         period: 'timelineData.2.period',
-        icon: 'briefcase',
-        links: [{ label: 'TryHackMe', href: 'https://tryhackme.com' }]
-        // detailLink: { labelKey: 'seeDetails', href: '/parcours/tryhackme' }
+        icon: 'graduation',
+        links: [{ label: 'TryHackMe', href: 'https://tryhackme.com' }],
+        detailLink: { labelKey: 'seeDetails', href: '/parcours/tryhackme' }
     },
     {
         id: '3',
@@ -75,11 +75,11 @@ const timelineData: TimelineItem[] = [
         descriptionKey: 'timelineData.3.description',
         organization: 'OpenClassrooms & Coursera',
         period: 'timelineData.3.period',
-        icon: 'briefcase',
+        icon: 'graduation',
         links: [
             { label: 'OpenClassrooms', href: 'https://openclassrooms.com/fr/paths/1051-technicien-informatique' }
-        ]
-        // detailLink: { labelKey: 'seeDetails', href: '/parcours/oc-technicien' }
+        ],
+        detailLink: { labelKey: 'seeDetails', href: '/parcours/oc-technicien' }
     },
     {
         id: '4',
@@ -88,7 +88,7 @@ const timelineData: TimelineItem[] = [
         descriptionKey: 'timelineData.4.description',
         organization: 'OpenClassrooms & Coursera',
         period: 'timelineData.4.period',
-        icon: 'briefcase',
+        icon: 'graduation',
         links: [
             { label: 'OpenClassrooms', href: 'https://openclassrooms.com' },
             { label: 'Coursera', href: 'https://www.coursera.org' }
@@ -101,9 +101,9 @@ const timelineData: TimelineItem[] = [
         descriptionKey: 'timelineData.5.description',
         organization: 'OpenClassrooms',
         period: 'timelineData.5.period',
-        icon: 'briefcase',
-        links: [{ label: 'OpenClassrooms', href: 'https://openclassrooms.com/fr/paths/900-integrateur-web' }]
-        // detailLink: { labelKey: 'seeDetails', href: '/parcours/oc-integrateur-web' }
+        icon: 'graduation',
+        links: [{ label: 'OpenClassrooms', href: 'https://openclassrooms.com/fr/paths/900-integrateur-web' }],
+        detailLink: { labelKey: 'seeDetails', href: '/parcours/oc-integrateur-web' }
     }
 ];
 

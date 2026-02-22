@@ -27,13 +27,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
 import { ContactModalProvider } from '@/hooks/useContactModal';
 
-import {
-    defaultLocale,
-    isLocale,
-    Locale,
-    locales,
-    ogLocaleMap
-} from '@/i18n/routing';
+import { defaultLocale, isLocale, Locale, locales, ogLocaleMap } from '@/i18n/routing';
 import { SITE_URL } from '@/lib/site';
 import { isChristmasMode } from '@/lib/christmas';
 
@@ -115,18 +109,18 @@ export async function generateMetadata({
         },
         verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
             ? {
-                  google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
-              }
+                google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+            }
             : undefined,
         icons: {
             icon: [
-                { url: '/pfp.png', sizes: 'any', type: 'image/png' },
-                { url: '/pfp.png', sizes: '192x192', type: 'image/png' },
-                { url: '/pfp.png', sizes: '512x512', type: 'image/png' },
-                { url: '/icon.png', sizes: 'any' }
+                { url: '/favicon.png', sizes: 'any', type: 'image/png' },
+                { url: '/favicon.png', sizes: '192x192', type: 'image/png' },
+                { url: '/favicon.png', sizes: '512x512', type: 'image/png' },
+                { url: '/favicon.png', sizes: 'any' }
             ],
-            apple: [{ url: '/pfp.png', sizes: '180x180', type: 'image/png' }],
-            shortcut: '/pfp.png'
+            apple: [{ url: '/favicon.png', sizes: '180x180', type: 'image/png' }],
+            shortcut: '/favicon.ico'
         },
         manifest: `/${locale}/manifest.webmanifest`,
         other: {
@@ -153,7 +147,9 @@ export default async function RootLayout({
 
     const locale: Locale = paramLocale;
 
-    const allMsgs = (await import(`@/i18n/locales/${locale}.json`)).default;
+    const allMsgs = (
+        await import(`@/i18n/locales/${locale}.json`)
+    ).default;
     const { _meta, ...messages } = allMsgs;
     void _meta;
 
