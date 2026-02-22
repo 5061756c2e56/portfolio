@@ -5138,6 +5138,7 @@
       "description": "To attack or defend a technology, we first need to understand what powers it. In this programme, I explored the fundamentals of computer science, wrote my first lines of code, and discovered how networking, the web and real-world cyber-attacks connect.",
       "certificat": {
         "title": "Certificate",
+        "preview": "TryHackMe Pre-Security Certificate Overview",
         "buttonOpenPDF": "Open the PDF",
         "buttonDownload": "Download the PDF",
         "buttonDownloading": "Downloading..."

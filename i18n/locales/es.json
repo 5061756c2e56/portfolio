@@ -5138,6 +5138,7 @@
       "description": "Para atacar o defender una tecnología, primero debemos entender qué la impulsa. En este recorrido, he explorado los fundamentos de la informática, escrito mis primeras líneas de código y descubierto cómo las redes, la Web y los ciberataques del mundo real se conectan.",
       "certificat": {
         "title": "Certificado",
+        "preview": "Descripción general del certificado TryHackMe Pre-Seguridad",
         "buttonOpenPDF": "Abrir el PDF",
         "buttonDownload": "Descargar el PDF",
         "buttonDownloading": "Descargando..."

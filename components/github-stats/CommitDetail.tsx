@@ -22,8 +22,104 @@ interface CommitDetailPanelProps {
     isLoading: boolean;
 }
 
+interface CommitMessageListItem {
+    text: string;
+    children: string[];
+}
+
+type CommitMessageBlock =
+    | {
+          type: 'paragraph';
+          text: string;
+      }
+    | {
+          type: 'list';
+          items: CommitMessageListItem[];
+      };
+
+function parseCommitMessageBody(body: string): CommitMessageBlock[] {
+    const blocks: CommitMessageBlock[] = [];
+    const lines = body.replace(/\r\n/g, '\n').split('\n');
+
+    let paragraphLines: string[] = [];
+    let listLines: Array<{ level: number; text: string }> = [];
+
+    const flushParagraph = () => {
+        if (paragraphLines.length === 0) return;
+        blocks.push({
+            type: 'paragraph',
+            text: paragraphLines.join(' ')
+        });
+        paragraphLines = [];
+    };
+
+    const flushList = () => {
+        if (listLines.length === 0) return;
+
+        const items: CommitMessageListItem[] = [];
+        let currentTopItem: CommitMessageListItem | null = null;
+
+        listLines.forEach(({ level, text }) => {
+            if (!text) return;
+
+            if (level <= 0 || !currentTopItem) {
+                currentTopItem = { text, children: [] };
+                items.push(currentTopItem);
+                return;
+            }
+
+            currentTopItem.children.push(text);
+        });
+
+        if (items.length > 0) {
+            blocks.push({
+                type: 'list',
+                items
+            });
+        }
+
+        listLines = [];
+    };
+
+    lines.forEach((line) => {
+        const bulletMatch = line.match(/^(\s*)-\s+(.*)$/);
+
+        if (bulletMatch) {
+            flushParagraph();
+
+            const spaces = bulletMatch[1].replace(/\t/g, '  ').length;
+            const level = Math.max(0, Math.floor(spaces / 2));
+            const text = bulletMatch[2].trim();
+
+            listLines.push({ level, text });
+            return;
+        }
+
+        if (line.trim() === '') {
+            flushParagraph();
+            flushList();
+            return;
+        }
+
+        flushList();
+        paragraphLines.push(line.trim());
+    });
+
+    flushParagraph();
+    flushList();
+
+    return blocks;
+}
+
 export function CommitDetailPanel({ commit, isLoading }: CommitDetailPanelProps) {
     const t = useTranslations('githubStats.commitDetail');
+    const commitBody =
+        commit && commit.message !== commit.messageTitle
+            ? commit.message.replace(commit.messageTitle, '').trim()
+            : '';
+    const commitBodyBlocks = commitBody
+        ? parseCommitMessageBody(commitBody)
+        : [];
 
     if (isLoading) {
         return (
@@ -64,10 +160,50 @@ export function CommitDetailPanel({ commit, isLoading }: CommitDetailPanelProps)
                         <p className="font-medium text-base sm:text-lg break-words leading-relaxed">
                             {commit.messageTitle}
                         </p>
-                        {commit.message !== commit.messageTitle && (
-                            <p className="text-sm text-muted-foreground mt-3 whitespace-pre-wrap break-words leading-relaxed">
-                                {commit.message.replace(commit.messageTitle, '').trim()}
-                            </p>
+                        {commitBodyBlocks.length > 0 && (
+                            <div className="mt-3 space-y-3 text-sm text-muted-foreground break-words leading-relaxed">
+                                {commitBodyBlocks.map((block, blockIndex) =>
+                                    block.type === 'paragraph' ? (
+                                        <p key={`paragraph-${blockIndex}`}>
+                                            {block.text}
+                                        </p>
+                                    ) : (
+                                        <ul
+                                            key={`list-${blockIndex}`}
+                                            className="list-disc space-y-1.5 pl-5"
+                                        >
+                                            {block.items.map(
+                                                (item, itemIndex) => (
+                                                    <li
+                                                        key={`item-${blockIndex}-${itemIndex}`}
+                                                    >
+                                                        <span>{item.text}</span>
+                                                        {item.children.length >
+                                                        0 ? (
+                                                            <ul className="mt-1 list-disc space-y-1 pl-5">
+                                                                {item.children.map(
+                                                                    (
+                                                                        child,
+                                                                        childIndex
+                                                                    ) => (
+                                                                        <li
+                                                                            key={`child-${blockIndex}-${itemIndex}-${childIndex}`}
+                                                                        >
+                                                                            {
+                                                                                child
+                                                                            }
+                                                                        </li>
+                                                                    )
+                                                                )}
+                                                            </ul>
+                                                        ) : null}
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    )
+                                )}
+                            </div>
                         )}
                     </div>
 

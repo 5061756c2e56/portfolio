@@ -253,7 +253,7 @@ export default async function TryHackMeDetailPage() {
                     <div className="mt-5 overflow-hidden rounded-xl border border-border bg-muted/30">
                         <Image
                             src={CERTIFICATE_PREVIEW_PATH}
-                            alt="AperÃ§u du certificat TryHackMe Pre-Security"
+                            alt={t('certificat.preview')}
                             width={1400}
                             height={980}
                             className="h-auto w-full object-contain"

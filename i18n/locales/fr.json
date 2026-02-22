@@ -5138,6 +5138,7 @@
       "description": "Pour attaquer ou défendre une technologie, nous devons d’abord comprendre ce qui l’alimente. Dans ce parcours, j'ai exploré les bases de l’informatique, écrit mes premières lignes de code et découvert comment les réseaux, le Web et les cyberattaques du monde réel se connectent.",
       "certificat": {
         "title": "Certificat",
+        "preview": "Aperçu du certificat TryHackMe Pré-Sécurité",
         "buttonOpenPDF": "Ouvrir le PDF",
         "buttonDownload": "Télécharger le PDF",
         "buttonDownloading": "Téléchargement..."
