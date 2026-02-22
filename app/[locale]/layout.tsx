@@ -18,6 +18,7 @@ import { LocaleProvider } from '@/components/LocaleProvider';
 import { Toaster } from '@/components/ui/sonner';
 import { Snowflakes } from '@/components/christmas/Snowflakes';
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import '../globals.css';
@@ -30,6 +31,11 @@ import { ContactModalProvider } from '@/hooks/useContactModal';
 import { defaultLocale, isLocale, Locale, locales, ogLocaleMap } from '@/i18n/routing';
 import { SITE_URL } from '@/lib/site';
 import { isChristmasMode } from '@/lib/christmas';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/navbars/AppSidebar';
+import { MobileHeader } from '@/components/navbars/MobileHeader';
+
+const SIDEBAR_STATE_COOKIE = 'sidebar_state';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -146,6 +152,8 @@ export default async function RootLayout({
     }
 
     const locale: Locale = paramLocale;
+    const cookieStore = await cookies();
+    const defaultSidebarOpen = cookieStore.get(SIDEBAR_STATE_COOKIE)?.value !== 'false';
 
     const allMsgs = (
         await import(`@/i18n/locales/${locale}.json`)
@@ -167,18 +175,22 @@ export default async function RootLayout({
                 <LocaleProvider initialLocale={locale} messages={messages}>
                     <ThemeProvider>
                         <Snowflakes />
-                        <div className="min-h-screen flex flex-col relative z-10">
-                            <StructuredData />
-                            <SkipLink />
-                            <ScrollToTop />
+                        <SidebarProvider defaultOpen={defaultSidebarOpen}>
+                            <AppSidebar />
+                            <SidebarInset id="main-content" className="relative min-h-svh bg-background">
+                                <StructuredData />
+                                <SkipLink />
+                                <ScrollToTop />
+                                <MobileHeader />
 
-                            <ContactModalProvider>
-                                <main id="main-content">{children}</main>
-                                <PatchnotesWidget locale={locale} />
-                                <Footer />
-                            </ContactModalProvider>
-                            <Toaster />
-                        </div>
+                                <ContactModalProvider>
+                                    <div className="flex-1">{children}</div>
+                                    <PatchnotesWidget locale={locale} />
+                                    <Footer />
+                                </ContactModalProvider>
+                                <Toaster />
+                            </SidebarInset>
+                        </SidebarProvider>
                     </ThemeProvider>
                 </LocaleProvider>
             </body>

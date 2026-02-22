@@ -16,7 +16,6 @@ import {
     Briefcase, Calendar, Code2, Database, FileText, GraduationCap, Layers, Shield, User, Wrench
 } from 'lucide-react';
 import Image from 'next/image';
-import AllNavigation from '@/components/navbars/All/AllNavigation';
 import ProfileBlock, { CvDownloadButton } from '@/components/cv/ProfileBlock';
 
 type CvSection = {
@@ -583,9 +582,8 @@ export default async function CurriculumVitaePage() {
 
     return (
         <>
-            <AllNavigation />
             <div className="min-h-screen w-full bg-background">
-                <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12 relative">
+                <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mt-8 mb-12 relative">
                     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
                         <div
                             className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-foreground/5 blur-3xl" />

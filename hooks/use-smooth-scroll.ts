@@ -12,7 +12,6 @@
 import { useCallback } from 'react';
 
 const NAV_SELECTOR = '[data-site-nav]';
-const DEFAULT_GAP = 32;
 
 function getNavOffset(extraOffset: number) {
     if (typeof document === 'undefined') return extraOffset;
@@ -31,7 +30,7 @@ function getElementPaddingTop(element: Element): number {
 
 export function useSmoothScroll() {
     const scrollTo = useCallback(
-        (targetId: string, extraOffset: number = DEFAULT_GAP) => {
+        (targetId: string, extraOffset: number = 0) => {
             const element = document.querySelector(targetId);
             if (!element) return;
 

@@ -15,7 +15,6 @@ import Skills from '@/components/home/Skills';
 import Timeline from '@/components/home/Timeline';
 import Projects from '@/components/home/Projects';
 import Contact from '@/components/home/Contact';
-import Navigation from '@/components/navbars/Navigation';
 import FinalCTA from '@/components/home/FinalCTA';
 
 import type { Metadata } from 'next';
@@ -27,7 +26,6 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <>
-            <Navigation />
             <div className="min-h-screen text-foreground transition-colors duration-300">
                 <Hero />
                 <About />

@@ -14,7 +14,6 @@
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
-import GamesNavigation from '@/components/navbars/Games/GamesNavigation';
 import Quiz from '@/components/games/Quiz';
 import MemoryGame from '@/components/games/MemoryGame';
 import TypingSpeed from '@/components/games/TypingSpeed';
@@ -267,9 +266,8 @@ export default function GamesPageClient() {
 
     return (
         <>
-            <GamesNavigation/>
             <div className="min-h-screen text-foreground">
-                <section className="min-h-[50vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-12">
+                <section className="min-h-[50vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-8 pb-12">
                     <div className="max-w-5xl mx-auto text-center w-full">
                         <div
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/50 text-sm text-muted-foreground mb-8">

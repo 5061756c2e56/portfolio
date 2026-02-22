@@ -9,16 +9,16 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
-'use client';
+import { cn } from '@/lib/utils';
 
-import { SectionNavigation } from '@/components/navbars/SectionNavigation';
-import MobileMenuFAQ from './MobileMenuFAQ';
-
-export default function FAQNavigation() {
+function Skeleton({ className, ...props }: React.ComponentProps<'div'>) {
     return (
-        <SectionNavigation
-            excludeHref="/faq"
-            mobileMenu={<MobileMenuFAQ/>}
+        <div
+            data-slot="skeleton"
+            className={cn('bg-accent animate-pulse rounded-md', className)}
+            {...props}
         />
     );
 }
+
+export { Skeleton };

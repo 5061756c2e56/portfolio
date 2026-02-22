@@ -235,7 +235,7 @@ export default function PortfolioProjectPageClient() {
 
     return (
         <article className="min-h-screen">
-            <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-24">
+            <section className="relative pt-8 pb-16 sm:pt-12 sm:pb-24">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-center mb-6">
                         <span

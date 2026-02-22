@@ -12,7 +12,6 @@
 'use client';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import FAQNavigation from '@/components/navbars/FAQ/FAQNavigation';
 import { useTranslations } from 'next-intl';
 
 export default function FAQPageClient() {
@@ -83,9 +82,7 @@ export default function FAQPageClient() {
 
     return (
         <>
-            <FAQNavigation/>
-
-            <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-24 mb-12">
+            <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mt-8 mb-12">
                 <h1 className="text-4xl font-bold mb-6 text-center">{t('title')}</h1>
                 <p className="text-lg text-muted-foreground mb-12 text-center">
                     {t('description')}

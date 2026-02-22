@@ -9,13 +9,6 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
-import ProjectsNavigation from '@/components/navbars/Projects/ProjectsNavigation';
-
 export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <>
-            <ProjectsNavigation/>
-            {children}
-        </>
-    );
+    return <>{children}</>;
 }

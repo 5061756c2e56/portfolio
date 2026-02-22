@@ -9,13 +9,6 @@
  * See the LICENSE file in the project root for full license terms.
  */
 
-import AllNavigation from '@/components/navbars/All/AllNavigation';
-
 export default function ParcoursLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <>
-            <AllNavigation />
-            {children}
-        </>
-    );
+    return <>{children}</>;
 }

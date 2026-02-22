@@ -194,7 +194,6 @@ html {
     scrollbar-gutter: stable;
 }
 
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -370,7 +369,6 @@ html {
     animation-duration: 200ms;
     will-change: transform, opacity;
 }
-
 
 .fade-in {
     animation-name: fade-in;
@@ -888,7 +886,6 @@ html {
         hyphens: manual;
     }
 }
-
 
 @keyframes snowfall {
     0% {

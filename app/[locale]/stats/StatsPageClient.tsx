@@ -20,7 +20,6 @@ import {
     ALLOWED_REPOSITORIES, CHART_TIME_RANGES, LoadingState, MultiRepoStatsResponse, Repository, TimeRange,
     VALID_TIME_RANGES
 } from '@/lib/github/types';
-import StatsNavigation from '@/components/navbars/Stats/StatsNavigation';
 import { StatsOverview } from '@/components/github-stats/StatsOverview';
 import { LanguagesChart } from '@/components/github-stats/LanguagesChart';
 import { ContributorsSection } from '@/components/github-stats/ContributorsSection';
@@ -153,9 +152,8 @@ export default function StatsPageClient() {
 
     return (
         <>
-            <StatsNavigation/>
             <div className="min-h-screen text-foreground">
-                <section className="min-h-[40vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-12">
+                <section className="min-h-[40vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-8 pb-12">
                     <div className="max-w-5xl mx-auto text-center w-full">
                         <div
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 text-sm text-blue-500 mb-8">
