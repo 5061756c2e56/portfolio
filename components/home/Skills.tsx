@@ -67,6 +67,7 @@ function getPageItems(current: number, total: number): PageItem[] {
 
 export default function Skills() {
     const t = useTranslations('skills');
+    const tLabels = useTranslations('skills.labels');
     const tDescriptions = useTranslations('skills.descriptions');
     const isMobile = useIsMobile();
     const shouldReduceMotion = useReducedMotion();
@@ -143,6 +144,7 @@ export default function Skills() {
 
     const pageItems = useMemo(() => getPageItems(safePage, pageCount), [safePage, pageCount]);
 
+    type LabelKey = Parameters<typeof tLabels>[0];
     type DescKey = Parameters<typeof tDescriptions>[0];
 
     return (
@@ -189,7 +191,22 @@ export default function Skills() {
                                             <div key={pageIndex} className="w-full shrink-0">
                                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                                                     {skillsPage.map((skill) => {
+                                                        let label = skill.name;
                                                         let description: string | undefined;
+
+                                                        try {
+                                                            const translatedLabel = tLabels(skill.name as unknown as LabelKey);
+
+                                                            if (
+                                                                translatedLabel &&
+                                                                translatedLabel !== skill.name &&
+                                                                !translatedLabel.startsWith('skills.labels.')
+                                                            ) {
+                                                                label = translatedLabel;
+                                                            }
+                                                        } catch {
+                                                            label = skill.name;
+                                                        }
 
                                                         try {
                                                             description = tDescriptions(skill.name as unknown as DescKey);
@@ -221,7 +238,7 @@ export default function Skills() {
                                                                             </svg>
                                                                         </div>
                                                                         <h3 className="text-sm font-medium text-foreground/80 text-center group-hover:text-foreground transition-colors duration-300">
-                                                                            {skill.name}
+                                                                            {label}
                                                                         </h3>
                                                                     </div>
                                                                 </TooltipTrigger>

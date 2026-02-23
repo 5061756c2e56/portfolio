@@ -66,7 +66,9 @@
     "en-US": "English (US)",
     "en-GB": "English (GB)",
     "es": "Spanish",
-    "ru": "Russian"
+    "ru": "Russian",
+    "br": "Portuguese (BR)",
+    "cn": "Chinese (Simplified)"
   },
   "hero": {
     "title": "Paul Viandier",
@@ -290,6 +292,24 @@
       "EmailJS": "Service for sending emails directly from the front end",
       "Cybersecurity": "Practices and technologies for protecting computer systems",
       "SEO": "Search engine optimisation to improve visibility"
+    },
+    "labels": {
+      "HTML5": "HTML5",
+      "JavaScript": "JavaScript",
+      "TypeScript": "TypeScript",
+      "CSS": "CSS",
+      "React": "React",
+      "Tailwind CSS": "Tailwind CSS",
+      "NextJS": "NextJS",
+      "Responsive Design": "Responsive Design",
+      "NodeJS": "NodeJS",
+      "PostgreSQL": "PostgreSQL",
+      "API REST": "API REST",
+      "Git": "Git",
+      "GitHub": "GitHub",
+      "EmailJS": "EmailJS",
+      "Cybersecurity": "Cybersecurity",
+      "SEO": "SEO"
     }
   },
   "pagination": {
@@ -424,6 +444,14 @@
     "languageChanging": "Changing language...",
     "faq": "FAQ",
     "extras": "Extras",
+    "documents": "Documents",
+    "curriculumVitae": "Curriculum Vitae",
+    "motivationLetter": "Cover Letter",
+    "otherPages": "Other pages",
+    "openSidebar": "Open sidebar",
+    "closeSidebar": "Close sidebar",
+    "searchLanguage": "Search a language",
+    "noLanguageFound": "No language found",
     "helpTranslate": "Help translate"
   },
   "games": {
@@ -5097,32 +5125,6 @@
     "actions": {
       "downloadPdf": "Download PDF",
       "downloadPdfLoading": "Downloading..."
-    }
-  },
-  "patchnotes": {
-    "sort": {
-      "newestFirst": "Newest first",
-      "oldestFirst": "Oldest first",
-      "newestToOldest": "Newest to oldest",
-      "oldestToNewest": "Oldest to newest"
-    },
-    "ui": {
-      "search": "Search...",
-      "noResults": "No results",
-      "close": "Close",
-      "menu": "Menu"
-    },
-    "home": {
-      "title": "Welcome",
-      "displayDate": "Guide",
-      "badge": "Quick guide",
-      "subtitle": "How to read the patch notes",
-      "items": {
-        "0": "Pick a patch note from the list on the left.",
-        "1": "Red dot = unread update.",
-        "2": "Use search to quickly find a feature.",
-        "3": "Change sorting at the top (newest ↔ oldest)."
-      }
     }
   },
   "parcoursDetails": {

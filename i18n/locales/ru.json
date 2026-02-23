@@ -66,7 +66,9 @@
     "en-US": "Английский (США)",
     "en-GB": "Английский (Великобритания)",
     "es": "Испанский",
-    "ru": "Русский"
+    "ru": "Русский",
+    "br": "Португальский (Бразилия)",
+    "cn": "Китайский (упрощённый)"
   },
   "hero": {
     "title": "Paul Viandier",
@@ -290,6 +292,24 @@
       "EmailJS": "Сервис для отправки писем напрямую с фронтенда",
       "Cybersecurity": "Практики и технологии для защиты информационных систем",
       "SEO": "Оптимизация под поисковые системы для повышения видимости"
+    },
+    "labels": {
+      "HTML5": "HTML5",
+      "JavaScript": "JavaScript",
+      "TypeScript": "TypeScript",
+      "CSS": "CSS",
+      "React": "React",
+      "Tailwind CSS": "Tailwind CSS",
+      "NextJS": "NextJS",
+      "Responsive Design": "Адаптивный дизайн",
+      "NodeJS": "NodeJS",
+      "PostgreSQL": "PostgreSQL",
+      "API REST": "API REST",
+      "Git": "Git",
+      "GitHub": "GitHub",
+      "EmailJS": "EmailJS",
+      "Cybersecurity": "Кибербезопасность",
+      "SEO": "SEO"
     }
   },
   "pagination": {
@@ -424,6 +444,14 @@
     "languageChanging": "Смена языка...",
     "faq": "Часто задаваемые вопросы",
     "extras": "Дополнительно",
+    "documents": "Документы",
+    "curriculumVitae": "Резюме",
+    "motivationLetter": "Мотивационное письмо",
+    "otherPages": "Другие страницы",
+    "openSidebar": "Открыть боковую панель",
+    "closeSidebar": "Закрыть боковую панель",
+    "searchLanguage": "Найти язык",
+    "noLanguageFound": "Язык не найден",
     "helpTranslate": "Помочь с переводом"
   },
   "games": {
@@ -5097,32 +5125,6 @@
     "actions": {
       "downloadPdf": "Скачать PDF",
       "downloadPdfLoading": "Скачивание..."
-    }
-  },
-  "patchnotes": {
-    "sort": {
-      "newestFirst": "Сначала новые",
-      "oldestFirst": "Сначала старые",
-      "newestToOldest": "От новых к старым",
-      "oldestToNewest": "От старых к новым"
-    },
-    "ui": {
-      "search": "Поиск...",
-      "noResults": "Ничего не найдено",
-      "close": "Закрыть",
-      "menu": "Меню"
-    },
-    "home": {
-      "title": "Главная",
-      "displayDate": "Руководство",
-      "badge": "Быстрый гид",
-      "subtitle": "Как читать patch-notes",
-      "items": {
-        "0": "Выбери patch-note в списке слева.",
-        "1": "Красная точка = новое, ещё не прочитано.",
-        "2": "Используй поиск, чтобы найти функцию.",
-        "3": "Поменяй сортировку сверху (новые ↔ старые)."
-      }
     }
   },
   "parcoursDetails": {

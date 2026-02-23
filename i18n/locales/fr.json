@@ -66,7 +66,9 @@
     "en-US": "Anglais (US)",
     "en-GB": "Anglais (GB)",
     "es": "Espagnol",
-    "ru": "Russe"
+    "ru": "Russe",
+    "br": "Portugais (BR)",
+    "cn": "Chinois (simplifié)"
   },
   "hero": {
     "title": "Paul Viandier",
@@ -290,6 +292,24 @@
       "EmailJS": "Service pour envoyer des emails directement depuis le frontend",
       "Cybersecurity": "Pratiques et technologies pour protéger les systèmes informatiques",
       "SEO": "Optimisation pour les moteurs de recherche afin d'améliorer la visibilité"
+    },
+    "labels": {
+      "HTML5": "HTML5",
+      "JavaScript": "JavaScript",
+      "TypeScript": "TypeScript",
+      "CSS": "CSS",
+      "React": "React",
+      "Tailwind CSS": "Tailwind CSS",
+      "NextJS": "NextJS",
+      "Responsive Design": "Design responsive",
+      "NodeJS": "NodeJS",
+      "PostgreSQL": "PostgreSQL",
+      "API REST": "API REST",
+      "Git": "Git",
+      "GitHub": "GitHub",
+      "EmailJS": "EmailJS",
+      "Cybersecurity": "Cybersécurité",
+      "SEO": "SEO"
     }
   },
   "pagination": {
@@ -424,6 +444,14 @@
     "languageChanging": "Changement de langue...",
     "faq": "FAQ",
     "extras": "Extras",
+    "documents": "Documents",
+    "curriculumVitae": "Curriculum Vitae",
+    "motivationLetter": "Lettre de motivation",
+    "otherPages": "Autres pages",
+    "openSidebar": "Ouvrir la sidebar",
+    "closeSidebar": "Fermer la sidebar",
+    "searchLanguage": "Rechercher une langue",
+    "noLanguageFound": "Aucune langue trouvée",
     "helpTranslate": "Aider à traduire"
   },
   "games": {
@@ -5097,32 +5125,6 @@
     "actions": {
       "downloadPdf": "Télécharger le PDF",
       "downloadPdfLoading": "Téléchargement en cours..."
-    }
-  },
-  "patchnotes": {
-    "sort": {
-      "newestFirst": "Plus récent",
-      "oldestFirst": "Plus ancien",
-      "newestToOldest": "Plus récent au plus ancien",
-      "oldestToNewest": "Plus ancien au plus récent"
-    },
-    "ui": {
-      "search": "Rechercher...",
-      "noResults": "Aucun résultat",
-      "close": "Fermer",
-      "menu": "Menu"
-    },
-    "home": {
-      "title": "Accueil",
-      "displayDate": "Guide",
-      "badge": "Guide rapide",
-      "subtitle": "Comment lire les patch-notes",
-      "items": {
-        "0": "Choisis un patch-note dans la liste à gauche.",
-        "1": "Le point rouge = nouveauté non lue.",
-        "2": "Utilise la recherche pour retrouver une fonctionnalité.",
-        "3": "Change le tri en haut (récent ↔ ancien)."
-      }
     }
   },
   "parcoursDetails": {

@@ -22,7 +22,6 @@ import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import '../globals.css';
-import PatchnotesWidget from '@/components/patchnotes/PatchnotesWidget';
 import Footer from '@/components/home/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
@@ -185,7 +184,6 @@ export default async function RootLayout({
 
                                 <ContactModalProvider>
                                     <div className="flex-1">{children}</div>
-                                    <PatchnotesWidget locale={locale} />
                                     <Footer />
                                 </ContactModalProvider>
                                 <Toaster />

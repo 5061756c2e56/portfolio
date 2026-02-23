@@ -1,0 +1,5373 @@
+{
+  "_meta": {
+    "name": "中文（简体）",
+    "flag": "cn",
+    "ogLocale": "zh_CN"
+  },
+  "manifest": {
+    "name": "保罗·维安迪尔的作品集",
+    "description": "Paul Viandier 的作品集，正在接受培训的 Web 开发人员，对网络安全和全栈开发充满热情"
+  },
+  "pagesMetadata": {
+    "layout": {
+      "description": "对网络安全充满热情的 Web 开发人员。在这个作品集中，我展示了我的项目、Web 开发、TypeScript、React、Next.js 和网络安全方面的技能。了解全栈 Web 开发人员培训中的 Paul Viandier 的作品集。",
+      "ogTitle": "Paul Viandier - Web 开发人员和网络安全爱好者",
+      "ogDescription": "自学多年，我一直在开发、网络安全和系统管理方面接受培训，这三个领域是我联系在一起的。",
+      "siteName": "保罗·维安迪尔的作品集"
+    },
+    "projects": {
+      "portfolio": {
+        "title": "组合项目",
+        "description": "现代而高效的作品集，旨在展示我的网络开发技能并提供完美的用户体验"
+      }
+    },
+    "faq": {
+      "title": "常见问题",
+      "description": "在这里您可以找到有关我的工作、技能和项目的最常见问题的答案"
+    },
+    "games": {
+      "title": "游戏与挑战",
+      "description": "通过我们的互动测验和小游戏测试您对网络开发、网络安全和现代技术的了解"
+    },
+    "legalNotice": {
+      "title": "法律声明",
+      "description": "本法律声明描述了网站的发布者、其托管以及与其使用相关的主要信息。"
+    },
+    "privacyPolicy": {
+      "title": "隐私政策",
+      "description": "本政策解释了可以处理哪些数据、为什么以及如何行使您的权利"
+    },
+    "terms": {
+      "title": "使用条款",
+      "description": "这些条件管辖此投资组合网站的访问和使用。浏览本网站即表示您接受以下规则"
+    },
+    "motivationLetter": {
+      "title": "求职信",
+      "description": "Paul Viandier 的求职信"
+    },
+    "stats": {
+      "title": "GitHub 统计",
+      "description": "我的开源项目统计"
+    },
+    "tryhackme": {
+      "description": "在 TryHackMe 上探索我的网络安全学习之旅的详细信息"
+    },
+    "webIntegrator": {
+      "title": "Web 集成开发者",
+      "description": "探索 OpenClassrooms Web Integrator 培训的详细信息"
+    },
+    "technicien": {
+      "title": "信息技术技术员",
+      "description": "探索 OpenClassrooms IT 技术员培训的详细信息"
+    }
+  },
+  "locales": {
+    "fr": "法语",
+    "en-US": "英语（美国）",
+    "en-GB": "英语（英国）",
+    "es": "西班牙语",
+    "ru": "俄语",
+    "br": "葡萄牙语（巴西）",
+    "cn": "中文（简体）"
+  },
+  "hero": {
+    "title": "保罗·维安迪尔",
+    "subtitle": "Web 开发者与网络安全爱好者",
+    "description": "多年来我一直自学开发、网络安全和系统管理，这三个领域相互关联。",
+    "available": "欢迎新的机会",
+    "location": "法国",
+    "role": "Web 集成开发者",
+    "viewCVButton": "查看我的简历",
+    "downloadCVButton": "下载我的简历",
+    "viewLMButton": "查看我的求职信",
+    "downloadLMButton": "下载我的求职信",
+    "viewButtonDropdown": "查看网页版",
+    "quickActionsHint": "右键单击或按住可查看快速操作"
+  },
+  "parcours": {
+    "title": "我的旅程",
+    "filterAll": "全部",
+    "filterFormation": "培训",
+    "filterExperience": "经历",
+    "typeFormation": "培训",
+    "typeExperience": "经验",
+    "seeDetails": "查看详情",
+    "timelineData": {
+      "1": {
+        "title": "技术学士学位 STI2D（带 SIN 选项）",
+        "description": "研究 Python 编程以及 Web 开发（HTML、CSS、JavaScript）。这次培训也让我在数据库创建和管理方面打下了坚实的基础。",
+        "period": "2023 - 2024"
+      },
+      "2": {
+        "title": "网络安全",
+        "description": [
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "安检前"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "网络安全简介",
+              "网络基础知识",
+              "网络如何运作",
+              "计算机基础知识",
+              "操作系统基础知识",
+              "软件基础知识",
+              "攻击与防御"
+            ]
+          },
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "网络安全 101"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "开始您的网络安全之旅",
+              "Linux 基础知识",
+              "Windows 和 AD 基础知识",
+              "命令行",
+              "联网",
+              "密码学",
+              "操作基础知识",
+              "网络黑客",
+              "进攻性安全工具",
+              "防御安全",
+              "安全解决方案",
+              "防御安全工具",
+              "打造您的网络安全职业生涯"
+            ]
+          }
+        ],
+        "period": "2025"
+      },
+      "3": {
+        "title": "信息技术技术员",
+        "description": [
+          {
+            "type": "bullets",
+            "items": [
+              "IT系统自动化部署",
+              "有线和 Wi-Fi 本地网络的安装、安全和维护",
+              "管理 Active Directory 域",
+              "IT 系统的监督和预防性/纠正性维护",
+              "根据 ITIL 最佳实践处理用户请求以及 1 级和 2 级支持",
+              "编写、构建和更新技术文档",
+              "在本地、云或混合环境中工作"
+            ]
+          }
+        ],
+        "period": "2025"
+      },
+      "4": {
+        "title": "编程",
+        "description": [
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "开放课堂"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "C 语言简介（了解编程基础知识：变量、控制结构、函数）",
+              "掌握 Web 开发的基础知识：HTML、CSS 和 JavaScript"
+            ]
+          },
+          {
+            "type": "text",
+            "value": [
+              {
+                "type": "bold",
+                "value": "Coursera"
+              },
+              {
+                "type": "text",
+                "value": " :"
+              }
+            ]
+          },
+          {
+            "type": "bullets",
+            "items": [
+              "深化 HTML、CSS 和 JavaScript 技能（高级结构、最佳实践、应用程序逻辑）",
+              "元全栈开发者之旅正在进行中",
+              "下一步：IBM 提供的 PostgreSQL 专业化和全栈开发人员课程"
+            ]
+          }
+        ],
+        "period": "这里"
+      },
+      "5": {
+        "title": "网络集成商文凭培训",
+        "description": [
+          {
+            "type": "bullets",
+            "items": [
+              "设计和开发完整且响应迅速的网络应用程序，适用于所有类型的设备，以实现在线销售产品和服务",
+              "网页动态化以改善产品和服务的推广",
+              "开发连接到后端的接口，允许创建动态应用程序和管理用户身份验证",
+              "现有站点的性能优化和进化/纠正性维护，目标是稳定性、速度和自然参考的改进",
+              "完整的网络项目管理：需求分析、成本核算、任务划分、技术规范编写、最终解决方案的开发和演示"
+            ]
+          }
+        ],
+        "period": "这里"
+      }
+    }
+  },
+  "about": {
+    "title": "关于我",
+    "content": "我是 Paul Viandier，一位热衷于网络安全的 Web 开发人员。目前，我正在参加网络集成商勤工俭学培训，为开发和集成打下了坚实的基础。我的目标是继续接受全栈 Web 开发人员培训，以扩大我的技能，了解 Web 项目的整个生产链，并能够管理前端和后端。作为一名 Web 开发人员，我专注于使用 TypeScript、React 和 Next.js 构建现代 Web 应用程序。我的作品集展示了我在网络开发方面的项目和技能。",
+    "statusItem": {
+      "1": {
+        "label": "交替",
+        "sub": "Web 集成开发者"
+      },
+      "2": {
+        "label": "网络安全",
+        "sub": "主要热情"
+      },
+      "3": {
+        "label": "全栈开发人员",
+        "sub": "短期目标"
+      }
+    }
+  },
+  "skills": {
+    "title": "技能",
+    "currentLevel": "当前级别",
+    "level": "等级",
+    "previousSlide": "上一张幻灯片",
+    "nextSlide": "下一张幻灯片",
+    "goToSkill": "前往技能",
+    "categories": {
+      "all": "全部",
+      "frontend": "前端",
+      "backend": "后端",
+      "tools": "工具",
+      "other": "其他的"
+    },
+    "descriptions": {
+      "HTML5": "用于构建网页内容的标准标记语言",
+      "JavaScript": "用于创建交互式网页的编程语言",
+      "TypeScript": "具有静态类型的 JavaScript 超集，可实现更稳健的开发",
+      "CSS": "用于格式化和动画网页的样式语言",
+      "React": "用于构建响应式用户界面的 JavaScript 库",
+      "Tailwind CSS": "用于快速、现代开发的实用 CSS 框架",
+      "NextJS": "用于具有服务器端渲染的高性能 Web 应用程序的 React 框架",
+      "Responsive Design": "响应式设计可在所有设备上提供最佳体验",
+      "NodeJS": "服务器端 JavaScript 运行时",
+      "PostgreSQL": "开源关系数据库管理系统",
+      "API REST": "用于创建可互操作的 Web 服务的架构",
+      "Git": "分布式版本控制系统来管理源代码",
+      "GitHub": "开发项目的托管和协作平台",
+      "EmailJS": "直接从前端发送电子邮件的服务",
+      "Cybersecurity": "用于保护计算机系统的实践与技术",
+      "SEO": "搜索引擎优化以提高可见度"
+    },
+    "labels": {
+      "HTML5": "HTML5",
+      "JavaScript": "JavaScript",
+      "TypeScript": "TypeScript",
+      "CSS": "CSS",
+      "React": "React",
+      "Tailwind CSS": "Tailwind CSS",
+      "NextJS": "NextJS",
+      "Responsive Design": "响应式设计",
+      "NodeJS": "NodeJS",
+      "PostgreSQL": "PostgreSQL",
+      "API REST": "API REST",
+      "Git": "Git",
+      "GitHub": "GitHub",
+      "EmailJS": "EmailJS",
+      "Cybersecurity": "网络安全",
+      "SEO": "SEO"
+    }
+  },
+  "pagination": {
+    "next": "下列的",
+    "previous": "以前的",
+    "previousLabel": "转到上一页",
+    "nextLabel": "转到下一页",
+    "morePages": "更多页面"
+  },
+  "projects": {
+    "title": "项目",
+    "buttonGitHub": "GitHub",
+    "buttonVisitSite": "访问网站",
+    "buttonDetail": "查看项目详情",
+    "searchPlaceholder": "搜索项目...",
+    "allTechnologies": "所有技术",
+    "noResults": "没有找到项目",
+    "portfolio": {
+      "title": "文件夹",
+      "description": "使用 Next.js 和 TypeScript 开发的个人作品集网站，突出了我的技能和项目。"
+    },
+    "webSecurity": {
+      "title": "网络安全",
+      "description": "用于保护和管理 IT 系统的 Web 安全套件。"
+    }
+  },
+  "contact": {
+    "title": "联系",
+    "email": "电子邮件",
+    "github": "GitHub",
+    "linkedin": "领英",
+    "sendMessage": "发送消息",
+    "modal": {
+      "loading": "加载中...",
+      "title": "联系我",
+      "name": "姓名",
+      "namePlaceholder": "维安迪尔·保罗",
+      "email": "电子邮件",
+      "emailPlaceholder": "contact@paulviandier.com",
+      "subject": "主题",
+      "subjectPlaceholder": "实习机会 - 一家伟大的公司",
+      "message": "信息",
+      "messagePlaceholder": "在此输入您的消息...",
+      "send": "发送",
+      "sending": "发送中...",
+      "success": "消息发送成功！",
+      "toastSuccess": "消息发送成功！",
+      "error": "发生错误。请再试一次。",
+      "errorNetwork": "连接错误。检查您的互联网连接，然后重试。",
+      "errorConfig": "配置错误。请联系管理员。",
+      "close": "关闭",
+      "errorDialog": {
+        "title": "发送错误",
+        "description": "您想使用电子邮件客户端发送消息吗？",
+        "confirm": "打开电子邮件客户端",
+        "cancel": "取消"
+      },
+      "validation": {
+        "nameMin": "名称必须包含至少 3 个字符",
+        "nameMax": "名称不得超过 100 个字符",
+        "emailMissingAt": "您需要一个有效的电子邮件",
+        "emailMissingDomain": "请输入@符号后缺少的部分",
+        "emailMissingTld": "电子邮件地址必须在 @ 后包含句点",
+        "emailInvalid": "请输入有效的电子邮件",
+        "subjectMin": "主题必须包含至少 10 个字符",
+        "subjectMax": "主题不得超过 200 个字符",
+        "messageMin": "消息必须包含至少 20 个字符",
+        "messageMax": "消息不得超过 5000 个字符"
+      }
+    },
+    "mailtoDialog": {
+      "title": "打开电子邮件客户端",
+      "description": "您将被重定向到您的电子邮件客户端以发送电子邮件。",
+      "confirm": "确认",
+      "cancel": "取消",
+      "error": "您的设备上未配置电子邮件客户端。"
+    }
+  },
+  "finalCTA": {
+    "title": "这个网站还有什么？",
+    "lead": "三页可以进一步了解，不浪费时间：",
+    "faq": {
+      "title": "常见问题",
+      "description": "查找有关我的背景和技能的最常见问题的答案。",
+      "button": "发现常见问题解答"
+    },
+    "statsGithub": {
+      "title": "GitHub 统计",
+      "description": "检查我的开源项目的统计数据：提交、语言和贡献。",
+      "button": "发现 GitHub 统计信息"
+    },
+    "games": {
+      "title": "游戏与挑战",
+      "description": "通过互动测验和游戏测试您的网络开发和网络安全知识。",
+      "button": "探索游戏和挑战"
+    }
+  },
+  "footer": {
+    "paulViandier": "保罗·维安迪尔",
+    "copyright": "版权所有",
+    "license": "根据专有许可",
+    "navigationTitle": "导航",
+    "legalTitle": "合法的",
+    "terms": "使用条款",
+    "legalNotice": "法律声明",
+    "privacy": "隐私政策",
+    "contact": "联系我",
+    "madeWith": "使用",
+    "by": "由"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我",
+    "skills": "技能",
+    "parcours": "经历",
+    "games": "游戏",
+    "quiz": "测验",
+    "projects": "项目",
+    "statsGithub": "GitHub 统计",
+    "contact": "联系",
+    "status": "状态",
+    "loading": "加载中...",
+    "language": "语言",
+    "closeMenu": "关闭菜单",
+    "menu": "菜单",
+    "settings": "设置",
+    "email": "电子邮件",
+    "github": "GitHub",
+    "githubStats": "GitHub 统计",
+    "linkedin": "领英",
+    "theme": "主题",
+    "languageChanging": "正在切换语言...",
+    "faq": "常见问题",
+    "extras": "更多内容",
+    "documents": "文档",
+    "curriculumVitae": "简历",
+    "motivationLetter": "求职信",
+    "otherPages": "其他页面",
+    "openSidebar": "打开侧边栏",
+    "closeSidebar": "关闭侧边栏",
+    "searchLanguage": "搜索语言",
+    "noLanguageFound": "未找到语言",
+    "helpTranslate": "帮助翻译"
+  },
+  "games": {
+    "meta": {
+      "title": "游戏与挑战",
+      "description": "通过我们的互动测验和小游戏测试您的网络开发知识。"
+    },
+    "hero": {
+      "title": "游戏与挑战",
+      "description": "通过我们的互动测验和小游戏，测试您对网络开发、网络安全和现代技术的了解。",
+      "badge": "互动小游戏"
+    },
+    "gameTypes": {
+      "quiz": {
+        "title": "技术测验",
+        "description": "测试您的网络开发和网络安全知识"
+      },
+      "memory": {
+        "title": "记忆匹配",
+        "description": "找到隐藏的科技图标对"
+      },
+      "typing": {
+        "title": "打字速度",
+        "description": "测试你的打字速度"
+      },
+      "bughunt": {
+        "title": "寻找虫子",
+        "subtitle": "找出代码中的错误"
+      },
+      "wordle": {
+        "title": "科技字",
+        "subtitle": "尝试 6 次猜出“科技”一词"
+      },
+      "mentalcpu": {
+        "title": "心理CPU",
+        "subtitle": "压力下快速计算"
+      },
+      "regexrush": {
+        "title": "正则表达式冲刺",
+        "subtitle": "选择最好的正则表达式"
+      },
+      "httpdetective": {
+        "title": "HTTP 侦探",
+        "subtitle": "找到原因并采取正确的解决办法"
+      },
+      "sqlsleuth": {
+        "title": "SQL侦探",
+        "subtitle": "找到错误或正确的请求"
+      }
+    },
+    "memory": {
+      "title": "记忆匹配",
+      "subtitle": "查找所有对",
+      "levels": {
+        "easy": "简单",
+        "medium": "中等",
+        "hard": "困难"
+      },
+      "restart": "重新开始",
+      "playAgain": "重播",
+      "complete": {
+        "title": "恭喜！",
+        "stats": "在 {moves} 步和 {time} 内完成"
+      },
+      "labels": {
+        "difficulty": "困难"
+      }
+    },
+    "typing": {
+      "title": "打字速度",
+      "subtitle": "尽快输入代码",
+      "start": "启动",
+      "restart": "重新开始",
+      "playAgain": "重播",
+      "pressStart": "按开始开始...",
+      "typeHere": "在此输入...",
+      "results": {
+        "title": "时间到了！",
+        "accuracy": "精确",
+        "snippets": "摘录",
+        "errors": "错误",
+        "time": "时间",
+        "best": "最好成绩",
+        "newBest": "新纪录！"
+      },
+      "levels": {
+        "easy": "简单",
+        "medium": "中等",
+        "hard": "困难"
+      },
+      "modes": {
+        "mixed": "混合",
+        "quotes": "引号",
+        "numbers": "数字",
+        "punctuation": "标点"
+      },
+      "reset": "重置",
+      "bank": {
+        "quotes": [
+          "今天早上，这座城市显得比平时平静。",
+          "有时候，只需要一个好主意就能解除一天的阻塞。",
+          "雨并不能阻止我们前进；它只会改变节奏。",
+          "一杯热咖啡，一个播放列表，一切都变得更容易。",
+          "小小的、反复的努力最终总会得到回报。",
+          "有时最好的计划就是开始。",
+          "我们无法控制一切，但我们可以选择下一步行动。",
+          "一条意想不到的消息可以在适当的时候让你脸上重新露出笑容。",
+          "好奇心打开了常规看不到的大门。",
+          "沉默可以帮助我们听到真正重要的事情。",
+          "最好的决定往往是最简单的。",
+          "睡个好觉可以弥补一天的糟糕。",
+          "错过一个细节没什么大不了的；放弃努力，是的。",
+          "短暂的步行胜过长时间的犹豫。",
+          "当你对自己保持耐心时，你会学得更快。",
+          "你每天所做的事情都在秘密地塑造着你。",
+          "明确的目标可以减少干扰。",
+          "每节省一分钟，就可以节省一周的时间。",
+          "好的节奏是可以长期保持的。",
+          "当天很少能看到进展，但它确实发生了。",
+          "我们可以累了，仍然继续前进。",
+          "勇气往往是一个微小而谨慎的行动。",
+          "好的时机可以改变一个普通的想法。",
+          "呼吸，重新开始，让时间完成它的工作。",
+          "错误是信息，而不是句子。",
+          "纪律是自由的一种形式。",
+          "从长远来看，一致性胜过动力。",
+          "最重要的是要保持一致，而不是完美。",
+          "良好的习惯让日子变得轻松。",
+          "保持简单，然后改进。",
+          "当不清楚的时候，写下来。",
+          "简短的清单比庞大的计划更好。",
+          "最好的能量来自清洁的开始。",
+          "品质源于重复的细节。",
+          "现在迈出一小步，明天就是一大步。",
+          "一个明确的决定可以消除很多压力。",
+          "冷静是现代人的一种超能力。",
+          "你可以改变你的想法，而不是你的努力。",
+          "重要的是方向，而不是速度。",
+          "坚持不一定要大声。",
+          "当你怀疑时，回到基础：行动。",
+          "选择一个优先事项，然后保护它。",
+          "良好的存储空间可以解放您的大脑。",
+          "简单使速度成为可能。",
+          "当我们知道原因时，我们就能更好地前进。",
+          "短暂的休息可以避免长时间的疲劳。",
+          "最好的东西是事实的敌人。",
+          "第一步之后就会出现动力。",
+          "完成一项任务比开始十项任务要好。",
+          "今天，目标是进步，而不是完美。"
+        ],
+        "numbers": [
+          "目标：2 项重要任务，然后 1 次休息。",
+          "提醒：每天 1% 对于一年来说是巨大的。",
+          "计划：25分钟专注，5分钟休息，然后重新开始。",
+          "预算：必需品 120 欧元，休闲娱乐 30 欧元。",
+          "路程：步行18分钟，差4分钟。",
+          "常规：水、光、运动，然后工作。",
+          "得分：9/10（如果您保持简单且一致）。",
+          "今晚：完成一件事，然后休息。",
+          "现在是早上7点45分，新的一天才刚刚开始。",
+          "前三名：睡眠、运动、创造。"
+        ],
+        "punctuation": [
+          "好吧……但这一次，我们要慢慢来。",
+          "你知道吗？我们保持简单：一次只做一件事。",
+          "是的，有可能；不，这不是魔法。",
+          "呼吸：吸气，呼气，重复。",
+          "你可能会犹豫——但无论如何你都会前进。",
+          "它并不完美，那又怎样？",
+          "一步，然后又一步；就这样。",
+          "有时候“足够好”就已经很棒了。",
+          "我们的重点是：现在。",
+          "它发生了；我们纠正；我们继续。"
+        ],
+        "coherent": {
+          "starters": [
+            "今晨",
+            "今天",
+            "本星期",
+            "当你想继续前进的时候",
+            "如果你缺乏能量",
+            "当一切都加速时",
+            "当你想保持专注时",
+            "开始之前",
+            "如果你犹豫的话",
+            "当你想要进步的时候"
+          ],
+          "actions": [
+            "只选择一个优先事项",
+            "写一个简短的清单",
+            "从最简单的任务开始",
+            "完成一个步骤，然后进行下一步",
+            "排除干扰15分钟",
+            "2分钟整理你的空间",
+            "呼吸并恢复稳定的节奏",
+            "不评判自己，继续前进",
+            "休息一下然后回来",
+            "保持你能保持的速度"
+          ],
+          "outcomes": [
+            "你会看到差异。",
+            "一切都变得更加顺利。",
+            "并且您可以节省时间。",
+            "并且你会保持动力。",
+            "你可以减轻压力。",
+            "而且你会做得更好，无需强迫。",
+            "并且你保持清醒。",
+            "你真的在前进。",
+            "你会平静下来。",
+            "而且你完成的次数会更多。"
+          ],
+          "addOns": [
+            "请记住，一致性胜过速度。",
+            "最好做一点，但要做得好。",
+            "一致性改变了日子。",
+            "现在迈出的一小步比一个意图更有价值。",
+            "重要的是继续前进，即使是缓慢的。"
+          ]
+        }
+      },
+      "cancel": {
+        "tooltip": "取消当前游戏",
+        "label": "取消"
+      },
+      "labels": {
+        "difficulty": "困难",
+        "mode": "时尚",
+        "duration": "期间"
+      }
+    },
+    "bughunt": {
+      "title": "寻找虫子",
+      "subtitle": "找出代码中的错误",
+      "restart": "重新开始",
+      "next": "下一个问题",
+      "prompt": "错误是什么？",
+      "question": "问题 {current}/{total}",
+      "feedback": {
+        "correct": "正确的 ！",
+        "incorrect": "不正确"
+      },
+      "challenges": {
+        "1": {
+          "options": [
+            "该函数应该检查类型",
+            "缺少一个分号",
+            "sum 变量的命名不正确",
+            "你应该使用let而不是function"
+          ],
+          "explanation": "JavaScript 连接“5”+“10”=“510”而不是相加。您需要检查/转换类型。"
+        },
+        "2": {
+          "options": [
+            "您必须使用 forEach 而不是 for",
+            "条件应该是 i < users.length",
+            "用户应该是让",
+            "console.log 已过时"
+          ],
+          "explanation": "i <= users.length 访问未定义的 users[2] 。它需要 i < users.length。"
+        },
+        "3": {
+          "options": [
+            "如果数字为空则除以零",
+            "您应该使用 sum() 而不是循环",
+            "总计应初始化为 None",
+            "len() 不适用于列表"
+          ],
+          "explanation": "如果 numbers 是空列表，则 len(numbers) = 0 → 除以零。"
+        },
+        "4": {
+          "options": [
+            "缺少 GROUP BY",
+            "ORDER BY 应指定 ASC 或 DESC",
+            "SELECT * 效率低下但语法正确",
+            "LIMIT 必须位于 ORDER BY 之前"
+          ],
+          "explanation": "SELECT * 可以工作，但效率很低。最好指定必要的列。"
+        },
+        "5": {
+          "options": [
+            "if 中需要 == 而不是 =",
+            "printf 应该是 cout",
+            "x 应该是一个浮点数",
+            "缺少一个 else"
+          ],
+          "explanation": "x = 10 是赋值，而不是比较。您必须使用 x == 10。"
+        },
+        "6": {
+          "options": [
+            "获取之前缺少等待",
+            "异步在这里没用",
+            "json() 应该是 JSON.parse()",
+            "fetch 不返回承诺"
+          ],
+          "explanation": "fetch() 返回一个承诺。您需要等待 fetch() 来等待响应。"
+        },
+        "7": {
+          "options": [
+            "你需要 self.name = name",
+            "__init__ 应该是 __new__",
+            "name 是一个保留字",
+            "print 不带参数"
+          ],
+          "explanation": "name = name 创建一个局部变量。您需要 self.name = 实例属性的名称。"
+        },
+        "8": {
+          "options": [
+            "map 不修改原数组",
+            "地图修改双倍后推送",
+            "你必须使用 forEach",
+            "表中不存在长度"
+          ],
+          "explanation": "没有错误！ map() 创建一个新数组。 push(6) 修改 nums 但不加倍。"
+        },
+        "9": {
+          "options": [
+            "except 应该指定 ZeroDivisionError",
+            "尝试后无法访问结果",
+            "你最终必须",
+            "打印应该返回"
+          ],
+          "explanation": "except 仅捕获所有异常。最好指定 ZeroDivisionError。"
+        },
+        "10": {
+          "options": [
+            "您必须使用 .equals() 来比较字符串",
+            "new String() 已弃用",
+            "System.out 应该是 console.log",
+            "缺少退货"
+          ],
+          "explanation": "== 比较对象引用。要比较内容，请使用 s1.equals(s2)。"
+        },
+        "11": {
+          "options": [
+            "无法停止间隔",
+            "计数应该是常量",
+            "increment() 应该返回计数",
+            "setInterval 不存在"
+          ],
+          "explanation": "setInterval 返回一个必须存储的 ID，以便稍后能够执行clearInterval()。"
+        },
+        "12": {
+          "options": [
+            "可变参数默认是共享的",
+            "追加（）不起作用",
+            "退货是没用的",
+            "项目应该是一个元组"
+          ],
+          "explanation": "默认列表 [] 仅创建一次。 list1 和 list2 共享同一个列表！"
+        },
+        "13": {
+          "options": [
+            "这是在提取过程中丢失的",
+            "getName 应该是一个箭头函数",
+            "你需要 const fn = obj.getName.bind(obj)",
+            "以上全部属实"
+          ],
+          "explanation": "fn() 失去了 this 上下文。解决方案：bind(obj)、箭头函数或调用obj.getName()。"
+        },
+        "14": {
+          "options": [
+            "数组溢出（无效的arr[3]）",
+            "返回 0 缺失",
+            "printf 代替 for",
+            "int 应该是浮点数"
+          ],
+          "explanation": "arr[3] 有 3 个元素（索引 0、1、2）。 i <= 3 访问 arr[3]，这是越界的。"
+        },
+        "15": {
+          "options": [
+            "缺少 GROUP BY user_id",
+            "COUNT(*) 应该是 SUM(*)",
+            "WHERE 必须在 GROUP BY 之后",
+            "有必要区分"
+          ],
+          "explanation": "使用聚合函数 (COUNT)，您需要对非聚合列进行 GROUP BY。"
+        },
+        "16": {
+          "options": [
+            "混合使用await和.then()是多余的",
+            "catch 不适用于await",
+            "fetch 不返回承诺",
+            "你到处都需要 async/await"
+          ],
+          "explanation": "使用await + try/catch 或.then()/.catch()。混合它们会令人困惑。"
+        },
+        "17": {
+          "options": [
+            "Animal 前面缺少 New",
+            "构造函数应该是 __init__",
+            "这是无效的",
+            "类应该是函数"
+          ],
+          "explanation": "要实例化一个类，必须使用 new：const dog = new Animal(\"Rex\")。"
+        },
+        "18": {
+          "options": [
+            "阻止服务器 5 秒",
+            "time.sleep() 不存在",
+            "你必须返回等待",
+            "导入无效"
+          ],
+          "explanation": "time.sleep() 会阻塞整个线程。在 API 中，使用await asyncio.sleep()。"
+        },
+        "19": {
+          "options": [
+            "cell = cell * 2 不修改数组",
+            "forEach 不能嵌套",
+            "你必须使用地图",
+            "矩阵应该是一个对象"
+          ],
+          "explanation": "单元格是一个副本。修改：row[index] = cell * 2 或使用map()。"
+        },
+        "20": {
+          "options": [
+            "if 后缺少大括号",
+            "void 不能公开",
+            "setEmail() 不存在",
+            "用户应该是一个界面"
+          ],
+          "explanation": "如果没有大括号，则只有第一行位于 if 中。 setEmail() 始终运行。"
+        },
+        "21": {
+          "options": [
+            "我们无法将承诺相加",
+            "你需要等待或.then()",
+            "结果将是“[对象承诺][对象承诺]”",
+            "上述所有的"
+          ],
+          "explanation": "承诺没有意义。您需要 Promise.all([p1, p2]) 然后等待。"
+        },
+        "22": {
+          "options": [
+            "就地修改 dict1 （副作用）",
+            "for 不适用于 dict",
+            "你必须使用附加",
+            "返回 d1 是多余的"
+          ],
+          "explanation": "dict1已修改！更好：用 {**d1, **d2} 返回一个新的字典。"
+        },
+        "23": {
+          "options": [
+            "XSS漏洞（脚本注入）",
+            "document.write 已弃用",
+            "缺少 GetElementById",
+            "脚本应该位于页面底部"
+          ],
+          "explanation": "如果 userInput 包含 <script>，则可能会执行恶意代码。你必须转义 HTML。"
+        },
+        "24": {
+          "options": [
+            "在转换为浮点之前进行整数除法",
+            "浮动应该是双精度的",
+            "有必要（浮动）a / b",
+            "前两个答案"
+          ],
+          "explanation": "5 / 2 = 2（整数除法），然后转换为 2.0。需要 (float)a / b 才能得到 2.5。"
+        },
+        "25": {
+          "options": [
+            "无交易，无WHERE安全",
+            "缺少分号",
+            "更新应该是更改",
+            "状态不在引号中"
+          ],
+          "explanation": "如果没有 BEGIN/COMMIT，则很难回滚。此外，请务必在更新之前检查 WHERE。"
+        },
+        "26": {
+          "options": [
+            "箭头函数中缺少 Return",
+            "map() 不修改数组",
+            "你需要 forEach 而不是 map",
+            "n * 2 应该是 n += 2"
+          ],
+          "explanation": "如果不返回（或删除大括号），该函数将返回未定义。"
+        },
+        "27": {
+          "options": [
+            "文件永远不会关闭",
+            "你需要 file.close() 或",
+            "可能会导致资源泄漏",
+            "上述所有的"
+          ],
+          "explanation": "您必须使用 file.close() 关闭文件或使用 open() 作为文件。"
+        },
+        "28": {
+          "options": [
+            "JavaScript 将“5”转换为 5 -",
+            "结果将为 NaN",
+            "你需要解析Int(x)",
+            "字符串不可能做减法"
+          ],
+          "explanation": "奇怪的是，JS 将 - 的“5”转换为 5，但将 + 连接起来。结果：3。"
+        },
+        "29": {
+          "options": [
+            "这个不见了。法庭前",
+            "实例应该是 Singleton.instance",
+            "new Singleton() 创建多个实例",
+            "静态无效"
+          ],
+          "explanation": "在静态方法中，使用 Singleton.instance 或 this.instance 引用静态属性。"
+        },
+        "30": {
+          "options": [
+            "DISTINCT 与 GROUP BY 是多余的",
+            "缺少 COUNT(*) 个",
+            "user_id 应该用引号引起来",
+            "GROUP BY 必须位于 DISTINCT 之前"
+          ],
+          "explanation": "GROUP BY 使每个 user_id 都是唯一的。 DISTINCT在这里是没有用的。"
+        },
+        "31": {
+          "options": [
+            "有效清空数组",
+            "arr.length 是只读的",
+            "你需要 arr.clear()",
+            "产生错误"
+          ],
+          "explanation": "没有错误！ arr.length = 0 是清空数组的有效（但不太可读）方法。"
+        },
+        "32": {
+          "options": [
+            "JSON 需要双引号",
+            "load() 应该是 load()",
+            "导入无效",
+            "数据应该是一个字典"
+          ],
+          "explanation": "有效的 JSON 使用“名称”，而不是“名称”。需要双引号。"
+        },
+        "33": {
+          "options": [
+            "显示 3, 3, 3 而不是 0, 1, 2",
+            "var 在闭包之间共享 i",
+            "你需要 let 而不是 var",
+            "上述所有的"
+          ],
+          "explanation": "var 有函数作用域。所有闭包共享相同的 i，即末尾的 3。"
+        },
+        "34": {
+          "options": [
+            "process.env.DEBUG 是一个字符串，而不是布尔值",
+            "JS 中“假”为真",
+            "布尔值必须 ===“true”",
+            "上述所有的"
+          ],
+          "explanation": "process.env.DEBUG =“false”（字符串）是真实的。您需要：process.env.DEBUG ===“true”。"
+        },
+        "35": {
+          "options": [
+            "指数复杂度 O(2^n)",
+            "重新计算相同的值",
+            "需要记忆/缓存",
+            "上述所有的"
+          ],
+          "explanation": "fibonacci(50) 进行了数十亿次调用。使用@lru_cache或动态规划。"
+        },
+        "36": {
+          "options": [
+            "没有 \\0 终端的空间",
+            "你需要 char str[6]",
+            "缓冲区可能溢出",
+            "上述所有的"
+          ],
+          "explanation": "“Hello” = 5 个字符 + \\0 = 6 个字节。 char[5] 太小。"
+        },
+        "37": {
+          "options": [
+            "SQL注入漏洞",
+            "您需要准备好参数",
+            "userId 未转义",
+            "上述所有的"
+          ],
+          "explanation": "直接连接userId允许SQL注入。使用参数化查询。"
+        },
+        "38": {
+          "options": [
+            "如果不是，则空列表的数据为 false",
+            "如果数据为 None 则应该是",
+            "空列表是错误的",
+            "答案 1 和 2"
+          ],
+          "explanation": "如果不是数据：对于 None AND [] 为 true。您需要 if data is None: 来区分。"
+        },
+        "39": {
+          "options": [
+            "obj2 引用 obj1，而不是副本",
+            "显示 99，而不是 1",
+            "您需要 {...obj1} 才能复制",
+            "上述所有的"
+          ],
+          "explanation": "obj2 = obj1 复制引用。修改 obj2 会修改 obj1。使用{...obj1}。"
+        },
+        "40": {
+          "options": [
+            "基类 __init__ 从未被调用",
+            "你需要 super().__init__()",
+            "继承不起作用",
+            "答案 1 和 2"
+          ],
+          "explanation": "Derived.__init__ 完全覆盖 Base.__init__。您必须调用 super().__init__()。"
+        },
+        "41": {
+          "options": [
+            "返回指向本地内存的指针",
+            "arr 在函数结束时被销毁",
+            "未定义的行为",
+            "上述所有的"
+          ],
+          "explanation": "arr 位于堆栈中并在返回后销毁。指针指向无效内存。"
+        },
+        "42": {
+          "options": [
+            "setTimeout 不可等待",
+            "你必须返回一个 Promise",
+            "console.log 立即运行",
+            "上述所有的"
+          ],
+          "explanation": "wait() 什么也不返回。您需要返回 new Promise(resolve => setTimeout(resolve, ms))。"
+        },
+        "43": {
+          "options": [
+            "WHERE 中的聚合函数",
+            "你需要 HAVING 而不是 WHERE",
+            "GROUP BY 缺失",
+            "上述所有的"
+          ],
+          "explanation": "WHERE 不能使用 MAX()。您需要 GROUP BY user_id HAVING MAX(created_at) > ..."
+        },
+        "44": {
+          "options": [
+            "事件无限循环",
+            "堆栈溢出",
+            "您需要删除监听器",
+            "上述所有的"
+          ],
+          "explanation": "该事件会无限地重新发出，直到堆栈溢出。"
+        },
+        "45": {
+          "options": [
+            "包装器不接受参数",
+            "问候（姓名）将不起作用",
+            "你需要 *args, **kwargs",
+            "上述所有的"
+          ],
+          "explanation": "wrapper() 不接受参数，但greet(name) 接受参数。使用 *args、**kwargs。"
+        },
+        "46": {
+          "options": [
+            "多线程中的竞争条件",
+            "count++ 不是原子的",
+            "您需要同步或AtomicInteger",
+            "上述所有的"
+          ],
+          "explanation": "count++ = 读取 + 增量 + 写入。多个线程可能会发生干扰。"
+        },
+        "47": {
+          "options": [
+            "内存泄漏，缓存无限增长",
+            "你需要一个 LRU 或 TTL",
+            "cache[key] 可以是 0 或 false (falsy)",
+            "上述所有的"
+          ],
+          "explanation": "缓存增长无限制。此外， if (cache[key]) 对于虚假值失败。"
+        },
+        "48": {
+          "options": [
+            "正则表达式过于宽松",
+            "无最小长度",
+            "不需要特殊字符",
+            "上述所有的"
+          ],
+          "explanation": "此正则表达式接受“a”或“1234”。真实密码没有复杂性规则。"
+        },
+        "49": {
+          "options": [
+            "eval() 允许代码注入",
+            "严重漏洞",
+            "切勿将 eval 与输入一起使用",
+            "上述所有的"
+          ],
+          "explanation": "eval() 执行任意代码。 userId 可能包含恶意代码。"
+        },
+        "50": {
+          "options": [
+            "GET 在 URL 中暴露密码",
+            "在历史/日志中可见",
+            "您需要方法=“POST”",
+            "上述所有的"
+          ],
+          "explanation": "GET 将参数放在 URL 中：/login?password=secret。始终通过 POST 获取密码。"
+        }
+      }
+    },
+    "wordle": {
+      "title": "科技字",
+      "subtitle": "尝试 6 次猜出“科技”一词",
+      "newWord": "生词",
+      "stats": {
+        "wl": "{wins}V / {losses}D",
+        "streak": "{current}🔥（最大值：{max}）"
+      },
+      "help": {
+        "button": "帮助",
+        "title": "怎么玩？",
+        "line1": "最多尝试 6 次猜出“tech”这个词。",
+        "line2": "每篇文章必须是有效的 5 个字母单词。",
+        "line3": "每次试验后，盒子的颜色都会改变：",
+        "legend": {
+          "correct": "该字母位于正确的位置",
+          "present": "这封信在单词中但放错了地方",
+          "absent": "这封信不在单词中"
+        },
+        "examples": "单词示例：REACT、CACHE、TOKEN、LINUX、ASYNC..."
+      },
+      "messages": {
+        "lengthError": "该单词的长度必须为 5 个字母",
+        "win": "干得好！这个词是{word}",
+        "lose": "丢失的 ！这个词是{word}",
+        "remaining": "{count} 剩余试验"
+      }
+    },
+    "mentalcpu": {
+      "title": "心理CPU",
+      "subtitle": "压力下快速计算",
+      "levels": {
+        "easy": "简单",
+        "medium": "中等",
+        "hard": "困难"
+      },
+      "levelLabel": "等级 ：",
+      "difficultyAria": "困难",
+      "timeLabel": "时间：{seconds}秒",
+      "start": "启动",
+      "playAgain": "重播",
+      "next": "下一个问题",
+      "question": "问题{current}",
+      "equals": "= ?",
+      "streak": "{streak}🔥",
+      "types": {
+        "arithmetic": "算术",
+        "binary": "二进制",
+        "hex": "十六进制"
+      },
+      "conversion": {
+        "toBase10": "以 10 为基数",
+        "toBinary": "以二进制形式"
+      },
+      "ready": {
+        "title": "准备好计算了吗？",
+        "subtitle": "在时间用完之前解决尽可能多的计算！"
+      },
+      "cards": {
+        "easy": {
+          "title": "简单",
+          "desc": "简单的计算",
+          "time": "45秒"
+        },
+        "medium": {
+          "title": "中等",
+          "desc": "优先级+转化",
+          "time": "35秒"
+        },
+        "hard": {
+          "title": "困难",
+          "desc": "多种操作",
+          "time": "25秒"
+        }
+      },
+      "over": {
+        "title": "时间到了！",
+        "points": "{score} 点",
+        "stats": "{questions} 问题 • 最佳连胜：{maxStreak}"
+      },
+      "feedback": {
+        "correct": "正确的 ！",
+        "incorrect": "不正确"
+      }
+    },
+    "regexrush": {
+      "title": "正则表达式冲刺",
+      "subtitle": "选择最好的正则表达式来传递真实案例",
+      "prompt": "哪个正则表达式最可靠？",
+      "question": "问题 {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥（最大值：{max}）",
+      "restart": "重新开始",
+      "next": "下列的",
+      "playAgain": "重播",
+      "feedback": {
+        "correct": "正确的",
+        "incorrect": "不正确"
+      },
+      "complete": {
+        "title": "完成的 ！",
+        "stats": "{score}/{total} • 最大条纹：{maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "goal": "提取有效的电子邮件（简单格式）。",
+          "input": "联系人：alice@example.com、bob@site.io、not-an-email@、@bad.com",
+          "options": [
+            "\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b/i",
+            "\\S+@\\S+",
+            "@[A-Za-z]+\\.",
+            "[a-z]+@[a-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "第一个涵盖简单的电子邮件，并通过域名 + TLD 避免@bad.com / not-an-email@。",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "goal": "查找 ABC-1234 格式的票号。",
+          "input": "门票：OPS-1203、DEV-9、SEC-0042、BAD-12345",
+          "options": [
+            "\\b[A-Z]{3}-\\d{4}\\b",
+            "[A-Z]+-\\d+",
+            "\\b[A-Z]{3}-\\d{1,4}\\b",
+            "\\b[A-Z]{3}-\\d{5}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们想要 3 个字母 + 4 个数字。 DEV-9 太短，BAD-12345 太长。",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "goal": "找到 v4 UUID（8-4-4-4-12 十六进制）。",
+          "input": "ID: 550e8400-e29b-41d4-a716-446655440000, 123, zzz-zzz",
+          "options": [
+            "\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b/i",
+            "\\b[0-9a-f-]{36}\\b/i",
+            "[0-9a-f]{8}",
+            "\\b\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "第一个要求精确划分为六角形。其他人都太宽容了。",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "goal": "提取@用户名提及（字母/数字/_），而不是电子邮件。",
+          "input": "@root 好的，请通过 a@b.com 与我联系，@john_doe42 好的，@-bad 否",
+          "options": [
+            "(?<!\\w)@[A-Za-z0-9_]{2,}\\b",
+            "@[A-Za-z0-9_]+",
+            "\\b@[A-Za-z]+\\b",
+            "@[\\w-]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "向后查找可以避免陷入 a@b.com。我们在开头禁止使用连字符。",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "goal": "验证密码：8 个以上字符、1 个班次、1 分钟、1 位数字。",
+          "input": "测试：密码 1 正常、密码 1 否、密码 1 否、密码 1 否",
+          "options": [
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",
+            "^.{8,}$",
+            "^(?=.*\\d).{8,}$",
+            "^(?=.*[A-Z]).{8,}$"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们通过前瞻 + 最小长度施加 3 个约束。",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "goal": "查找日期 YYYY-MM-DD。",
+          "input": "2026-01-31 可以，26-01-31 否，2026-1-31 否",
+          "options": [
+            "\\b\\d{4}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{2}-\\d{2}-\\d{2}\\b",
+            "\\b\\d{4}-\\d{1,2}-\\d{1,2}\\b",
+            "\\d{4}/\\d{2}/\\d{2}"
+          ],
+          "answerIndex": "0",
+          "explanation": "月/日的严格格式为 2 位数字。",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "goal": "提取主题标签（#dev、#web3），而不是 # 后跟空格。",
+          "input": "标签：#dev #web #web3 #C++",
+          "options": [
+            "(?<!\\w)#[A-Za-z0-9_]{2,}\\b",
+            "#[^ ]+",
+            "#\\w+",
+            "#[A-Z-z]+"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们避免使用“#web”并将其限制为 alphanum/_（因此 #C++ 被拒绝）。",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "goal": "检测有效的 IPv4（简单，没有 999）。",
+          "input": "IP：192.168.0.1 可以，999.1.1.1 否，10.0.0.256 否",
+          "options": [
+            "\\b(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\b",
+            "\\b\\d{1,3}(?:\\.\\d{1,3}){3}\\b",
+            "\\b(\\d+\\.){3}\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\.\\d+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "第一个边界为每个字节 0–255。其他接受 999 和 256。",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "goal": "提取双引号之间的值，不要在第一个“\\””处中断。",
+          "input": "msg=\"你好\" other=\"a\\\"b\" bad=\"未关闭",
+          "options": [
+            "\"(?:\\\\.|[^\"\\\\])*\"",
+            "\".*\"",
+            "\"[^\"]*\"",
+            "'.*'"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们管理转义符（\\”）并避免贪婪的“.*”。",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "goal": "找到 TODO：在行的开头（空格之后）。",
+          "input": "待办事项：修复\nx 待办事项： 不\n\t待办事项：好的",
+          "options": [
+            "^\\s*TODO:\\s*.+$",
+            "待办事项:.*",
+            "^待办事项:.*",
+            "\\b待办事项\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "插入符号锚定该行并接受缩进。",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "goal": "以欧元提取金额：12.50 欧元或 12 欧元。",
+          "input": "价格： 12 欧元、12.50 欧元、12.50 欧元无、12 欧元无",
+          "options": [
+            "\\b\\d+(?:,\\d{2})?€\\b",
+            "\\d+€",
+            "\\b\\d+(?:[.,]\\d{2})?€\\b",
+            "€\\d+"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们强制使用法语逗号和 2 位小数（如果存在）。",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "goal": "验证 slug：小写字母、数字、连字符、无双连字符。",
+          "input": "好：你好世界，坏：你好，坏：a--b",
+          "options": [
+            "^(?!.*--)[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "^[a-z0-9-]+$",
+            "^[a-z-]+$",
+            "^[\\w-]+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们禁止——并且我们强制将线段放在破折号之间。",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "goal": "提取 vX.Y.Z 版本通知。",
+          "input": "v1.2.3 可以，v1.2 不行，1.2.3 不行，v01.2.3 可以",
+          "options": [
+            "\\bv\\d+\\.\\d+\\.\\d+\\b",
+            "\\b\\d+\\.\\d+\\.\\d+\\b",
+            "\\bv\\d+\\.\\d+\\b",
+            "v.*"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们需要 v 和三个段。",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "goal": "查找简单的 HTML 标签 <div> <span>，但不查找 </div>。",
+          "input": "<div> 可以，</div> 否，<a href=\"#\"> 否",
+          "options": [
+            "<(?!/)(?:div|span|p|ul|li)>",
+            "<\\w+>",
+            "<(div|span|p)>",
+            "<[^>]+>"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们将其限制在白名单中并排除结束标签。",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "goal": "提取 FR 邮政编码（5 位数字），前面有一个空格。",
+          "input": "巴黎 75001 可以，075001 否，代码：75001 否",
+          "options": [
+            "\\s\\d{5}\\b",
+            "\\b\\d{5}\\b",
+            "\\d{5}",
+            "\\s\\d{4}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们之前会请求一个空间，以避免某些卡住的误报。",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "goal": "查找 Unix 绝对路径 (/var/log/app.log)。",
+          "input": "/var/log/app.log 好，var/log 否，/ 好",
+          "options": [
+            "\\/(?:[A-Za-z0-9._-]+\\/)*[A-Za-z0-9._-]+",
+            "\\/.+",
+            "[A-Za-z0-9/_-]+",
+            "^/.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们按分段构建并避免/单独。",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "goal": "提取节点版本号：18.x、20.x（仅限）。",
+          "input": "节点 18.x 正常，16.x 否，20.x 正常，21.x 否",
+          "options": [
+            "\\b(?:18|20)\\.x\\b",
+            "\\b\\d+\\.x\\b",
+            "\\b(18|20|21)\\.x\\b",
+            "\\b1\\d\\.x\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们仅将 18 和 20 列入白名单。",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "goal": "查找全部大写（2 个以上字母）且不含数字的单词。",
+          "input": "好 是 NO2 否，CPU，A",
+          "options": [
+            "\\b[A-Z]{2,}\\b",
+            "\\b[A-Z0-9]{2,}\\b",
+            "[A-Z]+",
+            "\\b[A-Z]{1,}\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们排除 NO2，并要求 2 个以上的字母。",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "goal": "提取键=值对，其中键是snake_case。",
+          "input": "user_id=42 好，userId=1 否，_bad=2 否",
+          "options": [
+            "\\b[a-z]+(?:_[a-z]+)*=\\S+",
+            "\\b\\w+=\\S+",
+            "\\b[a-z_]+=\\S+",
+            "\\b[a-z]+_=\\S+"
+          ],
+          "answerIndex": "0",
+          "explanation": "Snake_case：由下划线分隔的字母段，没有前导下划线。",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "goal": "查找 JS 导入： import X from 'y'; （简单的）。",
+          "input": "从“b”导入a；好的\n从 'y' 导入 {x}；好的\n要求('z') 否",
+          "options": [
+            "^import\\s+.+\\s+from\\s+['\"][^'\"]+['\"];?$",
+            "导入.*来自.*",
+            "^import\\b.*$",
+            "来自\\s+['\"][^'\"]+['\"]"
+          ],
+          "answerIndex": "0",
+          "explanation": "第一个目标是模式 import ... from '...'。",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "goal": "将域（无协议）提取到列表中。",
+          "input": "站点：example.com、https://openai.com, test.local、foo.bar",
+          "options": [
+            "\\b[a-z0-9-]+\\.[a-z]{2,}\\b",
+            "\\b\\w+\\.\\w+\\b",
+            "https?://\\S+",
+            "\\b[a-z]+\\.[a-z]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们的目标是domain.tld（如果您想要TLD 2+，则不是test.local）。",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "goal": "仅查找 ERROR 日志行。",
+          "input": "信息确定\n错误磁盘已满\n警告嗯\n错误超时",
+          "options": [
+            "^ERROR\\b.*$",
+            "错误",
+            "\\b错误\\b",
+            "^.*ERROR.*$"
+          ],
+          "answerIndex": "0",
+          "explanation": "锚定在行的开头，避免出现在中间。",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "goal": "提取 0xFFEE 格式的十六进制数字。",
+          "input": "0x1A 正常，0XFF 否，0xZZ 否，1A 否",
+          "options": [
+            "\\b0x[0-9a-fA-F]+\\b",
+            "\\b0x\\w+\\b",
+            "0x.+",
+            "\\b[0-9a-fA-F]+\\b"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们只需要 0x 和十六进制。",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "goal": "验证 git 分支名称：feature/xxx 或 fix/xxx。",
+          "input": "功能/登录正常，修复/崩溃正常，feat/x 否，功能/否",
+          "options": [
+            "^(?:feature|fix)\\/[a-z0-9][a-z0-9-]*$",
+            "^(?:feature|fix)\\/.*$",
+            "^\\w+\\/\\w+$",
+            "^(?:feature|fix)-\\w+$"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们强制使用前缀、斜线和非空段。",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "goal": "提取 markdown 标签 `inline code` 而不捕获 ``` 栅栏。",
+          "input": "使用 `npm i` 确定\n```js\nconst x=1\n``` 没有",
+          "options": [
+            "(?<!`)`([^`\\n]+)`(?!`)",
+            "`.*`",
+            "^`.+`$",
+            "```[\\s\\S]*```"
+          ],
+          "answerIndex": "0",
+          "explanation": "我们以单个反引号为目标，并通过环视避免栅栏```。",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "httpdetective": {
+      "title": "HTTP 侦探",
+      "subtitle": "阅读查询，然后选择最佳诊断或修复",
+      "prompt": "最好的解决办法是什么？",
+      "question": "问题 {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥（最大值：{max}）",
+      "restart": "重新开始",
+      "next": "下列的",
+      "playAgain": "重播",
+      "feedback": {
+        "correct": "正确的",
+        "incorrect": "不正确"
+      },
+      "complete": {
+        "title": "结案",
+        "stats": "{score}/{total} • 最大条纹：{maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "caseTitle": "/api/me 上的 401",
+          "request": "获取/api/我\n状态：401 未经授权\n响应：{\"error\":\"missing token\"}",
+          "options": [
+            "添加 Authorization: Bearer <token> 标头",
+            "将 GET 更改为 POST",
+            "添加内容类型：application/json",
+            "在浏览器端禁用 CORS"
+          ],
+          "answerIndex": "0",
+          "explanation": "401 + 缺少令牌 → 缺少身份验证。添加授权。",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "caseTitle": "管理资源 403",
+          "request": "获取/管理/报告\n状态：403 禁止\n响应：{\"error\":\"insufficient_scope\"}",
+          "options": [
+            "使用具有管理范围/角色的令牌",
+            "稍后再试",
+            "添加接受语言",
+            "切换到 HTTP 而不是 HTTPS"
+          ],
+          "answerIndex": "0",
+          "explanation": "403 + unavailable_scope → 有效令牌但无权限。",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "caseTitle": "415 不支持的媒体类型",
+          "request": "POST /api/上传\n状态：415 不支持的媒体类型\n发送内容类型：文本/纯文本",
+          "options": [
+            "发送正确的内容类型（例如：multipart/form-data 或 application/json）",
+            "添加授权",
+            "更改网址",
+            "增加超时时间"
+          ],
+          "answerIndex": "0",
+          "explanation": "415 = 服务器拒绝该类型。 Content-Type 必须与正文匹配。",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "caseTitle": "浏览器中出现 CORS 错误",
+          "request": "获取https://api.example.com/data\n浏览器错误：CORS 策略被阻止\n没有“访问控制允许来源”",
+          "options": [
+            "在 API 端配置 CORS（Access-Control-Allow-Origin、方法、标头）",
+            "添加模式：“no-cors”并读取 JSON 响应",
+            "将 fetch 放入 setTimeout 中",
+            "添加缓存控制：无缓存"
+          ],
+          "answerIndex": "0",
+          "explanation": "CORS设置在服务器端。 no-cors 使响应不透明、无法使用。",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "caseTitle": "429 请求过多",
+          "request": "GET /api/search?q=react\n状态：429 请求过多\n标头：重试后：30",
+          "options": [
+            "退避+尊重重试后（速率限制）",
+            "切换到开机自检",
+            "添加内容长度",
+            "禁用 gzip"
+          ],
+          "answerIndex": "0",
+          "explanation": "429 = 速率限制。降低频率并等待 Retry-After。",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "caseTitle": "JSON 上的 400 错误请求",
+          "request": "POST /api/项目\n内容类型：application/json\n身体：{name:\"a\"}\n状态：400",
+          "options": [
+            "发送有效的 JSON：{\"name\":\"a\"}",
+            "添加授权",
+            "接受：text/html",
+            "将 POST 替换为 GET"
+          ],
+          "answerIndex": "0",
+          "explanation": "无效的 JSON（不带引号的键）→ 400。",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "caseTitle": "302循环",
+          "request": "获取/应用程序\n状态：302 位置：/login\n获取/登录\n状态：302 位置：/app",
+          "options": [
+            "未保留 Cookie/会话（凭据）或身份验证重定向配置不正确",
+            "添加内容类型",
+            "增加有效载荷",
+            "添加随机参数查询"
+          ],
+          "answerIndex": "0",
+          "explanation": "会话未持久或保护反转时的典型登录/应用程序循环。",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "caseTitle": "预检选项失败",
+          "request": "选项 /api/private\n状态：404\n浏览器：预检失败",
+          "options": [
+            "管理 OPTIONS 并返回正确的 CORS 标头",
+            "将方法更改为 GET",
+            "删除获取",
+            "添加用户代理"
+          ],
+          "answerIndex": "0",
+          "explanation": "浏览器执行 OPTIONS 预检。服务器应该响应。",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "caseTitle": "502 代理后面的网关错误",
+          "request": "获取/API\n状态：502 网关错误\nNginx：上游过早关闭连接",
+          "options": [
+            "上游服务崩溃/超时→检查日志/健康检查和超时",
+            "添加跨域资源共享",
+            "变更接受",
+            "强制 HTTP/1.0"
+          ],
+          "answerIndex": "0",
+          "explanation": "502 = 网关/代理无法正确到达上游。",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "caseTitle": "413 有效负载太大",
+          "request": "POST /api/上传\n状态：413 有效负载太大",
+          "options": [
+            "增加服务器/代理端或压缩/分段的限制",
+            "将 POST 更改为 PUT",
+            "添加授权",
+            "禁用缓存"
+          ],
+          "answerIndex": "0",
+          "explanation": "413 = 主体对于配置（nginx、框架、云）来说太大。",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "caseTitle": "ETag / 304 意外",
+          "request": "获取/app.js\n状态：304 未修改\n客户端显示旧包",
+          "options": [
+            "糟糕的缓存策略→版本资产+适配的缓存控制",
+            "添加授权",
+            "将 GET 更改为 POST",
+            "启用跨域资源共享"
+          ],
+          "answerIndex": "0",
+          "explanation": "缓存提供旧文件。解决方案：哈希+标头。",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "caseTitle": "响应内容类型错误",
+          "request": "获取/api/数据\n状态：200\n内容类型：text/html\n正文：“<html>...”",
+          "options": [
+            "您遇到错误/重写页面 → 正确的路由/API 基本 URL",
+            "添加重试后",
+            "添加内容长度",
+            "添加 Origin 标头"
+          ],
+          "answerIndex": "0",
+          "explanation": "HTML 而不是 JSON = 通常是错误的 URL、代理重写或未处理的错误。",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "caseTitle": "客户超时",
+          "request": "获取/api/报告\n客户端：10秒后超时\n服务器最终在 25 秒内返回 200",
+          "options": [
+            "优化端点或进行异步/分页，如果合理则增加客户端超时",
+            "添加跨域资源共享",
+            "更改为发布",
+            "添加接受语言"
+          ],
+          "answerIndex": "0",
+          "explanation": "服务器响应太慢。要么优化，要么异步，要么调整超时。",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "caseTitle": "刷新后401",
+          "request": "获取/api/我\n状态：401\n饼干：（缺席）\n在浏览器中，它在刷新之前有效",
+          "options": [
+            "Cookie HttpOnly/SameSite/Domain 设置不正确或凭据：“include”丢失",
+            "将 GET 更改为 POST",
+            "添加内容类型",
+            "禁用缓存"
+          ],
+          "answerIndex": "0",
+          "explanation": "如果未发送 cookie，请检查 SameSite/secure/domain 或获取凭据。",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "caseTitle": "404 仅在生产中",
+          "request": "获取/api/用户\n开发：200\n产品：404 未找到（/v1 后面）",
+          "options": [
+            "产品中的基本路径/代理 → 更正基本 URL (/v1) 或重写",
+            "添加授权",
+            "增加超时时间",
+            "添加原点"
+          ],
+          "answerIndex": "0",
+          "explanation": "dev 和 prod 之间的公共基本路径差异。",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "caseTitle": "CSRF 令牌不匹配",
+          "request": "POST /api/个人资料\n状态：403\n响应：{\"error\":\"csrf\"}",
+          "options": [
+            "发送 CSRF 令牌（标头/cookie）或使用 SameSite/CSRF 流正确",
+            "切换到获取",
+            "添加内容类型",
+            "添加重试后"
+          ],
+          "answerIndex": "0",
+          "explanation": "CSRF 保护需要特定的令牌/流。",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "caseTitle": "400 验证错误",
+          "request": "POST /api/注册\n状态：400\n响应：{\"errors\":{\"email\":\"invalid\"}}",
+          "options": [
+            "根据预期模式更正有效负载（有效电子邮件）",
+            "添加跨域资源共享",
+            "将 POST 更改为 PUT",
+            "添加接受：文本/纯文本"
+          ],
+          "answerIndex": "0",
+          "explanation": "服务器拒绝验证。根据图表调整连体衣。",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "caseTitle": "TLS/混合内容",
+          "request": "通过 HTTPS 加载的应用程序\n获取http://api.example.com\n浏览器被阻止：混合内容",
+          "options": [
+            "对 API 或 HTTPS 代理使用 HTTPS",
+            "添加跨域资源共享",
+            "不放玉米",
+            "变更方法"
+          ],
+          "answerIndex": "0",
+          "explanation": "浏览器阻止来自 HTTPS 页面的 HTTP。",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "caseTitle": "401 带有 Bearer 但令牌已过期",
+          "request": "获取/api/我\n授权：持有者xxx\n状态：401\n响应：{\"error\":\"token_expired\"}",
+          "options": [
+            "刷新令牌/重新登录，然后重播请求",
+            "添加内容类型",
+            "减少有效负载",
+            "添加原点"
+          ],
+          "answerIndex": "0",
+          "explanation": "过期令牌 → 刷新流程或新的身份验证。",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "caseTitle": "204 无内容 + 客户端崩溃",
+          "request": "删除/api/项目/1\n状态：204 无内容\n客户端尝试 res.json() 并抛出",
+          "options": [
+            "不要解析 204 上的 JSON（检查状态/内容长度）",
+            "将删除更改为发布",
+            "添加跨域资源共享",
+            "添加重试后"
+          ],
+          "answerIndex": "0",
+          "explanation": "204 = 没有紧身衣。 res.json() 失败。",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "caseTitle": "错误的方法 405",
+          "request": "PUT /api/项目\n状态：405 方法不允许\n允许：GET、POST",
+          "options": [
+            "使用授权方法 (POST) 或启用服务器端 PUT",
+            "添加内容类型",
+            "添加授权",
+            "增加超时时间"
+          ],
+          "answerIndex": "0",
+          "explanation": "405+Allow表示允许的方法。",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "caseTitle": "400：gzip 后的 json 无效",
+          "request": "发布/api\n内容编码：gzip\n服务器：400 无效正文",
+          "options": [
+            "您压缩但服务器不解压 → 服务器/代理端的 gzip 配置",
+            "添加跨域资源共享",
+            "更改获取",
+            "添加重试后"
+          ],
+          "answerIndex": "0",
+          "explanation": "如果声明了 Content-Encoding，服务器必须管理解压缩。",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "caseTitle": "大列表分页缺失",
+          "request": "获取 /api/users?page=999\n状态：200\n连体衣：[]",
+          "options": [
+            "您超出范围 → 在 API 端夹紧，返回元数据 (totalPages)",
+            "添加授权",
+            "添加跨域资源共享",
+            "更改为发布"
+          ],
+          "answerIndex": "0",
+          "explanation": "页面太高会返回空白。更好：返回总页数+验证。",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "caseTitle": "503 服务不可用",
+          "request": "获取/API\n状态：503\n回应：维修",
+          "options": [
+            "服务关闭/维护 → 运行状况检查、自动缩放、回退重试",
+            "添加内容类型",
+            "将 GET 更改为 POST",
+            "添加原点"
+          ],
+          "answerIndex": "0",
+          "explanation": "503 = 服务暂时不可用。",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "caseTitle": "Cookie 未跨站点发送",
+          "request": "前端 https://app.com -> API https://api.com\nCookie 会话丢失\nSameSite=宽松",
+          "options": [
+            "设置 SameSite=无；保护并使用凭据：如有必要，请“包含”",
+            "禁用 CORS",
+            "不放玉米",
+            "切换到 HTTP"
+          ],
+          "answerIndex": "0",
+          "explanation": "跨站点 cookie 需要 SameSite=None + Secure（否则不发送）。",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "sqlsleuth": {
+      "title": "SQL侦探",
+      "subtitle": "找到错误或正确的请求而不被发现",
+      "prompt": "最好的答案是什么？",
+      "question": "问题 {current}/{total}",
+      "score": "{score}/{total}",
+      "streak": "{streak}🔥（最大值：{max}）",
+      "restart": "重新开始",
+      "next": "下列的",
+      "playAgain": "重播",
+      "feedback": {
+        "correct": "正确的",
+        "incorrect": "不正确"
+      },
+      "complete": {
+        "title": "干得好",
+        "stats": "{score}/{total} • 最大条纹：{maxStreak}"
+      },
+      "challenges": {
+        "1": {
+          "caseTitle": "不使用 GROUP BY 的聚合",
+          "query": "SELECT user_id, COUNT(*) FROM 订单；",
+          "options": [
+            "添加 GROUP BY user_id",
+            "添加 ORDER BY user_id",
+            "将 COUNT(*) 替换为 SUM(*)",
+            "将 COUNT 放入 WHERE"
+          ],
+          "answerIndex": "0",
+          "explanation": "user_id + COUNT(*) 需要 GROUP BY user_id （否则错误或结果不一致）。",
+          "answerIndexNote": ""
+        },
+        "2": {
+          "caseTitle": "LEFT JOIN 被 WHERE 破坏",
+          "query": "选择 u.id、o.id\n来自用户 u\nLEFT JOIN 命令 o ON o.user_id = u.id\nWHERE o.status = '已付费';",
+          "options": [
+            "将条件移至 ON： ... AND o.status='paid'",
+            "将 LEFT JOIN 替换为 INNER JOIN（结果相同）",
+            "添加不同的",
+            "添加限制"
+          ],
+          "answerIndex": "0",
+          "explanation": "连接表上的 WHERE 将 LEFT JOIN 转换为 INNER JOIN。将条件设置为ON。",
+          "answerIndexNote": ""
+        },
+        "3": {
+          "caseTitle": "有与在哪里",
+          "query": "选择 user_id, COUNT(*) c\n来自订单\n其中 COUNT(*) > 5\n按用户 ID 分组；",
+          "options": [
+            "使用 HAVING COUNT(*) > 5",
+            "仅将 COUNT(*) 放入 SELECT 中",
+            "将 WHERE 替换为 ORDER BY",
+            "删除分组依据"
+          ],
+          "answerIndex": "0",
+          "explanation": "聚合不会进入 WHERE。在 GROUP BY 之后使用 HAVING。",
+          "answerIndexNote": ""
+        },
+        "4": {
+          "caseTitle": "NOT IN 的 NULL 陷阱",
+          "query": "SELECT id FROM users WHERE id NOT IN (SELECT user_id FROM bans);",
+          "options": [
+            "使用 NOT EXISTS（修复 NULL 陷阱）",
+            "在子选择中添加 DISTINCT",
+            "将 NOT IN 替换为 IN",
+            "添加排序依据"
+          ],
+          "answerIndex": "0",
+          "explanation": "如果bans.user_id包含NULL，NOT IN可以排除所有内容。 NOT EXISTS 更安全。",
+          "answerIndexNote": ""
+        },
+        "5": {
+          "caseTitle": "COUNT(*) 与 COUNT(列)",
+          "query": "从用户中选择 COUNT（电子邮件）；",
+          "options": [
+            "COUNT(email) 忽略 NULL，COUNT(*) 计算所有行",
+            "COUNT（电子邮件）更快",
+            "COUNT(*) 忽略 NULL",
+            "他们总是一样的"
+          ],
+          "answerIndex": "0",
+          "explanation": "COUNT(col) 不计算 NULL。 COUNT(*) 对所有行进行计数。",
+          "answerIndexNote": ""
+        },
+        "6": {
+          "caseTitle": "ORDER BY 在 LIMIT 之前",
+          "query": "SELECT * FROM posts LIMIT 10 ORDER BYcreated_at DESC;",
+          "options": [
+            "ORDER BY 必须在 LIMIT 之前",
+            "LIMIT 必须位于 ORDER BY 之前",
+            "缺少 GROUP BY",
+            "SELECT * 无效"
+          ],
+          "answerIndex": "0",
+          "explanation": "标准语法：SELECT ... FROM ... ORDER BY ... LIMIT ...",
+          "answerIndexNote": ""
+        },
+        "7": {
+          "caseTitle": "LIKE 不带索引",
+          "query": "SELECT * FROM 用户，其中名称类似于“%alex%”；",
+          "options": [
+            "开头的通配符常常会妨碍索引（全扫描）",
+            "LIKE 始终使用索引",
+            "你必须有",
+            "有必要区分"
+          ],
+          "answerIndex": "0",
+          "explanation": "‘%alex%’打破了经典 B 树索引的使用。更喜欢专用搜索或前缀。",
+          "answerIndexNote": ""
+        },
+        "8": {
+          "caseTitle": "列歧义",
+          "query": "SELECT id FROM 用户 u JOIN 订单 o ON o.user_id = u.id;",
+          "options": [
+            "限定符：SELECT u.id...（id 不明确）",
+            "添加不同的",
+            "将 JOIN 替换为 LEFT JOIN",
+            "添加限制 1"
+          ],
+          "answerIndex": "0",
+          "explanation": "id 可能存在于用户和订单中。您必须指定 u.id 或 o.id。",
+          "answerIndexNote": ""
+        },
+        "9": {
+          "caseTitle": "日期过滤器：索引友好",
+          "query": "SELECT * FROM events WHERE DATE(created_at) = '2026-01-31';",
+          "options": [
+            "使用范围：created_at >= '2026-01-31' ANDcreated_at < '2026-02-01'",
+            "添加排序依据",
+            "将 DATE() 放入 SELECT 中",
+            "把拥有"
+          ],
+          "answerIndex": "0",
+          "explanation": "在列上应用函数通常会破坏索引。该范围是索引友好的。",
+          "answerIndexNote": ""
+        },
+        "10": {
+          "caseTitle": "JOIN 重复",
+          "query": "选择 u.id\n来自用户 u\nJOIN 命令 o ON o.user_id = u.id;",
+          "options": [
+            "如果您希望每个用户一次，请添加 DISTINCT",
+            "将 JOIN 替换为 CROSS JOIN",
+            "添加 GROUP BY o.id",
+            "添加拥有"
+          ],
+          "answerIndex": "0",
+          "explanation": "具有多个订单的用户将出现多次。根据需要进行 DISTINCT 或聚合。",
+          "answerIndexNote": ""
+        },
+        "11": {
+          "caseTitle": "没有 WHERE 的更新",
+          "query": "更新用户 SET 角色='admin';",
+          "options": [
+            "危险：它修改所有行，添加 WHERE",
+            "桌子小的话还可以",
+            "缺少 GROUP BY",
+            "你必须有"
+          ],
+          "answerIndex": "0",
+          "explanation": "如果没有 WHERE，所有行都会更新。",
+          "answerIndexNote": ""
+        },
+        "12": {
+          "caseTitle": "寻呼：慢速偏移",
+          "query": "SELECT * FROM posts ORDER BY id DESC LIMIT 20 OFFSET 20000;",
+          "options": [
+            "首选键集分页（WHERE id < lastId）",
+            "添加不同的",
+            "删除排序依据",
+            "将 OFFSET 置于 LIMIT 之前"
+          ],
+          "answerIndex": "0",
+          "explanation": "大的 OFFSET 会变慢。键集分页更具可扩展性。",
+          "answerIndexNote": ""
+        },
+        "13": {
+          "caseTitle": "巨大的 IN 列表",
+          "query": "SELECT * FROM users WHERE id IN (...5000 ids...);",
+          "options": [
+            "将 ids 放入临时/连接表而不是巨大的列表中",
+            "添加排序依据",
+            "添加拥有",
+            "将 IN 替换为 LIKE"
+          ],
+          "answerIndex": "0",
+          "explanation": "非常大的 IN 列表可能会很昂贵；最好附上一个id表。",
+          "answerIndexNote": ""
+        },
+        "14": {
+          "caseTitle": "空比较",
+          "query": "SELECT * FROM 用户 WHEREdeleted_at = NULL;",
+          "options": [
+            "使用 IS NULL",
+            "使用 == NULL",
+            "在引号之间放置 NULL",
+            "添加不同的"
+          ],
+          "answerIndex": "0",
+          "explanation": "在 SQL 中，NULL 通过 IS NULL（而不是=）进行测试。",
+          "answerIndexNote": ""
+        },
+        "15": {
+          "caseTitle": "案例排序依据",
+          "query": "SELECT * FROM 任务 ORDER BY 状态；",
+          "options": [
+            "对于自定义订单，请使用 ORDER BY CASE ... END",
+            "添加 GROUP BY 状态",
+            "将 ORDER BY 替换为 HAVING",
+            "将状态放入 WHERE"
+          ],
+          "answerIndex": "0",
+          "explanation": "如果您想要 ex: 'doing' 在 'todo' 之前，CASE 允许自定义排序。",
+          "answerIndexNote": ""
+        },
+        "16": {
+          "caseTitle": "COUNT 个不同的",
+          "query": "从订单中选择 COUNT(user_id)；",
+          "options": [
+            "如果您想要唯一用户的数量： COUNT(DISTINCT user_id)",
+            "添加分组依据",
+            "将 COUNT 替换为 SUM",
+            "添加拥有"
+          ],
+          "answerIndex": "0",
+          "explanation": "COUNT(user_id) 对非空行进行计数。 DISTINCT 计算唯一的。",
+          "answerIndexNote": ""
+        },
+        "17": {
+          "caseTitle": "双引号与单引号",
+          "query": "从用户中选择*，其中电子邮件=“a@b.com”；",
+          "options": [
+            "使用简单引号“a@b.com”（取决于方言）",
+            "它总是正确的",
+            "加反引号",
+            "使用 HAVING"
+          ],
+          "answerIndex": "0",
+          "explanation": "许多 DBMS 使用“...”表示字符串。 “...”可以引用标识符。",
+          "answerIndexNote": ""
+        },
+        "18": {
+          "caseTitle": "删除并加入",
+          "query": "从用户中删除 u u 加入禁止 b ON b.user_id = u.id;",
+          "options": [
+            "它删除了被禁止的用户：谨慎使用",
+            "这是变相的 SELECT",
+            "缺少 GROUP BY",
+            "SQL 中不可能"
+          ],
+          "answerIndex": "0",
+          "explanation": "某些方言支持 DELETE...JOIN。没有预览非常危险。",
+          "answerIndexNote": ""
+        },
+        "19": {
+          "caseTitle": "UNION 与 UNION ALL",
+          "query": "从 a UNION 中选择 id 从 b 中选择 id；",
+          "options": [
+            "UNION 去重复（更昂贵），UNION ALL 保留重复项",
+            "UNION ALL 去重",
+            "它们是相同的",
+            "UNION 总是更快"
+          ],
+          "answerIndex": "0",
+          "explanation": "UNION 使隐含的不同。如果我们复制 OK，UNION ALL 会更快。",
+          "answerIndexNote": ""
+        },
+        "20": {
+          "caseTitle": "综合指数",
+          "query": "WHEREtenant_id=7ANDcreated_at>='2026-01-01'ORDERBYcreated_atDESC",
+          "options": [
+            "Index(tenant_id,created_at)帮助过滤+排序",
+            "单独在created_at上建立索引总是足够的",
+            "INDEX 阻止 ORDER BY",
+            "有必要区分"
+          ],
+          "answerIndex": "0",
+          "explanation": "先创建租户_id，然后创建_at 的复合索引适合此模式。",
+          "answerIndexNote": ""
+        },
+        "21": {
+          "caseTitle": "GROUP BY 不完整",
+          "query": "SELECT 国家、城市、COUNT(*) FROM 用户 GROUP BY 国家；",
+          "options": [
+            "将城市添加到GROUP BY或聚合城市（否则根据DB无效）",
+            "添加排序依据",
+            "添加不同的",
+            "删除 COUNT 个"
+          ],
+          "answerIndex": "0",
+          "explanation": "所有非聚合列必须位于 GROUP BY（严格 SQL）中。",
+          "answerIndexNote": ""
+        },
+        "22": {
+          "caseTitle": "相关子查询",
+          "query": "SELECT u.* FROM users u WHERE EXISTS (SELECT 1 FROM Orders o WHERE o.user_id = u.id);",
+          "options": [
+            "返回至少有一个订单的用户",
+            "无需命令即可返回用户",
+            "重新发送命令",
+            "没有 GROUP BY 无效"
+          ],
+          "answerIndex": "0",
+          "explanation": "EXISTS 测试是否存在至少一个匹配行。",
+          "answerIndexNote": ""
+        },
+        "23": {
+          "caseTitle": "日期之间包含陷阱",
+          "query": "WHERE create_at 介于“2026-01-01”和“2026-01-31”之间",
+          "options": [
+            "如果created_at有时间，则31仅包括31 00:00；更喜欢<'2026-02-01'",
+            "BETWEEN 不包括终端",
+            "BETWEEN 仍然是假的",
+            "你必须有"
+          ],
+          "answerIndex": "0",
+          "explanation": "BETWEEN 包括在内，但午夜的“2026-01-31”标记不包括当天的其余时间。",
+          "answerIndexNote": ""
+        },
+        "24": {
+          "caseTitle": "SQL 中的 N+1",
+          "query": "从用户中选择*；然后对于每个用户： SELECT * FROM order WHERE user_id=?;",
+          "options": [
+            "在查询或批处理程序中进行 JOIN/IN",
+            "添加不同的",
+            "把拥有",
+            "下订单依据"
+          ],
+          "answerIndex": "0",
+          "explanation": "模式 N+1：请求过多。批量或加入。",
+          "answerIndexNote": ""
+        },
+        "25": {
+          "caseTitle": "索引和函数",
+          "query": "WHERE LOWER(电子邮件) = 'a@b.com'",
+          "options": [
+            "创建功能索引或标准化写入",
+            "添加排序依据",
+            "将 LOWER 放入 SELECT 中",
+            "把拥有"
+          ],
+          "answerIndex": "0",
+          "explanation": "列函数可能会妨碍正常索引。解决方案：功能索引或归一化列。",
+          "answerIndexNote": ""
+        }
+      }
+    },
+    "typingSpeed": {
+      "quotes": [
+        "今天早上，这座城市显得比平时平静。",
+        "有时候，只需要一个好主意就能解除一天的阻塞。",
+        "雨并不能阻止我们前进；它只会改变节奏。",
+        "一杯热咖啡，一个播放列表，一切都变得更容易。",
+        "小小的、反复的努力最终总会得到回报。",
+        "有时最好的计划就是开始。",
+        "我们无法控制一切，但我们可以选择下一步行动。",
+        "一条意想不到的消息可以在适当的时候让你脸上重新露出笑容。",
+        "好奇心打开了常规看不到的大门。",
+        "沉默可以帮助我们听到真正重要的事情。",
+        "最好的决定往往是最简单的。",
+        "睡个好觉可以弥补一天的糟糕。",
+        "错过一个细节没什么大不了的；放弃努力，是的。",
+        "短暂的步行胜过长时间的犹豫。",
+        "当你对自己保持耐心时，你会学得更快。",
+        "你每天所做的事情都在秘密地塑造着你。",
+        "明确的目标可以减少干扰。",
+        "每节省一分钟，就可以节省一周的时间。",
+        "好的节奏是可以长期保持的。",
+        "当天很少能看到进展，但它确实发生了。",
+        "我们可以累了，仍然继续前进。",
+        "勇气往往是一个微小而谨慎的行动。",
+        "好的时机可以改变一个普通的想法。",
+        "呼吸，重新开始，让时间完成它的工作。",
+        "错误是信息，而不是句子。",
+        "纪律是自由的一种形式。",
+        "从长远来看，一致性胜过动力。",
+        "最重要的是要保持一致，而不是完美。",
+        "良好的习惯让日子变得轻松。",
+        "保持简单，然后改进。",
+        "当不清楚的时候，写下来。",
+        "简短的清单比庞大的计划更好。",
+        "最好的能量来自清洁的开始。",
+        "品质源于重复的细节。",
+        "现在迈出一小步，明天就是一大步。",
+        "一个明确的决定可以消除很多压力。",
+        "冷静是现代人的一种超能力。",
+        "你可以改变你的想法，而不是你的努力。",
+        "重要的是方向，而不是速度。",
+        "坚持不一定要大声。",
+        "当你怀疑时，回到基础：行动。",
+        "选择一个优先事项，然后保护它。",
+        "良好的存储空间可以解放您的大脑。",
+        "简单使速度成为可能。",
+        "当我们知道原因时，我们就能更好地前进。",
+        "短暂的休息可以避免长时间的疲劳。",
+        "最好的东西是事实的敌人。",
+        "第一步之后就会出现动力。",
+        "完成一项任务比开始十项任务要好。",
+        "今天，目标是进步，而不是完美。"
+      ],
+      "numbers": [
+        "目标：2 项重要任务，然后 1 次休息。",
+        "提醒：每天 1% 对于一年来说是巨大的。",
+        "计划：25分钟专注，5分钟休息，然后重新开始。",
+        "预算：必需品 120 欧元，休闲娱乐 30 欧元。",
+        "路程：步行18分钟，差4分钟。",
+        "常规：水、光、运动，然后工作。",
+        "得分：9/10（如果您保持简单且一致）。",
+        "今晚：完成一件事，然后休息。",
+        "现在是早上7点45分，新的一天才刚刚开始。",
+        "前三名：睡眠、运动、创造。"
+      ],
+      "punctuation": [
+        "好吧……但这一次，我们要慢慢来。",
+        "你知道吗？我们保持简单：一次只做一件事。",
+        "是的，有可能；不，这不是魔法。",
+        "呼吸：吸气，呼气，重复。",
+        "你可能会犹豫——但无论如何你都会前进。",
+        "它并不完美，那又怎样？",
+        "一步，然后又一步；就这样。",
+        "有时候“足够好”就已经很棒了。",
+        "我们的重点是：现在。",
+        "它发生了；我们纠正；我们继续。"
+      ],
+      "coherent": {
+        "starters": [
+          "今晨",
+          "今天",
+          "本星期",
+          "当你想继续前进的时候",
+          "如果你缺乏能量",
+          "当一切都加速时",
+          "当你想保持专注时",
+          "开始之前",
+          "如果你犹豫的话",
+          "当你想要进步的时候"
+        ],
+        "actions": [
+          "只选择一个优先事项",
+          "写一个简短的清单",
+          "从最简单的任务开始",
+          "完成一个步骤，然后进行下一步",
+          "排除干扰15分钟",
+          "2分钟整理你的空间",
+          "呼吸并恢复稳定的节奏",
+          "不评判自己，继续前进",
+          "休息一下然后回来",
+          "保持你能保持的速度"
+        ],
+        "outcomes": [
+          "你会看到差异。",
+          "一切都变得更加顺利。",
+          "并且您可以节省时间。",
+          "并且你会保持动力。",
+          "你可以减轻压力。",
+          "而且你会做得更好，无需强迫。",
+          "并且你保持清醒。",
+          "你真的在前进。",
+          "你会平静下来。",
+          "而且你完成的次数会更多。"
+        ],
+        "addOns": [
+          "请记住，一致性胜过速度。",
+          "最好做一点，但要做得好。",
+          "一致性改变了日子。",
+          "现在迈出的一小步比一个意图更有价值。",
+          "重要的是继续前进，即使是缓慢的。"
+        ]
+      }
+    }
+  },
+  "quiz": {
+    "title": "技术测验",
+    "subtitle": "测试你的知识",
+    "levels": {
+      "easy": "简单级别",
+      "medium": "平均水平",
+      "hard": "难度级别"
+    },
+    "descriptions": {
+      "easy": "测试您的网络开发、前端和后端技术以及网络安全的基本知识。该测验非常适合开始或复习基础知识。",
+      "medium": "通过有关高级概念、开发最佳实践和安全方面的更深入的问题来挑战自己。非常适合经验丰富的开发人员。",
+      "hard": "通过有关架构、复杂算法、高级网络安全和优化的专家问题来测试您的技能。对于真正的专家！"
+    },
+    "info": {
+      "questions": "{count} 问题",
+      "timePerQuestion": "{seconds} 每个问题秒数"
+    },
+    "startQuiz": "开始测验",
+    "modal": {
+      "title": "测验",
+      "question": "问题",
+      "progress": "进步",
+      "timeLeft": "剩余时间",
+      "true": "真的",
+      "false": "伪造的",
+      "next": "下一个问题",
+      "finish": "结束",
+      "cancel": "取消",
+      "results": {
+        "title": "测验结果",
+        "description": "这是您的详细结果",
+        "correct": "好的答案",
+        "excellent": "佳作！ 🎉",
+        "good": "干得好！ 👍",
+        "average": "继续努力吧！ 💪",
+        "needsImprovement": "不要灰心，继续学习！ 📚",
+        "details": "回复详情",
+        "question": "问题",
+        "yourAnswer": "您的答案",
+        "correctAnswer": "好答案",
+        "timeout": "已过时间",
+        "noAnswer": "没有回应",
+        "true": "真的",
+        "false": "伪造的",
+        "close": "关闭"
+      }
+    },
+    "questions": {
+      "easy-1": {
+        "question": "使用什么 HTML 标签来创建主标题？",
+        "options": [
+          "<h1>",
+          "<title>",
+          "<header>",
+          "<head>"
+        ],
+        "explanation": "<h1> 是用于创建主标题（标题级别 1）的 HTML 标签。",
+        "correctAnswer": 0
+      },
+      "easy-2": {
+        "question": "CSS 代表层叠样式表。",
+        "explanation": "是的，CSS 确实代表级联样式表。",
+        "correctAnswer": 0
+      },
+      "easy-3": {
+        "question": "什么 JavaScript 方法允许您将元素添加到数组末尾？",
+        "options": [
+          "推（）",
+          "流行音乐（）",
+          "转移（）",
+          "取消移位（）"
+        ],
+        "explanation": "Push() 方法将一个或多个元素添加到数组末尾。",
+        "correctAnswer": 0
+      },
+      "easy-4": {
+        "question": "React 是 Facebook 开发的 JavaScript 库。",
+        "explanation": "是的，React 是 Facebook（现在的 Meta）于 2013 年创建的。",
+        "correctAnswer": 0
+      },
+      "easy-5": {
+        "question": "什么 CSS 属性用于更改文本颜色？",
+        "options": [
+          "颜色",
+          "文字颜色",
+          "字体颜色",
+          "文本样式"
+        ],
+        "explanation": "CSS 属性“color”用于设置文本的颜色。",
+        "correctAnswer": 0
+      },
+      "easy-6": {
+        "question": "TypeScript 是 JavaScript 的超集，添加了静态类型。",
+        "explanation": "是的，TypeScript 通过添加可选的静态类型来扩展 JavaScript。",
+        "correctAnswer": 0
+      },
+      "easy-7": {
+        "question": "使用什么协议来保护 Web 连接 (HTTPS)？",
+        "options": [
+          "传输层安全/SSL",
+          "文件传输协议",
+          "HTTP协议",
+          "邮件传输协议"
+        ],
+        "explanation": "TLS（传输层安全性）或 SSL（安全套接字层）可保护 HTTPS 连接。",
+        "correctAnswer": 0
+      },
+      "easy-8": {
+        "question": "Git 是一个分布式版本控制系统。",
+        "explanation": "是的，Git 是 Linus Torvalds 创建的分布式版本控制系统。",
+        "correctAnswer": 0
+      },
+      "easy-9": {
+        "question": "使用什么 HTTP 方法从服务器检索数据？",
+        "options": [
+          "得到",
+          "邮政",
+          "放",
+          "删除"
+        ],
+        "explanation": "GET 方法用于从服务器检索数据。",
+        "correctAnswer": 0
+      },
+      "easy-10": {
+        "question": "Next.js 是一个用于生产的 React 框架。",
+        "explanation": "是的，Next.js 是一个 React 框架，提供服务器端渲染和许多优化。",
+        "correctAnswer": 0
+      },
+      "easy-11": {
+        "question": "使用什么 HTML 标签来创建链接？",
+        "options": [
+          "<a>",
+          "<link>",
+          "<url>",
+          "<href>"
+        ],
+        "explanation": "<a>（锚）标签用于在 HTML 中创建超链接。",
+        "correctAnswer": 0
+      },
+      "easy-12": {
+        "question": "JavaScript 是一种仅限客户端的编程语言。",
+        "explanation": "不，JavaScript 也可以通过 Node.js 在服务器端运行。",
+        "correctAnswer": 1
+      },
+      "easy-13": {
+        "question": "什么 CSS 属性用于使元素水平居中？",
+        "options": [
+          "边距：自身",
+          "中心：真实",
+          "对齐：居中",
+          "位置：中心"
+        ],
+        "explanation": "margin：当元素具有定义的宽度时，自动将元素水平居中。",
+        "correctAnswer": 0
+      },
+      "easy-14": {
+        "question": "什么 JavaScript 方法允许您从数组中删除最后一个元素？",
+        "options": [
+          "流行音乐（）",
+          "推（）",
+          "转移（）",
+          "取消移位（）"
+        ],
+        "explanation": "pop() 方法删除并返回数组的最后一个元素。",
+        "correctAnswer": 0
+      },
+      "easy-15": {
+        "question": "HTML 代表超文本标记语言。",
+        "explanation": "是的，HTML 代表超文本标记语言。",
+        "correctAnswer": 0
+      },
+      "easy-16": {
+        "question": "哪个 HTML 标签用于创建无序列表？",
+        "options": [
+          "<ul>",
+          "<ol>",
+          "<li>",
+          "<list>"
+        ],
+        "explanation": "<ul>（无序列表）创建无序列表。",
+        "correctAnswer": 0
+      },
+      "easy-17": {
+        "question": "哪个 CSS 属性用于设置字体大小？",
+        "options": [
+          "字体大小",
+          "文字大小",
+          "尺寸",
+          "制作"
+        ],
+        "explanation": "font-size 属性设置字体的大小。",
+        "correctAnswer": 0
+      },
+      "easy-18": {
+        "question": "JavaScript 中的变量区分大小写。",
+        "explanation": "是的，JavaScript 区分大小写，因此“myVar”和“myvar”是两个不同的变量。",
+        "correctAnswer": 0
+      },
+      "easy-19": {
+        "question": "哪个 HTML 标签用于插入图像？",
+        "options": [
+          "<img>",
+          "<image>",
+          "<picture>",
+          "<photo>"
+        ],
+        "explanation": "<img> 标签用于将图像插入 HTML 页面。",
+        "correctAnswer": 0
+      },
+      "easy-20": {
+        "question": "什么 JavaScript 方法将字符串转换为数字？",
+        "options": [
+          "Number() 或 parseInt()",
+          "细绳（）",
+          "toString()",
+          "转变（）"
+        ],
+        "explanation": "Number() 和 parseInt() 将字符串转换为数字。",
+        "correctAnswer": 0
+      },
+      "easy-21": {
+        "question": "DOM 代表“文档对象模型”。",
+        "explanation": "是的，DOM（文档对象模型）表示 HTML 文档的结构。",
+        "correctAnswer": 0
+      },
+      "easy-22": {
+        "question": "什么 CSS 属性用于在元素边框之间添加空间？",
+        "options": [
+          "填充",
+          "利润",
+          "间距",
+          "差距"
+        ],
+        "explanation": "填充在元素内部、内容和边框之间添加空间。",
+        "correctAnswer": 0
+      },
+      "easy-23": {
+        "question": "使用什么 HTML 标签来创建段落？",
+        "options": [
+          "<p>",
+          "<para>",
+          "<text>",
+          "<paragraph>"
+        ],
+        "explanation": "<p> 标签用于在 HTML 中创建段落。",
+        "correctAnswer": 0
+      },
+      "easy-24": {
+        "question": "JavaScript 中的箭头函数有自己的“this”上下文。",
+        "explanation": "不，箭头函数从其父作用域继承“this”上下文。",
+        "correctAnswer": 1
+      },
+      "easy-25": {
+        "question": "什么 JavaScript 方法允许您在数组中查找元素？",
+        "options": [
+          "寻找（）",
+          "搜索（）",
+          "定位（）",
+          "得到（）"
+        ],
+        "explanation": "find() 方法返回数组中满足条件的第一个元素。",
+        "correctAnswer": 0
+      },
+      "easy-26": {
+        "question": "哪个 CSS 属性用于更改背景颜色？",
+        "options": [
+          "背景颜色",
+          "背景颜色",
+          "背景",
+          "颜色背景"
+        ],
+        "explanation": "背景颜色属性设置元素的背景颜色。",
+        "correctAnswer": 0
+      },
+      "easy-27": {
+        "question": "JSON 代表“JavaScript 对象表示法”。",
+        "explanation": "是的，JSON 是一种基于 JavaScript 对象表示法的数据格式。",
+        "correctAnswer": 0
+      },
+      "easy-28": {
+        "question": "使用什么 HTML 标签来创建表单？",
+        "options": [
+          "<form>",
+          "<input>",
+          "<fieldset>",
+          "<formset>"
+        ],
+        "explanation": "<form> 标签用于创建 HTML 表单。",
+        "correctAnswer": 0
+      },
+      "easy-29": {
+        "question": "什么 JavaScript 方法允许您从另一个表创建一个新表？",
+        "options": [
+          "地图（）",
+          "复制（）",
+          "复制（）",
+          "克隆（）"
+        ],
+        "explanation": "map() 方法通过对每个元素应用一个函数来创建一个新数组。",
+        "correctAnswer": 0
+      },
+      "easy-30": {
+        "question": "JavaScript 中的注释以 //（对于单行）或 /* */（对于多行）开头。",
+        "explanation": "是的， // 用于单行注释， /* */ 用于多行注释。",
+        "correctAnswer": 0
+      },
+      "easy-31": {
+        "question": "什么 CSS 属性用于使元素不可见？",
+        "options": [
+          "显示：无或可见性：隐藏",
+          "隐藏：真",
+          "可见：假",
+          "不透明度：0"
+        ],
+        "explanation": "display: none 从流中删除元素，visibility: hide 隐藏它但保留空间。",
+        "correctAnswer": 0
+      },
+      "easy-32": {
+        "question": "使用什么 HTML 标签来创建按钮？",
+        "options": [
+          "<button>",
+          "<btn>",
+          "<click>",
+          "<input type=\"button\">"
+        ],
+        "explanation": "<button> 标签用于在 HTML 中创建可点击的按钮。",
+        "correctAnswer": 0
+      },
+      "easy-33": {
+        "question": "JavaScript 中的数组从索引 0 开始。",
+        "explanation": "是的，JavaScript 数组的索引是从 0 开始的，而不是从 1 开始。",
+        "correctAnswer": 0
+      },
+      "easy-34": {
+        "question": "什么 CSS 属性用于设置元素的宽度？",
+        "options": [
+          "宽度",
+          "w",
+          "尺寸",
+          "方面"
+        ],
+        "explanation": "width 属性定义元素的宽度。",
+        "correctAnswer": 0
+      },
+      "easy-35": {
+        "question": "什么 JavaScript 方法允许您检查数组中是否存在某个元素？",
+        "options": [
+          "包括()",
+          "包含（）",
+          "有（）",
+          "存在（）"
+        ],
+        "explanation": "include() 方法检查数组是否包含特定元素。",
+        "correctAnswer": 0
+      },
+      "easy-36": {
+        "question": "LocalStorage 允许数据持久存储在浏览器中。",
+        "explanation": "是的，即使关闭浏览器后，localStorage 也会持久存储数据。",
+        "correctAnswer": 0
+      },
+      "easy-37": {
+        "question": "使用什么 HTML 标签来创建表格？",
+        "options": [
+          "<table>",
+          "<tab>",
+          "<grid>",
+          "<data>"
+        ],
+        "explanation": "<table> 标签用于在 HTML 中创建表格。",
+        "correctAnswer": 0
+      },
+      "easy-38": {
+        "question": "什么 JavaScript 方法允许您将数组的元素连接到字符串中？",
+        "options": [
+          "加入（）",
+          "连接（）",
+          "合并（）",
+          "组合（）"
+        ],
+        "explanation": "join() 方法将数组的所有元素连接成一个字符串。",
+        "correctAnswer": 0
+      },
+      "easy-39": {
+        "question": "JavaScript 中的函数是第一类对象。",
+        "explanation": "是的，JavaScript 函数可以分配给变量、作为参数传递等。",
+        "correctAnswer": 0
+      },
+      "easy-40": {
+        "question": "什么 CSS 属性用于在元素周围添加空间？",
+        "options": [
+          "利润",
+          "填充",
+          "间距",
+          "差距"
+        ],
+        "explanation": "margin 在元素外部、元素与其他元素之间添加空间。",
+        "correctAnswer": 0
+      },
+      "easy-41": {
+        "question": "使用哪个 HTML 标签来创建有序列表？",
+        "options": [
+          "<ol>",
+          "<ul>",
+          "<li>",
+          "<list>"
+        ],
+        "explanation": "<ol>（有序列表）创建一个编号列表。",
+        "correctAnswer": 0
+      },
+      "easy-42": {
+        "question": "JavaScript 中的“const”关键字允许您声明一个不能重新赋值的常量。",
+        "explanation": "是的，const 声明了一个在初始声明后不能重新赋值的常量。",
+        "correctAnswer": 0
+      },
+      "easy-43": {
+        "question": "什么 JavaScript 方法允许您过滤数组的元素？",
+        "options": [
+          "筛选（）",
+          "选择（）",
+          "寻找（）",
+          "搜索（）"
+        ],
+        "explanation": "filter() 方法使用通过测试的元素创建一个新数组。",
+        "correctAnswer": 0
+      },
+      "easy-44": {
+        "question": "什么 CSS 属性用于对齐文本？",
+        "options": [
+          "文本对齐",
+          "对齐",
+          "文本位置",
+          "结盟"
+        ],
+        "explanation": "text-align 属性设置文本的水平对齐方式。",
+        "correctAnswer": 0
+      },
+      "easy-45": {
+        "question": "JavaScript 中的 Promise 允许您管理异步代码。",
+        "explanation": "是的，Promise 允许您以比回调更可读的方式管理异步操作。",
+        "correctAnswer": 0
+      },
+      "easy-46": {
+        "question": "哪个 HTML 标签用于创建文本输入字段？",
+        "options": [
+          "<input type=\"text\">",
+          "<text>",
+          "<input>",
+          "<field>"
+        ],
+        "explanation": "<input type=\"text\"> 在表单中创建文本输入字段。",
+        "correctAnswer": 0
+      },
+      "easy-47": {
+        "question": "什么 JavaScript 方法允许您从数组中删除第一个元素？",
+        "options": [
+          "转移（）",
+          "流行音乐（）",
+          "取消移位（）",
+          "消除（）"
+        ],
+        "explanation": "shift() 方法删除并返回数组的第一个元素。",
+        "correctAnswer": 0
+      },
+      "easy-48": {
+        "question": "JavaScript 中的“let”关键字允许您声明具有块作用域的变量。",
+        "explanation": "是的，let 声明了一个具有块作用域的变量，与具有函数作用域的 var 不同。",
+        "correctAnswer": 0
+      },
+      "easy-49": {
+        "question": "什么 CSS 属性用于设置元素的高度？",
+        "options": [
+          "高度",
+          "小时",
+          "尺寸",
+          "方面"
+        ],
+        "explanation": "height 属性设置元素的高度。",
+        "correctAnswer": 0
+      },
+      "easy-50": {
+        "question": "哪种 JavaScript 方法可以将数组转换为字符串？",
+        "options": [
+          "toString()",
+          "toText()",
+          "字符串化()",
+          "转变（）"
+        ],
+        "explanation": "toString() 方法将数组转换为字符串。",
+        "correctAnswer": 0
+      },
+      "easy-51": {
+        "question": "CSS 类可以应用于多个 HTML 元素。",
+        "explanation": "是的，一个 CSS 类可以用于多个元素以应用相同的样式。",
+        "correctAnswer": 0
+      },
+      "easy-52": {
+        "question": "哪个 HTML 标签用于创建部门或部分？",
+        "options": [
+          "<div>",
+          "<section>",
+          "<container>",
+          "<box>"
+        ],
+        "explanation": "<div> 标签用于创建通用容器或部分。",
+        "correctAnswer": 0
+      },
+      "easy-53": {
+        "question": "什么 JavaScript 方法允许您将元素添加到数组的开头？",
+        "options": [
+          "取消移位（）",
+          "推（）",
+          "转移（）",
+          "前置()"
+        ],
+        "explanation": "unshift() 方法将一个或多个元素添加到数组的开头。",
+        "correctAnswer": 0
+      },
+      "easy-54": {
+        "question": "HTML 中的 ID 在页面上必须是唯一的。",
+        "explanation": "是的，每个 ID 在 HTML 页面上都必须是唯一的才能正确操作。",
+        "correctAnswer": 0
+      },
+      "easy-55": {
+        "question": "什么 CSS 属性用于定义边框样式？",
+        "options": [
+          "边框式",
+          "边界",
+          "边框型",
+          "边框设计"
+        ],
+        "explanation": "border-style 属性定义边框的样式（实线、虚线等）。",
+        "correctAnswer": 0
+      },
+      "easy-56": {
+        "question": "什么 JavaScript 方法允许您检查变量的类型？",
+        "options": [
+          "类型",
+          "种类（）",
+          "获取类型()",
+          "检查类型()"
+        ],
+        "explanation": "typeof 运算符返回一个指示变量类型的字符串。",
+        "correctAnswer": 0
+      },
+      "easy-57": {
+        "question": "“#id”CSS 选择器通过 ID 定位元素。",
+        "explanation": "是的，选择器 # 通过 CSS 中的 ID 来定位元素。",
+        "correctAnswer": 0
+      },
+      "easy-58": {
+        "question": "哪个 HTML 标签用于创建换行符？",
+        "options": [
+          "<br>",
+          "<break>",
+          "<lb>",
+          "<newline>"
+        ],
+        "explanation": "<br> 标签在文本中创建换行符。",
+        "correctAnswer": 0
+      },
+      "easy-59": {
+        "question": "什么 JavaScript 方法允许您对数组的元素进行排序？",
+        "options": [
+          "拼写（）",
+          "命令（）",
+          "安排（）",
+          "组织（）"
+        ],
+        "explanation": "sort() 方法对数组的元素进行就地排序。",
+        "correctAnswer": 0
+      },
+      "easy-60": {
+        "question": "“.class”CSS 选择器根据元素的类来定位元素。",
+        "explanation": "是的，选择器。按 CSS 中的类定位元素。",
+        "correctAnswer": 0
+      },
+      "easy-61": {
+        "question": "使用什么 HTML 标签来创建节标题？",
+        "options": [
+          "<header>",
+          "<head>",
+          "<title>",
+          "<h1>"
+        ],
+        "explanation": "<header> 标签代表节或页的标题。",
+        "correctAnswer": 0
+      },
+      "easy-62": {
+        "question": "什么 JavaScript 方法允许您将数组减少为单个值？",
+        "options": [
+          "减少（）",
+          "和（）",
+          "全部的（）",
+          "总计的（）"
+        ],
+        "explanation": "reduce() 方法通过应用函数将数组减少为单个值。",
+        "correctAnswer": 0
+      },
+      "easy-63": {
+        "question": "CSS 中的媒体查询允许您根据屏幕大小应用样式。",
+        "explanation": "是的，媒体查询允许您创建适应不同屏幕尺寸的响应式设计。",
+        "correctAnswer": 0
+      },
+      "easy-64": {
+        "question": "使用什么 HTML 标签来创建页脚？",
+        "options": [
+          "<footer>",
+          "<foot>",
+          "<bottom>",
+          "<end>"
+        ],
+        "explanation": "<footer> 标签代表节或页面的页脚。",
+        "correctAnswer": 0
+      },
+      "easy-65": {
+        "question": "什么 JavaScript 方法允许您检查数组的所有元素是否通过测试？",
+        "options": [
+          "每一个（）",
+          "全部（）",
+          "检查全部()",
+          "验证全部()"
+        ],
+        "explanation": "every() 方法测试数组中的所有元素是否通过测试。",
+        "correctAnswer": 0
+      },
+      "easy-66": {
+        "question": "CSS 中的 Flexbox 允许您创建灵活且响应式的布局。",
+        "explanation": "是的，Flexbox 是一个 CSS 布局模板，可以轻松创建灵活的设计。",
+        "correctAnswer": 0
+      },
+      "easy-67": {
+        "question": "使用什么 HTML 标签来创建导航部分？",
+        "options": [
+          "<nav>",
+          "<navigation>",
+          "<menu>",
+          "<navbar>"
+        ],
+        "explanation": "<nav> 标签代表带有链接的导航部分。",
+        "correctAnswer": 0
+      },
+      "easy-68": {
+        "question": "哪种 JavaScript 方法允许您检查数组中的至少一个元素是否通过测试？",
+        "options": [
+          "一些（）",
+          "任何（）",
+          "一（）",
+          "检查一个()"
+        ],
+        "explanation": "some() 方法测试数组中的至少一个元素是否通过测试。",
+        "correctAnswer": 0
+      },
+      "easy-69": {
+        "question": "在 JavaScript 中用“var”声明的变量被提升到其作用域的顶部。",
+        "explanation": "是的，var 声明被提升，这意味着它们被移动到其作用域的顶部。",
+        "correctAnswer": 0
+      },
+      "easy-70": {
+        "question": "哪个 CSS 属性用于定义字体系列？",
+        "options": [
+          "字体系列",
+          "制作",
+          "字体类型",
+          "字体样式"
+        ],
+        "explanation": "font-family 属性定义要使用的字体系列。",
+        "correctAnswer": 0
+      },
+      "easy-71": {
+        "question": "什么 JavaScript 方法允许您创建数组的浅表副本？",
+        "options": [
+          "片（）",
+          "复制（）",
+          "克隆（）",
+          "复制（）"
+        ],
+        "explanation": "slice() 方法创建数组的浅表副本，而不修改原始数组。",
+        "correctAnswer": 0
+      },
+      "easy-72": {
+        "question": "“元素”CSS 选择器针对特定类型的所有元素。",
+        "explanation": "是的，元素选择器针对页面上该类型的所有元素。",
+        "correctAnswer": 0
+      },
+      "easy-73": {
+        "question": "哪个 HTML 标签用于创建多行文本字段？",
+        "options": [
+          "<textarea>",
+          "<text>",
+          "<input type=\"textarea\">",
+          "<multiline>"
+        ],
+        "explanation": "<textarea> 标签在表单中创建多行文本字段。",
+        "correctAnswer": 0
+      },
+      "easy-74": {
+        "question": "什么 JavaScript 方法允许连接两个数组？",
+        "options": [
+          "连接（）",
+          "合并（）",
+          "加入（）",
+          "组合（）"
+        ],
+        "explanation": "concat() 方法将两个或多个数组组合成一个新数组。",
+        "correctAnswer": 0
+      },
+      "easy-75": {
+        "question": "“class”和“id”HTML 属性用于标识元素并设置元素样式。",
+        "explanation": "是的，class 和 id 标识 CSS 和 JavaScript 的元素。",
+        "correctAnswer": 0
+      },
+      "easy-76": {
+        "question": "什么 CSS 属性用于设置字母之间的间距？",
+        "options": [
+          "字母间距",
+          "文字间距",
+          "字符间距",
+          "间距"
+        ],
+        "explanation": "letter-spacing 属性设置字符之间的间距。",
+        "correctAnswer": 0
+      },
+      "easy-77": {
+        "question": "什么 JavaScript 方法允许您将字符串拆分为数组？",
+        "options": [
+          "分裂（）",
+          "划分（）",
+          "分离（）",
+          "休息（）"
+        ],
+        "explanation": "split() 方法将字符串拆分为子字符串数组。",
+        "correctAnswer": 0
+      },
+      "easy-78": {
+        "question": "JavaScript 事件允许您与用户操作进行交互。",
+        "explanation": "是的，单击、鼠标悬停等事件允许您对用户操作做出反应。",
+        "correctAnswer": 0
+      },
+      "easy-79": {
+        "question": "使用什么 HTML 标签来创建列表项？",
+        "options": [
+          "<li>",
+          "<item>",
+          "<list-item>",
+          "<element>"
+        ],
+        "explanation": "<li> 标签表示 <ul> 或 <ol> 中的列表项。",
+        "correctAnswer": 0
+      },
+      "easy-80": {
+        "question": "什么 JavaScript 方法允许您搜索数组中的元素并返回其索引？",
+        "options": [
+          "索引()",
+          "查找索引()",
+          "搜索（）",
+          "定位（）"
+        ],
+        "explanation": "indexOf() 方法返回可以在数组中找到元素的第一个索引。",
+        "correctAnswer": 0
+      },
+      "easy-81": {
+        "question": "CSS 选择器可以组合起来以定位特定元素。",
+        "explanation": "是的，您可以组合选择器（后代、子代、相邻等）以实现精确定位。",
+        "correctAnswer": 0
+      },
+      "easy-82": {
+        "question": "使用什么 HTML 标签来创建复选框字段？",
+        "options": [
+          "<input type=\"checkbox\">",
+          "<checkbox>",
+          "<check>",
+          "<input type=\"check\">"
+        ],
+        "explanation": "<input type=\"checkbox\"> 在表单中创建一个复选框。",
+        "correctAnswer": 0
+      },
+      "easy-83": {
+        "question": "哪种 JavaScript 方法允许反转数组中元素的顺序？",
+        "options": [
+          "撤销（）",
+          "倒置（）",
+          "翻动（）",
+          "落后（）"
+        ],
+        "explanation": "reverse() 方法反转数组元素的顺序。",
+        "correctAnswer": 0
+      },
+      "easy-84": {
+        "question": "CSS 伪类（如 :hover）允许您在特定状态下设置元素的样式。",
+        "explanation": "是的，诸如 :hover、:focus、:active 之类的伪类允许您设置元素状态的样式。",
+        "correctAnswer": 0
+      },
+      "easy-85": {
+        "question": "哪个 HTML 标签用于创建下拉字段？",
+        "options": [
+          "<select>",
+          "<dropdown>",
+          "<option>",
+          "<choice>"
+        ],
+        "explanation": "<select> 标签在表单中创建一个下拉菜单。",
+        "correctAnswer": 0
+      },
+      "easy-86": {
+        "question": "什么 JavaScript 方法允许您检查字符串是否包含子文本？",
+        "options": [
+          "包括()",
+          "包含（）",
+          "有（）",
+          "寻找（）"
+        ],
+        "explanation": "include() 方法检查字符串是否包含指定的子字符串。",
+        "correctAnswer": 0
+      },
+      "easy-87": {
+        "question": "JavaScript 中的变量可以包含不同类型的数据（数字、字符串、对象等）。",
+        "explanation": "是的，JavaScript 是一种动态类型语言，变量可以改变它们的类型。",
+        "correctAnswer": 0
+      },
+      "easy-88": {
+        "question": "什么 CSS 属性用于设置元素的不透明度？",
+        "options": [
+          "不透明度",
+          "透明度",
+          "阿尔法",
+          "能见度"
+        ],
+        "explanation": "opacity 属性定义元素的不透明度级别（0 = 透明，1 = 不透明）。",
+        "correctAnswer": 0
+      },
+      "easy-89": {
+        "question": "什么 JavaScript 方法将字符串转换为大写？",
+        "options": [
+          "toUpperCase()",
+          "上（）",
+          "到上层（）",
+          "大写（）"
+        ],
+        "explanation": "toUpperCase() 方法将字符串中的所有字符转换为大写。",
+        "correctAnswer": 0
+      },
+      "easy-90": {
+        "question": "“必需”和“禁用”HTML 属性可以在表单中使用。",
+        "explanation": "是的，required 使字段成为必填项，disabled 则禁用该字段。",
+        "correctAnswer": 0
+      },
+      "easy-91": {
+        "question": "使用什么 HTML 标签来创建引用元素？",
+        "options": [
+          "<blockquote>",
+          "<quote>",
+          "<cite>",
+          "<q>"
+        ],
+        "explanation": "<blockquote> 标签用于创建长引用。",
+        "correctAnswer": 0
+      },
+      "easy-92": {
+        "question": "什么 JavaScript 方法将字符串转换为小写？",
+        "options": [
+          "toLowerCase()",
+          "降低（）",
+          "toLower()",
+          "小写（）"
+        ],
+        "explanation": "toLowerCase() 方法将字符串中的所有字符转换为小写。",
+        "correctAnswer": 0
+      },
+      "easy-93": {
+        "question": "JavaScript 中的数组可以包含不同类型的元素。",
+        "explanation": "是的，JavaScript 数组可以包含混合的数字、字符串、对象等。",
+        "correctAnswer": 0
+      },
+      "easy-94": {
+        "question": "什么 CSS 属性用于设置文本行之间的间距？",
+        "options": [
+          "行高",
+          "文字高度",
+          "行间距",
+          "间距"
+        ],
+        "explanation": "line-height 属性设置文本行的高度。",
+        "correctAnswer": 0
+      },
+      "easy-95": {
+        "question": "什么 JavaScript 方法允许您替换字符串中的文本？",
+        "options": [
+          "代替（）",
+          "代替（）",
+          "交换（）",
+          "交换（）"
+        ],
+        "explanation": "Replace() 方法将字符串中的一个子字符串替换为另一个子字符串。",
+        "correctAnswer": 0
+      },
+      "easy-96": {
+        "question": "图像中的 HTML“alt”属性提高了可访问性。",
+        "explanation": "是的，alt 属性为屏幕阅读器和损坏的图像提供替代文本。",
+        "correctAnswer": 0
+      },
+      "easy-97": {
+        "question": "哪个 HTML 标签用于创建代码元素？",
+        "options": [
+          "<code>",
+          "<programming>",
+          "<script>",
+          "<snippet>"
+        ],
+        "explanation": "<code> 标签用于显示计算机代码。",
+        "correctAnswer": 0
+      },
+      "easy-98": {
+        "question": "什么 JavaScript 方法允许您提取字符串的一部分？",
+        "options": [
+          "substring() 或 slice()",
+          "提炼（）",
+          "切（）",
+          "部分（）"
+        ],
+        "explanation": "substring() 和 slice() 方法提取字符串的一部分。",
+        "correctAnswer": 0
+      },
+      "easy-99": {
+        "question": "CSS 选择器可以根据元素在 DOM 中的位置来定位元素。",
+        "explanation": "是的，我们可以使用 :first-child, :last-child, :nth-child() 按位置定位。",
+        "correctAnswer": 0
+      },
+      "easy-100": {
+        "question": "哪个 HTML 标签用于创建预格式化文本元素？",
+        "options": [
+          "<pre>",
+          "<format>",
+          "<text>",
+          "<preserve>"
+        ],
+        "explanation": "<pre> 标签保留文本中的空格和换行符。",
+        "correctAnswer": 0
+      },
+      "medium-1": {
+        "question": "JavaScript 中 let 和 var 的主要区别是什么？",
+        "options": [
+          "let 具有块作用域，var 具有函数作用域",
+          "let 比 var 快",
+          "var 已过时",
+          "没有区别"
+        ],
+        "explanation": "let 具有块作用域，这意味着它只能在声明它的块中访问，而 var 具有函数作用域。",
+        "correctAnswer": 0
+      },
+      "medium-2": {
+        "question": "React hooks 只能用在函数式组件中。",
+        "explanation": "是的，React hooks（useState、useEffect等）只能在功能组件或自定义hook中使用。",
+        "correctAnswer": 0
+      },
+      "medium-3": {
+        "question": "什么是SQL注入？",
+        "options": [
+          "注入恶意 SQL 代码的攻击",
+          "一种SQL优化方法",
+          "数据库的一种类型",
+          "SQL 函数"
+        ],
+        "explanation": "SQL注入是一种安全漏洞，允许攻击者执行恶意SQL命令。",
+        "correctAnswer": 0
+      },
+      "medium-4": {
+        "question": "存储密码的推荐方法是什么？",
+        "options": [
+          "使用合适的算法进行散列（bcrypt、argon2）",
+          "对称加密",
+          "清除存储",
+          "压缩"
+        ],
+        "explanation": "密码必须使用适当的算法（例如 bcrypt 或 argon2）进行哈希处理，切勿以明文形式存储。",
+        "correctAnswer": 0
+      },
+      "medium-5": {
+        "question": "CORS（跨源资源共享）是一种浏览器安全机制。",
+        "explanation": "是的，CORS是一种控制不同来源之间请求的安全机制。",
+        "correctAnswer": 0
+      },
+      "medium-6": {
+        "question": "什么是SSR（服务器端渲染）？",
+        "options": [
+          "在发送到客户端之前服务器端渲染页面",
+          "仅客户端渲染",
+          "一种缓存方法",
+          "一个网络协议"
+        ],
+        "explanation": "SSR 涉及在将页面发送到浏览器之前在服务器端生成页面的 HTML。",
+        "correctAnswer": 0
+      },
+      "medium-7": {
+        "question": "JavaScript 中 == 和 === 有什么区别？",
+        "options": [
+          "=== 比较值和类型，== 仅比较值",
+          "==更快",
+          "=== 已过时",
+          "没有区别"
+        ],
+        "explanation": "===（严格相等）同时比较值和类型，而 ==（松散相等）在比较之前执行类型转换。",
+        "correctAnswer": 0
+      },
+      "medium-8": {
+        "question": "如果没有密钥，JWT 令牌（JSON Web 令牌）可以解码，但不能修改。",
+        "explanation": "是的，JWT 可以被解码（它们是 base64），但签名可以防止在没有密钥的情况下进行修改。",
+        "correctAnswer": 0
+      },
+      "medium-9": {
+        "question": "什么是 XSS（跨站脚本）攻击？",
+        "options": [
+          "将恶意 JavaScript 代码注入网页",
+          "对服务器的攻击",
+          "病毒的一种",
+          "一种压缩方法"
+        ],
+        "explanation": "XSS 是一个允许注入在受害者浏览器中执行的恶意 JavaScript 代码的漏洞。",
+        "correctAnswer": 0
+      },
+      "medium-10": {
+        "question": "哪种 React 方法允许您存储计算值？",
+        "options": [
+          "使用备忘录",
+          "使用状态",
+          "使用效果",
+          "使用回调"
+        ],
+        "explanation": "useMemo 允许您记住昂贵的计算结果，并且仅在依赖项发生变化时才重新计算。",
+        "correctAnswer": 0
+      },
+      "medium-11": {
+        "question": "PostgreSQL 是一个 NoSQL 数据库。",
+        "explanation": "不，PostgreSQL 是关系数据库 (SQL)，而不是 NoSQL。",
+        "correctAnswer": 1
+      },
+      "medium-12": {
+        "question": "什么是 CSRF（跨站请求伪造）？",
+        "options": [
+          "强迫用户执行不需要的操作的攻击",
+          "一种优化方法",
+          "Cookie 的一种",
+          "JavaScript 函数"
+        ],
+        "explanation": "CSRF 是一种强制经过身份验证的用户在 Web 应用程序上执行不需要的操作的攻击。",
+        "correctAnswer": 0
+      },
+      "medium-13": {
+        "question": "搜索未排序数组的平均时间复杂度是多少？",
+        "options": [
+          "Y(n)",
+          "O(logn)",
+          "复杂度(1)",
+          "O(n²)"
+        ],
+        "explanation": "在未排序的数组中，在最坏的情况下您必须遍历所有元素，因此 O(n)。",
+        "correctAnswer": 0
+      },
+      "medium-14": {
+        "question": "JavaScript 中的 Promise 可以与 .then() 和 .catch() 链接起来。",
+        "explanation": "是的，Promise 可以链接起来以顺序处理异步操作。",
+        "correctAnswer": 0
+      },
+      "medium-15": {
+        "question": "Express.js 中的中间件是什么？",
+        "options": [
+          "在请求和响应之间运行的函数",
+          "道路的一种",
+          "HTTP 方法",
+          "协议"
+        ],
+        "explanation": "中间件是一个可以访问请求对象、响应对象和请求-响应周期中的下一个函数的函数。",
+        "correctAnswer": 0
+      },
+      "medium-16": {
+        "question": "HTTPS 默认使用端口 80。",
+        "explanation": "不，HTTPS 默认使用端口 443。端口 80 由 HTTP 使用。",
+        "correctAnswer": 1
+      },
+      "medium-17": {
+        "question": "JavaScript 中 const 和 let 有什么区别？",
+        "options": [
+          "const 不能重新赋值，let 可以",
+          "const 更快",
+          "让已经过时了",
+          "没有区别"
+        ],
+        "explanation": "const 声明一个不能重新赋值的常量，而 let 允许重新赋值。",
+        "correctAnswer": 0
+      },
+      "medium-18": {
+        "question": "什么是延迟加载？",
+        "options": [
+          "仅在需要时加载资源",
+          "一次加载所有内容",
+          "一种缓存方法",
+          "数据库的一种类型"
+        ],
+        "explanation": "延迟加载包括仅在需要时加载资源（图像、组件），从而提高性能。",
+        "correctAnswer": 0
+      },
+      "medium-19": {
+        "question": "可以使用 Secure 和 HttpOnly 属性来保护 HTTP cookie。",
+        "explanation": "是的，安全强制 HTTPS 和 HttpOnly 阻止 JavaScript 访问 cookie，从而降低 XSS 风险。",
+        "correctAnswer": 0
+      },
+      "medium-20": {
+        "question": "React 中的自定义钩子是什么？",
+        "options": [
+          "以“use”开头的函数，可以使用其他钩子",
+          "一个反应组件",
+          "一种渲染方法",
+          "一种状态"
+        ],
+        "explanation": "自定义钩子是一个以“use”开头的 JavaScript 函数，可以调用其他 React 钩子。",
+        "correctAnswer": 0
+      },
+      "medium-21": {
+        "question": "内容安全策略 (CSP) 有助于防止 XSS 攻击。",
+        "explanation": "是的，CSP 是一种安全机制，有助于控制可以加载和执行哪些资源。",
+        "correctAnswer": 0
+      },
+      "medium-22": {
+        "question": "在 JavaScript 中创建对象的浅拷贝的方法是什么？",
+        "options": [
+          "Object.assign() 或扩展运算符",
+          "对象.clone()",
+          "对象.copy()",
+          "对象.duplicate()"
+        ],
+        "explanation": "Object.assign({}, obj) 或 {...obj} 创建对象的浅表副本。",
+        "correctAnswer": 0
+      },
+      "medium-23": {
+        "question": "WebSocket 支持实时双向通信。",
+        "explanation": "是的，WebSocket 建立持久的 TCP 连接，允许实时双向通信。",
+        "correctAnswer": 0
+      },
+      "medium-24": {
+        "question": "什么是去抖？",
+        "options": [
+          "延迟函数的执行，直到超时",
+          "加速某个功能",
+          "一种缓存方法",
+          "事件类型"
+        ],
+        "explanation": "去抖动会延迟函数的执行，直到经过一定时间而没有新的调用，这对于实时查找很有用。",
+        "correctAnswer": 0
+      },
+      "medium-25": {
+        "question": "即使关闭浏览器后，localStorage 仍然存在。",
+        "explanation": "是的，localStorage 即使在浏览器关闭后也会将数据持久存储在浏览器中。",
+        "correctAnswer": 0
+      },
+      "medium-26": {
+        "question": "JavaScript 中的提升是什么？",
+        "options": [
+          "将声明移动到其范围的顶部",
+          "一种排序方法",
+          "变量的一种类型",
+          "语法错误"
+        ],
+        "explanation": "提升是一种 JavaScript 行为，它将变量和函数的声明移动到其作用域的顶部。",
+        "correctAnswer": 0
+      },
+      "medium-27": {
+        "question": "JavaScript 中的回调是什么？",
+        "options": [
+          "一个函数作为参数传递给另一个函数",
+          "循环的一种类型",
+          "数组方法",
+          "操作员"
+        ],
+        "explanation": "回调是作为参数传递给另一个函数并稍后执行的函数。",
+        "correctAnswer": 0
+      },
+      "medium-28": {
+        "question": "JavaScript 数组是对象。",
+        "explanation": "是的，JavaScript 数组是一种特殊类型的对象，具有特定的方法和属性。",
+        "correctAnswer": 0
+      },
+      "medium-29": {
+        "question": "JavaScript 中的展开运算符 (...) 是什么？",
+        "options": [
+          "将可迭代扩展为单个元素的运算符",
+          "数学运算符",
+          "数组方法",
+          "函数的一种类型"
+        ],
+        "explanation": "扩展运算符 (...) 允许您将可迭代对象（数组、对象）扩展为单个元素。",
+        "correctAnswer": 0
+      },
+      "medium-30": {
+        "question": "JavaScript 中的解构是什么？",
+        "options": [
+          "从对象或数组中提取值到变量中",
+          "摧毁一个物体",
+          "一种去除方法",
+          "变量的一种类型"
+        ],
+        "explanation": "解构允许您将对象或数组中的值提取到不同的变量中。",
+        "correctAnswer": 0
+      },
+      "medium-31": {
+        "question": "JavaScript 中的 async/await 函数简化了异步代码。",
+        "explanation": "是的，async/await 允许您以同步且更具可读性的方式编写异步代码。",
+        "correctAnswer": 0
+      },
+      "medium-32": {
+        "question": "编程中“纯函数”的概念是什么？",
+        "options": [
+          "对于相同的输入总是返回相同的结果的函数",
+          "快捷功能",
+          "没有参数的函数",
+          "全局函数"
+        ],
+        "explanation": "纯函数对于相同的输入总是返回相同的结果，并且没有副作用。",
+        "correctAnswer": 0
+      },
+      "medium-33": {
+        "question": "函数式编程中“柯里化”的概念是什么？",
+        "options": [
+          "将多参数函数转换为一系列单参数函数",
+          "一种排序方法",
+          "循环的一种类型",
+          "一个错误"
+        ],
+        "explanation": "柯里化将采用多个参数的函数转换为一系列每个采用一个参数的函数。",
+        "correctAnswer": 0
+      },
+      "medium-34": {
+        "question": "sessionStorage 仅存储浏览器会话的数据。",
+        "explanation": "是的，sessionStorage 仅存储当前会话的数据，并在关闭选项卡时将其删除。",
+        "correctAnswer": 0
+      },
+      "medium-35": {
+        "question": "编程中“不变性”的概念是什么？",
+        "options": [
+          "创建后状态无法更改",
+          "经常变化的状态",
+          "一种突变方法",
+          "变量的一种类型"
+        ],
+        "explanation": "不变性意味着对象在创建后不能被修改，而是创建新的对象。",
+        "correctAnswer": 0
+      },
+      "medium-36": {
+        "question": "React 中“组合”的概念是什么？",
+        "options": [
+          "组合小组件以创建更复杂的组件",
+          "渲染的一种类型",
+          "状态方法",
+          "一个钩子"
+        ],
+        "explanation": "组合涉及组合小型的、可重用的组件来创建更复杂的组件。",
+        "correctAnswer": 0
+      },
+      "medium-37": {
+        "question": "React 中的 props 是只读的。",
+        "explanation": "是的，道具是不可变的，不应由子组件修改。",
+        "correctAnswer": 0
+      },
+      "medium-38": {
+        "question": "React 中“高阶组件”（HOC）的概念是什么？",
+        "options": [
+          "接受一个组件并返回一个新组件的函数",
+          "高级组件",
+          "钩子的一种",
+          "一种渲染方法"
+        ],
+        "explanation": "HOC 是一个函数，它接受一个组件并返回一个具有附加功能的新组件。",
+        "correctAnswer": 0
+      },
+      "medium-39": {
+        "question": "React 中“渲染道具”的概念是什么？",
+        "options": [
+          "组件接受函数作为渲染道具的技术",
+          "道具的一种",
+          "状态方法",
+          "一个钩子"
+        ],
+        "explanation": "渲染道具是一种技术，组件接受一个函数作为道具来确定它应该渲染什么。",
+        "correctAnswer": 0
+      },
+      "medium-40": {
+        "question": "React 中的 useEffect 钩子可以覆盖 componentDidMount、componentDidUpdate 和 componentWillUnmount。",
+        "explanation": "是的，useEffect 结合了这三个类组件生命周期方法的功能。",
+        "correctAnswer": 0
+      },
+      "medium-41": {
+        "question": "React 中“受控组件”的概念是什么？",
+        "options": [
+          "其值由 React 状态控制的组件",
+          "不受控制的组件",
+          "钩子的一种",
+          "一种渲染方法"
+        ],
+        "explanation": "受控组件是其值由 React 状态通过 props 控制的组件。",
+        "correctAnswer": 0
+      },
+      "medium-42": {
+        "question": "React 中“不受控组件”的概念是什么？",
+        "options": [
+          "将其状态存储在 DOM 中而不是 React 中的组件",
+          "无状态组件",
+          "钩子的一种",
+          "一个错误"
+        ],
+        "explanation": "不受控制的组件将其状态存储在 DOM 中并使用 refs 来访问值。",
+        "correctAnswer": 0
+      },
+      "medium-43": {
+        "question": "React 中的 useRef 钩子允许您创建在渲染之间持续存在的可变引用。",
+        "explanation": "是的，useRef 返回一个可变对象，其 .current 属性可以更改而不会触发重新渲染。",
+        "correctAnswer": 0
+      },
+      "medium-44": {
+        "question": "React 中“key prop”的概念是什么？",
+        "options": [
+          "帮助 React 识别列表中项目的唯一标识符",
+          "加密密钥",
+          "道具的一种",
+          "一个方法"
+        ],
+        "explanation": "key 属性帮助 React 识别列表中哪些元素已更改、添加或删除。",
+        "correctAnswer": 0
+      },
+      "medium-45": {
+        "question": "React 中“和解”的概念是什么？",
+        "options": [
+          "React 高效更新 DOM 的过程",
+          "渲染的一种类型",
+          "状态方法",
+          "一个钩子"
+        ],
+        "explanation": "协调是 React 将虚拟 DOM 与真实 DOM 进行比较并应用必要更改的过程。",
+        "correctAnswer": 0
+      },
+      "medium-46": {
+        "question": "React 中的 useContext 钩子允许您在不使用 Consumer 的情况下访问上下文。",
+        "explanation": "是的，useContext 通过避免使用 Consumer 模式来简化对上下文的访问。",
+        "correctAnswer": 0
+      },
+      "medium-47": {
+        "question": "Web应用程序中“代码分割”的概念是什么？",
+        "options": [
+          "将代码分成按需加载的块",
+          "将代码拆分为文件",
+          "一种压缩方法",
+          "渲染的一种类型"
+        ],
+        "explanation": "代码分割允许您将包分成更小的块，仅在必要时加载。",
+        "correctAnswer": 0
+      },
+      "medium-48": {
+        "question": "图片的“延迟加载”概念是什么？",
+        "options": [
+          "仅在图像即将可见时加载图像",
+          "一次加载所有图像",
+          "一种压缩方法",
+          "图像的一种类型"
+        ],
+        "explanation": "延迟加载仅在图像即将进入视口时才加载图像，从而提高了性能。",
+        "correctAnswer": 0
+      },
+      "medium-49": {
+        "question": "“单页应用程序”(SPA) 的概念加载单个 HTML 页面并动态更新内容。",
+        "explanation": "是的，SPA 加载单个 HTML 页面并使用 JavaScript 更新内容，而无需重新加载页面。",
+        "correctAnswer": 0
+      },
+      "medium-50": {
+        "question": "Web 开发中“渐进式改进”的概念是什么？",
+        "options": [
+          "创建功能基础然后添加高级功能",
+          "逐步改善",
+          "一、测试方法",
+          "一种框架"
+        ],
+        "explanation": "渐进增强包括创建可访问的功能基础，然后添加高级功能。",
+        "correctAnswer": 0
+      },
+      "medium-51": {
+        "question": "编程中“记忆化”的概念是什么？",
+        "options": [
+          "存储昂贵函数的结果以避免重新计算它们",
+          "一种排序方法",
+          "缓存的一种",
+          "一个错误"
+        ],
+        "explanation": "记忆化涉及缓存昂贵函数的结果以提高性能。",
+        "correctAnswer": 0
+      },
+      "medium-52": {
+        "question": "React 中的 useMemo 钩子允许您记住计算值。",
+        "explanation": "是的，useMemo 会记住计算的结果，并且仅在其依赖项发生变化时才重新计算。",
+        "correctAnswer": 0
+      },
+      "medium-53": {
+        "question": "JavaScript 中“闭包”的概念是什么？",
+        "options": [
+          "可以访问其外部作用域中的变量的函数",
+          "一种关闭方法",
+          "变量的一种类型",
+          "一个错误"
+        ],
+        "explanation": "闭包是一个即使在外部作用域关闭后也可以访问其外部作用域中的变量的函数。",
+        "correctAnswer": 0
+      },
+      "medium-54": {
+        "question": "JavaScript 中“事件委托”的概念是什么？",
+        "options": [
+          "将事件处理程序附加到父级而不是子级",
+          "代表活动",
+          "事件类型",
+          "一个方法"
+        ],
+        "explanation": "事件委托包括将事件处理程序附加到父元素以管理其子元素的事件。",
+        "correctAnswer": 0
+      },
+      "medium-55": {
+        "question": "React 中的 useCallback 钩子可以让你记住函数。",
+        "explanation": "是的，useCallback 返回一个函数的存储版本，该版本仅在其依赖项发生变化时才会发生变化。",
+        "correctAnswer": 0
+      },
+      "medium-56": {
+        "question": "JavaScript 中“节流”的概念是什么？",
+        "options": [
+          "将函数的执行限制为每个时间段执行一次",
+          "加速某个功能",
+          "循环的一种类型",
+          "一个方法"
+        ],
+        "explanation": "限制将函数的执行限制为每个时间段执行一次，这对于频繁发生的事件很有用。",
+        "correctAnswer": 0
+      },
+      "medium-57": {
+        "question": "JavaScript中“原型链”的概念是什么？",
+        "options": [
+          "JavaScript 中允许继承的原型链",
+          "一种链接方法",
+          "一种对象",
+          "一个错误"
+        ],
+        "explanation": "原型链允许对象继承其原型和父原型的属性和方法。",
+        "correctAnswer": 0
+      },
+      "medium-58": {
+        "question": "JavaScript 中的 ES6 类是原型系统上的语法糖。",
+        "explanation": "是的，ES6 类的语法更简洁，但在底层仍然使用原型系统。",
+        "correctAnswer": 0
+      },
+      "medium-59": {
+        "question": "React 中“虚拟 DOM”的概念是什么？",
+        "options": [
+          "实际 DOM 的内存中 JavaScript 表示",
+          "实际的 DOM",
+          "DOM 的一种类型",
+          "一个方法"
+        ],
+        "explanation": "虚拟 DOM 是真实 DOM 的轻量级 JavaScript 表示，允许高效更新。",
+        "correctAnswer": 0
+      },
+      "medium-60": {
+        "question": "“服务器端渲染”（SSR）的概念是什么？",
+        "options": [
+          "在将 HTML 发送到客户端之前在服务器上呈现 HTML",
+          "返回给客户端",
+          "渲染的一种类型",
+          "一个方法"
+        ],
+        "explanation": "SSR 涉及在服务器上生成 HTML、改进 SEO 和初始加载时间。",
+        "correctAnswer": 0
+      },
+      "medium-61": {
+        "question": "“静态站点生成”(SSG) 的概念在构建时生成 HTML。",
+        "explanation": "是的，SSG 在构建时生成所有 HTML 页面，创建闪电般快速的静态站点。",
+        "correctAnswer": 0
+      },
+      "medium-62": {
+        "question": "React中“水合”的概念是什么？",
+        "options": [
+          "将事件处理程序附加到预渲染的 HTML",
+          "加水",
+          "渲染的一种类型",
+          "一个方法"
+        ],
+        "explanation": "Hydration 是将 React 事件处理程序附加到服务器端预渲染 HTML 的过程。",
+        "correctAnswer": 0
+      },
+      "medium-63": {
+        "question": "JavaScript 中“tree shake”的概念是什么？",
+        "options": [
+          "消除捆绑期间的死代码",
+          "摇动一棵树",
+          "一种排序方法",
+          "捆绑包的一种类型"
+        ],
+        "explanation": "Tree Shaking 消除了捆绑期间未使用的代码，从而减少了最终捆绑包的大小。",
+        "correctAnswer": 0
+      },
+      "medium-64": {
+        "question": "“polyfill”的概念允许您添加旧浏览器中缺少的功能。",
+        "explanation": "是的，polyfill 是实现旧版浏览器中缺少的功能的代码。",
+        "correctAnswer": 0
+      },
+      "medium-65": {
+        "question": "JavaScript 中“转译”的概念是什么？",
+        "options": [
+          "在相同抽象级别将代码从一种语言转换为另一种语言",
+          "编译代码",
+          "翻译代码",
+          "一个方法"
+        ],
+        "explanation": "转译将代码从一种语言转换为同一级别的另一种语言（例如：TypeScript 到 JavaScript）。",
+        "correctAnswer": 0
+      },
+      "medium-66": {
+        "question": "Web框架中的“中间件”概念是什么？",
+        "options": [
+          "在请求和响应之间运行的函数",
+          "道路的一种",
+          "一个方法",
+          "一个错误"
+        ],
+        "explanation": "中间件是一种拦截请求和响应的功能，允许添加功能。",
+        "correctAnswer": 0
+      },
+      "medium-67": {
+        "question": "“REST”（表述性状态传输）的概念是 API 的一种架构风格。",
+        "explanation": "是的，REST 是一种使用标准 HTTP 方法进行 CRUD 操作的架构风格。",
+        "correctAnswer": 0
+      },
+      "medium-68": {
+        "question": "“GraphQL”的概念是什么？",
+        "options": [
+          "一种 API 查询语言，可让您准确请求所需的数据",
+          "数据库的一种类型",
+          "HTTP 方法",
+          "一个框架"
+        ],
+        "explanation": "GraphQL 是一种查询语言，允许客户端准确请求他们需要的数据。",
+        "correctAnswer": 0
+      },
+      "medium-69": {
+        "question": "“WebSocket”的概念是什么？",
+        "options": [
+          "实时双向通信协议",
+          "插座的一种",
+          "HTTP 方法",
+          "一个框架"
+        ],
+        "explanation": "WebSocket 是一种允许客户端和服务器之间进行实时双向通信的协议。",
+        "correctAnswer": 0
+      },
+      "medium-70": {
+        "question": "“Service Worker”的概念允许您创建离线 Web 应用程序。",
+        "explanation": "是的，Service Workers 允许您缓存资源并创建离线 Web 应用程序。",
+        "correctAnswer": 0
+      },
+      "medium-71": {
+        "question": "“渐进式网络应用程序”（PWA）的概念是什么？",
+        "options": [
+          "与本机应用程序一样工作的 Web 应用程序",
+          "申请类型",
+          "一个方法",
+          "一个框架"
+        ],
+        "explanation": "PWA 结合了最好的网络和移动功能：安装、离线、推送通知。",
+        "correctAnswer": 0
+      },
+      "medium-72": {
+        "question": "编程中“依赖注入”的概念是什么？",
+        "options": [
+          "从外部提供对象的依赖项，而不是在内部创建它们",
+          "注入代码",
+          "成瘾的一种",
+          "一个方法"
+        ],
+        "explanation": "依赖注入通过从外部提供依赖关系，使代码更加可测试和模块化。",
+        "correctAnswer": 0
+      },
+      "medium-73": {
+        "question": "“单元测试”的概念是单独测试各个代码单元。",
+        "explanation": "是的，单元测试单独测试小单元代码（函数、组件）。",
+        "correctAnswer": 0
+      },
+      "medium-74": {
+        "question": "“集成测试”的概念是什么？",
+        "options": [
+          "测试多个组件或模块之间的交互",
+          "测试单个组件",
+          "测试类型",
+          "一个方法"
+        ],
+        "explanation": "集成测试验证多个组件是否可以正确地协同工作。",
+        "correctAnswer": 0
+      },
+      "medium-75": {
+        "question": "“端到端测试”（E2E）的概念是什么？",
+        "options": [
+          "像真实用户一样从头到尾测试完整的应用程序",
+          "测试一个功能",
+          "测试类型",
+          "一个方法"
+        ],
+        "explanation": "E2E测试模拟真实用户并从头到尾测试整个应用程序。",
+        "correctAnswer": 0
+      },
+      "medium-76": {
+        "question": "测试中“模拟”的概念允许您模拟外部依赖关系。",
+        "explanation": "是的，模拟允许您用模拟版本替换依赖项以隔离测试。",
+        "correctAnswer": 0
+      },
+      "medium-77": {
+        "question": "“持续集成”（CI）的概念是什么？",
+        "options": [
+          "每次提交时自动进行测试和构建",
+          "持续整合",
+          "一种部署类型",
+          "一个方法"
+        ],
+        "explanation": "CI 会在每次提交时自动执行测试和构建，以快速检测问题。",
+        "correctAnswer": 0
+      },
+      "medium-78": {
+        "question": "“持续部署”（CD）的概念是什么？",
+        "options": [
+          "测试后自动将代码部署到生产环境",
+          "持续部署",
+          "测试类型",
+          "一个方法"
+        ],
+        "explanation": "所有测试通过后，CD 会自动将代码部署到生产环境。",
+        "correctAnswer": 0
+      },
+      "medium-79": {
+        "question": "“版本控制”的概念有助于跟踪代码随时间的变化。",
+        "explanation": "是的，版本控制（如 Git）允许您跟踪、管理和协作代码更改。",
+        "correctAnswer": 0
+      },
+      "medium-80": {
+        "question": "Git 中“分支”的概念是什么？",
+        "options": [
+          "车厂独立开发线",
+          "一根树枝",
+          "一种提交类型",
+          "一个方法"
+        ],
+        "explanation": "Git 分支是一个独立的开发线，允许您单独处理功能。",
+        "correctAnswer": 0
+      },
+      "hard-1": {
+        "question": "JavaScript 中的深拷贝和浅拷贝有什么区别？",
+        "options": [
+          "深复制复制所有级别，浅复制仅复制第一级别",
+          "浅复制速度更快",
+          "没有区别",
+          "深层复制已被弃用"
+        ],
+        "explanation": "浅复制仅复制第一层，而深复制则递归复制所有嵌套层。",
+        "correctAnswer": 0
+      },
+      "hard-2": {
+        "question": "OAuth 2.0 协议仅使用访问令牌，而不使用刷新令牌。",
+        "explanation": "不，OAuth 2.0 使用访问令牌（短持续时间）和刷新令牌（长持续时间）来更新访问令牌。",
+        "correctAnswer": 1
+      },
+      "hard-3": {
+        "question": "合并排序算法的时间复杂度是多少？",
+        "options": [
+          "O(n log n)",
+          "O(n²)",
+          "Y(n)",
+          "O(logn)"
+        ],
+        "explanation": "在所有情况下（最佳、中等和最差），合并排序的时间复杂度均为 O(n log n)。",
+        "correctAnswer": 0
+      },
+      "hard-4": {
+        "question": "ECB（Electronic Codebook）模式在加密方面的主要漏洞是什么？",
+        "options": [
+          "相同的块产生相同的加密",
+          "他太慢了",
+          "它需要太多的内存",
+          "根本不安全"
+        ],
+        "explanation": "ECB 对相同的块进行相同的加密，从而揭示数据中的模式，这是一个主要的安全漏洞。",
+        "correctAnswer": 0
+      },
+      "hard-5": {
+        "question": "Service Worker 可以拦截和修改网络请求。",
+        "explanation": "是的，Service Workers 充当应用程序和网络之间的代理，允许拦截和修改请求。",
+        "correctAnswer": 0
+      },
+      "hard-6": {
+        "question": "安全中的最小特权原则是什么？",
+        "options": [
+          "仅授予最低限度的必要权限",
+          "默认授予所有权限",
+          "一种加密方法",
+          "一个网络协议"
+        ],
+        "explanation": "最小权限原则涉及仅授予用户和进程完成其任务所需的最小权限。",
+        "correctAnswer": 0
+      },
+      "hard-7": {
+        "question": "React 中的 useMemo 和 useCallback 有什么区别？",
+        "options": [
+          "useMemo 记忆一个值，useCallback 记忆一个函数",
+          "useCallback 更快",
+          "没有区别",
+          "useMemo 已弃用"
+        ],
+        "explanation": "useMemo 返回一个记忆值，而 useCallback 返回一个记忆函数。",
+        "correctAnswer": 0
+      },
+      "hard-8": {
+        "question": "SHA-256 哈希是可逆的，您可以从哈希中找到原始文本。",
+        "explanation": "不，SHA-256 是一种单向哈希函数，从数学上来说不可能找到原文。",
+        "correctAnswer": 1
+      },
+      "hard-9": {
+        "question": "React 应用程序中的代码分割是什么？",
+        "options": [
+          "将代码分成按需加载的块",
+          "将代码拆分为文件",
+          "一种压缩方法",
+          "渲染的一种类型"
+        ],
+        "explanation": "代码分割允许您将 JavaScript 包分成更小的块，仅在必要时加载，从而提高性能。",
+        "correctAnswer": 0
+      },
+      "hard-10": {
+        "question": "身份验证和授权有什么区别？",
+        "options": [
+          "身份验证检查身份，授权检查权限",
+          "没有区别",
+          "授权更安全",
+          "身份验证已弃用"
+        ],
+        "explanation": "身份验证检查您是谁（身份），而授权检查您被允许执行的操作（权限）。",
+        "correctAnswer": 0
+      },
+      "hard-11": {
+        "question": "React 状态的直接突变是允许并推荐的。",
+        "explanation": "不，React 需要不可变的状态更新。直接突变不会触发重新渲染。",
+        "correctAnswer": 1
+      },
+      "hard-12": {
+        "question": "什么是异步编程中的竞争条件？",
+        "options": [
+          "当执行顺序取决于时间时出现不可预测的行为",
+          "语法错误",
+          "循环的一种类型",
+          "一种缓存方法"
+        ],
+        "explanation": "当结果取决于异步进程的执行顺序时，就会出现竞争条件，从而产生不可预测的行为。",
+        "correctAnswer": 0
+      },
+      "hard-13": {
+        "question": "就地排序算法的空间复杂度是多少？",
+        "options": [
+          "复杂度(1)",
+          "Y(n)",
+          "O(n log n)",
+          "O(n²)"
+        ],
+        "explanation": "就地排序算法使用常量 O(1) 内存空间，直接修改数组而不创建副本。",
+        "correctAnswer": 0
+      },
+      "hard-14": {
+        "question": "同源策略可防止一个域的脚本访问另一域的数据。",
+        "explanation": "是的，同源策略是一种限制不同源之间资源访问的安全机制。",
+        "correctAnswer": 0
+      },
+      "hard-15": {
+        "question": "React 中的虚拟 DOM 是什么？",
+        "options": [
+          "实际 DOM 的内存中 JavaScript 表示",
+          "实际的浏览器 DOM",
+          "一种缓存方法",
+          "一种组件"
+        ],
+        "explanation": "虚拟 DOM 是真实 DOM 的轻量级 JavaScript 表示，允许 React 优化更新。",
+        "correctAnswer": 0
+      },
+      "hard-16": {
+        "question": "密码学中的盐和胡椒有什么区别？",
+        "options": [
+          "盐对于每个用户来说都是独一无二的，胡椒是共享且秘密的",
+          "辣椒比较长",
+          "没有区别",
+          "盐已经过时了"
+        ],
+        "explanation": "盐对于每个用户来说都是唯一的，并与哈希值一起存储，而胡椒是单独存储的共享秘密。",
+        "correctAnswer": 0
+      },
+      "hard-17": {
+        "question": "JavaScript 中的闭包允许函数访问其外部作用域中的变量，即使该作用域已关闭。",
+        "explanation": "是的，闭包允许内部函数即使在执行后也可以访问外部函数的变量。",
+        "correctAnswer": 0
+      },
+      "hard-18": {
+        "question": "区块链背景下什么是双重支出？",
+        "options": [
+          "两次花费相同的价值单位",
+          "一种加密方法",
+          "交易类型",
+          "计算错误"
+        ],
+        "explanation": "双重支出是指两次花费同一单位数字价值的问题，由区块链通过共识解决。",
+        "correctAnswer": 0
+      },
+      "hard-19": {
+        "question": "JavaScript 中的 WeakMap 和 Map 有什么区别？",
+        "options": [
+          "WeakMap 的键较弱，无法迭代",
+          "地图更快",
+          "没有区别",
+          "WeakMap 已弃用"
+        ],
+        "explanation": "WeakMap 对键使用弱引用（允许垃圾回收）并且不能迭代，这与 Map 不同。",
+        "correctAnswer": 0
+      },
+      "hard-20": {
+        "question": "HTTP/2 协议允许多路复用，允许通过单个 TCP 连接进行多个请求。",
+        "explanation": "是的，HTTP/2 引入了多路复用，允许通过单个 TCP 连接同时发送多个请求。",
+        "correctAnswer": 0
+      },
+      "hard-21": {
+        "question": "React 中“提升状态”的概念是什么？",
+        "options": [
+          "将状态移动到公共父组件",
+          "将状态提升到 DOM",
+          "一种缓存方法",
+          "钩子的一种"
+        ],
+        "explanation": "提升状态涉及将共享状态移动到最近的公共父组件。",
+        "correctAnswer": 0
+      },
+      "hard-22": {
+        "question": "AES-128 和 AES-256 之间的主要区别是什么？",
+        "options": [
+          "密钥长度（128 位与 256 位）",
+          "执行速度",
+          "加密类型",
+          "没有区别"
+        ],
+        "explanation": "AES-128 使用 128 位密钥，而 AES-256 使用 256 位密钥，提供增强的安全性。",
+        "correctAnswer": 0
+      },
+      "hard-23": {
+        "question": "Next.js 13+ 中的服务器组件仅在服务器端运行，不包含在客户端捆绑包中。",
+        "explanation": "是的，服务器组件仅在服务器端运行，从而减少了客户端 JavaScript 包的大小。",
+        "correctAnswer": 0
+      },
+      "hard-24": {
+        "question": "JavaScript 中“事件委托”的概念是什么？",
+        "options": [
+          "在父级上附加一个监听器来处理子级事件",
+          "将事件委托给服务器",
+          "一种缓存方法",
+          "事件类型"
+        ],
+        "explanation": "事件委托包括将侦听器附加到父元素以管理其子元素的事件，从而提高性能。",
+        "correctAnswer": 0
+      },
+      "hard-25": {
+        "question": "搜索平衡二叉搜索树的时间复杂度是多少？",
+        "options": [
+          "O(logn)",
+          "Y(n)",
+          "复杂度(1)",
+          "O(n log n)"
+        ],
+        "explanation": "在平衡二叉搜索树中，搜索的复杂度为 O(log n)，因为我们在每个级别将搜索空间除以二。",
+        "correctAnswer": 0
+      },
+      "hard-26": {
+        "question": "WebSocket 协议使用与 HTTP (80) 或 HTTPS (443) 相同的端口。",
+        "explanation": "是的，WebSocket 从普通的 HTTP/HTTPS 连接开始，然后使用相同的端口升级到 WebSocket。",
+        "correctAnswer": 0
+      },
+      "hard-27": {
+        "question": "编程中“记忆化”的概念是什么？",
+        "options": [
+          "存储昂贵的计算结果以避免重新计算",
+          "一种压缩方法",
+          "缓存的一种",
+          "内存错误"
+        ],
+        "explanation": "记忆包括将昂贵的计算结果存储在缓存中，以避免使用相同的输入重新计算它们。",
+        "correctAnswer": 0
+      },
+      "hard-28": {
+        "question": "自签名 SSL 证书和证书颁发机构签名的证书有什么区别？",
+        "options": [
+          "由 CA 签署的证书受到浏览器的验证和信任",
+          "没有区别",
+          "自签名更安全",
+          "CA 已过时"
+        ],
+        "explanation": "由 CA 签名的证书会受到浏览器的验证和信任，而自签名的证书会生成安全警告。",
+        "correctAnswer": 0
+      },
+      "hard-29": {
+        "question": "JavaScript 中的生成器允许您使用 Yield 创建可迭代函数。",
+        "explanation": "是的，生成器是可以暂停和恢复的特殊函数，使用yield 来生成值。",
+        "correctAnswer": 0
+      },
+      "hard-30": {
+        "question": "网络安全中的“纵深防御”概念是什么？",
+        "options": [
+          "使用多层安全保护系统",
+          "单层最大安全性",
+          "一种加密方法",
+          "防火墙的一种"
+        ],
+        "explanation": "深度防御涉及使用多个独立的安全层来保护系统，从而降低受损风险。",
+        "correctAnswer": 0
+      },
+      "hard-31": {
+        "question": "Redux 中的 thunk 和中间件有什么区别？",
+        "options": [
+          "thunk 是用于异步操作的特定中间件",
+          "中间件是一种 thunk",
+          "没有区别",
+          "thunk 已经过时了"
+        ],
+        "explanation": "thunk 是一个 Redux 中间件，允许您分派函数而不是简单的操作，对于异步操作非常有用。",
+        "correctAnswer": 0
+      },
+      "hard-32": {
+        "question": "QUIC 协议使用 UDP 代替 TCP 来提高性能。",
+        "explanation": "是的，QUIC（快速 UDP 互联网连接）使用具有内置可靠性和安全功能的 UDP，从而提高了性能。",
+        "correctAnswer": 0
+      },
+      "hard-33": {
+        "question": "状态管理中“单一事实来源”的概念是什么？",
+        "options": [
+          "拥有应用程序状态的单一可信来源",
+          "拥有多个状态源",
+          "一种缓存方法",
+          "数据库的一种类型"
+        ],
+        "explanation": "单一事实来源包括拥有应用程序状态的单一可靠来源，从而避免不一致。",
+        "correctAnswer": 0
+      },
+      "hard-34": {
+        "question": "哈希和 HMAC（基于哈希的消息验证码）有什么区别？",
+        "options": [
+          "HMAC 使用密钥来验证消息",
+          "哈希更安全",
+          "没有区别",
+          "HMAC 已过时"
+        ],
+        "explanation": "HMAC 将散列与密钥相结合，从而可以验证消息的完整性和真实性。",
+        "correctAnswer": 0
+      },
+      "hard-35": {
+        "question": "Web Workers 允许 JavaScript 在与主线程分开的线程中执行。",
+        "explanation": "是的，Web Workers 允许 JavaScript 代码在单独的线程中执行，从而避免阻塞主线程。",
+        "correctAnswer": 0
+      },
+      "hard-36": {
+        "question": "REST API 中的“幂等性”概念是什么？",
+        "options": [
+          "多次执行相同的查询会产生相同的结果",
+          "一种缓存方法",
+          "查询的一种类型",
+          "查询错误"
+        ],
+        "explanation": "幂等性意味着多次执行相同的查询会产生相同的结果，这对于 PUT 和 DELETE 方法很重要。",
+        "correctAnswer": 0
+      },
+      "hard-37": {
+        "question": "JWT（JSON Web 令牌）和经典会话令牌有什么区别？",
+        "options": [
+          "JWT是无状态的并且包含数据，会话令牌需要服务器存储",
+          "会话令牌更安全",
+          "没有区别",
+          "JWT 已弃用"
+        ],
+        "explanation": "JWT 是无状态的，包含令牌中的数据，而会话令牌需要服务器端存储会话数据。",
+        "correctAnswer": 0
+      },
+      "hard-38": {
+        "question": "TLS 1.3 减少了建立安全连接所需的往返次数。",
+        "explanation": "是的，TLS 1.3 将握手次数从 2 次往返减少到 1 次，从而提高了性能和安全性。",
+        "correctAnswer": 0
+      },
+      "hard-39": {
+        "question": "编程中“依赖注入”的概念是什么？",
+        "options": [
+          "从外部提供对象的依赖项，而不是在内部创建它们",
+          "在里面创建所有依赖项",
+          "一种缓存方法",
+          "函数的一种类型"
+        ],
+        "explanation": "依赖注入涉及从外部提供对象的依赖关系，提高可测试性和灵活性。",
+        "correctAnswer": 0
+      },
+      "hard-40": {
+        "question": "CSRF 令牌和 JWT 令牌有什么区别？",
+        "options": [
+          "CSRF令牌防范CSRF，JWT用于身份验证",
+          "JWT 防范 CSRF",
+          "没有区别",
+          "CSRF 令牌已过时"
+        ],
+        "explanation": "CSRF 令牌通过验证请求的来源来防止 CSRF 攻击，而 JWT 用于身份验证和授权。",
+        "correctAnswer": 0
+      },
+      "hard-41": {
+        "question": "React 服务器组件可以使用 useState 和 useEffect 等钩子。",
+        "explanation": "不可以，服务器组件仅在服务器端运行，不能使用需要客户端状态的钩子。",
+        "correctAnswer": 1
+      },
+      "hard-42": {
+        "question": "JavaScript 中“事件循环”的概念是什么？",
+        "options": [
+          "JavaScript 中管理异步执行的机制",
+          "代码循环",
+          "一种缓存方法",
+          "函数的一种类型"
+        ],
+        "explanation": "事件循环是JavaScript中管理异步执行的机制，管理执行堆栈和回调队列。",
+        "correctAnswer": 0
+      },
+      "hard-43": {
+        "question": "通配符证书和 SAN（主题备用名称）证书有什么区别？",
+        "options": [
+          "通配符涵盖*.domain.com，SAN列出了几个特定的​​域",
+          "SAN更安全",
+          "没有区别",
+          "通配符已过时"
+        ],
+        "explanation": "通配符证书涵盖所有子域 (*.domain.com)，而 SAN 列出了几个特定域。",
+        "correctAnswer": 0
+      },
+      "hard-44": {
+        "question": "HTTP/3 协议使用 QUIC 而不是 TCP 作为传输协议。",
+        "explanation": "是的，HTTP/3 使用基于 UDP 的 QUIC，比基于 TCP 的 HTTP/2 提供更好的性能。",
+        "correctAnswer": 0
+      },
+      "hard-45": {
+        "question": "JavaScript 捆绑中的“tree shake”概念是什么？",
+        "options": [
+          "从最终捆绑包中消除未使用的死代码",
+          "添加附加代码",
+          "一种压缩方法",
+          "缓存的一种"
+        ],
+        "explanation": "Tree Shaking 是一种优化技术，可以消除最终包中的无效（未使用）代码，从而减小其大小。",
+        "correctAnswer": 0
+      },
+      "hard-46": {
+        "question": "基于IP的限速和基于Token的限速有什么区别？",
+        "options": [
+          "每个地址基于 IP 的限制，每个经过身份验证的用户基于令牌的限制",
+          "基于令牌的速度更快",
+          "没有区别",
+          "基于IP的已经过时了"
+        ],
+        "explanation": "基于IP的速率限制限制IP地址的请求，而基于令牌的每个经过身份验证的用户的限制更精确。",
+        "correctAnswer": 0
+      },
+      "hard-47": {
+        "question": "JavaScript 中的代理允许您拦截和个性化对象上的操作。",
+        "explanation": "是的，代理允许您创建一个拦截和个性化基本操作（读、写等）的对象。",
+        "correctAnswer": 0
+      },
+      "hard-48": {
+        "question": "网络安全“零信任”的概念是什么？",
+        "options": [
+          "默认情况下不信任任何用户或设备",
+          "信任所有用户",
+          "一种加密方法",
+          "防火墙的一种"
+        ],
+        "explanation": "零信任是一种安全模型，默认情况下不信任任何用户或设备，验证每次访问。",
+        "correctAnswer": 0
+      },
+      "hard-49": {
+        "question": "Polyfill 和转译器有什么区别？",
+        "options": [
+          "Polyfill 添加缺失的功能，转译器转换代码",
+          "转译速度更快",
+          "没有区别",
+          "Polyfill 已过时"
+        ],
+        "explanation": "Polyfill 添加了环境中缺失的功能，而转译器则将代码从一种语言转换为另一种语言。",
+        "correctAnswer": 0
+      },
+      "hard-50": {
+        "question": "gRPC 协议使用 Protocol Buffer 进行数据序列化。",
+        "explanation": "是的，gRPC 使用 Protocol Buffers (protobuf) 作为默认序列化格式，提供高效的二进制序列化。",
+        "correctAnswer": 0
+      }
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "找不到页面",
+      "description": "您要查找的页面不存在或已被移动。",
+      "backHome": "返回首页",
+      "badge": "错误404"
+    },
+    "500": {
+      "title": "发生错误",
+      "description": "抱歉，发生意外错误。请再试一次。",
+      "retry": "再试一次",
+      "backHome": "返回首页"
+    }
+  },
+  "portfolioProject": {
+    "title": "文件夹",
+    "badge": "个人项目",
+    "subtitle": "现代而高效的作品集，旨在展示我在 Web 开发方面的技能并提供完美的用户体验。",
+    "description": "这个项目代表了我的专业在线展示。它采用现代网络技术构建，突出了我的成就、我的技术技能以及我提供干净、高效和易于访问的界面的能力。",
+    "links": {
+      "live": "查看网站",
+      "code": "查看代码"
+    },
+    "meta": {
+      "durationLabel": "期间",
+      "duration": "2个月",
+      "roleLabel": "角色",
+      "role": "开发商",
+      "teamLabel": "团队",
+      "team": "独奏",
+      "statusLabel": "状态",
+      "status": "在线的"
+    },
+    "problem": {
+      "title": "问题",
+      "description": "纸质简历或 PDF 已不足以脱颖而出。招聘人员和客户希望看到一些具体的东西：有效的界面、干净的代码和对细节的关注。静态文档进行了解释，但没有证明任何内容。"
+    },
+    "solution": {
+      "title": "解决方案",
+      "description": "建立一个互动的作品集来展示我的实际技能。每一个技术选择、每一个界面细节、每一次交互都是我的专业知识的切实证明——而不仅仅是掌握技术的列表。"
+    },
+    "features": {
+      "title": "要点",
+      "subtitle": "使该项目与众不同的基本要素。",
+      "items": {
+        "item1": {
+          "title": "清晰的架构",
+          "description": "模块化且可扩展的结构。每个组件都有其职责，即使项目增长，代码也保持可读和可维护。"
+        },
+        "item2": {
+          "title": "详细的项目页面",
+          "description": "每个项目的可重复使用模板：背景、技术选择、遇到的挑战和获得的结果。一致且易于丰富。"
+        },
+        "item3": {
+          "title": "移动优先且响应迅速",
+          "description": "所有屏幕上的最佳体验。自适应布局、优化的图像以及从移动设备到桌面的流畅交互。"
+        }
+      }
+    },
+    "techChoices": {
+      "title": "技术栈",
+      "description": "选择现代技术是因为其可靠性、性能和生态系统。",
+      "items": {
+        "item1": "Next.js 16 + 严格的 TypeScript — SSR、优化的路由、强类型以实现健壮的代码。",
+        "item2": "Tailwind CSS 4 — 一致的设计系统、实用风格、快速迭代，无需遗留 CSS。",
+        "item3": "Radix UI + shadcn/ui - 默认情况下可访问的组件，可自定义且有详细记录。"
+      }
+    },
+    "architecture": {
+      "title": "建筑学",
+      "description": "产品思想组织：通过 i18n、可重用组件和直观的文件结构清晰分离 UI 和内容。即使几个月没有触及该项目，它仍然具有可维护性和可扩展性。"
+    },
+    "quality": {
+      "title": "质量与标准",
+      "subtitle": "保证专业用户体验的支柱。",
+      "items": {
+        "performance": {
+          "title": "表现",
+          "description": "轻量页面、延迟加载、优化图像。 Lighthouse 在所有标准上得分 > 90。"
+        },
+        "accessibility": {
+          "title": "无障碍",
+          "description": "键盘导航、WCAG 对比、HTML 语义、ARIA 标签。每个人都可以使用。"
+        },
+        "security": {
+          "title": "安全",
+          "description": "安全标头、输入验证、无易受攻击的依赖项。 OWASP 最佳实践。"
+        },
+        "seo": {
+          "title": "搜索引擎优化",
+          "description": "完整的元数据、站点地图、语义结构。搜索引擎的最佳索引。"
+        }
+      }
+    },
+    "challenges": {
+      "title": "遇到的挑战",
+      "items": {
+        "item1": "避免“冷目录”效应——平衡文本和视觉效果，创造引人入胜的阅读节奏。",
+        "item2": "保持移动设备的质量——响应式网格、稳定的排版层次、流畅的触摸交互。"
+      }
+    },
+    "results": {
+      "title": "结果",
+      "items": {
+        "item1": "专业的在线形象反映了我的水平和工作风格。",
+        "item2": "可维护的代码库：添加项目只需不到 30 分钟。",
+        "item3": "具体展示我的技能——代码是公开的、可发言的。"
+      }
+    },
+    "nextSteps": {
+      "title": "后续步骤",
+      "items": {
+        "item1": "丰富新项目和详细的案例研究。",
+        "item2": "添加微妙的动画和微交互来增强用户体验。",
+        "item3": "整合一个技术博客来分享我的学习成果。"
+      }
+    },
+    "ctaBottom": {
+      "title": "想看更多吗？",
+      "description": "在线浏览该网站或深入研究源代码以了解其构建方式。"
+    }
+  },
+  "githubStats": {
+    "title": "GitHub 统计",
+    "homeTitle": "GitHub 活动",
+    "homeSubtitle": "我的开源项目统计",
+    "selectRepos": "选择存储库",
+    "minOneRepo": "必须至少选择一个存储库",
+    "loading": "加载中...",
+    "chartTitle": "提交历史",
+    "chartSubtitle": "点击查看图表",
+    "periodForChart": "图表周期",
+    "periodForStats": "统计周期（提交、添加行、删除行）",
+    "loadingData": "正在加载数据...",
+    "takeTime": "此操作可能需要一些时间",
+    "viewAllStats": "查看所有统计数据",
+    "repoCount": "{count, plural, one {# 个仓库} other {# 个仓库}}",
+    "periods": {
+      "7d": "7天",
+      "30d": "30天",
+      "6m": "6个月",
+      "12m": "12个月",
+      "loading": "加载中...",
+      "notAvailable": "此期间数据不足"
+    },
+    "charts": {
+      "commits": {
+        "label": "提交",
+        "total": "{count, plural, =0 {该周期提交} =1 {该周期提交} other {该周期提交}}"
+      }
+    },
+    "search": {
+      "title": "按哈希搜索",
+      "placeholder": "提交的哈希值（例如：a1b2c3d）",
+      "loading": "加载中...",
+      "noResults": "未找到提交",
+      "clearSelection": "清除选择",
+      "sortNewest": "最近的",
+      "sortOldest": "年长的"
+    },
+    "commitDetail": {
+      "loading": "正在加载提交...",
+      "filesChanged": "{count, plural, =1 {更改了 1 个文件} other {更改了 # 个文件}}",
+      "viewOnGithub": "在 GitHub 上查看"
+    },
+    "errors": {
+      "loading": "加载统计信息时出错",
+      "notConfigured": "GitHub 令牌未配置"
+    },
+    "overview": {
+      "commits": "{count, plural, =0 {提交} =1 {提交} other {提交}}",
+      "contributors": "{count, plural, =0 {贡献者} =1 {贡献者} other {贡献者}}",
+      "additions": "{count, plural, =0 {新增行} =1 {新增行} other {新增行}}",
+      "deletions": "{count, plural, =0 {删除行} =1 {删除行} other {删除行}}",
+      "stars": "{count, plural, =0 {星标} =1 {星标} other {星标}}",
+      "forks": "{count, plural, =0 {分叉} =1 {分叉} other {分叉}}",
+      "size": "尺寸"
+    },
+    "languages": {
+      "title": "{count, plural, =1 {语言} other {语言}}",
+      "other": "其他的"
+    },
+    "contributors": {
+      "title": "{count, plural, =1 {贡献者} other {贡献者}}",
+      "total": "{count, plural, =1 {1 位贡献者} other {# 位贡献者}}",
+      "andMore": "+{count, plural, =1 {另 1 位} other {另 # 位}}"
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "description": "在这里，您可以找到有关我的工作、技能和项目的最常见问题的答案。如果您的问题未列出，请随时直接与我联系。",
+    "faqs": {
+      "question1": {
+        "question": "我怎么联系你？",
+        "answer": "您可以向我发送电子邮件至 contact@paulviandier.com 或使用“联系方式”部分中的联系表。"
+      },
+      "question2": {
+        "question": "你掌握哪些语言和技术？",
+        "answer": "HTML、CSS、JavaScript、TypeScript、React、Next.js 和 Tailwind CSS。我还为 API 和脚本编写 Node.js。"
+      },
+      "question3": {
+        "question": "我可以查看哪些项目？",
+        "answer": "我的所有项目都在“项目”部分详细介绍。每张纸都解释了需求、技术选择和结果。"
+      },
+      "question4": {
+        "question": "您开展什么类型的项目？",
+        "answer": "展示网站、仪表板、Next.js Web 应用程序、面向产品的界面和内部工具。"
+      },
+      "question5": {
+        "question": "您更多地从事前端工作还是全栈工作？",
+        "answer": "我非常面向前端（UI/UX、性能、可访问性），但我也可以管理后端部分（API、身份验证、集成）。我的长期目标是拥有扎实的全栈技能。"
+      },
+      "question6": {
+        "question": "您使用 UI 组件还是自己编写代码？",
+        "answer": "两个都。当相关时，我使用坚实的基础（Radix、shadcn/ui），当需要精确渲染时，我创建定制产品。"
+      },
+      "question7": {
+        "question": "您如何管理绩效和 SEO？",
+        "answer": "图像优化、渐进式加载、代码分割、干净的元数据、站点地图和 Next.js 最佳实践。"
+      },
+      "question8": {
+        "question": "您注重可访问性吗？",
+        "answer": "是的：键盘导航、对比、标签、HTML 语义和可访问组件（Radix 在这一点上有很大帮助）。"
+      },
+      "question9": {
+        "question": "您的开发工作流程是怎样的？",
+        "answer": "我从明确的需求开始，创建一个快速的 UI 基础，然后迭代：代码质量、手动测试、性能和完成。"
+      },
+      "question10": {
+        "question": "您正在使用现有的设计吗？",
+        "answer": "是的。我可以忠实地集成 Figma 模型，或者在必要时提供简单且连贯的 UI 方向。"
+      },
+      "question11": {
+        "question": "您如何管理国际化（i18n）？",
+        "answer": "使用 next-intl：简洁的路线/区域设置、结构化翻译、日期/时间格式和适应语言的版式。"
+      },
+      "question12": {
+        "question": "你们有代码标准吗？",
+        "answer": "是的：严格的 TypeScript、可重用的组件、命名约定、lint/格式以及清晰的 UI/逻辑分离。"
+      },
+      "question13": {
+        "question": "您如何管理状态和数据？",
+        "answer": "根据需要：状态本地 React，必要时轻量级存储，并在服务器/客户端上获取错误处理和加载。"
+      },
+      "question14": {
+        "question": "您可以集成外部 API 或服务吗？",
+        "answer": "是的：身份验证、支付、电子邮件、分析、CMS 以及任何公开可靠 API 的内容。"
+      },
+      "question15": {
+        "question": "是什么让你与众不同？",
+        "answer": "一种富有成效的方法：简洁的界面、强大的逻辑、仔细的细节以及对感知质量的真正关注。"
+      }
+    }
+  },
+  "accessibility": {
+    "skipToContent": "转到主要内容",
+    "loading": "加载中",
+    "close": "关闭"
+  },
+  "legal": {
+    "common": {
+      "badge": "法律文件",
+      "lastUpdatedLabel": "最后更新：",
+      "links": {
+        "readPrivacy": "阅读隐私政策",
+        "readLegalNotice": "阅读法律声明",
+        "readTerms": "阅读使用条款"
+      }
+    },
+    "terms": {
+      "title": "使用条款",
+      "description": "这些条件管辖此投资组合网站的访问和使用。浏览该网站即表示您接受以下规则。",
+      "sections": {
+        "editor": {
+          "title": "1. 法律信息——网站编辑",
+          "intro": "该网站是一个个人作品集，展示项目、成就和专业信息。",
+          "publisherTitle": "编辑：",
+          "publisherNameLabel": "姓名：",
+          "publisherNameValue": "维安迪尔·保罗",
+          "publisherEmailLabel": "电子邮件：",
+          "publisherEmailValue": "contact@paulviandier.com",
+          "hostTitle": "主持人：",
+          "hostNameLabel": "姓名 ：",
+          "hostNameValue": "奥维赫公司",
+          "hostAddressLabel": "地址 ：",
+          "hostAddressValue": "2 rue Kellermann, 59100 鲁贝, 法国",
+          "hostWebsiteLabel": "网站：",
+          "hostWebsiteValue": "ovhcloud.com",
+          "contactLine": "如果您有任何疑问，可以联系发布者：<contactBtn>打开联系表单</contactBtn>。"
+        },
+        "purpose": {
+          "title": "2. 使用条件的目的",
+          "p1": "这些使用条件（以下简称“CGU”）定义了网站、其页面及其功能（例如联系表格）的访问和使用规则。",
+          "p2": "浏览该网站即表示您接受条款和条件。如果您不同意，请不要使用该网站。"
+        },
+        "access": {
+          "title": "3. 站点访问和可用性",
+          "p1": "该网站原则上 24/7 均可访问，计划内或计划外的中断（维护、事件、更新、技术限制）除外。",
+          "p2": "出版商不保证永久可用性或不存在错误。本网站“按原样”提供。"
+        },
+        "definitions": {
+          "title": "4. 定义",
+          "items": [
+            {
+              "label": "地点 ：",
+              "text": "作品集的所有页面均可通过域名及其子页面访问。"
+            },
+            {
+              "label": "用户：",
+              "text": "任何浏览该网站的人。"
+            },
+            {
+              "label": "内容：",
+              "text": "文本、图像、视频、代码、模型、文档、徽标、图形元素以及更一般地在网站上发布的任何元素。"
+            },
+            {
+              "label": "第三方服务：",
+              "text": "可通过链接访问外部服务（例如：GitHub、LinkedIn）。"
+            }
+          ]
+        },
+        "acceptableUse": {
+          "title": "5. 可接受的使用",
+          "p1": "您同意公平地使用该网站并且不损害其正常运行。",
+          "listIntro": "特别禁止：",
+          "items": [
+            "破坏站点（攻击、过载、拒绝服务、注入等）；",
+            "进入或试图进入未经授权的区域；",
+            "以滥用方式自动提取数据（攻击性抓取、垃圾邮件、收获）；",
+            "将本网站用于非法或违反公共秩序的目的；",
+            "在适用的情况下绕过安全或身份验证措施。"
+          ],
+          "example": "具体示例：禁止每秒向联系表单发送数十个请求以使其无法使用。"
+        },
+        "ip": {
+          "title": "6. 知识产权",
+          "p1": "除非另有说明，网站上的所有内容均受版权和/或其他知识产权的保护。这些权利仍然是出版商或相关持有人的财产。",
+          "notAllowedIntro": "你不被允许：",
+          "notAllowed": [
+            "未经书面授权复制、复制、修改、分发或出版内容；",
+            "未经同意而重复使用图形元素、文本、捕获或代码用于公共/商业用途。"
+          ],
+          "example": "具体示例：未经信用或授权，禁止在您的网站上重复使用作品集（文本+视觉效果）中的页面。"
+        },
+        "externalLinks": {
+          "title": "7. 外部链接和第三方服务",
+          "p1": "该网站可能包含第三方服务的链接。发布者无法控制这些服务，也不对其内容、可用性或其做法（包括其保密政策）负责。",
+          "p2": "您有责任根据自己的条件访问这些第三方服务。"
+        },
+        "contact": {
+          "title": "8. 联系方式及交流",
+          "p1": "如果有联系表格，您承诺提供准确的信息，并且不传输非法、攻击性、诽谤性、骚扰性或恶意内容。",
+          "rightsIntro": "出版商保留权利：",
+          "rights": [
+            "不回应滥用或不相关的请求；",
+            "实施反垃圾邮件保护；",
+            "在滥用情况下阻止对表格的访问。"
+          ],
+          "example": "具体示例：发送重复消息（垃圾邮件）或可疑文件可能会导致阻塞。"
+        },
+        "data": {
+          "title": "9. 个人数据和cookie",
+          "p1": "该网站不会出于商业目的、分析或广告跟踪目的收集个人数据。",
+          "p2": "出于安全、防止滥用和诊断目的，技术数据（特别是 IP 地址）可能会在必要时不时进行处理。",
+          "p3": "联系表单通过 Cloudflare 内置了反滥用保护。这些服务可能会处理其运营所需的技术数据。",
+          "p4": "有关详细信息，请参阅<privacyLink>隐私政策</privacyLink>。"
+        },
+        "liability": {
+          "title": "10. 责任限制",
+          "p1": "出版商尽合理努力提供最新且准确的信息，但不保证完整性或没有错误。",
+          "p2": "在法律允许的范围内，发布者不对与使用本网站相关的直接或间接损害（例如数据丢失、中断、不兼容等）承担责任。",
+          "example": "具体示例：如果外部链接不再有效或显示的项目自发布以来发生了变化，这并不构成发布者承担责任的错误。"
+        },
+        "security": {
+          "title": "11. 安全",
+          "p1": "您同意不损害网站的安全。任何欺诈、入侵或利用漏洞的尝试都可能导致采取保护措施，并在适用的情况下采取适当的行动。",
+          "p2": "如果您发现安全问题，请使用上面的联系信息向发布者报告。"
+        },
+        "changes": {
+          "title": "12. 条款和条件的修改",
+          "p1": "这些条款和条件可能随时修改。适用版本是您咨询时本页发布的版本。",
+          "p2": "最后更新日期显示在页面顶部。"
+        },
+        "law": {
+          "title": "13. 适用法律和管辖权",
+          "p1": "除非另有强制规定，这些一般条款和条件受法国法律管辖。",
+          "p2": "如果发生争议，在采取任何行动之前，将优先考虑友好解决。如果没有达成协议，管辖法院将由适用规则确定。"
+        }
+      }
+    },
+    "privacy-policy": {
+      "title": "隐私政策",
+      "description": "本政策解释了哪些数据可能被处理、为何以及如何行使您的权利。",
+      "sections": {
+        "intro": {
+          "title": "1. 介绍",
+          "p1": "本隐私政策解释了使用本作品集网站时如何处理个人数据。",
+          "p2": "发布者承诺遵守适用的法规，特别是《通用数据保护条例》(GDPR)。"
+        },
+        "controller": {
+          "title": "2. 数据控制者",
+          "p1": "数据控制者是网站的发布者。",
+          "nameLabel": "姓名：",
+          "nameValue": "维安迪尔·保罗",
+          "emailLabel": "电子邮件：",
+          "emailValue": "contact@paulviandier.com",
+          "contactLine": "要行使您的权利或提出问题，您可以<contactBtn>打开联系表单</contactBtn>。"
+        },
+        "data": {
+          "title": "3. 数据处理",
+          "p1": "该网站不会出于商业目的、分析或广告跟踪目的收集个人数据。",
+          "ipTitle": "IP地址：",
+          "ipText": "仅在必要时才会不时处理 IP 地址，特别是出于安全、防止滥用和诊断目的。",
+          "cloudflareTitle": "联系方式：",
+          "cloudflareText": "该表单通过 Cloudflare 服务集成了防止滥用的保护措施（例如反机器人/反垃圾邮件）。这些服务可能会处理其运营所需的技术数据。",
+          "p2": "如果您选择联系发布者，您输入的信息将仅用于处理您的请求并回复您。"
+        },
+        "purposes": {
+          "title": "4. 目的和法律依据",
+          "p1": "进行任何处理的目的是：",
+          "items": [
+            "确保网站的安全并防止滥用；",
+            "回应通过联系表发送的请求；",
+            "诊断技术事件并维护站点的正常运行。"
+          ],
+          "p2": "根据具体情况，法律依据是发布者的合法利益（安全、防止滥用、服务维护）以及您在发起联系时的同意。"
+        },
+        "recipients": {
+          "title": "5. 接收者和分包商",
+          "p1": "处理的任何数据均供网站编辑者使用。它们可能由技术服务提供商在其任务范围内对站点的运行和安全所必需的进行处理。",
+          "items": [
+            "主办：OVH SAS, 2 rue Kellermann, 59100 Roubaix, France。",
+            "表单滥用保护：Cloudflare（反机器人/反垃圾邮件服务）。"
+          ]
+        },
+        "retention": {
+          "title": "6. 保质期",
+          "items": [
+            "IP 地址和安全相关技术数据：仅保留安全和诊断目的所需的时间。",
+            "通过联系表发送的消息：仅在处理请求所需的时间内保留，然后删除，除非法律要求或后续需要。"
+          ]
+        },
+        "rights": {
+          "title": "7. 您的权利",
+          "p1": "根据 GDPR，您尤其拥有以下权利：访问、更正、删除、限制和反对（如适用）。",
+          "p2": "要行使您的权利，请通过联系表或电子邮件联系出版商。",
+          "p3": "如果您认为您的权利没有得到尊重，您也可以向 CNIL 提出投诉。"
+        },
+        "cookies": {
+          "title": "8. Cookie 和跟踪器",
+          "p1": "该网站无意出于营销目的放置广告或受众测量 cookie。如果功能和安全性需要（特别是表单滥用保护），则可以使用绝对必要的 cookie。"
+        },
+        "security": {
+          "title": "9. 安全",
+          "p1": "发布者采取合理措施来保护数据免遭未经授权的访问、丢失、更改或披露，特别是通过联系表单上的滥用保护。"
+        },
+        "changes": {
+          "title": "10. 变化",
+          "p1": "本政策可能随时更新。适用版本为咨询当日在本页发布的版本。"
+        }
+      }
+    },
+    "legal-notice": {
+      "title": "法律声明",
+      "description": "本法律声明描述了网站的发布者、其托管以及与其使用相关的主要信息。",
+      "sections": {
+        "publisher": {
+          "title": "1. 网站编辑器",
+          "p1": "该网站是一个个人作品集，展示项目、成就和专业信息。",
+          "publisherTitle": "编辑：",
+          "publisherNameLabel": "姓名：",
+          "publisherNameValue": "维安迪尔·保罗",
+          "publisherEmailLabel": "电子邮件：",
+          "publisherEmailValue": "contact@paulviandier.com",
+          "contactLine": "如有任何疑问，您可以<contactBtn>打开联系表格</contactBtn>。"
+        },
+        "hosting": {
+          "title": "2. 住宿",
+          "hostTitle": "主持人：",
+          "hostNameLabel": "姓名 ：",
+          "hostNameValue": "奥维赫公司",
+          "hostAddressLabel": "地址 ：",
+          "hostAddressValue": "2 rue Kellermann, 59100 鲁贝, 法国",
+          "hostWebsiteLabel": "网站：",
+          "hostWebsiteValue": "ovhcloud.com"
+        },
+        "ip": {
+          "title": "3. 知识产权",
+          "p1": "除非另有说明，网站上的所有内容（文本、视觉效果、代码、图形元素、身份）均受版权和知识产权保护。",
+          "p2": "未经出版商事先书面授权，禁止全部或部分复制、再现、改编或分发。"
+        },
+        "liability": {
+          "title": "4. 责任限制",
+          "p1": "出版商尽力提供准确和最新的信息，但不保证内容的准确性、完整性或及时性。",
+          "p2": "使用本网站的责任由用户自行承担。发布者不对因访问或使用本网站而可能造成的直接或间接损害负责。"
+        },
+        "links": {
+          "title": "5.外部链接",
+          "p1": "该网站可能包含第三方网站或服务的链接。发布者无法控制这些服务，也不对其内容、可用性或做法负责。"
+        },
+        "data": {
+          "title": "6. 个人资料",
+          "p1": "有关个人数据、cookie、处理目的以及您的权利的任何信息，请查阅<privacyLink>隐私政策</privacyLink>。"
+        },
+        "law": {
+          "title": "七、适用法律",
+          "p1": "除非另有强制规定，这些法律声明均受法国法律管辖。"
+        }
+      }
+    }
+  },
+  "cv": {
+    "role": "网络集成商学生",
+    "badge": "简历",
+    "title": "简历",
+    "description": "详细介绍——技能、经验和背景。",
+    "lastUpdatedLabel": "最后更新：",
+    "actions": {
+      "backHome": "返回首页",
+      "downloadPdf": "下载 PDF",
+      "downloadPdfLoading": "下载中..."
+    },
+    "sections": {
+      "profile": {
+        "title": "个人简介",
+        "p1": "我是一个好奇、专注、积极进取的人，随时准备接受新的挑战。我热衷于发现新技术，不断学习并适应不同的环境。我的热情和承诺促使我在每个项目中尽最大努力，并全力投入以实现既定目标。",
+        "github": "GitHub：添加确切的 URL",
+        "linkedin": "LinkedIn：添加准确的 URL"
+      },
+      "skills": {
+        "title": "技能",
+        "frontend": "前端",
+        "stateApi": "状态和API",
+        "backendData": "返回及数据",
+        "tooling": "工具与方法",
+        "security": "安全"
+      },
+      "experience": {
+        "title": "经历",
+        "todoTitle": "待完成",
+        "todoLine": "角色 • 公司 • 日期 • 3–5 个可衡量的结果"
+      },
+      "education": {
+        "title": "培训",
+        "badge": "经历"
+      }
+    },
+    "education": {
+      "webIntegrator": {
+        "title": "Web 集成开发者",
+        "level": "5 级文凭（bac +2）",
+        "note": "勤工俭学培训",
+        "date": "今天",
+        "bullets": {
+          "1": "使用 HTML 和 CSS 创建响应式界面",
+          "2": "使用 JavaScript 和 React 动态化网页",
+          "3": "使用 Redux 实施数据管理",
+          "4": "使用 Git 对项目进行版本控制和协作",
+          "5": "调试和优化现有网站"
+        }
+      },
+      "ti": {
+        "title": "信息技术技术员",
+        "level": "5 级文凭（bac +2）",
+        "note": "全日制培训",
+        "date": "2025",
+        "bullets": {
+          "1": "部署自动化 IT 系统（客户端、服务器、配置）",
+          "2": "安装、保护和维护本地网络（有线和 Wi-Fi）",
+          "3": "管理 Active Directory 域（帐户、权限、GPO、网络服务）",
+          "4": "确保 IT 车队的监督和维护",
+          "5": "根据 ITIL 最佳实践处理用户请求并提供 L1/L2 支持",
+          "6": "编写并保持最新的技术文档",
+          "7": "在本地、云或混合环境中工作"
+        }
+      },
+      "rascol": {
+        "title": "Bac STI2D 选项 SIN",
+        "org": "路易斯·拉斯科尔高中|共和街 10 号 | 81000 阿尔比",
+        "level": "技术学士学位",
+        "bullets": {
+          "1": "Python编程",
+          "2": "网络编程（HTML、CSS、JavaScript）",
+          "3": "数据库创建和管理"
+        }
+      }
+    },
+    "experience": {
+      "pinkail": {
+        "title": "PinkAil 种子有限公司",
+        "note": "处理程序 - 季节性合同",
+        "date": "01/09/2025 - 08/09/2025",
+        "bullets": {
+          "1": "大蒜分选和包装：去除腐烂的/受伤的/软的/有斑点的/发芽的/变形的球茎",
+          "2": "已进行热疗"
+        }
+      },
+      "volunteering": {
+        "groupTitle": "志愿服务",
+        "it": {
+          "title": "信息技术支持",
+          "date": "2022 年 - 今天",
+          "bullets": {
+            "1": "安装和配置 Windows 和 Linux 工作站（软件、更新）、打印机以及 Microsoft 365/Google Workspace 帐号",
+            "2": "用户帮助：入门、解决常见事件、编写简短程序"
+          }
+        }
+      }
+    }
+  },
+  "motivation-letter": {
+    "badge": "求职信",
+    "title": "求职信",
+    "lastUpdatedLabel": "最后更新：",
+    "topCentered": {
+      "top": "维安迪尔·保罗",
+      "bottom": "contact@paulviandier.com"
+    },
+    "bannerText": "国际网络集成商",
+    "body": {
+      "p1": "女士、先生：",
+      "p2": "目前我正在寻找<b>作为网络集成商</b>的勤工俭学计划，我想加入贵公司，以便在结构化和高要求的专业框架中发展我的技能。虽然我是专业领域的初学者，但总体来说我对 IT 非常熟悉，并且我已经探索了多个技术领域。",
+      "p3": "我特别接受了<b>前端开发</b>培训，并在<b>HTML</b>、<b>CSS</b>和<b>JavaScript</b>方面获得了良好的基础，以及<b>React</b>、<b>Redux</b>的初步经验，使用<b>API</b>、<b>Git</b> 和 <b>响应式设计</b>。我习惯于集成 <b>Figma 模型 </b> 的接口，确保尊重视觉渲染、代码结构和用户体验。",
+      "p4": "就像在组织良好的建筑工地一样，我会在添加功能之前花时间打下干净的基础。这种方法使我能够针对不同的媒体生成<b>清晰的界面</b>、<b>一致的</b>和<b>适应的</b>。",
+      "p5": "我对<b>系统</b>、<b>网络</b>和<b>网络安全</b>的兴趣使我意识到稳健性、良好实践和可维护性的概念。我尝试从集成阶段应用这些原则，以便交付其他开发人员可靠且易于理解的代码。",
+      "p6": "<b>认真</b>、<b>积极主动</b>和<b>欣赏</b>团队合作，我准备充分投资您的项目，同时继续向经验丰富的专业人士学习。这个勤工俭学计划对我来说是技术进步和为你的成就做出具体贡献的重要一步。",
+      "p7": "我很高兴能够与您会面，更详细地讨论我的申请。",
+      "p8": "女士、先生，请接受我致以尊贵的问候。"
+    },
+    "actions": {
+      "downloadPdf": "下载 PDF",
+      "downloadPdfLoading": "下载中..."
+    }
+  },
+  "parcoursDetails": {
+    "backHome": "返回首页",
+    "details": "课程详情",
+    "parcoursLinksLabel": {
+      "thm": "尝试破解我",
+      "technicien": "信息技术技术员",
+      "webIntegrator": "Web 集成开发者"
+    },
+    "tryhackme": {
+      "title": "TryHackMe - 前置安全",
+      "description": "为了攻击或防御一项技术，我们必须首先了解它的动力是什么。在这段旅程中，我探索了计算机科学的基础知识，编写了第一行代码，并发现了网络、Web 和现实世界的网络攻击如何连接。",
+      "certificat": {
+        "title": "证书",
+        "preview": "TryHackMe 预安全证书概述",
+        "buttonOpenPDF": "打开 PDF",
+        "buttonDownload": "下载 PDF",
+        "buttonDownloading": "下载..."
+      },
+      "badges": {
+        "1": "平台：TryHackMe",
+        "2": "已认证"
+      },
+      "article": {
+        "module1": {
+          "title": "模块 1：网络安全简介",
+          "puce1": "进攻性安全简介",
+          "puce1-1": "什么是进攻性安全",
+          "puce1-2": "破解你的第一台机器",
+          "puce1-3": "网络安全职业",
+          "puce2": "防御安全简介",
+          "puce2-1": "什么是防御性安全",
+          "puce2-2": "防御安全区",
+          "puce2-3": "防御安全的实际例子",
+          "puce3": "网络空间的职业生涯",
+          "puce3-1": "介绍",
+          "puce3-2": "证券分析师",
+          "puce3-3": "安全工程师",
+          "puce3-4": "事件响应者",
+          "puce3-5": "数字取证专家",
+          "puce3-6": "恶意软件分析师",
+          "puce3-7": "渗透测试仪",
+          "puce3-8": "红队"
+        },
+        "module2": {
+          "title": "第 2 单元：网络基础知识",
+          "puce1": "什么是网络",
+          "puce1-1": "什么是网络？",
+          "puce1-2": "什么是互联网？",
+          "puce1-3": "识别网络上的设备",
+          "puce1-4": "平 (ICMP)",
+          "puce2": "本地网络简介",
+          "puce2-1": "LAN 拓扑概述",
+          "puce2-2": "子网划分简介",
+          "puce2-3": "ARP",
+          "puce2-4": "动态主机配置协议",
+          "puce3": "开放系统互连模型",
+          "puce3-1": "什么是 OSI 模型？",
+          "puce3-2": "第 1 层 – 物理层",
+          "puce3-3": "第 2 层 – 数据绑定",
+          "puce3-4": "第 3 层 – 网络",
+          "puce3-5": "第 4 层 – 交通",
+          "puce3-6": "第 5 层 – 会话",
+          "puce3-7": "第 6 层 – 表示",
+          "puce3-8": "第 7 层 – 应用程序",
+          "puce4": "数据包和帧",
+          "puce4-1": "什么是数据包和帧？",
+          "puce4-2": "TCP/IP（三步握手）",
+          "puce4-3": "UDP/IP",
+          "puce4-4": "端口 101",
+          "puce5": "扩展您的网络",
+          "puce5-1": "端口转发简介",
+          "puce5-2": "防火墙101",
+          "puce5-3": "VPN 基础知识",
+          "puce5-4": "局域网网络设备",
+          "puce5-5": "实用的网络模拟器"
+        },
+        "module3": {
+          "title": "第 3 单元：网络如何运作",
+          "puce1": "DNS 详细信息",
+          "puce1-1": "什么是 DNS？",
+          "puce1-2": "域层次结构",
+          "puce1-3": "记录类型",
+          "puce1-4": "提出请求",
+          "puce2": "HTTP 详细信息",
+          "puce2-1": "什么是 HTTP(S)？",
+          "puce2-2": "请求和响应",
+          "puce2-3": "HTTP 方法",
+          "puce2-4": "HTTP 状态代码",
+          "puce2-5": "标头",
+          "puce2-6": "曲奇饼",
+          "puce2-7": "提出请求",
+          "puce3": "网站如何运作",
+          "puce3-1": "网站如何运作？",
+          "puce3-2": "超文本标记语言",
+          "puce3-3": "JavaScript",
+          "puce3-4": "敏感数据的暴露",
+          "puce3-5": "HTML注入",
+          "puce4": "把它们放在一起",
+          "puce4-1": "一切的总结",
+          "puce4-2": "其他组件",
+          "puce4-3": "Web 服务器如何工作"
+        },
+        "module4": {
+          "title": "第 4 单元：计算机科学基础",
+          "puce1": "计算机系统内部",
+          "puce1-1": "介绍",
+          "puce1-2": "计算机系统内部",
+          "puce1-3": "当您按下开始按钮时会发生什么？",
+          "puce2": "计算机类型",
+          "puce2-1": "介绍",
+          "puce2-2": "索菲亚的隐藏电脑之夏 - 第 1 个月",
+          "puce2-3": "索菲亚的隐藏电脑之夏 - 第 2 个月",
+          "puce2-4": "为什么计算机有不同的版本",
+          "puce3": "客户端和服务器基础知识",
+          "puce3-1": "介绍",
+          "puce3-2": "披萨外卖",
+          "puce3-3": "网络通信实践",
+          "puce4": "虚拟化基础知识",
+          "puce4-1": "介绍",
+          "puce4-2": "虚拟化概述",
+          "puce4-3": "虚拟化组件",
+          "puce4-4": "虚拟机管理",
+          "puce5": "云计算基础知识",
+          "puce5-1": "介绍",
+          "puce5-2": "云计算概述",
+          "puce5-3": "部署云实例"
+        },
+        "module5": {
+          "title": "第 5 单元：操作系统基础知识",
+          "puce1": "介绍",
+          "puce1-1": "介绍",
+          "puce1-2": "看不见的经理",
+          "puce1-3": "与操作系统和环境的交互",
+          "puce2": "Windows 基础知识",
+          "puce2-1": "介绍",
+          "puce2-2": "探索 Windows 工作区",
+          "puce2-3": "设置和保护 Windows",
+          "puce3": "Linux CLI 基础知识",
+          "puce3-1": "介绍",
+          "puce3-2": "导航任务：找到丢失的笔记",
+          "puce3-3": "系统调查",
+          "puce4": "Windows CLI 基础知识",
+          "puce4-1": "介绍",
+          "puce4-2": "Windows CLI：浏览文件并查找您的第一个文件",
+          "puce4-3": "在 Windows 中收集系统信息",
+          "puce5": "操作系统安全",
+          "puce5-1": "操作系统安全简介",
+          "puce5-2": "操作系统安全的常见示例",
+          "puce5-3": "操作系统安全的实际例子"
+        },
+        "module6": {
+          "title": "模块 6：软件基础知识",
+          "puce1": "数据表示",
+          "puce1-1": "介绍",
+          "puce1-2": "代表颜色",
+          "puce1-3": "数字：十进制到十六进制",
+          "puce2": "数据编码",
+          "puce2-1": "介绍",
+          "puce2-2": "ASCII",
+          "puce2-3": "统一码",
+          "puce3": "Python：简单演示",
+          "puce3-1": "介绍",
+          "puce3-2": "变量",
+          "puce3-3": "条件语句",
+          "puce3-4": "迭代",
+          "puce4": "JavaScript：简单演示",
+          "puce4-1": "介绍",
+          "puce4-2": "变量",
+          "puce4-3": "请求用户输入",
+          "puce4-4": "条件语句",
+          "puce4-5": "迭代",
+          "puce5": "SQL数据库",
+          "puce5-1": "介绍",
+          "puce5-2": "了解表、行和列",
+          "puce5-3": "编写您的第一个 SQL 查询"
+        },
+        "module7": {
+          "title": "模块 7：攻击与防御",
+          "puce1": "中央情报局三合会",
+          "puce1-1": "介绍",
+          "puce1-2": "了解中央情报局三合会",
+          "puce1-3": "安全心态",
+          "puce2": "密码学概念",
+          "puce2-1": "介绍",
+          "puce2-2": "信息隐藏——对称加密",
+          "puce2-3": "安全密钥共享——非对称加密",
+          "puce3": "成为一名黑客",
+          "puce3-1": "什么是进攻性安全？",
+          "puce3-2": "检测弱点",
+          "puce3-3": "利用弱点",
+          "puce3-4": "从这里到哪里去",
+          "puce4": "成为倡导者",
+          "puce4-1": "什么是防御性安全？",
+          "puce4-2": "了解您的环境",
+          "puce4-3": "保护您的环境",
+          "puce4-4": "从这里到哪里去"
+        }
+      }
+    },
+    "technicien": {
+      "title": "OpenClassrooms - IT 技术员",
+      "description": "作为一名 IT 技术人员，我们需要安装和部署 IT 系统的组件、维护其运行和安全条件、协助用户并自动执行任务。",
+      "badges": {
+        "1": "5 级文凭（bac +2）",
+        "2": "9个月全职",
+        "3": "843小时监督"
+      },
+      "missions": {
+        "title": "作为一名 IT 技术人员，您的使命是什么？",
+        "description": "您是公司数字环境正常运行的关键角色。\n您安装设备、配置网络、自动执行重复任务并为用户提供有效的支持。您的角色是<strong>技术性、响应性和服务导向性</strong>。\n您还需要：",
+        "puce1": "了解用户优先级并提出务实的解决方案；",
+        "puce2": "表现出严谨性、教学法、好奇心和适应能力；",
+        "puce3": "将网络安全、可持续发展和数字可访问性问题融入您的实践中。"
+      },
+      "nextMissions": {
+        "title": "您可以执行的典型任务：",
+        "puce1": "部署自动化 IT 系统（客户端站、服务器、配置）",
+        "puce2": "安装、保护和维护本地网络（有线和 Wi-Fi）",
+        "puce3": "管理 Active Directory 域（帐户、权限、GPO、网络服务）",
+        "puce4": "确保 IT 车队的监督和维护",
+        "puce5": "根据 ITIL 最佳实践处理用户请求并提供 L1/L2 支持",
+        "puce6": "编写并保持最新的技术文档",
+        "puce7": "在本地、云或混合环境中工作"
+      }
+    },
+    "webIntegrator": {
+      "title": "OpenClassrooms - 网络集成商",
+      "description": "网络集成商负责将视觉元素集成到网站页面中，以创建和谐、可读且易于导航的界面。他拥有扎实的编程语言知识，能够在所有类型的浏览器和屏幕尺寸上尽可能忠实地显示图形设计。",
+      "badges": {
+        "1": "5 级文凭（bac +2）",
+        "2": "18个月勤工俭学",
+        "3": "603小时监督"
+      },
+      "missions": {
+        "title": "作为网络集成商，您的使命是什么？",
+        "puce1": "<strong>创建一个完整且响应迅速的 Web 应用程序</strong>，以允许公司或客户在所有类型的设备上在线销售其产品和服务。",
+        "puce2": "<strong>动态网页</strong>更好地突出公司或客户的产品和服务。",
+        "puce3": "<strong>创建与站点后端</strong>通信的接口，以开发动态应用程序并允许客户在站点上识别自己的身份。",
+        "puce4": "<strong>优化性能并维护现有网站</strong>，以实现其最佳功能和在搜索引擎上的良好可见性。",
+        "puce5": "<strong>从头到尾管理 Web 项目</strong>：从成本核算和划分项目任务到呈现解决方案，包括编写技术规范。"
+      }
+    }
+  }
+}
