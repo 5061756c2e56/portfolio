@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import ProfileBlock, { CvDownloadButton } from '@/components/cv/ProfileBlock';
+import { getLanguageAlternates, getLocalizedUrl, getSeoKeywords } from '@/lib/seo';
 
 type CvSection = {
     id: string;
@@ -29,11 +30,35 @@ const LAST_UPDATED_ISO = '2026-02-21';
 const CV_PDF_PATH = '/Curriculum Vitae - Viandier Paul.pdf';
 const CV_PDF_FILENAME = 'Curriculum Vitae - Viandier Paul.pdf';
 
-export const metadata: Metadata = {
-    title: 'Curriculum Vitae',
-    description: 'CV Viandier Paul',
-    robots: { index: true, follow: true }
-};
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations('cv');
+    const canonicalUrl = getLocalizedUrl(locale, '/curriculum-vitae');
+
+    return {
+        title: t('title'),
+        description: t('description'),
+        keywords: getSeoKeywords(locale, 'cv'),
+        alternates: {
+            canonical: canonicalUrl,
+            languages: getLanguageAlternates('/curriculum-vitae')
+        },
+        openGraph: {
+            url: canonicalUrl,
+            title: t('title'),
+            description: t('description')
+        },
+        twitter: {
+            title: t('title'),
+            description: t('description')
+        },
+        robots: { index: true, follow: true }
+    };
+}
 
 const CV_BASE = {
     name: 'Paul Viandier',

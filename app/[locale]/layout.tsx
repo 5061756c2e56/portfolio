@@ -27,10 +27,11 @@ import ScrollToTop from '@/components/ScrollToTop';
 import SkipLink from '@/components/SkipLink';
 import { ContactModalProvider } from '@/hooks/useContactModal';
 
-import { defaultLocale, isLocale, Locale, locales, ogLocaleMap } from '@/i18n/routing';
+import { isLocale, Locale, locales, ogLocaleMap } from '@/i18n/routing';
 import { SITE_URL } from '@/lib/site';
 import { isChristmasMode } from '@/lib/christmas';
 import { isHalloweenMode } from '@/lib/halloween';
+import { getSeoKeywords } from '@/lib/seo';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/navbars/AppSidebar';
 import { MobileHeader } from '@/components/navbars/MobileHeader';
@@ -47,10 +48,6 @@ const geistMono = Geist_Mono({
     subsets: ['latin']
 });
 
-function localeUrl(baseUrl: string, loc: string): string {
-    return loc === defaultLocale ? baseUrl : `${baseUrl}/${loc}`;
-}
-
 export async function generateMetadata({
     params
 }: {
@@ -60,17 +57,10 @@ export async function generateMetadata({
     const t = await getTranslations('pagesMetadata.layout');
 
     const baseUrl = SITE_URL;
-    const url = localeUrl(baseUrl, locale);
     const ogLocale = ogLocaleMap[locale as Locale] ?? 'en_US';
     const alternateOgLocales = locales
         .filter((l) => l !== locale)
         .map((l) => ogLocaleMap[l]);
-
-    const languages: Record<string, string> = {};
-    for (const l of locales) {
-        languages[l] = localeUrl(baseUrl, l);
-    }
-    languages['x-default'] = baseUrl;
 
     return {
         metadataBase: new URL(baseUrl),
@@ -79,12 +69,12 @@ export async function generateMetadata({
             template: '%s - Paul Viandier'
         },
         description: t('description'),
+        keywords: getSeoKeywords(locale, 'home'),
         authors: [{ name: 'Paul Viandier' }],
         openGraph: {
             type: 'website',
             locale: ogLocale,
             alternateLocale: alternateOgLocales,
-            url,
             siteName: t('siteName'),
             title: t('ogTitle'),
             description: t('ogDescription'),
@@ -108,10 +98,6 @@ export async function generateMetadata({
         robots: {
             index: false,
             follow: true
-        },
-        alternates: {
-            canonical: url,
-            languages
         },
         verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
             ? {
@@ -187,7 +173,7 @@ export default async function RootLayout({
                         <SidebarProvider defaultOpen={defaultSidebarOpen}>
                             <AppSidebar />
                             <SidebarInset id="main-content" className="relative min-h-svh bg-background">
-                                <StructuredData />
+                                <StructuredData locale={locale} />
                                 <SkipLink />
                                 <ScrollToTop />
                                 <MobileHeader />

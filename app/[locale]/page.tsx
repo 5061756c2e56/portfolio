@@ -18,10 +18,39 @@ import Contact from '@/components/home/Contact';
 import FinalCTA from '@/components/home/FinalCTA';
 
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { getLanguageAlternates, getLocalizedUrl, getSeoKeywords } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    robots: { index: true, follow: true }
-};
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations('pagesMetadata.layout');
+    const canonicalUrl = getLocalizedUrl(locale);
+
+    return {
+        title: 'Paul Viandier',
+        description: t('description'),
+        keywords: getSeoKeywords(locale, 'home'),
+        robots: { index: true, follow: true },
+        alternates: {
+            canonical: canonicalUrl,
+            languages: getLanguageAlternates()
+        },
+        openGraph: {
+            url: canonicalUrl,
+            title: t('ogTitle'),
+            description: t('ogDescription'),
+            type: 'website'
+        },
+        twitter: {
+            title: t('ogTitle'),
+            description: t('ogDescription')
+        }
+    };
+}
 
 export default function Home() {
     return (

@@ -10,19 +10,30 @@
  */
 
 import type { MetadataRoute } from 'next';
-import { SITE_URL } from '@/lib/site';
+import { locales } from '@/i18n/routing';
+import { getLanguageAlternates, getLocalizedUrl } from '@/lib/seo';
 
-const baseUrl = SITE_URL;
+const INDEXABLE_PATHS = [
+    '',
+    '/curriculum-vitae',
+    '/motivation-letter',
+    '/faq',
+    '/stats',
+    '/games'
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const lastModified = new Date();
 
-    return [
-        { url: baseUrl, lastModified },
-        { url: `${baseUrl}/curriculum-vitae`, lastModified },
-        { url: `${baseUrl}/motivation-letter`, lastModified },
-        { url: `${baseUrl}/faq`, lastModified },
-        { url: `${baseUrl}/stats`, lastModified },
-        { url: `${baseUrl}/games`, lastModified }
-    ];
+    return INDEXABLE_PATHS.flatMap((path) =>
+        locales.map((locale) => (
+            {
+                url: getLocalizedUrl(locale, path),
+                lastModified,
+                alternates: {
+                    languages: getLanguageAlternates(path)
+                }
+            }
+        ))
+    );
 }

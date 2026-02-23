@@ -11,9 +11,16 @@
 
 import { SITE_URL } from '@/lib/site';
 import { locales } from '@/i18n/routing';
+import { getLocalizedUrl, getSeoKeywords } from '@/lib/seo';
 
-export default function StructuredData() {
+type StructuredDataProps = {
+    locale: string;
+};
+
+export default function StructuredData({ locale }: StructuredDataProps) {
     const baseUrl = SITE_URL;
+    const homeUrl = getLocalizedUrl(locale);
+    const keywords = getSeoKeywords(locale, 'home');
 
     const graph = {
         '@context': 'https://schema.org',
@@ -24,29 +31,27 @@ export default function StructuredData() {
                 name: 'Paul Viandier',
                 givenName: 'Paul',
                 familyName: 'Viandier',
-                alternateName: ['Viandier Paul', 'P. Viandier', 'Paul V'],
-                jobTitle: [
-                    'Développeur Web',
-                    'Web Developer',
-                    'Fullstack Developer'
-                ],
-                url: baseUrl,
+                alternateName: ['Viandier Paul', 'P. Viandier', 'Paul V', 'Paul V Dev', 'Paul Dev Web'],
+                jobTitle: ['Web Integrator', 'Web Developer', 'Full Stack Developer'],
+                url: homeUrl,
                 sameAs: [
                     'https://github.com/5061756c2e56/',
                     'https://www.linkedin.com/in/paul-viandier-648837397/'
                 ],
                 email: 'contact@paulviandier.com',
                 description:
-                    'Full-stack web developer in training, passionate about cybersecurity. Specialized in TypeScript, React, Next.js.',
+                    'Web developer and web integrator in training, focused on full-stack development with TypeScript, React, and Next.js.',
                 image: `${baseUrl}/favicon.ico`,
+                knowsLanguage: ['fr', 'en', 'es', 'pt-BR', 'ru', 'zh-CN'],
+                keywords,
                 knowsAbout: [
                     'TypeScript',
                     'React',
                     'Next.js',
                     'Node.js',
                     'PostgreSQL',
-                    'Cybersécurité',
-                    'Développement Web'
+                    'Cybersecurity',
+                    'Web Development'
                 ],
                 address: {
                     '@type': 'PostalAddress',
@@ -57,21 +62,23 @@ export default function StructuredData() {
                 '@type': 'WebSite',
                 '@id': `${baseUrl}/#website`,
                 name: 'Paul Viandier\'s portfolio',
-                url: baseUrl,
+                url: homeUrl,
                 description:
                     'Professional portfolio of Paul Viandier, full-stack web developer specializing in TypeScript, React, Next.js, and cybersecurity.',
                 author: { '@id': `${baseUrl}/#person` },
+                keywords,
                 inLanguage: locales
             },
             {
                 '@type': 'WebPage',
                 '@id': `${baseUrl}/#webpage`,
-                url: baseUrl,
+                url: homeUrl,
                 name: 'Portfolio of Paul Viandier - Web Developer',
                 description:
                     'Full-stack web developer in training, passionate about cybersecurity. Discover my projects and skills.',
                 isPartOf: { '@id': `${baseUrl}/#website` },
-                about: { '@id': `${baseUrl}/#person` }
+                about: { '@id': `${baseUrl}/#person` },
+                keywords
             },
             {
                 '@type': 'SiteNavigationElement',

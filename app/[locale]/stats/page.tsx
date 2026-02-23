@@ -12,13 +12,34 @@
 import StatsPageClient from './StatsPageClient';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { getLanguageAlternates, getLocalizedUrl, getSeoKeywords } from '@/lib/seo';
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
     const t = await getTranslations('pagesMetadata.stats');
+    const canonicalUrl = getLocalizedUrl(locale, '/stats');
 
     return {
         title: t('title'),
         description: t('description'),
+        keywords: getSeoKeywords(locale, 'stats'),
+        alternates: {
+            canonical: canonicalUrl,
+            languages: getLanguageAlternates('/stats')
+        },
+        openGraph: {
+            url: canonicalUrl,
+            title: t('title'),
+            description: t('description')
+        },
+        twitter: {
+            title: t('title'),
+            description: t('description')
+        },
         robots: { index: true, follow: true }
     };
 }
