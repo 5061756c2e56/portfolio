@@ -18,8 +18,7 @@ const INDEXABLE_PATHS = [
     '/curriculum-vitae',
     '/motivation-letter',
     '/faq',
-    '/stats',
-    '/games'
+    '/stats'
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
