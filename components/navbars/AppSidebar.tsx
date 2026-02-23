@@ -603,8 +603,9 @@ export function AppSidebar() {
                                     />
                                 </div>
                                 <div
-                                    className="scrollbar-sidebar max-h-48 overflow-y-auto overscroll-contain"
+                                    className="scrollbar-sidebar max-h-48 overflow-y-auto overscroll-contain touch-pan-y [-webkit-overflow-scrolling:touch]"
                                     onWheel={(e) => e.stopPropagation()}
+                                    onTouchMove={(e) => e.stopPropagation()}
                                 >
                                     {filteredLocales.length === 0 ? (
                                         <div className="px-3 py-2 text-xs text-muted-foreground">

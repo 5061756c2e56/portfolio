@@ -11,9 +11,10 @@
 
 'use client';
 
+import { type MouseEvent } from 'react';
 import Image from 'next/image';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import { Link } from '@/i18n/routing';
+import { Link, usePathname } from '@/i18n/routing';
 import { useChristmasMode } from '@/hooks/use-christmas';
 import { ChristmasHat } from '@/components/christmas/ChristmasHat';
 import { useHalloweenMode } from '@/hooks/use-halloween';
@@ -22,6 +23,14 @@ import { HalloweenPumpkin } from '@/components/halloween/HalloweenPumpkin';
 export function MobileHeader() {
     const christmasMode = useChristmasMode();
     const halloweenMode = useHalloweenMode();
+    const pathname = usePathname();
+    const isHome = pathname === '/';
+
+    const handleBrandClick = (event: MouseEvent<HTMLAnchorElement>) => {
+        if (!isHome) return;
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <header
@@ -32,6 +41,7 @@ export function MobileHeader() {
             <Link
                 href="/"
                 className="flex items-center gap-2 text-lg font-semibold hover:opacity-80 transition-opacity"
+                onClick={handleBrandClick}
                 suppressHydrationWarning
             >
                 <div className="grid h-6 w-6 shrink-0 place-items-center">
