@@ -14,7 +14,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
-import { Briefcase, Download, Eye, FileTypeCorner, Folder, MapPin } from 'lucide-react';
+import { Briefcase, Download, Eye, FileUser, MailOpen, MapPin } from 'lucide-react';
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
@@ -261,7 +261,7 @@ export default function Hero() {
                                 className="btn-fill-primary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 cursor-pointer select-none"
                                 style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
                             >
-                                <Folder
+                                <FileUser
                                     className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10" />
                                 <span className="relative z-10">{t('viewCVButton')}</span>
                             </button>
@@ -352,7 +352,7 @@ export default function Hero() {
                                 className="btn-fill-secondary group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-lg transition-all duration-300 cursor-pointer select-none"
                                 style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
                             >
-                                <FileTypeCorner
+                                <MailOpen
                                     className="w-5 h-5 transition-transform duration-300 md:group-hover:-translate-y-0.5 relative z-10" />
                                 <span className="relative z-10">{t('viewLMButton')}</span>
                             </button>
