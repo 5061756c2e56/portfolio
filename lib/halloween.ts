@@ -11,15 +11,13 @@
 
 import { getParisDayMonth, isEnvEnabled } from '@/lib/seasonal';
 
-const CHRISTMAS_MODE_ENV_KEYS = ['CHRISTMAS_MODE', 'NEXT_PUBLIC_CHRISTMAS_MODE'] as const;
+const HALLOWEEN_MODE_ENV_KEYS = ['HALLOWEEN_MODE', 'NEXT_PUBLIC_HALLOWEEN_MODE'] as const;
 
-export function isChristmasMode(): boolean {
-    if (isEnvEnabled(CHRISTMAS_MODE_ENV_KEYS)) {
+export function isHalloweenMode(): boolean {
+    if (isEnvEnabled(HALLOWEEN_MODE_ENV_KEYS)) {
         return true;
     }
 
-    const { day, month } = getParisDayMonth();
-    return month === 12 || (
-        month === 1 && day === 1
-    );
+    const { month } = getParisDayMonth();
+    return month === 10 || month === 11;
 }

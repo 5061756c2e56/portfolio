@@ -30,6 +30,7 @@ import { ContactModalProvider } from '@/hooks/useContactModal';
 import { defaultLocale, isLocale, Locale, locales, ogLocaleMap } from '@/i18n/routing';
 import { SITE_URL } from '@/lib/site';
 import { isChristmasMode } from '@/lib/christmas';
+import { isHalloweenMode } from '@/lib/halloween';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/navbars/AppSidebar';
 import { MobileHeader } from '@/components/navbars/MobileHeader';
@@ -160,16 +161,25 @@ export default async function RootLayout({
     const { _meta, ...messages } = allMsgs;
     void _meta;
 
-    const christmasInitScript = `window.__CHRISTMAS_MODE__ = ${isChristmasMode() ? 'true' : 'false'};`;
+    const christmasMode = isChristmasMode();
+    const halloweenMode = !christmasMode && isHalloweenMode();
+    const seasonalModeClass = christmasMode
+        ? ' christmas-mode seasonal-mode'
+        : halloweenMode
+            ? ' halloween-mode seasonal-mode'
+            : '';
+    const seasonalInitScript =
+        `window.__CHRISTMAS_MODE__ = ${christmasMode ? 'true' : 'false'};`
+        + `window.__HALLOWEEN_MODE__ = ${halloweenMode ? 'true' : 'false'};`;
 
     return (
         <html lang={locale} suppressHydrationWarning>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased${seasonalModeClass}`}
                 suppressHydrationWarning
             >
-                <Script id="christmas-init" strategy="beforeInteractive">
-                    {christmasInitScript}
+                <Script id="seasonal-init" strategy="beforeInteractive">
+                    {seasonalInitScript}
                 </Script>
                 <LocaleProvider initialLocale={locale} messages={messages}>
                     <ThemeProvider>

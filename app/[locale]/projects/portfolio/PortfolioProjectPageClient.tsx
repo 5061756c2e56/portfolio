@@ -72,7 +72,7 @@ function Card({ children, className, hover = true }: {
 }) {
     return (
         <div className={cn(
-            'rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-6',
+            'christmas-card rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-6',
             hover && 'transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5',
             className
         )}>

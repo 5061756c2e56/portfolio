@@ -14,7 +14,9 @@
 import { useTranslations } from 'next-intl';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { useContactModal } from '@/hooks/useContactModal';
-import { BarChart3, ChartLine, FileText, Gamepad2, HelpCircle, Home, Mail, Scale, ShieldCheck } from 'lucide-react';
+import {
+    BarChart3, ChartLine, FileText, Gamepad2, HelpCircle, Home, Mail, ScrollText, ShieldCheck
+} from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { useCallback } from 'react';
 
@@ -37,8 +39,8 @@ export default function Footer() {
     ];
 
     const legalLinks = [
-        { label: t('terms'), href: '/legal/terms', icon: FileText },
-        { label: t('legalNotice'), href: '/legal/legal-notice', icon: Scale },
+        { label: t('terms'), href: '/legal/terms', icon: ScrollText },
+        { label: t('legalNotice'), href: '/legal/legal-notice', icon: FileText },
         { label: t('privacy'), href: '/legal/privacy-policy', icon: ShieldCheck }
     ];
 
@@ -71,7 +73,7 @@ export default function Footer() {
                                 aria-label={tNav('github')}
                                 className="text-muted-foreground hover:text-foreground transition-colors"
                             >
-                                <SiGithub className="w-5 h-5"/>
+                                <SiGithub className="w-5 h-5" />
                             </a>
 
                             <a
@@ -81,7 +83,7 @@ export default function Footer() {
                                 aria-label={tNav('linkedin')}
                                 className="text-muted-foreground hover:text-foreground transition-colors"
                             >
-                                <SiLinkedin className="w-5 h-5"/>
+                                <SiLinkedin className="w-5 h-5" />
                             </a>
                         </div>
                     </div>
@@ -103,12 +105,12 @@ export default function Footer() {
                                                 rel="noopener noreferrer"
                                                 className={linkClass}
                                             >
-                                                <Icon className="w-4 h-4 shrink-0"/>
+                                                <Icon className="w-4 h-4 shrink-0" />
                                                 <span>{link.label}</span>
                                             </a>
                                         ) : (
                                             <Link href={link.href} className={linkClass}>
-                                                <Icon className="w-4 h-4 shrink-0"/>
+                                                <Icon className="w-4 h-4 shrink-0" />
                                                 <span>{link.label}</span>
                                             </Link>
                                         )}
@@ -122,7 +124,7 @@ export default function Footer() {
                                     onClick={handleEmailClick}
                                     className={`${linkClass} text-left`}
                                 >
-                                    <Mail className="w-4 h-4 shrink-0"/>
+                                    <Mail className="w-4 h-4 shrink-0" />
                                     <span>{t('contact')}</span>
                                 </button>
                             </li>
@@ -138,7 +140,7 @@ export default function Footer() {
                                 return (
                                     <li key={link.href}>
                                         <Link href={link.href} className={linkClass}>
-                                            <Icon className="w-4 h-4 shrink-0"/>
+                                            <Icon className="w-4 h-4 shrink-0" />
                                             <span>{link.label}</span>
                                         </Link>
                                     </li>

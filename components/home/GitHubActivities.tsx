@@ -111,7 +111,7 @@ export function GitHubActivities() {
                 </div>
 
                 <div className={cn(
-                    'rounded-2xl border border-blue-500/10 bg-card/50 p-6 sm:p-8 transition-all duration-500',
+                    'christmas-card rounded-2xl border border-blue-500/10 bg-card/50 p-6 sm:p-8 transition-all duration-500',
                     isInView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
                 )} style={{ animationDelay: '100ms' }}>
                     <div className="flex items-center gap-3 mb-6">

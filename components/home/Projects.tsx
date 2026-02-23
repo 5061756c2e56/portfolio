@@ -271,12 +271,8 @@ export default function Projects() {
                                                 className="w-full sm:w-auto"
                                             >
                                                 <Button
-                                                    className={cn(
-                                                        'w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm',
-                                                        btn.variant === 'white'
-                                                            ? 'bg-foreground text-background border border-foreground/20 hover:opacity-90 hover:shadow'
-                                                            : 'btn-fill-secondary'
-                                                    )}
+                                                    variant={btn.variant === 'white' ? 'default' : 'ghost'}
+                                                    className="w-full sm:w-auto gap-2 px-4 py-2 rounded-md font-medium shadow-sm"
                                                 >
                                                     {btn.label === t('buttonGitHub') && <SiGithub
                                                         className="w-4 h-4" />}
@@ -291,10 +287,11 @@ export default function Projects() {
                                             project as { slug?: string }
                                         ).slug && (
                                              <Button
+                                                 variant="ghost"
                                                  onClick={() => router.push(`/projects/${(
                                                      project as { slug: string }
                                                  ).slug}`)}
-                                                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm btn-fill-secondary"
+                                                 className="w-full sm:w-auto gap-2 px-4 py-2 rounded-md font-medium shadow-sm"
                                              >
                                                  <FileText className="w-4 h-4" />
                                                  {t('buttonDetail')}

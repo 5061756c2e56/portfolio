@@ -390,7 +390,7 @@
   },
   "finalCTA": {
     "title": "O que há mais neste site?",
-    "lead": "Três páginas para ir mais longe, sem perder tempo:",
+    "lead": "Três páginas para ir mais longe, sem perder tempo.",
     "faq": {
       "title": "FAQ",
       "description": "Encontre as respostas para as perguntas mais frequentes sobre minha formação e minhas habilidades.",
@@ -2030,7 +2030,7 @@
             "É necessário DISTINTAR"
           ],
           "answerIndex": "0",
-          "explanation": "‘%alex%’ quebra o uso de índices B-Tree clássicos. Prefira pesquisa ou prefixo dedicado.",
+          "explanation": "‘%alex%' quebra o uso de índices B-Tree clássicos. Prefira pesquisa ou prefixo dedicado.",
           "answerIndexNote": ""
         },
         "8": {

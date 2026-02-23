@@ -28,7 +28,7 @@ export function LanguagesChart({ languages, isLoading }: LanguagesChartProps) {
     if (isLoading) {
         return (
             <div
-                className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6 min-h-50 flex flex-col items-center justify-center">
+                className="christmas-card rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6 min-h-50 flex flex-col items-center justify-center">
                 <Spinner className="w-8 h-8 animate-spin text-blue-500 mb-3"/>
                 <span className="text-sm text-muted-foreground">{t('title', { count: 0 })}...</span>
             </div>
@@ -43,7 +43,7 @@ export function LanguagesChart({ languages, isLoading }: LanguagesChartProps) {
     const otherPercentage = languages.slice(8).reduce((sum, l) => sum + l.percentage, 0);
 
     return (
-        <div className="rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6">
+        <div className="christmas-card rounded-xl border border-blue-500/10 bg-card/50 p-4 sm:p-6">
             <div className="flex items-center gap-2 mb-4">
                 <Code2 className="w-4 h-4 text-blue-500"/>
                 <h3 className="text-lg font-medium">{t('title', { count: languages.length })}</h3>

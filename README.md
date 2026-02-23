@@ -2,7 +2,7 @@
 
 > ⚠️ **LICENCE PROPRIÉTAIRE**  
 > Ce dépôt est public mais **n'est pas open-source**.  
-> L’usage commercial est strictement interdit sans autorisation.
+> L'usage commercial est strictement interdit sans autorisation.
 
 </div>
 
@@ -149,13 +149,13 @@ NEXT_PUBLIC_GOOGLE_VERIFICATION=your_verification_code
 Le compteur d'emails utilise Redis en production. En développement local, si Redis n'est pas disponible, le système
 utilise automatiquement un fichier JSON dans /data.
 
-> **Note :** Pour la production, Redis est fortement recommandé. Le fallback fichier JSON n’est là qu’en mode dégradé.
+> **Note :** Pour la production, Redis est fortement recommandé. Le fallback fichier JSON n’est là qu'en mode dégradé.
 
 ### Configuration PostgreSQL + Prisma
 
 Les stats GitHub utilisent PostgreSQL via Prisma.
 
-En développement local, PostgreSQL est obligatoire (car Prisma a besoin d’une base accessible pour les opérations de schéma/migrations).
+En développement local, PostgreSQL est obligatoire (car Prisma a besoin d'une base accessible pour les opérations de schéma/migrations).
 
 Commandes utiles :
 
@@ -282,9 +282,9 @@ pnpm sync:locales     # tsx scripts/sync-locales.ts
 
 ## 📄 Licence
 
-⚠️ **Ce projet n’est PAS open-source.**
+⚠️ **Ce projet n'est PAS open-source.**
 
-Le code source est rendu public à des fins de **lecture, d’apprentissage et d’évaluation uniquement**.
+Le code source est rendu public à des fins de **lecture, d'apprentissage et d'évaluation uniquement**.
 
 Toute utilisation commerciale, reproduction, modification, redistribution ou intégration dans un produit ou service payant est **strictement interdite sans autorisation écrite préalable**.
 

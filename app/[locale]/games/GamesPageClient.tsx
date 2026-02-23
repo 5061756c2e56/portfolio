@@ -104,7 +104,7 @@ function GameCard({ title, description, icon, isActive, onClick }: GameCardProps
         <button
             onClick={onClick}
             className={cn(
-                'p-6 rounded-xl border text-left transition-all duration-200 w-full',
+                'christmas-card p-6 rounded-xl border text-left transition-all duration-200 w-full',
                 isActive
                     ? 'border-foreground/30 bg-card'
                     : 'border-border bg-transparent hover:border-foreground/20 hover:bg-card/50'

@@ -169,7 +169,7 @@ export default function StatsPageClient() {
                 {error && loadingState === 'error' ? (
                     <section className="py-12 px-4 sm:px-6 lg:px-8">
                         <div className="max-w-4xl mx-auto">
-                            <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-6 text-center">
+                            <div className="christmas-card rounded-2xl border border-red-500/20 bg-red-500/5 p-6 text-center">
                                 <p className="text-red-400">{error}</p>
                             </div>
                         </div>
@@ -266,7 +266,7 @@ export default function StatsPageClient() {
                                 />
                             </div>
 
-                            <div className="rounded-2xl border border-blue-500/10 bg-card/50 overflow-hidden">
+                            <div className="christmas-card rounded-2xl border border-blue-500/10 bg-card/50 overflow-hidden">
                                 <div className="p-4 sm:p-6 border-b border-blue-500/10 bg-blue-500/5">
                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                         <div className="flex items-center gap-3">

@@ -390,7 +390,7 @@
   },
   "finalCTA": {
     "title": "What else is on this site?",
-    "lead": "Three pages to go further, without the fluff:",
+    "lead": "Three pages to go further, without the fluff.",
     "faq": {
       "title": "FAQ",
       "description": "Find answers to the most frequently asked questions about my background and skills.",
@@ -687,7 +687,7 @@
       "subtitle": "Find the bug in the code",
       "restart": "Restart",
       "next": "Next question",
-      "prompt": "What’s the bug?",
+      "prompt": "What's the bug?",
       "question": "Question {current}/{total}",
       "feedback": {
         "correct": "Correct!",
@@ -717,7 +717,7 @@
             "Division by zero if numbers is empty",
             "Use sum() instead of a loop",
             "total should be initialized to None",
-            "len() doesn’t work on lists"
+            "len() doesn't work on lists"
           ],
           "explanation": "If numbers is empty, len(numbers) = 0 → division by zero."
         },
@@ -728,7 +728,7 @@
             "SELECT * is inefficient but syntactically valid",
             "LIMIT must come before ORDER BY"
           ],
-          "explanation": "SELECT * works, but it’s inefficient. Prefer selecting only the needed columns."
+          "explanation": "SELECT * works, but it's inefficient. Prefer selecting only the needed columns."
         },
         "5": {
           "options": [
@@ -744,7 +744,7 @@
             "Missing await before fetch",
             "async is useless here",
             "json() should be JSON.parse()",
-            "fetch doesn’t return a promise"
+            "fetch doesn't return a promise"
           ],
           "explanation": "fetch() returns a promise. You must await fetch() to get the response."
         },
@@ -753,7 +753,7 @@
             "It should be self.name = name",
             "__init__ should be __new__",
             "name is a reserved word",
-            "print can’t take arguments"
+            "print can't take arguments"
           ],
           "explanation": "name = name creates a local variable. Use self.name = name for an instance attribute."
         },
@@ -762,18 +762,18 @@
             "map does not mutate the original array",
             "push after map changes doubled",
             "You must use forEach",
-            "length doesn’t exist on arrays"
+            "length doesn't exist on arrays"
           ],
           "explanation": "No bug! map() creates a new array. push(6) mutates nums, not doubled."
         },
         "9": {
           "options": [
             "except should specify ZeroDivisionError",
-            "result isn’t accessible after try",
+            "result isn't accessible after try",
             "You need finally",
             "print should be return"
           ],
-          "explanation": "A bare except catches ALL exceptions. It’s better to catch ZeroDivisionError specifically."
+          "explanation": "A bare except catches ALL exceptions. It's better to catch ZeroDivisionError specifically."
         },
         "10": {
           "options": [
@@ -789,14 +789,14 @@
             "No way to stop the interval",
             "count should be const",
             "increment() must return count",
-            "setInterval doesn’t exist"
+            "setInterval doesn't exist"
           ],
           "explanation": "setInterval returns an ID you should store so you can call clearInterval() later."
         },
         "12": {
           "options": [
             "Mutable default arguments are shared",
-            "append() doesn’t work",
+            "append() doesn't work",
             "return is useless",
             "items should be a tuple"
           ],
@@ -832,8 +832,8 @@
         "16": {
           "options": [
             "Mixing await and .then() is redundant",
-            "catch doesn’t work with await",
-            "fetch doesn’t return a promise",
+            "catch doesn't work with await",
+            "fetch doesn't return a promise",
             "You must use async/await everywhere"
           ],
           "explanation": "Either use await with try/catch or use .then()/.catch(). Mixing both is confusing."
@@ -850,7 +850,7 @@
         "18": {
           "options": [
             "It blocks the server for 5 seconds",
-            "time.sleep() doesn’t exist",
+            "time.sleep() doesn't exist",
             "You must return await",
             "import is invalid"
           ],
@@ -859,7 +859,7 @@
         "19": {
           "options": [
             "cell = cell * 2 does not mutate the array",
-            "forEach can’t be nested",
+            "forEach can't be nested",
             "You must use map",
             "matrix should be an object"
           ],
@@ -868,25 +868,25 @@
         "20": {
           "options": [
             "Missing braces after if",
-            "void can’t be public",
-            "setEmail() doesn’t exist",
+            "void can't be public",
+            "setEmail() doesn't exist",
             "User should be an interface"
           ],
           "explanation": "Without braces, only the first statement is inside the if. setEmail() always runs."
         },
         "21": {
           "options": [
-            "You can’t add promises",
+            "You can't add promises",
             "You need await or .then()",
             "Result will be \"[object Promise][object Promise]\"",
             "All of the above"
           ],
-          "explanation": "Promises don’t add. Use Promise.all([p1, p2]) and then await the values."
+          "explanation": "Promises don't add. Use Promise.all([p1, p2]) and then await the values."
         },
         "22": {
           "options": [
             "It mutates dict1 in place (side effect)",
-            "for doesn’t work on dict",
+            "for doesn't work on dict",
             "You must use append",
             "return d1 is redundant"
           ],
@@ -915,14 +915,14 @@
             "No transaction / unsafe WHERE",
             "Missing semicolon",
             "UPDATE should be ALTER",
-            "status isn’t in quotes"
+            "status isn't in quotes"
           ],
-          "explanation": "Without BEGIN/COMMIT it’s harder to roll back. Also, always double-check WHERE before UPDATE."
+          "explanation": "Without BEGIN/COMMIT it's harder to roll back. Also, always double-check WHERE before UPDATE."
         },
         "26": {
           "options": [
             "Missing return in the arrow function",
-            "map() doesn’t mutate the array",
+            "map() doesn't mutate the array",
             "Use forEach instead of map",
             "n * 2 should be n += 2"
           ],
@@ -1049,7 +1049,7 @@
           "options": [
             "Base.__init__ is never called",
             "You need super().__init__()",
-            "Inheritance doesn’t work",
+            "Inheritance doesn't work",
             "Answers 1 and 2"
           ],
           "explanation": "Derived.__init__ overrides Base.__init__. Call super().__init__() to run the base init."
@@ -1065,7 +1065,7 @@
         },
         "42": {
           "options": [
-            "setTimeout can’t be awaited",
+            "setTimeout can't be awaited",
             "You must return a Promise",
             "console.log runs immediately",
             "All of the above"
@@ -1074,12 +1074,12 @@
         },
         "43": {
           "options": [
-            "Aggregate functions can’t be used in WHERE",
+            "Aggregate functions can't be used in WHERE",
             "You must use HAVING instead of WHERE",
             "GROUP BY is missing",
             "All of the above"
           ],
-          "explanation": "WHERE can’t use MAX(). You need GROUP BY user_id HAVING MAX(created_at) > ..."
+          "explanation": "WHERE can't use MAX(). You need GROUP BY user_id HAVING MAX(created_at) > ..."
         },
         "44": {
           "options": [
@@ -1093,7 +1093,7 @@
         "45": {
           "options": [
             "wrapper takes no arguments",
-            "greet(name) won’t work",
+            "greet(name) won't work",
             "You need *args, **kwargs",
             "All of the above"
           ],
@@ -1124,7 +1124,7 @@
             "No special characters required",
             "All of the above"
           ],
-          "explanation": "This regex accepts \"a\" or \"1234\". It doesn’t enforce real password complexity rules."
+          "explanation": "This regex accepts \"a\" or \"1234\". It doesn't enforce real password complexity rules."
         },
         "49": {
           "options": [
@@ -1580,7 +1580,7 @@
     "httpdetective": {
       "title": "HTTP Detective",
       "subtitle": "Read the request, then pick the best diagnosis or fix",
-      "prompt": "What’s the best fix?",
+      "prompt": "What's the best fix?",
       "question": "Question {current}/{total}",
       "score": "{score}/{total}",
       "streak": "{streak}🔥 (Max: {max})",
@@ -1684,7 +1684,7 @@
             "Add random query param"
           ],
           "answerIndex": "0",
-          "explanation": "Typical loop when session cookie isn’t sent or guard logic is wrong.",
+          "explanation": "Typical loop when session cookie isn't sent or guard logic is wrong.",
           "answerIndexNote": ""
         },
         "8": {
@@ -1775,7 +1775,7 @@
             "Disable cache"
           ],
           "answerIndex": "0",
-          "explanation": "If cookies aren’t sent, check SameSite/secure/domain and fetch credentials.",
+          "explanation": "If cookies aren't sent, check SameSite/secure/domain and fetch credentials.",
           "answerIndexNote": ""
         },
         "15": {
@@ -1847,7 +1847,7 @@
           "caseTitle": "204 No Content + client crash",
           "request": "DELETE /api/item/1\nStatus: 204 No Content\nClient does res.json() and throws",
           "options": [
-            "Don’t parse JSON on 204 (check status/body length)",
+            "Don't parse JSON on 204 (check status/body length)",
             "Switch DELETE to POST",
             "Add CORS",
             "Add Retry-After"
@@ -1873,7 +1873,7 @@
           "caseTitle": "400 after gzip",
           "request": "POST /api\nContent-Encoding: gzip\nServer: 400 invalid body",
           "options": [
-            "Client compresses but server doesn’t decompress → configure gzip handling",
+            "Client compresses but server doesn't decompress → configure gzip handling",
             "Add CORS",
             "Switch to GET",
             "Add Retry-After"
@@ -1926,7 +1926,7 @@
     "sqlsleuth": {
       "title": "SQL Sleuth",
       "subtitle": "Spot the bug or the correct query without falling for traps",
-      "prompt": "What’s the best answer?",
+      "prompt": "What's the best answer?",
       "question": "Case {current}/{total}",
       "score": "{score}/{total}",
       "streak": "{streak}🔥 (Max: {max})",
@@ -1978,7 +1978,7 @@
             "Remove GROUP BY"
           ],
           "answerIndex": "0",
-          "explanation": "Aggregates don’t belong in WHERE. Use HAVING after GROUP BY.",
+          "explanation": "Aggregates don't belong in WHERE. Use HAVING after GROUP BY.",
           "answerIndexNote": ""
         },
         "4": {
@@ -2030,7 +2030,7 @@
             "You need DISTINCT"
           ],
           "answerIndex": "0",
-          "explanation": "‘%alex%’ usually can’t use a normal B-Tree index efficiently.",
+          "explanation": "‘%alex%' usually can't use a normal B-Tree index efficiently.",
           "answerIndexNote": ""
         },
         "8": {
@@ -2168,7 +2168,7 @@
           "query": "DELETE u FROM users u JOIN bans b ON b.user_id = u.id;",
           "options": [
             "Deletes banned users; extremely risky without preview",
-            "It’s a SELECT",
+            "It's a SELECT",
             "Missing GROUP BY",
             "Impossible in SQL"
           ],
@@ -4703,7 +4703,7 @@
       },
       "question5": {
         "question": "Do you work more as a front-end developer or full-stack?",
-        "answer": "I’m strongly front-end oriented (UI/UX, performance, accessibility), but I can also handle part of the back end (APIs, authentication, integrations). Long-term, my goal is to build strong full-stack skills."
+        "answer": "I'm strongly front-end oriented (UI/UX, performance, accessibility), but I can also handle part of the back end (APIs, authentication, integrations). Long-term, my goal is to build strong full-stack skills."
       },
       "question6": {
         "question": "Do you use UI component libraries, or do you build components yourself?",
@@ -4718,7 +4718,7 @@
         "answer": "Yes: keyboard navigation, contrast, labels, semantic HTML, and accessible components (Radix helps a lot with this)."
       },
       "question9": {
-        "question": "What’s your development workflow?",
+        "question": "What's your development workflow?",
         "answer": "I start from a clear goal, build a quick UI base, then iterate: code quality, manual testing, performance, and polish."
       },
       "question10": {
@@ -4864,7 +4864,7 @@
           "title": "10. Limitation of liability",
           "p1": "The publisher makes reasonable efforts to provide up-to-date and accurate information but does not guarantee completeness or the absence of errors.",
           "p2": "To the extent permitted by law, the publisher cannot be held liable for any direct or indirect damages related to the use of the website (e.g., data loss, interruption, incompatibility, etc.).",
-          "example": "Practical example: a broken external link or a project that has changed since publication does not constitute a fault giving rise to the publisher’s liability."
+          "example": "Practical example: a broken external link or a project that has changed since publication does not constitute a fault giving rise to the publisher's liability."
         },
         "security": {
           "title": "11. Security",
@@ -4918,7 +4918,7 @@
             "respond to requests submitted via the contact form;",
             "diagnose technical incidents and maintain proper operation of the website."
           ],
-          "p2": "The legal bases are, depending on the case, the publisher’s legitimate interest (security, abuse prevention, service maintenance) and your consent when you initiate contact."
+          "p2": "The legal bases are, depending on the case, the publisher's legitimate interest (security, abuse prevention, service maintenance) and your consent when you initiate contact."
         },
         "recipients": {
           "title": "5. Recipients and processors",
@@ -4943,7 +4943,7 @@
         },
         "cookies": {
           "title": "8. Cookies and trackers",
-          "p1": "The website is not intended to place advertising or marketing audience-measurement cookies. Strictly necessary cookies may be used if required for operation and security (in particular for the contact form’s anti-abuse protection)."
+          "p1": "The website is not intended to place advertising or marketing audience-measurement cookies. Strictly necessary cookies may be used if required for operation and security (in particular for the contact form's anti-abuse protection)."
         },
         "security": {
           "title": "9. Security",
@@ -4982,12 +4982,12 @@
         "ip": {
           "title": "3. Intellectual property",
           "p1": "Unless stated otherwise, all content on the website (text, visuals, code, graphic elements, identity) is protected by copyright and intellectual property rights.",
-          "p2": "Any reproduction, representation, adaptation, or distribution, in whole or in part, without the publisher’s prior written permission, is prohibited."
+          "p2": "Any reproduction, representation, adaptation, or distribution, in whole or in part, without the publisher's prior written permission, is prohibited."
         },
         "liability": {
           "title": "4. Limitation of liability",
           "p1": "The publisher strives to provide accurate and up-to-date information but does not guarantee the accuracy, completeness, or timeliness of the content.",
-          "p2": "Use of the website is at the user’s sole responsibility. The publisher cannot be held liable for direct or indirect damages that may result from accessing or using the website."
+          "p2": "Use of the website is at the user's sole responsibility. The publisher cannot be held liable for direct or indirect damages that may result from accessing or using the website."
         },
         "links": {
           "title": "5. External links",
@@ -5336,8 +5336,8 @@
       },
       "missions": {
         "title": "As an IT Technician, what are your responsibilities?",
-        "description": "You are a key player in ensuring the company’s digital environment runs smoothly.\nYou install equipment, configure networks, automate recurring tasks, and provide effective user support. Your role is both <strong>technical, responsive, and service-oriented</strong>.\nYou will also need to:",
-        "puce1": "Understand users’ priorities and propose pragmatic solutions;",
+        "description": "You are a key player in ensuring the company's digital environment runs smoothly.\nYou install equipment, configure networks, automate recurring tasks, and provide effective user support. Your role is both <strong>technical, responsive, and service-oriented</strong>.\nYou will also need to:",
+        "puce1": "Understand users' priorities and propose pragmatic solutions;",
         "puce2": "Demonstrate rigor, teaching skills, curiosity, and adaptability;",
         "puce3": "Incorporate cybersecurity, sustainability, and digital accessibility considerations into your practices."
       },
@@ -5363,8 +5363,8 @@
       "missions": {
         "title": "As a Web Integrator, what are your responsibilities?",
         "puce1": "<strong>Create a complete, responsive web application</strong> so the company or client can sell products and services online, across all types of devices.",
-        "puce2": "<strong>Bring web pages to life</strong> to better showcase the company’s or client’s products and services.",
-        "puce3": "<strong>Create interfaces that communicate with the site’s back end</strong> to build dynamic applications and allow customers to log in to the site.",
+        "puce2": "<strong>Bring web pages to life</strong> to better showcase the company's or client's products and services.",
+        "puce3": "<strong>Create interfaces that communicate with the site's back end</strong> to build dynamic applications and allow customers to log in to the site.",
         "puce4": "<strong>Optimize performance and maintain existing websites</strong> to ensure optimal operation and strong visibility in search engines.",
         "puce5": "<strong>Manage a web project end to end</strong>: from estimating and breaking down project tasks to presenting the solution, including writing technical specifications."
       }

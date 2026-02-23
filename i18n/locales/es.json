@@ -390,7 +390,7 @@
   },
   "finalCTA": {
     "title": "¿Qué más hay en este sitio?",
-    "lead": "Tres páginas para ir más allá, sin rodeos:",
+    "lead": "Tres páginas para ir más allá, sin rodeos.",
     "faq": {
       "title": "Preguntas frecuentes",
       "description": "Encuentra respuestas a las preguntas más frecuentes sobre mi trayectoria y mis competencias.",
@@ -2030,7 +2030,7 @@
             "Hace falta DISTINCT"
           ],
           "answerIndex": "0",
-          "explanation": "‘%alex%’ rompe el uso de un índice B-Tree clásico. Mejor búsqueda dedicada o prefijo.",
+          "explanation": "‘%alex%' rompe el uso de un índice B-Tree clásico. Mejor búsqueda dedicada o prefijo.",
           "answerIndexNote": ""
         },
         "8": {

@@ -17,8 +17,8 @@ import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import {
-    BarChart3, BookOpen, ChevronRight, ChevronsUpDown, Files, FileText, FolderOpen, Gamepad2, GitPullRequest, Globe,
-    HelpCircle, Home, Mail, Moon, Scale, ScrollText, ShieldCheck, Sparkles, Sun, User, Zap
+    BarChart3, BookOpen, ChevronRight, ChevronsUpDown, Files, FileText, FileUser, FolderOpen, Gamepad2, GitPullRequest,
+    Globe, HelpCircle, Home, Mail, MailOpen, Moon, Scale, ScrollText, ShieldCheck, Sparkles, Sun, User, Zap
 } from 'lucide-react';
 
 import {
@@ -36,6 +36,8 @@ import { Flag } from '@/components/Flag';
 import { useLocaleContext } from '@/components/LocaleProvider';
 import { ChristmasHat } from '@/components/christmas/ChristmasHat';
 import { useChristmasMode } from '@/hooks/use-christmas';
+import { HalloweenPumpkin } from '@/components/halloween/HalloweenPumpkin';
+import { useHalloweenMode } from '@/hooks/use-halloween';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll';
 import { defaultLocale, Link, localeFlags, locales, usePathname } from '@/i18n/routing';
@@ -51,8 +53,8 @@ const HOME_SECTIONS = [
 ] as const;
 
 const DOCUMENT_PAGES = [
-    { href: '/curriculum-vitae', labelKey: 'curriculumVitae', icon: FileText },
-    { href: '/motivation-letter', labelKey: 'motivationLetter', icon: Mail }
+    { href: '/curriculum-vitae', labelKey: 'curriculumVitae', icon: FileUser },
+    { href: '/motivation-letter', labelKey: 'motivationLetter', icon: MailOpen }
 ] as const;
 
 const OTHER_PAGES = [
@@ -62,9 +64,9 @@ const OTHER_PAGES = [
 ] as const;
 
 const LEGAL_PAGES = [
+    { href: '/legal/terms', labelKey: 'footer.terms', icon: ScrollText },
     { href: '/legal/legal-notice', labelKey: 'footer.legalNotice', icon: FileText },
-    { href: '/legal/privacy-policy', labelKey: 'footer.privacy', icon: ShieldCheck },
-    { href: '/legal/terms', labelKey: 'footer.terms', icon: ScrollText }
+    { href: '/legal/privacy-policy', labelKey: 'footer.privacy', icon: ShieldCheck }
 ] as const;
 
 const LS_HOME_EXPANDED_KEY = 'sidebar_home_expanded';
@@ -83,6 +85,9 @@ const sectionContentInsetClass =
     'mt-1 ml-5 border-l border-sidebar-border/80 pl-2 group-data-[collapsible=icon]:ml-0 group-data-[collapsible=icon]:border-l-0 group-data-[collapsible=icon]:pl-0';
 const navLabelClass =
     'block min-w-0 flex-1 text-left leading-snug whitespace-normal break-normal [overflow-wrap:normal] group-data-[collapsible=icon]:hidden';
+const brandIconSlotClass =
+    'relative grid h-7 w-7 shrink-0 place-items-center transition-opacity duration-200 md:group-data-[state=collapsed]:group-hover:opacity-0 md:group-data-[state=collapsed]:group-focus-within:opacity-0';
+const seasonalBrandIconClass = 'h-[22px] w-[22px]';
 const normalizeSearchValue = (value: string) =>
     value.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
@@ -91,6 +96,7 @@ export function AppSidebar() {
     const tAll = useTranslations();
     const { theme, setTheme } = useTheme();
     const christmasMode = useChristmasMode();
+    const halloweenMode = useHalloweenMode();
     const pathname = usePathname();
     const activeSection = useActiveSection();
     const { scrollTo } = useSmoothScroll();
@@ -240,19 +246,20 @@ export function AppSidebar() {
                             onClick={handleBrandClick}
                             suppressHydrationWarning
                         >
-                            <div
-                                className="relative flex h-7 w-7 shrink-0 items-center justify-center transition-opacity duration-200 md:group-data-[state=collapsed]:group-hover:opacity-0 md:group-data-[state=collapsed]:group-focus-within:opacity-0">
-                                {christmasMode ? (
-                                    <ChristmasHat size={24} className="h-6 w-6 text-primary" />
+                            <div className={brandIconSlotClass}>
+                                {halloweenMode ? (
+                                    <HalloweenPumpkin size={22} className={seasonalBrandIconClass} />
+                                ) : christmasMode ? (
+                                    <ChristmasHat size={22} className={cn(seasonalBrandIconClass, 'text-primary')} />
                                 ) : (
                                     <div
-                                        className="relative h-7 w-7 overflow-hidden rounded-full border border-blue-500/30 transition-all duration-300 hover:border-blue-500/50">
+                                        className="relative h-6 w-6 overflow-hidden rounded-full border border-blue-500/30 transition-all duration-300 hover:border-blue-500/50">
                                         <Image
                                             src="/favicon.ico"
                                             alt="Paul Viandier"
                                             fill
                                             className="object-cover"
-                                            sizes="28px"
+                                            sizes="24px"
                                         />
                                     </div>
                                 )}

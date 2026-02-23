@@ -232,7 +232,7 @@ export default function Skills() {
                                                                             className="p-2 rounded-lg bg-muted group-hover:bg-linear-to-br group-hover:from-purple-500/10 group-hover:to-blue-500/10 transition-all duration-300"
                                                                         >
                                                                             <svg
-                                                                                className="w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                                                                                className={`w-6 h-6 text-foreground/80 group-hover:text-foreground transition-colors duration-300 ${skill.iconId === 'emailjs' ? 'dark:text-white' : ''}`}>
                                                                                 <use
                                                                                     href={`/icons.svg#icon-${skill.iconId}`}/>
                                                                             </svg>

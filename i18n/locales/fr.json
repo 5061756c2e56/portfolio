@@ -39,7 +39,7 @@
     },
     "terms": {
       "title": "Conditions d'utilisation",
-      "description": "Ces conditions encadrent l’accès et l’utilisation de ce site portfolio. En naviguant sur le site, vous acceptez les règles ci-dessous"
+      "description": "Ces conditions encadrent l'accès et l'utilisation de ce site portfolio. En naviguant sur le site, vous acceptez les règles ci-dessous"
     },
     "motivationLetter": {
       "title": "Lettre de motivation",
@@ -73,7 +73,7 @@
   "hero": {
     "title": "Paul Viandier",
     "subtitle": "Développeur Web & Passionné de Cybersécurité",
-    "description": "Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l’administration systèmes, trois domaines que je relie entre eux.",
+    "description": "Autodidacte depuis plusieurs années, je me forme au développement, à la cybersécurité et à l'administration systèmes, trois domaines que je relie entre eux.",
     "available": "Disponible pour de nouvelles opportunités",
     "location": "France",
     "role": "Intégrateur Web",
@@ -95,7 +95,7 @@
     "timelineData": {
       "1": {
         "title": "Baccalauréat technologique STI2D avec option SIN",
-        "description": "Étude de la programmation en Python ainsi que du développement web (HTML, CSS, JavaScript). Cette formation m’a également permis d’acquérir des bases solides en création et en administration de bases de données.",
+        "description": "Étude de la programmation en Python ainsi que du développement web (HTML, CSS, JavaScript). Cette formation m'a également permis d'acquérir des bases solides en création et en administration de bases de données.",
         "period": "2023 - 2024"
       },
       "2": {
@@ -231,9 +231,9 @@
           {
             "type": "bullets",
             "items": [
-              "Conception et développement d’applications web complètes et responsives, adaptées à tous types d’appareils afin de permettre la vente de produits et services en ligne",
+              "Conception et développement d'applications web complètes et responsives, adaptées à tous types d'appareils afin de permettre la vente de produits et services en ligne",
               "Dynamisation des pages web pour améliorer la mise en valeur des produits et services",
-              "Développement d’interfaces connectées au back-end, permettant la création d’applications dynamiques et la gestion de l’authentification des utilisateurs",
+              "Développement d'interfaces connectées au back-end, permettant la création d'applications dynamiques et la gestion de l'authentification des utilisateurs",
               "Optimisation des performances et maintenance évolutive/corrective de sites existants, avec un objectif de stabilité, rapidité et amélioration du référencement naturel",
               "Gestion complète de projets web : analyse des besoins, chiffrage, découpage des tâches, rédaction des spécifications techniques, développement et présentation de la solution finale"
             ]
@@ -390,7 +390,7 @@
   },
   "finalCTA": {
     "title": "Quoi de plus sur ce site ?",
-    "lead": "Trois pages pour aller plus loin, sans perdre de temps :",
+    "lead": "Trois pages pour aller plus loin, sans perdre de temps.",
     "faq": {
       "title": "FAQ",
       "description": "Retrouvez les réponses aux questions les plus fréquentes sur mon parcours et mes compétences.",
@@ -413,7 +413,7 @@
     "license": "Sous licence propriétaire",
     "navigationTitle": "Navigation",
     "legalTitle": "Légal",
-    "terms": "Conditions d’utilisation",
+    "terms": "Conditions d'utilisation",
     "legalNotice": "Mentions légales",
     "privacy": "Politique de confidentialité",
     "contact": "Me contacter",
@@ -581,11 +581,11 @@
           "L'essentiel, c'est d'être régulier, pas parfait.",
           "Les bonnes habitudes rendent les journées plus légères.",
           "Fais simple, puis améliore.",
-          "Quand c’est flou, note-le.",
-          "Une liste courte vaut mieux qu’un plan immense.",
+          "Quand c'est flou, note-le.",
+          "Une liste courte vaut mieux qu'un plan immense.",
           "La meilleure énergie vient d'un départ net.",
           "La qualité naît des détails répétés.",
-          "Un petit pas maintenant, c’est énorme demain.",
+          "Un petit pas maintenant, c'est énorme demain.",
           "Une décision claire enlève beaucoup de stress.",
           "Le calme est un super pouvoir moderne.",
           "Tu peux changer d'avis, pas ton effort.",
@@ -606,7 +606,7 @@
           "Objectif : 2 tâches importantes, puis 1 pause.",
           "Rappel : 1 % par jour, c'est énorme sur une année.",
           "Plan : 25 minutes focus, 5 minutes off, et on recommence.",
-          "Budget : 120 € pour l’essentiel, 30 € pour le plaisir.",
+          "Budget : 120 € pour l'essentiel, 30 € pour le plaisir.",
           "Trajet : 18 minutes à pied, 4 minutes de marge.",
           "Routine : eau, lumière, mouvement, puis travail.",
           "Score : 9 / 10 quand tu restes simple et constant.",
@@ -621,7 +621,7 @@
           "Respire : inspire, expire, recommence.",
           "Tu peux hésiter — mais tu avances quand même.",
           "Ce n'est pas parfait, et alors ?",
-          "Un pas, puis un autre ; c’est tout.",
+          "Un pas, puis un autre ; c'est tout.",
           "Parfois, \"assez bien\" est déjà excellent.",
           "On se concentre ici : maintenant.",
           "Ça arrive ; on corrige ; on continue."
@@ -667,7 +667,7 @@
             "Rappelle-toi que la régularité bat la vitesse.",
             "Mieux vaut faire peu, mais le faire bien.",
             "La constance transforme les journées.",
-            "Un petit pas maintenant vaut beaucoup plus qu’une intention.",
+            "Un petit pas maintenant vaut beaucoup plus qu'une intention.",
             "L'important est de continuer, même lentement."
           ]
         }
@@ -1299,7 +1299,7 @@
             "@[\\w-]+"
           ],
           "answerIndex": "0",
-          "explanation": "Le lookbehind évite d’attraper dans a@b.com. Et on interdit le tiret en début.",
+          "explanation": "Le lookbehind évite d'attraper dans a@b.com. Et on interdit le tiret en début.",
           "answerIndexNote": ""
         },
         "5": {
@@ -1329,7 +1329,7 @@
           "answerIndexNote": ""
         },
         "7": {
-          "goal": "Extraire les hashtags (#dev, #web3), pas # suivi d’un espace.",
+          "goal": "Extraire les hashtags (#dev, #web3), pas # suivi d'un espace.",
           "input": "Tags: #dev # web #web3 #C++",
           "options": [
             "(?<!\\w)#[A-Za-z0-9_]{2,}\\b",
@@ -1377,7 +1377,7 @@
             "\\bTODO\\b"
           ],
           "answerIndex": "0",
-          "explanation": "Le caret ancre la ligne et accepte l’indentation.",
+          "explanation": "Le caret ancre la ligne et accepte l'indentation.",
           "answerIndexNote": ""
         },
         "11": {
@@ -1433,7 +1433,7 @@
           "answerIndexNote": ""
         },
         "15": {
-          "goal": "Extraire les codes postaux FR (5 chiffres) précédés d’un espace.",
+          "goal": "Extraire les codes postaux FR (5 chiffres) précédés d'un espace.",
           "input": "Paris 75001 ok, 075001 non, code:75001 non",
           "options": [
             "\\s\\d{5}\\b",
@@ -1600,7 +1600,7 @@
           "caseTitle": "401 sur /api/me",
           "request": "GET /api/me\nStatus: 401 Unauthorized\nResponse: {\"error\":\"missing token\"}",
           "options": [
-            "Ajouter l’en-tête Authorization: Bearer <token>",
+            "Ajouter l'en-tête Authorization: Bearer <token>",
             "Changer GET en POST",
             "Ajouter Content-Type: application/json",
             "Désactiver CORS côté navigateur"
@@ -1628,7 +1628,7 @@
           "options": [
             "Envoyer le bon Content-Type (ex: multipart/form-data ou application/json)",
             "Ajouter Authorization",
-            "Changer l’URL",
+            "Changer l'URL",
             "Augmenter le timeout"
           ],
           "answerIndex": "0",
@@ -1684,7 +1684,7 @@
             "Ajouter un query param random"
           ],
           "answerIndex": "0",
-          "explanation": "Boucle login/app typique quand la session n’est pas persistée ou guard inversé.",
+          "explanation": "Boucle login/app typique quand la session n'est pas persistée ou guard inversé.",
           "answerIndexNote": ""
         },
         "8": {
@@ -1710,7 +1710,7 @@
             "Forcer HTTP/1.0"
           ],
           "answerIndex": "0",
-          "explanation": "502 = gateway/proxy ne peut pas joindre correctement l’upstream.",
+          "explanation": "502 = gateway/proxy ne peut pas joindre correctement l'upstream.",
           "answerIndexNote": ""
         },
         "10": {
@@ -1743,7 +1743,7 @@
           "caseTitle": "Wrong Content-Type en réponse",
           "request": "GET /api/data\nStatus: 200\nContent-Type: text/html\nBody: \"<html>...\"",
           "options": [
-            "Tu touches une page d’erreur/rewrite → corriger route/API base URL",
+            "Tu touches une page d'erreur/rewrite → corriger route/API base URL",
             "Ajouter Retry-After",
             "Ajouter Content-Length",
             "Ajouter Origin header"
@@ -1775,7 +1775,7 @@
             "Désactiver cache"
           ],
           "answerIndex": "0",
-          "explanation": "Si le cookie n’est pas envoyé, vérifier SameSite/secure/domain ou fetch credentials.",
+          "explanation": "Si le cookie n'est pas envoyé, vérifier SameSite/secure/domain ou fetch credentials.",
           "answerIndexNote": ""
         },
         "15": {
@@ -1821,7 +1821,7 @@
           "caseTitle": "TLS / mixed content",
           "request": "App loaded over HTTPS\nFetch http://api.example.com\nBrowser blocked: mixed content",
           "options": [
-            "Utiliser HTTPS pour l’API ou un proxy HTTPS",
+            "Utiliser HTTPS pour l'API ou un proxy HTTPS",
             "Ajouter CORS",
             "Mettre no-cors",
             "Changer méthode"
@@ -2024,13 +2024,13 @@
           "caseTitle": "LIKE sans index",
           "query": "SELECT * FROM users WHERE name LIKE '%alex%';",
           "options": [
-            "Le wildcard en début empêche souvent l’index (full scan)",
-            "LIKE utilise toujours l’index",
+            "Le wildcard en début empêche souvent l'index (full scan)",
+            "LIKE utilise toujours l'index",
             "Il faut HAVING",
             "Il faut DISTINCT"
           ],
           "answerIndex": "0",
-          "explanation": "‘%alex%’ casse l’usage d’index B-Tree classique. Préférer search dédiée ou prefix.",
+          "explanation": "‘%alex%' casse l'usage d'index B-Tree classique. Préférer search dédiée ou prefix.",
           "answerIndexNote": ""
         },
         "8": {
@@ -2056,7 +2056,7 @@
             "Mettre HAVING"
           ],
           "answerIndex": "0",
-          "explanation": "Appliquer une fonction sur la colonne casse souvent l’index. Le range est index-friendly.",
+          "explanation": "Appliquer une fonction sur la colonne casse souvent l'index. Le range est index-friendly.",
           "answerIndexNote": ""
         },
         "10": {
@@ -2077,7 +2077,7 @@
           "query": "UPDATE users SET role='admin';",
           "options": [
             "Dangereux: ça modifie toutes les lignes, ajouter WHERE",
-            "C’est OK si table petite",
+            "C'est OK si table petite",
             "Il manque GROUP BY",
             "Il faut HAVING"
           ],
@@ -2102,13 +2102,13 @@
           "caseTitle": "IN list énorme",
           "query": "SELECT * FROM users WHERE id IN ( ... 5000 ids ... );",
           "options": [
-            "Mettre les ids dans une table temporaire / join au lieu d’une liste géante",
+            "Mettre les ids dans une table temporaire / join au lieu d'une liste géante",
             "Ajouter ORDER BY",
             "Ajouter HAVING",
             "Remplacer IN par LIKE"
           ],
           "answerIndex": "0",
-          "explanation": "Très grosse liste IN peut être coûteuse; mieux vaut joindre une table d’ids.",
+          "explanation": "Très grosse liste IN peut être coûteuse; mieux vaut joindre une table d'ids.",
           "answerIndexNote": ""
         },
         "14": {
@@ -2155,7 +2155,7 @@
           "query": "SELECT * FROM users WHERE email = \"a@b.com\";",
           "options": [
             "Utiliser des quotes simples 'a@b.com' (selon dialecte)",
-            "C’est toujours correct",
+            "C'est toujours correct",
             "Mettre backticks",
             "Utiliser HAVING"
           ],
@@ -2168,7 +2168,7 @@
           "query": "DELETE u FROM users u JOIN bans b ON b.user_id = u.id;",
           "options": [
             "Ça supprime les users bannis: à utiliser avec extrême prudence",
-            "C’est un SELECT déguisé",
+            "C'est un SELECT déguisé",
             "Il manque GROUP BY",
             "Impossible en SQL"
           ],
@@ -2225,14 +2225,14 @@
             "Invalide sans GROUP BY"
           ],
           "answerIndex": "0",
-          "explanation": "EXISTS teste l’existence d’au moins une ligne correspondante.",
+          "explanation": "EXISTS teste l'existence d'au moins une ligne correspondante.",
           "answerIndexNote": ""
         },
         "23": {
           "caseTitle": "Between dates inclusive piège",
           "query": "WHERE created_at BETWEEN '2026-01-01' AND '2026-01-31'",
           "options": [
-            "Si created_at a l’heure, le 31 inclut 31 00:00 seulement; préférer < '2026-02-01'",
+            "Si created_at a l'heure, le 31 inclut 31 00:00 seulement; préférer < '2026-02-01'",
             "BETWEEN exclut les bornes",
             "BETWEEN est toujours faux",
             "Il faut HAVING"
@@ -2258,13 +2258,13 @@
           "caseTitle": "Index et fonctions",
           "query": "WHERE LOWER(email) = 'a@b.com'",
           "options": [
-            "Créer un index fonctionnel ou normaliser à l’écriture",
+            "Créer un index fonctionnel ou normaliser à l'écriture",
             "Ajouter ORDER BY",
             "Mettre LOWER dans SELECT",
             "Mettre HAVING"
           ],
           "answerIndex": "0",
-          "explanation": "Fonction sur colonne peut empêcher l’index normal. Solution: index fonctionnel ou colonne normalisée.",
+          "explanation": "Fonction sur colonne peut empêcher l'index normal. Solution: index fonctionnel ou colonne normalisée.",
           "answerIndexNote": ""
         }
       }
@@ -2301,11 +2301,11 @@
         "L'essentiel, c'est d'être régulier, pas parfait.",
         "Les bonnes habitudes rendent les journées plus légères.",
         "Fais simple, puis améliore.",
-        "Quand c’est flou, note-le.",
-        "Une liste courte vaut mieux qu’un plan immense.",
+        "Quand c'est flou, note-le.",
+        "Une liste courte vaut mieux qu'un plan immense.",
         "La meilleure énergie vient d'un départ net.",
         "La qualité naît des détails répétés.",
-        "Un petit pas maintenant, c’est énorme demain.",
+        "Un petit pas maintenant, c'est énorme demain.",
         "Une décision claire enlève beaucoup de stress.",
         "Le calme est un super pouvoir moderne.",
         "Tu peux changer d'avis, pas ton effort.",
@@ -2326,7 +2326,7 @@
         "Objectif : 2 tâches importantes, puis 1 pause.",
         "Rappel : 1 % par jour, c'est énorme sur une année.",
         "Plan : 25 minutes focus, 5 minutes off, et on recommence.",
-        "Budget : 120 € pour l’essentiel, 30 € pour le plaisir.",
+        "Budget : 120 € pour l'essentiel, 30 € pour le plaisir.",
         "Trajet : 18 minutes à pied, 4 minutes de marge.",
         "Routine : eau, lumière, mouvement, puis travail.",
         "Score : 9 / 10 quand tu restes simple et constant.",
@@ -2341,7 +2341,7 @@
         "Respire : inspire, expire, recommence.",
         "Tu peux hésiter — mais tu avances quand même.",
         "Ce n'est pas parfait, et alors ?",
-        "Un pas, puis un autre ; c’est tout.",
+        "Un pas, puis un autre ; c'est tout.",
         "Parfois, \"assez bien\" est déjà excellent.",
         "On se concentre ici : maintenant.",
         "Ça arrive ; on corrige ; on continue."
@@ -2387,7 +2387,7 @@
           "Rappelle-toi que la régularité bat la vitesse.",
           "Mieux vaut faire peu, mais le faire bien.",
           "La constance transforme les journées.",
-          "Un petit pas maintenant vaut beaucoup plus qu’une intention.",
+          "Un petit pas maintenant vaut beaucoup plus qu'une intention.",
           "L'important est de continuer, même lentement."
         ]
       }
@@ -4683,11 +4683,11 @@
   },
   "faq": {
     "title": "Questions fréquentes",
-    "description": "Vous trouverez ici les réponses aux questions les plus fréquentes concernant mon travail, mes compétences et mes projets. Si votre question n’est pas listée, n’hésitez pas à me contacter directement.",
+    "description": "Vous trouverez ici les réponses aux questions les plus fréquentes concernant mon travail, mes compétences et mes projets. Si votre question n'est pas listée, n'hésitez pas à me contacter directement.",
     "faqs": {
       "question1": {
         "question": "Comment puis-je vous contacter ?",
-        "answer": "Vous pouvez m’envoyer un email à contact@paulviandier.com ou passer par le formulaire de contact dans la section Contact."
+        "answer": "Vous pouvez m'envoyer un email à contact@paulviandier.com ou passer par le formulaire de contact dans la section Contact."
       },
       "question2": {
         "question": "Quels langages et technologies maîtrisez-vous ?",
@@ -4707,26 +4707,26 @@
       },
       "question6": {
         "question": "Utilisez-vous des composants UI ou vous les codez vous-même ?",
-        "answer": "Les deux. J’utilise des bases solides (Radix, shadcn/ui) quand c’est pertinent, et je crée du sur-mesure quand il faut un rendu précis."
+        "answer": "Les deux. J'utilise des bases solides (Radix, shadcn/ui) quand c'est pertinent, et je crée du sur-mesure quand il faut un rendu précis."
       },
       "question7": {
         "question": "Comment gérez-vous la performance et le SEO ?",
         "answer": "Optimisation des images, chargement progressif, code-splitting, métadonnées propres, sitemaps, et bonnes pratiques Next.js."
       },
       "question8": {
-        "question": "Faites-vous attention à l’accessibilité ?",
+        "question": "Faites-vous attention à l'accessibilité ?",
         "answer": "Oui : navigation clavier, contrastes, labels, sémantique HTML, et composants accessibles (Radix aide beaucoup sur ce point)."
       },
       "question9": {
         "question": "Quel est votre workflow de développement ?",
-        "answer": "Je pars d’un besoin clair, je fais une base UI rapide, puis j’itère : qualité du code, tests manuels, performances, et finitions."
+        "answer": "Je pars d'un besoin clair, je fais une base UI rapide, puis j'itère : qualité du code, tests manuels, performances, et finitions."
       },
       "question10": {
         "question": "Travaillez-vous avec un design existant ?",
         "answer": "Oui. Je peux intégrer une maquette Figma fidèlement, ou proposer une direction UI simple et cohérente si besoin."
       },
       "question11": {
-        "question": "Comment gérez-vous l’internationalisation (i18n) ?",
+        "question": "Comment gérez-vous l'internationalisation (i18n) ?",
         "answer": "Avec next-intl : routes/locales propres, traduction structurée, formats de date/heure et typographie adaptés à la langue."
       },
       "question12": {
@@ -4734,8 +4734,8 @@
         "answer": "Oui : TypeScript strict, composants réutilisables, conventions de nommage, lint/format, et séparation claire UI/logique."
       },
       "question13": {
-        "question": "Comment gérez-vous l’état et les données ?",
-        "answer": "Selon le besoin : state local React, stores légers si nécessaire, et fetch côté serveur/clients avec gestion d’erreurs et loading."
+        "question": "Comment gérez-vous l'état et les données ?",
+        "answer": "Selon le besoin : state local React, stores légers si nécessaire, et fetch côté serveur/clients avec gestion d'erreurs et loading."
       },
       "question14": {
         "question": "Pouvez-vous intégrer des APIs ou services externes ?",
@@ -4759,12 +4759,12 @@
       "links": {
         "readPrivacy": "Lire la politique de confidentialité",
         "readLegalNotice": "Lire les mentions légales",
-        "readTerms": "Lire les conditions d’utilisation"
+        "readTerms": "Lire les conditions d'utilisation"
       }
     },
     "terms": {
-      "title": "Conditions d’utilisation",
-      "description": "Ces conditions encadrent l’accès et l’utilisation de ce site portfolio. En naviguant sur le site, vous acceptez les règles ci-dessous.",
+      "title": "Conditions d'utilisation",
+      "description": "Ces conditions encadrent l'accès et l'utilisation de ce site portfolio. En naviguant sur le site, vous acceptez les règles ci-dessous.",
       "sections": {
         "editor": {
           "title": "1. Informations légales — Éditeur du site",
@@ -4781,24 +4781,24 @@
           "hostAddressValue": "2 rue Kellermann, 59100 Roubaix, France",
           "hostWebsiteLabel": "Site web :",
           "hostWebsiteValue": "ovhcloud.com",
-          "contactLine": "En cas de question, vous pouvez contacter l’éditeur : <contactBtn>ouvrir le formulaire de contact</contactBtn>."
+          "contactLine": "En cas de question, vous pouvez contacter l'éditeur : <contactBtn>ouvrir le formulaire de contact</contactBtn>."
         },
         "purpose": {
-          "title": "2. Objet des conditions d’utilisation",
-          "p1": "Les présentes conditions d’utilisation (ci-après « CGU ») définissent les règles d’accès et d’usage du site, de ses pages et de ses fonctionnalités (ex : formulaire de contact).",
-          "p2": "En naviguant sur le site, vous acceptez les CGU. Si vous n’êtes pas d’accord, veuillez ne pas utiliser le site."
+          "title": "2. Objet des conditions d'utilisation",
+          "p1": "Les présentes conditions d'utilisation (ci-après « CGU ») définissent les règles d'accès et d'usage du site, de ses pages et de ses fonctionnalités (ex : formulaire de contact).",
+          "p2": "En naviguant sur le site, vous acceptez les CGU. Si vous n'êtes pas d'accord, veuillez ne pas utiliser le site."
         },
         "access": {
           "title": "3. Accès au site et disponibilité",
           "p1": "Le site est accessible en principe 24h/24 et 7j/7, sauf interruption programmée ou non (maintenance, incident, mise à jour, contraintes techniques).",
-          "p2": "L’éditeur ne garantit pas une disponibilité permanente, ni l’absence d’erreurs. Le site est fourni « tel quel »."
+          "p2": "L'éditeur ne garantit pas une disponibilité permanente, ni l'absence d'erreurs. Le site est fourni « tel quel »."
         },
         "definitions": {
           "title": "4. Définitions",
           "items": [
             {
               "label": "Site :",
-              "text": "l’ensemble des pages du portfolio accessibles via le nom de domaine et ses sous-pages."
+              "text": "l'ensemble des pages du portfolio accessibles via le nom de domaine et ses sous-pages."
             },
             {
               "label": "Utilisateur :",
@@ -4820,17 +4820,17 @@
           "listIntro": "Il est notamment interdit :",
           "items": [
             "de perturber le site (attaque, surcharge, déni de service, injection, etc.) ;",
-            "d’accéder ou de tenter d’accéder à des zones non autorisées ;",
-            "d’extraire automatiquement des données de manière abusive (scraping agressif, spam, harvesting) ;",
-            "d’utiliser le site à des fins illégales ou contraires à l’ordre public ;",
-            "de contourner des mesures de sécurité ou d’authentification le cas échéant."
+            "d'accéder ou de tenter d'accéder à des zones non autorisées ;",
+            "d'extraire automatiquement des données de manière abusive (scraping agressif, spam, harvesting) ;",
+            "d'utiliser le site à des fins illégales ou contraires à l'ordre public ;",
+            "de contourner des mesures de sécurité ou d'authentification le cas échéant."
           ],
           "example": "Exemple concret : envoyer des dizaines de requêtes par seconde sur le formulaire de contact pour le rendre inutilisable est interdit."
         },
         "ip": {
           "title": "6. Propriété intellectuelle",
-          "p1": "Sauf mention contraire, l’ensemble des Contenus du site est protégé par le droit d’auteur et/ou d’autres droits de propriété intellectuelle. Les droits restent la propriété de l’éditeur ou des titulaires concernés.",
-          "notAllowedIntro": "Vous n’êtes pas autorisé :",
+          "p1": "Sauf mention contraire, l'ensemble des Contenus du site est protégé par le droit d'auteur et/ou d'autres droits de propriété intellectuelle. Les droits restent la propriété de l'éditeur ou des titulaires concernés.",
+          "notAllowedIntro": "Vous n'êtes pas autorisé :",
           "notAllowed": [
             "à reproduire, copier, modifier, distribuer ou publier les Contenus sans autorisation écrite ;",
             "à réutiliser des éléments graphiques, textes, captures ou code pour un usage public/commercial sans accord."
@@ -4839,37 +4839,37 @@
         },
         "externalLinks": {
           "title": "7. Liens externes et services tiers",
-          "p1": "Le site peut contenir des liens vers des Services tiers. L’éditeur n’exerce aucun contrôle sur ces services et ne peut être tenu responsable de leur contenu, disponibilité, ni de leurs pratiques (dont leurs politiques de confidentialité).",
-          "p2": "L’accès à ces Services tiers se fait sous votre responsabilité, selon leurs propres conditions."
+          "p1": "Le site peut contenir des liens vers des Services tiers. L'éditeur n'exerce aucun contrôle sur ces services et ne peut être tenu responsable de leur contenu, disponibilité, ni de leurs pratiques (dont leurs politiques de confidentialité).",
+          "p2": "L'accès à ces Services tiers se fait sous votre responsabilité, selon leurs propres conditions."
         },
         "contact": {
           "title": "8. Formulaire de contact et échanges",
           "p1": "Si un formulaire de contact est disponible, vous vous engagez à fournir des informations exactes et à ne pas transmettre de contenu illicite, injurieux, diffamatoire, harcelant, ou malveillant.",
-          "rightsIntro": "L’éditeur se réserve le droit :",
+          "rightsIntro": "L'éditeur se réserve le droit :",
           "rights": [
             "de ne pas répondre à des demandes abusives ou non pertinentes ;",
             "de mettre en place des protections anti-spam ;",
-            "de bloquer l’accès au formulaire en cas d’abus."
+            "de bloquer l'accès au formulaire en cas d'abus."
           ],
           "example": "Exemple concret : envoyer des messages répétitifs (spam) ou des fichiers suspects peut entraîner un blocage."
         },
         "data": {
           "title": "9. Données personnelles et cookies",
           "p1": "Le site ne collecte pas de données personnelles à des fins commerciales, de profilage ou de suivi publicitaire.",
-          "p2": "Des données techniques, notamment l’adresse IP, peuvent être traitées ponctuellement lorsque cela est nécessaire à des fins de sécurité, de prévention des abus et de diagnostic.",
+          "p2": "Des données techniques, notamment l'adresse IP, peuvent être traitées ponctuellement lorsque cela est nécessaire à des fins de sécurité, de prévention des abus et de diagnostic.",
           "p3": "Le formulaire de contact intègre des protections anti-abus via Cloudflare. Ces services peuvent traiter des données techniques nécessaires à leur fonctionnement.",
-          "p4": "Pour plus d’informations, consultez la <privacyLink>Politique de confidentialité</privacyLink>."
+          "p4": "Pour plus d'informations, consultez la <privacyLink>Politique de confidentialité</privacyLink>."
         },
         "liability": {
           "title": "10. Limitation de responsabilité",
-          "p1": "L’éditeur met en œuvre des efforts raisonnables pour fournir des informations à jour et exactes, mais ne garantit pas l’exhaustivité ni l’absence d’erreurs.",
-          "p2": "Dans les limites permises par la loi, l’éditeur ne pourra être tenu responsable des dommages directs ou indirects liés à l’utilisation du site (ex : perte de données, interruption, incompatibilité, etc.).",
-          "example": "Exemple concret : si un lien externe ne fonctionne plus ou qu’un projet affiché a évolué depuis sa publication, cela ne constitue pas une faute engageant la responsabilité de l’éditeur."
+          "p1": "L'éditeur met en œuvre des efforts raisonnables pour fournir des informations à jour et exactes, mais ne garantit pas l'exhaustivité ni l'absence d'erreurs.",
+          "p2": "Dans les limites permises par la loi, l'éditeur ne pourra être tenu responsable des dommages directs ou indirects liés à l'utilisation du site (ex : perte de données, interruption, incompatibilité, etc.).",
+          "example": "Exemple concret : si un lien externe ne fonctionne plus ou qu'un projet affiché a évolué depuis sa publication, cela ne constitue pas une faute engageant la responsabilité de l'éditeur."
         },
         "security": {
           "title": "11. Sécurité",
-          "p1": "Vous vous engagez à ne pas compromettre la sécurité du site. Toute tentative de fraude, d’intrusion ou d’exploitation d’une vulnérabilité pourra entraîner des mesures de protection et, le cas échéant, des actions appropriées.",
-          "p2": "Si vous identifiez un problème de sécurité, merci de le signaler à l’éditeur via les informations de contact ci-dessus."
+          "p1": "Vous vous engagez à ne pas compromettre la sécurité du site. Toute tentative de fraude, d'intrusion ou d'exploitation d'une vulnérabilité pourra entraîner des mesures de protection et, le cas échéant, des actions appropriées.",
+          "p2": "Si vous identifiez un problème de sécurité, merci de le signaler à l'éditeur via les informations de contact ci-dessus."
         },
         "changes": {
           "title": "12. Modifications des CGU",
@@ -4879,7 +4879,7 @@
         "law": {
           "title": "13. Droit applicable et juridiction",
           "p1": "Sauf dispositions impératives contraires, les présentes CGU sont régies par le droit français.",
-          "p2": "En cas de litige, une résolution amiable sera privilégiée avant toute action. À défaut d’accord, les tribunaux compétents seront ceux déterminés par les règles applicables."
+          "p2": "En cas de litige, une résolution amiable sera privilégiée avant toute action. À défaut d'accord, les tribunaux compétents seront ceux déterminés par les règles applicables."
         }
       }
     },
@@ -4889,12 +4889,12 @@
       "sections": {
         "intro": {
           "title": "1. Présentation",
-          "p1": "La présente politique de confidentialité explique comment des données personnelles peuvent être traitées lors de l’utilisation de ce site portfolio.",
-          "p2": "L’éditeur s’engage à respecter la réglementation applicable, notamment le Règlement général sur la protection des données (RGPD)."
+          "p1": "La présente politique de confidentialité explique comment des données personnelles peuvent être traitées lors de l'utilisation de ce site portfolio.",
+          "p2": "L'éditeur s'engage à respecter la réglementation applicable, notamment le Règlement général sur la protection des données (RGPD)."
         },
         "controller": {
           "title": "2. Responsable du traitement",
-          "p1": "Le responsable du traitement est l’éditeur du site.",
+          "p1": "Le responsable du traitement est l'éditeur du site.",
           "nameLabel": "Nom & Prénom :",
           "nameValue": "Viandier Paul",
           "emailLabel": "Email :",
@@ -4905,10 +4905,10 @@
           "title": "3. Données traitées",
           "p1": "Le site ne collecte pas de données personnelles à des fins commerciales, de profilage ou de suivi publicitaire.",
           "ipTitle": "Adresse IP :",
-          "ipText": "l’adresse IP peut être traitée ponctuellement uniquement lorsque cela est nécessaire, notamment à des fins de sécurité, de prévention des abus et de diagnostic.",
+          "ipText": "l'adresse IP peut être traitée ponctuellement uniquement lorsque cela est nécessaire, notamment à des fins de sécurité, de prévention des abus et de diagnostic.",
           "cloudflareTitle": "Formulaire de contact :",
           "cloudflareText": "le formulaire intègre des protections contre les abus via des services Cloudflare (ex : anti-bot / anti-spam). Ces services peuvent traiter des données techniques nécessaires à leur fonctionnement.",
-          "p2": "Si vous choisissez de contacter l’éditeur, les informations que vous saisissez sont utilisées uniquement pour traiter votre demande et vous répondre."
+          "p2": "Si vous choisissez de contacter l'éditeur, les informations que vous saisissez sont utilisées uniquement pour traiter votre demande et vous répondre."
         },
         "purposes": {
           "title": "4. Finalités et bases légales",
@@ -4918,11 +4918,11 @@
             "répondre aux demandes envoyées via le formulaire de contact ;",
             "diagnostiquer des incidents techniques et maintenir le bon fonctionnement du site."
           ],
-          "p2": "Les bases légales sont, selon les cas, l’intérêt légitime de l’éditeur (sécurité, prévention des abus, maintien du service) et votre consentement lorsque vous initiez une prise de contact."
+          "p2": "Les bases légales sont, selon les cas, l'intérêt légitime de l'éditeur (sécurité, prévention des abus, maintien du service) et votre consentement lorsque vous initiez une prise de contact."
         },
         "recipients": {
           "title": "5. Destinataires et sous-traitants",
-          "p1": "Les données éventuellement traitées sont destinées à l’éditeur du site. Elles peuvent être traitées par des prestataires techniques strictement nécessaires au fonctionnement et à la sécurité du site, dans la limite de leurs missions.",
+          "p1": "Les données éventuellement traitées sont destinées à l'éditeur du site. Elles peuvent être traitées par des prestataires techniques strictement nécessaires au fonctionnement et à la sécurité du site, dans la limite de leurs missions.",
           "items": [
             "Hébergement : OVH SAS, 2 rue Kellermann, 59100 Roubaix, France.",
             "Protection anti-abus du formulaire : Cloudflare (services anti-bot / anti-spam)."
@@ -4938,16 +4938,16 @@
         "rights": {
           "title": "7. Vos droits",
           "p1": "Conformément au RGPD, vous disposez notamment des droits suivants : accès, rectification, effacement, limitation et opposition, lorsque applicable.",
-          "p2": "Pour exercer vos droits, contactez l’éditeur via le formulaire de contact ou par email.",
+          "p2": "Pour exercer vos droits, contactez l'éditeur via le formulaire de contact ou par email.",
           "p3": "Vous pouvez également introduire une réclamation auprès de la CNIL si vous estimez que vos droits ne sont pas respectés."
         },
         "cookies": {
           "title": "8. Cookies et traceurs",
-          "p1": "Le site n’a pas vocation à déposer des cookies publicitaires ou de mesure d’audience à des fins marketing. Des cookies strictement nécessaires peuvent être utilisés si requis pour le fonctionnement et la sécurité (notamment pour la protection anti-abus du formulaire)."
+          "p1": "Le site n'a pas vocation à déposer des cookies publicitaires ou de mesure d'audience à des fins marketing. Des cookies strictement nécessaires peuvent être utilisés si requis pour le fonctionnement et la sécurité (notamment pour la protection anti-abus du formulaire)."
         },
         "security": {
           "title": "9. Sécurité",
-          "p1": "L’éditeur met en œuvre des mesures raisonnables pour protéger les données contre l’accès non autorisé, la perte, l’altération ou la divulgation, notamment via des protections contre les abus sur le formulaire de contact."
+          "p1": "L'éditeur met en œuvre des mesures raisonnables pour protéger les données contre l'accès non autorisé, la perte, l'altération ou la divulgation, notamment via des protections contre les abus sur le formulaire de contact."
         },
         "changes": {
           "title": "10. Modifications",
@@ -4957,7 +4957,7 @@
     },
     "legal-notice": {
       "title": "Mentions légales",
-      "description": "Les présentes mentions légales décrivent l’éditeur du site, son hébergement et les principales informations relatives à son utilisation.",
+      "description": "Les présentes mentions légales décrivent l'éditeur du site, son hébergement et les principales informations relatives à son utilisation.",
       "sections": {
         "publisher": {
           "title": "1. Éditeur du site",
@@ -4981,21 +4981,21 @@
         },
         "ip": {
           "title": "3. Propriété intellectuelle",
-          "p1": "Sauf mention contraire, l’ensemble des contenus présents sur le site (textes, visuels, code, éléments graphiques, identité) est protégé par le droit d’auteur et les droits de propriété intellectuelle.",
-          "p2": "Toute reproduction, représentation, adaptation ou diffusion, totale ou partielle, sans autorisation écrite préalable de l’éditeur, est interdite."
+          "p1": "Sauf mention contraire, l'ensemble des contenus présents sur le site (textes, visuels, code, éléments graphiques, identité) est protégé par le droit d'auteur et les droits de propriété intellectuelle.",
+          "p2": "Toute reproduction, représentation, adaptation ou diffusion, totale ou partielle, sans autorisation écrite préalable de l'éditeur, est interdite."
         },
         "liability": {
           "title": "4. Limitation de responsabilité",
-          "p1": "L’éditeur s’efforce de fournir des informations exactes et à jour, mais ne garantit pas l’exactitude, l’exhaustivité ou l’actualité des contenus.",
-          "p2": "L’utilisation du site se fait sous la seule responsabilité de l’utilisateur. L’éditeur ne pourra être tenu responsable des dommages directs ou indirects pouvant résulter de l’accès ou de l’utilisation du site."
+          "p1": "L'éditeur s'efforce de fournir des informations exactes et à jour, mais ne garantit pas l'exactitude, l'exhaustivité ou l'actualité des contenus.",
+          "p2": "L'utilisation du site se fait sous la seule responsabilité de l'utilisateur. L'éditeur ne pourra être tenu responsable des dommages directs ou indirects pouvant résulter de l'accès ou de l'utilisation du site."
         },
         "links": {
           "title": "5. Liens externes",
-          "p1": "Le site peut contenir des liens vers des sites ou services tiers. L’éditeur ne dispose d’aucun contrôle sur ces services et ne saurait être responsable de leur contenu, de leur disponibilité ou de leurs pratiques."
+          "p1": "Le site peut contenir des liens vers des sites ou services tiers. L'éditeur ne dispose d'aucun contrôle sur ces services et ne saurait être responsable de leur contenu, de leur disponibilité ou de leurs pratiques."
         },
         "data": {
           "title": "6. Données personnelles",
-          "p1": "Pour toute information relative aux données personnelles, aux cookies, aux finalités de traitement, ainsi qu’à vos droits, veuillez consulter la <privacyLink>Politique de confidentialité</privacyLink>."
+          "p1": "Pour toute information relative aux données personnelles, aux cookies, aux finalités de traitement, ainsi qu'à vos droits, veuillez consulter la <privacyLink>Politique de confidentialité</privacyLink>."
         },
         "law": {
           "title": "7. Droit applicable",
@@ -5018,9 +5018,9 @@
     "sections": {
       "profile": {
         "title": "Profil",
-        "p1": "Je suis une personne curieuse, dévouée et motivée, toujours prête à relever de nouveaux défis. J’ai à cœur de découvrir de nouvelles technologies, d’apprendre en continu et de m’adapter à des environnements variés. Mon enthousiasme et mon engagement me poussent à donner le meilleur de moi-même dans chaque projet, et à m’investir pleinement pour atteindre les objectifs fixés.",
-        "github": "GitHub : ajoute l’URL exacte",
-        "linkedin": "LinkedIn : ajoute l’URL exacte"
+        "p1": "Je suis une personne curieuse, dévouée et motivée, toujours prête à relever de nouveaux défis. J'ai à cœur de découvrir de nouvelles technologies, d'apprendre en continu et de m'adapter à des environnements variés. Mon enthousiasme et mon engagement me poussent à donner le meilleur de moi-même dans chaque projet, et à m'investir pleinement pour atteindre les objectifs fixés.",
+        "github": "GitHub : ajoute l'URL exacte",
+        "linkedin": "LinkedIn : ajoute l'URL exacte"
       },
       "skills": {
         "title": "Compétences",
@@ -5086,7 +5086,7 @@
         "note": "Manutentionnaire - Contrat saisonnier",
         "date": "01/09/2025 - 08/09/2025",
         "bullets": {
-          "1": "Triage et conditionnement de l’ail : retrait des bulbes pourris / blessés / mous / tachés / germés / déformés",
+          "1": "Triage et conditionnement de l'ail : retrait des bulbes pourris / blessés / mous / tachés / germés / déformés",
           "2": "Thermothérapies réalisées"
         }
       },
@@ -5097,7 +5097,7 @@
           "date": "2022 - Aujourd'hui",
           "bullets": {
             "1": "Installation et configuration de postes Windows & Linux (logiciels, mises à jour), imprimantes, et comptes Microsoft 365 / Google Workspace",
-            "2": "Assistance utilisateurs : prise en main, résolution d’incidents courants, rédaction de procédures courtes"
+            "2": "Assistance utilisateurs : prise en main, résolution d'incidents courants, rédaction de procédures courtes"
           }
         }
       }
@@ -5115,7 +5115,7 @@
     "body": {
       "p1": "Madame, Monsieur,",
       "p2": "Actuellement à la recherche d'une alternance en tant <b>qu'intégrateur web</b>, je souhaite intégrer votre entreprise afin de développer mes compétences dans un cadre professionnel structuré et exigeant. Bien que débutant dans le monde professionnel, je suis très à l'aise avec l'informatique de manière générale et j'ai déjà exploré plusieurs domaines techniques.",
-      "p3": "Je me suis notamment formé au <b>développement front-end</b> et j'ai acquis de bonnes bases en <b>HTML</b>, <b>CSS</b> et <b>JavaScript</b>, ainsi qu'une première expérience avec <b>React</b>, <b>Redux</b>, l'utilisation d’<b>API</b>, <b>Git</b> et le <b>responsive design</b>. J'ai l'habitude d'intégrer des interfaces à partir de <b>maquettes Figma</b>, en veillant à respecter le rendu visuel, la structure du code et l'expérience utilisateur.",
+      "p3": "Je me suis notamment formé au <b>développement front-end</b> et j'ai acquis de bonnes bases en <b>HTML</b>, <b>CSS</b> et <b>JavaScript</b>, ainsi qu'une première expérience avec <b>React</b>, <b>Redux</b>, l'utilisation d'<b>API</b>, <b>Git</b> et le <b>responsive design</b>. J'ai l'habitude d'intégrer des interfaces à partir de <b>maquettes Figma</b>, en veillant à respecter le rendu visuel, la structure du code et l'expérience utilisateur.",
       "p4": "Comme sur un chantier bien organisé, je prends le temps de poser des bases propres avant d'ajouter des fonctionnalités. Cette approche me permet de produire des <b>interfaces claires</b>, <b>cohérentes</b> et <b>adaptées</b> à différents supports.",
       "p5": "Mon intérêt pour les <b>systèmes</b>, les <b>réseaux</b> et la <b>cybersécurité</b> m'a sensibilisé aux notions de robustesse, de bonnes pratiques et de maintenabilité. J'essaie d'appliquer ces principes dès la phase d'intégration, afin de livrer un code fiable et compréhensible par d'autres développeurs.",
       "p6": "<b>Sérieux</b>, <b>motivé</b> et <b>appréciant</b> le travail en équipe, je suis prêt à m'investir pleinement dans vos projets tout en continuant à apprendre auprès de professionnels expérimentés. Cette alternance représente pour moi une étape essentielle pour progresser techniquement et contribuer concrètement à vos réalisations.",
@@ -5137,7 +5137,7 @@
     },
     "tryhackme": {
       "title": "TryHackMe - Pré Sécurité",
-      "description": "Pour attaquer ou défendre une technologie, nous devons d’abord comprendre ce qui l’alimente. Dans ce parcours, j'ai exploré les bases de l’informatique, écrit mes premières lignes de code et découvert comment les réseaux, le Web et les cyberattaques du monde réel se connectent.",
+      "description": "Pour attaquer ou défendre une technologie, nous devons d'abord comprendre ce qui l'alimente. Dans ce parcours, j'ai exploré les bases de l'informatique, écrit mes premières lignes de code et découvert comment les réseaux, le Web et les cyberattaques du monde réel se connectent.",
       "certificat": {
         "title": "Certificat",
         "preview": "Aperçu du certificat TryHackMe Pré-Sécurité",
@@ -5336,17 +5336,17 @@
       },
       "missions": {
         "title": "En tant que Technicien Informatique, quelles sont vos missions ?",
-        "description": "Vous êtes l’acteur clé du bon fonctionnement de l’environnement numérique de l’entreprise.\nVous installez les équipements, configurez les réseaux, automatisez les tâches récurrentes et assurez un support efficace aux utilisateurs. Votre rôle est à la fois <strong>technique, réactif et orienté service</strong>.\nVous devrez également :",
+        "description": "Vous êtes l'acteur clé du bon fonctionnement de l'environnement numérique de l'entreprise.\nVous installez les équipements, configurez les réseaux, automatisez les tâches récurrentes et assurez un support efficace aux utilisateurs. Votre rôle est à la fois <strong>technique, réactif et orienté service</strong>.\nVous devrez également :",
         "puce1": "Comprendre les priorités des utilisateurs et proposer des solutions pragmatiques ;",
-        "puce2": "Faire preuve de rigueur, de pédagogie, de curiosité et d’adaptabilité ;",
-        "puce3": "Intégrer les enjeux de cybersécurité, de développement durable et d’accessibilité numérique dans vos pratiques."
+        "puce2": "Faire preuve de rigueur, de pédagogie, de curiosité et d'adaptabilité ;",
+        "puce3": "Intégrer les enjeux de cybersécurité, de développement durable et d'accessibilité numérique dans vos pratiques."
       },
       "nextMissions": {
         "title": "Les missions types que vous pourrez mener :",
         "puce1": "Déployer un parc informatique automatisé (postes clients, serveurs, configurations)",
         "puce2": "Installer, sécuriser et maintenir un réseau local (filaire et Wi-Fi)",
         "puce3": "Gérer un domaine Active Directory (comptes, droits, GPO, services réseau)",
-        "puce4": "Assurer la supervision et la maintenance d’un parc informatique",
+        "puce4": "Assurer la supervision et la maintenance d'un parc informatique",
         "puce5": "Traiter les demandes utilisateurs et fournir un support N1/N2 selon les bonnes pratiques ITIL",
         "puce6": "Rédiger et maintenir à jour la documentation technique",
         "puce7": "Travailler en environnement local, cloud ou hybride"
@@ -5354,7 +5354,7 @@
     },
     "webIntegrator": {
       "title": "OpenClassrooms - Intégrateur Web",
-      "description": "L’intégrateur Web est chargé d’intégrer les éléments visuels dans les pages d’un site web pour créer une interface harmonieuse, lisible et facilement navigable. Il a de solides connaissances des langages de programmation pour pouvoir afficher le plus fidèlement possible le design graphique sur tous types de navigateurs et tailles d’écrans.",
+      "description": "L'intégrateur Web est chargé d'intégrer les éléments visuels dans les pages d'un site web pour créer une interface harmonieuse, lisible et facilement navigable. Il a de solides connaissances des langages de programmation pour pouvoir afficher le plus fidèlement possible le design graphique sur tous types de navigateurs et tailles d'écrans.",
       "badges": {
         "1": "Diplôme de niveau 5 (bac +2)",
         "2": "18 mois en alternance",
@@ -5362,9 +5362,9 @@
       },
       "missions": {
         "title": "En tant qu'Intégrateur Web, quelles sont vos missions ?",
-        "puce1": "<strong>Créer une application web complète et responsive</strong> pour permettre à l’entreprise ou au client de vendre ses produits et services en ligne, sur tous types d’appareils.",
-        "puce2": "<strong>Dynamiser des pages web</strong> pour mieux mettre en valeur les produits et service de l’entreprise ou du client.",
-        "puce3": "<strong>Créer des interfaces communiquant avec le back-end</strong> du site pour élaborer des applications dynamiques et permettre aux clients de s’identifier sur le site.",
+        "puce1": "<strong>Créer une application web complète et responsive</strong> pour permettre à l'entreprise ou au client de vendre ses produits et services en ligne, sur tous types d'appareils.",
+        "puce2": "<strong>Dynamiser des pages web</strong> pour mieux mettre en valeur les produits et service de l'entreprise ou du client.",
+        "puce3": "<strong>Créer des interfaces communiquant avec le back-end</strong> du site pour élaborer des applications dynamiques et permettre aux clients de s'identifier sur le site.",
         "puce4": "<strong>Optimiser les performances et réaliser la maintenance de sites web déjà existants</strong> pour permettre leur fonctionnement optimal et une bonne visibilité sur les moteurs de recherche.",
         "puce5": "<strong>Gérer un projet web de A à Z</strong> : du chiffrage et découpage des tâches du projet à la présentation de la solution, en passant par la rédaction des spécifications techniques."
       }
