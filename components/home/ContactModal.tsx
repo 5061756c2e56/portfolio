@@ -107,6 +107,7 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
     const [showErrorDialog, setShowErrorDialog] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [mailtoError, setMailtoError] = useState(false);
+    const [website, setWebsite] = useState('');
 
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
     const [turnstileError, setTurnstileError] = useState<string | null>(null);
@@ -133,6 +134,7 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
         setShowErrorDialog(false);
         setErrorMessage('');
         setMailtoError(false);
+        setWebsite('');
         setTurnstileToken(null);
         setTurnstileError(null);
     }, []);
@@ -282,7 +284,7 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
             setTurnstileError(null);
 
             try {
-                const result = await sendEmail(formData, turnstileToken);
+                const result = await sendEmail(formData, turnstileToken, website);
 
                 if (result.success) {
                     toast.success(t('toastSuccess'), { className: 'text-green-600 [&>svg]:text-green-600' });
@@ -299,7 +301,7 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
                 setIsSubmitting(false);
             }
         },
-        [formData, onClose, onSuccess, t, translateValidation, turnstileToken, siteKey]
+        [formData, onClose, onSuccess, t, translateValidation, turnstileToken, siteKey, website]
     );
 
     const handleMailtoConfirm = useCallback(() => {
@@ -353,6 +355,18 @@ export default function ContactModal({ isOpen, onClose, onSuccess, mailtoMode = 
                     </DialogHeader>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="hidden" aria-hidden="true">
+                            <label htmlFor="website">Website</label>
+                            <Input
+                                id="website"
+                                type="text"
+                                value={website}
+                                onChange={e => setWebsite(e.target.value)}
+                                autoComplete="off"
+                                tabIndex={-1}
+                            />
+                        </div>
+
                         <div className="space-y-2">
                             <label htmlFor="name" className="text-sm font-medium">
                                 {t('name')}

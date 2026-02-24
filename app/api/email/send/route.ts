@@ -10,16 +10,14 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getEmailCounter, getKVInstance, incrementEmailCounter } from '@/lib/db';
+import { getEmailCounter } from '@/lib/db';
+import { enqueueEmailJob, kickEmailQueueWorker } from '@/lib/email-queue';
+import { runEmailAntiSpamCheck } from '@/lib/email-anti-spam';
 import { rateLimit, validateContentType, validateOrigin } from '@/lib/rate-limit';
 import { type EmailFormData, sanitizeEmailForm, validateEmailForm } from '@/lib/email-validation';
+import { getClientIP } from '@/lib/request-utils';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const EMAILJS_TIMEOUT = 10000;
-const EMAILJS_RATE_LIMIT_MS = 1100;
-const EMAILJS_LAST_SENT_KEY = 'emailjs_last_sent';
-const EMAILJS_LOCK_KEY = 'emailjs_lock';
-const EMAILJS_LOCK_TTL = 2;
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -28,8 +26,8 @@ function isRecord(value: unknown): value is UnknownRecord {
 }
 
 function getStringField(obj: UnknownRecord, key: string): string | undefined {
-    const v = obj[key];
-    return typeof v === 'string' ? v : undefined;
+    const value = obj[key];
+    return typeof value === 'string' ? value : undefined;
 }
 
 async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
@@ -41,242 +39,42 @@ async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
     formData.append('response', token);
     if (ip) formData.append('remoteip', ip);
 
-    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString()
     });
 
-    const data: unknown = await res.json().catch(() => null);
+    const data: unknown = await response.json().catch(() => null);
     return isRecord(data) && data.success === true;
 }
 
-interface EmailJSTemplateParams {
-    to_email: string;
-    from_name: string;
-    from_email: string;
-    subject: string;
-    message: string;
-}
-
-interface EmailJSRequestBody {
-    service_id: string;
-    template_id: string;
-    user_id: string;
-    template_params: EmailJSTemplateParams;
-    accessToken?: string;
-}
-
-function stringifyEmailJSError(details: unknown): string | null {
-    if (!isRecord(details)) return null;
-
-    const pick = (k: string) => (
-        typeof details[k] === 'string' ? details[k] : undefined
-    );
-
-    const text = pick('text') ?? pick('error') ?? pick('message');
-    if (text) return text;
-
-    try {
-        return JSON.stringify(details);
-    } catch {
-        return null;
-    }
-}
-
-async function sendEmailViaEmailJS(data: EmailFormData): Promise<{ success: boolean; error?: string }> {
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    const privateKey = process.env.EMAILJS_PRIVATE_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-        const missing: string[] = [];
-        if (!serviceId) missing.push('NEXT_PUBLIC_EMAILJS_SERVICE_ID');
-        if (!templateId) missing.push('NEXT_PUBLIC_EMAILJS_TEMPLATE_ID');
-        if (!publicKey) missing.push('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY');
-
-        if (!isProduction) {
-            console.warn('[EmailJS] Configuration manquante:', missing.join(', '));
-        }
-
-        return {
-            success: false,
-            error: isProduction
-                ? 'Configuration EmailJS manquante. Veuillez utiliser votre client de messagerie.'
-                : `Configuration EmailJS manquante en développement: ${missing.join(', ')}. Utilisez votre client de messagerie.`
-        };
-    }
-
-    let lockAcquired = false;
-    const { redis, hasRedis } = await getKVInstance();
-
-    try {
-        const maxWaitTime = 3000;
-        const startTime = Date.now();
-
-        if (hasRedis && redis) {
-            while (!lockAcquired && Date.now() - startTime < maxWaitTime) {
-                const lastSent = await redis.get(EMAILJS_LAST_SENT_KEY);
-                const now = Date.now();
-
-                if (lastSent) {
-                    const timeSinceLastSent = now - Number.parseInt(lastSent, 10);
-                    if (timeSinceLastSent < EMAILJS_RATE_LIMIT_MS) {
-                        const waitTime = EMAILJS_RATE_LIMIT_MS - timeSinceLastSent;
-                        await new Promise<void>((resolve) => setTimeout(resolve, waitTime));
-                    }
-                }
-
-                const lockResult = await redis.set(EMAILJS_LOCK_KEY, '1', 'EX', EMAILJS_LOCK_TTL, 'NX');
-                if (lockResult === 'OK') {
-                    lockAcquired = true;
-                } else {
-                    await new Promise<void>((resolve) => setTimeout(resolve, 100));
-                }
-            }
-
-            if (!lockAcquired) {
-                return {
-                    success: false,
-                    error: 'Service temporairement occupé. Veuillez réessayer dans quelques instants.'
-                };
-            }
-        }
-
-        const templateParams: EmailJSTemplateParams = {
-            to_email: 'contact@paulviandier.com',
-            from_name: data.from_name,
-            from_email: data.from_email,
-            subject: data.subject,
-            message: data.message
-        };
-
-        const requestBody: EmailJSRequestBody = {
-            service_id: serviceId,
-            template_id: templateId,
-            user_id: publicKey,
-            template_params: templateParams
-        };
-
-        if (privateKey) {
-            requestBody.accessToken = privateKey;
-        }
-
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), EMAILJS_TIMEOUT);
-
-        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(requestBody),
-            signal: controller.signal
-        });
-
-        clearTimeout(timeoutId);
-
-        if (hasRedis && redis && response.ok) {
-            await redis.set(EMAILJS_LAST_SENT_KEY, Date.now().toString());
-        }
-
-        if (!response.ok) {
-            let errorText = 'Erreur EmailJS';
-
-            try {
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('application/json')) {
-                    const errorDetails: unknown = await response.json();
-                    errorText = stringifyEmailJSError(errorDetails) ?? errorText;
-                } else {
-                    errorText = await response.text();
-                }
-            } catch {
-                try {
-                    errorText = await response.text();
-                } catch {
-                    errorText = `Erreur ${response.status}: ${response.statusText}`;
-                }
-            }
-
-            if (!isProduction) {
-                console.error('[EmailJS Error]', {
-                    status: response.status,
-                    statusText: response.statusText,
-                    error: errorText.substring(0, 200)
-                });
-            }
-
-            if (hasRedis && redis && lockAcquired) {
-                await redis.del(EMAILJS_LOCK_KEY);
-            }
-
-            return {
-                success: false,
-                error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorText
-            };
-        }
-
-        if (hasRedis && redis && lockAcquired) {
-            await redis.del(EMAILJS_LOCK_KEY);
-        }
-
-        return { success: true };
-    } catch (err: unknown) {
-        if (hasRedis && redis && lockAcquired) {
-            try {
-                await redis.del(EMAILJS_LOCK_KEY);
-            } catch {
-            }
-        }
-
-        if (!isProduction && err instanceof Error) {
-            console.error('[EmailJS Exception]', err.message.substring(0, 200));
-        }
-
-        if (err instanceof Error) {
-            if (err.name === 'AbortError') {
-                return { success: false, error: 'Le délai d\'attente a été dépassé' };
-            }
-            if (
-                err.message.includes('Network') ||
-                err.message.includes('network') ||
-                err.message.includes('fetch') ||
-                err.message.includes('Failed to fetch')
-            ) {
-                return { success: false, error: 'Erreur de connexion réseau' };
-            }
-            return { success: false, error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : err.message };
-        }
-
-        return { success: false, error: 'Erreur inconnue lors de l\'envoi de l\'email' };
-    }
+function buildSecurityHeaders(rateRemaining?: number): HeadersInit {
+    return {
+        'X-RateLimit-Remaining': rateRemaining?.toString() ?? '0',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+        'Cache-Control': 'no-store'
+    };
 }
 
 export async function POST(request: NextRequest) {
     if (!validateContentType(request, 'application/json')) {
         return NextResponse.json(
             { error: 'Content-Type invalide' },
-            {
-                status: 400,
-                headers: {
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY'
-                }
-            }
+            { status: 400, headers: buildSecurityHeaders() }
         );
     }
 
     const rateLimitResult = await rateLimit(request);
     if (!rateLimitResult.allowed) {
         return NextResponse.json(
-            { error: 'Trop de requêtes. Veuillez réessayer plus tard.' },
+            { error: 'Trop de requetes. Veuillez reessayer plus tard.' },
             {
                 status: 429,
                 headers: {
-                    'Retry-After': '60',
-                    'X-RateLimit-Remaining': '0',
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY'
+                    ...buildSecurityHeaders(0),
+                    'Retry-After': '60'
                 }
             }
         );
@@ -284,14 +82,8 @@ export async function POST(request: NextRequest) {
 
     if (!validateOrigin(request)) {
         return NextResponse.json(
-            { error: 'Origine non autorisée' },
-            {
-                status: 403,
-                headers: {
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY'
-                }
-            }
+            { error: 'Origine non autorisee' },
+            { status: 403, headers: buildSecurityHeaders(rateLimitResult.remaining) }
         );
     }
 
@@ -301,22 +93,27 @@ export async function POST(request: NextRequest) {
         });
 
         if (!isRecord(rawBody)) {
-            return NextResponse.json({ error: 'Données invalides' }, { status: 400 });
+            return NextResponse.json(
+                { error: 'Données invalides' },
+                { status: 400, headers: buildSecurityHeaders(rateLimitResult.remaining) }
+            );
         }
 
-        const token = rawBody.turnstileToken;
-        if (!token || typeof token !== 'string') {
-            return NextResponse.json({ error: 'Captcha requis' }, { status: 400 });
+        const turnstileToken = rawBody.turnstileToken;
+        if (!turnstileToken || typeof turnstileToken !== 'string') {
+            return NextResponse.json(
+                { error: 'Captcha requis' },
+                { status: 400, headers: buildSecurityHeaders(rateLimitResult.remaining) }
+            );
         }
 
-        const ip =
-            request.headers.get('cf-connecting-ip') ||
-            request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-            undefined;
-
-        const ok = await verifyTurnstile(token, ip);
-        if (!ok) {
-            return NextResponse.json({ error: 'Captcha invalide' }, { status: 403 });
+        const ip = getClientIP(request);
+        const turnstileOk = await verifyTurnstile(turnstileToken, ip);
+        if (!turnstileOk) {
+            return NextResponse.json(
+                { error: 'Captcha invalide' },
+                { status: 403, headers: buildSecurityHeaders(rateLimitResult.remaining) }
+            );
         }
 
         const payload: Partial<EmailFormData> = {
@@ -329,75 +126,86 @@ export async function POST(request: NextRequest) {
         const validation = validateEmailForm(payload);
         if (!validation.valid) {
             return NextResponse.json(
-                { error: isProduction ? 'Données invalides' : Object.values(validation.errors)[0] },
-                {
-                    status: 400,
-                    headers: {
-                        'X-Content-Type-Options': 'nosniff',
-                        'X-Frame-Options': 'DENY'
-                    }
-                }
+                { error: isProduction ? 'Donnees invalides' : Object.values(validation.errors)[0] },
+                { status: 400, headers: buildSecurityHeaders(rateLimitResult.remaining) }
             );
         }
 
         const sanitizedData = sanitizeEmailForm(payload as EmailFormData);
+        const antiSpamResult = await runEmailAntiSpamCheck({
+            ip,
+            data: sanitizedData,
+            honeypot: getStringField(rawBody, 'website')
+        });
 
-        const current = await getEmailCounter();
-        if (current.count >= 200) {
-            return NextResponse.json({ error: 'Limite mensuelle de 200 emails atteinte' }, { status: 429 });
-        }
-
-        const emailResult = await sendEmailViaEmailJS(sanitizedData);
-
-        if (!emailResult.success) {
+        if (!antiSpamResult.allowed) {
             return NextResponse.json(
-                { error: emailResult.error || 'Erreur lors de l\'envoi de l\'email' },
+                { error: antiSpamResult.error || 'Message bloqué par la protection anti-spam' },
                 {
-                    status: 500,
+                    status: 429,
                     headers: {
-                        'X-Content-Type-Options': 'nosniff',
-                        'X-Frame-Options': 'DENY'
+                        ...buildSecurityHeaders(rateLimitResult.remaining),
+                        ...(
+                            antiSpamResult.retryAfterSeconds
+                                ? { 'Retry-After': antiSpamResult.retryAfterSeconds.toString() }
+                                : {}
+                        )
                     }
                 }
             );
         }
 
-        const counterResult = await incrementEmailCounter();
-        const nextCount = counterResult.count || current.count + 1;
+        const current = await getEmailCounter();
+        if (current.count >= 200) {
+            return NextResponse.json(
+                { error: 'Limite mensuelle de 200 emails atteinte' },
+                { status: 429, headers: buildSecurityHeaders(rateLimitResult.remaining) }
+            );
+        }
+
+        const enqueueResult = await enqueueEmailJob(sanitizedData, {
+            ip,
+            userAgent: request.headers.get('user-agent') || undefined
+        });
+
+        if (!enqueueResult.accepted) {
+            return NextResponse.json(
+                { error: enqueueResult.error || 'Service temporairement indisponible' },
+                { status: 503, headers: buildSecurityHeaders(rateLimitResult.remaining) }
+            );
+        }
+
+        kickEmailQueueWorker();
 
         return NextResponse.json(
-            { success: true, count: nextCount },
             {
-                headers: {
-                    'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY',
-                    'Cache-Control': 'no-store'
-                }
+                success: true,
+                queued: true,
+                queueId: enqueueResult.queueId,
+                queuePosition: enqueueResult.position,
+                count: current.count
+            },
+            {
+                status: 202,
+                headers: buildSecurityHeaders(rateLimitResult.remaining)
             }
         );
-    } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : 'Erreur inconnue';
-        const errorStack = err instanceof Error ? err.stack : undefined;
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
+        const errorStack = error instanceof Error ? error.stack : undefined;
 
         if (!isProduction) {
-            console.error('[API Error]', {
-                message: errorMessage.substring(0, 200),
-                stack: errorStack ? errorStack.substring(0, 500) : undefined
+            console.error('[Email Send API]', {
+                message: errorMessage.slice(0, 200),
+                stack: errorStack ? errorStack.slice(0, 500) : undefined
             });
         } else {
-            console.error('[API Error]', 'Internal server error');
+            console.error('[Email Send API]', 'Internal server error');
         }
 
         return NextResponse.json(
             { error: isProduction ? 'Erreur lors de l\'envoi de l\'email' : errorMessage },
-            {
-                status: 500,
-                headers: {
-                    'X-Content-Type-Options': 'nosniff',
-                    'X-Frame-Options': 'DENY'
-                }
-            }
+            { status: 500, headers: buildSecurityHeaders() }
         );
     }
 }

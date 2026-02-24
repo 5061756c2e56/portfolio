@@ -15,7 +15,8 @@ const API_TIMEOUT = 15000;
 
 export async function sendEmail(
     data: EmailFormData,
-    turnstileToken: string
+    turnstileToken: string,
+    website: string = ''
 ): Promise<{ success: boolean; error?: string; count?: number | null }> {
     const validation = validateEmailForm(data);
     if (!validation.valid) {
@@ -32,7 +33,11 @@ export async function sendEmail(
             headers: { 'Content-Type': 'application/json' },
             credentials: 'same-origin',
             signal: controller.signal,
-            body: JSON.stringify({ ...data, turnstileToken })
+            body: JSON.stringify({
+                ...data,
+                turnstileToken,
+                website
+            })
         });
 
         clearTimeout(timeoutId);
